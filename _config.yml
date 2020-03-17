@@ -1,4 +1,2 @@
-title: Qontract
-description: A contract testing tool that leverages Gherkin syntax to describe APIs and allows running contract as a stub, contract as a test and contract vs contract compatibility testing.
 theme: jekyll-theme-cayman
 markdown: kramdown
