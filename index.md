@@ -3,6 +3,8 @@ layout: default
 title: Home
 nav_order: 1
 ---
+Qontract
+========
 Qontract is a "Contract First" contract testing tool.
 
 * **Human readable contracts** - It leverages **Gherkin**'s strength as a specification mechanism to define APIs.
