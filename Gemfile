@@ -5,4 +5,4 @@ source "https://rubygems.org"
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 gem "jekyll"
-gem "jekyll-theme-cayman", group: :jekyll_plugins
+gem "just-the-docs", group: :jekyll_plugins
