@@ -1,7 +1,7 @@
 ---
 layout: default
 title: About
-nav_order: 2
+nav_order: 4
 ---
 Motivation
 ----------
