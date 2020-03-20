@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Command Line Setup
-nav_exclude: true
+title: Documentation
+nav_order: 2
+has_children: true
 ---
-
