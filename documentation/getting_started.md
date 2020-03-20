@@ -10,15 +10,9 @@ Quick Start
 Command Line
 ------------
 
-This mode helps leverage the tool in language / platform agnostic manner. Say suppose you have a Python provider and a Ruby consumer you can still leverage the tool (even though the tool itself is written in Kotlin and needs only JVM to run).
+Qontract can run as a standalone Jar also. This mode helps leverage the tool in language / platform agnostic manner. Say suppose you have a Python provider and a Ruby consumer you can still leverage the tool (even though the tool itself is written in Kotlin and needs only JVM to run).
 
-### Setup
-
-Clone this project and run "mvn clean install". Optionally, locate the "qontract-0.0.1-all.jar" file and alias it for convenience.
-
-    'alias qontract='java -jar <basedir>/qontract/application/build/libs/qontract-0.0.1-all.jar'
-
-TODO: Upload to Maven Repository
+Refer to [command line setup](/documentation/setup_command_line.html) page.
 
 ### Author a contract
 
