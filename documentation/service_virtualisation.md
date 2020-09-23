@@ -67,6 +67,14 @@ Any request that matches the contract request will be accepted.
 
 The response will be randomly generated, based on the contract. The contract defines the response as a number, so the response was a randomly generated number. In every run, you will get a different, randomly generated response that matches the contract.
 
+The file extension is `.qontract` by convention, and is enforced by the stub command.
+When contract files with extensions other than '.qontract' are supplied as input the command will exit and print all the files that have erroneous extensions
+```shell
+> {{ site.qontract_cmd }} stub random.contract
+The following files do not end with qontract and cannot be used:
+random.contract
+```
+
 ### Stubbing out specific responses to specific requests
 
 Often, you'll need the stub to return a specific response for a given request.
