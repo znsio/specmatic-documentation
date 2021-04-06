@@ -69,7 +69,7 @@ That would not be backward compatible with version 1, and hence this would be ve
 
 ## Contract Namespaces And File System Structure
 
-We share contracts by committing them to a git repository.
+We share contracts by committing them to a git repository. Refer [Manage Your Contracts](/documentation/manage_contracts.html)
 
 Here's a sample git repository that contains the math contract:
 
@@ -84,7 +84,6 @@ Here's a sample git repository that contains the math contract:
 
 - The path ./run/specmatic/examples acts as a namespace, much like a dot separated package name.
 - Contract file names can begin with any text (no spaces)
-    - If there is a version number, then they must include version number at the end of the name before ".spec" extension.
     - The underscore separates the name of the contract and version number
     - In above example the name of contract is math and there are two versions of this API.
 
