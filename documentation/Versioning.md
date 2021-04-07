@@ -9,7 +9,7 @@ Versioning
 
 - [Versioning](#versioning)
   - [Backward Compatibility](#backward-compatibility)
-  - [Contract Namespaces And File System Structure](#contract-namespaces-and-file-system-structure)
+  - [Versioning Naming Convention](#versioning-naming-convention)
   - [Ensuring Backward Compatibility](#ensuring-backward-compatibility)
     - [Compare Working Directory With HEAD](#compare-working-directory-with-head)
     - [Compare A Contract In Two Different Commits](#compare-a-contract-in-two-different-commits)
@@ -67,42 +67,37 @@ And response-body (number)
 
 That would not be backward compatible with version 1, and hence this would be version 2.
 
-## Contract Namespaces And File System Structure
+## Versioning Naming Convention
 
-We share contracts by committing them to a git repository. Refer [Manage Your Contracts](/documentation/manage_contracts.html)
+We share contracts by committing them to a shared git repository. Refer [Manage Your Contracts](/documentation/manage_contracts.html)
 
-Here's a sample git repository that contains the math contract:
+Here's a sample git repository that contains the math contract with two different Versions:
 
 ```
 <BASE_DIR>
     /run
         /specmatic
             /examples
-                math_1.spec
-                math_2.spec
+                api_math_v1.spec
+                api_math_v2.spec
 ```
 
-- The path ./run/specmatic/examples acts as a namespace, much like a dot separated package name.
-- Contract file names can begin with any text (no spaces)
-    - The underscore separates the name of the contract and version number
-    - In above example the name of contract is math and there are two versions of this API.
-
-All updates to a contract file must be backward compatible.
+  The underscore separates the name of the contract and version number. All updates to a contract file must be backward compatible.
 
 ## Ensuring Backward Compatibility
-
+ 
 Since the file is in git, comparing it with its previous version is easy.
 
 ### Compare Working Directory With HEAD
 
 Let's say you have the git repo in your home directory with the directory structure mentioned above.
 
-Make a change to math_1.spec.
+Make a change to api_math_1.spec.
 
-To check if the change is backward compatible, open a terminal or command prompt and run the command `java -jar specmatic.jar compatible git file ./run/specmatic/examples/math_1.spec`. You should see something like this if the change is backward compatible:
+To check if the change is backward compatible, open a terminal or command prompt and run the command `java -jar specmatic.jar compatible git file ./run/specmatic/examples/api_math_v1.spec`. You should see something like this if the change is backward compatible:
 
 ```shell
-> java -jar specmatic.jar compatible git file ./run/specmatic/examples/math_1.spec
+> java -jar specmatic.jar compatible git file ./run/specmatic/examples/api_math_v1.spec
 Tests run: 1, Passed: 1, Failed: 0
 
 The newer contract is backward compatible
