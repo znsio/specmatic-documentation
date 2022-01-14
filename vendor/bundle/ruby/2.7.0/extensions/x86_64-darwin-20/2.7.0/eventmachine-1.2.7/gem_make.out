@@ -1,0 +1,16 @@
+current directory: /Users/joel.rosario/Source/specmatic-documentation/vendor/bundle/ruby/2.7.0/gems/eventmachine-1.2.7/ext/fastfilereader
+/Users/joel.rosario/.rbenv/versions/2.7.3/bin/ruby -I /Users/joel.rosario/.rbenv/versions/2.7.3/lib/ruby/2.7.0 -r ./siteconf20220103-64712-scnx6p.rb extconf.rb
+creating Makefile
+
+current directory: /Users/joel.rosario/Source/specmatic-documentation/vendor/bundle/ruby/2.7.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make "DESTDIR=" clean
+
+current directory: /Users/joel.rosario/Source/specmatic-documentation/vendor/bundle/ruby/2.7.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make "DESTDIR="
+compiling mapper.cpp
+compiling rubymain.cpp
+linking shared-object fastfilereaderext.bundle
+
+current directory: /Users/joel.rosario/Source/specmatic-documentation/vendor/bundle/ruby/2.7.0/gems/eventmachine-1.2.7/ext/fastfilereader
+make "DESTDIR=" install
+/run/current-system/sw/bin/install -c -m 0755 fastfilereaderext.bundle ./.gem.20220103-64712-nplvjw
