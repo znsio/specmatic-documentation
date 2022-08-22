@@ -29,10 +29,11 @@
     <!-- Custom Stylesheet -->
    
     <link rel="stylesheet" href="./css/tailwind.min.css">
-    <!-- <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.2/dist/flowbite.min.css" /> -->
+
+   
 </head>
 
-<body class="bg-indigo-100 font-serif">
+<body class="bg-indigo-100 font-serif ">
   <!-- Navbar section -->
 
   <nav class=" bg-white  shadow-md">
@@ -123,15 +124,13 @@
  <!-- Hero section -->
  <section class="text-gray-600 body-font autoflow-x-hidden">
     <div class="container mx-auto flex px-4 py-24 md:flex-row flex-col items-center">
-      <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0  text-center">
-        <h1 class="title-font text-5xl sm:text-4xl font-extrabold  mb-4 font-medium text-purple-900 font-serif">Contract Driven Development
-
-          <!-- <br class="hidden lg:inline-block">readymade gluten -->
+      <div class=" mt-16 lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0  text-center">
+        <h1 class="title-font text-3xl sm:text-4xl font-extrabold  mb-4 font-medium text-purple-900 font-serif">Contract Driven Development
         </h1>
-        <p class=" text-base text-purple-800 tracking-wider sm:mt-4 sm:text-xl lg:text-lg xl:text-xl text-left font-serif">
+        <p class=" text-base text-gray-800 tracking-wider sm:mt-4 sm:text-xl lg:text-lg xl:text-xl text-left font-serif">
             Collaboratively Design and Independently Deploy MicroServices & MicroFrontends</p>
         <p
-            class=" text-base text-purple-800 tracking-wider sm:mt-4 sm:text-xl lg:text-lg xl:text-xl text-left font-serif">
+            class=" text-base text-gray-700 tracking-wider sm:mt-4 sm:text-xl lg:text-lg xl:text-xl text-left font-serif">
             <span class="font-bold">Shift Left</span> and <span class="font-bold">Identify Compatibility
                 Issues</span> between your applications <span class="font-bold">without Integration Testing
             </span> by leveraging your <span class="font-bold">API Specification as Executable Contracts</span>
@@ -144,8 +143,8 @@
       <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
        
         <div class="lg:max-w-lg   w-full ">
-            <video controls class="rounded-md w-full">
-                <source src="/assets/Specmatic-Apicontracttesting.mp4" type="video/mp4" />
+            <video controls class="rounded-md w-full" poster="./assets/Api-specification.png">
+                <source src="https://player.vimeo.com/external/342867313.sd.mp4?s=1e196b352b464cd53b2c10f1c8f5de1a7a3d4d37&profile_id=164&oauth2_token_id=57447761" type="video/mp4" />
             </video>
         </div>
       </div>
@@ -153,7 +152,7 @@
   </section>
   <!-- supported company -->
   <div class="px-4 py-12 mx-auto max-w-4xl sm:px-6 lg:py-16 lg:px-8">
-    <p class="text-base font-semibold tracking-wider text-center uppercase text-purple-900">
+    <p class="text-base font-semibold tracking-wider text-center uppercase text-gray-600">
         Supported Specification Standards
     </p>
     <div class="px-4 py-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -174,14 +173,17 @@
     </div>
 </div>
     <!-- api specification section -->
-  
-<div class=" bg-purple-900">
+    
+    
+<div class="relative bg-purple-900">
+  <!-- <img src="./assets/wave.svg" class="w-full "> -->
     <section class="text-gray-600 body-font">
-        <div class="container px-5 py-12 mx-auto">
+        <div class="container px-5  mx-auto py-12 ">
           <div class="flex flex-col text-center w-full mb-10">
-            <h1 class="sm:text-3xl text-3xl font-bold title-font text-white">API Specifications as Executable Contracts</h1>
+            <h1 class="sm:text-3xl text-3xl font-bold title-font text-white text-center">API Specifications as Executable Contracts</h1>
           </div>
-          <div class="flex flex-wrap -m-4">
+          
+          <div class="flex flex-wrap -m-4 ">
             <div class="p-4 md:w-1/3 ">
               <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col shadow-md hover:shadow-lg border border-purple-700">
                 <div class="flex items-center mb-3">
@@ -190,10 +192,10 @@
                       <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
                     </svg>
                   </div>
-                  <h2 class="text-purple-900 text-lg title-font font-medium ">Generating Tests from API Specifications</h2>
+                  <h2 class="text-gray-900 text-lg title-font font-bold ">Contract as Test</h2>
                 </div>
                 <div class="flex-grow">
-                  <p class="leading-relaxed text-base text-purple-800">Generate Test Cases for free (zero code) from you API Specification Files and run them against your Services to identify integration issue early.</p>
+                  <p class="leading-relaxed text-base text-gray-700">Generate Test Cases for free (zero code) from you API Specification Files and run them against your Services to identify integration issue early.</p>
                   <a class="mt-3 text-indigo-500 inline-flex items-center" href="#">Learn More
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
                       <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -211,10 +213,10 @@
                       <circle cx="12" cy="7" r="4"></circle>
                     </svg>
                   </div>
-                  <h2 class="text-purple-900 text-lg title-font font-medium">Smart Service Virtualization</h2>
+                  <h2 class="text-gray-900 text-lg title-font font-bold">Contract as Stub</h2>
                 </div>
                 <div class="flex-grow">
-                  <p class="leading-relaxed text-base text-purple-800">No more stale stubs. Specmatic’s “Smart Service Virtualization” verifies your expecations / stub responses against your API Specifications.
+                  <p class="leading-relaxed text-base text-gray-700">No more stale stubs. Specmatic’s “Smart Service Virtualization” verifies your expecations / stub responses against your API Specifications.
                 </p>
                   <a class="mt-3 text-indigo-500 inline-flex items-center" href="#">Learn More
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
@@ -234,10 +236,10 @@
                       <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
                     </svg>
                   </div>
-                  <h2 class="text-purple-900 text-lg title-font font-medium">Contract vs Contract Testing</h2>
+                  <h2 class="text-gray-900 text-lg title-font font-bold">Backward Compatibility</h2>
                 </div>
                 <div class="flex-grow">
-                  <p class="leading-relaxed text-base text-purple-800">Identify potent backward incompatible changes in your API Specifications without writing a single line of code for client / consumer or service / provider applications</p>
+                  <p class="leading-relaxed text-base text-gray-700">Identify potent backward incompatible changes in your API Specifications without writing a single line of code for client / consumer or service / provider applications</p>
                   <a class="mt-3 text-indigo-500 inline-flex items-center" href="#">Learn More
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
                       <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -258,17 +260,17 @@
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
     <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
       <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-        <img class="object-cover object-center  h-full w-full" alt="hero" src="/assets/executable.png" >
+        <img class="object-cover object-center  h-full w-full" alt="hero" src="/assets/Api-specification.png" >
       </div>
       <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left  text-left ">
-        <h1 class="title-font sm:text-4xl text-4xl mb-4 font-medium text-purple-900">API Specifications as
+        <h1 class="title-font sm:text-4xl text-4xl mb-4 font-medium text-gray-900">API Specifications as
             Executable Contracts
         </h1>
-        <p class="mb-8 leading-relaxed text-purple-800">Specmatic supercharges your API Specifications by leveraging them as “Executable Contracts”. Specmatic does this by</p>
+        <p class="mb-8 leading-relaxed text-gray-700">Specmatic supercharges your API Specifications by leveraging them as “Executable Contracts”. Specmatic does this by</p>
         <ul class="list-disc">
-            <li> <h1 class="font-bold text-purple-900">Smart Service Virtualization</h1> <p class="text-purple-800">(Emulating the Provider / Service based on the API Spefication) which allows Consumer / Client Applications to be Developed and Tested indepent of the Provider</p></li>
-           <li class=" py-8"> <h1 class="font-bold text-purple-900">Contract as Test </h1>
-           <p class="text-purple-800"> (Emulating the Consumer / Client applicatin for the Provider) generates Test Scenarios based on the API Specification File without you have to write any code</p></li>
+            <li> <h1 class="font-bold text-orange-500">Smart Service Virtualization</h1> <p class="text-gray-700">(Emulating the Provider / Service based on the API Spefication) which allows Consumer / Client Applications to be Developed and Tested indepent of the Provider</p></li>
+           <li class=" py-8"> <h1 class="font-bold text-orange-500">Contract as Test </h1>
+           <p class="text-gray-700"> (Emulating the Consumer / Client applicatin for the Provider) generates Test Scenarios based on the API Specification File without you have to write any code</p></li>
           </ul>
             <div class="  sm:flex sm:justify-center md:mt-8">
               <div class="rounded-md ">
@@ -287,16 +289,16 @@
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
           <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-            <img class="object-cover object-center  h-full w-full" alt="hero" src="/assets/contract.png" >
+            <img class="object-cover object-center  h-full w-full" alt="hero" src="/assets/contract-as-test.png" >
           </div>
           <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left  text-left ">
-            <h1 class="title-font sm:text-4xl text-4xl mb-4 font-medium text-purple-900">Contract as Test
+            <h1 class="title-font sm:text-4xl text-4xl mb-4 font-medium text-gray-900">Contract as Test
             </h1>
-            <p class="mb-8 leading-relaxed text-purple-800">Tests for Free - Specmatic parses your API Specification files into Test Scenarios and then generates requests and fires it at your application. Once it response is received it verifies status, schema, headers, etc. based your API Specification. All of this with a “Zero Code” approach. Spematic generates two types of tests.</p>
+            <p class="mb-8 leading-relaxed text-gray-700">Tests for Free - Specmatic parses your API Specification files into Test Scenarios and then generates requests and fires it at your application. Once it response is received it verifies status, schema, headers, etc. based your API Specification. All of this with a “Zero Code” approach. Spematic generates two types of tests.</p>
             <ul class="list-disc">
-                <li> <h1 class="font-bold text-purple-900">Positive Tests</h1> <p class="text-purple-800">verify if the impleme meets basic criterea as per your API Spefication</p></li>
-               <li class=" py-8"> <h1 class="font-bold text-purple-900">Negative Tests </h1>
-               <p class="text-purple-800"> verify the boundary conditions to identify issues related to areas such as error handling</p></li>
+                <li> <h1 class="font-bold text-orange-500">Positive Tests</h1> <p class="text-gray-700">verify if the impleme meets basic criterea as per your API Spefication</p></li>
+               <li class=" py-8"> <h1 class="font-bold text-orange-500">Negative Tests </h1>
+               <p class="text-gray-700"> verify the boundary conditions to identify issues related to areas such as error handling</p></li>
               </ul>
               <div class="  sm:flex sm:justify-center md:mt-8">
                 <div class="rounded-md ">
@@ -316,13 +318,13 @@
         <img class="object-cover object-center  h-full w-full" alt="hero" src="/assets/virtualization.png" >
       </div>
       <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left  text-left ">
-        <h1 class="title-font sm:text-4xl text-4xl mb-4 font-medium text-purple-900">Contract as Tests (Smart Service Virtualization)
+        <h1 class="title-font sm:text-4xl text-4xl mb-4 font-medium text-gray-900">Contract as Tests (Smart Service Virtualization)
         </h1>
-        <p class="mb-8 leading-relaxed text-purple-800">What is so smart about Specmatic’s Service Virtualization?</p>
+        <p class="mb-8 leading-relaxed text-gray-700">What is so smart about Specmatic’s Service Virtualization?</p>
         <ul class="list-disc">
-            <li> <h1 class="font-bold text-purple-900">Expectation Validation</h1> <p class="text-purple-800">ensures that the responses that are setup in Specmatic Service Virtualization Server are continuously evaluated against the API Specification of the Provider it is emulating.</p></li>
-           <li class=" py-8"> <h1 class="font-bold text-purple-900">Dynamic and Static Stubbing </h1>
-           <p class="text-purple-800"> allows on the fly expectations setup over Specmatic’s http interface as well as at startup respectively. Both modes go through the above validation</p></li>
+            <li> <h1 class="font-bold text-orange-500">Expectation Validation</h1> <p class="text-gray-700">ensures that the responses that are setup in Specmatic Service Virtualization Server are continuously evaluated against the API Specification of the Provider it is emulating.</p></li>
+           <li class=" py-8"> <h1 class="font-bold text-orange-500">Dynamic and Static Stubbing </h1>
+           <p class="text-gray-700"> allows on the fly expectations setup over Specmatic’s http interface as well as at startup respectively. Both modes go through the above validation</p></li>
           </ul>
           <div class="  sm:flex sm:justify-center md:mt-8">
             <div class="rounded-md ">
@@ -342,9 +344,9 @@
             <img class="object-cover object-center  h-full w-full" alt="hero" src="/assets/backward.png" >
           </div>
           <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left  text-left ">
-            <h1 class="title-font sm:text-4xl text-4xl mb-4 font-medium text-purple-900">Backward Compatibility
+            <h1 class="title-font sm:text-4xl text-4xl mb-4 font-medium text-gray-900">Backward Compatibility
             </h1>
-            <p class="mb-8 leading-relaxed text-purple-800">As API Specifcation authors / API designers it is important for us understand if our changes to existing APIs can break compatibility with existing API Consumers / Clients. Specmatic can “Contract vs Contract” testing between two API Specification files and provide accurate results about compatibility issues. All this without even you having to implement the changes in API Implementation / Provider or API Client / Consumer.</p>
+            <p class="mb-8 leading-relaxed text-gray-700">As API Specifcation authors / API designers it is important for us understand if our changes to existing APIs can break compatibility with existing API Consumers / Clients. Specmatic can “Contract vs Contract” testing between two API Specification files and provide accurate results about compatibility issues. All this without even you having to implement the changes in API Implementation / Provider or API Client / Consumer.</p>
             
             <div class="  sm:flex sm:justify-center md:mt-8">
               <div class="rounded-md ">
@@ -366,21 +368,21 @@
           One Spec to rule them all      </h2>
       </div>
       <div
-        class="grid grid-cols-1 gap-8 px-8 mx-auto mt-8 md:grid-cols-2 lg:grid-cols-3 "
+        class="grid grid-cols-1 gap-8 px-8 mx-auto mt-8 md:grid-cols-3 lg:grid-cols-4 "
       >
         <div class="flex flex-col overflow-hidden rounded-lg shadow-lg ">
           <div
             class="flex flex-col justify-between p-6 text-white bg-white"
           >
-            <div class="flex-1">
+            <div class="flex-1 pb-8">
               <div class="flex justify-center">
               <img src="/assets/code.svg" alt="Language Agnostic"/></div>
               <div class="block h-32 mt-2">
                 
-                <p class="text-xl font-semibold text-center text-purple-900">
+                <p class="text-xl font-semibold text-center text-gray-900">
                   Language Agnostic
                 </p>
-                <p class="mt-3 text-base text-center text-purple-800">
+                <p class="mt-3 text-base text-center text-gray-700">
                   Specmatic is Programming Language agnostic since it is working at API level 
                 </p>
               </div>
@@ -392,15 +394,15 @@
           <div
             class="flex flex-col justify-between p-6 text-white bg-white"
           >
-            <div class="flex-1">
+            <div class="flex-1 pb-8">
               <div class="flex justify-center">
               <img src="/assets/protocols icon.svg" alt="multiple protocol"/></div>
               <div class="block h-32 mt-2">
                 
-                <p class="text-xl font-semibold text-center text-purple-900">
+                <p class="text-xl font-semibold text-center text-gray-900">
                   Multiple Protocols
                 </p>
-                <p class="mt-3 text-base text-center text-purple-800">
+                <p class="mt-3 text-base text-center text-gray-700">
                   Http, Kafka, SOAP and more
                 </p>
               </div>
@@ -412,15 +414,15 @@
           <div
             class="flex flex-col justify-between p-6 text-white bg-white"
           >
-            <div class="flex-1">
+            <div class="flex-1 pb-8">
               <div class="flex justify-center">
               <img src="/assets/independent code-icon.svg"/></div>
               <div class="block h-32 mt-2">
                 
-                <p class="text-xl font-semibold text-center text-purple-900">
+                <p class="text-xl font-semibold text-center text-gray-900">
                   Platform Independent 
                 </p>
-                <p class="mt-3 text-base text-center text-purple-800">
+                <p class="mt-3 text-base text-center text-gray-700">
                   Use the command line to integrate with any programmatic environment
                 </p>
               </div>
@@ -432,15 +434,15 @@
           <div
             class="flex flex-col justify-between p-6 text-white bg-white"
           >
-            <div class="flex-1">
+            <div class="flex-1 pb-8">
               <div class="flex justify-center">
               <img src="/assets/test icon.svg"/></div>
               <div class="block h-32 mt-2">
                 
-                <p class="text-xl font-semibold text-center text-purple-900">
+                <p class="text-xl font-semibold text-center text-gray-900">
                   Contract as Test
                 </p>
-                <p class="mt-3 text-base text-center text-purple-800">
+                <p class="mt-3 text-base text-center text-gray-700">
                   Test drive your services (APIs) using a contract
                 </p>
               </div>
@@ -453,15 +455,15 @@
           <div
             class="flex flex-col justify-between p-6 text-white bg-white"
           >
-            <div class="flex-1">
+            <div class="flex-1 pb-8">
               <div class="flex justify-center">
               <img src="/assets/backward icon.svg"/></div>
               <div class="block h-32 mt-2">
                 
-                <p class="text-xl font-semibold text-center text-purple-900">
+                <p class="text-xl font-semibold text-center text-gray-900">
                   Backward Compatibility Verification
                 </p>
-                <p class="mt-3 text-base text-center text-purple-800">
+                <p class="mt-3 text-base text-center text-gray-700">
                   Contract vs Contract testing (cross version compatibility checks) etc.
                 </p>
               </div>
@@ -473,15 +475,15 @@
           <div
             class="flex flex-col justify-between p-6 text-white bg-white"
           >
-            <div class="flex-1">
+            <div class="flex-1 pb-8">
               <div class="flex justify-center">
               <img src="/assets/service icon.svg"/></div>
               <div class="block h-32 mt-2">
                 
-                <p class="text-xl font-semibold text-center text-purple-900">
+                <p class="text-xl font-semibold text-center text-gray-900">
                   Service Virtualisation
                 </p>
-                <p class="mt-3 text-base text-center text-purple-800">
+                <p class="mt-3 text-base text-center text-gray-700">
                   Run your contract in stub mode and isolate yourself from downstream dependencies 
                 </p>
               </div>
@@ -493,15 +495,15 @@
           <div
             class="flex flex-col justify-between p-6 text-white bg-white"
           >
-            <div class="flex-1">
+            <div class="flex-1 pb-8">
               <div class="flex justify-center">
               <img src="/assets/integration icon.svg"/></div>
               <div class="block h-32 mt-2">
                 
-                <p class="text-xl font-semibold text-center text-purple-900">
+                <p class="text-xl font-semibold text-center text-gray-900">
                   Tight Integration with CI
                 </p>
-                <p class="mt-3 text-base text-center text-purple-800">
+                <p class="mt-3 text-base text-center text-gray-700">
                   Trigger Provider and Consumer CI builds when any of the contracts change
                 </p>
               </div>
@@ -513,75 +515,56 @@
           <div
             class="flex flex-col justify-between p-6 text-white bg-white"
           >
-            <div class="flex-1">
+            <div class="flex-1 pb-8">
               <div class="flex justify-center">
               <img src="/assets/import api icon.svg"/></div>
               <div class="block h-32 mt-2">
                 
-                <p class="text-xl font-semibold text-center text-purple-900">
-                  Import your APIs
+                <p class="text-xl font-semibold text-center text-gray-900">
+                  Generating Via Proxy
                 </p>
-                <p class="mt-3 text-base text-center text-purple-800">
+                <p class="mt-3 text-base text-center text-gray-700">
                   Use Postman Collections or Specmatic's http proxy
                 </p>
               </div>
             </div>
           </div>
         </div>
-        <div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
-          <div
-            class="flex flex-col justify-between p-6 text-white bg-white"
-          >
-            <div class="flex-1">
-              <div class="flex justify-center">
-              <img src="/assets/human.svg"/></div>
-              <div class="block h-32 mt-2">
-                
-                <p class="text-xl font-semibold text-center text-purple-900">
-                  Human Readable Contracts
-                </p>
-                <p class="mt-3 text-base text-center text-purple-800">
-                  Specmatic leverages Gherkin’s strength as a specification mechanism to define your services. 
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+       
       </div>
     </div>
   </div>
   <!-- footer section -->
   
-  <footer class="">
-    <div class="container px-5 py-2 mx-auto flex items-center sm:flex-row flex-col">
-    
+  <footer class="bg-red-100">
+    <div class="max-w-6xl mx-auto ">
+      <div class="py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
         <img
-      src="/assets/specmatic-logo.png"
-      class="h-12 cursor-pointer sm:h-16"
-      alt="specmatic Logo"
-    />
-       
-      
-     
-      <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-        <a href="https://github.com/znsio/specmatic" target="_blank" class="px-2">
-          <img src="/assets/github.svg" alt="github" class="h-full w-full" />
-        </a>
-  
-        <a href="https://twitter.com/specmatic" target="_blank" class="px-2">
-          <img src="/assets/twitter.svg" alt="twitter" class="h-full w-full" />
-        </a>
-  
-        <a href="#" target="_blank" class="px-2">
-          <img src="/assets/linkdin.svg" alt="linkedIn" class="h-full w-full" />
-        </a>
-      </span>
-     
-    </div>
-    <p class=" flex justify-center text-sm text-purple-900 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 pb-4 sm:mt-0  ">&copy; <a href="https://xnsio.com" target="_blank">Xnsio</a>  2021. All rights reserved.
-    </p>
+        src="/assets/specmatic-logo.png"
+        class="h-12 cursor-pointer sm:h-16"
+        alt="specmatic Logo"
+      />
+      <p class="border-l-2 pl-4 border-gray-500">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi eveniet autem, in quos perspiciatis nisi nemo, illo itaque aliquam dolor voluptate dolorem? Soluta impedit exercitationem accusantium? Repudiandae placeat doloribus culpa eaque, aperiam omnis quaerat delectus quia sapiente soluta tenetur sed.</p>
+      </div>
+      <div class=" px-4 sm:px-6 md:flex md:items-center md:justify-around lg:px-8 pb-4">
+<div class="flex"> <a href="https://github.com/znsio/specmatic" target="_blank" class="px-2">
+  <img src="/assets/github.svg" alt="github" class="h-full w-full" />
+</a>
+
+<a href="https://twitter.com/specmatic" target="_blank" class="px-2">
+  <img src="/assets/twitter.svg" alt="twitter" class="h-full w-full" />
+</a>
+
+<a href="#" target="_blank" class="px-2">
+  <img src="/assets/linkdin.svg" alt="linkedIn" class="h-full w-full" />
+</a></div>
+<p>&copy; <a href="https://xnsio.com" target="_blank">Xnsio</a>  2021. All rights reserved.</p>
+      </div>
+      </div>
+    
   </footer>
       <script src="https://unpkg.com/flowbite@1.5.2/dist/flowbite.js"></script>  
+     
 </body>
 
 </html>
