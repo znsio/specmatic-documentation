@@ -4,15 +4,6 @@
 <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180931029-1"></script>
-
-
-  <!-- Google Tag Manager -->
-  <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WSX9CQ3');</script> -->
-  <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -38,18 +29,15 @@
   <!-- Custom Stylesheet -->
 
   <link rel="stylesheet" href="./css/tailwind.min.css">
-
-
 </head>
 
-<body class="bg-indigo-100  ">
+<body class="bg-indigo-100">
   <!-- Navbar section -->
   <nav class="sticky top-0 z-30 w-full px-2 bg-indigo-100  shadow-md shadow-blue-600/20 sm:px-4">
 
     <div class="container  flex flex-wrap justify-between items-center mx-auto ">
       <a href="#" class="flex items-center">
         <img src="./assets/specmatic-logo.png" class=" h-6 sm:h-10" alt="specmatic Logo">
-
       </a>
       <button data-collapse-toggle="mobile-menu" type="button"
         class="inline-flex justify-center items-center ml-3 py-4 text-gray-400 rounded-lg md:hidden hover:text-gray-900 "
@@ -67,7 +55,7 @@
           class="flex flex-col p-3  rounded-lg bg-gray-50 md:flex-row md:space-x-2 md:mt-0 md:text-base md:font-medium md:border-0 ">
           <li>
             <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
-              class="flex  items-center justify-between w-full py-2 pl-3 pr-4  font-medium text-gray-700 rounded    hover:text-purple-800 md:p-0 md:w-auto">
+              class="flex  items-center justify-between w-full py-2  pr-4  font-medium text-purple-900 rounded text-lg  hover:text-purple-800 md:p-0 md:w-auto">
               Features
               <svg class="w-5 h-5 ml-1" aria-haspopup="true" fill="currentColor" viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg">
@@ -77,7 +65,7 @@
               </svg>
             </button>
 
-            <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white rounded-lg shadow w-90 "
+            <div id="dropdownNavbar" class="z-10 hidden font-normal bg-indigo-100 rounded-lg shadow w-90 "
               data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom" style="
               position: absolute;
               inset: 0px auto auto 0px;
@@ -86,374 +74,358 @@
             ">
               <ul class="py-2 text-sm text-gray-500 divide-y divide-gray-200" aria-labelledby="dropdownLargeButton">
                 <li>
-                  <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-purple-100 ">Specification
+                  <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-white ">Specification
                     vs Contract Test</a>
                 </li>
                 <li>
-                  <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-purple-100 ">Smart
+                  <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-white ">Smart
                     Services Virtualization</a>
                 </li>
                 <li>
-                  <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-purple-100 ">Backward
+                  <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-white ">Backward
                     Compatibility</a>
                 </li>
                 <li>
-                  <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-purple-100 ">Navigate
+                  <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-white ">Navigate
                     Testing</a>
                 </li>
               </ul>
             </div>
           </li>
-
           <li>
-            <a href="#" class="block py-2 pl-3 pr-4  text-gray-700  md:border-0 hover:text-purple-800 md:p-0 ">Open
+            <a href="#" class="block py-2  pr-4  text-purple-900  md:border-0 hover:text-purple-800 md:p-0 text-lg">Open
               Source</a>
           </li>
           <li>
             <a href="#"
-              class="block py-2 pl-3 pr-4  text-gray-700 md:border-0  hover:text-purple-800 md:p-0 ">Conferences</a>
+              class="block py-2  pr-4  text-purple-900 md:border-0  hover:text-purple-800 md:p-0 text-lg">Conferences</a>
           </li>
           <li>
             <a href="/documentation.html" target="_blank"
-              class="block py-2 pl-3 pr-4  text-gray-700  md:border-0 hover:text-purple-800 md:p-0 ">Documentation</a>
+              class="block py-2  pr-4  text-purple-900  md:border-0 hover:text-purple-800 md:p-0 text-lg">Documentation</a>
           </li>
-          <li>
-            <a href="/documentation.html" target="_blank"
-              class="block py-2 pl-3 pr-4  text-gray-700  md:border-0 hover:text-purple-800 md:p-0 ">GitHub</a>
+          <li class="flex">
+            <a href="#" target="_blank"
+              class="block py-2  pr-2 text-orange-500  md:border-0 hover:text-purple-800 md:p-0 text-lg">GitHub</a>
+            <img src="/assets/github-ribbon.svg">
           </li>
-
         </ul>
-
       </div>
     </div>
-
   </nav>
-
-
-
   <!-- Hero section -->
-  <section class="text-gray-600 body-font w-full overflow-x-hidden">
-    <div class="container mx-auto flex  py-24 md:flex-row flex-col items-center">
-      <div
-        class="lg:flex-grow md:w-1/2 lg:pr-12 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-        <h1 class="title-font text-3xl sm:text-5xl font-bold  mb-4  text-purple-900 text-left">Contract Driven
-          Development
-        </h1>
-
-        </h1>
-        <p class=" text-base text-gray-800 tracking-wider sm:mt-4 sm:text-xl lg:text-xl xl:text-xl text-left ">
-          Micro-services done right without the pain of integration</p>
-        <p class=" text-base text-gray-800 tracking-wider sm:mt-4 sm:text-xl lg:text-xl xl:text-xl text-left">
-          <span class="font-bold">Shift Left</span> and <span class="font-bold">Identify Compatibility
-            Issues</span> between your applications <span class="font-bold">without Integration Testing
-          </span> by leveraging your <span class="font-bold">API Specification as Executable Contracts</span>
-        </p>
-        <div class="flex justify-center">
-          <a href="/documentation.html" target="_blank"
-            class="inline-flex mt-5 text-white bg-purple-900 border-0 py-3 px-10  focus:outline-none hover:bg-indigo-600 rounded text-lg">Get
-            Started</a>
-
-        </div>
-      </div>
-      
-      <div class="lg:max-w-lg lg:w-full px-5">
-        <iframe width="500" height="315" src="https://www.youtube.com/embed/yAs8oUt-RGA?autoplay=1&mute=1"
-          frameborder="0" allowfullscreen class="rounded-md"></iframe>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- supported company -->
-  <div class="mx-auto max-w-2xl py-12 px-4 sm:py-24 sm:px-6 lg:px-8">
-    <h2 class="text-xl font-semibold tracking-wider text-center uppercase text-gray-600">
-      Supported Specification Standards
-    </h2>
-    <div class=" flow-root lg:mt-10">
-      <div class="-mt-4 -ml-8 flex flex-wrap justify-between lg:-ml-4">
-
-        <div class="mt-4 ml-8 flex flex-shrink-0 flex-grow lg:ml-4 lg:flex-grow-0">
-          <img class="h-12" src="/assets/openapi_logo.png" alt="openAPI" />
-        </div>
-        <div class="mt-4 flex flex-shrink-0 flex-grow -mr-8 lg:ml-4 lg:flex-grow-0">
-          <img class="h-12" src="/assets/wsdl_logo.png" alt="wsdl" />
-        </div>
-        <div class="mt-4 -ml-8 flex flex-shrink-0 flex-grow lg:ml-4 lg:flex-grow-0">
-          <img class="h-12" src="/assets/AsyncAPI_logo.png" alt="async" />
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-
-
-  <!-- api specification section -->
-  <main>
-    <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100"></div>
-    <div class="max-w-7xl mx-auto ">
-      <div class="relative  sm:overflow-hidden">
-        <div class="absolute inset-0">
-          <img class="h-full w-full object-cover" src="/assets/Vector 1.svg" alt="People working on laptops">
-
-        </div>
-        <div class="relative px-4  sm:px-6  lg:px-8">
-          <div class="container   mx-auto py-12 ">
-            <div class="flex flex-col text-center w-full mb-10">
-              <h1 class="sm:text-5xl text-3xl font-bold title-font text-white text-center">API Specifications as
-                Executable Contracts</h1>
-            </div>
-
-            <div class="flex flex-wrap -m-4 ">
-              <div class="p-4 md:w-1/3 ">
-
-                <div
-                  class="flex rounded-lg h-full bg-gray-100  flex-col shadow-md hover:shadow-lg border border-purple-700  bg-purple-200">
-
-                  <div class=" -ml-4 my-3 "><img src="./assets/orange-tag.svg"></div>
-
-                  <div class="flex items-cente px-8">
-                    <h2 class="text-gray-900 text-3xl title-font font-bold ">Contract as Test</h2>
-                  </div>
-                  <div class="flex-grow p-8">
-                    <p class="leading-relaxed text-lg text-gray-700">Generate Test Cases for free (zero code) from you
-                      API Specification Files and run them against your Services to <b>identify integration issue early.</b>
-                    </p>
-                    <a class="mt-3 text-indigo-500 inline-flex items-center" href="#test">Learn More
-                      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                        <path d="M5 12h14M12 5l7 7-7 7"></path>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="p-4 md:w-1/3 ">
-                <div class="flex rounded-lg h-full bg-gray-100  flex-col shadow-md hover:shadow-lg bg-purple-200">
-
-                  <div class="-ml-4 my-3 ">
-                    <img src="./assets/pink-tag.svg">
-                  </div>
-                  <h2 class="text-gray-900 text-3xl title-font font-bold px-8">Contract as Stub</h2>
-
-                  <div class="flex-grow p-8">
-                    <p class="leading-relaxed text-lg text-gray-700">No more stale stubs. Specmatic’s <b>“Smart Service
-                      Virtualization”</b> verifies your expecations / stub responses against your API Specifications.
-                    </p>
-                    <a class="mt-3 text-indigo-500 inline-flex items-center" href="#Virtualization">Learn More
-                      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                        <path d="M5 12h14M12 5l7 7-7 7"></path>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="p-4 md:w-1/3">
-                <div class="flex rounded-lg h-full bg-gray-100 flex-col shadow-md hover:shadow-lg bg-purple-200">
-                  <div class=" -ml-4 my-3 "><img src="./assets/yellow-tag.svg"></div>
-
-                  <h2 class="text-gray-900 text-3xl title-font font-bold text-center">Backward Compatibility</h2>
-
-                  <div class="flex-grow p-8">
-                    <p class="leading-relaxed text-lg text-gray-700">Identify backward incompatible changes just by comparing two versions of your API Specifications with our unique <b>“No Code” approach.</b></p>
-                    <a class="mt-3 text-indigo-500 inline-flex items-center" href="#Compatibility">Learn More
-                      <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                        <path d="M5 12h14M12 5l7 7-7 7"></path>
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    </div>
-  </main>
-
-
-
-
-
-  <!-- api specification part -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-    <div class="container mx-auto flex  py-24 md:flex-row flex-col items-center">
-      <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-        <img class="object-cover object-center  h-full w-full" alt="Executable" src="/assets/Executable Contracts.png">
-      </div>
-      <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left  text-left ">
-        <h1 class="title-font sm:text-4xl text-4xl mb-4 font-bold text-gray-900">API Specifications as
-          Executable Contracts
-        </h1>
-        <p class="mb-8 leading-relaxed text-gray-700 text-lg">Specmatic supercharges your API Specifications by
-          leveraging them
-          as “Executable Contracts”. Specmatic does this by</p>
-        <ul class="list-disc">
-          <li>
-            <h1 class="font-bold text-orange-500">Smart Service Virtualization</h1>
-            <p class="text-gray-700 text-lg">(Emulating the Provider / Service based on the API Spefication) which
-              allows
-              Consumer / Client Applications to be Developed and Tested indepent of the Provider</p>
-          </li>
-          <li class=" py-8">
-            <h1 class="font-bold text-orange-500">Contract as Test </h1>
-            <p class="text-gray-700 text-lg"> (Emulating the Consumer / Client applicatin for the Provider) generates
-              Test
-              Scenarios based on the API Specification File without you have to write any code</p>
-          </li>
-        </ul>
-        <!-- <div class="  sm:flex sm:justify-center md:mt-8">
-          <div class="rounded-md ">
-            <a href="#"
-              class="w-full flex items-center justify-center px-6 py-2 border border-transparent text-base font-medium rounded-md text-white bg-purple-900 hover:bg-purple-800 md:py-4 md:text-lg md:px-10">
-              Try It Out </a>
-          </div>
-          <div class=" rounded-md sm:mt-0 sm:ml-3">
-            <a href="https://specmatic.in/Features.html#backward-compatibility-testing" target="_blank"
-              class=" w-full flex items-center justify-center px-4 py-2 border border border-purple-900 text-base font-medium rounded-md text-purple-900 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
-              Learn More </a>
-          </div>
-        </div> -->
-        <a class="mt-3 text-indigo-800 inline-flex items-center" href="#">Learn More
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-            <path d="M5 12h14M12 5l7 7-7 7"></path>
-          </svg>
-        </a>
-      </div>
-    </div>
-  </section>
-  <div class="bg-white">
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " id="test">
+  <div class="">
+    <section class=" w-full overflow-x-hidden">
       <div class="container mx-auto flex  py-24 md:flex-row flex-col items-center">
-
-        <div class="lg:flex-grow md:w-1/2  flex flex-col md:items-start md:text-left  text-left ">
-          <h1 class="title-font sm:text-4xl text-4xl mb-4 font-bold text-gray-900">Contract as Test
+        <div class="lg:flex-grow   flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+          <h1 class="title-font text-3xl sm:text-5xl font-bold  mb-4  text-purple-900 text-left">Contract Driven
+            Development
           </h1>
-          <p class="mb-8 leading-relaxed text-gray-700 w-5/6 text-lg">Tests for Free - Specmatic parses your API
-            Specification
-            files into Test Scenarios and then generates requests and fires it at your application. Once it response is
-            received it verifies status, schema, headers, etc. based your API Specification. All of this with a “Zero
-            Code” approach. Spematic generates two types of tests.</p>
-          <ul class="list-disc">
-            <li>
-              <h1 class="font-bold text-orange-500">Positive Tests</h1>
-              <p class="text-gray-700 text-lg">verify if the impleme meets basic criterea as per your API Spefication
-              </p>
-            </li>
-            <li class=" py-8">
-              <h1 class="font-bold text-orange-500">Negative Tests </h1>
-              <p class="text-gray-700 text=-lg"> verify the boundary conditions to identify issues related to areas such
-                as error
-                handling</p>
-            </li>
-          </ul>
-          <a class="mt-3 text-indigo-800 inline-flex items-center" href="#">Learn More
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </h1>
+          <p class="  text-gray-800  sm:mt-4 text-xl lg:text-2xl  text-left ">
+            Micro-services done right without the pain of integration</p>
+          <p class=" text-base text-gray-800 tracking-wider sm:mt-4 lg:text-xl text:lg text-left">
+            <span class="font-bold">Shift Left</span> and <span class="font-bold">Identify Compatibility
+              Issues</span> between your applications <span class="font-bold">without Integration Testing
+            </span> by leveraging your <span class="font-bold">API Specification as Executable Contracts</span>
+          </p>
+          <a href="/documentation.html" target="_blank"
+            class="inline-flex mt-5 items-center  rounded-lg  px-10 py-3 text-lg font-medium text-white shadow-md bg-indigo-800">
+            Get Started
+            <svg width="10" height="15" viewBox="0 0 10 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-3">
+              <path
+                d="M6.98501 7.28743L0.364978 12.7949C0.1308 12.9905 -0.00048624 13.2555 1.06039e-07 13.5316C0.000486452 13.8078 0.132706 14.0724 0.367571 14.2674C0.602436 14.4624 0.920709 14.5717 1.25237 14.5713C1.58403 14.5709 1.90192 14.4608 2.1361 14.2652L9.63614 8.02752C9.86275 7.83811 9.99296 7.58328 9.99972 7.31599C10.0065 7.04871 9.88927 6.78954 9.67244 6.59236L2.14128 0.3059C1.90711 0.110352 1.58922 0.000266399 1.25756 -0.000138938C0.925895 -0.000543321 0.607623 0.108766 0.372757 0.303741C0.137892 0.498717 0.00567291 0.763389 0.00518651 1.03953C0.00470011 1.31567 0.135987 1.58066 0.370164 1.77621L6.98501 7.28743Z"
+                fill="white" />
             </svg>
           </a>
         </div>
-        <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-          <img class="object-cover object-center  h-full w-full" alt="Contract-as" src="/assets/Contract-as-test.png">
+        <div class="lg:max-w-lg lg:w-full px-5">
+          <iframe width="450" height="315" src="https://www.youtube.com/embed/yAs8oUt-RGA?autoplay=1&mute=1"
+            frameborder="0" allowfullscreen class="rounded-md"></iframe>
         </div>
       </div>
     </section>
-  </div>
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " id="Virtualization">
-    <div class="container mx-auto flex  py-24 md:flex-row flex-col items-center">
-      <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-        <img class="object-cover object-center  h-full w-full" alt="test" src="/assets/contract-as-stub.png">
-      </div>
-      <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left  text-left ">
-        <h1 class="title-font sm:text-4xl text-4xl mb-4 font-bold text-gray-900">Contract as Tests (Smart Service
-          Virtualization)
-        </h1>
-        <p class="mb-8 leading-relaxed text-gray-700 text-lg">What is so smart about Specmatic’s Service Virtualization?
-        </p>
-        <ul class="list-disc">
-          <li>
-            <h1 class="font-bold text-orange-500">Expectation Validation</h1>
-            <p class="text-gray-700 text-lg">ensures that the responses that are setup in Specmatic Service
-              Virtualization
-              Server are continuously evaluated against the API Specification of the Provider it is emulating.</p>
-          </li>
-          <li class=" py-8">
-            <h1 class="font-bold text-orange-500">Dynamic and Static Stubbing </h1>
-            <p class="text-gray-700 text-lg"> allows on the fly expectations setup over Specmatic’s http interface as
-              well as at
-              startup respectively. Both modes go through the above validation</p>
-          </li>
-        </ul>
-        <a class="mt-3 text-indigo-800 inline-flex items-center" href="#">Learn More
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-            <path d="M5 12h14M12 5l7 7-7 7"></path>
-          </svg>
-        </a>
+
+
+    <!-- supported company -->
+    <div class="mx-auto max-w-2xl py-12 px-4 sm:py-24 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-semibold tracking-wider text-center uppercase text-gray-500">
+        Supported Specification Standards
+      </h2>
+      <div class=" flow-root lg:mt-10">
+        <div class="-mt-4  flex flex-wrap justify-between ">
+
+          <div class="mt-4 ml-8 flex flex-shrink-0 flex-grow  lg:flex-grow-0">
+            <img class="h-12" src="/assets/openapi_logo.png" alt="openAPI" />
+          </div>
+          <div class="mt-4 flex flex-shrink-0 flex-grow -mr-8  lg:flex-grow-0">
+            <img class="h-12" src="/assets/wsdl_logo.png" alt="wsdl" />
+          </div>
+          <div class="mt-4 -ml-8 flex flex-shrink-0 flex-grow  lg:flex-grow-0">
+            <img class="h-12" src="/assets/AsyncAPI_logo.png" alt="async" />
+          </div>
+        </div>
       </div>
     </div>
-  </section>
-  <div class="bg-white">
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " id="Compatibility">
-      <div class="container mx-auto flex  py-24 md:flex-row flex-col items-center">
-        <div class="lg:flex-grow md:w-1/2  flex flex-col md:items-start md:text-left  text-left ">
-          <h1 class="title-font sm:text-4xl text-4xl mb-4 font-bold text-gray-900">Backward Compatibility
-          </h1>
-          <p class="mb-8 leading-relaxed text-gray-700 w-5/6 text-lg">As API Specifcation authors / API designers it is
-            important for us understand if our changes to existing APIs can break compatibility with existing API
-            Consumers / Clients. Specmatic can “Contract vs Contract” testing between two API Specification files and
-            provide accurate results about compatibility issues. All this without even you having to implement the
-            changes in API Implementation / Provider or API Client / Consumer.</p>
+  </div>
 
-            <a class="mt-3 text-indigo-800 inline-flex items-center" href="#">Learn More
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+  <!-- Executable Contracts -->
+<main>
+  <div class="bg-white">
+    <div class="relative">
+      <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100"></div>
+      <div class="mx-auto max-w-7xl ">
+        <div class="relative  sm:overflow-hidden sm:rounded-2xl">
+          <div class="absolute inset-0">
+            <img class="h-4/6 w-full object-cover" src="/assets/Vector 1.svg" alt="People working on laptops">  
+          </div>
+          <div class="relative px-4 py-16 sm:px-6 sm:py-16 lg:py-20 lg:px-8">
+            <div class="container max-w-7xl  mx-auto py-12 ">
+              <div class="flex flex-col text-center w-full mb-16">
+                <h1 class="sm:text-5xl text-3xl font-bold title-font text-white text-center ">API Specifications as
+                  Executable Contracts</h1>
+              </div>
+              <div class="flex flex-wrap -m-4 ">
+                <div class="p-4 md:w-1/3 ">
+                  <div class="flex rounded-lg h-full bg-gray-100  flex-col shadow-md hover:shadow-lg  bg-purple-200">
+                    <div class=" -ml-4 my-3 "><img src="./assets/orange-tag.svg"></div>
+                    <div class="flex items-cente px-8">
+                      <h2 class="text-gray-900 text-2xl title-font font-bold ">Contract as Test</h2>
+                    </div>
+                    <div class="flex-grow p-8">
+                      <p class="leading-relaxed text-xl text-gray-700">Generate Test Cases for free (zero code) from you
+                        API Specification Files and run them against your Services to <b>identify integration issue
+                          early.</b>
+                      </p>
+                      <a class="mt-3 text-indigo-700 inline-flex items-center text-2xl" href="#contract-test">Learn More
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                          <path d="M5 12h14M12 5l7 7-7 7"></path>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-4 md:w-1/3 ">
+                  <div class="flex rounded-lg h-full bg-gray-100  flex-col shadow-md hover:shadow-lg bg-purple-200">
+                    <div class="-ml-4 my-3 ">
+                      <img src="./assets/pink-tag.svg">
+                    </div>
+                    <h2 class="text-gray-900 text-2xl title-font font-bold px-8">Contract as Stub</h2>
+                    <div class="flex-grow p-8">
+                      <p class="leading-relaxed text-xl text-gray-700">No more stale stubs. Specmatic’s <b>“Smart Service
+                          Virtualization”</b> verifies your expecations / stub responses against your API Specifications.
+                      </p>
+                      <a class="mt-3 text-indigo-700 inline-flex items-center text-2xl" href="#contract-stub">Learn More
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                          <path d="M5 12h14M12 5l7 7-7 7"></path>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-4 md:w-1/3">
+                  <div class="flex rounded-lg h-full bg-gray-100 flex-col shadow-md hover:shadow-lg bg-purple-200">
+                    <div class=" -ml-4 my-3 "><img src="./assets/yellow-tag.svg"></div>
+                    <h2 class="text-gray-900 text-2xl title-font font-bold  px-8">Backward Compatibility</h2>
+                    <div class="flex-grow p-8">
+                      <p class="leading-relaxed text-xl text-gray-700">Identify backward incompatible changes just by
+                        comparing two versions of your API Specifications with our unique <b>“No Code” approach.</b></p>
+                      <a class="mt-3 text-indigo-700 inline-flex items-center text-2xl" href="#Compatibility">Learn More
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                          <path d="M5 12h14M12 5l7 7-7 7"></path>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div> 
+          </div>
+        </div>
+      </div>
+    </div>   
+  </div>
+</main>
+
+  <!-- api specification part -->
+  <div class="py-16 ">  
+    <div class="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
+        <div class="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-20">
+          <div class="md:1/2 lg:w-full ">
+            <img src="/assets/Executable Contracts.png" alt="image" loading="lazy" width="" height="">
+          </div>
+          <div class="md:1/2 lg:w-2/3">
+            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-bold text-gray-900">API Specifications as
+            Executable Contracts
+          </h1>
+          <p class="mb-8 leading-relaxed text-gray-700 text-xl">Specmatic supercharges your API Specifications by
+            leveraging them
+            as “Executable Contracts”. Specmatic does this by</p>
+          <ul class="list-disc">
+            <li>
+              <h1 class="font-bold text-orange-500">Smart Service Virtualization</h1>
+              <p class="text-gray-700 text-xl">(Emulating the Provider / Service based on the API Spefication) which
+                allows
+                Consumer / Client Applications to be Developed and Tested indepent of the Provider</p>
+            </li>
+            <li class=" py-6">
+              <h1 class="font-bold text-orange-500">Contract as Test </h1>
+              <p class="text-gray-700 text-xl"> (Emulating the Consumer / Client applicatin for the Provider) generates
+                Test
+                Scenarios based on the API Specification File without you have to write any code</p>
+            </li>
+          </ul>
+          <a class=" text-indigo-700 inline-flex items-center text-2xl" href="#">Learn More
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          </div>
+        </div>
+    </div>
+  </div>
+ 
+  <div class="py-16 bg-white" id="contract-test">  
+    <div class="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
+        <div class="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-12"> 
+          <div class="md:1/2 lg:w-5/6">
+            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-bold text-gray-900">Contract as Test
+            </h1>
+            <p class="mb-8 leading-relaxed text-gray-700  text-xl">Tests for Free - Specmatic parses your API
+              Specification
+              files into Test Scenarios and then generates requests and fires it at your application. Once it response is
+              received it verifies status, schema, headers, etc. based your API Specification. All of this with a “Zero
+              Code” approach. Spematic generates two types of tests.</p>
+            <ul class="list-disc">
+              <li>
+                <h1 class="font-bold text-orange-500">Positive Tests</h1>
+                <p class="text-gray-700 text-xl">verify if the impleme meets basic criterea as per your API Spefication
+                </p>
+              </li>
+              <li class=" py-6">
+                <h1 class="font-bold text-orange-500">Negative Tests </h1>
+                <p class="text-gray-700 text-xl"> verify the boundary conditions to identify issues related to areas such
+                  as error
+                  handling</p>
+              </li>
+            </ul>
+            <a class=" text-indigo-700 inline-flex items-center text-2xl" href="#">Learn More
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                class="w-4 h-4 ml-2" viewBox="0 0 24 24">
                 <path d="M5 12h14M12 5l7 7-7 7"></path>
               </svg>
             </a>
+          </div>
+          <div class="md:1/2 lg:w-full">
+            <img src="/assets/Contract-as-test.png" alt="image" loading="lazy" width="" height="">
+          </div>
         </div>
-        <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-          <img class="object-cover object-center  h-full w-full" alt="compatibility" src="/assets/backward-compatibility.png">
-        </div>
-      </div>
-    </section>
-  </div>
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 " id="Virtualization">
-    <div class="container mx-auto flex  py-24 md:flex-row flex-col items-center">
-      <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-        <img class="object-cover object-center  h-full w-full" alt="Treat" src="/assets/Treat-Contract.png">
-      </div>
-      <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left  text-left ">
-        <h1 class="title-font sm:text-4xl text-4xl mb-4 font-bold text-gray-900">Treat Contract as Code
-        </h1>
-        <p class="mb-8 leading-relaxed text-gray-700 text-lg">Specmatic and Contract Driven Development promotes treating your API Specifications as code and storing them in a Version Control System where they truly belong.</p>
-        <ul class="list-disc">
-          <li>
-            <h1 class="font-bold text-orange-500">Central Contract Repo</h1>
-            <p class="text-gray-700 text-lg">The <b>“Single Source of Truth”</b> for all your API Specifications so that stakeholders across the organization are on the same page.</p>
-          </li>
-          <li class=" py-8">
-            <h1 class="font-bold text-orange-500">Pull / Merge Request based Collaboration </h1>
-            <p class="text-gray-700 text-lg"> Specmatic can help you identify backward compatibility breaking changes automatically as part of your pre-merge checks so that you can focus on API Design</p>
-          </li>
-        </ul>
-        <a class="mt-3 text-indigo-800 inline-flex items-center" href="#">Learn More
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-            stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-            <path d="M5 12h14M12 5l7 7-7 7"></path>
-          </svg>
-        </a>
-      </div>
     </div>
-  </section>
-  <!-- One Spec to rule them all -->
+  </div>
+ 
+  <div class="py-16 " id="contract-stub">  
+    <div class="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
+        <div class="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-20">
+          <div class="md:1/2 lg:w-full ">
+            <img src="/assets/contract-as-stub.png" alt="image" loading="lazy" width="" height="">
+          </div>
+          <div class="md:1/2 lg:w-3/4">
+            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-bold text-gray-900">Contract as Stub
+            </h1>
+            <p class="mb-8 leading-relaxed text-gray-700 text-xl">A component test setup should be able to isolate the
+              “System Under Test” from its dependencies. Smart Service Virtuatlization enables you to achieve this by truly
+              emulating the dependencies.
+            </p>
+            <ul class="list-disc">
+              <li>
+                <h1 class="font-bold text-orange-500">Expectation Validation</h1>
+                <p class="text-gray-700 text-xl">ensures that the responses that are setup in Specmatic Service
+                  Virtualization
+                  Server are continuously evaluated against the API Specification of the Provider it is emulating.</p>
+              </li>
+              <li class=" py-6">
+                <h1 class="font-bold text-orange-500">Dynamic and Static Stubbing </h1>
+                <p class="text-gray-700 text-xl"> allows on the fly expectations setup over Specmatic’s http interface as
+                  well as at
+                  startup respectively. Both modes go through the above validation</p>
+              </li>
+            </ul>
+          <a class=" text-indigo-700 inline-flex items-center text-2xl" href="#">Learn More
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          </div>
+        </div>
+    </div>
+  </div>
 
+  <div class="py-16 bg-white" id="Compatibility">  
+    <div class="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
+        <div class="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-20"> 
+          <div class="md:1/2 lg:w-3/5">
+            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-bold text-gray-900">Backward Compatibility
+            </h1>
+            <p class="mb-8 leading-relaxed text-gray-700  text-xl">As API Specifcation authors / API designers it is
+              important for us understand if our changes to existing APIs can break compatibility with existing API
+              Consumers / Clients. Specmatic can “Contract vs Contract” testing between two API Specification files and
+              provide accurate results about compatibility issues. All this without even you having to implement the
+              changes in API Implementation / Provider or API Client / Consumer.</p>
+            <a class=" text-indigo-700 inline-flex items-center text-2xl" href="#">Learn More
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+          <div class="md:1/2 lg:w-3/5  ">
+            <img src="/assets/backward-compatibility.png" alt="image" loading="lazy" width="" height="">
+          </div>
+        </div>
+    </div>
+  </div>
+  
+  <div class="py-16 ">  
+    <div class="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
+        <div class="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-20">
+          <div class="md:1/2 lg:w-full  ">
+            <img src="/assets/Treat-Contract.png" alt="image" loading="lazy" width="" height="">
+          </div>
+          <div class="md:1/2 lg:w-3/4">
+            <h1 class="title-font sm:text-4xl text-4xl mb-4 font-bold text-gray-900">Treat Contract as Code
+            </h1>
+            <p class="mb-8 leading-relaxed text-gray-700 text-xl">Specmatic and Contract Driven Development promotes
+              treating your API Specifications as code and storing them in a Version Control System where they truly belong.
+            </p>
+            <ul class="list-disc">
+              <li>
+                <h1 class="font-bold text-orange-500">Central Contract Repo</h1>
+                <p class="text-gray-700 text-xl">The <b>“Single Source of Truth”</b> for all your API Specifications so that
+                  stakeholders across the organization are on the same page.</p>
+              </li>
+              <li class=" py-6">
+                <h1 class="font-bold text-orange-500">Pull / Merge Request based Collaboration </h1>
+                <p class="text-gray-700 text-xl"> Specmatic can help you identify backward compatibility breaking changes
+                  automatically as part of your pre-merge checks so that you can focus on API Design</p>
+              </li>
+            </ul>
+          <a class=" text-indigo-700 inline-flex items-center text-2xl" href="#">Learn More
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- One Spec to rule them all -->
   <section>
     <div class="relative">
       <div class="flex flex-col text-center w-full ">
@@ -462,7 +434,7 @@
       </div>
       <div class="relative ">
         <div class="absolute inset-0">
-          <img class="h-full w-full " src="/assets/Vector 2.svg" alt="People working on laptops">
+          <img class="h-full w-full " src="/assets/Vector 2.svg" >
         </div>
         <div class="relative ">
           <section class="text-gray-600 body-font">
@@ -470,25 +442,27 @@
               <div class="flex flex-wrap -m-4">
                 <div class="p-4 lg:w-1/3">
                   <div
-                    class="h-full bg-purple-200 hover:bg-white bg-opacity-75 px-8 py-12 rounded-lg overflow-hidden text-center relative">
-                    <div class="flex justify-center">
-                      <img src="/assets/no-code.svg" alt="Language Agnostic" />
+                    class="h-full bg-purple-200 hover:bg-white  px-4 py-6 rounded-lg overflow-hidden text-center relative">
+                    <div class="flex justify-center transform hover:rotate-180 transition duration-300">
+                      <img src="/assets/no-code.png" alt="" />
                     </div>
-                    <h1 class="text-2xl mt-2 font-semibold text-center text-gray-900">
+                    <h1 class="text-xl my-3 font-semibold text-center text-gray-900">
                       No Code
                     </h1>
-                    <p class="mt-3 text-lg text-center text-gray-700">
+                    <p class=" text-lg text-center text-gray-700">
                       All capabilities of Specmatic are designed with a No Code approach in mind
                     </p>
                   </div>
                 </div>
                 <div class="p-4 lg:w-1/3">
                   <div
-                    class="h-full bg-purple-200 hover:bg-white bg-opacity-75 px-8 py-12 rounded-lg overflow-hidden text-center relative">
+                    class="h-full bg-purple-200 hover:bg-white  px-4 py-6 rounded-lg overflow-hidden text-center relative">
                     <div class="flex justify-center">
-                      <img src="/assets/protocols icon.svg" alt="Language Agnostic" />
+                      <div class="flex justify-center transform hover:rotate-180 transition duration-300">
+                        <img src="/assets/protocols icon.svg" alt="" />
+                      </div>
                     </div>
-                    <h1 class="text-2xl mt-2 font-semibold text-center text-gray-900">
+                    <h1 class="text-xl my-3 font-semibold text-center text-gray-900">
                       Multiple Protocols
                     </h1>
                     <p class="mt-3 text-lg text-center text-gray-700">
@@ -498,14 +472,16 @@
                 </div>
                 <div class="p-4 lg:w-1/3">
                   <div
-                    class="h-full bg-purple-200 hover:bg-white bg-opacity-75 px-8 py-12 rounded-lg overflow-hidden text-center relative">
+                    class="h-full bg-purple-200 hover:bg-white  px-4 py-6 rounded-lg overflow-hidden text-center relative">
                     <div class="flex justify-center">
-                      <img src="/assets/independent code-icon.svg" alt="Language Agnostic" />
+                      <div class="flex justify-center transform hover:rotate-180 transition duration-300">
+                        <img src="/assets/independent code-icon.svg" alt="" />
+                      </div>
                     </div>
-                    <h1 class="text-2xl mt-2 font-semibold text-center text-gray-900">
+                    <h1 class="text-xl my-3 font-semibold text-center text-gray-900">
                       Platform Independent
                     </h1>
-                    <p class="mt-3 text-lg text-center text-gray-700">
+                    <p class=" text-lg text-center text-gray-700">
                       Use the command line to integrate with any programmatic environment
 
                     </p>
@@ -513,14 +489,16 @@
                 </div>
                 <div class="p-4 lg:w-1/3">
                   <div
-                    class="h-full bg-purple-200 hover:bg-white bg-opacity-75 px-8 py-12 rounded-lg overflow-hidden text-center relative">
+                    class="h-full bg-purple-200 hover:bg-white  px-4 py-6 rounded-lg overflow-hidden text-center relative">
                     <div class="flex justify-center">
-                      <img src="/assets/test icon.svg" alt="Language Agnostic" />
+                      <div class="flex justify-center transform hover:rotate-180 transition duration-300">
+                        <img src="/assets/language-agnostic.svg" alt="Language Agnostic" />
+                      </div>
                     </div>
-                    <h1 class="text-2xl mt-2 font-semibold text-center text-gray-900">
+                    <h1 class="text-xl my-3 font-semibold text-center text-gray-900">
                       Language Agnostic
                     </h1>
-                    <p class="mt-3 text-lg text-center text-gray-700">
+                    <p class=" text-lg text-center text-gray-700">
                       Specmatic is Programming Language agnostic since it is working at API level
 
                     </p>
@@ -528,14 +506,16 @@
                 </div>
                 <div class="p-4 lg:w-1/3">
                   <div
-                    class="h-full bg-purple-200 hover:bg-white bg-opacity-75 px-8 py-12 rounded-lg overflow-hidden text-center relative">
+                    class="h-full bg-purple-200 hover:bg-white  px-4 py-6 rounded-lg overflow-hidden text-center relative">
                     <div class="flex justify-center">
-                      <img src="/assets/human.svg" alt="Language Agnostic" />
+                      <div class="flex justify-center transform hover:rotate-180 transition duration-300">
+                        <img src="/assets/human.svg" alt="" />
+                      </div>
                     </div>
-                    <h1 class="text-2xl mt-2 font-semibold text-center text-gray-900">
+                    <h1 class="text-xl my-3 font-semibold text-center text-gray-900">
                       Proxy Mode
                     </h1>
-                    <p class="mt-3 text-lg text-center text-gray-700">
+                    <p class=" text-lg text-center text-gray-700">
                       As part of Smart Service Virtualization select endpoints and let other request pass through to
                       real Provider / service
 
@@ -544,14 +524,16 @@
                 </div>
                 <div class="p-4 lg:w-1/3">
                   <div
-                    class="h-full bg-purple-200 hover:bg-white bg-opacity-75 px-8 py-12 rounded-lg overflow-hidden text-center relative">
+                    class="h-full bg-purple-200 hover:bg-white  px-4 py-6 rounded-lg overflow-hidden text-center relative">
                     <div class="flex justify-center">
-                      <img src="/assets/backward icon.svg" alt="Language Agnostic" />
+                      <div class="flex justify-center transform hover:rotate-180 transition duration-300">
+                        <img src="/assets/capture-api.svg" alt="" />
+                      </div>
                     </div>
-                    <h1 class="text-2xl mt-2 font-semibold text-center text-gray-900">
+                    <h1 class="text-xl my-3 font-semibold text-center text-gray-900">
                       Capture API Specifications
                     </h1>
-                    <p class="mt-3 text-lg text-center text-gray-700">
+                    <p class=" text-lg text-center text-gray-700">
                       In Proxy Mode, Specmatic can capture your traffic and convert it into API Specifications
 
                     </p>
@@ -559,42 +541,49 @@
                 </div>
                 <div class="p-4 lg:w-1/3">
                   <div
-                    class="h-full bg-purple-200 hover:bg-white bg-opacity-75 px-8 py-12 rounded-lg overflow-hidden text-center relative">
+                    class="h-full bg-purple-200 hover:bg-white  px-4 py-6 rounded-lg overflow-hidden text-center relative">
                     <div class="flex justify-center">
-                      <img src="/assets/negative-testing.svg" alt="Language Agnostic" />
+                      <div class="flex justify-center transform hover:rotate-180 transition duration-300">
+                        <img src="/assets/negative-testing.svg" alt="" />
+                      </div>
                     </div>
-                    <h1 class="text-2xl mt-2 font-semibold text-center text-gray-900">
+                    <h1 class="text-xl my-3 font-semibold text-center text-gray-900">
                       Negative Testing
                     </h1>
-                    <p class="mt-3 text-lg text-center text-gray-700">
-                      Verify boundary conditions and error handling capabilities of your application based on your API Specifications
+                    <p class=" text-lg text-center text-gray-700">
+                      Verify boundary conditions and error handling capabilities of your application based on your API
+                      Specifications
                     </p>
                   </div>
                 </div>
                 <div class="p-4 lg:w-1/3">
                   <div
-                    class="h-full bg-purple-200 hover:bg-white bg-opacity-75 px-8 py-12 rounded-lg overflow-hidden text-center relative">
+                    class="h-full bg-purple-200 hover:bg-white  px-4 py-6 rounded-lg overflow-hidden text-center relative">
                     <div class="flex justify-center">
-                      <img src="/assets/pipelines.svg" alt="Language Agnostic" />
+                      <div class="flex justify-center transform hover:rotate-180 transition duration-300">
+                        <img src="/assets/pipelines.svg" alt="" />
+                      </div>
                     </div>
-                    <h1 class="text-2xl mt-2 font-semibold text-center text-gray-900">
+                    <h1 class="text-xl my-3 font-semibold text-center text-gray-900">
                       Woven into your CI Pipelines
                     </h1>
-                    <p class="mt-3 text-lg text-center text-gray-700">
+                    <p class=" text-lg text-center text-gray-700">
                       Trigger Provider and Consumer CI builds when any of the contracts change
                     </p>
                   </div>
                 </div>
                 <div class="p-4 lg:w-1/3">
                   <div
-                    class="h-full bg-purple-200 hover:bg-white bg-opacity-75 px-8 py-12 rounded-lg overflow-hidden text-center relative">
+                    class="h-full bg-purple-200 hover:bg-white  px-4 py-6 rounded-lg overflow-hidden text-center relative">
                     <div class="flex justify-center">
-                      <img src="/assets/import api icon.svg" alt="Language Agnostic" />
+                      <div class="flex justify-center transform hover:rotate-180 transition duration-300">
+                        <img src="/assets/import api icon.svg" alt="" />
+                      </div>
                     </div>
-                    <h1 class="text-2xl mt-2 font-semibold text-center text-gray-900">
+                    <h1 class="text-xl my-3 font-semibold text-center text-gray-900">
                       Import your APIs
                     </h1>
-                    <p class="mt-3 text-lg text-center text-gray-700 pb-10">
+                    <p class=" text-lg text-center text-gray-700 pb-10">
                       Use Postman Collections or Specmatic's http proxy
                     </p>
                   </div>
@@ -602,86 +591,75 @@
               </div>
             </div>
           </section>
-
-
         </div>
       </div>
     </div>
     </div>
   </section>
 
-
-
   <!-- footer section -->
   <footer class="bg-red-100">
     <div
       class="container px-5 pt-16 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
       <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left text-center">
-        <div class="border-r-2">
+        <div class="mt-16">
           <img src="/assets/specmatic-logo.png" class="h-12 cursor-pointer sm:h-16" alt="specmatic Logo" />
         </div>
-
       </div>
-      <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left">
-        <div class="lg:w-1/3 md:w-1/2 w-full px-4">
+      <div class="flex-grow flex flex-wrap md:pl-10 -mb-10 md:mt-0 mt-10 md:text-left border-l-2 ">
+        <div class="lg:w-1/4 md:w-1/2 w-full px-4">
           <h2 class=" font-bold text-gray-900 tracking-widest text-xl mb-3">About</h2>
           <div class="list-none mb-10">
             <li>
-              <a class="text-gray-700 hover:text-gray-900 text-lg text-lg" href="https://specmatic.in/documentation.html#what-is-specmatic" traget="_blank">What is Specmatic?</a>
+              <a class="text-gray-700 hover:text-gray-900 text-lg text-lg mt-2"
+                href="https://specmatic.in/documentation.html#what-is-specmatic" traget="_blank">What is Specmatic?</a>
+            </li>
+            <li class="my-2">
+              <a class="text-gray-700 hover:text-gray-900 text-lg text-lg mt-2"
+                href="https://github.com/znsio/specmatic/graphs/contributors" target="_blank">Contributors</a>
             </li>
             <li>
-              <a class="text-gray-700 hover:text-gray-900 text-lg text-lg" href="https://github.com/znsio/specmatic/graphs/contributors" target="_blank">Contributors</a>
+              <a class="text-gray-700 hover:text-gray-900 text-lg text-lg " href="#">Conferences</a>
             </li>
-            <li>
-              <a class="text-gray-700 hover:text-gray-900 text-lg text-lg" href="#">Conferences</a>
-            </li>
-
           </div>
         </div>
-        <div class="lg:w-2/5 md:w-1/2 w-full px-4">
+        <div class="lg:w-1/2 md:w-1/2 w-full px-4">
           <h2 class=" font-bold text-gray-900 tracking-widest text-xl mb-3">License and contributing</h2>
           <div class="list-none mb-10">
             <li>
-              <a class="text-gray-700 hover:text-gray-900 text-lg" href="https://github.com/znsio/specmatic/blob/main/CONTRIBUTING.md" target="_blank">Contributing</a>
+              <a class="text-gray-700 hover:text-gray-900 text-lg"
+                href="https://github.com/znsio/specmatic/blob/main/CONTRIBUTING.md" target="_blank">Contributing</a>
             </li>
-            <li>
+            <li class="my-2">
               <a class="text-gray-700 hover:text-gray-900 text-lg" href="#">Code of Conduct</a>
             </li>
             <li>
-              <a class="text-gray-700 hover:text-gray-900 text-lg" href="https://github.com/znsio/specmatic/blob/main/License.md" target="_blank">License</a>
+              <a class="text-gray-700 hover:text-gray-900 text-lg"
+                href="https://github.com/znsio/specmatic/blob/main/License.md" target="_blank">License</a>
             </li>
-
           </div>
         </div>
         <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-          <h2 class=" font-bold text-gray-900 tracking-widest text-lg mb-3">Social</h2>
+          <h2 class=" font-bold text-gray-900 tracking-widest text-xl mb-3">Social</h2>
           <div class="list-none mb-10">
-            <div class="flex"> <a href="https://github.com/znsio/specmatic" target="_blank" class="px-2">
+            <div class="flex"> <a href="https://github.com/znsio/specmatic" target="_blank" class="pr-2">
                 <img src="/assets/github.svg" alt="github" class="h-full w-full" />
               </a>
-
               <a href="https://twitter.com/specmatic" target="_blank" class="px-2">
                 <img src="/assets/twitter.svg" alt="twitter" class="h-full w-full" />
               </a>
-
               <a href="#" target="_blank" class="px-2">
                 <img src="/assets/linkdin.svg" alt="linkedIn" class="h-full w-full" />
               </a>
             </div>
           </div>
         </div>
-
       </div>
-      
     </div>
-    <div class="flex justify-center py-8 text-lg text-purple-800">
+    <div class="flex justify-center py-12 text-lg text-purple-800">
       <p>&copy; <a href="https://xnsio.com" target="_blank">Xnsio</a> 2021. All rights reserved.</p>
     </div>
   </footer>
-
-
   <script src="https://unpkg.com/flowbite@1.5.2/dist/flowbite.js"></script>
-
 </body>
-
 </html>
