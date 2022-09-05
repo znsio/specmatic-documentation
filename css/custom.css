@@ -10,13 +10,9 @@ body {
          
 .btn-grad {
   background-image: linear-gradient(to right, #380687 0%, #3a7bd5  51%, #4606BB  100%);
- 
-  padding: 15px 45px;
-  text-align: center;
   transition: 0.5s;
   background-size: 200% auto;
   color: white;            
-  border-radius: 10px;
   display: block;
 }
 
@@ -38,4 +34,11 @@ body {
 }
 .video{
   border-radius: 10px;
+}
+.card-bg{
+  background-color:#E1D1FF;
+}
+.orange-div{
+  background-color:#FF8154;
+  border-radius:0px 0px 5px 0px ;
 }
