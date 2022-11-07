@@ -11,11 +11,11 @@
 	<atom:link href="/comments/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Tue, 01 Nov 2022 08:57:32 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 01 Nov 2022 23:22:01 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.0.3</generator>
+	<generator>https://wordpress.org/?v=6.1</generator>
 </channel>
 </rss>
