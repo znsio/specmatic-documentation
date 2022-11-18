@@ -36,11 +36,6 @@ aside > section:nth-of-type(1) > .has-ast-global-color-4-color {
 	padding-bottom: 0 !important;
 }
 
-/** General >> Block 8 wp block image **/
-#block-8 .wp-block-image {
-	
-}
-
 /** General >> Block 10 **/
 #block-10 {
 	margin-bottom: 0 !important;
@@ -81,6 +76,33 @@ aside > section:nth-of-type(1) > .has-ast-global-color-4-color {
 	color: rgba(255, 255, 255, 0.61) !important;
 	font-size: 13px !important;
 	text-align: left !important;
+}
+
+/** General >> Content ast container **/
+#content .ast-container {
+	background-color: rgb(255, 255, 255) !important;
+}
+
+/** General >> Secondary heading 2 **/
+#secondary h2 {
+	margin-bottom: 5px !important;
+}
+
+/** General >> Wp block group link **/
+.wp-block-group a {
+	
+}
+
+/** General >> Secondary widget **/
+#secondary .widget {
+	padding-bottom: 20px !important;
+	margin-bottom: 0 !important;
+}
+
+/** General >> Gcse 0 gsc control cse en **/
+#___gcse_0 .gsc-control-cse-en {
+	padding-bottom: 0 !important;
+	margin-bottom: 0 !important;
 }
 
 
@@ -153,11 +175,6 @@ aside > section:nth-of-type(1) > .has-ast-global-color-4-color {
 	#ast-hf-mobile-menu .menu-link {
 	color: rgb(255, 255, 255) !important;
 	font-size: 18px !important;
-}
-
-	/** General >> Ast mobile header ast menu svg **/
-	#ast-mobile-header .ast-menu-svg {
-	
 }
 
 

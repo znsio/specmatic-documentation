@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Comparisons &#8211; Specmatic</title>
+	<atom:link href="/category/blog/comparisons/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Contract Driven Development</description>
+	<lastBuildDate>Wed, 16 Nov 2022 22:01:36 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.1.1</generator>
+
+<image>
+	<url>/wp-content/uploads/2022/09/Favicon.png</url>
+	<title>Comparisons &#8211; Specmatic</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Comparison: Specmatic vs Pact.io and Pactflow.io</title>
+		<link>/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/</link>
+		
+		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
+		<pubDate>Tue, 08 Nov 2022 04:25:35 +0000</pubDate>
+				<category><![CDATA[Blog]]></category>
+		<category><![CDATA[Comparisons]]></category>
+		<guid isPermaLink="false">/?p=585</guid>
+
+					<description><![CDATA[Specmatic is unique in its approach towards leveraging API Specification as Executable Contracts. However putting ourselves in the shoes of someone evaluating a process or a tool, it always helps to have detailed comparisons with other tools that may have some similarity. This is the first post in a series where we will be covering &#8230;<p class="read-more"> <a class="" href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/"> <span class="screen-reader-text">Comparison: Specmatic vs Pact.io and Pactflow.io</span> Read More »</a></p>]]></description>
+		
+		
+		
+			</item>
+	</channel>
+</rss>

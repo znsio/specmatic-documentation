@@ -12,13 +12,13 @@
 	<atom:link href="/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Tue, 01 Nov 2022 23:22:01 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 16 Nov 2022 22:01:36 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.1</generator>
+	<generator>https://wordpress.org/?v=6.1.1</generator>
 
 <image>
 	<url>/wp-content/uploads/2022/09/Favicon.png</url>
@@ -27,5 +27,20 @@
 	<width>32</width>
 	<height>32</height>
 </image> 
-</channel>
+	<item>
+		<title>Comparison: Specmatic vs Pact.io and Pactflow.io</title>
+		<link>/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/</link>
+		
+		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
+		<pubDate>Tue, 08 Nov 2022 04:25:35 +0000</pubDate>
+				<category><![CDATA[Blog]]></category>
+		<category><![CDATA[Comparisons]]></category>
+		<guid isPermaLink="false">/?p=585</guid>
+
+					<description><![CDATA[Specmatic is unique in its approach towards leveraging API Specification as Executable Contracts. However putting ourselves in the shoes of someone evaluating a process or a tool, it always helps to have detailed comparisons with other tools that may have some similarity. This is the first post in a series where we will be covering &#8230;<p class="read-more"> <a class="" href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/"> <span class="screen-reader-text">Comparison: Specmatic vs Pact.io and Pactflow.io</span> Read More »</a></p>]]></description>
+		
+		
+		
+			</item>
+	</channel>
 </rss>
