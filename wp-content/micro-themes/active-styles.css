@@ -101,8 +101,46 @@ aside > section:nth-of-type(1) > .has-ast-global-color-4-color {
 
 /** General >> Gcse 0 gsc control cse en **/
 #___gcse_0 .gsc-control-cse-en {
+	padding-top: 0 !important;
 	padding-bottom: 0 !important;
-	margin-bottom: 0 !important;
+	padding-left: 0 !important;
+}
+
+/** General >> Gs tti50 **/
+#gs_tti50 {
+	border: 1px solid rgb(220, 220, 220) !important;
+	border-radius: 3px !important;
+}
+
+/** General >> Table row gsc input **/
+tr > .gsc-input {
+	padding-right: 0 !important;
+}
+
+/** General >> Gcse 0 gsc search button **/
+#___gcse_0 .gsc-search-button {
+	
+}
+
+/** General >> Gcse 0 **/
+#___gcse_0 {
+	
+}
+
+/** General >> Gsc iw id1 **/
+#gsc-iw-id1 {
+	padding-top: 25px !important;
+}
+
+/** General >> Content uael team member content **/
+#content .uael-team-member-content {
+	padding-right: 0 !important;
+	padding-left: 0 !important;
+}
+
+/** General >> Content uael team social icon **/
+#content .uael-team-social-icon {
+	padding-left: 5px !important;
 }
 
 
