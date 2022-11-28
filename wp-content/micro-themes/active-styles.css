@@ -143,6 +143,11 @@ tr > .gsc-input {
 	padding-left: 5px !important;
 }
 
+/** General >> Menu item 841 menu link **/
+#menu-item-841 .menu-link {
+	color: rgb(255, 255, 255) !important;
+}
+
 
 /*( < 1200 )*/
 @media (max-width: 1199.98px) {

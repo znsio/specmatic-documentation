@@ -7,9 +7,9 @@
 	>
 <channel>
 	<title>
-	Comments for Specmatic	</title>
-	<atom:link href="/comments/feed/" rel="self" type="application/rss+xml" />
-	<link>/</link>
+	Comments on: Comparison: Specmatic vs WireMock	</title>
+	<atom:link href="/blog/comparisons/comparison-specmatic-vs-wiremock/feed/" rel="self" type="application/rss+xml" />
+	<link>/blog/comparisons/comparison-specmatic-vs-wiremock/</link>
 	<description>Contract Driven Development</description>
 	<lastBuildDate>Mon, 28 Nov 2022 14:39:40 +0000</lastBuildDate>
 	<sy:updatePeriod>

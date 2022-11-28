@@ -12,7 +12,7 @@
 	<atom:link href="/category/blog/comparisons/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 16 Nov 2022 22:01:36 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 28 Nov 2022 14:39:40 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,21 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Comparison: Specmatic vs WireMock</title>
+		<link>/blog/comparisons/comparison-specmatic-vs-wiremock/</link>
+		
+		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
+		<pubDate>Sat, 26 Nov 2022 08:34:32 +0000</pubDate>
+				<category><![CDATA[Blog]]></category>
+		<category><![CDATA[Comparisons]]></category>
+		<guid isPermaLink="false">/?p=820</guid>
+
+					<description><![CDATA[This is the second post in our series where we compare Specmatic with tools that have some overlap in terms of capabilities. In our previous post we compared Specmatic and Pact. In this post we will be looking at WireMock. We often need to mock APIs (both internal and external) to isolate the system under &#8230;<p class="read-more"> <a class="" href="/blog/comparisons/comparison-specmatic-vs-wiremock/"> <span class="screen-reader-text">Comparison: Specmatic vs WireMock</span> Read More »</a></p>]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Comparison: Specmatic vs Pact.io and Pactflow.io</title>
 		<link>/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/</link>
 		

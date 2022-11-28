@@ -4,19 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="https://gmpg.org/xfn/11">
-<title>Comparison: Specmatic vs Pact.io and Pactflow.io - Specmatic</title>
+<title>Comparison: Specmatic vs WireMock - Specmatic</title>
 <link rel="preload" href="/wp-content/astra-local-fonts/plus-jakarta-sans/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_Tkn9TR_V.woff2" as="font" type="font/woff2" crossorigin>
-<meta name="description" content="Specmatic is unique in its approach towards leveraging API Specification as Executable Contracts. However putting ourselves in the shoes of someone evaluating a process or a tool, it always helps to have detailed comparisons with other tools that may have some similarity. This is the first post in a series&hellip;">
+<meta name="description" content="This is the second post in our series where we compare Specmatic with tools that have some overlap in terms of capabilities. In our previous post we compared Specmatic and Pact. In this post we will be looking at WireMock. We often need to mock APIs (both internal and external)&hellip;">
 <meta name="robots" content="index, follow">
 <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/">
-<meta property="og:url" content="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/">
+<link rel="canonical" href="/blog/comparisons/comparison-specmatic-vs-wiremock/">
+<meta property="og:url" content="/blog/comparisons/comparison-specmatic-vs-wiremock/">
 <meta property="og:site_name" content="Specmatic">
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Comparison: Specmatic vs Pact.io and Pactflow.io - Specmatic">
-<meta property="og:description" content="Specmatic is unique in its approach towards leveraging API Specification as Executable Contracts. However putting ourselves in the shoes of someone evaluating a process or a tool, it always helps to have detailed comparisons with other tools that may have some similarity. This is the first post in a series&hellip;">
+<meta property="og:title" content="Comparison: Specmatic vs WireMock - Specmatic">
+<meta property="og:description" content="This is the second post in our series where we compare Specmatic with tools that have some overlap in terms of capabilities. In our previous post we compared Specmatic and Pact. In this post we will be looking at WireMock. We often need to mock APIs (both internal and external)&hellip;">
 <meta property="og:image" content="/wp-content/uploads/2022/09/Video-Cover-img.jpg">
 <meta property="og:image:secure_url" content="/wp-content/uploads/2022/09/Video-Cover-img.jpg">
 <meta property="og:image:width" content="1000">
@@ -24,13 +24,13 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@specmatic">
 <meta name="twitter:creator" content="@specmatic">
-<meta name="twitter:title" content="Comparison: Specmatic vs Pact.io and Pactflow.io - Specmatic">
-<meta name="twitter:description" content="Specmatic is unique in its approach towards leveraging API Specification as Executable Contracts. However putting ourselves in the shoes of someone evaluating a process or a tool, it always helps to have detailed comparisons with other tools that may have some similarity. This is the first post in a series&hellip;">
+<meta name="twitter:title" content="Comparison: Specmatic vs WireMock - Specmatic">
+<meta name="twitter:description" content="This is the second post in our series where we compare Specmatic with tools that have some overlap in terms of capabilities. In our previous post we compared Specmatic and Pact. In this post we will be looking at WireMock. We often need to mock APIs (both internal and external)&hellip;">
 <meta name="twitter:image" content="/wp-content/uploads/2022/09/Video-Cover-img.jpg">
 <link rel="dns-prefetch" href="//use.fontawesome.com">
 <link rel="alternate" type="application/rss+xml" title="Specmatic &raquo; Feed" href="/feed/">
 <link rel="alternate" type="application/rss+xml" title="Specmatic &raquo; Comments Feed" href="/comments/feed/">
-<link rel="alternate" type="application/rss+xml" title="Specmatic &raquo; Comparison: Specmatic vs Pact.io and Pactflow.io Comments Feed" href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/feed/">
+<link rel="alternate" type="application/rss+xml" title="Specmatic &raquo; Comparison: Specmatic vs WireMock Comments Feed" href="/blog/comparisons/comparison-specmatic-vs-wiremock/feed/">
 <script>
 window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.1.1"}};
 /*! This file is auto-generated */
@@ -70,10 +70,10 @@ flexibility(document.documentElement);
 <script src="/wp-includes/js/jquery/jquery.min.js?ver=3.6.1" id="jquery-core-js"></script>
 <script src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
 <link rel="https://api.w.org/" href="/wp-json/">
-<link rel="alternate" type="application/json" href="/wp-json/wp/v2/posts/585">
+<link rel="alternate" type="application/json" href="/wp-json/wp/v2/posts/820">
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd">
-<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2Fblog%2Fcomparisons%2Fspecmatic-vs-pact-io-and-pactflow-io%2F">
-<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2Fblog%2Fcomparisons%2Fspecmatic-vs-pact-io-and-pactflow-io%2F&#038;format=xml">
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2Fblog%2Fcomparisons%2Fcomparison-specmatic-vs-wiremock%2F">
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2Fblog%2Fcomparisons%2Fcomparison-specmatic-vs-wiremock%2F&#038;format=xml">
 <link rel="pingback" href="/xmlrpc.php">
 <link rel="icon" href="/wp-content/uploads/2022/09/Favicon.png" sizes="32x32">
 <link rel="icon" href="/wp-content/uploads/2022/09/Favicon.png" sizes="192x192">
@@ -102,7 +102,7 @@ flexibility(document.documentElement);
 function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
 gtag('config', 'UA-139949530-2' , {'allow_display_features': false,'anonymize_ip': true,});</script>
 </head>
-<body itemtype="https://schema.org/Blog" itemscope="itemscope" class="post-template-default single single-post postid-585 single-format-standard wp-custom-logo mtp-585 mtp-post-specmatic-vs-pact-io-and-pactflow-io ast-blog-single-style-1 ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-desktop ast-separate-container ast-right-sidebar astra-3.9.4 ast-normal-title-enabled elementor-default elementor-kit-5 astra-addon-3.9.3">
+<body itemtype="https://schema.org/Blog" itemscope="itemscope" class="post-template-default single single-post postid-820 single-format-standard wp-custom-logo mtp-820 mtp-post-comparison-specmatic-vs-wiremock ast-blog-single-style-1 ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-desktop ast-separate-container ast-right-sidebar astra-3.9.4 ast-normal-title-enabled elementor-default elementor-kit-5 astra-addon-3.9.3">
 <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-dark-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 0.49803921568627"></fefuncr><fefuncg type="table" tablevalues="0 0.49803921568627"></fefuncg><fefuncb type="table" tablevalues="0 0.49803921568627"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 1"></fefuncr><fefuncg type="table" tablevalues="0 1"></fefuncg><fefuncb type="table" tablevalues="0 1"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.54901960784314 0.98823529411765"></fefuncr><fefuncg type="table" tablevalues="0 1"></fefuncg><fefuncb type="table" tablevalues="0.71764705882353 0.25490196078431"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-red"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 1"></fefuncr><fefuncg type="table" tablevalues="0 0.27843137254902"></fefuncg><fefuncb type="table" tablevalues="0.5921568627451 0.27843137254902"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-midnight"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 0"></fefuncr><fefuncg type="table" tablevalues="0 0.64705882352941"></fefuncg><fefuncb type="table" tablevalues="0 1"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-magenta-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.78039215686275 1"></fefuncr><fefuncg type="table" tablevalues="0 0.94901960784314"></fefuncg><fefuncb type="table" tablevalues="0.35294117647059 0.47058823529412"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-green"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.65098039215686 0.40392156862745"></fefuncr><fefuncg type="table" tablevalues="0 1"></fefuncg><fefuncb type="table" tablevalues="0.44705882352941 0.4"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-orange"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.098039215686275 1"></fefuncr><fefuncg type="table" tablevalues="0 0.66274509803922"></fefuncg><fefuncb type="table" tablevalues="0.84705882352941 0.41960784313725"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg>
 <a class="skip-link screen-reader-text" href="#content" role="link" title="Skip to content">
 Skip to content</a>
@@ -131,10 +131,10 @@ Skip to content</a>
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span></button>
 <ul class="sub-menu">
-<li id="menu-item-600" class="menu-item menu-item-type-post_type menu-item-object-post current-menu-item menu-item-600"><a href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/" aria-current="page" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-600" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-600"><a href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs Pact.io and Pactflow.io</a></li>
-<li id="menu-item-839" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-839"><a href="/blog/comparisons/comparison-specmatic-vs-wiremock/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-839" class="menu-item menu-item-type-post_type menu-item-object-post current-menu-item menu-item-839"><a href="/blog/comparisons/comparison-specmatic-vs-wiremock/" aria-current="page" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs WireMock</a></li>
 </ul>
@@ -180,11 +180,11 @@ Skip to content</a>
 <div class="ast-container">
 <div id="primary" class="content-area primary">
 <main id="main" class="site-main">
-<article class="post-585 post type-post status-publish format-standard hentry category-blog category-comparisons ast-article-single" id="post-585" itemtype="https://schema.org/CreativeWork" itemscope="itemscope">
+<article class="post-820 post type-post status-publish format-standard hentry category-blog category-comparisons ast-article-single" id="post-820" itemtype="https://schema.org/CreativeWork" itemscope="itemscope">
 <div class="ast-post-format- ast-no-thumb single-layout-1 ast-no-date-box">
 <header class="entry-header ast-no-thumbnail">
 <div class="ast-single-post-order">
-<h1 class="entry-title" itemprop="headline">Comparison: Specmatic vs Pact.io and Pactflow.io</h1>
+<h1 class="entry-title" itemprop="headline">Comparison: Specmatic vs WireMock</h1>
 <div class="entry-meta">
 <span class="cat-links"><a href="/category/blog/" rel="category tag">Blog</a>, <a href="/category/blog/comparisons/" rel="category tag">Comparisons</a></span> / By <span class="posted-by vcard author" itemtype="https://schema.org/Person" itemscope="itemscope" itemprop="author"> <a title="View all posts by Hari Krishnan" href="/author/hari/" rel="author" class="url fn n" itemprop="url">
 <span class="author-name" itemprop="name">Hari Krishnan</span>
@@ -193,284 +193,151 @@ Skip to content</a>
 </div> </div>
 </header>
 <div class="entry-content clear" ast-blocks-layout="true" itemprop="text">
-<p>Specmatic is unique in its approach towards leveraging API Specification as <a href="https://specmatic.in/#executable-contracts">Executable Contracts</a>. However putting ourselves in the shoes of someone evaluating a process or a tool, it always helps to have detailed comparisons with other tools that may have some similarity. This is the first post in a series where we will be covering techniques and tools that try to address the problem of identifying compatibility issues between microservices early.</p>
-<p>In this post we will be be looking at Pact which largely popularised Contract Testing. <a href="https://pact.io/">Pact.io</a> or OpenSource Pact is tool that I have personally used and it makes for a great addition to the Dev experience if your development style / process aligns with the workflow of the tool (Consumer Driven Contract Testing). <a href="https://pactflow.io/">Pactflow.io</a> supports another technique called <a href="https://pactflow.io/bi-directional-contract-testing/">Bi-Directional Contract Testing</a> (BDCT) which is an interesting approach. <a href="https://specmatic.in/">Specmatic</a> and <a href="https://specmatic.in/#executable-contracts">Contract Driven Development</a> differ significantly from Pact. We built Specmatic out of our own necessity where Pact did not fit the bill for us. We have tried to cover as many areas of comparison as possible, however we would love to hear if you have any other criteria on which you would like to see additional details.</p>
+<p>This is the second post in our <a href="https://specmatic.in/category/blog/comparisons/#gsc.tab=0">series</a> where we compare Specmatic with tools that have some overlap in terms of capabilities. In our <a href="https://specmatic.in/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/#gsc.tab=0">previous post</a> we compared Specmatic and Pact. In this post we will be looking at <a href="https://wiremock.org/">WireMock</a>.</p>
+<p>We often need to mock APIs (both internal and external) to isolate the system under test or development so that we can make progress independent of dependencies. However API mocking is only effective if the mocks are truly representative of the provider / service they are emulating. Deviations between mocks and providers can lead to integration issues much later in the development cycle. In order to avoid such issues it is important to keep in mind that selecting an API mocking tool is not an isolated decision. It has to be in line with your overall microservices development, testing and deployment goals.</p>
+<p><a href="https://wiremock.org/">WireMock</a> is an <a href="https://wiremock.org/docs/">API Mocking</a> tool and <a href="https://specmatic.in/">Specmatic</a> is a <a href="https://specmatic.in/contract_driven_development.html">Contract Driven Development</a> tool that leverages API mocking (<a href="https://specmatic.in/#contract-as-stub">Smart Mocks)</a> to identify contract compatibility issues in Consumers of an API. So <strong>this is not an apples to apples comparison</strong>. We are only going to look at a subset of capabilities where there are overlaps between Specmatic and WireMock. However if you believe we have missed any aspects in this comparison, please do leave us a comment.</p>
 <div class="wp-block-wpdatatables-wpdatatables-gutenberg-block">
-<div class="wpdt-c wdt-skin-material">
-<input type="hidden" id="wdtNonceFrontendEdit_1" name="wdtNonceFrontendEdit_1" value="25f722f314"><input type="hidden" name="_wp_http_referer" value="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/"> <input type="hidden" id="table_1_desc" value="{&quot;tableId&quot;:&quot;table_1&quot;,&quot;tableType&quot;:&quot;google_spreadsheet&quot;,&quot;selector&quot;:&quot;#table_1&quot;,&quot;responsive&quot;:true,&quot;responsiveAction&quot;:&quot;cell&quot;,&quot;editable&quot;:false,&quot;inlineEditing&quot;:false,&quot;infoBlock&quot;:false,&quot;pagination&quot;:0,&quot;paginationAlign&quot;:&quot;right&quot;,&quot;paginationLayout&quot;:&quot;full_numbers&quot;,&quot;file_location&quot;:&quot;wp_media_lib&quot;,&quot;tableSkin&quot;:&quot;material&quot;,&quot;globalSearch&quot;:false,&quot;showRowsPerPage&quot;:false,&quot;popoverTools&quot;:false,&quot;hideBeforeLoad&quot;:false,&quot;number_format&quot;:1,&quot;decimalPlaces&quot;:2,&quot;spinnerSrc&quot;:&quot;\/wp-content\/plugins\/wpdatatables\/assets\/\/img\/spinner.gif&quot;,&quot;groupingEnabled&quot;:false,&quot;tableWpId&quot;:&quot;1&quot;,&quot;dataTableParams&quot;:{&quot;sDom&quot;:&quot;BT<'clear'>t&quot;,&quot;bSortCellsTop&quot;:false,&quot;bFilter&quot;:true,&quot;aLengthMenu&quot;:[[1,5,10,25,50,100,-1],[1,5,10,25,50,100,&quot;All&quot;]],&quot;iDisplayLength&quot;:25,&quot;columnDefs&quot;:[{&quot;sType&quot;:&quot;string&quot;,&quot;wdtType&quot;:&quot;string&quot;,&quot;bVisible&quot;:true,&quot;orderable&quot;:true,&quot;searchable&quot;:true,&quot;InputType&quot;:&quot;none&quot;,&quot;name&quot;:&quot;Platform&quot;,&quot;origHeader&quot;:&quot;Platform&quot;,&quot;notNull&quot;:false,&quot;conditionalFormattingRules&quot;:[],&quot;className&quot;:&quot;columnalign column-platform&quot;,&quot;aTargets&quot;:[0]},{&quot;sType&quot;:&quot;string&quot;,&quot;wdtType&quot;:&quot;string&quot;,&quot;bVisible&quot;:true,&quot;orderable&quot;:true,&quot;searchable&quot;:true,&quot;InputType&quot;:&quot;none&quot;,&quot;name&quot;:&quot;Specmatic.in&quot;,&quot;origHeader&quot;:&quot;Specmatic.in&quot;,&quot;notNull&quot;:false,&quot;conditionalFormattingRules&quot;:[{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;YES&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#AFDEAC&quot;},{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;NO&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#EF8C8C&quot;},{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;PARTIAL&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#ECBA88&quot;}],&quot;className&quot;:&quot;columnalign column-specmaticin&quot;,&quot;aTargets&quot;:[1]},{&quot;sType&quot;:&quot;string&quot;,&quot;wdtType&quot;:&quot;string&quot;,&quot;bVisible&quot;:true,&quot;orderable&quot;:true,&quot;searchable&quot;:true,&quot;InputType&quot;:&quot;none&quot;,&quot;name&quot;:&quot;Pact.io&quot;,&quot;origHeader&quot;:&quot;Pact.io&quot;,&quot;notNull&quot;:false,&quot;conditionalFormattingRules&quot;:[{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;YES&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#AFDEAC&quot;},{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;NO&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#EF8C8C&quot;},{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;PARTIAL&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#ECBA88&quot;}],&quot;className&quot;:&quot;columnalign column-pactio&quot;,&quot;aTargets&quot;:[2]},{&quot;sType&quot;:&quot;string&quot;,&quot;wdtType&quot;:&quot;string&quot;,&quot;bVisible&quot;:true,&quot;orderable&quot;:true,&quot;searchable&quot;:true,&quot;InputType&quot;:&quot;none&quot;,&quot;name&quot;:&quot;Pactflow.io Paid&quot;,&quot;origHeader&quot;:&quot;Pactflow.io Paid&quot;,&quot;notNull&quot;:false,&quot;conditionalFormattingRules&quot;:[{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;YES&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#AFDEAC&quot;},{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;NO&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#EF8C8C&quot;},{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;PARTIAL&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#ECBA88&quot;}],&quot;className&quot;:&quot;columnalign column-pactflowio-paid&quot;,&quot;aTargets&quot;:[3]}],&quot;bAutoWidth&quot;:false,&quot;order&quot;:[[0,&quot;asc&quot;]],&quot;ordering&quot;:false,&quot;oLanguage&quot;:{&quot;sSearchPlaceholder&quot;:&quot;&quot;},&quot;buttons&quot;:[],&quot;bProcessing&quot;:false,&quot;oSearch&quot;:{&quot;bSmart&quot;:false,&quot;bRegex&quot;:false,&quot;sSearch&quot;:&quot;&quot;}},&quot;tabletWidth&quot;:&quot;1024&quot;,&quot;mobileWidth&quot;:&quot;480&quot;,&quot;advancedFilterEnabled&quot;:false,&quot;serverSide&quot;:false,&quot;columnsFixed&quot;:0,&quot;sumFunctionsLabel&quot;:false,&quot;avgFunctionsLabel&quot;:false,&quot;minFunctionsLabel&quot;:false,&quot;maxFunctionsLabel&quot;:false,&quot;columnsDecimalPlaces&quot;:{&quot;Platform&quot;:-1,&quot;Specmatic.in&quot;:-1,&quot;Pact.io&quot;:-1,&quot;Pactflow.io Paid&quot;:-1},&quot;columnsThousandsSeparator&quot;:[],&quot;sumColumns&quot;:[],&quot;avgColumns&quot;:[],&quot;sumAvgColumns&quot;:[],&quot;conditional_formatting_columns&quot;:[&quot;Specmatic.in&quot;,&quot;Pact.io&quot;,&quot;Pactflow.io Paid&quot;],&quot;timeFormat&quot;:&quot;h:i A&quot;,&quot;datepickFormat&quot;:&quot;dd\/mm\/yy&quot;}">
-<div id="table_1_wrapper" class="wpDataTables wpDataTablesWrapper no-footer wpDataTableID-1 wpdt-pagination-right">
+<h2 class="wpdt-c" id="wdt-table-title-6">Specmatic vs Wiremock</h2>
+<div class="wpdt-c wdt-skin-light">
+<input type="hidden" id="wdtNonceFrontendEdit_6" name="wdtNonceFrontendEdit_6" value="67f3d67a01"><input type="hidden" name="_wp_http_referer" value="/blog/comparisons/comparison-specmatic-vs-wiremock/"> <input type="hidden" id="table_1_desc" value="{&quot;tableId&quot;:&quot;table_1&quot;,&quot;tableType&quot;:&quot;google_spreadsheet&quot;,&quot;selector&quot;:&quot;#table_1&quot;,&quot;responsive&quot;:true,&quot;responsiveAction&quot;:&quot;cell&quot;,&quot;editable&quot;:false,&quot;inlineEditing&quot;:false,&quot;infoBlock&quot;:false,&quot;pagination&quot;:0,&quot;paginationAlign&quot;:&quot;right&quot;,&quot;paginationLayout&quot;:&quot;full_numbers&quot;,&quot;file_location&quot;:&quot;wp_media_lib&quot;,&quot;tableSkin&quot;:&quot;light&quot;,&quot;globalSearch&quot;:false,&quot;showRowsPerPage&quot;:false,&quot;popoverTools&quot;:false,&quot;hideBeforeLoad&quot;:true,&quot;number_format&quot;:1,&quot;decimalPlaces&quot;:2,&quot;spinnerSrc&quot;:&quot;\/wp-content\/plugins\/wpdatatables\/assets\/\/img\/spinner.gif&quot;,&quot;groupingEnabled&quot;:false,&quot;tableWpId&quot;:&quot;6&quot;,&quot;dataTableParams&quot;:{&quot;sDom&quot;:&quot;BT<'clear'>t&quot;,&quot;bSortCellsTop&quot;:false,&quot;bFilter&quot;:true,&quot;aLengthMenu&quot;:[[1,5,10,25,50,100,-1],[1,5,10,25,50,100,&quot;All&quot;]],&quot;iDisplayLength&quot;:-1,&quot;columnDefs&quot;:[{&quot;sType&quot;:&quot;string&quot;,&quot;wdtType&quot;:&quot;string&quot;,&quot;bVisible&quot;:true,&quot;orderable&quot;:false,&quot;searchable&quot;:false,&quot;InputType&quot;:&quot;none&quot;,&quot;name&quot;:&quot;Capability&quot;,&quot;origHeader&quot;:&quot;Capability&quot;,&quot;notNull&quot;:false,&quot;conditionalFormattingRules&quot;:[],&quot;className&quot;:&quot; column-capability&quot;,&quot;aTargets&quot;:[0]},{&quot;sType&quot;:&quot;string&quot;,&quot;wdtType&quot;:&quot;string&quot;,&quot;bVisible&quot;:true,&quot;orderable&quot;:true,&quot;searchable&quot;:false,&quot;InputType&quot;:&quot;none&quot;,&quot;name&quot;:&quot;Specmatic.in&quot;,&quot;origHeader&quot;:&quot;Specmatic.in&quot;,&quot;notNull&quot;:false,&quot;conditionalFormattingRules&quot;:[{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;YES&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#AFDEAC&quot;},{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;NO&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#F64F4F&quot;}],&quot;className&quot;:&quot; column-specmaticin&quot;,&quot;aTargets&quot;:[1]},{&quot;sType&quot;:&quot;string&quot;,&quot;wdtType&quot;:&quot;string&quot;,&quot;bVisible&quot;:true,&quot;orderable&quot;:true,&quot;searchable&quot;:false,&quot;InputType&quot;:&quot;none&quot;,&quot;name&quot;:&quot;Wiremock&quot;,&quot;origHeader&quot;:&quot;Wiremock&quot;,&quot;notNull&quot;:false,&quot;conditionalFormattingRules&quot;:[{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;YES&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#AFDEAC&quot;},{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;NO&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#EF8C8C&quot;}],&quot;className&quot;:&quot; column-wiremock&quot;,&quot;aTargets&quot;:[2]}],&quot;bAutoWidth&quot;:false,&quot;order&quot;:[[1,&quot;asc&quot;]],&quot;ordering&quot;:false,&quot;oLanguage&quot;:{&quot;sSearchPlaceholder&quot;:&quot;&quot;},&quot;buttons&quot;:[],&quot;bProcessing&quot;:false,&quot;oSearch&quot;:{&quot;bSmart&quot;:false,&quot;bRegex&quot;:false,&quot;sSearch&quot;:&quot;&quot;}},&quot;tabletWidth&quot;:&quot;1024&quot;,&quot;mobileWidth&quot;:&quot;480&quot;,&quot;advancedFilterEnabled&quot;:false,&quot;serverSide&quot;:false,&quot;columnsFixed&quot;:0,&quot;sumFunctionsLabel&quot;:false,&quot;avgFunctionsLabel&quot;:false,&quot;minFunctionsLabel&quot;:false,&quot;maxFunctionsLabel&quot;:false,&quot;columnsDecimalPlaces&quot;:{&quot;Capability&quot;:-1,&quot;Specmatic.in&quot;:-1,&quot;Wiremock&quot;:-1},&quot;columnsThousandsSeparator&quot;:[],&quot;sumColumns&quot;:[],&quot;avgColumns&quot;:[],&quot;sumAvgColumns&quot;:[],&quot;conditional_formatting_columns&quot;:[&quot;Specmatic.in&quot;,&quot;Wiremock&quot;],&quot;timeFormat&quot;:&quot;h:i A&quot;,&quot;datepickFormat&quot;:&quot;dd\/mm\/yy&quot;}">
+<div id="table_1_wrapper" class="wpDataTables wpDataTablesWrapper no-footer wpDataTableID-6 wpdt-pagination-right">
 <div class="dt-buttons"></div>
 <div class="clear"></div>
-<table id="table_1" class="responsive display nowrap data-t data-t wpDataTable wpDataTableID-1 dataTable no-footer" data-described-by="table_1_desc" data-wpdatatable_id="1">
+<table id="table_1" class="responsive display nowrap data-t data-t wpDataTable wpDataTableID-6 dataTable no-footer" data-described-by="table_1_desc" data-wpdatatable_id="6">
 <thead>
 <tr>
-<th data-class="expand" class="wdtheader sort columnalign expand sorting_disabled column-platform" rowspan="1" colspan="1">Platform</th>
-<th data-hide="phone,tablet" class="phone,tablet wdtheader sort columnalign sorting_disabled column-specmaticin" rowspan="1" colspan="1">Specmatic.in</th>
-<th data-hide="phone,tablet" class="phone,tablet wdtheader sort columnalign sorting_disabled column-pactio" rowspan="1" colspan="1">Pact.io</th>
-<th data-hide="phone,tablet" class="phone,tablet wdtheader sort columnalign sorting_disabled column-pactflowio-paid" rowspan="1" colspan="1">Pactflow.io Paid</th>
+<th data-class="expand" class="wdtheader expand sorting_disabled column-capability" rowspan="1" colspan="1">Capability</th>
+<th data-hide="phone,tablet" class="phone,tablet wdtheader sort sorting_disabled column-specmaticin" rowspan="1" colspan="1">Specmatic.in</th>
+<th data-hide="phone,tablet" class="phone,tablet wdtheader sort sorting_disabled column-wiremock" rowspan="1" colspan="1">Wiremock</th>
 </tr>
 </thead>
 <tbody>
-<tr id="table_1_row_0" class="odd">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Approach</td>
-<td class="  columnalign column-specmaticin">
-<a href="https://specmatic.in/" target="_blank" rel="noopener">Contract Driven Development</a> (CDD)</td>
-<td class="  columnalign column-pactio"><a href="https://docs.pact.io/#consumer-driven-contracts" target="_blank" rel="noopener">Code First, Consumer Driven Contract Testing</a></td>
-<td class="  columnalign column-pactflowio-paid">
-<a href="https://docs.pactflow.io/docs/bi-directional-contract-testing/" target="_blank" rel="noopener">Bi-Directional Contract Testing</a> (BDCT)</td>
-</tr>
-<tr id="table_1_row_1" class="even">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>OpenAPI Support</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-specmaticin"><strong><strong>YES</strong></strong></td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactio">
-<strong>NO</strong> <a href="https://docs.pact.io/faq/convinceme#but-i-use-swaggeropenapi" target="_blank" rel="noopener">OpenAPIs and Pact are designed with different ends in mind</a>
+<tr id="table_6_row_0" class="odd">
+<td class="expand column-capability wdt-responsive-cell-action">
+<span class="responsiveExpander"></span>Smart Mock</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> &#8211; <a href="https://specmatic.in/documentation/service_virtualization_tutorial.html#try-setting-up-an-invalid-expectation">Continuously validates expectation data / canned responses against OpenAPI Specifications</a>
 </td>
-<td style="background-color: #ECBA88 !important" class="  columnalign column-pactflowio-paid">
-<strong>PARTIAL</strong>, only supports <a href="https://docs.pactflow.io/docs/bi-directional-contract-testing/#use-cases)" target="_blank" rel="noopener">OAS as Provider Spec</a>, <a href="https://docs.pactflow.io/docs/bi-directional-contract-testing/contracts/oas/#considerations" target="blank" rel="noopener">Several Limitations</a> &#8211; No Remote Refs / Single document approach, Need to dereference “$Ref”, and more</td>
+<td style="background-color: #EF8C8C !important" class="   column-wiremock">
+<strong>NO</strong> &#8211; Wiremock mappings can go out of sync with the API Specification. Any changes to mapping json is not validated against the OpenAPI Specification.</td>
 </tr>
-<tr id="table_1_row_2" class="odd">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Suitable for Consumer First Development Style (Frontend Before Backend)</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-specmaticin">
-<strong>YES</strong> Consumer Team can author the API Specification, leverage it as mock / stub and then share it with Provider team as a guideline</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-pactio">
-<strong>YES</strong> Pact requires starting with Consumer development first by mocking the Provider and then leveraging these mocks to generate the Contract for the Provider</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-pactflowio-paid">
-<strong>YES</strong> same as Pact OSS</td>
+<tr id="table_6_row_1" class="even">
+<td class="expand column-capability wdt-responsive-cell-action">
+<span class="responsiveExpander"></span>Provider Verification</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> &#8211; Specmatic runs the OpenAPI Specification as <a href="https://specmatic.in/#contract-as-test">Contract Tests</a> against provider to verify that Provider is in line with the OpenAPI Specification and thereby inline with the Mock</td>
+<td style="background-color: #EF8C8C !important" class="   column-wiremock">
+<strong>NO</strong> &#8211; Need to integrate with other tools for this. Example: Export the stubbed endpoints as OpenAPI Specification and then test it with Dredd OR PactFlow bring your own mocks</td>
 </tr>
-<tr id="table_1_row_3" class="even">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Suitable for Provider First Development Style (Backend Before Frontend, public facing APIs, ec.)</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-specmaticin">
-<strong>YES</strong> Provider Team can author the API Specification, leverage as tests and then share it with Consumer team to stub the Provider</td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactio">
-<strong>NO</strong> Pact is better suited for Consumer First Development Style</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-pactflowio-paid">
-<strong>YES</strong> Provider has to publish their OAS to PactFlow server, they will only get feedback after Consumer has publish their Contract and PactFlow has completed Cross Contract Verification</td>
+<tr id="table_6_row_2" class="odd">
+<td class="expand column-capability wdt-responsive-cell-action">
+<span class="responsiveExpander"></span>Static Subbing</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> &#8211; <a href="https://specmatic.in/documentation/service_virtualization_tutorial.html">Unlimited Expectations / Canned Responses</a>
+</td>
+<td style="background-color: #AFDEAC !important" class="   column-wiremock">
+<strong>YES</strong> &#8211; Plain wiremock does not support any import capability. Wiremock Studio supports <a href="https://wiremock.org/studio/docs/swagger/">OpenAPI and Fake based generated responses and we can also create canned responses</a>. However these canned responses are not continuously verified against the OpenAPI Specification.</td>
 </tr>
-<tr id="table_1_row_4" class="odd">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Suitable for API First Development Style</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-specmaticin">
-<strong>YES</strong> Consumer and Provider Teams collaboratively author API Specification and only then being development</td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactio">
-<strong>NO</strong> It does not support Contract / API Spec first Development Style</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-pactflowio-paid">
-<strong>YES</strong> Consumers still cannot use the API Specification as Stub, they will only have to Cross Contract validate with the Specification</td>
-</tr>
-<tr id="table_1_row_5" class="even">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Parallel Development of Consumer and Provider</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-specmaticin">
-<strong>YES</strong> This is one of the primary capabilities of Specmatic, to allow teams to independently develop and confidently deploy microservices</td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactio">
-<strong>NO</strong> Consumer development has to be ahead of Provider development</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-pactflowio-paid"><strong>YES</strong></td>
-</tr>
-<tr id="table_1_row_6" class="odd">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Backward Compatibility Verification #NOCODE</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-specmaticin">
-<strong>YES</strong> This is one of the flagship capabilities in Specmatic. Contract vs Contract comparison, no need to implement the changes in Provider or Consumer Code</td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactio">
-<strong>NO</strong> Compatibility can only be possibly detected after an actual change happens in Provider code, two version of Pact JSONs cannot be compared to see if the changes are compatible</td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactflowio-paid">
-<strong>NO</strong> Same as Pact OSS</td>
-</tr>
-<tr id="table_1_row_7" class="even">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>API Specifications as Test #NOCODE</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-specmaticin">
-<strong>YES</strong> Specmatic can generate and run tests, both happy path and boundary conditions, all with just your OpenAPI specifications</td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactio">
-<strong>NO</strong> Pact JSONs are the ones that are run as test, OpenAPI cannot be run as tests</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-pactflowio-paid">
-<strong>YES</strong> WITH CAVEAT &#8211; External Tool Dependency with Bring Your Own testing tool such as Dredd &#8211; Also <a href="https://docs.pactflow.io/docs/bi-directional-contract-testing/contracts/oas/#considerations" target="_blank" rel="noopener">several limitations / considerations</a>
+<tr id="table_6_row_3" class="even">
+<td class="expand column-capability wdt-responsive-cell-action">
+<span class="responsiveExpander"></span>Dynamic Subbing</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> &#8211; <a href="https://specmatic.in/documentation/service_virtualization_tutorial.html#dynamic-mocking---setting-expecations-over-specmatic-http-api">Expecation JSON can be sent through a http API</a>
+</td>
+<td style="background-color: #AFDEAC !important" class="   column-wiremock">
+<strong>YES</strong> &#8211; <a href="https://wiremock.org/docs/api/#tag/Stub-Mappings/paths/~1__admin~1mappings/post">Admin API mappings endpoint allow us to post mapping data.</a>
 </td>
 </tr>
-<tr id="table_1_row_8" class="odd">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>API Specifications as Stub #NOCODE</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-specmaticin">
-<strong>YES</strong> OpenAPI is all you need to run a stub server, no need to define a stub, just the expectation data</td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactio">
-<strong>NO</strong> Pact DSL necessary to define Stubs</td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactflowio-paid">
-<strong>NO</strong> When leveraging Bring Your Own mocks, the frameworks such as Mountebank, Wiremock, etc. have to be setup</td>
-</tr>
-<tr id="table_1_row_9" class="even">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Smart Mocks (Stale Stub Detection / Expectation Validation against API Specification)</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-specmaticin">
-<strong>YES</strong> Immediate Feedback, expectations that are not as per API Spec are immediately rejected with proper error message</td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactio">
-<strong>NO</strong> / not Applicable. Contracts are generated based on the expectation, stale stub detection can only happen when pact json is run as test against Provider</td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactflowio-paid">
-<strong>NO</strong> / not Applicable. PactFlow allows Bring Your Own (BYO) mocks, even with Mountebank the approach has no immediate verification of stub data with Specification. <a href="https://github.com/pactflow/example-bi-directional-consumer-mountebank/blob/1c42e27129c173ce5855a62941860ef1a466f210/test/mountebank.js#L6" target="_blank" rel="noopener">Mountebank imposters have to be converted to Pact Files</a> which are then uploaded to PactFlow where it is compared with Provider’s OAS. Almost 3 levels of indirection before you know whether the stubs are stale.</td>
-</tr>
-<tr id="table_1_row_10" class="odd">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Unfragmented Devex / Minimal learning curve</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-specmaticin">
-<strong>YES</strong> You just need API Specification of your choice such as OpenAPI and Specmatic &#8211; no additional DSLs</td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactio">
-<strong>NO</strong> Need to pick up several tools to achieve a basic level of coverage &#8211; Pact, Pact DSL for Mocking, Pact Broker, API Specification such as OpenAPI, Tool to run API Specification as Test. <a href="https://docs.pactflow.io/docs/bi-directional-contract-testing/#trade-offs" target="_blank" rel="noopener">Has significant learning curve.</a>
+<tr id="table_6_row_4" class="odd">
+<td class="expand column-capability wdt-responsive-cell-action">
+<span class="responsiveExpander"></span>Delay Simulation</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> &#8211; <a href="https://specmatic.in/documentation/service_virtualization_tutorial.html#delay-simulation">Specmatic allows you to simulate delays for each endpoint based on request matching</a>
 </td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactflowio-paid">
-<strong>NO</strong> The Bring Your Own tools approach adds to the list of Pact OSS &#8211; PactFlow, Pact DSL for Mocking AND / OR other tools like Mountebank, API Specification such as OpenAPI, Ready API, Dredd, etc. to run API Specification as Test, PactFlow Broker Server. If teams within an organization are leveraging a mix and match of these tools that makes it hard for people to move across teams.</td>
-</tr>
-<tr id="table_1_row_11" class="even">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Can all stakeholders participate / author Contracts / API Specifications</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-specmaticin">
-<strong>YES</strong> Devs, architects, test engineers, practically anyone who can author an OpenAPI Spec.</td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactio">
-<strong>NO</strong> <a href="https://docs.pactflow.io/docs/bi-directional-contract-testing/#when-to-use" target="_blank" rel="noopener">Developer/SDET</a> only because they have to generate to Pact JSON / Contract only after they have written a mock with Pact DSL</td>
-<td style="background-color: #ECBA88 !important" class="  columnalign column-pactflowio-paid">
-<strong>PARTIAL</strong> Only Provider Spec / OAS can be written by anyone. Consumer Contract has to be written / generated by Consumer Developer / Testers.</td>
-</tr>
-<tr id="table_1_row_12" class="odd">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Suitable for adoption in Greenfield Projects</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-specmaticin">
-<strong>YES</strong> Specmatic helps team become productive quickly with Contract Driven Development</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-pactio"><strong>YES</strong></td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactflowio-paid">
-<strong>NO</strong> Better suited for “<a href="https://docs.pactflow.io/docs/bi-directional-contract-testing/#when-to-use" target="_blank" rel="noopener">Retrofitting contract-tests onto existing systems</a>”</td>
-</tr>
-<tr id="table_1_row_13" class="even">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Suitable for adoption in Brownfield Projects</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-specmaticin">
-<strong>YES</strong> Specmatic can immediately provide value on existing projects and helps the team slowly adopt Contract Driven Development</td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactio">
-<strong>NO</strong> Better suited for “<a href="https://docs.pactflow.io/docs/bi-directional-contract-testing/#when-to-use" target="_blank" rel="noopener">Greenfield projects</a>”</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-pactflowio-paid">
-<strong>YES</strong> WITH CAVEAT &#8211; <a href="https://docs.pactflow.io/docs/bi-directional-contract-testing/#trade-offs" target="_blank" rel="noopener">Involves Guarantee Tradeoffs</a>
+<td style="background-color: #AFDEAC !important" class="   column-wiremock">
+<strong>YES</strong> &#8211; <a href="https://wiremock.org/docs/simulating-faults/">Delays can be setup at a global or per stub level, also supports randomisation</a>
 </td>
 </tr>
-<tr id="table_1_row_14" class="odd">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Minimal / No Leakage for Compatibility Issues</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-specmaticin">
-<strong>YES</strong> Specmatic keeps a tight check on both the Consumer and Provider and immediately provides feedback where they deviate from API Specification thereby preventing compatibility Issues</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-pactio">
-<strong>YES</strong> While Code First, Consumer Driven Contract has a narrow set of use cases where it is suitable, within that narrow area it is able to prevent / reduce compatibility issues.</td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactflowio-paid">
-<strong>NO</strong> <a href="https://docs.pactflow.io/docs/bi-directional-contract-testing/#trade-offs" target="_blank" rel="noopener">BiDirectional Contract Testing has lower guarantees</a> in comparison to Consumer Driven Contract / Pact OSS</td>
-</tr>
-<tr id="table_1_row_15" class="even">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Low Cost of Maintenance</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-specmaticin">
-<strong>YES</strong> Since Specmatic is leveraging your API Specifications there is no maintenance overhead. You just need to maintain your Stub / Expectation data.</td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactio">
-<strong>NO</strong> In comparison to Specmatic which only needs API Specifications, you need to maintain the Pact JSONs.</td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactflowio-paid">
-<strong>NO</strong> <a href="https://docs.pactflow.io/docs/bi-directional-contract-testing/#trade-offs" target="_blank" rel="noopener">Has higher cost of maintenance than even Pact OSS</a>
+<tr id="table_6_row_5" class="even">
+<td class="expand column-capability wdt-responsive-cell-action">
+<span class="responsiveExpander"></span>Record and Replay</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> &#8211; <a href="https://specmatic.in/documentation/authoring_contracts.html#from-an-existing-application-using-proxy-mode">Specmatic proxy records your request and response to generate both OpenAPI Specifications and the stub data files</a> Also constantly validates the recorded response against API Specification. You can modify recorded json stubs and these changes will will also be verified against the captured API Specifications.</td>
+<td style="background-color: #AFDEAC !important" class="   column-wiremock">
+<strong>YES</strong> &#8211; <a href="https://wiremock.org/docs/record-playback/">Records stub data which can later be exported as OpenAPI Specifications</a>
 </td>
 </tr>
-<tr id="table_1_row_16" class="odd">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
+<tr id="table_6_row_6" class="odd">
+<td class="expand column-capability wdt-responsive-cell-action">
+<span class="responsiveExpander"></span>Language and platform agnostic</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> &#8211; Specmatic is primarily a standalone executable</td>
+<td style="background-color: #AFDEAC !important" class="   column-wiremock">
+<strong>YES</strong> &#8211; Wiremock is able to work as a standalone executable also</td>
+</tr>
+<tr id="table_6_row_7" class="even">
+<td class="expand column-capability wdt-responsive-cell-action">
 <span class="responsiveExpander"></span>Open Source</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-specmaticin">
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
 <strong>YES</strong> License &#8211; <a href="https://github.com/znsio/specmatic/blob/main/License.md&quot;" target="_blank" rel="noopener">MIT</a>
 </td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-pactio"><strong>YES</strong></td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactflowio-paid">
-<strong>NO</strong> &#8211; Involves Proprietary Code</td>
+<td style="background-color: #AFDEAC !important" class="   column-wiremock"><strong>YES</strong></td>
 </tr>
-<tr id="table_1_row_17" class="even">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Language and Platform Agnostic</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-specmaticin">
-<strong>YES</strong> Is able to work completely as a standalone executable</td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactio">
-<strong>NO</strong> Pact DSL is language specific. While Pact supports several languages, if your language is not supported, you will have to try <a href="https://docs.pact.io/implementation_guides/other_languages" target="_blank" rel="noopener">alternate approaches.</a>
+<tr id="table_6_row_8" class="odd">
+<td class="expand column-capability wdt-responsive-cell-action">
+<span class="responsiveExpander"></span>Unfragmented Devex / Minimal learning curve</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> &#8211; You just need API Specification of your choice such as OpenAPI and Specmatic &#8211; no additional DSLs</td>
+<td style="background-color: #EF8C8C !important" class="   column-wiremock">
+<strong>NO</strong> &#8211; Depedency on other tools to achieve Provider Verification can complicate the tooling </td>
+</tr>
+<tr id="table_6_row_9" class="even">
+<td class="expand column-capability wdt-responsive-cell-action">
+<span class="responsiveExpander"></span>SSL Support &#8211; Handling https requests</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> &#8211; <a href="https://specmatic.in/documentation/service_virtualization_tutorial.html#ssl--https--stubbing">Specmatic can generate self signed certs or you can configure it to leverage your keystore</a>
 </td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-pactflowio-paid">
-<strong>YES</strong> WITH CAVEAT &#8211; With Bring Your Own Tools approach this should be possible, however it comes at additional effort. Example: If you are using Mountebank instead of Pact Mocking, imposters have to be converted to Pact Files</td>
-</tr>
-<tr id="table_1_row_18" class="odd">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Unlimited Team Size</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-specmaticin"><strong>YES</strong></td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-pactio"><strong>YES</strong></td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactflowio-paid">
-<strong>NO</strong> Team sizes vary based on the Pricing Plan</td>
-</tr>
-<tr id="table_1_row_19" class="even">
-<td class="expand columnalign column-platform wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Broker Less</td>
-<td style="background-color: #AFDEAC !important" class="  columnalign column-specmaticin">
-<strong>YES</strong> Requires no server setup</td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactio">
-<strong>NO</strong> Pact Broker has to be run on a server where Pacts are uploaded, requires <a href="https://docs.pact.io/pact_broker/administration/maintenance" target="_blank" rel="noopener">maintenance.</a>
+<td style="background-color: #AFDEAC !important" class="   column-wiremock">
+<strong>YES</strong> <a href="https://wiremock.org/docs/https/">You can configure it to leverage your keystore</a>
 </td>
-<td style="background-color: #EF8C8C !important" class="  columnalign column-pactflowio-paid">
-<strong>NO</strong> PactFlow involves cloud based Pact Broker, on-prem options seem to be available with enterprise pricing plan</td>
+</tr>
+<tr id="table_6_row_10" class="odd">
+<td class="expand column-capability wdt-responsive-cell-action">
+<span class="responsiveExpander"></span>Loading OpenAPI Specifications from Git Repo</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> &#8211; <a href="https://specmatic.in/documentation/central_contract_repository.html#referring-to-contracts-in-central-contract-repo">Specmatic can pull the latest OpenAPI Specifications directly from your Git Repo</a>
+</td>
+<td style="background-color: #EF8C8C !important" class="   column-wiremock">
+<strong>NO</strong> &#8211; May be possible to achieve this by writing an external utility like a shell script to pull the OpenAPI Specifications from Git Repo and then send it to WireMock server through Admin API mappings endpoint</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<style>table.wpDataTable { table-layout: fixed !important; }
-table.wpDataTable td, table.wpDataTable th { white-space: normal !important; }
-table.wpDataTable td.numdata { text-align: right !important; }</style>
-<style>.columnalign a:link {
-    color: #3a005b;
-}
-
-.columnalign {
-    vertical-align: top;
-}</style>
+<style>table.wpDataTable td.numdata { text-align: right !important; }</style>
+<style></style>
 <style>/* th background color */
     .wpdt-c.wpDataTablesWrapper table.wpdtSimpleTable.bt[data-has-header='1'] td.wpdt-header-classes,
-    .wpdt-c.wpDataTablesWrapper table#wpdtSimpleTable-1 thead th,
-    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-1 > thead > tr > th,
-    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-1 thead th,
-    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-1 thead th.sorting {
+    .wpdt-c.wpDataTablesWrapper table#wpdtSimpleTable-6 thead th,
+    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-6 > thead > tr > th,
+    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-6 thead th,
+    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-6 thead th.sorting {
         background-color: #3A005B !important;
         background-image: none !important;
     }
                 /* th font color */
     .wpdt-c.wpDataTablesWrapper table.wpdtSimpleTable.bt[data-has-header='1'] td.wpdt-header-classes,
-    .wpdt-c.wpDataTablesWrapper table#wpdtSimpleTable-1 thead th,
-    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-1 thead th {
+    .wpdt-c.wpDataTablesWrapper table#wpdtSimpleTable-6 thead th,
+    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-6 thead th {
         color: #F1F1F1 !important;
     }
-    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-1 thead th.sorting:after,
-    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-1 thead th.sorting_asc:after {
+    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-6 thead th.sorting:after,
+    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-6 thead th.sorting_asc:after {
         border-bottom-color: #F1F1F1 !important;
     }
-    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-1 thead th.sorting_desc:after {
+    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-6 thead th.sorting_desc:after {
         border-top-color: #F1F1F1 !important;
-    }
-                /* td inner border color */
-                .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-1 thead tr:nth-child(2) th,
-                .wpdt-c.wpDataTablesWrapper table.wpDataTable#wpdtSimpleTable-1 td,
-        .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-1 td,
-        .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-1 tr.odd td,
-        .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-1 tr.even td{
-            border-color: #FBFBFB !important;
-        }
-                .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-1 thead tr:first-child th:not(:first-child):not(:last-child){
-            border-left-color: #FBFBFB !important;
-            border-right-color: #FBFBFB !important;
-        }
-        .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-1 thead tr th:first-child {
-            border-right-color: #FBFBFB !important;
-            border-bottom-color: #FBFBFB !important;
-        }
-        .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-1 thead tr th:last-child {
-            border-left-color: #FBFBFB !important;
-            border-bottom-color: #FBFBFB !important;
-        }
-        .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-1 thead tr:nth-child(1) th {
-            border-bottom-color: #FBFBFB !important;
-        }</style>
+    }</style>
 </div>
 </div>
 </div>
@@ -481,15 +348,15 @@ table.wpDataTable td.numdata { text-align: right !important; }</style>
 </article>
 <nav class="navigation post-navigation" role="navigation" aria-label="Posts">
 <span class="screen-reader-text">Post navigation</span>
-<div class="nav-links"><div class="nav-next"><a href="/blog/comparisons/comparison-specmatic-vs-wiremock/" rel="next">Next Post <span class="ast-right-arrow">&rarr;</span></a></div></div>
+<div class="nav-links"><div class="nav-previous"><a href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/" rel="prev"><span class="ast-left-arrow">&larr;</span> Previous Post</a></div></div>
 </nav><div class="ast-single-related-posts-container">
 <div class="ast-related-posts-title-section"> <h2 class="ast-related-posts-title"> Related Posts </h2> </div>
-<div class="ast-related-posts-wrapper"> <article class="ast-related-post post-820 post type-post status-publish format-standard hentry category-blog category-comparisons ast-article-single">
+<div class="ast-related-posts-wrapper"> <article class="ast-related-post post-585 post type-post status-publish format-standard hentry category-blog category-comparisons ast-article-single">
 <div class="ast-related-posts-inner-section">
 <div class="ast-related-post-content">
 <div class="ast-related-post-featured-section ast-no-thumb"></div> <header class="entry-header">
 <h3 class="ast-related-post-title entry-title">
-<a href="/blog/comparisons/comparison-specmatic-vs-wiremock/" target="_self" rel="bookmark noopener noreferrer">Comparison: Specmatic vs WireMock</a>
+<a href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/" target="_self" rel="bookmark noopener noreferrer">Comparison: Specmatic vs Pact.io and Pactflow.io</a>
 </h3>
 <div class="entry-meta">
 <span class="cat-links"><a href="/category/blog/" rel="category tag">Blog</a>, <a href="/category/blog/comparisons/" rel="category tag">Comparisons</a></span> / By <span class="posted-by vcard author" itemtype="https://schema.org/Person" itemscope="itemscope" itemprop="author"> <a title="View all posts by Hari Krishnan" href="/author/hari/" rel="author" class="url fn n" itemprop="url">
@@ -499,9 +366,9 @@ table.wpDataTable td.numdata { text-align: right !important; }</style>
 </div> </header>
 <div class="entry-content clear">
 <p class="ast-related-post-excerpt entry-content clear">
-This is the second post in our series where we compare Specmatic with tools that have some overlap in terms of capabilities. In our previous&hellip; </p>
+Specmatic is unique in its approach towards leveraging API Specification as Executable Contracts. However putting ourselves in the shoes of someone evaluating a process or&hellip; </p>
 <p class="ast-related-post-cta read-more">
-<a class="ast-related-post-link " href="/blog/comparisons/comparison-specmatic-vs-wiremock/" aria-label="Related post link" target="_self" rel="bookmark noopener noreferrer">Read More »</a>
+<a class="ast-related-post-link " href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/" aria-label="Related post link" target="_self" rel="bookmark noopener noreferrer">Read More »</a>
 </p>
 </div>
 </div>
@@ -558,10 +425,10 @@ This is the second post in our series where we compare Specmatic with tools that
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span></button>
 <ul class="sub-menu">
-<li id="menu-item-601" class="menu-item menu-item-type-post_type menu-item-object-post current-menu-item menu-item-601"><a href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/" aria-current="page" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-601" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-601"><a href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs Pact.io and Pactflow.io</a></li>
-<li id="menu-item-840" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-840"><a href="/blog/comparisons/comparison-specmatic-vs-wiremock/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-840" class="menu-item menu-item-type-post_type menu-item-object-post current-menu-item menu-item-840"><a href="/blog/comparisons/comparison-specmatic-vs-wiremock/" aria-current="page" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs WireMock</a></li>
 </ul>
@@ -582,10 +449,10 @@ This is the second post in our series where we compare Specmatic with tools that
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span></button>
 <ul class="sub-menu">
-<li class="menu-item menu-item-type-post_type menu-item-object-post current-menu-item menu-item-601"><a href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/" aria-current="page" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-601"><a href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs Pact.io and Pactflow.io</a></li>
-<li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-840"><a href="/blog/comparisons/comparison-specmatic-vs-wiremock/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li class="menu-item menu-item-type-post_type menu-item-object-post current-menu-item menu-item-840"><a href="/blog/comparisons/comparison-specmatic-vs-wiremock/" aria-current="page" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs WireMock</a></li>
 </ul>
@@ -642,12 +509,12 @@ This is the second post in our series where we compare Specmatic with tools that
 <p class="has-ast-global-color-4-color has-text-color has-medium-font-size">Social</p>
 </section> </aside>
 <div class="ast-builder-layout-element ast-flex site-footer-focus-item" data-section="section-fb-social-icons-1">
-<div class="ast-footer-social-1-wrap ast-footer-social-wrap"><div class="footer-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled">
+ <div class="ast-footer-social-1-wrap ast-footer-social-wrap"><div class="footer-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-none ast-social-element-style-filled">
 <a href="https://github.com/znsio/specmatic" aria-label="GitHub" target="_blank" rel="noopener noreferrer" style="--color: #24292e; --background-color: transparent;" class="ast-builder-social-element ast-inline-flex ast-github footer-social-item"><span class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></span></a><a href="https://twitter.com/specmatic" aria-label="Twitter" target="_blank" rel="noopener noreferrer" style="--color: #7acdee; --background-color: transparent;" class="ast-builder-social-element ast-inline-flex ast-twitter footer-social-item"><span class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg></span></a><a href="https://www.linkedin.com/showcase/specmatic" aria-label="Linkedin" target="_blank" rel="noopener noreferrer" style="--color: #1c86c6; --background-color: transparent;" class="ast-builder-social-element ast-inline-flex ast-linkedin footer-social-item"><span class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg></span></a>
 </div></div> </div>
 </div>
 </div>
- </div>
+</div>
 </div>
 <div class="site-primary-footer-wrap ast-builder-grid-row-container site-footer-focus-item ast-builder-grid-row-full ast-builder-grid-row-tablet-full ast-builder-grid-row-mobile-full ast-footer-row-stack ast-footer-row-tablet-stack ast-footer-row-mobile-stack" data-section="section-primary-footer-builder">
 <div class="ast-builder-grid-row-container-inner">
