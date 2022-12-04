@@ -7,9 +7,9 @@
 	>
 <channel>
 	<title>
-	Comments for Specmatic	</title>
-	<atom:link href="/comments/feed/" rel="self" type="application/rss+xml" />
-	<link>/</link>
+	Comments on: Comparison: Specmatic vs Spring Cloud Contract	</title>
+	<atom:link href="/blog/comparison-specmatic-vs-spring-cloud-contract/feed/" rel="self" type="application/rss+xml" />
+	<link>/blog/comparison-specmatic-vs-spring-cloud-contract/</link>
 	<description>Contract Driven Development</description>
 	<lastBuildDate>Sun, 04 Dec 2022 07:45:50 +0000</lastBuildDate>
 	<sy:updatePeriod>

@@ -12,14 +12,14 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="object">
 <meta property="og:title" content="Hari Krishnan - Specmatic">
-<meta property="og:description" content="This is the second post in our series where we compare Specmatic with tools that have some overlap in terms of capabilities. In our previous post we compared Specmatic and Pact. In this post we will be looking at WireMock. We often need to mock APIs (both internal and external)&hellip;">
+<meta property="og:description" content="This is the third post in our&nbsp;series&nbsp;where we compare Specmatic with tools that have some overlap in terms of capabilities. In our&nbsp;previous posts&nbsp;we compared Specmatic with Pact and WireMock. In this post we will be looking at Spring Cloud Contract. With Spring Cloud Contract we can start by authoring the&hellip;">
 <meta property="og:image" content="/wp-content/uploads/2022/09/Video-Cover-img.jpg">
 <meta property="og:image:secure_url" content="/wp-content/uploads/2022/09/Video-Cover-img.jpg">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@specmatic">
 <meta name="twitter:creator" content="@specmatic">
 <meta name="twitter:title" content="Hari Krishnan - Specmatic">
-<meta name="twitter:description" content="This is the second post in our series where we compare Specmatic with tools that have some overlap in terms of capabilities. In our previous post we compared Specmatic and Pact. In this post we will be looking at WireMock. We often need to mock APIs (both internal and external)&hellip;">
+<meta name="twitter:description" content="This is the third post in our&nbsp;series&nbsp;where we compare Specmatic with tools that have some overlap in terms of capabilities. In our&nbsp;previous posts&nbsp;we compared Specmatic with Pact and WireMock. In this post we will be looking at Spring Cloud Contract. With Spring Cloud Contract we can start by authoring the&hellip;">
 <meta name="twitter:image" content="/wp-content/uploads/2022/09/Video-Cover-img.jpg">
 <link rel="dns-prefetch" href="//use.fontawesome.com">
 <link rel="alternate" type="application/rss+xml" title="Specmatic &raquo; Feed" href="/feed/">
@@ -93,7 +93,7 @@ flexibility(document.documentElement);
 function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
 gtag('config', 'UA-139949530-2' , {'allow_display_features': false,'anonymize_ip': true,});</script>
 </head>
-<body itemtype="https://schema.org/Blog" itemscope="itemscope" class="archive author author-hari author-3 wp-custom-logo mtp-820 mtp-post-comparison-specmatic-vs-wiremock ast-inherit-site-logo-transparent ast-hfb-header ast-desktop ast-separate-container ast-two-container ast-right-sidebar astra-3.9.4 ast-blog-grid-2 ast-blog-layout-1 ast-pagination-default elementor-default elementor-kit-5 astra-addon-3.9.3">
+<body itemtype="https://schema.org/Blog" itemscope="itemscope" class="archive author author-hari author-3 wp-custom-logo mtp-881 mtp-post-comparison-specmatic-vs-spring-cloud-contract ast-inherit-site-logo-transparent ast-hfb-header ast-desktop ast-separate-container ast-two-container ast-right-sidebar astra-3.9.4 ast-blog-grid-2 ast-blog-layout-1 ast-pagination-default elementor-default elementor-kit-5 astra-addon-3.9.3">
 <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-dark-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 0.49803921568627"></fefuncr><fefuncg type="table" tablevalues="0 0.49803921568627"></fefuncg><fefuncb type="table" tablevalues="0 0.49803921568627"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 1"></fefuncr><fefuncg type="table" tablevalues="0 1"></fefuncg><fefuncb type="table" tablevalues="0 1"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.54901960784314 0.98823529411765"></fefuncr><fefuncg type="table" tablevalues="0 1"></fefuncg><fefuncb type="table" tablevalues="0.71764705882353 0.25490196078431"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-red"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 1"></fefuncr><fefuncg type="table" tablevalues="0 0.27843137254902"></fefuncg><fefuncb type="table" tablevalues="0.5921568627451 0.27843137254902"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-midnight"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 0"></fefuncr><fefuncg type="table" tablevalues="0 0.64705882352941"></fefuncg><fefuncb type="table" tablevalues="0 1"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-magenta-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.78039215686275 1"></fefuncr><fefuncg type="table" tablevalues="0 0.94901960784314"></fefuncg><fefuncb type="table" tablevalues="0.35294117647059 0.47058823529412"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-green"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.65098039215686 0.40392156862745"></fefuncr><fefuncg type="table" tablevalues="0 1"></fefuncg><fefuncb type="table" tablevalues="0.44705882352941 0.4"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-orange"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.098039215686275 1"></fefuncr><fefuncg type="table" tablevalues="0 0.66274509803922"></fefuncg><fefuncb type="table" tablevalues="0.84705882352941 0.41960784313725"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg>
 <a class="skip-link screen-reader-text" href="#content" role="link" title="Skip to content">
 Skip to content</a>
@@ -125,6 +125,9 @@ Skip to content</a>
 <li id="menu-item-600" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-600"><a href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs Pact.io and Pactflow.io</a></li>
+<li id="menu-item-900" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-900"><a href="/blog/comparison-specmatic-vs-spring-cloud-contract/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Comparison: Specmatic vs Spring Cloud Contract</a></li>
 <li id="menu-item-839" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-839"><a href="/blog/comparisons/comparison-specmatic-vs-wiremock/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs WireMock</a></li>
@@ -180,6 +183,23 @@ Skip to content</a>
 </section>
 <main id="main" class="site-main">
 <div class="ast-row">
+<article class="post-881 post type-post status-publish format-standard hentry category-blog ast-grid-common-col ast-full-width ast-article-post ast-width-md-6 ast-archive-post" id="post-881" itemtype="https://schema.org/CreativeWork" itemscope="itemscope">
+<div class="ast-post-format- ast-no-thumb blog-layout-1 ast-no-date-box">
+<div class="post-content ast-grid-common-col">
+<div class="ast-blog-featured-section post-thumb ast-grid-common-col ast-float"></div> <header class="entry-header">
+<h2 class="entry-title" itemprop="headline"><a href="/blog/comparison-specmatic-vs-spring-cloud-contract/" rel="bookmark">Comparison: Specmatic vs Spring Cloud Contract</a></h2> <div class="entry-meta">
+<span class="cat-links"><a href="/category/blog/" rel="category tag">Blog</a></span> / By <span class="posted-by vcard author" itemtype="https://schema.org/Person" itemscope="itemscope" itemprop="author"> <a title="View all posts by Hari Krishnan" href="/author/hari/" rel="author" class="url fn n" itemprop="url">
+<span class="author-name" itemprop="name">Hari Krishnan</span>
+</a>
+</span>
+</div> </header>
+<div class="entry-content clear" itemprop="text">
+<p>This is the third post in our&nbsp;series&nbsp;where we compare Specmatic with tools that have some overlap in terms of capabilities. In our&nbsp;previous posts&nbsp;we compared Specmatic with Pact and WireMock. In this post we will be looking at Spring Cloud Contract. With Spring Cloud Contract we can start by authoring the API contract in one of &hellip;</p>
+<p class="read-more"> <a class="" href="/blog/comparison-specmatic-vs-spring-cloud-contract/"> <span class="screen-reader-text">Comparison: Specmatic vs Spring Cloud Contract</span> Read More »</a></p>
+</div>
+</div>
+</div> 
+</article>
 <article class="post-820 post type-post status-publish format-standard hentry category-blog category-comparisons ast-grid-common-col ast-full-width ast-article-post ast-width-md-6 ast-archive-post" id="post-820" itemtype="https://schema.org/CreativeWork" itemscope="itemscope">
 <div class="ast-post-format- ast-no-thumb blog-layout-1 ast-no-date-box">
 <div class="post-content ast-grid-common-col">
@@ -222,12 +242,14 @@ Skip to content</a>
 <div class="wgs_wrapper"><div class="gcse-search" data-resultsurl="https://specmatic.in/search_gcse/"></div></div></aside><aside id="block-3" class="widget widget_block"><div class="is-layout-flow wp-block-group">
 <h2>Recent Posts</h2>
 <ul class="wp-block-latest-posts__list wp-block-latest-posts">
+<li><a class="wp-block-latest-posts__post-title" href="/blog/comparison-specmatic-vs-spring-cloud-contract/">Comparison: Specmatic vs Spring Cloud Contract</a></li>
 <li><a class="wp-block-latest-posts__post-title" href="/blog/comparisons/comparison-specmatic-vs-wiremock/">Comparison: Specmatic vs WireMock</a></li>
 <li><a class="wp-block-latest-posts__post-title" href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/">Comparison: Specmatic vs Pact.io and Pactflow.io</a></li>
 </ul>
 </div></aside><aside id="block-5" class="widget widget_block"><div class="is-layout-flow wp-block-group">
 <h2>Archives</h2>
-<ul class=" wp-block-archives-list wp-block-archives"> <li><a href="/2022/11/">November 2022</a></li>
+<ul class=" wp-block-archives-list wp-block-archives"> <li><a href="/2022/12/">December 2022</a></li>
+<li><a href="/2022/11/">November 2022</a></li>
 </ul>
 </div></aside><aside id="block-6" class="widget widget_block"><div class="is-layout-flow wp-block-group">
 <h2>Categories</h2>
@@ -268,6 +290,9 @@ Skip to content</a>
 <li id="menu-item-601" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-601"><a href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs Pact.io and Pactflow.io</a></li>
+<li id="menu-item-899" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-899"><a href="/blog/comparison-specmatic-vs-spring-cloud-contract/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Specmatic vs Spring Cloud Contract</a></li>
 <li id="menu-item-840" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-840"><a href="/blog/comparisons/comparison-specmatic-vs-wiremock/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs WireMock</a></li>
@@ -292,6 +317,9 @@ Skip to content</a>
 <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-601"><a href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs Pact.io and Pactflow.io</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-899"><a href="/blog/comparison-specmatic-vs-spring-cloud-contract/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Specmatic vs Spring Cloud Contract</a></li>
 <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-840"><a href="/blog/comparisons/comparison-specmatic-vs-wiremock/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs WireMock</a></li>

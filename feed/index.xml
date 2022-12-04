@@ -12,7 +12,7 @@
 	<atom:link href="/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 30 Nov 2022 05:47:06 +0000</lastBuildDate>
+	<lastBuildDate>Sun, 04 Dec 2022 07:45:50 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,20 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Comparison: Specmatic vs Spring Cloud Contract</title>
+		<link>/blog/comparison-specmatic-vs-spring-cloud-contract/</link>
+		
+		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
+		<pubDate>Sat, 03 Dec 2022 07:26:49 +0000</pubDate>
+				<category><![CDATA[Blog]]></category>
+		<guid isPermaLink="false">/?p=881</guid>
+
+					<description><![CDATA[This is the third post in our&#160;series&#160;where we compare Specmatic with tools that have some overlap in terms of capabilities. In our&#160;previous posts&#160;we compared Specmatic with Pact and WireMock. In this post we will be looking at Spring Cloud Contract. With Spring Cloud Contract we can start by authoring the API contract in one of &#8230;<p class="read-more"> <a class="" href="/blog/comparison-specmatic-vs-spring-cloud-contract/"> <span class="screen-reader-text">Comparison: Specmatic vs Spring Cloud Contract</span> Read More »</a></p>]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Comparison: Specmatic vs WireMock</title>
 		<link>/blog/comparisons/comparison-specmatic-vs-wiremock/</link>
 		

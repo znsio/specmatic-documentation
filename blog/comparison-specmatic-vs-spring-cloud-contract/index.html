@@ -4,19 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="https://gmpg.org/xfn/11">
-<title>Comparison: Specmatic vs WireMock - Specmatic</title>
+<title>Comparison: Specmatic vs Spring Cloud Contract - Specmatic</title>
 <link rel="preload" href="/wp-content/astra-local-fonts/plus-jakarta-sans/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_Tkn9TR_V.woff2" as="font" type="font/woff2" crossorigin>
-<meta name="description" content="This is the second post in our series where we compare Specmatic with tools that have some overlap in terms of capabilities. In our previous post we compared Specmatic and Pact. In this post we will be looking at WireMock. We often need to mock APIs (both internal and external)&hellip;">
+<meta name="description" content="This is the third post in our&nbsp;series&nbsp;where we compare Specmatic with tools that have some overlap in terms of capabilities. In our&nbsp;previous posts&nbsp;we compared Specmatic with Pact and WireMock. In this post we will be looking at Spring Cloud Contract. With Spring Cloud Contract we can start by authoring the&hellip;">
 <meta name="robots" content="index, follow">
 <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="/blog/comparisons/comparison-specmatic-vs-wiremock/">
-<meta property="og:url" content="/blog/comparisons/comparison-specmatic-vs-wiremock/">
+<link rel="canonical" href="/blog/comparison-specmatic-vs-spring-cloud-contract/">
+<meta property="og:url" content="/blog/comparison-specmatic-vs-spring-cloud-contract/">
 <meta property="og:site_name" content="Specmatic">
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Comparison: Specmatic vs WireMock - Specmatic">
-<meta property="og:description" content="This is the second post in our series where we compare Specmatic with tools that have some overlap in terms of capabilities. In our previous post we compared Specmatic and Pact. In this post we will be looking at WireMock. We often need to mock APIs (both internal and external)&hellip;">
+<meta property="og:title" content="Comparison: Specmatic vs Spring Cloud Contract - Specmatic">
+<meta property="og:description" content="This is the third post in our&nbsp;series&nbsp;where we compare Specmatic with tools that have some overlap in terms of capabilities. In our&nbsp;previous posts&nbsp;we compared Specmatic with Pact and WireMock. In this post we will be looking at Spring Cloud Contract. With Spring Cloud Contract we can start by authoring the&hellip;">
 <meta property="og:image" content="/wp-content/uploads/2022/09/Video-Cover-img.jpg">
 <meta property="og:image:secure_url" content="/wp-content/uploads/2022/09/Video-Cover-img.jpg">
 <meta property="og:image:width" content="1000">
@@ -24,13 +24,13 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@specmatic">
 <meta name="twitter:creator" content="@specmatic">
-<meta name="twitter:title" content="Comparison: Specmatic vs WireMock - Specmatic">
-<meta name="twitter:description" content="This is the second post in our series where we compare Specmatic with tools that have some overlap in terms of capabilities. In our previous post we compared Specmatic and Pact. In this post we will be looking at WireMock. We often need to mock APIs (both internal and external)&hellip;">
+<meta name="twitter:title" content="Comparison: Specmatic vs Spring Cloud Contract - Specmatic">
+<meta name="twitter:description" content="This is the third post in our&nbsp;series&nbsp;where we compare Specmatic with tools that have some overlap in terms of capabilities. In our&nbsp;previous posts&nbsp;we compared Specmatic with Pact and WireMock. In this post we will be looking at Spring Cloud Contract. With Spring Cloud Contract we can start by authoring the&hellip;">
 <meta name="twitter:image" content="/wp-content/uploads/2022/09/Video-Cover-img.jpg">
 <link rel="dns-prefetch" href="//use.fontawesome.com">
 <link rel="alternate" type="application/rss+xml" title="Specmatic &raquo; Feed" href="/feed/">
 <link rel="alternate" type="application/rss+xml" title="Specmatic &raquo; Comments Feed" href="/comments/feed/">
-<link rel="alternate" type="application/rss+xml" title="Specmatic &raquo; Comparison: Specmatic vs WireMock Comments Feed" href="/blog/comparisons/comparison-specmatic-vs-wiremock/feed/">
+<link rel="alternate" type="application/rss+xml" title="Specmatic &raquo; Comparison: Specmatic vs Spring Cloud Contract Comments Feed" href="/blog/comparison-specmatic-vs-spring-cloud-contract/feed/">
 <script>
 window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.1.1"}};
 /*! This file is auto-generated */
@@ -70,10 +70,10 @@ flexibility(document.documentElement);
 <script src="/wp-includes/js/jquery/jquery.min.js?ver=3.6.1" id="jquery-core-js"></script>
 <script src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
 <link rel="https://api.w.org/" href="/wp-json/">
-<link rel="alternate" type="application/json" href="/wp-json/wp/v2/posts/820">
+<link rel="alternate" type="application/json" href="/wp-json/wp/v2/posts/881">
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd">
-<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2Fblog%2Fcomparisons%2Fcomparison-specmatic-vs-wiremock%2F">
-<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2Fblog%2Fcomparisons%2Fcomparison-specmatic-vs-wiremock%2F&#038;format=xml">
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2Fblog%2Fcomparison-specmatic-vs-spring-cloud-contract%2F">
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=https%3A%2F%2F%2Fblog%2Fcomparison-specmatic-vs-spring-cloud-contract%2F&#038;format=xml">
 <link rel="pingback" href="/xmlrpc.php">
 <link rel="icon" href="/wp-content/uploads/2022/09/Favicon.png" sizes="32x32">
 <link rel="icon" href="/wp-content/uploads/2022/09/Favicon.png" sizes="192x192">
@@ -102,7 +102,7 @@ flexibility(document.documentElement);
 function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
 gtag('config', 'UA-139949530-2' , {'allow_display_features': false,'anonymize_ip': true,});</script>
 </head>
-<body itemtype="https://schema.org/Blog" itemscope="itemscope" class="post-template-default single single-post postid-820 single-format-standard wp-custom-logo mtp-820 mtp-post-comparison-specmatic-vs-wiremock ast-blog-single-style-1 ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-desktop ast-separate-container ast-right-sidebar astra-3.9.4 ast-normal-title-enabled elementor-default elementor-kit-5 astra-addon-3.9.3">
+<body itemtype="https://schema.org/Blog" itemscope="itemscope" class="post-template-default single single-post postid-881 single-format-standard wp-custom-logo mtp-881 mtp-post-comparison-specmatic-vs-spring-cloud-contract ast-blog-single-style-1 ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-desktop ast-separate-container ast-right-sidebar astra-3.9.4 ast-normal-title-enabled elementor-default elementor-kit-5 astra-addon-3.9.3">
 <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-dark-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 0.49803921568627"></fefuncr><fefuncg type="table" tablevalues="0 0.49803921568627"></fefuncg><fefuncb type="table" tablevalues="0 0.49803921568627"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 1"></fefuncr><fefuncg type="table" tablevalues="0 1"></fefuncg><fefuncb type="table" tablevalues="0 1"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.54901960784314 0.98823529411765"></fefuncr><fefuncg type="table" tablevalues="0 1"></fefuncg><fefuncb type="table" tablevalues="0.71764705882353 0.25490196078431"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-red"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 1"></fefuncr><fefuncg type="table" tablevalues="0 0.27843137254902"></fefuncg><fefuncb type="table" tablevalues="0.5921568627451 0.27843137254902"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-midnight"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 0"></fefuncr><fefuncg type="table" tablevalues="0 0.64705882352941"></fefuncg><fefuncb type="table" tablevalues="0 1"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-magenta-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.78039215686275 1"></fefuncr><fefuncg type="table" tablevalues="0 0.94901960784314"></fefuncg><fefuncb type="table" tablevalues="0.35294117647059 0.47058823529412"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-green"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.65098039215686 0.40392156862745"></fefuncr><fefuncg type="table" tablevalues="0 1"></fefuncg><fefuncb type="table" tablevalues="0.44705882352941 0.4"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-orange"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.098039215686275 1"></fefuncr><fefuncg type="table" tablevalues="0 0.66274509803922"></fefuncg><fefuncb type="table" tablevalues="0.84705882352941 0.41960784313725"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg>
 <a class="skip-link screen-reader-text" href="#content" role="link" title="Skip to content">
 Skip to content</a>
@@ -134,10 +134,10 @@ Skip to content</a>
 <li id="menu-item-600" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-600"><a href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs Pact.io and Pactflow.io</a></li>
-<li id="menu-item-900" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-900"><a href="/blog/comparison-specmatic-vs-spring-cloud-contract/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-900" class="menu-item menu-item-type-post_type menu-item-object-post current-menu-item menu-item-900"><a href="/blog/comparison-specmatic-vs-spring-cloud-contract/" aria-current="page" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Comparison: Specmatic vs Spring Cloud Contract</a></li>
-<li id="menu-item-839" class="menu-item menu-item-type-post_type menu-item-object-post current-menu-item menu-item-839"><a href="/blog/comparisons/comparison-specmatic-vs-wiremock/" aria-current="page" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-839" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-839"><a href="/blog/comparisons/comparison-specmatic-vs-wiremock/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs WireMock</a></li>
 </ul>
@@ -158,7 +158,7 @@ Skip to content</a>
 <div class="ast-builder-grid-row ast-builder-grid-row-has-sides ast-builder-grid-row-no-center">
 <div class="site-header-primary-section-left site-header-section ast-flex site-header-section-left">
 <div class="ast-builder-layout-element ast-flex site-header-focus-item" data-section="title_tagline">
-<div class="site-branding ast-site-identity" itemtype="https://schema.org/Organization" itemscope="itemscope">
+ <div class="site-branding ast-site-identity" itemtype="https://schema.org/Organization" itemscope="itemscope">
 <span class="site-logo-img"><a href="/" class="custom-logo-link" rel="home"><img width="216" height="51" src="/wp-content/uploads/2022/09/specmatic-216x51.png" class="custom-logo" alt="Specmatic" decoding="async" srcset="/wp-content/uploads/2022/09/specmatic-216x51.png 216w, /wp-content/uploads/2022/09/specmatic.png 296w" sizes="(max-width: 216px) 100vw, 216px"></a></span> </div>
 
 </div>
@@ -183,163 +183,230 @@ Skip to content</a>
 <div class="ast-container">
 <div id="primary" class="content-area primary">
 <main id="main" class="site-main">
-<article class="post-820 post type-post status-publish format-standard hentry category-blog category-comparisons ast-article-single" id="post-820" itemtype="https://schema.org/CreativeWork" itemscope="itemscope">
+<article class="post-881 post type-post status-publish format-standard hentry category-blog ast-article-single" id="post-881" itemtype="https://schema.org/CreativeWork" itemscope="itemscope">
 <div class="ast-post-format- ast-no-thumb single-layout-1 ast-no-date-box">
 <header class="entry-header ast-no-thumbnail">
 <div class="ast-single-post-order">
-<h1 class="entry-title" itemprop="headline">Comparison: Specmatic vs WireMock</h1>
+<h1 class="entry-title" itemprop="headline">Comparison: Specmatic vs Spring Cloud Contract</h1>
 <div class="entry-meta">
-<span class="cat-links"><a href="/category/blog/" rel="category tag">Blog</a>, <a href="/category/blog/comparisons/" rel="category tag">Comparisons</a></span> / By <span class="posted-by vcard author" itemtype="https://schema.org/Person" itemscope="itemscope" itemprop="author"> <a title="View all posts by Hari Krishnan" href="/author/hari/" rel="author" class="url fn n" itemprop="url">
+<span class="cat-links"><a href="/category/blog/" rel="category tag">Blog</a></span> / By <span class="posted-by vcard author" itemtype="https://schema.org/Person" itemscope="itemscope" itemprop="author"> <a title="View all posts by Hari Krishnan" href="/author/hari/" rel="author" class="url fn n" itemprop="url">
 <span class="author-name" itemprop="name">Hari Krishnan</span>
 </a>
 </span>
 </div> </div>
 </header>
 <div class="entry-content clear" ast-blocks-layout="true" itemprop="text">
-<p>This is the second post in our <a href="https://specmatic.in/category/blog/comparisons/#gsc.tab=0">series</a> where we compare Specmatic with tools that have some overlap in terms of capabilities. In our <a href="https://specmatic.in/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/#gsc.tab=0">previous post</a> we compared Specmatic and Pact. In this post we will be looking at <a href="https://wiremock.org/">WireMock</a>.</p>
-<p>We often need to mock APIs (both internal and external) to isolate the system under test or development so that we can make progress independent of dependencies. <a href="https://wiremock.org/">WireMock</a> is a great tool if your goal is to just mock APIs. However API mocking is only effective if the mocks are truly representative of the provider / services they are emulating. Deviations between mocks and providers can lead to integration issues much later in the development cycle. In order to avoid such issues it is important to keep in mind that selecting an API mocking tool is not an isolated decision. It has to be in line with your overall microservices development, testing and deployment goals.</p>
-<p><a href="https://wiremock.org/">WireMock</a> is an <a href="https://wiremock.org/docs/">API Mocking</a> tool and <a href="https://specmatic.in/">Specmatic</a> is a <a href="https://specmatic.in/contract_driven_development.html">Contract Driven Development</a> tool that leverages API mocking (<a href="https://specmatic.in/#contract-as-stub">Smart Mocks)</a> to identify contract compatibility issues in Consumers of an API. So <strong>this is not an apples to apples comparison</strong>. We are only going to look at a subset of capabilities where there are overlaps between Specmatic and WireMock. However if you believe we have missed any aspects in this comparison, please do leave us a comment.</p>
+<p>This is the third post in our&nbsp;<a href="https://specmatic.in/category/blog/comparisons/#gsc.tab=0">series</a>&nbsp;where we compare Specmatic with tools that have some overlap in terms of capabilities. In our&nbsp;<a href="https://specmatic.in/category/blog/comparisons/">previous posts</a>&nbsp;we compared Specmatic with <a href="https://specmatic.in/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/">Pact</a> and <a href="https://specmatic.in/blog/comparisons/comparison-specmatic-vs-wiremock/">WireMock</a>. In this post we will be looking at <a href="https://spring.io/projects/spring-cloud-contract">Spring Cloud Contract</a>.</p>
+<p>With Spring Cloud Contract we can start by authoring the API contract in one of the supported DSLs, based on which the provider / producer is verified and in the process stubs are generated for consumers. This makes it possible to leverage it as both a &#8220;consumer driven&#8221; or &#8220;provider driven&#8221; contract testing tool. There are also some interesting points about how we share contracts and stubs (through artifact managers, source control, etc.) with Spring Cloud Contract. Let us look at the detailed comparison between Specmatic and Spring Cloud Contract. Please do leave a comment if there are other areas of comparison on which you would like to see additional details.</p>
 <div class="wp-block-wpdatatables-wpdatatables-gutenberg-block">
-<h2 class="wpdt-c" id="wdt-table-title-6">Specmatic vs Wiremock</h2>
 <div class="wpdt-c wdt-skin-light">
-<input type="hidden" id="wdtNonceFrontendEdit_6" name="wdtNonceFrontendEdit_6" value="67f3d67a01"><input type="hidden" name="_wp_http_referer" value="/blog/comparisons/comparison-specmatic-vs-wiremock/"> <input type="hidden" id="table_1_desc" value="{&quot;tableId&quot;:&quot;table_1&quot;,&quot;tableType&quot;:&quot;google_spreadsheet&quot;,&quot;selector&quot;:&quot;#table_1&quot;,&quot;responsive&quot;:true,&quot;responsiveAction&quot;:&quot;cell&quot;,&quot;editable&quot;:false,&quot;inlineEditing&quot;:false,&quot;infoBlock&quot;:false,&quot;pagination&quot;:0,&quot;paginationAlign&quot;:&quot;right&quot;,&quot;paginationLayout&quot;:&quot;full_numbers&quot;,&quot;file_location&quot;:&quot;wp_media_lib&quot;,&quot;tableSkin&quot;:&quot;light&quot;,&quot;globalSearch&quot;:false,&quot;showRowsPerPage&quot;:false,&quot;popoverTools&quot;:false,&quot;hideBeforeLoad&quot;:true,&quot;number_format&quot;:1,&quot;decimalPlaces&quot;:2,&quot;spinnerSrc&quot;:&quot;\/wp-content\/plugins\/wpdatatables\/assets\/\/img\/spinner.gif&quot;,&quot;groupingEnabled&quot;:false,&quot;tableWpId&quot;:&quot;6&quot;,&quot;dataTableParams&quot;:{&quot;sDom&quot;:&quot;BT<'clear'>t&quot;,&quot;bSortCellsTop&quot;:false,&quot;bFilter&quot;:true,&quot;aLengthMenu&quot;:[[1,5,10,25,50,100,-1],[1,5,10,25,50,100,&quot;All&quot;]],&quot;iDisplayLength&quot;:-1,&quot;columnDefs&quot;:[{&quot;sType&quot;:&quot;string&quot;,&quot;wdtType&quot;:&quot;string&quot;,&quot;bVisible&quot;:true,&quot;orderable&quot;:false,&quot;searchable&quot;:false,&quot;InputType&quot;:&quot;none&quot;,&quot;name&quot;:&quot;Capability&quot;,&quot;origHeader&quot;:&quot;Capability&quot;,&quot;notNull&quot;:false,&quot;conditionalFormattingRules&quot;:[],&quot;className&quot;:&quot; column-capability&quot;,&quot;aTargets&quot;:[0]},{&quot;sType&quot;:&quot;string&quot;,&quot;wdtType&quot;:&quot;string&quot;,&quot;bVisible&quot;:true,&quot;orderable&quot;:true,&quot;searchable&quot;:false,&quot;InputType&quot;:&quot;none&quot;,&quot;name&quot;:&quot;Specmatic.in&quot;,&quot;origHeader&quot;:&quot;Specmatic.in&quot;,&quot;notNull&quot;:false,&quot;conditionalFormattingRules&quot;:[{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;YES&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#AFDEAC&quot;},{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;NO&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#F64F4F&quot;}],&quot;className&quot;:&quot; column-specmaticin&quot;,&quot;aTargets&quot;:[1]},{&quot;sType&quot;:&quot;string&quot;,&quot;wdtType&quot;:&quot;string&quot;,&quot;bVisible&quot;:true,&quot;orderable&quot;:true,&quot;searchable&quot;:false,&quot;InputType&quot;:&quot;none&quot;,&quot;name&quot;:&quot;Wiremock&quot;,&quot;origHeader&quot;:&quot;Wiremock&quot;,&quot;notNull&quot;:false,&quot;conditionalFormattingRules&quot;:[{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;YES&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#AFDEAC&quot;},{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;NO&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#EF8C8C&quot;}],&quot;className&quot;:&quot; column-wiremock&quot;,&quot;aTargets&quot;:[2]}],&quot;bAutoWidth&quot;:false,&quot;order&quot;:[[1,&quot;asc&quot;]],&quot;ordering&quot;:false,&quot;oLanguage&quot;:{&quot;sSearchPlaceholder&quot;:&quot;&quot;},&quot;buttons&quot;:[],&quot;bProcessing&quot;:false,&quot;oSearch&quot;:{&quot;bSmart&quot;:false,&quot;bRegex&quot;:false,&quot;sSearch&quot;:&quot;&quot;}},&quot;tabletWidth&quot;:&quot;1024&quot;,&quot;mobileWidth&quot;:&quot;480&quot;,&quot;advancedFilterEnabled&quot;:false,&quot;serverSide&quot;:false,&quot;columnsFixed&quot;:0,&quot;sumFunctionsLabel&quot;:false,&quot;avgFunctionsLabel&quot;:false,&quot;minFunctionsLabel&quot;:false,&quot;maxFunctionsLabel&quot;:false,&quot;columnsDecimalPlaces&quot;:{&quot;Capability&quot;:-1,&quot;Specmatic.in&quot;:-1,&quot;Wiremock&quot;:-1},&quot;columnsThousandsSeparator&quot;:[],&quot;sumColumns&quot;:[],&quot;avgColumns&quot;:[],&quot;sumAvgColumns&quot;:[],&quot;conditional_formatting_columns&quot;:[&quot;Specmatic.in&quot;,&quot;Wiremock&quot;],&quot;timeFormat&quot;:&quot;h:i A&quot;,&quot;datepickFormat&quot;:&quot;dd\/mm\/yy&quot;}">
-<div id="table_1_wrapper" class="wpDataTables wpDataTablesWrapper no-footer wpDataTableID-6 wpdt-pagination-right">
+<input type="hidden" id="wdtNonceFrontendEdit_9" name="wdtNonceFrontendEdit_9" value="884060642f"><input type="hidden" name="_wp_http_referer" value="/blog/comparison-specmatic-vs-spring-cloud-contract/?preview_id=881&amp;preview_nonce=f90eff006f&amp;preview=true"> <input type="hidden" id="table_1_desc" value="{&quot;tableId&quot;:&quot;table_1&quot;,&quot;tableType&quot;:&quot;google_spreadsheet&quot;,&quot;selector&quot;:&quot;#table_1&quot;,&quot;responsive&quot;:true,&quot;responsiveAction&quot;:&quot;icon&quot;,&quot;editable&quot;:false,&quot;inlineEditing&quot;:false,&quot;infoBlock&quot;:false,&quot;pagination&quot;:0,&quot;paginationAlign&quot;:&quot;right&quot;,&quot;paginationLayout&quot;:&quot;full_numbers&quot;,&quot;file_location&quot;:&quot;wp_media_lib&quot;,&quot;tableSkin&quot;:&quot;light&quot;,&quot;globalSearch&quot;:false,&quot;showRowsPerPage&quot;:false,&quot;popoverTools&quot;:false,&quot;hideBeforeLoad&quot;:true,&quot;number_format&quot;:1,&quot;decimalPlaces&quot;:2,&quot;spinnerSrc&quot;:&quot;\/wp-content\/plugins\/wpdatatables\/assets\/\/img\/spinner.gif&quot;,&quot;groupingEnabled&quot;:false,&quot;tableWpId&quot;:&quot;9&quot;,&quot;dataTableParams&quot;:{&quot;sDom&quot;:&quot;BT<'clear'>t&quot;,&quot;bSortCellsTop&quot;:false,&quot;bFilter&quot;:true,&quot;aLengthMenu&quot;:[[1,5,10,25,50,100,-1],[1,5,10,25,50,100,&quot;All&quot;]],&quot;iDisplayLength&quot;:-1,&quot;columnDefs&quot;:[{&quot;sType&quot;:&quot;string&quot;,&quot;wdtType&quot;:&quot;string&quot;,&quot;bVisible&quot;:true,&quot;orderable&quot;:true,&quot;searchable&quot;:true,&quot;InputType&quot;:&quot;text&quot;,&quot;name&quot;:&quot;Platform&quot;,&quot;origHeader&quot;:&quot;Platform&quot;,&quot;notNull&quot;:false,&quot;conditionalFormattingRules&quot;:[],&quot;className&quot;:&quot; column-platform&quot;,&quot;aTargets&quot;:[0]},{&quot;sType&quot;:&quot;string&quot;,&quot;wdtType&quot;:&quot;string&quot;,&quot;bVisible&quot;:true,&quot;orderable&quot;:true,&quot;searchable&quot;:true,&quot;InputType&quot;:&quot;none&quot;,&quot;name&quot;:&quot;Specmatic.in&quot;,&quot;origHeader&quot;:&quot;Specmatic.in&quot;,&quot;notNull&quot;:false,&quot;conditionalFormattingRules&quot;:[{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;YES&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#AFDEAC&quot;}],&quot;className&quot;:&quot; column-specmaticin&quot;,&quot;aTargets&quot;:[1]},{&quot;sType&quot;:&quot;string&quot;,&quot;wdtType&quot;:&quot;string&quot;,&quot;bVisible&quot;:true,&quot;orderable&quot;:true,&quot;searchable&quot;:true,&quot;InputType&quot;:&quot;none&quot;,&quot;name&quot;:&quot;Spring Cloud Contract&quot;,&quot;origHeader&quot;:&quot;Spring Cloud Contract&quot;,&quot;notNull&quot;:false,&quot;conditionalFormattingRules&quot;:[{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;YES&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#AFDEAC&quot;},{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;NO&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#EF8C8C&quot;},{&quot;ifClause&quot;:&quot;contains&quot;,&quot;cellVal&quot;:&quot;PARTIAL&quot;,&quot;action&quot;:&quot;setCellColor&quot;,&quot;setVal&quot;:&quot;#ECBA88&quot;}],&quot;className&quot;:&quot; column-spring-cloud-contract&quot;,&quot;aTargets&quot;:[2]}],&quot;bAutoWidth&quot;:false,&quot;order&quot;:[[0,&quot;asc&quot;]],&quot;ordering&quot;:false,&quot;oLanguage&quot;:{&quot;sSearchPlaceholder&quot;:&quot;&quot;},&quot;buttons&quot;:[],&quot;bProcessing&quot;:false,&quot;oSearch&quot;:{&quot;bSmart&quot;:false,&quot;bRegex&quot;:false,&quot;sSearch&quot;:&quot;&quot;}},&quot;tabletWidth&quot;:&quot;1024&quot;,&quot;mobileWidth&quot;:&quot;480&quot;,&quot;advancedFilterEnabled&quot;:false,&quot;serverSide&quot;:false,&quot;columnsFixed&quot;:0,&quot;sumFunctionsLabel&quot;:false,&quot;avgFunctionsLabel&quot;:false,&quot;minFunctionsLabel&quot;:false,&quot;maxFunctionsLabel&quot;:false,&quot;columnsDecimalPlaces&quot;:{&quot;Platform&quot;:-1,&quot;Specmatic.in&quot;:-1,&quot;Spring Cloud Contract&quot;:-1},&quot;columnsThousandsSeparator&quot;:[],&quot;sumColumns&quot;:[],&quot;avgColumns&quot;:[],&quot;sumAvgColumns&quot;:[],&quot;conditional_formatting_columns&quot;:[&quot;Specmatic.in&quot;,&quot;Spring Cloud Contract&quot;],&quot;timeFormat&quot;:&quot;h:i A&quot;,&quot;datepickFormat&quot;:&quot;dd\/mm\/yy&quot;}">
+<div id="table_1_wrapper" class="wpDataTables wpDataTablesWrapper no-footer wpDataTableID-9 wpdt-pagination-right">
 <div class="dt-buttons"></div>
 <div class="clear"></div>
-<table id="table_1" class="responsive display nowrap data-t data-t wpDataTable wpDataTableID-6 dataTable no-footer" data-described-by="table_1_desc" data-wpdatatable_id="6">
+<table id="table_1" class="responsive display nowrap data-t data-t wpDataTable wpDataTableID-9 dataTable no-footer" data-described-by="table_1_desc" data-wpdatatable_id="9">
 <thead>
 <tr>
-<th data-class="expand" class="wdtheader expand sorting_disabled column-capability" rowspan="1" colspan="1">Capability</th>
-<th data-hide="phone,tablet" class="phone,tablet wdtheader sort sorting_disabled column-specmaticin" rowspan="1" colspan="1">Specmatic.in</th>
-<th data-hide="phone,tablet" class="phone,tablet wdtheader sort sorting_disabled column-wiremock" rowspan="1" colspan="1">Wiremock</th>
+<th data-class="expand" class="wdtheader sort expand sorting_disabled column-platform" rowspan="1" colspan="1">Platform</th>
+<th class="wdtheader sort sorting_disabled column-specmaticin" rowspan="1" colspan="1">Specmatic.in</th>
+<th class="wdtheader sort sorting_disabled column-spring-cloud-contract" rowspan="1" colspan="1">Spring Cloud Contract</th>
 </tr>
 </thead>
 <tbody>
-<tr id="table_6_row_0" class="odd">
-<td class="expand column-capability wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Smart Mock</td>
-<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
-<strong>YES</strong> &#8211; <a href="https://specmatic.in/documentation/service_virtualization_tutorial.html#try-setting-up-an-invalid-expectation">Continuously validates expectation data / canned responses against OpenAPI Specifications</a>
-</td>
-<td style="background-color: #EF8C8C !important" class="   column-wiremock">
-<strong>NO</strong> &#8211; Wiremock mappings can go out of sync with the API Specification. Any changes to mapping json is not validated against the OpenAPI Specification.</td>
+<tr id="table_9_row_0" class="odd">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>Approach</td>
+<td class="   column-specmaticin">
+<a href="https://specmatic.in/" target="_blank" rel="noopener">Contract Driven Development</a> (CDD)</td>
+<td class="   column-spring-cloud-contract"><a href="https://spring.io/projects/spring-cloud-contract" target="_blank" rel="noopener">Consumer Driven Contract (CDC), Provider Driven Contract</a></td>
 </tr>
-<tr id="table_6_row_1" class="even">
-<td class="expand column-capability wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Provider Verification</td>
+<tr id="table_9_row_1" class="even">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>OpenAPI Support</td>
 <td style="background-color: #AFDEAC !important" class="   column-specmaticin">
-<strong>YES</strong> &#8211; Specmatic runs the OpenAPI Specification as <a href="https://specmatic.in/#contract-as-test">Contract Tests</a> against provider to verify that Provider is in line with the OpenAPI Specification and thereby inline with the Mock</td>
-<td style="background-color: #EF8C8C !important" class="   column-wiremock">
-<strong>NO</strong> &#8211; Need to integrate with other tools for this. Example: Export the stubbed endpoints as OpenAPI Specification and then test it with Dredd OR PactFlow bring your own mocks</td>
+<strong>YES</strong> Specmatic leverages <a href="https://specmatic.in/#executable-contracts" target="_blank" rel="noopener">OpenAPI Specifications as Executable Contracts</a>
+</td>
+<td style="background-color: #EF8C8C !important" class="   column-spring-cloud-contract">
+<strong>NO</strong> API Contracts are defined with Groovy DSL, YAML, Pact JSON and Spring Rest Docs (There are <a href="https://github.com/springframeworkguru/spring-cloud-contract-oa3" target="_blank" rel="noopener">external tools / libraries</a> which may help with leveraging OpenAPI Specifications)</td>
 </tr>
-<tr id="table_6_row_2" class="odd">
-<td class="expand column-capability wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Static Subbing</td>
+<tr id="table_9_row_2" class="odd">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>Suitable for Consumer First Development Style (Frontend Before Backend)</td>
 <td style="background-color: #AFDEAC !important" class="   column-specmaticin">
-<strong>YES</strong> &#8211; OpenAPI based API Mocking <a href="https://specmatic.in/documentation/service_virtualization_tutorial.html">Unlimited Expectations / Canned Responses / Response Mappings</a> with request matching</td>
-<td style="background-color: #AFDEAC !important" class="   column-wiremock">
-<strong>YES</strong> &#8211; Wiremock Studio supports <a href="https://wiremock.org/studio/docs/swagger/">OpenAPI import and Faker based generated responses</a>. We can add / modify these response mappings also. However wiremock does not verify if these mappings are as per OpenAPI Spec, this means there may be <strong>no feedback if we setup these response mappings incorrectly</strong>
-</td>
+<strong>YES</strong> Consumer Team can author the API Specification, leverage it as mock / stub and then share it with Provider team as a guideline</td>
+<td style="background-color: #AFDEAC !important" class="   column-spring-cloud-contract">
+<strong>YES</strong> CAVEAT &#8211; However you have to wait for the contract to be translated into stub on the Provider Side</td>
 </tr>
-<tr id="table_6_row_3" class="even">
-<td class="expand column-capability wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Dynamic Subbing</td>
+<tr id="table_9_row_3" class="even">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>Suitable for Provider First Development Style (Backend Before Frontend, public facing APIs, ec.)</td>
 <td style="background-color: #AFDEAC !important" class="   column-specmaticin">
-<strong>YES</strong> &#8211; <a href="https://specmatic.in/documentation/service_virtualization_tutorial.html#dynamic-mocking---setting-expecations-over-specmatic-http-api">Expecation JSON can be sent through a http API</a>
-</td>
-<td style="background-color: #AFDEAC !important" class="   column-wiremock">
-<strong>YES</strong> &#8211; <a href="https://wiremock.org/docs/api/#tag/Stub-Mappings/paths/~1__admin~1mappings/post">Admin API mappings endpoint allow us to post mapping data.</a>
-</td>
+<strong>YES</strong> Provider Team can author the API Specification, leverage as tests and then share it with Consumer team to stub the Provider</td>
+<td style="background-color: #AFDEAC !important" class="   column-spring-cloud-contract">
+<strong>YES</strong> Provider can author the contract, run it as test, generated stubs and publish it for Consumers</td>
 </tr>
-<tr id="table_6_row_4" class="odd">
-<td class="expand column-capability wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Delay Simulation</td>
+<tr id="table_9_row_4" class="odd">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>Suitable for API First Development Style</td>
 <td style="background-color: #AFDEAC !important" class="   column-specmaticin">
-<strong>YES</strong> &#8211; <a href="https://specmatic.in/documentation/service_virtualization_tutorial.html#delay-simulation">Specmatic allows you to simulate delays for each endpoint based on request matching</a>
-</td>
-<td style="background-color: #AFDEAC !important" class="   column-wiremock">
-<strong>YES</strong> &#8211; <a href="https://wiremock.org/docs/simulating-faults/">Delays can be setup at a global or per stub level, also supports randomisation</a>
-</td>
+<strong>YES</strong> Consumer and Provider Teams collaboratively author API Specification and only then being development</td>
+<td style="background-color: #AFDEAC !important" class="   column-spring-cloud-contract">
+<strong>YES</strong> CAVEAT &#8211; In Spring Cloud Contract, we begin by authoring the API Contract in Contract DSL. However this is not the API Specification which you have to additionally maintain.</td>
 </tr>
-<tr id="table_6_row_5" class="even">
-<td class="expand column-capability wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Record and Replay</td>
+<tr id="table_9_row_5" class="even">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>Parallel Development of Consumer and Provider</td>
 <td style="background-color: #AFDEAC !important" class="   column-specmaticin">
-<strong>YES</strong> &#8211; <a href="https://specmatic.in/documentation/authoring_contracts.html#from-an-existing-application-using-proxy-mode">Specmatic proxy records your request and response to generate both OpenAPI Specifications and the stub data files</a> Also constantly validates the recorded response against API Specification. You can modify recorded json stubs and these changes will will also be verified against the captured API Specifications.</td>
-<td style="background-color: #AFDEAC !important" class="   column-wiremock">
-<strong>YES</strong> &#8211; <a href="https://wiremock.org/docs/record-playback/">Records stub data which can later be exported as OpenAPI Specifications</a>
-</td>
+<strong>YES</strong> This is one of the primary capabilities of Specmatic, to allow teams to independently develop and confidently deploy microservices</td>
+<td style="background-color: #ECBA88 !important" class="   column-spring-cloud-contract">
+<strong>PARTIAL</strong> Consumer has to wait for Provider to run the Contract Verification and publish the stubs be it in Consumer Driven Contract or Provider Driven Contract approach</td>
 </tr>
-<tr id="table_6_row_6" class="odd">
-<td class="expand column-capability wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Language and platform agnostic</td>
+<tr id="table_9_row_6" class="odd">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>Backward Compatibility Verification #NOCODE</td>
 <td style="background-color: #AFDEAC !important" class="   column-specmaticin">
-<strong>YES</strong> &#8211; Specmatic is primarily a standalone executable</td>
-<td style="background-color: #AFDEAC !important" class="   column-wiremock">
-<strong>YES</strong> &#8211; Wiremock is able to work as a standalone executable also</td>
+<strong>YES</strong> This is one of the flagship capabilities in Specmatic. Contract vs Contract comparison, no need to implement the changes in Provider or Consumer Code</td>
+<td style="background-color: #EF8C8C !important" class="   column-spring-cloud-contract">
+<strong>NO</strong> It is not possible to identify backward compatiliblity issues withouth implementing / writing code for Provider and Consumer. Backward breaking changes can be identified only by running verifier on provider and stub runner for consumers.</td>
 </tr>
-<tr id="table_6_row_7" class="even">
-<td class="expand column-capability wdt-responsive-cell-action">
+<tr id="table_9_row_7" class="even">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>API Specifications as Test #NOCODE</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> <a href="https://specmatic.in/#contract-as-test" target="_blank" rel="noopener">Specmatic can generate and run tests all with just your OpenAPI specifications</a>
+</td>
+<td style="background-color: #EF8C8C !important" class="   column-spring-cloud-contract">
+<strong>NO</strong> Spring Cloud Contract runs its Contract DSL as Test with <a href="https://cloud.spring.io/spring-cloud-contract/2.1.x/multi/multi__spring_cloud_contract_verifier_introduction.html" target="_blank" rel="noopener">verifier</a>, OpenAPI cannot be run as tests</td>
+</tr>
+<tr id="table_9_row_8" class="odd">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>Negative / Boundary Testing</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> Specmatic not only runs your API Spec as a Contract Tests for happy path scenarios, <a href="https://specmatic.in/documentation/contract_tests.html#boundary-condition-testing" target="_blank" rel="noopener">it can also verify your application&#8217;s behaviour for negative inputs</a>
+</td>
+<td style="background-color: #EF8C8C !important" class="   column-spring-cloud-contract"><strong>NO</strong></td>
+</tr>
+<tr id="table_9_row_9" class="even">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>API Specifications as Stub #NOCODE</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> OpenAPI is all you need to run a stub server, no need to define a stub, just the expectation data</td>
+<td style="background-color: #EF8C8C !important" class="   column-spring-cloud-contract">
+<strong>NO</strong> Spring Cloud Contract DSL necessary to define the Contract which are then leveraged during verification to generate Stubs</td>
+</tr>
+<tr id="table_9_row_10" class="odd">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>Smart Mocks (Stale Stub Detection / Expectation Validation against API Specification)</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> Immediate Feedback, expectations that are not as per API Spec are immediately rejected with proper error message</td>
+<td style="background-color: #EF8C8C !important" class="   column-spring-cloud-contract">
+<strong>NO</strong> / Not Applicable. Expectations / response mappings are defined as part of contract itself based on which the stub jars are generated with wiremock mappings jsons.</td>
+</tr>
+<tr id="table_9_row_11" class="even">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>Unfragmented Devex / Minimal learning curve</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> You just need API Specification of your choice such as OpenAPI and Specmatic &#8211; no additional DSLs</td>
+<td style="background-color: #EF8C8C !important" class="   column-spring-cloud-contract">
+<strong>NO</strong> In Java and Spring Ecosystem, we only need to know the Contract DSL, verifier and stub runner dependencies, build tools like mvn or gradle and an artifact manager. In <a href="https://spring.io/blog/2018/02/13/spring-cloud-contract-in-a-polyglot-world" target="_blank" rel="noopener">polyglot</a> mode the verifier and stub runner are dockerised and contracts / stubs can be stored in source control such as git. <a href="https://cloud.spring.io/spring-cloud-static/spring-cloud-contract/2.2.0.M2/reference/html/howto.html#how-to-use-pact-broker" target="_blank" rel="noopener">Spring Cloud Contract also has Pact integration</a> to extend some of its functionality, however too many tools can add to the complexity. If you are also adopting OpenAPI then that will be completely additional.</td>
+</tr>
+<tr id="table_9_row_12" class="odd">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>Can all stakeholders participate / author Contracts / API Specifications</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> Devs, architects, test engineers, practically anyone who can author an OpenAPI Spec.</td>
+<td style="background-color: #EF8C8C !important" class="   column-spring-cloud-contract">
+<strong>NO</strong> Contracts can only be authored by someone who understands one of the supported DSLs</td>
+</tr>
+<tr id="table_9_row_13" class="even">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>Suitable for adoption in Greenfield Projects</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> Specmatic helps team become productive quickly with Contract Driven Development</td>
+<td style="background-color: #AFDEAC !important" class="   column-spring-cloud-contract"><strong>YES</strong></td>
+</tr>
+<tr id="table_9_row_14" class="odd">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>Suitable for adoption in Brownfield Projects</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> Specmatic can immediately provide value on existing projects and helps the team slowly adopt Contract Driven Development</td>
+<td style="background-color: #AFDEAC !important" class="   column-spring-cloud-contract"><strong>YES</strong></td>
+</tr>
+<tr id="table_9_row_15" class="even">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>Minimal / No Leakage for Compatibility Issues</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> Specmatic keeps a tight check on both the Consumer and Provider and immediately provides feedback where they deviate from API Specification thereby preventing compatibility Issues</td>
+<td style="background-color: #AFDEAC !important" class="   column-spring-cloud-contract">
+<strong>YES</strong> The feedback cycle can be slower since consumers have to wait for stubs to be generated and shared by producer</td>
+</tr>
+<tr id="table_9_row_16" class="odd">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>Low Cost of Maintenance</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
+<strong>YES</strong> Since Specmatic is leveraging your API Specifications there is no maintenance overhead. You just need to maintain your Stub / Expectation data.</td>
+<td style="background-color: #EF8C8C !important" class="   column-spring-cloud-contract">
+<strong>NO</strong> In comparison to Specmatic which only needs API Specifications, you need to maintain the Contracts which are written in one of the supported DSLs</td>
+</tr>
+<tr id="table_9_row_17" class="even">
+<td class="  expand  column-platform">
 <span class="responsiveExpander"></span>Open Source</td>
 <td style="background-color: #AFDEAC !important" class="   column-specmaticin">
 <strong>YES</strong> License &#8211; <a href="https://github.com/znsio/specmatic/blob/main/License.md&quot;" target="_blank" rel="noopener">MIT</a>
 </td>
-<td style="background-color: #AFDEAC !important" class="   column-wiremock"><strong>YES</strong></td>
+<td style="background-color: #AFDEAC !important" class="   column-spring-cloud-contract"><strong>YES</strong></td>
 </tr>
-<tr id="table_6_row_8" class="odd">
-<td class="expand column-capability wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Proxying Requests</td>
+<tr id="table_9_row_18" class="odd">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>Language and Platform Agnostic</td>
 <td style="background-color: #AFDEAC !important" class="   column-specmaticin">
-<strong>YES</strong> &#8211; Specmatic can be configured to handle only requests that are part of the OpenAPI Specifications that have been passsed to it and proxy other requests to another host</td>
-<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
-<strong>YES</strong> &#8211; <a href="https://wiremock.org/docs/proxying/">WireMock can selectively proxy requests through to other hosts</a>
-</td>
-</tr>
-<tr id="table_6_row_9" class="even">
-<td class="expand column-capability wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>SSL Support &#8211; Handling https requests</td>
-<td style="background-color: #AFDEAC !important" class="   column-specmaticin">
-<strong>YES</strong> &#8211; <a href="https://specmatic.in/documentation/service_virtualization_tutorial.html#ssl--https--stubbing">Specmatic can generate self signed certs or you can configure it to leverage your keystore</a>
-</td>
-<td style="background-color: #AFDEAC !important" class="   column-wiremock">
-<strong>YES</strong> <a href="https://wiremock.org/docs/https/">You can configure it to leverage your keystore</a>
+<strong>YES</strong> Is able to work completely as a standalone executable</td>
+<td style="background-color: #AFDEAC !important" class="   column-spring-cloud-contract">
+<strong>YES</strong> <a href="https://spring.io/blog/2018/02/13/spring-cloud-contract-in-a-polyglot-world" target="_blank" rel="noopener">Spring Cloud Contract supports YAML DSL and also has Dockerised verifier and stub runner</a>
 </td>
 </tr>
-<tr id="table_6_row_10" class="odd">
-<td class="expand column-capability wdt-responsive-cell-action">
-<span class="responsiveExpander"></span>Loading OpenAPI Specifications from Git Repo</td>
+<tr id="table_9_row_19" class="even">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>Unlimited Team Size</td>
+<td style="background-color: #AFDEAC !important" class="   column-specmaticin"><strong>YES</strong></td>
+<td style="background-color: #AFDEAC !important" class="   column-spring-cloud-contract"><strong>YES</strong></td>
+</tr>
+<tr id="table_9_row_20" class="odd">
+<td class="  expand  column-platform">
+<span class="responsiveExpander"></span>Broker Less</td>
 <td style="background-color: #AFDEAC !important" class="   column-specmaticin">
-<strong>YES</strong> &#8211; <a href="https://specmatic.in/documentation/central_contract_repository.html#referring-to-contracts-in-central-contract-repo">Specmatic can pull the latest OpenAPI Specifications directly from your Git Repo</a>
-</td>
-<td style="background-color: #EF8C8C !important" class="   column-wiremock">
-<strong>NO</strong> &#8211; May be possible to achieve this by writing an external utility like a shell script to pull the OpenAPI Specifications from Git Repo and then send it to WireMock server through Admin API mappings endpoint</td>
+<strong>YES</strong> Requires no server setup</td>
+<td style="background-color: #AFDEAC !important" class="   column-spring-cloud-contract">
+<strong>YES</strong> CAVEAT &#8211; Spring Cloud Contract itself is brokerless, however when integrated with Pact, it can work with Pact Broker</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<style>table.wpDataTable td.numdata { text-align: right !important; }</style>
+<style>table.wpDataTable { table-layout: fixed !important; }
+table.wpDataTable td, table.wpDataTable th { white-space: normal !important; }
+table.wpDataTable td.numdata { text-align: right !important; }</style>
 <style></style>
 <style>/* th background color */
     .wpdt-c.wpDataTablesWrapper table.wpdtSimpleTable.bt[data-has-header='1'] td.wpdt-header-classes,
-    .wpdt-c.wpDataTablesWrapper table#wpdtSimpleTable-6 thead th,
-    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-6 > thead > tr > th,
-    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-6 thead th,
-    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-6 thead th.sorting {
+    .wpdt-c.wpDataTablesWrapper table#wpdtSimpleTable-9 thead th,
+    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-9 > thead > tr > th,
+    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-9 thead th,
+    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-9 thead th.sorting {
         background-color: #3A005B !important;
         background-image: none !important;
     }
                 /* th font color */
     .wpdt-c.wpDataTablesWrapper table.wpdtSimpleTable.bt[data-has-header='1'] td.wpdt-header-classes,
-    .wpdt-c.wpDataTablesWrapper table#wpdtSimpleTable-6 thead th,
-    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-6 thead th {
+    .wpdt-c.wpDataTablesWrapper table#wpdtSimpleTable-9 thead th,
+    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-9 thead th {
         color: #F1F1F1 !important;
     }
-    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-6 thead th.sorting:after,
-    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-6 thead th.sorting_asc:after {
+    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-9 thead th.sorting:after,
+    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-9 thead th.sorting_asc:after {
         border-bottom-color: #F1F1F1 !important;
     }
-    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-6 thead th.sorting_desc:after {
+    .wpdt-c .wpDataTablesWrapper table.wpDataTable.wpDataTableID-9 thead th.sorting_desc:after {
         border-top-color: #F1F1F1 !important;
     }</style>
 </div>
@@ -352,10 +419,7 @@ Skip to content</a>
 </article>
 <nav class="navigation post-navigation" role="navigation" aria-label="Posts">
 <span class="screen-reader-text">Post navigation</span>
-<div class="nav-links">
-<div class="nav-previous"><a href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/" rel="prev"><span class="ast-left-arrow">&larr;</span> Previous Post</a></div>
-<div class="nav-next"><a href="/blog/comparison-specmatic-vs-spring-cloud-contract/" rel="next">Next Post <span class="ast-right-arrow">&rarr;</span></a></div>
-</div>
+<div class="nav-links"><div class="nav-previous"><a href="/blog/comparisons/comparison-specmatic-vs-wiremock/" rel="prev"><span class="ast-left-arrow">&larr;</span> Previous Post</a></div></div>
 </nav><div class="ast-single-related-posts-container">
 <div class="ast-related-posts-title-section"> <h2 class="ast-related-posts-title"> Related Posts </h2> </div>
 <div class="ast-related-posts-wrapper"> <article class="ast-related-post post-585 post type-post status-publish format-standard hentry category-blog category-comparisons ast-article-single">
@@ -381,24 +445,24 @@ Specmatic is unique in its approach towards leveraging API Specification as Exec
 </div>
 </div>
 </article>
-<article class="ast-related-post post-881 post type-post status-publish format-standard hentry category-blog ast-article-single">
+<article class="ast-related-post post-820 post type-post status-publish format-standard hentry category-blog category-comparisons ast-article-single">
 <div class="ast-related-posts-inner-section">
 <div class="ast-related-post-content">
 <div class="ast-related-post-featured-section ast-no-thumb"></div> <header class="entry-header">
 <h3 class="ast-related-post-title entry-title">
-<a href="/blog/comparison-specmatic-vs-spring-cloud-contract/" target="_self" rel="bookmark noopener noreferrer">Comparison: Specmatic vs Spring Cloud Contract</a>
+<a href="/blog/comparisons/comparison-specmatic-vs-wiremock/" target="_self" rel="bookmark noopener noreferrer">Comparison: Specmatic vs WireMock</a>
 </h3>
 <div class="entry-meta">
-<span class="cat-links"><a href="/category/blog/" rel="category tag">Blog</a></span> / By <span class="posted-by vcard author" itemtype="https://schema.org/Person" itemscope="itemscope" itemprop="author"> <a title="View all posts by Hari Krishnan" href="/author/hari/" rel="author" class="url fn n" itemprop="url">
+<span class="cat-links"><a href="/category/blog/" rel="category tag">Blog</a>, <a href="/category/blog/comparisons/" rel="category tag">Comparisons</a></span> / By <span class="posted-by vcard author" itemtype="https://schema.org/Person" itemscope="itemscope" itemprop="author"> <a title="View all posts by Hari Krishnan" href="/author/hari/" rel="author" class="url fn n" itemprop="url">
 <span class="author-name" itemprop="name">Hari Krishnan</span>
 </a>
 </span>
 </div> </header>
 <div class="entry-content clear">
 <p class="ast-related-post-excerpt entry-content clear">
-This is the third post in our&nbsp;series&nbsp;where we compare Specmatic with tools that have some overlap in terms of capabilities. In our&nbsp;previous posts&nbsp;we compared Specmatic&hellip; </p>
+This is the second post in our series where we compare Specmatic with tools that have some overlap in terms of capabilities. In our previous&hellip; </p>
 <p class="ast-related-post-cta read-more">
-<a class="ast-related-post-link " href="/blog/comparison-specmatic-vs-spring-cloud-contract/" aria-label="Related post link" target="_self" rel="bookmark noopener noreferrer">Read More »</a>
+<a class="ast-related-post-link " href="/blog/comparisons/comparison-specmatic-vs-wiremock/" aria-label="Related post link" target="_self" rel="bookmark noopener noreferrer">Read More »</a>
 </p>
 </div>
 </div>
@@ -460,10 +524,10 @@ This is the third post in our&nbsp;series&nbsp;where we compare Specmatic with t
 <li id="menu-item-601" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-601"><a href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs Pact.io and Pactflow.io</a></li>
-<li id="menu-item-899" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-899"><a href="/blog/comparison-specmatic-vs-spring-cloud-contract/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-899" class="menu-item menu-item-type-post_type menu-item-object-post current-menu-item menu-item-899"><a href="/blog/comparison-specmatic-vs-spring-cloud-contract/" aria-current="page" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs Spring Cloud Contract</a></li>
-<li id="menu-item-840" class="menu-item menu-item-type-post_type menu-item-object-post current-menu-item menu-item-840"><a href="/blog/comparisons/comparison-specmatic-vs-wiremock/" aria-current="page" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-840" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-840"><a href="/blog/comparisons/comparison-specmatic-vs-wiremock/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs WireMock</a></li>
 </ul>
@@ -479,18 +543,18 @@ This is the third post in our&nbsp;series&nbsp;where we compare Specmatic with t
 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-441"><a href="/#features" class="menu-link">Features</a></li>
 <li class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent current-menu-ancestor current-menu-parent current_page_ancestor menu-item-has-children menu-item-611">
 <a href="/specmatic-updates/" class="menu-link">Comparisons<span role="presentation" class="dropdown-menu-toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
- <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
-</svg></span></button>
+ </svg></span></button>
 <ul class="sub-menu">
 <li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-601"><a href="/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs Pact.io and Pactflow.io</a></li>
-<li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-899"><a href="/blog/comparison-specmatic-vs-spring-cloud-contract/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li class="menu-item menu-item-type-post_type menu-item-object-post current-menu-item menu-item-899"><a href="/blog/comparison-specmatic-vs-spring-cloud-contract/" aria-current="page" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs Spring Cloud Contract</a></li>
-<li class="menu-item menu-item-type-post_type menu-item-object-post current-menu-item menu-item-840"><a href="/blog/comparisons/comparison-specmatic-vs-wiremock/" aria-current="page" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-840"><a href="/blog/comparisons/comparison-specmatic-vs-wiremock/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specmatic vs WireMock</a></li>
 </ul>
@@ -541,7 +605,7 @@ This is the third post in our&nbsp;series&nbsp;where we compare Specmatic with t
 <li id="menu-item-259" class="footer-menu-text menu-item menu-item-type-custom menu-item-object-custom menu-item-259"><a target="_blank" rel="noopener" href="https://github.com/znsio/specmatic/blob/main/License.md" class="menu-link">License</a></li>
 </ul></nav></section> </aside>
 </div>
- <div class="site-footer-above-section-4 site-footer-section site-footer-section-4">
+<div class="site-footer-above-section-4 site-footer-section site-footer-section-4">
 <aside class="footer-widget-area widget-area site-footer-focus-item footer-widget-area-inner" data-section="sidebar-widgets-footer-widget-5">
 <section id="block-14" class="widget widget_block widget_text">
 <p class="has-ast-global-color-4-color has-text-color has-medium-font-size">Social</p>
