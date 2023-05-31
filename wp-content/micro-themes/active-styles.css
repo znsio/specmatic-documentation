@@ -280,6 +280,12 @@ tr > .gsc-input {
 	padding-bottom: 0 !important;
 }
 
+	/** General >> Ast footer copyright paragraph **/
+	.ast-footer-copyright p {
+	text-align: center !important;
+	padding-left: 0 !important;
+}
+
 	/** General 2 >> Ast menu toggle **/
 	#ast-hf-mobile-menu .ast-menu-toggle {
 	color: rgb(255, 255, 255) !important;
