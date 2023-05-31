@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Agile India &#8211; Specmatic</title>
+	<atom:link href="/tag/agile-india/feed/" rel="self" type="application/rss+xml" />
+	<link>/</link>
+	<description>Contract Driven Development</description>
+	<lastBuildDate>Thu, 25 May 2023 12:07:13 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.2.2</generator>
+
+<image>
+	<url>/wp-content/uploads/2022/09/Favicon.png</url>
+	<title>Agile India &#8211; Specmatic</title>
+	<link>/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Contract Driven Development &#8211; Deploying your MicroServices independently without integration testing</title>
+		<link>/conference/contract-driven-development-deploying-your-microservices-independently-without-integration-testing/</link>
+		
+		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
+		<pubDate>Thu, 22 Sep 2022 04:49:00 +0000</pubDate>
+				<category><![CDATA[Conference]]></category>
+		<category><![CDATA[Agile India]]></category>
+		<category><![CDATA[Demo]]></category>
+		<category><![CDATA[Past]]></category>
+		<category><![CDATA[Workshop]]></category>
+		<guid isPermaLink="false">/?p=1126</guid>
+
+					<description><![CDATA[Speaking at Agile India 2022 Joel Rosario &#38; Hari Krishnan spoke about Contract Driven Development Date of appearance:&#160;22 September 2022 Summary Tired of dealing with seemingly innocuous data type mismatches, missing parameters, etc. in API signature that wreak havoc on MicroServices deployments late in the development cycle? Join us in this talk where we will &#8230;<p class="read-more"> <a class="" href="/conference/contract-driven-development-deploying-your-microservices-independently-without-integration-testing/"> <span class="screen-reader-text">Contract Driven Development &#8211; Deploying your MicroServices independently without integration testing</span> Read More »</a></p>]]></description>
+		
+		
+		
+			</item>
+	</channel>
+</rss>

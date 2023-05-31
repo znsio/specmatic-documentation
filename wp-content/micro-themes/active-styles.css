@@ -88,11 +88,6 @@ aside > section:nth-of-type(1) > .has-ast-global-color-4-color {
 	margin-bottom: 5px !important;
 }
 
-/** General >> Wp block group link **/
-.wp-block-group a {
-	
-}
-
 /** General >> Secondary widget **/
 #secondary .widget {
 	padding-bottom: 20px !important;
@@ -117,16 +112,6 @@ tr > .gsc-input {
 	padding-right: 0 !important;
 }
 
-/** General >> Gcse 0 gsc search button **/
-#___gcse_0 .gsc-search-button {
-	
-}
-
-/** General >> Gcse 0 **/
-#___gcse_0 {
-	
-}
-
 /** General >> Gsc iw id1 **/
 #gsc-iw-id1 {
 	padding-top: 25px !important;
@@ -143,17 +128,80 @@ tr > .gsc-input {
 	padding-left: 5px !important;
 }
 
-/** General >> Menu item 841 menu link **/
-#menu-item-841 .menu-link {
+/** General >> Ast builder social element **/
+.ast-builder-social-element {
+	border-radius: 10px !important;
+}
+
+/** General >> Menu link **/
+#menu-about .menu-link {
 	color: rgb(255, 255, 255) !important;
+	font-weight: normal !important;
+}
+
+/** General >> Button link **/
+.wp-block-button__link {
+	padding: 12px 20px 12px 20px !important;
+	border-radius: 10px !important;
+}
+
+/** General >> Elementor element populated **/
+.mtp-10 .elementor-element-8b3e7ba .elementor-element-populated {
+	padding-top: 7px !important;
+}
+
+/** General >> Div _3 **/
+.mtp-10 .elementor-element-b16017f > div {
+	padding-bottom: 5px !important;
+}
+
+/** General >> Elementor widget heading (#1) **/
+.mtp-10 .elementor-inner-section > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > .elementor-widget-heading:nth-of-type(1) {
+	top: 1px !important;
+}
+
+/** General >> Elementor element 623d2c5 **/
+.comments__summary {
+	max-width: 1280px !important;
+	margin-right: auto !important;
+	margin-left: auto !important;
+}
+
+/** General >> Paragraph **/
+.elementor-widget-text-editor p {
+	margin-bottom: 0 !important;
+}
+
+/** General >> Ss inline share wrapper **/
+.ss-inline-share-wrapper {
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+}
+
+
+/*= Main Menu ================= */
+
+/** Main Menu >> Elementor element 68efcbb **/
+.elementor-element-68efcbb {
+	margin-bottom: 0 !important;
+}
+
+
+/*= General 2 ================= */
+
+/** General 2 >> Elementor element populated **/
+.elementor-element-30c0128 .elementor-element-populated {
+	padding: 0 !important;
+}
+
+/** General 2 >> Elementor widget theme post content **/
+.elementor-widget-theme-post-content {
+	margin-bottom: 0 !important;
 }
 
 
 /*( < 1200 )*/
 @media (max-width: 1199.98px) {
-
-	/*= General =================== */
-
 	/** General >> Block 11 has ast global color 6 color **/
 	#block-11 .has-ast-global-color-6-color {
 	padding-right: 40px !important;
@@ -170,15 +218,11 @@ tr > .gsc-input {
 	padding-left: 40px !important;
 }
 
-
 }
 
 
 /*( < 980 )*/
 @media (max-width: 979.98px) {
-
-	/*= General =================== */
-
 	/** General >> Colophon site above footer inner wrap **/
 	#colophon .site-above-footer-inner-wrap {
 	display: grid !important;
@@ -197,15 +241,11 @@ tr > .gsc-input {
 	padding-left: 40px !important;
 }
 
-
 }
 
 
 /*( < 768 )*/
 @media (max-width: 767.98px) {
-
-	/*= General =================== */
-
 	/** General >> Block 11 has ast global color 6 color **/
 	#block-11 .has-ast-global-color-6-color {
 	padding-right: 0 !important;
@@ -220,15 +260,66 @@ tr > .gsc-input {
 	font-size: 18px !important;
 }
 
+	/** General >> Elementor column gap default **/
+	.elementor-element-352da86 .elementor-column-gap-default {
+	display: grid !important;
+	grid-template-columns: 1fr !important;
+	grid-template-rows: auto auto auto auto !important;
+}
+.elementor-element-352da86 .elementor-column-gap-default > :nth-child(n) {
+	width: 100% !important;
+}
+
+	/** General >> Div _2 **/
+	.e-loop-item-1117 > section:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > section:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div {
+	padding-bottom: 0 !important;
+}
+
+	/** General >> Elementor element populated **/
+	.mtp-10 .elementor-element-8b3e7ba .elementor-element-populated {
+	padding-bottom: 0 !important;
+}
+
+	/** General 2 >> Ast menu toggle **/
+	#ast-hf-mobile-menu .ast-menu-toggle {
+	color: rgb(255, 255, 255) !important;
+}
+
+	/** General 2 >> Div **/
+	.swiper-slide-active > section:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > section:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(2) > div {
+	padding-bottom: 0 !important;
+}
+
+	/** General 2 >> Div _2 **/
+	.swiper-slide-active > section:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > section:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > div {
+	padding-bottom: 0 !important;
+}
+
+	/** General 2 >> Div _3 **/
+	.swiper-slide-active > section:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > section:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div {
+	padding-bottom: 0 !important;
+}
+
+	/** General 2 >> Elementor element populated _4 **/
+	.elementor-element-84611b8 .elementor-element-populated {
+	padding-bottom: 0 !important;
+}
+
+	/** General 2 >> Elementor element populated _2 **/
+	.elementor-element-bc3b2cf .elementor-element-populated {
+	padding-bottom: 0 !important;
+}
+
+	/** General 2 >> Elementor element populated _5 **/
+	.elementor-element-41249f5 .elementor-element-populated {
+	padding-bottom: 0 !important;
+}
 
 }
 
 
 /*( < 480 )*/
 @media (max-width: 479.98px) {
-
-	/*= General =================== */
-
 	/** General >> Colophon site above footer inner wrap **/
 	#colophon .site-above-footer-inner-wrap {
 	display: grid !important;
@@ -272,7 +363,6 @@ tr > .gsc-input {
 	.site-footer-above-section-1 .footer-widget-area-inner {
 	padding-left: 0 !important;
 }
-
 
 }
 
