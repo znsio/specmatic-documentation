@@ -12,7 +12,7 @@
 	<atom:link href="/author/naresh/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 24 May 2023 05:32:36 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 12 Jun 2023 21:33:16 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -27,21 +27,5 @@
 	<width>32</width>
 	<height>32</height>
 </image> 
-	<item>
-		<title>Software Architecture Superstream: Microservices</title>
-		<link>/live-stream/software-architecture-superstream-microservices/</link>
-		
-		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
-		<pubDate>Fri, 07 Apr 2023 02:58:00 +0000</pubDate>
-				<category><![CDATA[Live Stream]]></category>
-		<category><![CDATA[O&#039;Reilly]]></category>
-		<category><![CDATA[Past]]></category>
-		<guid isPermaLink="false">/?p=1107</guid>
-
-					<description><![CDATA[Guest appearance on O&#8217;Reilly Software Architechture Superstream Naresh Jain made a guest appearance on this live stream presented by Neal Ford. Summary Being able to develop, test, and easily deploy a single microservice is a key indicator for a successful transition to a microservices-style architecture. The challenge arises when determining how the new microservice will &#8230;<p class="read-more"> <a class="" href="/live-stream/software-architecture-superstream-microservices/"> <span class="screen-reader-text">Software Architecture Superstream: Microservices</span> Read More »</a></p>]]></description>
-		
-		
-		
-			</item>
-	</channel>
+</channel>
 </rss>
