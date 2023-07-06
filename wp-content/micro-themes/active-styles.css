@@ -15,11 +15,9 @@ aside > section:nth-of-type(1) > .has-ast-global-color-4-color {
 	border-top-width: 0 !important;
 }
 
-/** General >> Block 9 has ast global color 5 color **/
-#block-9 .has-ast-global-color-5-color {
-	margin-bottom: 0 !important;
-	position: relative !important;
-	top: -2px !important;
+/** General >> Colophon ast builder grid row tablet 4 equal **/
+#colophon .ast-builder-grid-row-tablet-4-equal {
+	padding-bottom: 0 !important;
 }
 
 /** General >> Block 11 has ast global color 6 color **/
@@ -116,6 +114,27 @@ tr > .gsc-input {
 	margin-bottom: 0 !important;
 }
 
+/** General >> Gs id50 **/
+#gs_id50 {
+	margin-bottom: 0 !important;
+}
+
+/** General >> Post navigation next title **/
+.post-navigation__next--title {
+	white-space: normal !important;
+	padding-left: 10px !important;
+}
+
+/** General >> Post navigation prev title **/
+.post-navigation__prev--title {
+	white-space: normal !important;
+}
+
+/** General >> Iframe **/
+.commentbox iframe {
+	padding-left: 30px !important;
+}
+
 
 /*= Main Menu ================= */
 
@@ -168,12 +187,6 @@ tr > .gsc-input {
 	margin-left: 40px !important;
 }
 
-	/** General 2 >> Ast builder grid row tablet 2 equal **/
-	.ast-builder-grid-row-tablet-2-equal {
-	padding-right: 20px !important;
-	padding-left: 40px !important;
-}
-
 	/** Footer >> Ast footer copyright paragraph **/
 	.ast-footer-copyright p {
 	padding-left: 40px !important;
@@ -184,6 +197,11 @@ tr > .gsc-input {
 
 /*( < 980 )*/
 @media (max-width: 979.98px) {
+	/** General >> Post navigation prev title **/
+	.post-navigation__prev--title {
+	padding-right: 10px !important;
+}
+
 	/** General 2 >> Elementor element populated Moved 1 **/
 	.mtp-10 .elementor-element-8b3e7ba .elementor-element-populated {
 	min-width: 130px !important;
@@ -308,10 +326,26 @@ tr > .gsc-input {
 	margin-left: 40px !important;
 }
 
+	/** General >> Post navigation next title **/
+	.post-navigation__next--title {
+	font-size: 16px !important;
+}
+
+	/** General >> Post navigation prev title **/
+	.post-navigation__prev--title {
+	font-size: 16px !important;
+}
+
 	/** General 2 >> Ast social element style filled **/
 	.ast-social-element-style-filled {
 	padding-right: 140px !important;
 	justify-items: start !important;
+}
+
+	/** Footer >> Site footer above section 1 footer widget area inner **/
+	.site-footer-above-section-1 .footer-widget-area-inner {
+	width: 90% !important;
+	padding-right: 20px !important;
 }
 
 }
