@@ -130,9 +130,14 @@ tr > .gsc-input {
 	white-space: normal !important;
 }
 
-/** General >> Iframe **/
-.commentbox iframe {
-	padding-left: 30px !important;
+/** General >> width for small screens **/
+.html {
+	overflow-x: hidden !important;
+}
+
+/** General >> Html **/
+html {
+	overflow-x: hidden !important;
 }
 
 
@@ -161,6 +166,11 @@ tr > .gsc-input {
 
 
 /*= General 2 ================= */
+
+/** General 2 >> Div _3 **/
+.swiper-slide-active > section:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > section:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div {
+	padding-right: 0 !important;
+}
 
 /** General 2 >> Elementor element populated Moved 1 **/
 .mtp-10 .elementor-element-8b3e7ba .elementor-element-populated {
@@ -200,6 +210,17 @@ tr > .gsc-input {
 	/** General >> Post navigation prev title **/
 	.post-navigation__prev--title {
 	padding-right: 10px !important;
+}
+
+	/** General >> Elementor element 46b76cb **/
+	.mtp-10 .elementor-element-46b76cb {
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+
+	/** General >> Div _3 **/
+	.mtp-10 .elementor-element-b16017f > div {
+	padding-top: 5px !important;
 }
 
 	/** General 2 >> Elementor element populated Moved 1 **/
@@ -257,6 +278,12 @@ tr > .gsc-input {
 }
 .elementor-element-352da86 .elementor-column-gap-default > :nth-child(n) {
 	width: 100% !important;
+}
+
+	/** General >> Elementor element 46b76cb **/
+	.mtp-10 .elementor-element-46b76cb {
+	padding-top: 10px !important;
+	padding-bottom: 20px !important;
 }
 
 	/** General 2 >> Ast menu toggle **/
@@ -334,6 +361,11 @@ tr > .gsc-input {
 	/** General >> Post navigation prev title **/
 	.post-navigation__prev--title {
 	font-size: 16px !important;
+}
+
+	/** General >> Heading 1 **/
+	.mtp-10 #content h1 {
+	font-size: 28px !important;
 }
 
 	/** General 2 >> Ast social element style filled **/

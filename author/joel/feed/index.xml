@@ -12,7 +12,7 @@
 	<atom:link href="/author/joel/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Fri, 07 Jul 2023 05:27:22 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 11 Jul 2023 04:28:31 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -27,5 +27,22 @@
 	<width>32</width>
 	<height>32</height>
 </image> 
-</channel>
+	<item>
+		<title>Redis Stubbing with Specmatic Contract Testing</title>
+		<link>/updates/redis-stubbing-with-specmatic-contract-testing/</link>
+		
+		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
+		<pubDate>Tue, 11 Jul 2023 03:17:59 +0000</pubDate>
+				<category><![CDATA[Features]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[Redis]]></category>
+		<category><![CDATA[Stubbing]]></category>
+		<guid isPermaLink="false">/?p=1625</guid>
+
+					<description><![CDATA[Check out the sample code Sample files: https://github.com/znsio/specmatic-redis-sampleDownload Specmatic: https://github.com/znsio/specmatic/releases Contact us to join the private beta. Transcript Overview &#8211; how Specmatic can be used to stub out Redis A typical HTTP consumer would send an HTTP request to an API where it is received by a controller. Let&#8217;s say the controller needs to fetch &#8230;<p class="read-more"> <a class="" href="/updates/redis-stubbing-with-specmatic-contract-testing/"> <span class="screen-reader-text">Redis Stubbing with Specmatic Contract Testing</span> Read More »</a></p>]]></description>
+		
+		
+		
+			</item>
+	</channel>
 </rss>
