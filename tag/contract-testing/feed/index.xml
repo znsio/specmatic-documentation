@@ -12,7 +12,7 @@
 	<atom:link href="/tag/contract-testing/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Thu, 13 Jul 2023 04:41:13 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 18 Jul 2023 11:00:47 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,26 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Kafka Mocking with AsyncAPI using Specmatic</title>
+		<link>/updates/kafka-mocking-with-asyncapi-using-specmatic/</link>
+		
+		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
+		<pubDate>Tue, 18 Jul 2023 04:40:27 +0000</pubDate>
+				<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[AsyncAPI]]></category>
+		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[Kafka]]></category>
+		<category><![CDATA[OpenAPI]]></category>
+		<guid isPermaLink="false">/?p=1665</guid>
+
+					<description><![CDATA[Check out the sample code Sample files:&#160;https://github.com/znsio/specmatic-order-bff-nodejsDownload Specmatic:&#160;https://github.com/znsio/specmatic/releases Contact us&#160;to join the private beta. In our previous post, we looked at how we can stub out redis with Specmatic so that we can test our application independent of its dependency on Redis. In this post we will be looking at mocking Kafka with Specmatic by &#8230;<p class="read-more"> <a class="" href="/updates/kafka-mocking-with-asyncapi-using-specmatic/"> <span class="screen-reader-text">Kafka Mocking with AsyncAPI using Specmatic</span> Read More »</a></p>]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Comparison: Specmatic vs Spring Cloud Contract</title>
 		<link>/comparisons/comparison-specmatic-vs-spring-cloud-contract/</link>
 		
