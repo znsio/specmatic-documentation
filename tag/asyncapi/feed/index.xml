@@ -12,7 +12,7 @@
 	<atom:link href="/tag/asyncapi/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Tue, 18 Jul 2023 11:00:47 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 19 Jul 2023 23:14:53 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -42,7 +42,7 @@
 		<category><![CDATA[OpenAPI]]></category>
 		<guid isPermaLink="false">/?p=1665</guid>
 
-					<description><![CDATA[Check out the sample code Sample files:&#160;https://github.com/znsio/specmatic-order-bff-nodejsDownload Specmatic:&#160;https://github.com/znsio/specmatic/releases Contact us&#160;to join the private beta. In our previous post, we looked at how we can stub out redis with Specmatic so that we can test our application independent of its dependency on Redis. In this post we will be looking at mocking Kafka with Specmatic by &#8230;<p class="read-more"> <a class="" href="/updates/kafka-mocking-with-asyncapi-using-specmatic/"> <span class="screen-reader-text">Kafka Mocking with AsyncAPI using Specmatic</span> Read More »</a></p>]]></description>
+					<description><![CDATA[The Specmatic Kafka mock is wire compatible and entirely within the control of the test, the test can run locally and in CI and deliver quick feedback early in the cycle. So the application itself runs exactly as it would with a real Kafka.]]></description>
 		
 		
 		
