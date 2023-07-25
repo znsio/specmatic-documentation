@@ -12,7 +12,7 @@
 	<atom:link href="/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Mon, 24 Jul 2023 01:11:33 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 25 Jul 2023 06:06:56 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,25 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>JMS Mocking with AsyncAPI using Specmatic</title>
+		<link>/updates/jms-mocking-with-asyncapi-using-specmatic/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Tue, 25 Jul 2023 06:05:31 +0000</pubDate>
+				<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[AsyncAPI]]></category>
+		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[Demonstration]]></category>
+		<guid isPermaLink="false">/?p=1702</guid>
+
+					<description><![CDATA[The JMS mock is wire compatible and can be controlled entirely from within the test. This means you can run the test locally or also as part of your continuous integration build to provide quick feedback early in the cycle.]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Kafka Mocking with AsyncAPI using Specmatic</title>
 		<link>/updates/kafka-mocking-with-asyncapi-using-specmatic/</link>
 		
