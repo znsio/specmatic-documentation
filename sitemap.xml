@@ -138,7 +138,7 @@
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
    </url>
-           <url>
+              <url>
       <loc>https://specmatic.in/updates/kafka-mocking-with-asyncapi-using-specmatic/</loc>
       <lastmod>2023-07-25</lastmod>
       <changefreq>monthly</changefreq>
@@ -156,7 +156,6 @@
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
    </url>
-
    <url>
       <loc>https://specmatic.in/appearance/contract-driven-development-deploying-your-microservices-independently-without-integration-testing-2/</loc>
       <lastmod>2023-06-11</lastmod>
