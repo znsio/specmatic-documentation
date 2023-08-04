@@ -1,4 +1,4 @@
-/*! elementor - v3.14.0 - 26-06-2023 */
+/*! elementor - v3.15.0 - 02-08-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -4454,7 +4454,8 @@ function Checkbox(_ref) {
     indeterminate = _ref.indeterminate,
     error = _ref.error,
     disabled = _ref.disabled,
-    onChange = _ref.onChange;
+    onChange = _ref.onChange,
+    id = _ref.id;
   var baseClassName = 'eps-checkbox',
     classes = [baseClassName, className];
   if (rounded) {
@@ -4471,7 +4472,8 @@ function Checkbox(_ref) {
     type: "checkbox",
     checked: checked,
     disabled: disabled,
-    onChange: onChange
+    onChange: onChange,
+    id: id
   });
 }
 Checkbox.propTypes = {
@@ -4481,7 +4483,8 @@ Checkbox.propTypes = {
   indeterminate: PropTypes.bool,
   rounded: PropTypes.bool,
   error: PropTypes.bool,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  id: PropTypes.string
 };
 Checkbox.defaultProps = {
   className: '',
@@ -9196,6 +9199,7 @@ exports["default"] = ImportKit;
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
 var _router = __webpack_require__(/*! @reach/router */ "../node_modules/@reach/router/es/index.js");
+var _hooks = __webpack_require__(/*! @elementor/hooks */ "@elementor/hooks");
 var _sharedContextProvider = __webpack_require__(/*! ../../../context/shared-context/shared-context-provider */ "../app/modules/import-export/assets/js/context/shared-context/shared-context-provider.js");
 var _importContextProvider = __webpack_require__(/*! ../../../context/import-context/import-context-provider */ "../app/modules/import-export/assets/js/context/import-context/import-context-provider.js");
 var _layout = _interopRequireDefault(__webpack_require__(/*! ../../../templates/layout */ "../app/modules/import-export/assets/js/templates/layout.js"));
@@ -9206,8 +9210,10 @@ var _notice = _interopRequireDefault(__webpack_require__(/*! elementor-app/ui/mo
 var _dropZone = _interopRequireDefault(__webpack_require__(/*! elementor-app/organisms/drop-zone */ "../app/assets/js/organisms/drop-zone.js"));
 var _button = _interopRequireDefault(__webpack_require__(/*! elementor-app/ui/molecules/button */ "../app/assets/js/ui/molecules/button.js"));
 var _appsEventTracking = __webpack_require__(/*! elementor-app/event-track/apps-event-tracking */ "../app/assets/js/event-track/apps-event-tracking.js");
+var _dialog = _interopRequireDefault(__webpack_require__(/*! elementor-app/ui/dialog/dialog */ "../app/assets/js/ui/dialog/dialog.js"));
 var _useKit2 = _interopRequireDefault(__webpack_require__(/*! ../../../hooks/use-kit */ "../app/modules/import-export/assets/js/hooks/use-kit.js"));
 __webpack_require__(/*! ./import-kit.scss */ "../app/modules/import-export/assets/js/pages/import/import-kit/import-kit.scss");
+var _checkbox = _interopRequireDefault(__webpack_require__(/*! elementor-app/ui/atoms/checkbox */ "../app/assets/js/ui/atoms/checkbox.js"));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function ImportKit() {
@@ -9275,7 +9281,21 @@ function ImportKit() {
           return eventTracking('kit-library/seek-more-info', null, 'click');
         }
       }, __('Learn More', 'elementor'));
-    };
+    },
+    _useConfirmAction = (0, _hooks.useConfirmAction)({
+      doNotShowAgainKey: 'upload_json_warning_generic_message',
+      action: function action(file, e) {
+        setIsLoading(true);
+        importContext.dispatch({
+          type: 'SET_FILE',
+          payload: file
+        });
+        eventTracking('kit-library/file-upload', null, 'feedback', null, null, e.type);
+      }
+    }),
+    uploadFile = _useConfirmAction.runAction,
+    dialog = _useConfirmAction.dialog,
+    checkbox = _useConfirmAction.checkbox;
 
   // On load.
   (0, _react.useEffect)(function () {
@@ -9342,14 +9362,7 @@ function ImportKit() {
     onFileChoose: function onFileChoose() {
       return eventTracking('kit-library/choose-file');
     },
-    onFileSelect: function onFileSelect(file, e) {
-      setIsLoading(true);
-      importContext.dispatch({
-        type: 'SET_FILE',
-        payload: file
-      });
-      eventTracking('kit-library/file-upload', null, 'feedback', null, null, e.type);
-    },
+    onFileSelect: uploadFile,
     onError: function onError() {
       return setErrorType('general');
     },
@@ -9366,7 +9379,30 @@ function ImportKit() {
     onLearnMore: function onLearnMore() {
       return eventTracking('kit-library/seek-more-info', null, 'click', null, 'error');
     }
-  })));
+  }), dialog.isOpen && /*#__PURE__*/_react.default.createElement(_dialog.default, {
+    title: __('Warning: JSON or ZIP files may be unsafe', 'elementor'),
+    text: __('Uploading JSON or ZIP files from unknown sources can be harmful and put your site at risk. For maximum safety, upload only JSON or ZIP files from trusted sources.', 'elementor'),
+    approveButtonColor: "link",
+    approveButtonText: __('Continue', 'elementor'),
+    approveButtonOnClick: dialog.approve,
+    dismissButtonText: __('Cancel', 'elementor'),
+    dismissButtonOnClick: dialog.dismiss,
+    onClose: dialog.dismiss
+  }, /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: "do-not-show-upload-json-warning-again",
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '5px'
+    }
+  }, /*#__PURE__*/_react.default.createElement(_checkbox.default, {
+    id: "do-not-show-upload-json-warning-again",
+    type: "checkbox",
+    value: checkbox.isChecked,
+    onChange: function onChange(event) {
+      return checkbox.setIsChecked(!!event.target.checked);
+    }
+  }), __('Do not show this message again', 'elementor')))));
 }
 
 /***/ }),
@@ -11021,7 +11057,7 @@ function ExportInfoModal(props) {
   }), /*#__PURE__*/_react.default.createElement(_infoModal.default.Section, null, /*#__PURE__*/_react.default.createElement(_infoModal.default.Heading, null, __('What’s a Website Kit?', 'elementor')), /*#__PURE__*/_react.default.createElement(_infoModal.default.Text, null, /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, __('A Website Kit is a .zip file that contains all the parts of a complete site. It’s an easy way to get a site up and running quickly.', 'elementor'), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_inlineLink.default, {
     url: "https://go.elementor.com/app-what-are-kits"
   }, __(' Learn more about Website Kits', 'elementor'))))), /*#__PURE__*/_react.default.createElement(_infoModal.default.Section, null, /*#__PURE__*/_react.default.createElement(_infoModal.default.Heading, null, __('How does exporting work?', 'elementor')), /*#__PURE__*/_react.default.createElement(_infoModal.default.Text, null, /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, __('To turn your site into a Website Kit, select the templates, content, settings and plugins you want to include. Once it’s ready, you’ll get a .zip file that you can import to other sites.', 'elementor'), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_inlineLink.default, {
-    url: "http://go.elementor.com/app-export-kit"
+    url: "https://go.elementor.com/app-export-kit"
   }, __('Learn More', 'elementor'))))));
 }
 
@@ -11064,7 +11100,7 @@ function ImportInfoModal(props) {
       return eventTracking('Learn more about website kits');
     }
   }, __(' Learn more about Website Kits', 'elementor'))))), /*#__PURE__*/_react.default.createElement(_infoModal.default.Section, null, /*#__PURE__*/_react.default.createElement(_infoModal.default.Heading, null, __('How does importing work?', 'elementor')), /*#__PURE__*/_react.default.createElement(_infoModal.default.Text, null, /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, __('Start by uploading the file and selecting the parts and plugins you want to apply. If there are any overlaps between the kit and your current design, you’ll be able to choose which imported parts you want to apply or ignore. Once the file is ready, the kit will be applied to your site and you’ll be able to see it live.', 'elementor'), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement(_inlineLink.default, {
-    url: "http://go.elementor.com/app-import-kit",
+    url: "https://go.elementor.com/app-import-kit",
     onClick: function onClick() {
       return eventTracking('learn more');
     }
@@ -15172,6 +15208,17 @@ module.exports = elementorAppPackages.appUi;
 
 /***/ }),
 
+/***/ "@elementor/hooks":
+/*!*********************************************!*\
+  !*** external "elementorAppPackages.hooks" ***!
+  \*********************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = elementorAppPackages.hooks;
+
+/***/ }),
+
 /***/ "@elementor/router":
 /*!**********************************************!*\
   !*** external "elementorAppPackages.router" ***!
@@ -16131,8 +16178,8 @@ try {
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
 /******/ 			if (chunkId === "vendors-node_modules_react-query_devtools_index_js") return "62aed6374b1561fb5fd8.bundle.js";
-/******/ 			if (chunkId === "kit-library") return "" + chunkId + ".3dff2fd14c0324c37675.bundle.js";
-/******/ 			if (chunkId === "onboarding") return "" + chunkId + ".2da315965610a6ac2448.bundle.js";
+/******/ 			if (chunkId === "kit-library") return "" + chunkId + ".61bec15242b147d7ac1b.bundle.js";
+/******/ 			if (chunkId === "onboarding") return "" + chunkId + ".ea5b3ccf176bfa64221c.bundle.js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

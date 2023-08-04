@@ -80,7 +80,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "flushAllInjections": function() { return /* binding */ flushAllInjections; }
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-// src/locations.tsx
+// src/api.tsx
 
 
 // src/components/filler-wrapper.tsx
@@ -109,7 +109,7 @@ function FillerWrapper({ children }) {
   return /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_0__.createElement(ErrorBoundary, { fallback: null }, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Suspense, { fallback: null }, children));
 }
 
-// src/locations.tsx
+// src/api.tsx
 
 var DEFAULT_PRIORITY = 10;
 var flushInjectionsFns = [];

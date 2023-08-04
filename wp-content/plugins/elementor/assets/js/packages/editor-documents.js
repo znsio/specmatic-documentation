@@ -104,6 +104,79 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _elementor_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @elementor/store */ "@elementor/store");
 /* harmony import */ var _elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @elementor/editor-v1-adapters */ "@elementor/editor-v1-adapters");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
+// src/store/index.ts
+
+var initialState = {
+  entities: {},
+  activeId: null,
+  hostId: null
+};
+function hasActiveEntity(state) {
+  return !!(state.activeId && state.entities[state.activeId]);
+}
+var slice = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
+  name: "documents",
+  initialState,
+  reducers: {
+    init(state, { payload }) {
+      state.entities = payload.entities;
+      state.hostId = payload.hostId;
+      state.activeId = payload.activeId;
+    },
+    activateDocument(state, action) {
+      state.entities[action.payload.id] = action.payload;
+      state.activeId = action.payload.id;
+    },
+    setAsHost(state, action) {
+      state.hostId = action.payload;
+    },
+    updateActiveDocument(state, action) {
+      if (hasActiveEntity(state)) {
+        state.entities[state.activeId] = {
+          ...state.entities[state.activeId],
+          ...action.payload
+        };
+      }
+    },
+    startSaving(state) {
+      if (hasActiveEntity(state)) {
+        state.entities[state.activeId].isSaving = true;
+      }
+    },
+    endSaving(state, action) {
+      if (hasActiveEntity(state)) {
+        state.entities[state.activeId] = {
+          ...action.payload,
+          isSaving: false
+        };
+      }
+    },
+    startSavingDraft: (state) => {
+      if (hasActiveEntity(state)) {
+        state.entities[state.activeId].isSavingDraft = true;
+      }
+    },
+    endSavingDraft(state, action) {
+      if (hasActiveEntity(state)) {
+        state.entities[state.activeId] = {
+          ...action.payload,
+          isSavingDraft: false
+        };
+      }
+    },
+    markAsDirty(state) {
+      if (hasActiveEntity(state)) {
+        state.entities[state.activeId].isDirty = true;
+      }
+    },
+    markAsPristine(state) {
+      if (hasActiveEntity(state)) {
+        state.entities[state.activeId].isDirty = false;
+      }
+    }
+  }
+});
+
 // src/sync/sync-store.ts
 
 
@@ -142,14 +215,14 @@ function normalizeV1Document(documentData) {
 
 // src/sync/sync-store.ts
 
-function syncStore(slice) {
-  syncInitialization(slice);
-  syncActiveDocument(slice);
-  syncOnDocumentSave(slice);
-  syncOnTitleChange(slice);
-  syncOnDocumentChange(slice);
+function syncStore() {
+  syncInitialization();
+  syncActiveDocument();
+  syncOnDocumentSave();
+  syncOnTitleChange();
+  syncOnDocumentChange();
 }
-function syncInitialization(slice) {
+function syncInitialization() {
   const { init: init2 } = slice.actions;
   (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.listenTo)(
     (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.v1ReadyEvent)(),
@@ -167,7 +240,7 @@ function syncInitialization(slice) {
     }
   );
 }
-function syncActiveDocument(slice) {
+function syncActiveDocument() {
   const { activateDocument, setAsHost } = slice.actions;
   (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.listenTo)(
     (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.commandEndEvent)("editor/documents/open"),
@@ -181,7 +254,7 @@ function syncActiveDocument(slice) {
     }
   );
 }
-function syncOnDocumentSave(slice) {
+function syncOnDocumentSave() {
   const { startSaving, endSaving, startSavingDraft, endSavingDraft } = slice.actions;
   const isDraft = (e) => {
     const event = e;
@@ -211,7 +284,7 @@ function syncOnDocumentSave(slice) {
     }
   );
 }
-function syncOnTitleChange(slice) {
+function syncOnTitleChange() {
   const { updateActiveDocument } = slice.actions;
   const updateTitle = debounce((e) => {
     const event = e;
@@ -227,7 +300,7 @@ function syncOnTitleChange(slice) {
     updateTitle
   );
 }
-function syncOnDocumentChange(slice) {
+function syncOnDocumentChange() {
   const { markAsDirty, markAsPristine } = slice.actions;
   (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.listenTo)(
     (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.commandEndEvent)("document/save/set-is-modified"),
@@ -251,88 +324,14 @@ function debounce(fn, timeout) {
   };
 }
 
-// src/store/index.ts
-
-var initialState = {
-  entities: {},
-  activeId: null,
-  hostId: null
-};
-function hasActiveEntity(state) {
-  return !!(state.activeId && state.entities[state.activeId]);
-}
-function createSlice() {
-  return (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.addSlice)({
-    name: "documents",
-    initialState,
-    reducers: {
-      init(state, { payload }) {
-        state.entities = payload.entities;
-        state.hostId = payload.hostId;
-        state.activeId = payload.activeId;
-      },
-      activateDocument(state, action) {
-        state.entities[action.payload.id] = action.payload;
-        state.activeId = action.payload.id;
-      },
-      setAsHost(state, action) {
-        state.hostId = action.payload;
-      },
-      updateActiveDocument(state, action) {
-        if (hasActiveEntity(state)) {
-          state.entities[state.activeId] = {
-            ...state.entities[state.activeId],
-            ...action.payload
-          };
-        }
-      },
-      startSaving(state) {
-        if (hasActiveEntity(state)) {
-          state.entities[state.activeId].isSaving = true;
-        }
-      },
-      endSaving(state, action) {
-        if (hasActiveEntity(state)) {
-          state.entities[state.activeId] = {
-            ...action.payload,
-            isSaving: false
-          };
-        }
-      },
-      startSavingDraft: (state) => {
-        if (hasActiveEntity(state)) {
-          state.entities[state.activeId].isSavingDraft = true;
-        }
-      },
-      endSavingDraft(state, action) {
-        if (hasActiveEntity(state)) {
-          state.entities[state.activeId] = {
-            ...action.payload,
-            isSavingDraft: false
-          };
-        }
-      },
-      markAsDirty(state) {
-        if (hasActiveEntity(state)) {
-          state.entities[state.activeId].isDirty = true;
-        }
-      },
-      markAsPristine(state) {
-        if (hasActiveEntity(state)) {
-          state.entities[state.activeId].isDirty = false;
-        }
-      }
-    }
-  });
-}
-
 // src/init.ts
+
 function init() {
   initStore();
 }
 function initStore() {
-  const slice = createSlice();
-  syncStore(slice);
+  (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.registerSlice)(slice);
+  syncStore();
 }
 
 // src/hooks/use-active-document.ts
@@ -383,11 +382,15 @@ function useHostDocument() {
 
 
 function useNavigateToDocument() {
-  return (0,react__WEBPACK_IMPORTED_MODULE_2__.useCallback)((id) => {
-    return (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.runCommand)("editor/documents/switch", {
+  return (0,react__WEBPACK_IMPORTED_MODULE_2__.useCallback)(async (id) => {
+    await (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.runCommand)("editor/documents/switch", {
       id,
       setAsInitial: true
     });
+    const url = new URL(window.location.href);
+    url.searchParams.set("post", id.toString());
+    url.searchParams.delete("active-document");
+    history.replaceState({}, "", url);
   }, []);
 }
 

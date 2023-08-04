@@ -13,6 +13,8 @@ add_filter( 'elementor/editor-v2/packages/config', function( $data ) {
 
 	$data['elementor-packages-editor-documents'] = require __DIR__ . '/editor-documents.asset.php';
 
+	$data['elementor-packages-editor-panels'] = require __DIR__ . '/editor-panels.asset.php';
+
 	$data['elementor-packages-editor-responsive'] = require __DIR__ . '/editor-responsive.asset.php';
 
 	$data['elementor-packages-editor-site-navigation'] = require __DIR__ . '/editor-site-navigation.asset.php';
@@ -24,6 +26,8 @@ add_filter( 'elementor/editor-v2/packages/config', function( $data ) {
 	$data['elementor-packages-icons'] = require __DIR__ . '/icons.asset.php';
 
 	$data['elementor-packages-locations'] = require __DIR__ . '/locations.asset.php';
+
+	$data['elementor-packages-query'] = require __DIR__ . '/query.asset.php';
 
 	$data['elementor-packages-store'] = require __DIR__ . '/store.asset.php';
 

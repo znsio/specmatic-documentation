@@ -1,4 +1,4 @@
-/*! elementor - v3.14.0 - 26-06-2023 */
+/*! elementor - v3.15.0 - 02-08-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -117,7 +117,10 @@ function AdminTopBar() {
     className: "e-admin-top-bar__secondary-area"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "e-admin-top-bar__secondary-area-buttons"
-  }, window.elementorAdminTopBarConfig.is_administrator ? /*#__PURE__*/_react.default.createElement(_barButton.default, {
+  }, /*#__PURE__*/_react.default.createElement(_barButton.default, {
+    href: window.elementorAdminTopBarConfig.apps_url,
+    icon: "eicon-integration"
+  }, __('Apps', 'elementor')), window.elementorAdminTopBarConfig.is_administrator ? /*#__PURE__*/_react.default.createElement(_barButton.default, {
     onClick: finderAction,
     dataInfo: finderTooltipText,
     icon: "eicon-search-bold"

@@ -6047,12 +6047,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "StoreProvider": function() { return /* reexport safe */ react_redux__WEBPACK_IMPORTED_MODULE_0__.Provider; },
 /* harmony export */   "addMiddleware": function() { return /* binding */ addMiddleware; },
-/* harmony export */   "addSlice": function() { return /* binding */ addSlice; },
 /* harmony export */   "createSelector": function() { return /* reexport safe */ _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_3__.createSelector; },
+/* harmony export */   "createSlice": function() { return /* reexport safe */ _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createSlice; },
 /* harmony export */   "createStore": function() { return /* binding */ createStore; },
 /* harmony export */   "deleteStore": function() { return /* binding */ deleteStore; },
 /* harmony export */   "dispatch": function() { return /* binding */ dispatch; },
+/* harmony export */   "getState": function() { return /* binding */ getState; },
 /* harmony export */   "getStore": function() { return /* binding */ getStore; },
+/* harmony export */   "registerSlice": function() { return /* binding */ registerSlice; },
+/* harmony export */   "subscribe": function() { return /* binding */ subscribe; },
 /* harmony export */   "useDispatch": function() { return /* reexport safe */ react_redux__WEBPACK_IMPORTED_MODULE_0__.useDispatch; },
 /* harmony export */   "useSelector": function() { return /* reexport safe */ react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector; }
 /* harmony export */ });
@@ -6075,14 +6078,12 @@ var getReducers = () => {
   }, {});
   return (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_1__.combineReducers)(reducers);
 };
-var addSlice = (sliceConfig) => {
-  if (slices[sliceConfig.name]) {
-    throw new Error(`Slice with name "${sliceConfig.name}" already exists.`);
+function registerSlice(slice) {
+  if (slices[slice.name]) {
+    throw new Error(`Slice with name "${slice.name}" already exists.`);
   }
-  const slice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.createSlice)(sliceConfig);
   slices[slice.name] = slice;
-  return slice;
-};
+}
 var addMiddleware = (middleware) => {
   middlewares.add(middleware);
 };
@@ -6092,6 +6093,18 @@ var dispatch = (action) => {
     return;
   }
   return instance.dispatch(action);
+};
+var getState = () => {
+  if (!instance) {
+    throw new Error("The store instance does not exist.");
+  }
+  return instance.getState();
+};
+var subscribe = (listener) => {
+  if (!instance) {
+    throw new Error("The store instance does not exist.");
+  }
+  return instance.subscribe(listener);
 };
 var createStore = () => {
   if (instance) {

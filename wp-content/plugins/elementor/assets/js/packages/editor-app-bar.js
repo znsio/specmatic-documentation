@@ -727,11 +727,18 @@ function PrimaryAction() {
   }
   const isDisabled = !isEnabled(document2);
   const shouldShowSpinner = document2.isSaving && !isDisabled;
-  return /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_0__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.ButtonGroup, { size: "large", variant: "contained" }, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_0__.createElement(
+  return /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_0__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.ButtonGroup, { size: "medium", variant: "contained" }, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_0__.createElement(
     _elementor_ui__WEBPACK_IMPORTED_MODULE_2__.Button,
     {
       onClick: () => !document2.isSaving && save(),
-      sx: { width: "120px" },
+      sx: {
+        px: 7,
+        height: "100%",
+        maxWidth: "158px",
+        "&.MuiButtonBase-root.MuiButtonGroup-grouped": {
+          minWidth: "110px"
+        }
+      },
       disabled: isDisabled
     },
     shouldShowSpinner ? /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_0__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.CircularProgress, null) : getLabel(document2)
@@ -752,7 +759,7 @@ function PrimaryAction() {
       _elementor_ui__WEBPACK_IMPORTED_MODULE_2__.Button,
       {
         ...(0,_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.bindTrigger)(popupState),
-        sx: { px: 0 },
+        sx: { px: 0, height: "100%" },
         disabled: document2.type.value === "kit",
         "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Save Options", "elementor")
       },

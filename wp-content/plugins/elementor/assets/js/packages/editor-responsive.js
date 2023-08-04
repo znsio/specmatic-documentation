@@ -131,23 +131,21 @@ var initialState = {
   entities: {},
   activeId: null
 };
-function createSlice() {
-  return (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.addSlice)({
-    name: "breakpoints",
-    initialState,
-    reducers: {
-      init(state, action) {
-        state.activeId = action.payload.activeId;
-        state.entities = normalizeEntities(action.payload.entities);
-      },
-      activateBreakpoint(state, action) {
-        if (state.entities[action.payload]) {
-          state.activeId = action.payload;
-        }
+var slice = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
+  name: "breakpoints",
+  initialState,
+  reducers: {
+    init(state, action) {
+      state.activeId = action.payload.activeId;
+      state.entities = normalizeEntities(action.payload.entities);
+    },
+    activateBreakpoint(state, action) {
+      if (state.entities[action.payload]) {
+        state.activeId = action.payload;
       }
     }
-  });
-}
+  }
+});
 function normalizeEntities(entities) {
   return entities.reduce((acc, breakpoint) => {
     return {
@@ -161,11 +159,11 @@ function normalizeEntities(entities) {
 
 
 
-function syncStore(slice) {
-  syncInitialization(slice);
-  syncOnChange(slice);
+function syncStore() {
+  syncInitialization();
+  syncOnChange();
 }
-function syncInitialization(slice) {
+function syncInitialization() {
   const { init: init2 } = slice.actions;
   (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.listenTo)(
     (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.v1ReadyEvent)(),
@@ -177,7 +175,7 @@ function syncInitialization(slice) {
     }
   );
 }
-function syncOnChange(slice) {
+function syncOnChange() {
   const { activateBreakpoint } = slice.actions;
   (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.listenTo)(
     deviceModeChangeEvent(),
@@ -332,13 +330,14 @@ var labelsMap = {
 };
 
 // src/init.ts
+
 function init() {
   initStore();
   registerAppBarUI();
 }
 function initStore() {
-  const slice = createSlice();
-  syncStore(slice);
+  (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.registerSlice)(slice);
+  syncStore();
 }
 function registerAppBarUI() {
   (0,_elementor_editor_app_bar__WEBPACK_IMPORTED_MODULE_3__.injectIntoResponsive)({

@@ -16,7 +16,10 @@ return [
 	'deps' => [
 		'elementor-packages-editor-app-bar',
 		'elementor-packages-editor-documents',
+		'elementor-packages-editor-panels',
+		'elementor-packages-env',
 		'elementor-packages-icons',
+		'elementor-packages-query',
 		'elementor-packages-ui',
 		'react',
 		'wp-api-fetch',

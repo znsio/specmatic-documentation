@@ -1,4 +1,4 @@
-/*! elementor - v3.14.0 - 26-06-2023 */
+/*! elementor - v3.15.0 - 02-08-2023 */
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["frontend-modules"],{
 
 /***/ "../assets/dev/js/editor/utils/is-instanceof.js":
@@ -231,7 +231,39 @@ class CarouselHandlerBase extends _baseSwiper.default {
         this.handleElementHandlers();
       }
     };
+    this.applyOffsetSettings(elementSettings, swiperOptions, slidesToShow);
     return swiperOptions;
+  }
+  getOffsetWidth() {
+    const currentDevice = elementorFrontend.getCurrentDeviceMode();
+    return elementorFrontend.utils.controls.getResponsiveControlValue(this.getElementSettings(), 'offset_width', 'size', currentDevice) || 0;
+  }
+  applyOffsetSettings(elementSettings, swiperOptions, slidesToShow) {
+    const offsetSide = elementSettings.offset_sides,
+      isNestedCarouselInEditMode = elementorFrontend.isEditMode() && 'NestedCarousel' === this.constructor.name;
+    if (isNestedCarouselInEditMode || !offsetSide || 'none' === offsetSide) {
+      return;
+    }
+    const offset = this.getOffsetWidth();
+    switch (offsetSide) {
+      case 'right':
+        this.forceSliderToShowNextSlideWhenOnLast(swiperOptions, slidesToShow);
+        this.addClassToSwiperContainer('offset-right');
+        break;
+      case 'left':
+        this.addClassToSwiperContainer('offset-left');
+        break;
+      case 'both':
+        this.forceSliderToShowNextSlideWhenOnLast(swiperOptions, slidesToShow);
+        this.addClassToSwiperContainer('offset-both');
+        break;
+    }
+  }
+  forceSliderToShowNextSlideWhenOnLast(swiperOptions, slidesToShow) {
+    swiperOptions.slidesPerView = slidesToShow + 0.001;
+  }
+  addClassToSwiperContainer(className) {
+    this.getDefaultElements().$swiperContainer[0].classList.add(className);
   }
   async onInit() {
     super.onInit(...arguments);
@@ -256,12 +288,14 @@ class CarouselHandlerBase extends _baseSwiper.default {
     this.elements.$paginationWrapper.on('keydown', '.swiper-pagination-bullet', this.onDirectionArrowKeydown.bind(this));
     this.elements.$swiperContainer.on('keydown', '.swiper-slide', this.onDirectionArrowKeydown.bind(this));
     this.$element.find(':focusable').on('focus', this.onFocusDisableAutoplay.bind(this));
+    elementorFrontend.elements.$window.on('resize', this.getSwiperSettings.bind(this));
   }
   unbindEvents() {
     this.elements.$swiperArrows.off();
     this.elements.$paginationWrapper.off();
     this.elements.$swiperContainer.off();
     this.$element.find(':focusable').off();
+    elementorFrontend.elements.$window.off('resize');
   }
   onDirectionArrowKeydown(event) {
     const isRTL = elementorFrontend.config.isRTL,
@@ -878,6 +912,100 @@ module.exports = elementorModules.ViewModule.extend({
     this.elements.$element.css(css);
   }
 });
+
+/***/ }),
+
+/***/ "../assets/dev/js/frontend/utils/flex-horizontal-scroll.js":
+/*!*****************************************************************!*\
+  !*** ../assets/dev/js/frontend/utils/flex-horizontal-scroll.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.changeScrollStatus = changeScrollStatus;
+exports.setHorizontalScrollAlignment = setHorizontalScrollAlignment;
+exports.setHorizontalTitleScrollValues = setHorizontalTitleScrollValues;
+function changeScrollStatus(element, event) {
+  if ('mousedown' === event.type) {
+    element.classList.add('e-scroll');
+    element.dataset.pageX = event.pageX;
+  } else {
+    element.classList.remove('e-scroll', 'e-scroll-active');
+    element.dataset.pageX = '';
+  }
+}
+
+// This function was written using this example https://codepen.io/thenutz/pen/VwYeYEE.
+function setHorizontalTitleScrollValues(element, horizontalScrollStatus, event) {
+  const isActiveScroll = element.classList.contains('e-scroll'),
+    isHorizontalScrollActive = 'enable' === horizontalScrollStatus,
+    headingContentIsWiderThanWrapper = element.scrollWidth > element.clientWidth;
+  if (!isActiveScroll || !isHorizontalScrollActive || !headingContentIsWiderThanWrapper) {
+    return;
+  }
+  event.preventDefault();
+  const previousPositionX = parseFloat(element.dataset.pageX),
+    mouseMoveX = event.pageX - previousPositionX,
+    maximumScrollValue = 5,
+    stepLimit = 20;
+  let toScrollDistanceX = 0;
+  if (stepLimit < mouseMoveX) {
+    toScrollDistanceX = maximumScrollValue;
+  } else if (stepLimit * -1 > mouseMoveX) {
+    toScrollDistanceX = -1 * maximumScrollValue;
+  } else {
+    toScrollDistanceX = mouseMoveX;
+  }
+  element.scrollLeft = element.scrollLeft - toScrollDistanceX;
+  element.classList.add('e-scroll-active');
+}
+function setHorizontalScrollAlignment(_ref) {
+  let {
+    element,
+    direction,
+    justifyCSSVariable,
+    horizontalScrollStatus
+  } = _ref;
+  if (!element) {
+    return;
+  }
+  if (isHorizontalScroll(element, horizontalScrollStatus)) {
+    initialScrollPosition(element, direction, justifyCSSVariable);
+  } else {
+    element.style.setProperty(justifyCSSVariable, '');
+  }
+}
+function isHorizontalScroll(element, horizontalScrollStatus) {
+  return element.clientWidth < getChildrenWidth(element.children) && 'enable' === horizontalScrollStatus;
+}
+function getChildrenWidth(children) {
+  let totalWidth = 0;
+  const parentContainer = children[0].parentNode,
+    computedStyles = getComputedStyle(parentContainer),
+    gap = parseFloat(computedStyles.gap) || 0; // Get the gap value or default to 0 if it's not specified
+
+  for (let i = 0; i < children.length; i++) {
+    totalWidth += children[i].offsetWidth + gap;
+  }
+  return totalWidth;
+}
+function initialScrollPosition(element, direction, justifyCSSVariable) {
+  const isRTL = elementorCommon.config.isRTL;
+  switch (direction) {
+    case 'end':
+      element.style.setProperty(justifyCSSVariable, 'start');
+      element.scrollLeft = isRTL ? -1 * getChildrenWidth(element.children) : getChildrenWidth(element.children);
+      break;
+    default:
+      element.style.setProperty(justifyCSSVariable, 'start');
+      element.scrollLeft = 0;
+  }
+}
 
 /***/ }),
 
@@ -1527,19 +1655,30 @@ Object.defineProperty(exports, "__esModule", ({
 exports["default"] = void 0;
 var _base = _interopRequireDefault(__webpack_require__(/*! elementor/assets/dev/js/frontend/handlers/base */ "../assets/dev/js/frontend/handlers/base.js"));
 class NestedAccordion extends _base.default {
+  constructor() {
+    super(...arguments);
+    this.animations = new Map();
+  }
   getDefaultSettings() {
     return {
       selectors: {
+        accordion: '.e-n-accordion',
         accordionContentContainers: '.e-n-accordion > .e-con',
-        accordionItems: '.e-n-accordion-item'
-      }
+        accordionItems: '.e-n-accordion-item',
+        accordionItemTitles: '.e-n-accordion-item-title',
+        accordionContent: '.e-n-accordion-item > .e-con'
+      },
+      default_state: 'expanded'
     };
   }
   getDefaultElements() {
     const selectors = this.getSettings('selectors');
     return {
+      $accordion: this.findElement(selectors.accordion),
       $contentContainers: this.findElement(selectors.accordionContentContainers),
-      $items: this.findElement(selectors.accordionItems)
+      $accordionItems: this.findElement(selectors.accordionItems),
+      $accordionTitles: this.findElement(selectors.accordionItemTitles),
+      $accordionContent: this.findElement(selectors.accordionContent)
     };
   }
   onInit() {
@@ -1551,11 +1690,85 @@ class NestedAccordion extends _base.default {
   interlaceContainers() {
     const {
       $contentContainers,
-      $items
+      $accordionItems
     } = this.getDefaultElements();
     $contentContainers.each((index, element) => {
-      $items[index].appendChild(element);
+      $accordionItems[index].appendChild(element);
     });
+  }
+  bindEvents() {
+    this.elements.$accordionTitles.on('click', this.clickListener.bind(this));
+  }
+  unbindEvents() {
+    this.elements.$accordionTitles.off();
+  }
+  clickListener(event) {
+    event.preventDefault();
+    const accordionItem = event.currentTarget.parentElement,
+      settings = this.getSettings(),
+      accordionContent = accordionItem.querySelector(settings.selectors.accordionContent),
+      {
+        max_items_expended: maxItemsExpended
+      } = this.getElementSettings(),
+      {
+        $accordionTitles,
+        $accordionItems
+      } = this.elements;
+    if ('one' === maxItemsExpended) {
+      this.closeAllItems($accordionItems, $accordionTitles);
+    }
+    if (!accordionItem.open) {
+      this.prepareOpenAnimation(accordionItem, event.currentTarget, accordionContent);
+    } else {
+      this.closeAccordionItem(accordionItem, event.currentTarget);
+    }
+  }
+  animateItem(accordionItem, startHeight, endHeight, isOpen) {
+    accordionItem.style.overflow = 'hidden';
+    let animation = this.animations.get(accordionItem);
+    if (animation) {
+      animation.cancel();
+    }
+    animation = accordionItem.animate({
+      height: [startHeight, endHeight]
+    }, {
+      duration: this.getAnimationDuration()
+    });
+    animation.onfinish = () => this.onAnimationFinish(accordionItem, isOpen);
+    this.animations.set(accordionItem, animation);
+  }
+  closeAccordionItem(accordionItem, accordionItemTitle) {
+    const startHeight = `${accordionItem.offsetHeight}px`,
+      endHeight = `${accordionItemTitle.offsetHeight}px`;
+    this.animateItem(accordionItem, startHeight, endHeight, false);
+  }
+  prepareOpenAnimation(accordionItem, accordionItemTitle, accordionItemContent) {
+    accordionItem.style.overflow = 'hidden';
+    accordionItem.style.height = `${accordionItem.offsetHeight}px`;
+    accordionItem.open = true;
+    window.requestAnimationFrame(() => this.openAccordionItem(accordionItem, accordionItemTitle, accordionItemContent));
+  }
+  openAccordionItem(accordionItem, accordionItemTitle, accordionItemContent) {
+    const startHeight = `${accordionItem.offsetHeight}px`,
+      endHeight = `${accordionItemTitle.offsetHeight + accordionItemContent.offsetHeight}px`;
+    this.animateItem(accordionItem, startHeight, endHeight, true);
+  }
+  onAnimationFinish(accordionItem, isOpen) {
+    accordionItem.open = isOpen;
+    this.animations.set(accordionItem, null);
+    accordionItem.style.height = accordionItem.style.overflow = '';
+  }
+  closeAllItems($items, $titles) {
+    $titles.each((index, title) => {
+      this.closeAccordionItem($items[index], title);
+    });
+  }
+  getAnimationDuration() {
+    const {
+      size,
+      unit
+    } = this.getElementSettings('n_accordion_animation_duration');
+    return size * ('ms' === unit ? 1 : 1000);
   }
 }
 exports["default"] = NestedAccordion;
@@ -1576,7 +1789,8 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
-var _base = _interopRequireDefault(__webpack_require__(/*! ../../../../../../assets/dev/js/frontend/handlers/base */ "../assets/dev/js/frontend/handlers/base.js"));
+var _base = _interopRequireDefault(__webpack_require__(/*! elementor/assets/dev/js/frontend/handlers/base */ "../assets/dev/js/frontend/handlers/base.js"));
+var _flexHorizontalScroll = __webpack_require__(/*! elementor/assets/dev/js/frontend/utils/flex-horizontal-scroll */ "../assets/dev/js/frontend/utils/flex-horizontal-scroll.js");
 class NestedTabs extends _base.default {
   constructor() {
     super(...arguments);
@@ -1784,17 +1998,24 @@ class NestedTabs extends _base.default {
     };
   }
   getHeadingEvents() {
+    const navigationWrapper = this.elements.$headingContainer[0];
     return {
-      mousedown: this.changeScrollStatus.bind(this),
-      mouseup: this.changeScrollStatus.bind(this),
-      mouseleave: this.changeScrollStatus.bind(this),
-      mousemove: this.setHorizontalTabTitleScrollValues.bind(this)
+      mousedown: _flexHorizontalScroll.changeScrollStatus.bind(this, navigationWrapper),
+      mouseup: _flexHorizontalScroll.changeScrollStatus.bind(this, navigationWrapper),
+      mouseleave: _flexHorizontalScroll.changeScrollStatus.bind(this, navigationWrapper),
+      mousemove: _flexHorizontalScroll.setHorizontalTitleScrollValues.bind(this, navigationWrapper, this.getHorizontalScrollSetting())
     };
   }
   bindEvents() {
     this.elements.$tabTitles.on(this.getTabEvents());
     this.elements.$headingContainer.on(this.getHeadingEvents());
-    this.resizeListenerNestedTabs = this.setHorizontalScrollAlignment.bind(this);
+    const settingsObject = {
+      element: this.elements.$headingContainer[0],
+      direction: this.getTabsDirection(),
+      justifyCSSVariable: '--n-tabs-heading-justify-content',
+      horizontalScrollStatus: this.getHorizontalScrollSetting()
+    };
+    this.resizeListenerNestedTabs = _flexHorizontalScroll.setHorizontalScrollAlignment.bind(this, settingsObject);
     elementorFrontend.elements.$window.on('resize', this.resizeListenerNestedTabs);
     elementorFrontend.elements.$window.on('elementor/nested-tabs/activate', this.reInitSwipers);
   }
@@ -1839,7 +2060,13 @@ class NestedTabs extends _base.default {
     if (this.getSettings('autoExpand')) {
       this.activateDefaultTab();
     }
-    this.setHorizontalScrollAlignment();
+    const settingsObject = {
+      element: this.elements.$headingContainer[0],
+      direction: this.getTabsDirection(),
+      justifyCSSVariable: '--n-tabs-heading-justify-content',
+      horizontalScrollStatus: this.getHorizontalScrollSetting()
+    };
+    (0, _flexHorizontalScroll.setHorizontalScrollAlignment)(settingsObject);
   }
   onEditSettingsChange(propertyName, value) {
     if ('activeItemIndex' === propertyName) {
@@ -1848,7 +2075,13 @@ class NestedTabs extends _base.default {
   }
   onElementChange(propertyName) {
     if (this.checkSliderPropsToWatch(propertyName)) {
-      this.setHorizontalScrollAlignment();
+      const settingsObject = {
+        element: this.elements.$headingContainer[0],
+        direction: this.getTabsDirection(),
+        justifyCSSVariable: '--n-tabs-heading-justify-content',
+        horizontalScrollStatus: this.getHorizontalScrollSetting()
+      };
+      (0, _flexHorizontalScroll.setHorizontalScrollAlignment)(settingsObject);
     }
   }
   checkSliderPropsToWatch(propertyName) {
@@ -2012,92 +2245,13 @@ class NestedTabs extends _base.default {
       $tabTitleContainerElement = this.elements.$tabContents.filter(this.getTabContentFilterSelector(index));
     return !!$tabTitleContainerElement && isTabTitleActive ? true : false;
   }
-
-  // This function was written using this example https://codepen.io/thenutz/pen/VwYeYEE.
-  changeScrollStatus(event) {
-    const slider = this.elements.$headingContainer[0];
-    if ('mousedown' === event.type) {
-      slider.classList.add('e-scroll');
-      slider.dataset.pageX = event.pageX;
-    } else {
-      slider.classList.remove('e-scroll');
-      slider.classList.remove('e-scroll-active');
-      slider.dataset.pageX = '';
-    }
-  }
-  isHorizontalScroll() {
-    const slider = this.elements.$headingContainer[0];
-    return slider.clientWidth < this.getChildrenWidth(slider.children) && 'enable' === this.getHorizontalScrollSetting();
-  }
-  getChildrenWidth(children) {
-    let totalWidth = 0;
-    const parentContainer = children[0].parentNode,
-      computedStyles = getComputedStyle(parentContainer),
-      gap = parseFloat(computedStyles.gap) || 0; // Get the gap value or default to 0 if it's not specified
-
-    for (let i = 0; i < children.length; i++) {
-      totalWidth += children[i].offsetWidth + gap;
-    }
-    return totalWidth;
-  }
-  setHorizontalScrollAlignment() {
-    let event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    if (!this.elements) {
-      return;
-    }
-    const slider = this.elements.$headingContainer[0];
-    if (this.isHorizontalScroll()) {
-      const tabsDirection = this.getTabsDirection();
-      this.initialScrollPosition(slider, tabsDirection);
-    } else {
-      slider.style.setProperty('--n-tabs-heading-justify-content', '');
-    }
-  }
   getTabsDirection() {
-    const currentDevice = elementorFrontend.getCurrentDeviceMode(),
-      tabsDirection = elementorFrontend.utils.controls.getResponsiveControlValue(this.getElementSettings(), 'tabs_justify_horizontal', '', currentDevice);
-    return tabsDirection;
-  }
-  initialScrollPosition(slider, tabsDirection) {
-    const isRTL = elementorCommon.config.isRTL;
-    switch (tabsDirection) {
-      case 'end':
-        slider.style.setProperty('--n-tabs-heading-justify-content', 'start');
-        slider.scrollLeft = isRTL ? -1 * this.getChildrenWidth(slider.children) : this.getChildrenWidth(slider.children);
-        break;
-      default:
-        slider.style.setProperty('--n-tabs-heading-justify-content', 'start');
-        slider.scrollLeft = 0;
-    }
+    const currentDevice = elementorFrontend.getCurrentDeviceMode();
+    return elementorFrontend.utils.controls.getResponsiveControlValue(this.getElementSettings(), 'tabs_justify_horizontal', '', currentDevice);
   }
   getHorizontalScrollSetting() {
-    const currentDevice = elementorFrontend.getCurrentDeviceMode(),
-      horizontalScrollSetting = elementorFrontend.utils.controls.getResponsiveControlValue(this.getElementSettings(), 'horizontal_scroll', '', currentDevice);
-    return horizontalScrollSetting;
-  }
-  setHorizontalTabTitleScrollValues(event) {
-    const slider = this.elements.$headingContainer[0],
-      isActiveScroll = slider.classList.contains('e-scroll'),
-      isHorizontalScrollActive = 'enable' === this.getHorizontalScrollSetting(),
-      headingContentIsWiderThanWrapper = slider.scrollWidth > slider.clientWidth;
-    if (!isActiveScroll || !isHorizontalScrollActive || !headingContentIsWiderThanWrapper) {
-      return;
-    }
-    event.preventDefault();
-    const previousPositionX = parseFloat(slider.dataset.pageX),
-      mouseMoveX = event.pageX - previousPositionX,
-      maximumScrollValue = 5,
-      stepLimit = 20;
-    let toScrollDistanceX = 0;
-    if (stepLimit < mouseMoveX) {
-      toScrollDistanceX = maximumScrollValue;
-    } else if (stepLimit * -1 > mouseMoveX) {
-      toScrollDistanceX = -1 * maximumScrollValue;
-    } else {
-      toScrollDistanceX = mouseMoveX;
-    }
-    slider.scrollLeft = slider.scrollLeft - toScrollDistanceX;
-    slider.classList.add('e-scroll-active');
+    const currentDevice = elementorFrontend.getCurrentDeviceMode();
+    return elementorFrontend.utils.controls.getResponsiveControlValue(this.getElementSettings(), 'horizontal_scroll', '', currentDevice);
   }
 }
 exports["default"] = NestedTabs;

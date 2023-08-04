@@ -1,4 +1,4 @@
-/*! elementor - v3.14.0 - 26-06-2023 */
+/*! elementor - v3.15.0 - 02-08-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -143,12 +143,15 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.uploadImage = exports.setStatusFeedback = exports.setGetStarted = exports.getUserInformation = exports.getTextToImageGeneration = exports.getImageToImageUpscale = exports.getImageToImageOutPainting = exports.getImageToImageMaskGeneration = exports.getImageToImageGeneration = exports.getImagePromptEnhanced = exports.getEditText = exports.getCustomCode = exports.getCustomCSS = exports.getCompletionText = void 0;
+exports.uploadImage = exports.setStatusFeedback = exports.setGetStarted = exports.getUserInformation = exports.getTextToImageGeneration = exports.getImageToImageUpscale = exports.getImageToImageReplaceBackground = exports.getImageToImageRemoveText = exports.getImageToImageRemoveBackground = exports.getImageToImageOutPainting = exports.getImageToImageMaskGeneration = exports.getImageToImageGeneration = exports.getImagePromptEnhanced = exports.getEditText = exports.getCustomCode = exports.getCustomCSS = exports.getCompletionText = void 0;
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var request = function request(endpoint) {
   var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  if (Object.keys(data).length) {
+    data.context = window.elementorAiCurrentContext;
+  }
   return new Promise(function (resolve, reject) {
     return elementorCommon.ajax.addRequest(endpoint, {
       success: resolve,
@@ -239,6 +242,25 @@ var getImageToImageUpscale = function getImageToImageUpscale(prompt, promptSetti
   });
 };
 exports.getImageToImageUpscale = getImageToImageUpscale;
+var getImageToImageRemoveBackground = function getImageToImageRemoveBackground(image) {
+  return request('ai_get_image_to_image_remove_background', {
+    image: image
+  });
+};
+exports.getImageToImageRemoveBackground = getImageToImageRemoveBackground;
+var getImageToImageReplaceBackground = function getImageToImageReplaceBackground(prompt, image) {
+  return request('ai_get_image_to_image_replace_background', {
+    prompt: prompt,
+    image: image
+  });
+};
+exports.getImageToImageReplaceBackground = getImageToImageReplaceBackground;
+var getImageToImageRemoveText = function getImageToImageRemoveText(image) {
+  return request('ai_get_image_to_image_remove_text', {
+    image: image
+  });
+};
+exports.getImageToImageRemoveText = getImageToImageRemoveText;
 var getImagePromptEnhanced = function getImagePromptEnhanced(prompt) {
   return request('ai_get_image_prompt_enhancer', {
     prompt: prompt
@@ -446,7 +468,8 @@ var Loader = function Loader(props) {
     sx: {
       px: 4,
       py: 6
-    }
+    },
+    width: "100%"
   }, /*#__PURE__*/_react.default.createElement(_ui.LinearProgress, (0, _extends2.default)({
     color: "secondary"
   }, props)));
@@ -897,6 +920,42 @@ Textarea.propTypes = {
   helperText: PropTypes.string
 };
 var _default = Textarea;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/ui/overlay-bar-text.js":
+/*!************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/ui/overlay-bar-text.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _excluded = ["children"];
+var OverlayBarText = function OverlayBarText(_ref) {
+  var children = _ref.children,
+    props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+  return /*#__PURE__*/_react.default.createElement(_ui.Typography, (0, _extends2.default)({
+    variant: "caption",
+    color: "common.white"
+  }, props), children);
+};
+OverlayBarText.propTypes = {
+  children: PropTypes.node
+};
+var _default = OverlayBarText;
 exports["default"] = _default;
 
 /***/ }),
@@ -1452,312 +1511,38 @@ Object.defineProperty(exports, "__esModule", ({
 exports["default"] = void 0;
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
 var _react = __webpack_require__(/*! react */ "react");
+var initialIndex = -1;
 var useImageNavigation = function useImageNavigation(images) {
-  var _useState = (0, _react.useState)(-1),
+  var _useState = (0, _react.useState)(initialIndex),
     _useState2 = (0, _slicedToArray2.default)(_useState, 2),
-    zoomedImageIndex = _useState2[0],
-    setZoomedImageIndex = _useState2[1];
-  var imageNavigation = {
-    backToResults: function backToResults() {
-      return setZoomedImageIndex(-1);
+    zoomIndex = _useState2[0],
+    setZoomIndex = _useState2[1];
+  var actions = {
+    reset: function reset() {
+      return setZoomIndex(initialIndex);
     },
-    navigatePrevImage: function navigatePrevImage() {
-      var prevImage = zoomedImageIndex + 1;
+    prev: function prev() {
+      var prevImage = zoomIndex + 1;
       if (prevImage >= images.length) {
         prevImage = 0;
       }
-      setZoomedImageIndex(prevImage);
+      setZoomIndex(prevImage);
     },
-    navigateNextImage: function navigateNextImage() {
-      var nextImage = zoomedImageIndex - 1;
+    next: function next() {
+      var nextImage = zoomIndex - 1;
       if (nextImage < 0) {
         nextImage = images.length - 1;
       }
-      setZoomedImageIndex(nextImage);
+      setZoomIndex(nextImage);
     }
   };
   return {
-    zoomedImageIndex: zoomedImageIndex,
-    setZoomedImageIndex: setZoomedImageIndex,
-    imageNavigation: imageNavigation
+    zoomIndex: zoomIndex,
+    setZoomIndex: setZoomIndex,
+    actions: actions
   };
 };
 var _default = useImageNavigation;
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../modules/ai/assets/js/editor/hooks/use-image-prompt-enhancer.js":
-/*!*************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/hooks/use-image-prompt-enhancer.js ***!
-  \*************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
-var _api = __webpack_require__(/*! ../api */ "../modules/ai/assets/js/editor/api/index.js");
-var _usePrompt = _interopRequireDefault(__webpack_require__(/*! ./use-prompt */ "../modules/ai/assets/js/editor/hooks/use-prompt.js"));
-var getResult = /*#__PURE__*/function () {
-  var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(prompt) {
-    return _regenerator.default.wrap(function _callee$(_context) {
-      while (1) switch (_context.prev = _context.next) {
-        case 0:
-          return _context.abrupt("return", (0, _api.getImagePromptEnhanced)(prompt));
-        case 1:
-        case "end":
-          return _context.stop();
-      }
-    }, _callee);
-  }));
-  return function getResult(_x) {
-    return _ref.apply(this, arguments);
-  };
-}();
-var useImagePromptEnhancer = function useImagePromptEnhancer(initialValue) {
-  var promptData = (0, _usePrompt.default)(getResult, initialValue);
-  return promptData;
-};
-var _default = useImagePromptEnhancer;
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../modules/ai/assets/js/editor/hooks/use-image-prompt-settings.js":
-/*!*************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/hooks/use-image-prompt-settings.js ***!
-  \*************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
-var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
-var _react = __webpack_require__(/*! react */ "react");
-var _consts = __webpack_require__(/*! ../pages/form-media/consts/consts */ "../modules/ai/assets/js/editor/pages/form-media/consts/consts.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-var useImagePromptSettings = function useImagePromptSettings() {
-  var _useState3;
-  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-    _ref$style = _ref.style,
-    style = _ref$style === void 0 ? '' : _ref$style,
-    _ref$type = _ref.type,
-    type = _ref$type === void 0 ? '' : _ref$type,
-    _ref$imageWeight = _ref.imageWeight,
-    imageWeight = _ref$imageWeight === void 0 ? 0 : _ref$imageWeight,
-    _ref$aspectRatio = _ref.aspectRatio,
-    aspectRatio = _ref$aspectRatio === void 0 ? '1:1' : _ref$aspectRatio,
-    _ref$zoom = _ref.zoom,
-    zoom = _ref$zoom === void 0 ? '1' : _ref$zoom,
-    _ref$upScaleTo = _ref.upScaleTo,
-    upScaleTo = _ref$upScaleTo === void 0 ? '512' : _ref$upScaleTo;
-  var _useState = (0, _react.useState)((_useState3 = {}, (0, _defineProperty2.default)(_useState3, _consts.IMAGE_PROMPT_SETTINGS.IMAGE_TYPE, style), (0, _defineProperty2.default)(_useState3, _consts.IMAGE_PROMPT_SETTINGS.STYLE_PRESET, type), (0, _defineProperty2.default)(_useState3, _consts.IMAGE_PROMPT_SETTINGS.IMAGE_STRENGTH, imageWeight), (0, _defineProperty2.default)(_useState3, _consts.IMAGE_PROMPT_SETTINGS.ASPECT_RATIO, aspectRatio), (0, _defineProperty2.default)(_useState3, _consts.IMAGE_PROMPT_SETTINGS.ZOOM, zoom), (0, _defineProperty2.default)(_useState3, _consts.IMAGE_PROMPT_SETTINGS.UPSCALE_TO, upScaleTo), _useState3)),
-    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
-    promptSettings = _useState2[0],
-    setPromptSettings = _useState2[1];
-  var updatePromptSettings = function updatePromptSettings(newSettings) {
-    setPromptSettings(_objectSpread(_objectSpread({}, promptSettings), newSettings));
-  };
-  var resetPromptSettings = function resetPromptSettings() {
-    var _setPromptSettings;
-    setPromptSettings((_setPromptSettings = {}, (0, _defineProperty2.default)(_setPromptSettings, _consts.IMAGE_PROMPT_SETTINGS.IMAGE_TYPE, style), (0, _defineProperty2.default)(_setPromptSettings, _consts.IMAGE_PROMPT_SETTINGS.STYLE_PRESET, ''), (0, _defineProperty2.default)(_setPromptSettings, _consts.IMAGE_PROMPT_SETTINGS.IMAGE_STRENGTH, 0), (0, _defineProperty2.default)(_setPromptSettings, _consts.IMAGE_PROMPT_SETTINGS.ASPECT_RATIO, '1:1'), (0, _defineProperty2.default)(_setPromptSettings, _consts.IMAGE_PROMPT_SETTINGS.ZOOM, '1'), (0, _defineProperty2.default)(_setPromptSettings, _consts.IMAGE_PROMPT_SETTINGS.UPSCALE_TO, '512'), _setPromptSettings));
-  };
-  return {
-    promptSettings: promptSettings,
-    updatePromptSettings: updatePromptSettings,
-    setPromptSettings: setPromptSettings,
-    resetPromptSettings: resetPromptSettings
-  };
-};
-var _default = useImagePromptSettings;
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../modules/ai/assets/js/editor/hooks/use-image-prompt.js":
-/*!****************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/hooks/use-image-prompt.js ***!
-  \****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
-var _api = __webpack_require__(/*! ../api */ "../modules/ai/assets/js/editor/api/index.js");
-var _usePrompt = _interopRequireDefault(__webpack_require__(/*! ./use-prompt */ "../modules/ai/assets/js/editor/hooks/use-prompt.js"));
-var _consts = __webpack_require__(/*! ../pages/form-media/consts/consts */ "../modules/ai/assets/js/editor/pages/form-media/consts/consts.js");
-var getImageResponse = /*#__PURE__*/function () {
-  var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(prompt, promptSettings) {
-    var image,
-      imageToImageType,
-      mask,
-      apiMethod,
-      _args = arguments;
-    return _regenerator.default.wrap(function _callee$(_context) {
-      while (1) switch (_context.prev = _context.next) {
-        case 0:
-          image = _args.length > 2 && _args[2] !== undefined ? _args[2] : null;
-          imageToImageType = _args.length > 3 && _args[3] !== undefined ? _args[3] : null;
-          mask = _args.length > 4 && _args[4] !== undefined ? _args[4] : null;
-          apiMethod = image ? _api.getImageToImageGeneration : _api.getTextToImageGeneration;
-          if (imageToImageType && _consts.PANELS.IN_PAINTING === imageToImageType) {
-            apiMethod = _api.getImageToImageMaskGeneration;
-          }
-          if (imageToImageType && _consts.PANELS.OUT_PAINTING === imageToImageType) {
-            apiMethod = _api.getImageToImageOutPainting;
-          }
-          if (imageToImageType && _consts.PANELS.UPSCALE === imageToImageType) {
-            apiMethod = _api.getImageToImageUpscale;
-          }
-          return _context.abrupt("return", apiMethod(prompt, promptSettings, image, mask));
-        case 8:
-        case "end":
-          return _context.stop();
-      }
-    }, _callee);
-  }));
-  return function getImageResponse(_x, _x2) {
-    return _ref.apply(this, arguments);
-  };
-}();
-var useImagePrompt = function useImagePrompt(initialValue) {
-  var promptData = (0, _usePrompt.default)(getImageResponse, initialValue);
-  return promptData;
-};
-var _default = useImagePrompt;
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../modules/ai/assets/js/editor/hooks/use-image-screen-panel.js":
-/*!**********************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/hooks/use-image-screen-panel.js ***!
-  \**********************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
-var _react = __webpack_require__(/*! react */ "react");
-var useImageScreenPanel = function useImageScreenPanel(initialScreen, initialPanel) {
-  var _useState = (0, _react.useState)(initialScreen),
-    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
-    screen = _useState2[0],
-    setScreen = _useState2[1];
-  var _useState3 = (0, _react.useState)(initialPanel),
-    _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
-    panel = _useState4[0],
-    setPanel = _useState4[1];
-  return {
-    screen: screen,
-    setScreen: setScreen,
-    panel: panel,
-    setPanel: setPanel
-  };
-};
-var _default = useImageScreenPanel;
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../modules/ai/assets/js/editor/hooks/use-image-upload.js":
-/*!****************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/hooks/use-image-upload.js ***!
-  \****************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
-var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
-var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
-var _react = __webpack_require__(/*! react */ "react");
-var _api = __webpack_require__(/*! ../api */ "../modules/ai/assets/js/editor/api/index.js");
-var useImageUpload = function useImageUpload() {
-  var _useState = (0, _react.useState)(false),
-    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
-    isUploading = _useState2[0],
-    setIsUploading = _useState2[1];
-  var _useState3 = (0, _react.useState)(''),
-    _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
-    uploadError = _useState4[0],
-    setUploadError = _useState4[1];
-  var _useState5 = (0, _react.useState)({}),
-    _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
-    attachmentData = _useState6[0],
-    setAttachmentData = _useState6[1];
-  var upload = /*#__PURE__*/function () {
-    var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-      var _args = arguments;
-      return _regenerator.default.wrap(function _callee$(_context) {
-        while (1) switch (_context.prev = _context.next) {
-          case 0:
-            setUploadError('');
-            setIsUploading(true);
-            _api.uploadImage.apply(void 0, _args).then(function (result) {
-              return setAttachmentData(result);
-            }).catch(function (err) {
-              return setUploadError((err === null || err === void 0 ? void 0 : err.responseText) || err);
-            }).finally(function () {
-              return setIsUploading(false);
-            });
-          case 3:
-          case "end":
-            return _context.stop();
-        }
-      }, _callee);
-    }));
-    return function upload() {
-      return _ref.apply(this, arguments);
-    };
-  }();
-  var resetUpload = function resetUpload() {
-    setAttachmentData({});
-    setUploadError('');
-    setIsUploading(false);
-  };
-  return {
-    attachmentData: attachmentData,
-    isUploading: isUploading,
-    uploadError: uploadError,
-    resetUpload: resetUpload,
-    upload: upload
-  };
-};
-var _default = useImageUpload;
 exports["default"] = _default;
 
 /***/ }),
@@ -1778,37 +1563,38 @@ Object.defineProperty(exports, "__esModule", ({
 exports["default"] = void 0;
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
 var _react = __webpack_require__(/*! react */ "react");
+var loadImage = function loadImage(url) {
+  return new Promise(function (resolve, reject) {
+    var loadImg = new Image();
+    loadImg.src = url;
+    loadImg.onload = function () {
+      return resolve(url);
+    };
+    loadImg.onerror = function (err) {
+      return reject(err);
+    };
+  });
+};
 var useImagesPreload = function useImagesPreload() {
-  var property = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'url';
   var _useState = (0, _react.useState)(false),
     _useState2 = (0, _slicedToArray2.default)(_useState, 2),
-    imagesPreloaded = _useState2[0],
-    setImagesPreLoaded = _useState2[1];
+    ready = _useState2[0],
+    setReady = _useState2[1];
   var preloadImages = function preloadImages(images) {
-    setImagesPreLoaded(false);
-    var loadImage = function loadImage(image) {
-      return new Promise(function (resolve, reject) {
-        var loadImg = new Image();
-        loadImg.src = image[property];
-        loadImg.onload = function () {
-          return resolve(image[property]);
-        };
-        loadImg.onerror = function (err) {
-          return reject(err);
-        };
-      });
-    };
-    Promise.all(images.map(function (image) {
-      return loadImage(image);
+    setReady(false);
+    Promise.all(images.map(function (url) {
+      return loadImage(url);
     })).then(function () {
-      return setImagesPreLoaded(true);
-    }).catch(function (err) {
+      return setReady(true);
+    })
+    // eslint-disable-next-line no-console
+    .catch(function (err) {
       return console.log('Failed to load images', err);
     }); // Todo error better handling
   };
 
   return {
-    imagesPreloaded: imagesPreloaded,
+    ready: ready,
     preloadImages: preloadImages
   };
 };
@@ -1865,20 +1651,32 @@ var usePrompt = function usePrompt(fetchData, initialState) {
     setData = _useState6[1];
   var send = /*#__PURE__*/function () {
     var _ref2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-      var _args = arguments;
+      var _len,
+        args,
+        _key,
+        _args = arguments;
       return _regenerator.default.wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
-            setError('');
-            setIsLoading(true);
-            fetchData.apply(void 0, _args).then(function (result) {
-              return setData(normalizeResponse(result));
-            }).catch(function (err) {
-              return setError((err === null || err === void 0 ? void 0 : err.responseText) || err);
-            }).finally(function () {
-              return setIsLoading(false);
-            });
-          case 3:
+            for (_len = _args.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+              args[_key] = _args[_key];
+            }
+            return _context.abrupt("return", new Promise(function (resolve, reject) {
+              setError('');
+              setIsLoading(true);
+              fetchData.apply(void 0, args).then(function (result) {
+                var normalizedData = normalizeResponse(result);
+                setData(normalizedData);
+                resolve(normalizedData);
+              }).catch(function (err) {
+                var finalError = (err === null || err === void 0 ? void 0 : err.responseText) || err;
+                setError(finalError);
+                reject(finalError);
+              }).finally(function () {
+                return setIsLoading(false);
+              });
+            }));
+          case 2:
           case "end":
             return _context.stop();
         }
@@ -2475,6 +2273,104 @@ exports["default"] = _default;
 
 /***/ }),
 
+/***/ "../modules/ai/assets/js/editor/icons/remove-bg.js":
+/*!*********************************************************!*\
+  !*** ../modules/ai/assets/js/editor/icons/remove-bg.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var RemoveBackgroundIcon = _react.default.forwardRef(function (props, ref) {
+  return /*#__PURE__*/_react.default.createElement(_ui.SvgIcon, (0, _extends2.default)({
+    viewBox: "0 0 16 16"
+  }, props, {
+    ref: ref
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M5.74996 2.50038C5.74996 2.2242 5.52607 2.00031 5.24989 2.00031C4.9737 2.00031 4.74981 2.2242 4.74981 2.50038V2.50705C4.74981 2.78323 4.9737 3.00712 5.24989 3.00712C5.52607 3.00712 5.74996 2.78323 5.74996 2.50705V2.50038Z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M7.9997 2.00031C8.27588 2.00031 8.49978 2.2242 8.49978 2.50038V2.50705C8.49978 2.78323 8.27588 3.00712 7.9997 3.00712C7.72352 3.00712 7.49963 2.78323 7.49963 2.50705V2.50038C7.49963 2.2242 7.72352 2.00031 7.9997 2.00031Z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M11.2496 2.50038C11.2496 2.2242 11.0257 2.00031 10.7495 2.00031C10.4733 2.00031 10.2494 2.2242 10.2494 2.50038V2.50705C10.2494 2.78323 10.4733 3.00712 10.7495 3.00712C11.0257 3.00712 11.2496 2.78323 11.2496 2.50705V2.50038Z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M13.4993 2.00031C13.7755 2.00031 13.9994 2.2242 13.9994 2.50038V2.50705C13.9994 2.78323 13.7755 3.00712 13.4993 3.00712C13.2231 3.00712 12.9993 2.78323 12.9993 2.50705V2.50038C12.9993 2.2242 13.2231 2.00031 13.4993 2.00031Z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M13.9994 5.25019C13.9994 4.97401 13.7755 4.75012 13.4993 4.75012C13.2231 4.75012 12.9993 4.97401 12.9993 5.25019V5.25686C12.9993 5.53304 13.2231 5.75694 13.4993 5.75694C13.7755 5.75694 13.9994 5.53304 13.9994 5.25686V5.25019Z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M13.9994 8.00001C13.9994 7.72382 13.7755 7.49993 13.4993 7.49993C13.2231 7.49993 12.9993 7.72382 12.9993 8.00001V8.00667C12.9993 8.28286 13.2231 8.50675 13.4993 8.50675C13.7755 8.50675 13.9994 8.28286 13.9994 8.00667V8.00001Z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M2.50007 7.49993C2.77626 7.49993 3.00015 7.72382 3.00015 8.00001V8.00667C3.00015 8.28286 2.77626 8.50675 2.50007 8.50675C2.22389 8.50675 2 8.28286 2 8.00667V8.00001C2 7.72382 2.22389 7.49993 2.50007 7.49993Z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M3.00015 5.25019C3.00015 4.97401 2.77626 4.75012 2.50007 4.75012C2.22389 4.75012 2 4.97401 2 5.25019V5.25686C2 5.53304 2.22389 5.75694 2.50007 5.75694C2.77626 5.75694 3.00015 5.53304 3.00015 5.25686V5.25019Z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M2.50007 2.00031C2.77626 2.00031 3.00015 2.2242 3.00015 2.50038V2.50705C3.00015 2.78323 2.77626 3.00712 2.50007 3.00712C2.22389 3.00712 2 2.78323 2 2.50705V2.50038C2 2.2242 2.22389 2.00031 2.50007 2.00031Z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M9.37461 7.31255C9.94411 7.31255 10.4058 6.85088 10.4058 6.28137C10.4058 5.71187 9.94411 5.25019 9.37461 5.25019C8.8051 5.25019 8.34343 5.71187 8.34343 6.28137C8.34343 6.85088 8.8051 7.31255 9.37461 7.31255Z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M9.37461 9.21061L7.6724 7.44357L7.66567 7.43672C7.27331 7.04478 6.79598 6.81248 6.28107 6.81248C5.76615 6.81248 5.28883 7.04478 4.89647 7.43672L4.88973 7.44358L2.13992 10.2982C2.05015 10.3913 2 10.5157 2 10.6451V13.4996C2 13.7758 2.22389 13.9997 2.50007 13.9997H13.4993C13.7755 13.9997 13.9994 13.7758 13.9994 13.4996V10.6451C13.9994 10.6365 13.9992 10.6279 13.9988 10.6194C13.9958 10.562 13.9833 10.5072 13.9627 10.4566C13.9409 10.403 13.9093 10.3523 13.8681 10.3073C13.8651 10.304 13.8621 10.3008 13.859 10.2976L12.4846 8.87085L12.4778 8.86399C12.0855 8.47205 11.6082 8.23975 11.0932 8.23975C10.5783 8.23975 10.101 8.47205 9.70864 8.86399L9.70191 8.87084L9.37461 9.21061ZM5.60649 8.14113L3.00015 10.8468V12.9996H12.9993V10.8468L11.7678 9.5684C11.5234 9.32549 11.2897 9.2399 11.0932 9.2399C10.8968 9.2399 10.6631 9.32549 10.4187 9.5684L10.069 9.93142L11.1097 11.0118C11.3013 11.2107 11.2954 11.5272 11.0965 11.7188C10.8975 11.9104 10.581 11.9045 10.3894 11.7056L9.01604 10.28C9.01482 10.2787 9.01361 10.2775 9.01241 10.2762L6.95564 8.14113C6.7112 7.89822 6.4775 7.81263 6.28107 7.81263C6.08463 7.81263 5.85094 7.89822 5.60649 8.14113Z"
+  }));
+});
+var _default = RemoveBackgroundIcon;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/icons/replace-bg.js":
+/*!**********************************************************!*\
+  !*** ../modules/ai/assets/js/editor/icons/replace-bg.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var ReplaceBackgroundIcon = _react.default.forwardRef(function (props, ref) {
+  return /*#__PURE__*/_react.default.createElement(_ui.SvgIcon, (0, _extends2.default)({
+    viewBox: "0 0 16 16"
+  }, props, {
+    ref: ref
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M4.35355 1.64645C4.54882 1.84171 4.54882 2.15829 4.35355 2.35355L2.35355 4.35355C2.15829 4.54882 1.84171 4.54882 1.64645 4.35355C1.45118 4.15829 1.45118 3.84171 1.64645 3.64645L3.64645 1.64645C3.84171 1.45118 4.15829 1.45118 4.35355 1.64645Z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M7.68689 1.64645C7.88215 1.84171 7.88215 2.15829 7.68689 2.35355L2.35355 7.68689C2.15829 7.88215 1.84171 7.88215 1.64645 7.68689C1.45118 7.49162 1.45118 7.17504 1.64645 6.97978L6.97978 1.64645C7.17504 1.45118 7.49162 1.45118 7.68689 1.64645Z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M11.0202 1.64645C11.2155 1.84171 11.2155 2.15829 11.0202 2.35355L6.68689 6.68689C6.49162 6.88215 6.17504 6.88215 5.97978 6.68689C5.78452 6.49162 5.78452 6.17504 5.97978 5.97978L10.3131 1.64645C10.5084 1.45118 10.825 1.45118 11.0202 1.64645Z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M14.3536 1.64645C14.5488 1.84171 14.5488 2.15829 14.3536 2.35355L11.0202 5.68689C10.825 5.88215 10.5084 5.88215 10.3131 5.68689C10.1179 5.49162 10.1179 5.17504 10.3131 4.97978L13.6464 1.64645C13.8417 1.45118 14.1583 1.45118 14.3536 1.64645Z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M14.3536 4.97978C14.5488 5.17504 14.5488 5.49162 14.3536 5.68689L12.0202 8.02022C11.825 8.21548 11.5084 8.21548 11.3131 8.02022C11.1179 7.82496 11.1179 7.50838 11.3131 7.31311L13.6464 4.97978C13.8417 4.78452 14.1583 4.78452 14.3536 4.97978Z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M14.3536 8.31311C14.5488 8.50838 14.5488 8.82496 14.3536 9.02022L14.0202 9.35355C13.825 9.54882 13.5084 9.54882 13.3131 9.35355C13.1179 9.15829 13.1179 8.84171 13.3131 8.64645L13.6464 8.31311C13.8417 8.11785 14.1583 8.11785 14.3536 8.31311Z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M10.3333 7C10.3333 7.55228 9.88562 8 9.33333 8C8.78105 8 8.33333 7.55228 8.33333 7C8.33333 6.44772 8.78105 6 9.33333 6C9.88562 6 10.3333 6.44772 10.3333 7Z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M6.33333 8.5C6.14679 8.5 5.92267 8.58153 5.6867 8.81725C5.67587 8.82806 5.66455 8.83838 5.65278 8.84816L2.5 11.4665V13.5H13.5V11.2318C13.5 10.9556 13.7239 10.7318 14 10.7318C14.2761 10.7318 14.5 10.9556 14.5 11.2318V14C14.5 14.2761 14.2761 14.5 14 14.5H2C1.72386 14.5 1.5 14.2761 1.5 14V11.2318C1.5 11.0831 1.56617 10.9421 1.68056 10.8471L4.99717 8.09274C5.37661 7.72073 5.83674 7.5 6.33333 7.5C6.83746 7.5 7.304 7.72747 7.6867 8.10976L7.69343 8.11662L11.0268 11.5769C11.2183 11.7758 11.2124 12.0923 11.0136 12.2839C10.8147 12.4755 10.4981 12.4696 10.3066 12.2707L6.97679 8.81408C6.74199 8.5808 6.51904 8.5 6.33333 8.5Z"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M10.3564 10.1984L9.69343 10.8866C9.50185 11.0854 9.18532 11.0914 8.98645 10.8998C8.78757 10.7082 8.78166 10.3917 8.97324 10.1928L9.6399 9.50073L9.64663 9.49387C10.4992 8.64223 11.843 8.83788 12.6387 9.45172C12.6435 9.45538 12.6482 9.45913 12.6528 9.46297L14.3194 10.8471C14.5319 11.0235 14.5611 11.3388 14.3846 11.5512C14.2082 11.7636 13.893 11.7928 13.6806 11.6164L12.0213 10.2384C11.4855 9.82976 10.7405 9.81862 10.3564 10.1984Z"
+  }));
+});
+var _default = ReplaceBackgroundIcon;
+exports["default"] = _default;
+
+/***/ }),
+
 /***/ "../modules/ai/assets/js/editor/icons/undo-icon.js":
 /*!*********************************************************!*\
   !*** ../modules/ai/assets/js/editor/icons/undo-icon.js ***!
@@ -2592,103 +2488,6 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ "../modules/ai/assets/js/editor/media-dialog.js":
-/*!******************************************************!*\
-  !*** ../modules/ai/assets/js/editor/media-dialog.js ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
-/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
-var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
-var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
-var _promptDialog = _interopRequireDefault(__webpack_require__(/*! ./components/prompt-dialog */ "../modules/ai/assets/js/editor/components/prompt-dialog.js"));
-var _formMedia = _interopRequireDefault(__webpack_require__(/*! ./pages/form-media */ "../modules/ai/assets/js/editor/pages/form-media/index.js"));
-var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-var MediaDialog = function MediaDialog(_ref) {
-  var onClose = _ref.onClose,
-    DialogProps = _ref.DialogProps,
-    getControlValue = _ref.getControlValue,
-    controlView = _ref.controlView,
-    additionalOptions = _ref.additionalOptions,
-    credits = _ref.credits,
-    maybeRenderUpgradeChip = _ref.maybeRenderUpgradeChip;
-  var _useState = (0, _react.useState)(false),
-    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
-    hasUnsavedChanges = _useState2[0],
-    setHasUnsavedChanges = _useState2[1];
-  var _useState3 = (0, _react.useState)(false),
-    _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
-    showUnsavedChangeAlert = _useState4[0],
-    setShowUnsavedChangeAlert = _useState4[1];
-  var onCloseIntent = function onCloseIntent() {
-    if (hasUnsavedChanges) {
-      setShowUnsavedChangeAlert(true);
-      return;
-    }
-    onClose();
-  };
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_promptDialog.default, (0, _extends2.default)({
-    onClose: onCloseIntent,
-    maxWidth: "lg"
-  }, DialogProps), /*#__PURE__*/_react.default.createElement(_promptDialog.default.Header, {
-    onClose: onCloseIntent
-  }, maybeRenderUpgradeChip()), /*#__PURE__*/_react.default.createElement(_ui.Divider, null), /*#__PURE__*/_react.default.createElement(_formMedia.default, {
-    onClose: onClose,
-    getControlValue: getControlValue,
-    controlView: controlView,
-    additionalOptions: additionalOptions,
-    credits: credits,
-    setHasUnsavedChanges: setHasUnsavedChanges
-  })), showUnsavedChangeAlert && /*#__PURE__*/_react.default.createElement(_ui.Dialog, {
-    open: true,
-    onClose: onClose,
-    "aria-labelledby": "unsaved-changes-alert-title",
-    "aria-describedby": "unsaved-changes-alert-description"
-  }, /*#__PURE__*/_react.default.createElement(_ui.DialogTitle, {
-    id: "unsaved-changes-alert-title",
-    sx: {
-      borderBottom: 0
-    }
-  }, __('Leave Elementor AI?', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.DialogContent, null, /*#__PURE__*/_react.default.createElement(_ui.DialogContentText, {
-    id: "unsaved-changes-alert-description"
-  }, __('Images will be gone forever and we won’t be able to recover them.', 'elementor'))), /*#__PURE__*/_react.default.createElement(_ui.DialogActions, null, /*#__PURE__*/_react.default.createElement(_ui.Button, {
-    onClick: function onClick() {
-      return setShowUnsavedChangeAlert(false);
-    },
-    color: "secondary"
-  }, __('Cancel', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Button, {
-    onClick: onClose,
-    color: "error",
-    variant: "contained"
-  }, __('Yes, leave', 'elementor')))));
-};
-MediaDialog.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  DialogProps: PropTypes.object,
-  getControlValue: PropTypes.func.isRequired,
-  controlView: PropTypes.object,
-  additionalOptions: PropTypes.object,
-  credits: PropTypes.number,
-  maybeRenderUpgradeChip: PropTypes.func
-};
-var _default = MediaDialog;
-exports["default"] = _default;
-
-/***/ }),
-
 /***/ "../modules/ai/assets/js/editor/page-content.js":
 /*!******************************************************!*\
   !*** ../modules/ai/assets/js/editor/page-content.js ***!
@@ -2715,7 +2514,7 @@ var _useUserInfo2 = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-u
 var _wizardDialog = _interopRequireDefault(__webpack_require__(/*! ./components/wizard-dialog */ "../modules/ai/assets/js/editor/components/wizard-dialog.js"));
 var _promptDialog = _interopRequireDefault(__webpack_require__(/*! ./components/prompt-dialog */ "../modules/ai/assets/js/editor/components/prompt-dialog.js"));
 var _upgradeChip = _interopRequireDefault(__webpack_require__(/*! ./components/upgrade-chip */ "../modules/ai/assets/js/editor/components/upgrade-chip.js"));
-var _mediaDialog = _interopRequireDefault(__webpack_require__(/*! ./media-dialog */ "../modules/ai/assets/js/editor/media-dialog.js"));
+var _formMedia = _interopRequireDefault(__webpack_require__(/*! ./pages/form-media */ "../modules/ai/assets/js/editor/pages/form-media/index.js"));
 var PageContent = function PageContent(_ref) {
   var type = _ref.type,
     controlType = _ref.controlType,
@@ -2797,7 +2596,7 @@ var PageContent = function PageContent(_ref) {
     })));
   }
   if ('media' === type) {
-    return /*#__PURE__*/_react.default.createElement(_mediaDialog.default, {
+    return /*#__PURE__*/_react.default.createElement(_formMedia.default, {
       onClose: onClose,
       getControlValue: getControlValue,
       controlView: controlView,
@@ -3204,10 +3003,1418 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ "../modules/ai/assets/js/editor/pages/form-media/consts/consts.js":
-/*!************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/consts/consts.js ***!
-  \************************************************************************/
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/back-button.js":
+/*!*********************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/back-button.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _chevronLeftIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/chevron-left-icon */ "../modules/ai/assets/js/editor/icons/chevron-left-icon.js"));
+var _excluded = ["children"];
+var StyledChevronLeftIcon = (0, _ui.withDirection)(_chevronLeftIcon.default);
+var BackButton = function BackButton(_ref) {
+  var children = _ref.children,
+    props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+  return /*#__PURE__*/_react.default.createElement(_ui.Button, (0, _extends2.default)({
+    size: "small",
+    variant: "text",
+    color: "secondary",
+    startIcon: /*#__PURE__*/_react.default.createElement(StyledChevronLeftIcon, null)
+  }, props), children || __('Back', 'elementor'));
+};
+BackButton.propTypes = {
+  children: PropTypes.node
+};
+var _default = BackButton;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/enhance-button.js":
+/*!************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/enhance-button.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _wandIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/wand-icon */ "../modules/ai/assets/js/editor/icons/wand-icon.js"));
+var _excluded = ["isLoading"];
+var StyledWandIcon = (0, _ui.withDirection)(_wandIcon.default);
+var EnhanceButton = function EnhanceButton(_ref) {
+  var isLoading = _ref.isLoading,
+    props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+  if (isLoading) {
+    return /*#__PURE__*/_react.default.createElement(_ui.CircularProgress, {
+      color: "secondary",
+      size: 20,
+      sx: {
+        mr: 2
+      }
+    });
+  }
+  return /*#__PURE__*/_react.default.createElement(_ui.Tooltip, {
+    title: __('Enhance prompt', 'elementor')
+  }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
+    component: "span",
+    sx: {
+      cursor: 'pointer'
+    }
+  }, /*#__PURE__*/_react.default.createElement(_ui.IconButton, (0, _extends2.default)({
+    size: "small",
+    color: "secondary"
+  }, props), /*#__PURE__*/_react.default.createElement(StyledWandIcon, null))));
+};
+EnhanceButton.propTypes = {
+  isLoading: PropTypes.bool
+};
+var _default = EnhanceButton;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/gallery.js":
+/*!*****************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/gallery.js ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _overlay = _interopRequireDefault(__webpack_require__(/*! ../../../components/ui/overlay */ "../modules/ai/assets/js/editor/components/ui/overlay.js"));
+var _overlayBar = _interopRequireDefault(__webpack_require__(/*! ../../../components/ui/overlay-bar */ "../modules/ai/assets/js/editor/components/ui/overlay-bar.js"));
+var _overlayBarText = _interopRequireDefault(__webpack_require__(/*! ../../../components/ui/overlay-bar-text */ "../modules/ai/assets/js/editor/components/ui/overlay-bar-text.js"));
+var _constants = __webpack_require__(/*! ../constants */ "../modules/ai/assets/js/editor/pages/form-media/constants/index.js");
+var _excluded = ["children"],
+  _excluded2 = ["alt", "src", "text", "children", "aspectRatio", "variant", "OverlayBarProps"];
+var aspectRatios = Object.keys(_constants.IMAGE_ASPECT_RATIO);
+var Gallery = function Gallery(_ref) {
+  var children = _ref.children,
+    props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+  return /*#__PURE__*/_react.default.createElement(_ui.ImageList, (0, _extends2.default)({
+    width: "100%",
+    cols: 2,
+    gap: 24
+  }, props), children);
+};
+Gallery.propTypes = {
+  children: PropTypes.node
+};
+var GalleryImage = function GalleryImage(_ref2) {
+  var alt = _ref2.alt,
+    src = _ref2.src,
+    text = _ref2.text,
+    children = _ref2.children,
+    _ref2$aspectRatio = _ref2.aspectRatio,
+    aspectRatio = _ref2$aspectRatio === void 0 ? '1:1' : _ref2$aspectRatio,
+    _ref2$variant = _ref2.variant,
+    variant = _ref2$variant === void 0 ? 'contained' : _ref2$variant,
+    _ref2$OverlayBarProps = _ref2.OverlayBarProps,
+    OverlayBarProps = _ref2$OverlayBarProps === void 0 ? {} : _ref2$OverlayBarProps,
+    props = (0, _objectWithoutProperties2.default)(_ref2, _excluded2);
+  var style = {};
+  if ('thumbnail' === variant) {
+    style.width = '100%';
+    style.maxHeight = '238px';
+    style.minWidth = '230px';
+  } else {
+    style.width = 'auto';
+    style.height = 'auto';
+    style.maxWidth = '100%';
+    style.maxHeight = '1:1' === aspectRatio ? 'initial' : '100%';
+    style.objectFit = 'contain';
+    style.aspectRatio = aspectRatio.replace(':', ' / ');
+  }
+  return /*#__PURE__*/_react.default.createElement(_ui.ImageListItem, props, /*#__PURE__*/_react.default.createElement(_ui.Box, {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    sx: {
+      bgcolor: 'secondary.background',
+      height: 'contained' === variant ? 336 : 'auto',
+      position: 'relative',
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    alt: alt,
+    src: src,
+    style: style
+  })), children && /*#__PURE__*/_react.default.createElement(_overlay.default, null, /*#__PURE__*/_react.default.createElement(_overlayBar.default, (0, _extends2.default)({
+    gap: 3,
+    position: "bottom"
+  }, OverlayBarProps), text && /*#__PURE__*/_react.default.createElement(_overlayBarText.default, null, text), children)));
+};
+GalleryImage.propTypes = {
+  alt: PropTypes.string,
+  src: PropTypes.string,
+  text: PropTypes.string,
+  children: PropTypes.node,
+  BoxProps: PropTypes.object,
+  OverlayBarProps: PropTypes.object,
+  aspectRatio: PropTypes.oneOf(aspectRatios),
+  variant: PropTypes.oneOf(['contained', 'thumbnail'])
+};
+Gallery.Image = GalleryImage;
+var _default = Gallery;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/generate-again-submit.js":
+/*!*******************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/generate-again-submit.js ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _refreshIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/refresh-icon */ "../modules/ai/assets/js/editor/icons/refresh-icon.js"));
+var GenerateAgainSubmit = function GenerateAgainSubmit(props) {
+  return /*#__PURE__*/_react.default.createElement(_ui.Button, (0, _extends2.default)({
+    fullWidth: true,
+    type: "submit",
+    variant: "contained",
+    color: "secondary",
+    startIcon: /*#__PURE__*/_react.default.createElement(_refreshIcon.default, null),
+    sx: {
+      // TODO: Remove on @elementor/ui 1.4.51.
+      color: 'background.paper'
+    }
+  }, props), __('Generate again', 'elementor'));
+};
+var _default = GenerateAgainSubmit;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/generate-images-submit.js":
+/*!********************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/generate-images-submit.js ***!
+  \********************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _generateButton = _interopRequireDefault(__webpack_require__(/*! ../../../components/generate-button */ "../modules/ai/assets/js/editor/components/generate-button.js"));
+var GenerateImagesSubmit = function GenerateImagesSubmit(props) {
+  return /*#__PURE__*/_react.default.createElement(_generateButton.default, (0, _extends2.default)({
+    size: "medium",
+    fullWidth: true
+  }, props), __('Generate images', 'elementor'));
+};
+var _default = GenerateImagesSubmit;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/generate-loader.js":
+/*!*************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/generate-loader.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _icons = __webpack_require__(/*! @elementor/icons */ "@elementor/icons");
+var GenerateLoader = function GenerateLoader() {
+  return /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 5,
+    width: "100%"
+  }, /*#__PURE__*/_react.default.createElement(_icons.AIIcon, {
+    sx: {
+      color: 'text.primary',
+      fontSize: '60px',
+      mb: 3
+    }
+  }), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    variant: "h4",
+    sx: {
+      color: 'text.primary'
+    }
+  }, __('Bringing your vision to life...', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    variant: "body2"
+  }, __('Hold tight, painting dreams might take a moment.', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Box, {
+    sx: {
+      px: 4,
+      py: 6,
+      width: '100%',
+      maxWidth: 600
+    }
+  }, /*#__PURE__*/_react.default.createElement(_ui.LinearProgress, {
+    color: "inherit"
+  })));
+};
+var _default = GenerateLoader;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/generate-submit.js":
+/*!*************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/generate-submit.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var GenerateSubmit = function GenerateSubmit(props) {
+  return /*#__PURE__*/_react.default.createElement(_ui.Button, (0, _extends2.default)({
+    fullWidth: true,
+    size: "medium",
+    type: "submit",
+    variant: "contained"
+  }, props), props.children || __('Generate', 'elementor'));
+};
+GenerateSubmit.propTypes = {
+  children: PropTypes.node
+};
+var _default = GenerateSubmit;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/image-actions.js":
+/*!***********************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/image-actions.js ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _copyIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/copy-icon */ "../modules/ai/assets/js/editor/icons/copy-icon.js"));
+var _editIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/edit-icon */ "../modules/ai/assets/js/editor/icons/edit-icon.js"));
+var _downloadIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/download-icon */ "../modules/ai/assets/js/editor/icons/download-icon.js"));
+var _zoomInIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/zoom-in-icon */ "../modules/ai/assets/js/editor/icons/zoom-in-icon.js"));
+var _excluded = ["children"],
+  _excluded2 = ["sx"],
+  _excluded3 = ["sx"],
+  _excluded4 = ["sx"],
+  _excluded5 = ["sx"];
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+var StyledEditSvgIcon = (0, _ui.withDirection)(_editIcon.default);
+var StyledCopySvgIcon = (0, _ui.withDirection)(_copyIcon.default);
+var StyledZoomInIcon = (0, _ui.withDirection)(_zoomInIcon.default);
+var Tooltip = function Tooltip(props) {
+  return /*#__PURE__*/_react.default.createElement(_ui.Tooltip, (0, _extends2.default)({
+    PopperProps: {
+      sx: {
+        '&.MuiTooltip-popper .MuiTooltip-tooltip.MuiTooltip-tooltipPlacementBottom': {
+          mt: 3
+        }
+      }
+    }
+  }, props));
+};
+var ImageActions = function ImageActions(_ref) {
+  var children = _ref.children,
+    props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+  return /*#__PURE__*/_react.default.createElement(_ui.Box, (0, _extends2.default)({
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "100%",
+    gap: 3
+  }, props), children);
+};
+ImageActions.propTypes = {
+  children: PropTypes.node
+};
+var UseImage = function UseImage(_ref2) {
+  var sx = _ref2.sx,
+    props = (0, _objectWithoutProperties2.default)(_ref2, _excluded2);
+  return /*#__PURE__*/_react.default.createElement(_ui.Button, (0, _extends2.default)({
+    size: "small",
+    variant: "contained",
+    startIcon: /*#__PURE__*/_react.default.createElement(_downloadIcon.default, null)
+  }, props), __('Use Image', 'elementor'));
+};
+UseImage.propTypes = {
+  sx: PropTypes.object
+};
+var EditImage = function EditImage(props) {
+  return /*#__PURE__*/_react.default.createElement(_ui.Button, (0, _extends2.default)({
+    size: "small",
+    color: "secondary",
+    startIcon: /*#__PURE__*/_react.default.createElement(StyledEditSvgIcon, null)
+  }, props), __('Edit', 'elementor'));
+};
+var EditIcon = function EditIcon(_ref3) {
+  var _ref3$sx = _ref3.sx,
+    sx = _ref3$sx === void 0 ? {} : _ref3$sx,
+    props = (0, _objectWithoutProperties2.default)(_ref3, _excluded3);
+  return /*#__PURE__*/_react.default.createElement(Tooltip, {
+    title: __('Edit', 'elementor')
+  }, /*#__PURE__*/_react.default.createElement(_ui.IconButton, (0, _extends2.default)({
+    sx: _objectSpread({
+      mr: -4,
+      ml: 2,
+      color: 'common.white',
+      '&:hover': {
+        color: 'common.white'
+      }
+    }, sx)
+  }, props), /*#__PURE__*/_react.default.createElement(StyledEditSvgIcon, null)));
+};
+EditIcon.propTypes = {
+  sx: PropTypes.object
+};
+var ZoomIcon = function ZoomIcon(_ref4) {
+  var _ref4$sx = _ref4.sx,
+    sx = _ref4$sx === void 0 ? {} : _ref4$sx,
+    props = (0, _objectWithoutProperties2.default)(_ref4, _excluded4);
+  return /*#__PURE__*/_react.default.createElement(Tooltip, {
+    title: __('Zoom', 'elementor')
+  }, /*#__PURE__*/_react.default.createElement(_ui.IconButton, (0, _extends2.default)({
+    color: "secondary",
+    "aria-label": __('Zoom', 'elementor'),
+    sx: _objectSpread({
+      color: 'common.white',
+      '&:hover': {
+        color: 'common.white'
+      }
+    }, sx)
+  }, props), /*#__PURE__*/_react.default.createElement(StyledZoomInIcon, null)));
+};
+ZoomIcon.propTypes = {
+  sx: PropTypes.object
+};
+var CopyIcon = function CopyIcon(_ref5) {
+  var _ref5$sx = _ref5.sx,
+    sx = _ref5$sx === void 0 ? {} : _ref5$sx,
+    props = (0, _objectWithoutProperties2.default)(_ref5, _excluded5);
+  return /*#__PURE__*/_react.default.createElement(Tooltip, {
+    title: __('Copy prompt', 'elementor')
+  }, /*#__PURE__*/_react.default.createElement(_ui.IconButton, (0, _extends2.default)({
+    sx: _objectSpread({
+      mr: -4,
+      ml: 2,
+      color: 'common.white',
+      '&:hover': {
+        color: 'common.white'
+      }
+    }, sx)
+  }, props), /*#__PURE__*/_react.default.createElement(StyledCopySvgIcon, null)));
+};
+CopyIcon.propTypes = {
+  sx: PropTypes.object
+};
+ImageActions.UseImage = UseImage;
+ImageActions.EditImage = EditImage;
+ImageActions.EditIcon = EditIcon;
+ImageActions.ZoomIcon = ZoomIcon;
+ImageActions.CopyIcon = CopyIcon;
+var _default = ImageActions;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/image-form.js":
+/*!********************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/image-form.js ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _excluded = ["children"];
+var ImageForm = function ImageForm(_ref) {
+  var children = _ref.children,
+    props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+  return /*#__PURE__*/_react.default.createElement(_ui.Box, (0, _extends2.default)({
+    component: "form"
+  }, props), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+    spacing: 6
+  }, children));
+};
+ImageForm.propTypes = {
+  children: PropTypes.node
+};
+var _default = ImageForm;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/image-ratio-select.js":
+/*!****************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/image-ratio-select.js ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
+var _promptActionSelection = _interopRequireDefault(__webpack_require__(/*! ../../../components/prompt-action-selection */ "../modules/ai/assets/js/editor/components/prompt-action-selection.js"));
+var _constants = __webpack_require__(/*! ../constants */ "../modules/ai/assets/js/editor/pages/form-media/constants/index.js");
+var imageRatios = Object.entries(_constants.IMAGE_ASPECT_RATIO).map(function (_ref) {
+  var _ref2 = (0, _slicedToArray2.default)(_ref, 2),
+    value = _ref2[0],
+    label = _ref2[1].label;
+  return {
+    label: label,
+    value: value
+  };
+});
+var ImageRatioSelect = function ImageRatioSelect(props) {
+  return /*#__PURE__*/_react.default.createElement(_promptActionSelection.default, (0, _extends2.default)({
+    options: imageRatios,
+    wrapperStyle: {
+      width: '100%'
+    },
+    label: __('Aspect ratio', 'elementor')
+  }, props));
+};
+var _default = ImageRatioSelect;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/image-slider.js":
+/*!**********************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/image-slider.js ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _chevronLeftIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/chevron-left-icon */ "../modules/ai/assets/js/editor/icons/chevron-left-icon.js"));
+var _chevronRightIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/chevron-right-icon */ "../modules/ai/assets/js/editor/icons/chevron-right-icon.js"));
+var _excluded = ["onPrev", "onNext", "children"],
+  _excluded2 = ["children", "startAction", "sx"],
+  _excluded3 = ["src", "alt"];
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+var StyledChevronLeftIcon = (0, _ui.withDirection)(_chevronLeftIcon.default);
+var StyledChevronRightIcon = (0, _ui.withDirection)(_chevronRightIcon.default);
+var ImageSlider = function ImageSlider(_ref) {
+  var onPrev = _ref.onPrev,
+    onNext = _ref.onNext,
+    children = _ref.children,
+    props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+  return /*#__PURE__*/_react.default.createElement(_ui.Stack, (0, _extends2.default)({
+    alignItems: "flex-start",
+    spacing: 2
+  }, props), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+    direction: "row",
+    spacing: 6,
+    alignSelf: "center",
+    alignItems: "center"
+  }, /*#__PURE__*/_react.default.createElement(_ui.IconButton, {
+    onClick: onPrev,
+    size: "large",
+    color: "secondary"
+  }, /*#__PURE__*/_react.default.createElement(StyledChevronLeftIcon, null)), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+    spacing: 2,
+    justifyContent: "space-around",
+    alignItems: "center"
+  }, children), /*#__PURE__*/_react.default.createElement(_ui.IconButton, {
+    onClick: onNext,
+    size: "large",
+    color: "secondary"
+  }, /*#__PURE__*/_react.default.createElement(StyledChevronRightIcon, null))));
+};
+ImageSlider.propTypes = {
+  onPrev: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired
+};
+var Actions = function Actions(_ref2) {
+  var children = _ref2.children,
+    startAction = _ref2.startAction,
+    _ref2$sx = _ref2.sx,
+    sx = _ref2$sx === void 0 ? {} : _ref2$sx,
+    props = (0, _objectWithoutProperties2.default)(_ref2, _excluded2);
+  return /*#__PURE__*/_react.default.createElement(_ui.Box, (0, _extends2.default)({
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    width: "100%"
+  }, props, {
+    sx: _objectSpread({
+      mb: 4
+    }, sx)
+  }), startAction, /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+    direction: "row",
+    spacing: 3,
+    justifyContent: "flex-end",
+    flexGrow: 1,
+    width: "100%"
+  }, children));
+};
+Actions.propTypes = {
+  sx: PropTypes.object,
+  startAction: PropTypes.node,
+  children: PropTypes.node.isRequired
+};
+var Image = function Image(_ref3) {
+  var src = _ref3.src,
+    _ref3$alt = _ref3.alt,
+    alt = _ref3$alt === void 0 ? '' : _ref3$alt,
+    props = (0, _objectWithoutProperties2.default)(_ref3, _excluded3);
+  return /*#__PURE__*/_react.default.createElement(_ui.Box, {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  }, /*#__PURE__*/_react.default.createElement("img", (0, _extends2.default)({
+    src: src,
+    alt: alt
+  }, props)));
+};
+Image.propTypes = {
+  alt: PropTypes.string,
+  src: PropTypes.string.isRequired
+};
+ImageSlider.Actions = Actions;
+ImageSlider.Image = Image;
+var _default = ImageSlider;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/image-strength-slider.js":
+/*!*******************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/image-strength-slider.js ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var ImageStrengthSlider = function ImageStrengthSlider(props) {
+  return /*#__PURE__*/_react.default.createElement(_ui.FormControl, {
+    sx: {
+      width: '100%'
+    }
+  }, /*#__PURE__*/_react.default.createElement(_ui.Slider, (0, _extends2.default)({
+    marks: true,
+    min: 0,
+    step: 10,
+    max: 100,
+    color: "secondary",
+    id: "image_strength",
+    name: "image_strength",
+    valueLabelDisplay: "auto",
+    getAriaValueText: function getAriaValueText(value) {
+      return "".concat(value, "%");
+    },
+    "aria-label": __('Reference strength', 'elementor')
+  }, props)), /*#__PURE__*/_react.default.createElement(_ui.Box, {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center"
+  }, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    variant: "caption"
+  }, __('Prompt', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    variant: "caption"
+  }, __('Reference image', 'elementor'))));
+};
+var _default = ImageStrengthSlider;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/image-style-select.js":
+/*!****************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/image-style-select.js ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _promptActionSelection = _interopRequireDefault(__webpack_require__(/*! ../../../components/prompt-action-selection */ "../modules/ai/assets/js/editor/components/prompt-action-selection.js"));
+var _constants = __webpack_require__(/*! ../constants */ "../modules/ai/assets/js/editor/pages/form-media/constants/index.js");
+var _excluded = ["type"];
+var ImageStyleSelect = function ImageStyleSelect(_ref) {
+  var _IMAGE_PROMPT_CATEGOR;
+  var _ref$type = _ref.type,
+    type = _ref$type === void 0 ? '' : _ref$type,
+    props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+  // The image styles are determined by the selected type.
+  var imageStyles = Object.entries(((_IMAGE_PROMPT_CATEGOR = _constants.IMAGE_PROMPT_CATEGORIES[type]) === null || _IMAGE_PROMPT_CATEGOR === void 0 ? void 0 : _IMAGE_PROMPT_CATEGOR.subCategories) || {}).map(function (_ref2) {
+    var _ref3 = (0, _slicedToArray2.default)(_ref2, 2),
+      value = _ref3[0],
+      label = _ref3[1];
+    return {
+      label: label,
+      value: value
+    };
+  });
+  return /*#__PURE__*/_react.default.createElement(_promptActionSelection.default, (0, _extends2.default)({
+    options: imageStyles,
+    wrapperStyle: {
+      width: '100%'
+    },
+    label: __('Style', 'elementor')
+  }, props));
+};
+ImageStyleSelect.propTypes = {
+  type: PropTypes.string.isRequired
+};
+var _default = ImageStyleSelect;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/image-type-select.js":
+/*!***************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/image-type-select.js ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
+var _promptActionSelection = _interopRequireDefault(__webpack_require__(/*! ../../../components/prompt-action-selection */ "../modules/ai/assets/js/editor/components/prompt-action-selection.js"));
+var _constants = __webpack_require__(/*! ../constants */ "../modules/ai/assets/js/editor/pages/form-media/constants/index.js");
+var imageTypes = Object.entries(_constants.IMAGE_PROMPT_CATEGORIES).map(function (_ref) {
+  var _ref2 = (0, _slicedToArray2.default)(_ref, 2),
+    key = _ref2[0],
+    label = _ref2[1].label;
+  return {
+    label: label,
+    value: key
+  };
+});
+var ImageTypeSelect = function ImageTypeSelect(props) {
+  return /*#__PURE__*/_react.default.createElement(_promptActionSelection.default, (0, _extends2.default)({
+    options: imageTypes,
+    wrapperStyle: {
+      width: '100%'
+    },
+    label: __('Image type', 'elementor')
+  }, props));
+};
+var _default = ImageTypeSelect;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/images-display.js":
+/*!************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/images-display.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _useImageSize2 = _interopRequireDefault(__webpack_require__(/*! ../hooks/use-image-size */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-size.js"));
+var _useImageNavigation2 = _interopRequireDefault(__webpack_require__(/*! ../../../hooks/use-image-navigation */ "../modules/ai/assets/js/editor/hooks/use-image-navigation.js"));
+var _imageSlider = _interopRequireDefault(__webpack_require__(/*! ./image-slider */ "../modules/ai/assets/js/editor/pages/form-media/components/image-slider.js"));
+var _imageActions = _interopRequireDefault(__webpack_require__(/*! ./image-actions */ "../modules/ai/assets/js/editor/pages/form-media/components/image-actions.js"));
+var _gallery = _interopRequireDefault(__webpack_require__(/*! ./gallery */ "../modules/ai/assets/js/editor/pages/form-media/components/gallery.js"));
+var _backButton = _interopRequireDefault(__webpack_require__(/*! ./back-button */ "../modules/ai/assets/js/editor/pages/form-media/components/back-button.js"));
+var _singleImagePreview = _interopRequireDefault(__webpack_require__(/*! ./single-image-preview */ "../modules/ai/assets/js/editor/pages/form-media/components/single-image-preview.js"));
+var _excluded = ["children", "sx"];
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+var Container = function Container(_ref) {
+  var children = _ref.children,
+    _ref$sx = _ref.sx,
+    sx = _ref$sx === void 0 ? {} : _ref$sx,
+    props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+  return /*#__PURE__*/_react.default.createElement(_ui.Box, (0, _extends2.default)({
+    flexGrow: 1
+  }, props, {
+    sx: _objectSpread({
+      overflowY: 'scroll'
+    }, sx)
+  }), children);
+};
+Container.propTypes = {
+  sx: PropTypes.object,
+  children: PropTypes.node
+};
+var ImagesDisplay = function ImagesDisplay(_ref2) {
+  var images = _ref2.images,
+    aspectRatio = _ref2.aspectRatio,
+    onUseImage = _ref2.onUseImage,
+    onEditImage = _ref2.onEditImage;
+  var _useImageNavigation = (0, _useImageNavigation2.default)(images),
+    zoomIndex = _useImageNavigation.zoomIndex,
+    setZoomIndex = _useImageNavigation.setZoomIndex,
+    actions = _useImageNavigation.actions;
+  var _useImageSize = (0, _useImageSize2.default)(aspectRatio),
+    width = _useImageSize.width,
+    height = _useImageSize.height;
+  if (zoomIndex > -1) {
+    var currentImage = images[zoomIndex];
+    return /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement(_imageSlider.default, {
+      onPrev: actions.prev,
+      onNext: actions.next
+    }, /*#__PURE__*/_react.default.createElement(_imageSlider.default.Actions, {
+      startAction: /*#__PURE__*/_react.default.createElement(_backButton.default, {
+        onClick: actions.reset
+      })
+    }, /*#__PURE__*/_react.default.createElement(_imageActions.default.EditImage, {
+      onClick: function onClick() {
+        return onEditImage(currentImage);
+      }
+    }), /*#__PURE__*/_react.default.createElement(_imageActions.default.UseImage, {
+      onClick: function onClick() {
+        return onUseImage(currentImage);
+      }
+    })), /*#__PURE__*/_react.default.createElement(_imageSlider.default.Image, {
+      src: currentImage.image_url,
+      style: {
+        maxWidth: '630px',
+        width: '100%',
+        height: 'auto'
+      }
+    })));
+  }
+  if (1 === images.length) {
+    var image = images[0];
+    return /*#__PURE__*/_react.default.createElement(Container, {
+      flexDirection: "column"
+    }, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default, null, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default.Image, {
+      src: image.image_url || image.url,
+      style: {
+        width: width,
+        height: height
+      },
+      alt: "generated-image"
+    }, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default.Actions, null, /*#__PURE__*/_react.default.createElement(_imageActions.default.EditImage, {
+      onClick: function onClick() {
+        return onEditImage(image);
+      }
+    }), /*#__PURE__*/_react.default.createElement(_imageActions.default.UseImage, {
+      onClick: function onClick() {
+        return onUseImage(image);
+      }
+    })))));
+  }
+  return /*#__PURE__*/_react.default.createElement(Container, null, /*#__PURE__*/_react.default.createElement(_gallery.default, null, images.map(function (image, index) {
+    return /*#__PURE__*/_react.default.createElement(_gallery.default.Image, {
+      key: "result-".concat(image.seed),
+      alt: "generated-".concat(index),
+      src: image.image_url,
+      aspectRatio: aspectRatio
+    }, /*#__PURE__*/_react.default.createElement(_imageActions.default, null, /*#__PURE__*/_react.default.createElement(_imageActions.default.UseImage, {
+      onClick: function onClick() {
+        return onUseImage(image);
+      },
+      size: "medium",
+      fullWidth: true
+    }), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+      direction: "row",
+      spacing: 1,
+      alignItems: "center"
+    }, /*#__PURE__*/_react.default.createElement(_imageActions.default.ZoomIcon, {
+      onClick: function onClick() {
+        return setZoomIndex(index);
+      },
+      size: "medium"
+    }), /*#__PURE__*/_react.default.createElement(_imageActions.default.EditIcon, {
+      onClick: function onClick() {
+        return onEditImage(image);
+      },
+      size: "medium"
+    }))));
+  })));
+};
+ImagesDisplay.propTypes = {
+  images: PropTypes.array,
+  aspectRatio: PropTypes.string,
+  onUseImage: PropTypes.func,
+  onEditImage: PropTypes.func
+};
+ImagesDisplay.Container = Container;
+var _default = ImagesDisplay;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/new-prompt-button.js":
+/*!***************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/new-prompt-button.js ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var NewPromptButton = function NewPromptButton(props) {
+  return /*#__PURE__*/_react.default.createElement(_ui.Button, (0, _extends2.default)({
+    fullWidth: true,
+    variant: "text",
+    color: "secondary"
+  }, props), __('New prompt', 'elementor'));
+};
+var _default = NewPromptButton;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/prompt-field.js":
+/*!**********************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/prompt-field.js ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _textarea = _interopRequireDefault(__webpack_require__(/*! ../../../components/textarea */ "../modules/ai/assets/js/editor/components/textarea.js"));
+var _enhanceButton = _interopRequireDefault(__webpack_require__(/*! ./enhance-button */ "../modules/ai/assets/js/editor/pages/form-media/components/enhance-button.js"));
+var _useImagePromptEnhancer = _interopRequireDefault(__webpack_require__(/*! ../hooks/use-image-prompt-enhancer */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-prompt-enhancer.js"));
+var _excluded = ["disabled", "onChange"];
+var PromptField = function PromptField(_ref) {
+  var disabled = _ref.disabled,
+    _onChange = _ref.onChange,
+    props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+  var _usePromptEnhancer = (0, _useImagePromptEnhancer.default)(props.value),
+    enhance = _usePromptEnhancer.enhance,
+    isEnhancing = _usePromptEnhancer.isEnhancing;
+  return /*#__PURE__*/_react.default.createElement(_textarea.default, (0, _extends2.default)({
+    minRows: 3,
+    maxRows: 6,
+    InputProps: {
+      endAdornment: /*#__PURE__*/_react.default.createElement(_ui.InputAdornment, {
+        position: "end",
+        sx: {
+          position: 'absolute',
+          bottom: '24px',
+          right: '8px'
+        }
+      }, /*#__PURE__*/_react.default.createElement(_enhanceButton.default, {
+        isLoading: isEnhancing,
+        disabled: disabled || isEnhancing || !props.value,
+        onClick: function onClick() {
+          enhance(prompt).then(function (_ref2) {
+            var result = _ref2.result;
+            return _onChange(result);
+          });
+        }
+      }))
+    },
+    sx: {
+      '& .MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputMultiline': {
+        pb: 9,
+        width: '89%'
+      }
+    },
+    onKeyDown: function onKeyDown(event) {
+      if ('Tab' === event.key) {
+        event.preventDefault();
+        _onChange(props.placeholder);
+      }
+    }
+  }, props, {
+    onChange: function onChange(event) {
+      return _onChange(event.target.value);
+    },
+    disabled: disabled || isEnhancing
+  }));
+};
+PromptField.propTypes = {
+  value: PropTypes.string,
+  disabled: PropTypes.bool,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func.isRequired
+};
+var _default = PromptField;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/single-image-preview.js":
+/*!******************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/single-image-preview.js ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _excluded = ["children"],
+  _excluded2 = ["children", "sx"];
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+var SingleImagePreview = function SingleImagePreview(_ref) {
+  var children = _ref.children,
+    props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+  return /*#__PURE__*/_react.default.createElement(_ui.Box, (0, _extends2.default)({
+    display: "flex"
+  }, props), children);
+};
+SingleImagePreview.propTypes = {
+  children: PropTypes.node.isRequired
+};
+var Actions = function Actions(_ref2) {
+  var children = _ref2.children,
+    _ref2$sx = _ref2.sx,
+    sx = _ref2$sx === void 0 ? {} : _ref2$sx,
+    props = (0, _objectWithoutProperties2.default)(_ref2, _excluded2);
+  return /*#__PURE__*/_react.default.createElement(_ui.Box, (0, _extends2.default)({
+    display: "flex",
+    width: "100%",
+    justifyContent: "flex-end",
+    alignItems: "center"
+  }, props, {
+    sx: _objectSpread({
+      mb: 4
+    }, sx)
+  }), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+    direction: "row",
+    spacing: 3,
+    justifyContent: "flex-end",
+    width: "100%"
+  }, children));
+};
+Actions.propTypes = {
+  sx: PropTypes.object,
+  children: PropTypes.node.isRequired
+};
+var Image = function Image(_ref3) {
+  var src = _ref3.src,
+    alt = _ref3.alt,
+    _ref3$style = _ref3.style,
+    style = _ref3$style === void 0 ? {} : _ref3$style,
+    children = _ref3.children;
+  return /*#__PURE__*/_react.default.createElement(_ui.Box, {
+    margin: "0 auto"
+  }, children, /*#__PURE__*/_react.default.createElement("img", {
+    src: src,
+    alt: alt,
+    style: _objectSpread({
+      maxWidth: '100%',
+      width: 'auto',
+      maxHeight: '100%'
+    }, style)
+  }));
+};
+Image.propTypes = {
+  style: PropTypes.object,
+  children: PropTypes.node,
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired
+};
+SingleImagePreview.Actions = Actions;
+SingleImagePreview.Image = Image;
+var _default = SingleImagePreview;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/unsaved-changes-alert.js":
+/*!*******************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/unsaved-changes-alert.js ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _excluded = ["onClose", "onCancel"];
+var UnsavedChangesAlert = function UnsavedChangesAlert(_ref) {
+  var onClose = _ref.onClose,
+    onCancel = _ref.onCancel,
+    props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+  return /*#__PURE__*/_react.default.createElement(_ui.Dialog, (0, _extends2.default)({
+    "aria-labelledby": "unsaved-changes-alert-title",
+    "aria-describedby": "unsaved-changes-alert-description"
+  }, props), /*#__PURE__*/_react.default.createElement(_ui.DialogTitle, {
+    id: "unsaved-changes-alert-title"
+  }, __('Leave Elementor AI?', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.DialogContent, null, /*#__PURE__*/_react.default.createElement(_ui.DialogContentText, {
+    id: "unsaved-changes-alert-description"
+  }, __('Images will be gone forever and we won’t be able to recover them.', 'elementor'))), /*#__PURE__*/_react.default.createElement(_ui.DialogActions, null, /*#__PURE__*/_react.default.createElement(_ui.Button, {
+    onClick: onCancel,
+    color: "secondary"
+  }, __('Cancel', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Button, {
+    onClick: onClose,
+    color: "error",
+    variant: "contained"
+  }, __('Yes, leave', 'elementor'))));
+};
+UnsavedChangesAlert.propTypes = {
+  onClose: PropTypes.func,
+  onCancel: PropTypes.func
+};
+var _default = UnsavedChangesAlert;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/components/view.js":
+/*!**************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/components/view.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _panel = _interopRequireDefault(__webpack_require__(/*! ../../../components/ui/panel */ "../modules/ai/assets/js/editor/components/ui/panel.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _loader = _interopRequireDefault(__webpack_require__(/*! ../../../components/loader */ "../modules/ai/assets/js/editor/components/loader.js"));
+var _generateLoader = _interopRequireDefault(__webpack_require__(/*! ./generate-loader */ "../modules/ai/assets/js/editor/pages/form-media/components/generate-loader.js"));
+var _promptErrorMessage = _interopRequireDefault(__webpack_require__(/*! ../../../components/prompt-error-message */ "../modules/ai/assets/js/editor/components/prompt-error-message.js"));
+var _backButton = _interopRequireDefault(__webpack_require__(/*! ./back-button */ "../modules/ai/assets/js/editor/pages/form-media/components/back-button.js"));
+var _locationContext = __webpack_require__(/*! ../context/location-context */ "../modules/ai/assets/js/editor/pages/form-media/context/location-context.js");
+var _excluded = ["sx"],
+  _excluded2 = ["primary", "secondary"],
+  _excluded3 = ["primary", "secondary"],
+  _excluded4 = ["children"],
+  _excluded5 = ["isLoading", "isGenerating", "children"],
+  _excluded6 = ["sx"];
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+var ViewBackButton = function ViewBackButton(_ref) {
+  var _ref$sx = _ref.sx,
+    sx = _ref$sx === void 0 ? {} : _ref$sx,
+    props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
+  var _useLocation = (0, _locationContext.useLocation)(),
+    back = _useLocation.back;
+  return /*#__PURE__*/_react.default.createElement(_backButton.default, (0, _extends2.default)({
+    onClick: function onClick(e) {
+      e.preventDefault();
+      back();
+    }
+  }, props, {
+    sx: _objectSpread({
+      mb: 3,
+      alignSelf: 'flex-start'
+    }, sx)
+  }));
+};
+ViewBackButton.propTypes = {
+  sx: PropTypes.object
+};
+var PanelHeading = function PanelHeading(_ref2) {
+  var primary = _ref2.primary,
+    secondary = _ref2.secondary,
+    props = (0, _objectWithoutProperties2.default)(_ref2, _excluded2);
+  return /*#__PURE__*/_react.default.createElement(_ui.Stack, (0, _extends2.default)({
+    spacing: 3,
+    sx: {
+      mb: 7
+    }
+  }, props), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    variant: "h3"
+  }, primary), secondary && /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    variant: "body1",
+    color: "secondary"
+  }, secondary));
+};
+PanelHeading.propTypes = {
+  primary: PropTypes.string.isRequired,
+  secondary: PropTypes.string
+};
+var ContentHeading = function ContentHeading(_ref3) {
+  var primary = _ref3.primary,
+    secondary = _ref3.secondary,
+    props = (0, _objectWithoutProperties2.default)(_ref3, _excluded3);
+  return /*#__PURE__*/_react.default.createElement(_ui.Stack, (0, _extends2.default)({
+    gap: 4,
+    sx: {
+      mb: 7
+    }
+  }, props), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    variant: "h6"
+  }, primary), secondary && /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    variant: "subtitle1",
+    color: "secondary"
+  }, secondary));
+};
+ContentHeading.propTypes = {
+  primary: PropTypes.string.isRequired,
+  secondary: PropTypes.string
+};
+var View = function View(_ref4) {
+  var children = _ref4.children,
+    props = (0, _objectWithoutProperties2.default)(_ref4, _excluded4);
+  return /*#__PURE__*/_react.default.createElement(_ui.Box, (0, _extends2.default)({
+    display: "flex",
+    sx: {
+      overflowY: 'auto'
+    },
+    height: "100%"
+  }, props), children);
+};
+var Content = function Content(_ref5) {
+  var _ref5$isLoading = _ref5.isLoading,
+    isLoading = _ref5$isLoading === void 0 ? false : _ref5$isLoading,
+    _ref5$isGenerating = _ref5.isGenerating,
+    isGenerating = _ref5$isGenerating === void 0 ? false : _ref5$isGenerating,
+    children = _ref5.children,
+    props = (0, _objectWithoutProperties2.default)(_ref5, _excluded5);
+  if (isGenerating) {
+    return /*#__PURE__*/_react.default.createElement(_generateLoader.default, null);
+  }
+  if (isLoading) {
+    return /*#__PURE__*/_react.default.createElement(_ui.Box, {
+      sx: {
+        width: '100%',
+        maxWidth: 600,
+        margin: '0 auto',
+        alignSelf: 'center'
+      }
+    }, /*#__PURE__*/_react.default.createElement(_loader.default, {
+      color: "inherit"
+    }));
+  }
+  return /*#__PURE__*/_react.default.createElement(_ui.Box, (0, _extends2.default)({
+    sx: {
+      overflowY: 'scroll',
+      p: 8
+    },
+    flexGrow: 1
+  }, props), children);
+};
+Content.propTypes = {
+  children: PropTypes.node,
+  isLoading: PropTypes.bool,
+  isGenerating: PropTypes.bool
+};
+var ErrorMessage = function ErrorMessage(_ref6) {
+  var _ref6$sx = _ref6.sx,
+    sx = _ref6$sx === void 0 ? {} : _ref6$sx,
+    props = (0, _objectWithoutProperties2.default)(_ref6, _excluded6);
+  return /*#__PURE__*/_react.default.createElement(_promptErrorMessage.default, (0, _extends2.default)({
+    actionPosition: "bottom"
+  }, props, {
+    sx: _objectSpread({
+      mb: 6
+    }, sx)
+  }));
+};
+ErrorMessage.propTypes = {
+  sx: PropTypes.object
+};
+View.Panel = _panel.default;
+View.Content = Content;
+View.BackButton = ViewBackButton;
+View.ErrorMessage = ErrorMessage;
+View.PanelHeading = PanelHeading;
+View.ContentHeading = ContentHeading;
+View.propTypes = {
+  children: PropTypes.node
+};
+var _default = View;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/constants/index.js":
+/*!**************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/constants/index.js ***!
+  \**************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -3217,147 +4424,851 @@ exports["default"] = _default;
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.SCREENS = exports.PANELS = exports.IMAGE_PROMPT_SETTINGS = exports.IMAGE_PROMPT_CATEGORIES = exports.IMAGE_ASPECT_RATIO_DIMENSIONS = exports.IMAGE_ASPECT_RATIOS = exports.IMAGE_ACTIONS = void 0;
-var IMAGE_ACTIONS = {
-  USE: 'use',
-  REFERENCE: 'reference',
-  ZOOM: 'zoom'
-};
-exports.IMAGE_ACTIONS = IMAGE_ACTIONS;
-var SCREENS = {
+exports.LOCATIONS = exports.IMAGE_PROMPT_SETTINGS = exports.IMAGE_PROMPT_CATEGORIES = exports.IMAGE_ASPECT_RATIO = void 0;
+var LOCATIONS = {
+  RESIZE: 'resize',
   GENERATE: 'generate',
-  GENERATE_RESULTS: 'generate-results',
   VARIATIONS: 'variations',
-  GALLERY: 'gallery',
-  IMAGE_EDITOR: 'image-editor',
-  IN_PAINTING: 'in-painting',
-  OUT_PAINTING: 'out-painting'
-};
-exports.SCREENS = SCREENS;
-var PANELS = {
-  TEXT_TO_IMAGE: 'text-to-image',
-  IMAGE_TO_IMAGE: 'image-to-image',
-  TOOLS: 'tools',
+  IMAGE_TOOLS: 'image-tools',
   IN_PAINTING: 'in-painting',
   OUT_PAINTING: 'out-painting',
-  UPSCALE: 'upscale'
+  REMOVE_BACKGROUND: 'remove-background',
+  REPLACE_BACKGROUND: 'replace-background',
+  REMOVE_TEXT: 'remove-text'
 };
-exports.PANELS = PANELS;
+exports.LOCATIONS = LOCATIONS;
 var IMAGE_PROMPT_SETTINGS = {
   IMAGE_TYPE: 'image_type',
-  STYLE_PRESET: 'style_preset',
+  IMAGE_STYLE: 'style_preset',
   IMAGE_STRENGTH: 'image_strength',
-  ASPECT_RATIO: 'ratio',
-  ZOOM: 'zoom',
-  UPSCALE_TO: 'upscale_to'
+  IMAGE_RATIO: 'ratio',
+  IMAGE_ZOOM: 'zoom',
+  IMAGE_UPSCALE: 'upscale_to'
 };
 exports.IMAGE_PROMPT_SETTINGS = IMAGE_PROMPT_SETTINGS;
-var IMAGE_PROMPT_CATEGORIES = [{
-  key: '',
-  label: __('None', 'elementor'),
-  subCategories: {}
-}, {
-  key: 'photographic',
-  label: __('Photographic', 'elementor'),
-  subCategories: {
-    '': __('None', 'elementor'),
-    landscape: __('Landscape', 'elementor'),
-    macro: __('Macro', 'elementor'),
-    portrait: __('Portrait', 'elementor'),
-    'long-exposure': __('Long Exposure', 'elementor')
+var IMAGE_PROMPT_CATEGORIES = {
+  '': {
+    label: __('None', 'elementor'),
+    subCategories: {}
+  },
+  photographic: {
+    label: __('Photographic', 'elementor'),
+    subCategories: {
+      '': __('None', 'elementor'),
+      landscape: __('Landscape', 'elementor'),
+      macro: __('Macro', 'elementor'),
+      portrait: __('Portrait', 'elementor'),
+      'long-exposure': __('Long Exposure', 'elementor')
+    }
+  },
+  background: {
+    label: __('Background', 'elementor'),
+    subCategories: {
+      '': __('None', 'elementor'),
+      floral: __('Floral', 'elementor'),
+      gradient: __('Gradient', 'elementor'),
+      mosaic: __('Mosaic', 'elementor'),
+      neon: __('Neon', 'elementor'),
+      bokeh: __('Bokeh', 'elementor')
+    }
+  },
+  handmade: {
+    label: __('Handmade', 'elementor'),
+    subCategories: {
+      '': __('None', 'elementor'),
+      doodle: __('Doodle', 'elementor'),
+      'line-art': __('Line Art', 'elementor'),
+      'oil-painting': __('Oil Painting', 'elementor'),
+      'pencil-drawing': __('Pencil Drawing', 'elementor'),
+      watercolor: __('Watercolor', 'elementor')
+    }
+  },
+  'digital-art': {
+    label: __('Digital Art', 'elementor'),
+    subCategories: {
+      '': __('None', 'elementor'),
+      amine: __('Anime', 'elementor'),
+      cartoon: __('Cartoon', 'elementor'),
+      cinematic: __('Cinematic', 'elementor'),
+      'comic-book': __('Comic Book', 'elementor'),
+      'fantasy-art': __('Fantasy Art', 'elementor'),
+      isometric: __('Isometric', 'elementor'),
+      vector: __('Vector', 'elementor'),
+      'pixel-art': __('Pixel Art', 'elementor'),
+      'low-poly': __('Low Poly', 'elementor'),
+      'neon-punk': __('Neon Punk', 'elementor')
+    }
+  },
+  '3d': {
+    label: __('3D', 'elementor'),
+    subCategories: {
+      '': __('None', 'elementor'),
+      clay: __('Clay', 'elementor'),
+      digital: __('Digital', 'elementor'),
+      origami: __('Origami', 'elementor'),
+      stone: __('Stone', 'elementor'),
+      wood: __('Wood', 'elementor')
+    }
   }
-}, {
-  key: 'background',
-  label: __('Background', 'elementor'),
-  subCategories: {
-    '': __('None', 'elementor'),
-    floral: __('Floral', 'elementor'),
-    gradient: __('Gradient', 'elementor'),
-    mosaic: __('Mosaic', 'elementor'),
-    neon: __('Neon', 'elementor'),
-    bokeh: __('Bokeh', 'elementor')
-  }
-}, {
-  key: 'digital-art',
-  label: __('Digital Art', 'elementor'),
-  subCategories: {
-    '': __('None', 'elementor'),
-    amine: __('Anime', 'elementor'),
-    cartoon: __('Cartoon', 'elementor'),
-    cinematic: __('Cinematic', 'elementor'),
-    'comic-book': __('Comic Book', 'elementor'),
-    'fantasy-art': __('Fantasy Art', 'elementor'),
-    isometric: __('Isometric', 'elementor'),
-    vector: __('Vector', 'elementor'),
-    'pixel-art': __('Pixel Art', 'elementor'),
-    'low-poly': __('Low Poly', 'elementor'),
-    'neon-punk': __('Neon Punk', 'elementor')
-  }
-}, {
-  key: 'handmade',
-  label: __('Handmade', 'elementor'),
-  subCategories: {
-    '': __('None', 'elementor'),
-    doodle: __('Doodle', 'elementor'),
-    'line-art': __('Line Art', 'elementor'),
-    'oil-painting': __('Oil Painting', 'elementor'),
-    'pencil-drawing': __('Pencil Drawing', 'elementor'),
-    watercolor: __('Watercolor', 'elementor')
-  }
-}, {
-  key: '3d',
-  label: __('3D', 'elementor'),
-  subCategories: {
-    '': __('None', 'elementor'),
-    clay: __('Clay', 'elementor'),
-    digital: __('Digital', 'elementor'),
-    origami: __('Origami', 'elementor'),
-    stone: __('Stone', 'elementor'),
-    wood: __('Wood', 'elementor')
-  }
-}];
-exports.IMAGE_PROMPT_CATEGORIES = IMAGE_PROMPT_CATEGORIES;
-var IMAGE_ASPECT_RATIOS = {
-  '1:1': __('Square', 'elementor') + ' (1:1)',
-  '3:2': __('Landscape', 'elementor') + ' (3:2)',
-  '4:3': __('Landscape', 'elementor') + ' (4:3)',
-  '16:9': __('Landscape', 'elementor') + ' (16:9)',
-  '2:3': __('Portrait', 'elementor') + ' (2:3)',
-  '3:4': __('Portrait', 'elementor') + ' (3:4)',
-  '9:16': __('Portrait', 'elementor') + ' (9:16)'
 };
-exports.IMAGE_ASPECT_RATIOS = IMAGE_ASPECT_RATIOS;
-var IMAGE_ASPECT_RATIO_DIMENSIONS = {
+exports.IMAGE_PROMPT_CATEGORIES = IMAGE_PROMPT_CATEGORIES;
+var IMAGE_ASPECT_RATIO = {
   '1:1': {
     width: 512,
-    height: 512
-  },
-  '2:3': {
-    width: 448,
-    height: 640
-  },
-  '3:4': {
-    width: 448,
-    height: 640
-  },
-  '9:16': {
-    width: 384,
-    height: 704
+    height: 512,
+    label: __('Square', 'elementor') + ' (1:1)'
   },
   '3:2': {
     width: 640,
-    height: 448
+    height: 448,
+    label: __('Landscape', 'elementor') + ' (3:2)'
   },
   '4:3': {
     width: 640,
-    height: 448
+    height: 448,
+    label: __('Landscape', 'elementor') + ' (4:3)'
   },
   '16:9': {
     width: 704,
-    height: 384
+    height: 384,
+    label: __('Landscape', 'elementor') + ' (16:9)'
+  },
+  '2:3': {
+    width: 448,
+    height: 640,
+    label: __('Portrait', 'elementor') + ' (2:3)'
+  },
+  '3:4': {
+    width: 448,
+    height: 640,
+    label: __('Portrait', 'elementor') + ' (3:4)'
+  },
+  '9:16': {
+    width: 384,
+    height: 704,
+    label: __('Portrait', 'elementor') + ' (9:16)'
   }
 };
-exports.IMAGE_ASPECT_RATIO_DIMENSIONS = IMAGE_ASPECT_RATIO_DIMENSIONS;
+exports.IMAGE_ASPECT_RATIO = IMAGE_ASPECT_RATIO;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/context/edit-image-context.js":
+/*!*************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/context/edit-image-context.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.useEditImage = exports.SET_LOADING = exports.SET_ASPECT_RATIO = exports.RESET = exports.EditImageProvider = exports.EditImageContext = void 0;
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _useImageSize2 = _interopRequireDefault(__webpack_require__(/*! ../hooks/use-image-size */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-size.js"));
+var _utils = __webpack_require__(/*! ../utils */ "../modules/ai/assets/js/editor/pages/form-media/utils/index.js");
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+var EditImageContext = (0, _react.createContext)({});
+exports.EditImageContext = EditImageContext;
+var SET_STATE = 'SET_STATE';
+var SET_ASPECT_RATIO = 'SET_ASPECT_RATIO';
+exports.SET_ASPECT_RATIO = SET_ASPECT_RATIO;
+var SET_LOADING = 'SET_LOADING';
+exports.SET_LOADING = SET_LOADING;
+var RESET = 'RESET';
+exports.RESET = RESET;
+var initialValue = {
+  id: '',
+  url: '',
+  isLoading: false,
+  aspectRatio: '1:1'
+};
+var reducer = function reducer(state, _ref) {
+  var type = _ref.type,
+    payload = _ref.payload;
+  switch (type) {
+    case SET_STATE:
+      return _objectSpread(_objectSpread({}, state), payload);
+    case SET_ASPECT_RATIO:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        aspectRatio: payload
+      });
+    case SET_LOADING:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        isLoading: payload
+      });
+    case RESET:
+      return initialValue;
+    default:
+      throw Error('Unknown action.');
+  }
+};
+var EditImageProvider = function EditImageProvider(_ref2) {
+  var children = _ref2.children,
+    imageData = _ref2.imageData;
+  var initialData = _objectSpread(_objectSpread({}, initialValue), imageData);
+  var _useReducer = (0, _react.useReducer)(reducer, initialData),
+    _useReducer2 = (0, _slicedToArray2.default)(_useReducer, 2),
+    state = _useReducer2[0],
+    dispatch = _useReducer2[1];
+  return /*#__PURE__*/_react.default.createElement(EditImageContext.Provider, {
+    value: {
+      state: state,
+      dispatch: dispatch
+    }
+  }, children);
+};
+exports.EditImageProvider = EditImageProvider;
+EditImageProvider.propTypes = {
+  children: PropTypes.node,
+  imageData: PropTypes.object
+};
+var useEditImage = function useEditImage() {
+  var _useContext = (0, _react.useContext)(EditImageContext),
+    state = _useContext.state,
+    dispatch = _useContext.dispatch;
+  var id = state.id,
+    url = state.url,
+    aspectRatio = state.aspectRatio,
+    isLoading = state.isLoading;
+  var _useImageSize = (0, _useImageSize2.default)(aspectRatio),
+    width = _useImageSize.width,
+    height = _useImageSize.height;
+  var setEditImage = function setEditImage(payload) {
+    return dispatch({
+      type: SET_STATE,
+      payload: payload
+    });
+  };
+  var setAspectRatio = function setAspectRatio(payload) {
+    return dispatch({
+      type: SET_ASPECT_RATIO,
+      payload: payload
+    });
+  };
+  var reset = function reset() {
+    return dispatch({
+      type: RESET
+    });
+  };
+
+  // Getting the aspect ratio of the image.
+  (0, _react.useEffect)(function () {
+    if (!id) {
+      return;
+    }
+    dispatch({
+      type: SET_LOADING,
+      payload: true
+    });
+    var img = new Image();
+    img.src = url;
+    img.onload = function () {
+      var _getAspectRatioSizes = (0, _utils.getAspectRatioSizes)(img.width, img.height),
+        ratio = _getAspectRatioSizes.ratio;
+      dispatch({
+        type: SET_STATE,
+        payload: {
+          aspectRatio: ratio,
+          isLoading: false
+        }
+      });
+    };
+  }, [id]);
+  return {
+    editImage: state,
+    isLoading: isLoading,
+    aspectRatio: aspectRatio,
+    width: width,
+    height: height,
+    setEditImage: setEditImage,
+    setAspectRatio: setAspectRatio,
+    reset: reset
+  };
+};
+exports.useEditImage = useEditImage;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/context/global-actions-context.js":
+/*!*****************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/context/global-actions-context.js ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.useGlobalActions = exports.GlobalActionsProvider = exports.GlobalActionsContext = void 0;
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+var GlobalActionsContext = (0, _react.createContext)({});
+exports.GlobalActionsContext = GlobalActionsContext;
+var GlobalActionsProvider = function GlobalActionsProvider(_ref) {
+  var actions = _ref.actions,
+    children = _ref.children;
+  return /*#__PURE__*/_react.default.createElement(GlobalActionsContext.Provider, {
+    value: actions
+  }, children);
+};
+exports.GlobalActionsProvider = GlobalActionsProvider;
+GlobalActionsProvider.propTypes = {
+  actions: PropTypes.object,
+  children: PropTypes.node
+};
+var useGlobalActions = function useGlobalActions() {
+  return (0, _react.useContext)(GlobalActionsContext);
+};
+exports.useGlobalActions = useGlobalActions;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/context/global-settings-context.js":
+/*!******************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/context/global-settings-context.js ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.useGlobalSettings = exports.GlobalSettingsProvider = exports.GlobalSettingsContext = void 0;
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+var GlobalSettingsContext = (0, _react.createContext)({});
+exports.GlobalSettingsContext = GlobalSettingsContext;
+var GlobalSettingsProvider = function GlobalSettingsProvider(_ref) {
+  var settings = _ref.settings,
+    children = _ref.children;
+  return /*#__PURE__*/_react.default.createElement(GlobalSettingsContext.Provider, {
+    value: settings
+  }, children);
+};
+exports.GlobalSettingsProvider = GlobalSettingsProvider;
+GlobalSettingsProvider.propTypes = {
+  settings: PropTypes.object,
+  children: PropTypes.node
+};
+var useGlobalSettings = function useGlobalSettings() {
+  return (0, _react.useContext)(GlobalSettingsContext);
+};
+exports.useGlobalSettings = useGlobalSettings;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/context/location-context.js":
+/*!***********************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/context/location-context.js ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.useLocation = exports.RoutesContext = exports.NAVIGATE = exports.LocationProvider = exports.BACK = void 0;
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "../node_modules/@babel/runtime/helpers/toConsumableArray.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+var RoutesContext = (0, _react.createContext)(null);
+exports.RoutesContext = RoutesContext;
+var NAVIGATE = 'NAVIGATE';
+exports.NAVIGATE = NAVIGATE;
+var BACK = 'BACK';
+exports.BACK = BACK;
+var initialValue = {
+  current: '',
+  history: []
+};
+var reducer = function reducer(state, _ref) {
+  var type = _ref.type,
+    payload = _ref.payload;
+  switch (type) {
+    case NAVIGATE:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        current: payload,
+        history: [].concat((0, _toConsumableArray2.default)(state.history), [payload])
+      });
+    case BACK:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        current: state.history[state.history.length - 2],
+        history: state.history.slice(0, state.history.length - 1)
+      });
+    default:
+      return state;
+  }
+};
+var LocationProvider = function LocationProvider(_ref2) {
+  var children = _ref2.children;
+  var _useReducer = (0, _react.useReducer)(reducer, initialValue),
+    _useReducer2 = (0, _slicedToArray2.default)(_useReducer, 2),
+    state = _useReducer2[0],
+    dispatch = _useReducer2[1];
+  return /*#__PURE__*/_react.default.createElement(RoutesContext.Provider, {
+    value: {
+      state: state,
+      dispatch: dispatch
+    }
+  }, children);
+};
+exports.LocationProvider = LocationProvider;
+LocationProvider.propTypes = {
+  children: PropTypes.node
+};
+var useLocation = function useLocation() {
+  var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+    current = _ref3.current;
+  var _useContext = (0, _react.useContext)(RoutesContext),
+    state = _useContext.state,
+    dispatch = _useContext.dispatch;
+  var navigate = function navigate(location) {
+    dispatch({
+      type: NAVIGATE,
+      payload: location
+    });
+  };
+  var back = function back() {
+    dispatch({
+      type: BACK
+    });
+  };
+  (0, _react.useEffect)(function () {
+    if (current) {
+      navigate(current);
+    }
+  }, []);
+  return {
+    current: state.current,
+    history: state.history,
+    navigate: navigate,
+    back: back
+  };
+};
+exports.useLocation = useLocation;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-actions.js":
+/*!**********************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-actions.js ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _editImageContext = __webpack_require__(/*! ../context/edit-image-context */ "../modules/ai/assets/js/editor/pages/form-media/context/edit-image-context.js");
+var _useImageUpload2 = _interopRequireDefault(__webpack_require__(/*! ./use-image-upload */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-upload.js"));
+var _globalActionsContext = __webpack_require__(/*! ../context/global-actions-context */ "../modules/ai/assets/js/editor/pages/form-media/context/global-actions-context.js");
+var _excluded = ["image"];
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+var normalizeImageData = function normalizeImageData(imageToUpload) {
+  if (!(imageToUpload !== null && imageToUpload !== void 0 && imageToUpload.imageUrl)) {
+    return imageToUpload;
+  }
+  return _objectSpread(_objectSpread({}, imageToUpload), {}, {
+    image_url: imageToUpload.imageUrl,
+    use_gallery_image: true
+  });
+};
+var useImageActions = function useImageActions() {
+  var _useEditImage = (0, _editImageContext.useEditImage)(),
+    editImage = _useEditImage.editImage,
+    setEditImage = _useEditImage.setEditImage;
+  var _useGlobalActions = (0, _globalActionsContext.useGlobalActions)(),
+    setControlImage = _useGlobalActions.setControlImage,
+    saveAndClose = _useGlobalActions.saveAndClose;
+  var _useImageUpload = (0, _useImageUpload2.default)(),
+    attachmentData = _useImageUpload.attachmentData,
+    isUploading = _useImageUpload.isUploading,
+    uploadError = _useImageUpload.uploadError,
+    uploadImage = _useImageUpload.upload,
+    resetUpload = _useImageUpload.resetUpload;
+  var upload = function upload(imageToUpload, prompt) {
+    return uploadImage({
+      image: normalizeImageData(imageToUpload),
+      prompt: prompt || imageToUpload.prompt
+    });
+  };
+  var getFinalImage = /*#__PURE__*/function () {
+    var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(imageToUpload, prompt) {
+      var isImageAlreadyUploaded, image, _result, result;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            isImageAlreadyUploaded = editImage.url === imageToUpload.url;
+            if (!isImageAlreadyUploaded) {
+              _context.next = 4;
+              break;
+            }
+            // Removing inner image property to avoid duplicated uploads.
+            image = editImage.image, _result = (0, _objectWithoutProperties2.default)(editImage, _excluded);
+            return _context.abrupt("return", _result);
+          case 4:
+            _context.next = 6;
+            return upload(imageToUpload, prompt);
+          case 6:
+            result = _context.sent;
+            return _context.abrupt("return", result.image);
+          case 8:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    }));
+    return function getFinalImage(_x, _x2) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+  var edit = /*#__PURE__*/function () {
+    var _ref2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(imageToUpload, prompt) {
+      var result;
+      return _regenerator.default.wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.next = 2;
+            return upload(imageToUpload, prompt);
+          case 2:
+            result = _context2.sent;
+            setEditImage(result.image);
+          case 4:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2);
+    }));
+    return function edit(_x3, _x4) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+  var use = /*#__PURE__*/function () {
+    var _ref3 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(imageToUpload, prompt) {
+      var result;
+      return _regenerator.default.wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.next = 2;
+            return getFinalImage(imageToUpload, prompt);
+          case 2:
+            result = _context3.sent;
+            setControlImage(result);
+            saveAndClose();
+          case 5:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3);
+    }));
+    return function use(_x5, _x6) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  return {
+    use: use,
+    edit: edit,
+    reset: resetUpload,
+    error: uploadError,
+    data: attachmentData,
+    isLoading: isUploading
+  };
+};
+var _default = useImageActions;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-prompt-enhancer.js":
+/*!******************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-prompt-enhancer.js ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _api = __webpack_require__(/*! ../../../api */ "../modules/ai/assets/js/editor/api/index.js");
+var _usePrompt2 = _interopRequireDefault(__webpack_require__(/*! ../../../hooks/use-prompt */ "../modules/ai/assets/js/editor/hooks/use-prompt.js"));
+var getResult = function getResult(prompt) {
+  return (0, _api.getImagePromptEnhanced)(prompt);
+};
+var usePromptEnhancer = function usePromptEnhancer(prompt) {
+  var _usePrompt = (0, _usePrompt2.default)(function () {
+      return getResult(prompt);
+    }, prompt),
+    enhancedData = _usePrompt.data,
+    isEnhancing = _usePrompt.isLoading,
+    enhance = _usePrompt.send;
+  return {
+    enhance: enhance,
+    isEnhancing: isEnhancing,
+    enhancedPrompt: enhancedData === null || enhancedData === void 0 ? void 0 : enhancedData.result
+  };
+};
+var _default = usePromptEnhancer;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-prompt.js":
+/*!*********************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-prompt.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = __webpack_require__(/*! react */ "react");
+var _usePrompt = _interopRequireDefault(__webpack_require__(/*! ../../../hooks/use-prompt */ "../modules/ai/assets/js/editor/hooks/use-prompt.js"));
+var _globalActionsContext = __webpack_require__(/*! ../context/global-actions-context */ "../modules/ai/assets/js/editor/pages/form-media/context/global-actions-context.js");
+var useImagePrompt = function useImagePrompt() {
+  var promptData = _usePrompt.default.apply(void 0, arguments);
+  var _useGlobalActions = (0, _globalActionsContext.useGlobalActions)(),
+    setHasUnsavedChanges = _useGlobalActions.setHasUnsavedChanges,
+    state = _useGlobalActions.state;
+  (0, _react.useEffect)(function () {
+    var _promptData$data;
+    if ((_promptData$data = promptData.data) !== null && _promptData$data !== void 0 && _promptData$data.result) {
+      // Updating the hasUnsavedChanges global state that will trigger the unsaved changes dialog.
+      setHasUnsavedChanges(true);
+    }
+  }, [promptData.data]);
+  (0, _react.useEffect)(function () {
+    if (state.isAllSaved) {
+      promptData.sendUsageData();
+    }
+  }, [state.isAllSaved]);
+  return promptData;
+};
+var _default = useImagePrompt;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-size.js":
+/*!*******************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-size.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _constants = __webpack_require__(/*! ../constants */ "../modules/ai/assets/js/editor/pages/form-media/constants/index.js");
+var useImageSize = function useImageSize(aspectRatio) {
+  var _IMAGE_ASPECT_RATIO$a = _constants.IMAGE_ASPECT_RATIO[aspectRatio],
+    width = _IMAGE_ASPECT_RATIO$a.width,
+    height = _IMAGE_ASPECT_RATIO$a.height;
+  return {
+    width: width,
+    height: height
+  };
+};
+var _default = useImageSize;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-upload.js":
+/*!*********************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-upload.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
+var _react = __webpack_require__(/*! react */ "react");
+var _api = __webpack_require__(/*! ../../../api */ "../modules/ai/assets/js/editor/api/index.js");
+var useImageUpload = function useImageUpload() {
+  var _useState = (0, _react.useState)(false),
+    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+    isUploading = _useState2[0],
+    setIsUploading = _useState2[1];
+  var _useState3 = (0, _react.useState)(''),
+    _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
+    uploadError = _useState4[0],
+    setUploadError = _useState4[1];
+  var _useState5 = (0, _react.useState)({}),
+    _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
+    attachmentData = _useState6[0],
+    setAttachmentData = _useState6[1];
+  var upload = function upload(_ref) {
+    var image = _ref.image,
+      prompt = _ref.prompt;
+    return new Promise(function (resolve, reject) {
+      setUploadError('');
+      setAttachmentData({});
+      setIsUploading(true);
+      (0, _api.uploadImage)({
+        image: image,
+        prompt: prompt
+      }).then(function (result) {
+        setAttachmentData(result);
+        resolve(result);
+      }).catch(function (err) {
+        var error = (err === null || err === void 0 ? void 0 : err.responseText) || err;
+        setUploadError(error);
+        reject(error);
+      }).finally(function () {
+        return setIsUploading(false);
+      });
+    });
+  };
+  var resetUpload = function resetUpload() {
+    setUploadError('');
+    setAttachmentData({});
+    setIsUploading(false);
+  };
+  return {
+    upload: upload,
+    resetUpload: resetUpload,
+    isUploading: isUploading,
+    uploadError: uploadError,
+    attachmentData: attachmentData
+  };
+};
+var _default = useImageUpload;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-prompt-settings.js":
+/*!************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/hooks/use-prompt-settings.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = exports.IMAGE_ZOOM = exports.IMAGE_UPSCALE = exports.IMAGE_TYPE = exports.IMAGE_STYLE = exports.IMAGE_STRENGTH = exports.IMAGE_RATIO = void 0;
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
+var _react = __webpack_require__(/*! react */ "react");
+var _constants = __webpack_require__(/*! ../constants */ "../modules/ai/assets/js/editor/pages/form-media/constants/index.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+var IMAGE_TYPE = _constants.IMAGE_PROMPT_SETTINGS.IMAGE_TYPE,
+  IMAGE_STYLE = _constants.IMAGE_PROMPT_SETTINGS.IMAGE_STYLE,
+  IMAGE_STRENGTH = _constants.IMAGE_PROMPT_SETTINGS.IMAGE_STRENGTH,
+  IMAGE_RATIO = _constants.IMAGE_PROMPT_SETTINGS.IMAGE_RATIO,
+  IMAGE_ZOOM = _constants.IMAGE_PROMPT_SETTINGS.IMAGE_ZOOM,
+  IMAGE_UPSCALE = _constants.IMAGE_PROMPT_SETTINGS.IMAGE_UPSCALE;
+exports.IMAGE_UPSCALE = IMAGE_UPSCALE;
+exports.IMAGE_ZOOM = IMAGE_ZOOM;
+exports.IMAGE_RATIO = IMAGE_RATIO;
+exports.IMAGE_STRENGTH = IMAGE_STRENGTH;
+exports.IMAGE_STYLE = IMAGE_STYLE;
+exports.IMAGE_TYPE = IMAGE_TYPE;
+var DEFAULT_TYPE = '';
+var DEFAULT_STYLE = '';
+var DEFAULT_STRENGTH = 0;
+var DEFAULT_RATIO = '1:1';
+var DEFAULT_ZOOM = '1';
+var DEFAULT_UPSCALE = '512';
+var usePromptSettings = function usePromptSettings() {
+  var _useState3;
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+    _ref$type = _ref.type,
+    type = _ref$type === void 0 ? DEFAULT_TYPE : _ref$type,
+    _ref$style = _ref.style,
+    style = _ref$style === void 0 ? DEFAULT_STYLE : _ref$style,
+    _ref$imageWeight = _ref.imageWeight,
+    imageWeight = _ref$imageWeight === void 0 ? DEFAULT_STRENGTH : _ref$imageWeight,
+    _ref$aspectRatio = _ref.aspectRatio,
+    aspectRatio = _ref$aspectRatio === void 0 ? DEFAULT_RATIO : _ref$aspectRatio,
+    _ref$zoom = _ref.zoom,
+    zoom = _ref$zoom === void 0 ? DEFAULT_ZOOM : _ref$zoom,
+    _ref$upScaleTo = _ref.upScaleTo,
+    upScaleTo = _ref$upScaleTo === void 0 ? DEFAULT_UPSCALE : _ref$upScaleTo;
+  var _useState = (0, _react.useState)((_useState3 = {}, (0, _defineProperty2.default)(_useState3, IMAGE_TYPE, type), (0, _defineProperty2.default)(_useState3, IMAGE_STYLE, style), (0, _defineProperty2.default)(_useState3, IMAGE_STRENGTH, imageWeight), (0, _defineProperty2.default)(_useState3, IMAGE_RATIO, aspectRatio), (0, _defineProperty2.default)(_useState3, IMAGE_ZOOM, zoom), (0, _defineProperty2.default)(_useState3, IMAGE_UPSCALE, upScaleTo), _useState3)),
+    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+    settings = _useState2[0],
+    setSettings = _useState2[1];
+  var updateSettings = function updateSettings(updated) {
+    return setSettings(function (prev) {
+      return _objectSpread(_objectSpread({}, prev), updated);
+    });
+  };
+  var resetSettings = function resetSettings() {
+    var _setSettings;
+    setSettings((_setSettings = {}, (0, _defineProperty2.default)(_setSettings, IMAGE_TYPE, type), (0, _defineProperty2.default)(_setSettings, IMAGE_STYLE, DEFAULT_STYLE), (0, _defineProperty2.default)(_setSettings, IMAGE_STRENGTH, DEFAULT_STRENGTH), (0, _defineProperty2.default)(_setSettings, IMAGE_RATIO, aspectRatio), (0, _defineProperty2.default)(_setSettings, IMAGE_ZOOM, DEFAULT_ZOOM), (0, _defineProperty2.default)(_setSettings, IMAGE_UPSCALE, DEFAULT_UPSCALE), _setSettings));
+  };
+  return {
+    settings: settings,
+    updateSettings: updateSettings,
+    resetSettings: resetSettings
+  };
+};
+var _default = usePromptSettings;
+exports["default"] = _default;
 
 /***/ }),
 
@@ -3378,291 +5289,145 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
-var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _locationContext = __webpack_require__(/*! ./context/location-context */ "../modules/ai/assets/js/editor/pages/form-media/context/location-context.js");
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _useImagePrompt2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-prompt */ "../modules/ai/assets/js/editor/hooks/use-image-prompt.js"));
-var _useImageUpload2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-upload */ "../modules/ai/assets/js/editor/hooks/use-image-upload.js"));
-var _useImagePromptSettings = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-prompt-settings */ "../modules/ai/assets/js/editor/hooks/use-image-prompt-settings.js"));
-var _useImageScreenPanel2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-screen-panel */ "../modules/ai/assets/js/editor/hooks/use-image-screen-panel.js"));
-var _consts = __webpack_require__(/*! ./consts/consts */ "../modules/ai/assets/js/editor/pages/form-media/consts/consts.js");
-var _screen = __webpack_require__(/*! ./screens/screen */ "../modules/ai/assets/js/editor/pages/form-media/screens/screen.js");
-var _panelContent = __webpack_require__(/*! ./panel-content/panel-content */ "../modules/ai/assets/js/editor/pages/form-media/panel-content/panel-content.js");
-var _panel = _interopRequireDefault(__webpack_require__(/*! ../../components/ui/panel */ "../modules/ai/assets/js/editor/components/ui/panel.js"));
-var _utils = __webpack_require__(/*! ./utils */ "../modules/ai/assets/js/editor/pages/form-media/utils/index.js");
-var _excluded = ["image"];
+var _promptDialog = _interopRequireDefault(__webpack_require__(/*! ../../components/prompt-dialog */ "../modules/ai/assets/js/editor/components/prompt-dialog.js"));
+var _mediaOutlet = _interopRequireDefault(__webpack_require__(/*! ./media-outlet */ "../modules/ai/assets/js/editor/pages/form-media/media-outlet.js"));
+var _unsavedChangesAlert = _interopRequireDefault(__webpack_require__(/*! ./components/unsaved-changes-alert */ "../modules/ai/assets/js/editor/pages/form-media/components/unsaved-changes-alert.js"));
+var _editImageContext = __webpack_require__(/*! ./context/edit-image-context */ "../modules/ai/assets/js/editor/pages/form-media/context/edit-image-context.js");
+var _globalActionsContext = __webpack_require__(/*! ./context/global-actions-context */ "../modules/ai/assets/js/editor/pages/form-media/context/global-actions-context.js");
+var _globalSettingsContext = __webpack_require__(/*! ./context/global-settings-context */ "../modules/ai/assets/js/editor/pages/form-media/context/global-settings-context.js");
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-var FormMedia = function FormMedia(_ref) {
-  var onClose = _ref.onClose,
-    getControlValue = _ref.getControlValue,
-    additionalOptions = _ref.additionalOptions,
-    controlView = _ref.controlView,
-    credits = _ref.credits,
-    setHasUnsavedChanges = _ref.setHasUnsavedChanges;
-  var initialValue = getControlValue() === (additionalOptions === null || additionalOptions === void 0 ? void 0 : additionalOptions.defaultValue) ? {
-    id: '',
-    url: ''
-  } : getControlValue();
-  var _useState = (0, _react.useState)(initialValue),
+var initialData = {
+  isAllSaved: false,
+  hasUnsavedChanges: false
+};
+var SET_UNSAVED_CHANGES = 'SET_UNSAVED_CHANGES';
+var SAVE_AND_CLOSE = 'SAVE_AND_CLOSE';
+var reducer = function reducer(state, _ref) {
+  var type = _ref.type,
+    payload = _ref.payload;
+  switch (type) {
+    case SET_UNSAVED_CHANGES:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        hasUnsavedChanges: payload,
+        isAllSaved: payload ? false : state.isAllSaved
+      });
+    case SAVE_AND_CLOSE:
+      return _objectSpread(_objectSpread({}, state), {}, {
+        isAllSaved: true,
+        hasUnsavedChanges: false
+      });
+    case RESET:
+      return initialValue;
+    default:
+      throw Error('Unknown action.');
+  }
+};
+var FormMedia = function FormMedia(_ref2) {
+  var onClose = _ref2.onClose,
+    DialogProps = _ref2.DialogProps,
+    getControlValue = _ref2.getControlValue,
+    controlView = _ref2.controlView,
+    additionalOptions = _ref2.additionalOptions,
+    maybeRenderUpgradeChip = _ref2.maybeRenderUpgradeChip;
+  var _useReducer = (0, _react.useReducer)(reducer, initialData),
+    _useReducer2 = (0, _slicedToArray2.default)(_useReducer, 2),
+    state = _useReducer2[0],
+    dispatch = _useReducer2[1];
+  var _useState = (0, _react.useState)(false),
     _useState2 = (0, _slicedToArray2.default)(_useState, 2),
-    editImage = _useState2[0],
-    setEditImage = _useState2[1];
-  var _useImageScreenPanel = (0, _useImageScreenPanel2.default)((initialValue === null || initialValue === void 0 ? void 0 : initialValue.id) !== '' ? _consts.SCREENS.IMAGE_EDITOR : _consts.SCREENS.GALLERY, '' === initialValue.id && '' === editImage.id ? _consts.PANELS.TEXT_TO_IMAGE : _consts.PANELS.TOOLS),
-    screen = _useImageScreenPanel.screen,
-    setScreen = _useImageScreenPanel.setScreen,
-    panel = _useImageScreenPanel.panel,
-    setPanel = _useImageScreenPanel.setPanel;
-  var _useState3 = (0, _react.useState)(''),
-    _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
-    prompt = _useState4[0],
-    setPrompt = _useState4[1];
-  var _useState5 = (0, _react.useState)(''),
-    _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
-    maskImage = _useState6[0],
-    setMaskImage = _useState6[1];
-  var _useImagePromptSettin = (0, _useImagePromptSettings.default)({
-      style: '' === initialValue.id ? (additionalOptions === null || additionalOptions === void 0 ? void 0 : additionalOptions.defaultImageType) || _consts.IMAGE_PROMPT_CATEGORIES[1].key : ''
-    }),
-    promptSettings = _useImagePromptSettin.promptSettings,
-    updatePromptSettings = _useImagePromptSettin.updatePromptSettings,
-    resetPromptSettings = _useImagePromptSettin.resetPromptSettings;
-  var _useState7 = (0, _react.useState)([]),
-    _useState8 = (0, _slicedToArray2.default)(_useState7, 2),
-    images = _useState8[0],
-    setImages = _useState8[1];
-  var _useState9 = (0, _react.useState)(false),
-    _useState10 = (0, _slicedToArray2.default)(_useState9, 2),
-    insertToControl = _useState10[0],
-    setInsertToControl = _useState10[1];
-  var _useImagePrompt = (0, _useImagePrompt2.default)({
-      result: initialValue,
-      credits: credits,
-      responseId: false
-    }),
-    data = _useImagePrompt.data,
-    isLoading = _useImagePrompt.isLoading,
-    error = _useImagePrompt.error,
-    send = _useImagePrompt.send,
-    sendUsageData = _useImagePrompt.sendUsageData,
-    reset = _useImagePrompt.reset;
-  var _useImageUpload = (0, _useImageUpload2.default)(),
-    attachmentData = _useImageUpload.attachmentData,
-    isUploading = _useImageUpload.isUploading,
-    uploadError = _useImageUpload.uploadError,
-    upload = _useImageUpload.upload,
-    resetUpload = _useImageUpload.resetUpload;
-  var _useState11 = (0, _react.useState)(function () {
-      return !!(editImage !== null && editImage !== void 0 && editImage.url);
-    }),
-    _useState12 = (0, _slicedToArray2.default)(_useState11, 2),
-    shouldWaitForInitialImage = _useState12[0],
-    setShouldWaitForInitialImage = _useState12[1];
-  var panelActive = !isLoading && !isUploading && !shouldWaitForInitialImage;
-  var currentAspectRatio = promptSettings[_consts.IMAGE_PROMPT_SETTINGS.ASPECT_RATIO];
-  var viewData = {
-    width: _consts.IMAGE_ASPECT_RATIO_DIMENSIONS[currentAspectRatio].width,
-    height: _consts.IMAGE_ASPECT_RATIO_DIMENSIONS[currentAspectRatio].height,
-    ratio: currentAspectRatio
+    showUnsavedChangeAlert = _useState2[0],
+    setShowUnsavedChangeAlert = _useState2[1];
+  var setHasUnsavedChanges = function setHasUnsavedChanges(payload) {
+    return dispatch({
+      type: SET_UNSAVED_CHANGES,
+      payload: payload
+    });
   };
-  var setTool = function setTool(tool) {
-    var newPanel = tool || _consts.PANELS.TOOLS;
-    var newScreen = _consts.SCREENS.IMAGE_EDITOR;
-    switch (tool) {
-      case _consts.PANELS.IMAGE_TO_IMAGE:
-        newScreen = _consts.SCREENS.VARIATIONS;
-        break;
-      case _consts.PANELS.IN_PAINTING:
-        newScreen = _consts.SCREENS.IN_PAINTING;
-        break;
-      case _consts.PANELS.OUT_PAINTING:
-        newScreen = _consts.SCREENS.OUT_PAINTING;
-        break;
-      case _consts.PANELS.UPSCALE:
-        newScreen = _consts.SCREENS.IMAGE_EDITOR;
-        break;
+  var saveAndClose = function saveAndClose() {
+    return dispatch({
+      type: SAVE_AND_CLOSE
+    });
+  };
+  var onCloseIntent = function onCloseIntent() {
+    if (state.hasUnsavedChanges) {
+      setShowUnsavedChangeAlert(true);
+      return;
     }
-    setPanel(newPanel);
-    setScreen(newScreen);
-  };
-  var setAttachment = function setAttachment() {
-    setHasUnsavedChanges(false);
-    sendUsageData();
-    controlView.setSettingsModel(attachmentData.image);
-    controlView.applySavedValue();
     onClose();
   };
-
-  // Get ratio from image
-  (0, _react.useEffect)(function () {
-    if (!(editImage !== null && editImage !== void 0 && editImage.url)) {
-      return;
-    }
-    setShouldWaitForInitialImage(true);
-    var img = new Image();
-    img.src = editImage.url;
-    img.onload = function () {
-      var _getAspectRatioSizes = (0, _utils.getAspectRatioSizes)(img.width, img.height),
-        ratio = _getAspectRatioSizes.ratio;
-      updatePromptSettings((0, _defineProperty2.default)({}, _consts.IMAGE_PROMPT_SETTINGS.ASPECT_RATIO, ratio));
-      setShouldWaitForInitialImage(false);
-    };
-  }, [editImage]);
-
-  // Image Generation
-  (0, _react.useEffect)(function () {
-    if (!isLoading && data !== null && data !== void 0 && data.result && Array.isArray(data === null || data === void 0 ? void 0 : data.result)) {
-      setImages(data === null || data === void 0 ? void 0 : data.result);
-      setScreen(_consts.SCREENS.GENERATE_RESULTS);
-    }
-  }, [isLoading]);
-
-  // Image Upload and set attachment
-  (0, _react.useEffect)(function () {
-    var _attachmentData$image;
-    if (!isUploading && attachmentData !== null && attachmentData !== void 0 && (_attachmentData$image = attachmentData.image) !== null && _attachmentData$image !== void 0 && _attachmentData$image.id) {
-      if (insertToControl) {
-        setAttachment(attachmentData.image);
-      } else {
-        setEditImage(attachmentData.image);
-        setPanel(_consts.PANELS.TOOLS);
-        setScreen(_consts.SCREENS.IMAGE_EDITOR);
-      }
-    }
-  }, [isUploading]);
-  var maybeUploadImage = function maybeUploadImage(imageToUpload) {
-    var _editImage$image, _editImage$image2, _imageToUpload, _imageToUpload2;
-    var setAsAttachment = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-    if (!imageToUpload) {
-      return;
-    }
-    if (setAsAttachment) {
-      setInsertToControl(true);
-    }
-
-    // Image already uploaded
-    if (editImage !== null && editImage !== void 0 && (_editImage$image = editImage.image) !== null && _editImage$image !== void 0 && _editImage$image.seed && (editImage === null || editImage === void 0 ? void 0 : (_editImage$image2 = editImage.image) === null || _editImage$image2 === void 0 ? void 0 : _editImage$image2.seed) === ((_imageToUpload = imageToUpload) === null || _imageToUpload === void 0 ? void 0 : _imageToUpload.seed)) {
-      if (setAsAttachment) {
-        // Remove inner image property used to avoid duplicate uploads
-        var image = editImage.image,
-          attachment = (0, _objectWithoutProperties2.default)(editImage, _excluded);
-        return setAttachment(attachment);
-      }
-      setPanel(_consts.PANELS.TOOLS);
-      updatePromptSettings((0, _defineProperty2.default)({}, _consts.IMAGE_PROMPT_SETTINGS.ASPECT_RATIO, '1:1'));
-    }
-
-    // Normalize object to match the upload function
-    if ((_imageToUpload2 = imageToUpload) !== null && _imageToUpload2 !== void 0 && _imageToUpload2.imageUrl) {
-      imageToUpload = _objectSpread(_objectSpread({}, imageToUpload), {}, {
-        image_url: imageToUpload.imageUrl,
-        use_gallery_image: true
-      });
-    }
-    upload({
-      image: _objectSpread({}, imageToUpload),
-      prompt: prompt || imageToUpload.prompt
-    });
+  var editImageInitialData = getControlValue() === (additionalOptions === null || additionalOptions === void 0 ? void 0 : additionalOptions.defaultValue) ? {} : getControlValue();
+  var globalSettings = {
+    initialImageType: (additionalOptions === null || additionalOptions === void 0 ? void 0 : additionalOptions.defaultImageType) || ''
   };
-  var submitPrompt = function submitPrompt(promptType, userPrompt) {
-    var mask = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-    reset();
-    resetUpload();
-    setHasUnsavedChanges(true);
-    if (_consts.PANELS.TEXT_TO_IMAGE === promptType) {
-      return send(userPrompt, promptSettings);
+  var globalActions = {
+    state: state,
+    getControlValue: getControlValue,
+    saveAndClose: saveAndClose,
+    close: onCloseIntent,
+    setHasUnsavedChanges: setHasUnsavedChanges,
+    setControlImage: function setControlImage(image) {
+      controlView.setSettingsModel(image);
+      controlView.applySavedValue();
     }
-    if (_consts.PANELS.IN_PAINTING === promptType) {
-      return send(userPrompt, promptSettings, editImage, _consts.PANELS.IN_PAINTING, mask);
-    }
-    if (_consts.PANELS.OUT_PAINTING === promptType) {
-      return send(userPrompt, promptSettings, true, _consts.PANELS.OUT_PAINTING, maskImage);
-    }
-    if (_consts.PANELS.UPSCALE === promptType) {
-      return send(null, promptSettings, editImage, _consts.PANELS.UPSCALE);
-    }
-    return send(prompt, promptSettings, editImage);
   };
-  var generateNewPrompt = function generateNewPrompt() {
-    setPrompt('');
-    setImages([]);
-    setMaskImage(null);
-    setEditImage({
-      id: '',
-      url: ''
-    });
-    resetPromptSettings();
-    setScreen(_consts.SCREENS.GALLERY);
-    setPanel(_consts.PANELS.TEXT_TO_IMAGE);
-    setHasUnsavedChanges(false);
-    reset();
-    resetUpload();
-  };
-  return /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    display: "flex",
-    sx: {
-      overflowY: 'auto'
+  (0, _react.useEffect)(function () {
+    if (state.isAllSaved) {
+      // Closing the app only once the state was updated, to allow registered effects to take place before closing.
+      onClose();
+    }
+  }, [state.isAllSaved]);
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_promptDialog.default, (0, _extends2.default)({
+    onClose: function onClose() {
+      return onCloseIntent();
     },
-    height: "100%"
-  }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    position: "relative"
-  }, /*#__PURE__*/_react.default.createElement(_panel.default, null, /*#__PURE__*/_react.default.createElement(_panelContent.PanelContent, {
-    error: error || uploadError,
-    prompt: prompt,
-    setPrompt: setPrompt,
-    panelActive: panelActive,
-    generateNewPrompt: generateNewPrompt,
-    promptSettings: promptSettings,
-    updatePromptSettings: updatePromptSettings,
-    submitPrompt: submitPrompt,
-    panel: panel,
-    editImage: editImage,
-    images: images,
-    setTool: setTool,
-    maskImage: maskImage,
-    reset: reset,
-    viewData: viewData
-  }))), /*#__PURE__*/_react.default.createElement(_screen.Screen, {
-    isUploading: isUploading,
-    isLoading: isLoading,
-    screen: screen,
-    images: images,
-    promptSettings: promptSettings,
-    updatePromptSettings: updatePromptSettings,
-    generateNewPrompt: generateNewPrompt,
-    maybeUploadImage: maybeUploadImage,
-    setPrompt: setPrompt,
-    editImage: editImage,
-    setMaskImage: setMaskImage,
-    viewData: viewData,
-    shouldWaitForInitialImage: shouldWaitForInitialImage
+    maxWidth: "lg"
+  }, DialogProps), /*#__PURE__*/_react.default.createElement(_promptDialog.default.Header, {
+    onClose: function onClose() {
+      return onCloseIntent();
+    }
+  }, maybeRenderUpgradeChip()), /*#__PURE__*/_react.default.createElement(_ui.Divider, null), /*#__PURE__*/_react.default.createElement(_globalSettingsContext.GlobalSettingsProvider, {
+    settings: globalSettings
+  }, /*#__PURE__*/_react.default.createElement(_globalActionsContext.GlobalActionsProvider, {
+    actions: globalActions
+  }, /*#__PURE__*/_react.default.createElement(_locationContext.LocationProvider, null, /*#__PURE__*/_react.default.createElement(_editImageContext.EditImageProvider, {
+    imageData: editImageInitialData
+  }, /*#__PURE__*/_react.default.createElement(_mediaOutlet.default, null)))))), showUnsavedChangeAlert && /*#__PURE__*/_react.default.createElement(_unsavedChangesAlert.default, {
+    onClose: onClose,
+    onCancel: function onCancel() {
+      return setShowUnsavedChangeAlert(false);
+    },
+    open: true
   }));
 };
 FormMedia.propTypes = {
-  getControlValue: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
-  additionalOptions: PropTypes.object,
+  DialogProps: PropTypes.object,
+  getControlValue: PropTypes.func.isRequired,
   controlView: PropTypes.object,
+  additionalOptions: PropTypes.object,
   credits: PropTypes.number,
-  setHasUnsavedChanges: PropTypes.func.isRequired
+  maybeRenderUpgradeChip: PropTypes.func
 };
 var _default = FormMedia;
 exports["default"] = _default;
 
 /***/ }),
 
-/***/ "../modules/ai/assets/js/editor/pages/form-media/panel-content/form-controls/prompt-form.js":
-/*!**************************************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/panel-content/form-controls/prompt-form.js ***!
-  \**************************************************************************************************/
+/***/ "../modules/ai/assets/js/editor/pages/form-media/media-outlet.js":
+/*!***********************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/media-outlet.js ***!
+  \***********************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
-/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -3672,221 +5437,97 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
-var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
-var _consts = __webpack_require__(/*! ../../consts/consts */ "../modules/ai/assets/js/editor/pages/form-media/consts/consts.js");
-var _promptActionSelection = _interopRequireDefault(__webpack_require__(/*! ../../../../components/prompt-action-selection */ "../modules/ai/assets/js/editor/components/prompt-action-selection.js"));
-var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _useSessionStorage2 = _interopRequireDefault(__webpack_require__(/*! ../../../../hooks/use-session-storage */ "../modules/ai/assets/js/editor/hooks/use-session-storage.js"));
-var _textarea = _interopRequireDefault(__webpack_require__(/*! ../../../../components/textarea */ "../modules/ai/assets/js/editor/components/textarea.js"));
-var _wandIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/wand-icon */ "../modules/ai/assets/js/editor/icons/wand-icon.js"));
-var _useImagePromptEnhancer = _interopRequireDefault(__webpack_require__(/*! ../../../../hooks/use-image-prompt-enhancer */ "../modules/ai/assets/js/editor/hooks/use-image-prompt-enhancer.js"));
+var _view = _interopRequireDefault(__webpack_require__(/*! ./components/view */ "../modules/ai/assets/js/editor/pages/form-media/components/view.js"));
+var _loader = _interopRequireDefault(__webpack_require__(/*! ../../components/loader */ "../modules/ai/assets/js/editor/components/loader.js"));
+var _constants = __webpack_require__(/*! ./constants */ "../modules/ai/assets/js/editor/pages/form-media/constants/index.js");
+var _generate = _interopRequireDefault(__webpack_require__(/*! ./views/generate */ "../modules/ai/assets/js/editor/pages/form-media/views/generate/index.js"));
+var _imageTools = _interopRequireDefault(__webpack_require__(/*! ./views/image-tools */ "../modules/ai/assets/js/editor/pages/form-media/views/image-tools/index.js"));
+var _resize = _interopRequireDefault(__webpack_require__(/*! ./views/resize */ "../modules/ai/assets/js/editor/pages/form-media/views/resize/index.js"));
+var _inPainting = _interopRequireDefault(__webpack_require__(/*! ./views/in-painting */ "../modules/ai/assets/js/editor/pages/form-media/views/in-painting/index.js"));
+var _outPainting = _interopRequireDefault(__webpack_require__(/*! ./views/out-painting */ "../modules/ai/assets/js/editor/pages/form-media/views/out-painting/index.js"));
+var _variations = _interopRequireDefault(__webpack_require__(/*! ./views/variations */ "../modules/ai/assets/js/editor/pages/form-media/views/variations/index.js"));
+var _replaceBackground = _interopRequireDefault(__webpack_require__(/*! ./views/replace-background */ "../modules/ai/assets/js/editor/pages/form-media/views/replace-background/index.js"));
+var _removeBackground = _interopRequireDefault(__webpack_require__(/*! ./views/remove-background */ "../modules/ai/assets/js/editor/pages/form-media/views/remove-background/index.js"));
+var _locationContext = __webpack_require__(/*! ./context/location-context */ "../modules/ai/assets/js/editor/pages/form-media/context/location-context.js");
+var _editImageContext = __webpack_require__(/*! ./context/edit-image-context */ "../modules/ai/assets/js/editor/pages/form-media/context/edit-image-context.js");
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-var getPromptPlaceholder = function getPromptPlaceholder(data) {
-  var _data$images;
-  if (!(data !== null && data !== void 0 && (_data$images = data.images) !== null && _data$images !== void 0 && _data$images.length)) {
-    return __('describe your image', 'elementor');
-  }
-  var images = data.images;
-  var randomImage = images[Math.floor(Math.random() * images.length)];
-  return randomImage.prompt;
-};
-var PromptForm = function PromptForm(_ref) {
-  var promptSettings = _ref.promptSettings,
-    updatePromptSettings = _ref.updatePromptSettings,
-    _ref$prompt = _ref.prompt,
-    prompt = _ref$prompt === void 0 ? '' : _ref$prompt,
-    setPrompt = _ref.setPrompt,
-    panelActive = _ref.panelActive,
-    _ref$hasImage = _ref.hasImage,
-    hasImage = _ref$hasImage === void 0 ? false : _ref$hasImage,
-    _ref$disableAspectRat = _ref.disableAspectRatio,
-    disableAspectRatio = _ref$disableAspectRat === void 0 ? false : _ref$disableAspectRat;
-  var selectedCategory = _consts.IMAGE_PROMPT_CATEGORIES.find(function (category) {
-    return category.key === promptSettings[_consts.IMAGE_PROMPT_SETTINGS.IMAGE_TYPE];
-  }) || {
-    subCategories: {}
-  };
-  var _useSessionStorage = (0, _useSessionStorage2.default)('ai-image-gallery'),
-    data = _useSessionStorage.data;
-  var _useImagePromptEnhanc = (0, _useImagePromptEnhancer.default)(prompt),
-    imagePromptData = _useImagePromptEnhanc.data,
-    imagePromptIsLoading = _useImagePromptEnhanc.isLoading,
-    imagePromptEnhancer = _useImagePromptEnhanc.send;
-
-  // Image Prompt Enhancer
+var MediaOutlet = function MediaOutlet() {
+  var _useEditImage = (0, _editImageContext.useEditImage)(),
+    editImage = _useEditImage.editImage;
+  var _useLocation = (0, _locationContext.useLocation)({
+      current: _constants.LOCATIONS.GENERATE
+    }),
+    current = _useLocation.current,
+    navigate = _useLocation.navigate;
   (0, _react.useEffect)(function () {
-    if (!imagePromptIsLoading && imagePromptData !== null && imagePromptData !== void 0 && imagePromptData.result) {
-      setPrompt(imagePromptData === null || imagePromptData === void 0 ? void 0 : imagePromptData.result);
+    var isNotPlaceholderImage = editImage.id;
+    if (isNotPlaceholderImage) {
+      navigate(_constants.LOCATIONS.IMAGE_TOOLS);
     }
-  }, [imagePromptIsLoading]);
-  var placeholderInitialValue = getPromptPlaceholder(data);
-  var imageType = promptSettings[_consts.IMAGE_PROMPT_SETTINGS.IMAGE_TYPE];
-  var stylePreset = promptSettings[_consts.IMAGE_PROMPT_SETTINGS.STYLE_PRESET];
-  var aspectRatio = promptSettings[_consts.IMAGE_PROMPT_SETTINGS.ASPECT_RATIO];
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, hasImage && /*#__PURE__*/_react.default.createElement(_ui.FormControl, {
-    sx: {
-      width: '100%',
-      mb: 6
-    }
-  }, /*#__PURE__*/_react.default.createElement(_ui.Slider, {
-    onChange: function onChange(_, value) {
-      return updatePromptSettings((0, _defineProperty2.default)({}, _consts.IMAGE_PROMPT_SETTINGS.IMAGE_STRENGTH, value));
-    },
-    id: 'image_strength',
-    name: 'image_strength',
-    "aria-label": __('Reference strength', 'elementor'),
-    defaultValue: 45,
-    getAriaValueText: function getAriaValueText(value) {
-      return "".concat(value, "%");
-    },
-    valueLabelDisplay: "auto",
-    step: 10,
-    marks: true,
-    min: 0,
-    max: 100,
-    color: "secondary"
-  }), /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center"
-  }, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "caption"
-  }, __('Prompt', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "caption"
-  }, __('Reference image', 'elementor')))), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    gap: 6
-  }, /*#__PURE__*/_react.default.createElement(_textarea.default, {
-    minRows: 3,
-    maxRows: 6,
-    disabled: !panelActive || imagePromptIsLoading,
-    placeholder: placeholderInitialValue,
-    onChange: function onChange(event) {
-      return setPrompt(event.target.value);
-    },
-    value: prompt,
-    onKeyDown: function onKeyDown(event) {
-      if ('Tab' === event.key) {
-        event.preventDefault();
-        setPrompt(placeholderInitialValue);
-      }
-    },
-    InputProps: {
-      endAdornment: /*#__PURE__*/_react.default.createElement(_ui.InputAdornment, {
-        position: "end",
-        sx: {
-          position: 'absolute',
-          bottom: '24px',
-          right: '8px'
-        }
-      }, imagePromptIsLoading ? /*#__PURE__*/_react.default.createElement(_ui.CircularProgress, {
-        color: "secondary",
-        size: 20,
-        sx: {
-          mr: 2
-        }
-      }) : /*#__PURE__*/_react.default.createElement(_ui.Tooltip, {
-        title: __('Enhance prompt', 'elementor')
-      }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
-        component: "span",
-        sx: {
-          cursor: 'pointer'
-        }
-      }, /*#__PURE__*/_react.default.createElement(_ui.IconButton, {
-        size: "small",
-        color: "secondary",
-        onClick: function onClick() {
-          return imagePromptEnhancer(prompt);
-        },
-        disabled: !panelActive || imagePromptIsLoading || !prompt
-      }, /*#__PURE__*/_react.default.createElement(_wandIcon.default, null)))))
-    },
-    sx: {
-      '& .MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputMultiline': {
-        pb: 9,
-        width: '89%'
-      }
-    }
-  }), /*#__PURE__*/_react.default.createElement(_promptActionSelection.default, {
-    wrapperStyle: {
-      width: '100%'
-    },
-    label: __('Image type', 'elementor'),
-    options: _consts.IMAGE_PROMPT_CATEGORIES.map(function (category) {
-      return {
-        label: category.label,
-        value: category.key
-      };
-    }),
-    onChange: function onChange(event) {
-      return updatePromptSettings((0, _defineProperty2.default)({}, _consts.IMAGE_PROMPT_SETTINGS.IMAGE_TYPE, event.target.value));
-    },
-    value: imageType,
-    disabled: !panelActive
-  }), /*#__PURE__*/_react.default.createElement(_promptActionSelection.default, {
-    wrapperStyle: {
-      width: '100%'
-    },
-    label: __('Style', 'elementor'),
-    options: Object.entries(selectedCategory.subCategories).map(function (_ref2) {
-      var _ref3 = (0, _slicedToArray2.default)(_ref2, 2),
-        value = _ref3[0],
-        label = _ref3[1];
-      return {
-        label: label,
-        value: value
-      };
-    }),
-    onChange: function onChange(event) {
-      return updatePromptSettings((0, _defineProperty2.default)({}, _consts.IMAGE_PROMPT_SETTINGS.STYLE_PRESET, event.target.value));
-    },
-    value: stylePreset,
-    disabled: !panelActive || !imageType || false
-  }), !disableAspectRatio && /*#__PURE__*/_react.default.createElement(_promptActionSelection.default, {
-    wrapperStyle: {
-      width: '100%'
-    },
-    label: __('Aspect ratio', 'elementor'),
-    options: Object.entries(_consts.IMAGE_ASPECT_RATIOS).map(function (_ref4) {
-      var _ref5 = (0, _slicedToArray2.default)(_ref4, 2),
-        value = _ref5[0],
-        label = _ref5[1];
-      return {
-        label: label,
-        value: value
-      };
-    }),
-    onChange: function onChange(event) {
-      return updatePromptSettings((0, _defineProperty2.default)({}, _consts.IMAGE_PROMPT_SETTINGS.ASPECT_RATIO, event.target.value));
-    },
-    value: aspectRatio,
-    disabled: !panelActive || disableAspectRatio
-  })));
+  }, [editImage.id]);
+  if (!current) {
+    return /*#__PURE__*/_react.default.createElement(_view.default, {
+      alignItems: "center"
+    }, /*#__PURE__*/_react.default.createElement(_loader.default, null));
+  }
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, current === _constants.LOCATIONS.GENERATE && /*#__PURE__*/_react.default.createElement(_generate.default, null), current === _constants.LOCATIONS.IMAGE_TOOLS && /*#__PURE__*/_react.default.createElement(_imageTools.default, null), current === _constants.LOCATIONS.VARIATIONS && /*#__PURE__*/_react.default.createElement(_variations.default, null), current === _constants.LOCATIONS.IN_PAINTING && /*#__PURE__*/_react.default.createElement(_inPainting.default, null), current === _constants.LOCATIONS.OUT_PAINTING && /*#__PURE__*/_react.default.createElement(_outPainting.default, null), current === _constants.LOCATIONS.RESIZE && /*#__PURE__*/_react.default.createElement(_resize.default, null), current === _constants.LOCATIONS.REPLACE_BACKGROUND && /*#__PURE__*/_react.default.createElement(_replaceBackground.default, null), current === _constants.LOCATIONS.REMOVE_BACKGROUND && /*#__PURE__*/_react.default.createElement(_removeBackground.default, null));
 };
-PromptForm.propTypes = {
-  panelActive: PropTypes.bool,
-  prompt: PropTypes.string,
-  setPrompt: PropTypes.func,
-  promptSettings: PropTypes.object,
-  updatePromptSettings: PropTypes.func,
-  hasImage: PropTypes.bool,
-  disableAspectRatio: PropTypes.bool
-};
-var _default = PromptForm;
+var _default = MediaOutlet;
 exports["default"] = _default;
 
 /***/ }),
 
-/***/ "../modules/ai/assets/js/editor/pages/form-media/panel-content/image-prompt-form.js":
-/*!******************************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/panel-content/image-prompt-form.js ***!
-  \******************************************************************************************/
+/***/ "../modules/ai/assets/js/editor/pages/form-media/utils/index.js":
+/*!**********************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/utils/index.js ***!
+  \**********************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
-/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.getAspectRatioSizes = void 0;
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
+var _constants = __webpack_require__(/*! ../constants */ "../modules/ai/assets/js/editor/pages/form-media/constants/index.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+var getAspectRatioSizes = function getAspectRatioSizes(width, height) {
+  var aspectRatios = Object.keys(_constants.IMAGE_ASPECT_RATIO);
+  var targetRatio = width / height;
+  var closestRatio = aspectRatios[0];
+  var minDiff = Infinity;
+  aspectRatios.forEach(function (ratio) {
+    var _ratio$split$map = ratio.split(':').map(Number),
+      _ratio$split$map2 = (0, _slicedToArray2.default)(_ratio$split$map, 2),
+      w = _ratio$split$map2[0],
+      h = _ratio$split$map2[1];
+    var diff = Math.abs(targetRatio - w / h);
+    if (diff < minDiff) {
+      minDiff = diff;
+      closestRatio = ratio;
+    }
+  });
+  return _objectSpread({
+    ratio: closestRatio
+  }, _constants.IMAGE_ASPECT_RATIO[closestRatio]);
+};
+exports.getAspectRatioSizes = getAspectRatioSizes;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/generate/hooks/use-suggested-images.js":
+/*!****************************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/generate/hooks/use-suggested-images.js ***!
+  \****************************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -3894,107 +5535,343 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
-var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
+var _react = __webpack_require__(/*! react */ "react");
+var _useImagesPreload2 = _interopRequireDefault(__webpack_require__(/*! ../../../../../hooks/use-images-preload */ "../modules/ai/assets/js/editor/hooks/use-images-preload.js"));
+var _useSessionStorage2 = _interopRequireDefault(__webpack_require__(/*! ../../../../../hooks/use-session-storage */ "../modules/ai/assets/js/editor/hooks/use-session-storage.js"));
+var shuffleImages = function shuffleImages(images) {
+  return images.map(function (image) {
+    return [Math.random(), image];
+  }).sort(function (_ref, _ref2) {
+    var _ref3 = (0, _slicedToArray2.default)(_ref, 1),
+      a = _ref3[0];
+    var _ref4 = (0, _slicedToArray2.default)(_ref2, 1),
+      b = _ref4[0];
+    return a - b;
+  }).map(function (_ref5) {
+    var _ref6 = (0, _slicedToArray2.default)(_ref5, 2),
+      image = _ref6[1];
+    return image;
+  });
+};
+var useSuggestedImages = function useSuggestedImages(_ref7) {
+  var selectedType = _ref7.selectedType;
+  var _useState = (0, _react.useState)(false),
+    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+    isLoading = _useState2[0],
+    setIsLoading = _useState2[1];
+  var _useSessionStorage = (0, _useSessionStorage2.default)('ai-image-gallery', {
+      images: []
+    }),
+    data = _useSessionStorage.data,
+    setStateAndSessionData = _useSessionStorage.setStateAndSessionData;
+  var _useImagesPreload = (0, _useImagesPreload2.default)(),
+    ready = _useImagesPreload.ready,
+    preloadImages = _useImagesPreload.preloadImages;
+  var imagesData = (0, _react.useMemo)(function () {
+    var shuffledImages = shuffleImages(data.images);
+    if (!selectedType) {
+      return shuffledImages;
+    }
+    var categoryImages = shuffledImages.filter(function (_ref8) {
+      var imageType = _ref8.imageType;
+      return imageType.includes(selectedType);
+    });
+
+    // Some categories don't have images, so we TEMPORARLY fallback to the shuffled images.
+    return categoryImages.length ? categoryImages : shuffledImages;
+  }, [selectedType, data]);
+  var fetchImages = function fetchImages() {
+    setIsLoading(true);
+    fetch('https://my.elementor.com/ai/images-prompt-gallery/ai-gallery.json').then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      return setStateAndSessionData(json);
+    })
+    // eslint-disable-next-line no-console
+    .catch(function (e) {
+      return console.log(e.message);
+    }).finally(function () {
+      return setIsLoading(false);
+    });
+  };
+  (0, _react.useEffect)(function () {
+    if (0 === (data === null || data === void 0 ? void 0 : data.images.length)) {
+      fetchImages();
+      return;
+    }
+    preloadImages(data.images.map(function (_ref9) {
+      var thumbnailUrl = _ref9.thumbnailUrl;
+      return thumbnailUrl;
+    }));
+  }, [data]);
+  return {
+    imagesData: imagesData,
+    isLoading: !ready || isLoading
+  };
+};
+var _default = useSuggestedImages;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/generate/hooks/use-text-to-image.js":
+/*!*************************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/generate/hooks/use-text-to-image.js ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _api = __webpack_require__(/*! ../../../../../api */ "../modules/ai/assets/js/editor/api/index.js");
+var _useImagePrompt = _interopRequireDefault(__webpack_require__(/*! ../../../hooks/use-image-prompt */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-prompt.js"));
+var useTextToImage = function useTextToImage(initialValue) {
+  return (0, _useImagePrompt.default)(_api.getTextToImageGeneration, initialValue);
+};
+var _default = useTextToImage;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/generate/index.js":
+/*!*******************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/generate/index.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _generateButton = _interopRequireDefault(__webpack_require__(/*! ../../../components/generate-button */ "../modules/ai/assets/js/editor/components/generate-button.js"));
-var _promptForm = _interopRequireDefault(__webpack_require__(/*! ./form-controls/prompt-form */ "../modules/ai/assets/js/editor/pages/form-media/panel-content/form-controls/prompt-form.js"));
-var _consts = __webpack_require__(/*! ../consts/consts */ "../modules/ai/assets/js/editor/pages/form-media/consts/consts.js");
-var _promptErrorMessage = _interopRequireDefault(__webpack_require__(/*! ../../../components/prompt-error-message */ "../modules/ai/assets/js/editor/components/prompt-error-message.js"));
-var _refreshIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/refresh-icon */ "../modules/ai/assets/js/editor/icons/refresh-icon.js"));
-var ImagePromptForm = function ImagePromptForm(_ref) {
-  var panelActive = _ref.panelActive,
-    _ref$prompt = _ref.prompt,
-    prompt = _ref$prompt === void 0 ? '' : _ref$prompt,
-    setPrompt = _ref.setPrompt,
-    generateNewPrompt = _ref.generateNewPrompt,
-    images = _ref.images,
-    promptSettings = _ref.promptSettings,
-    updatePromptSettings = _ref.updatePromptSettings,
-    submitPrompt = _ref.submitPrompt,
-    error = _ref.error;
+var _view = _interopRequireDefault(__webpack_require__(/*! ../../components/view */ "../modules/ai/assets/js/editor/pages/form-media/components/view.js"));
+var _gallery = _interopRequireDefault(__webpack_require__(/*! ../../components/gallery */ "../modules/ai/assets/js/editor/pages/form-media/components/gallery.js"));
+var _imageForm = _interopRequireDefault(__webpack_require__(/*! ../../components/image-form */ "../modules/ai/assets/js/editor/pages/form-media/components/image-form.js"));
+var _promptField = _interopRequireDefault(__webpack_require__(/*! ../../components/prompt-field */ "../modules/ai/assets/js/editor/pages/form-media/components/prompt-field.js"));
+var _imageTypeSelect = _interopRequireDefault(__webpack_require__(/*! ../../components/image-type-select */ "../modules/ai/assets/js/editor/pages/form-media/components/image-type-select.js"));
+var _imageStyleSelect = _interopRequireDefault(__webpack_require__(/*! ../../components/image-style-select */ "../modules/ai/assets/js/editor/pages/form-media/components/image-style-select.js"));
+var _imageRatioSelect = _interopRequireDefault(__webpack_require__(/*! ../../components/image-ratio-select */ "../modules/ai/assets/js/editor/pages/form-media/components/image-ratio-select.js"));
+var _generateAgainSubmit = _interopRequireDefault(__webpack_require__(/*! ../../components/generate-again-submit */ "../modules/ai/assets/js/editor/pages/form-media/components/generate-again-submit.js"));
+var _newPromptButton = _interopRequireDefault(__webpack_require__(/*! ../../components/new-prompt-button */ "../modules/ai/assets/js/editor/pages/form-media/components/new-prompt-button.js"));
+var _generateImagesSubmit = _interopRequireDefault(__webpack_require__(/*! ../../components/generate-images-submit */ "../modules/ai/assets/js/editor/pages/form-media/components/generate-images-submit.js"));
+var _imagesDisplay = _interopRequireDefault(__webpack_require__(/*! ../../components/images-display */ "../modules/ai/assets/js/editor/pages/form-media/components/images-display.js"));
+var _imageActions = _interopRequireDefault(__webpack_require__(/*! ../../components/image-actions */ "../modules/ai/assets/js/editor/pages/form-media/components/image-actions.js"));
+var _usePromptSettings2 = _interopRequireWildcard(__webpack_require__(/*! ../../hooks/use-prompt-settings */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-prompt-settings.js"));
+var _useSuggestedImages2 = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-suggested-images */ "../modules/ai/assets/js/editor/pages/form-media/views/generate/hooks/use-suggested-images.js"));
+var _useTextToImage2 = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-text-to-image */ "../modules/ai/assets/js/editor/pages/form-media/views/generate/hooks/use-text-to-image.js"));
+var _useImageActions2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-actions */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-actions.js"));
+var _globalSettingsContext = __webpack_require__(/*! ../../context/global-settings-context */ "../modules/ai/assets/js/editor/pages/form-media/context/global-settings-context.js");
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+var getPromptPlaceholder = function getPromptPlaceholder(images) {
+  if (!(images !== null && images !== void 0 && images.length)) {
+    return __('describe your image', 'elementor');
+  }
+  var randomImage = images[Math.floor(Math.random() * images.length)];
+  return randomImage.prompt;
+};
+var Generate = function Generate() {
+  var _useState = (0, _react.useState)(''),
+    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+    prompt = _useState2[0],
+    setPrompt = _useState2[1];
+  var _useGlobalSettings = (0, _globalSettingsContext.useGlobalSettings)(),
+    initialImageType = _useGlobalSettings.initialImageType;
+  var _usePromptSettings = (0, _usePromptSettings2.default)({
+      type: initialImageType
+    }),
+    settings = _usePromptSettings.settings,
+    updateSettings = _usePromptSettings.updateSettings,
+    resetSettings = _usePromptSettings.resetSettings;
+  var _useSuggestedImages = (0, _useSuggestedImages2.default)({
+      selectedType: settings[_usePromptSettings2.IMAGE_TYPE]
+    }),
+    suggestedImages = _useSuggestedImages.imagesData,
+    isPreloading = _useSuggestedImages.isLoading;
+  var promptPlaceholder = getPromptPlaceholder(suggestedImages);
+  var _useTextToImage = (0, _useTextToImage2.default)(),
+    generatedImages = _useTextToImage.data,
+    send = _useTextToImage.send,
+    isGenerating = _useTextToImage.isLoading,
+    error = _useTextToImage.error,
+    reset = _useTextToImage.reset;
+  var _useImageActions = (0, _useImageActions2.default)(),
+    use = _useImageActions.use,
+    edit = _useImageActions.edit,
+    isUploading = _useImageActions.isLoading;
+  var isLoading = isPreloading || isGenerating || isUploading;
+
+  // The aspect ratio in the content view shuld only be updated when the generated images are updated.
+  var generateAspectRatio = (0, _react.useMemo)(function () {
+    return settings[_usePromptSettings2.IMAGE_RATIO];
+  }, [generatedImages === null || generatedImages === void 0 ? void 0 : generatedImages.result]);
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
-    submitPrompt(_consts.PANELS.TEXT_TO_IMAGE, prompt);
+    send(prompt, settings);
   };
-  return /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    component: "form",
-    onSubmit: handleSubmit
-  }, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "h3",
-    sx: {
-      mb: 3
-    }
-  }, __('Imagine anything create everything', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "body1",
-    color: "secondary",
-    sx: {
-      mb: 8
-    }
-  }, __('Generate images by selecting the desired type and style, and entering a prompt.', 'elementor')), error && /*#__PURE__*/_react.default.createElement(_promptErrorMessage.default, {
+  var handleCopyPrompt = function handleCopyPrompt(_ref) {
+    var _updateSettings;
+    var selectedPrompt = _ref.prompt,
+      imageType = _ref.imageType;
+    setPrompt(selectedPrompt);
+    var _imageType$split = imageType.split('/'),
+      _imageType$split2 = (0, _slicedToArray2.default)(_imageType$split, 2),
+      type = _imageType$split2[0],
+      style = _imageType$split2[1];
+    updateSettings((_updateSettings = {}, (0, _defineProperty2.default)(_updateSettings, _usePromptSettings2.IMAGE_TYPE, type), (0, _defineProperty2.default)(_updateSettings, _usePromptSettings2.IMAGE_STYLE, style), _updateSettings));
+  };
+  return /*#__PURE__*/_react.default.createElement(_view.default, null, /*#__PURE__*/_react.default.createElement(_view.default.Panel, null, /*#__PURE__*/_react.default.createElement(_view.default.PanelHeading, {
+    primary: __('Imagine anything create everything', 'elementor'),
+    secondary: __('Generate images by selecting the desired type and style, and entering a prompt.', 'elementor')
+  }), error && /*#__PURE__*/_react.default.createElement(_view.default.ErrorMessage, {
     error: error,
-    sx: {
-      mb: 6
-    },
-    actionPosition: "bottom",
     onRetry: handleSubmit
-  }), /*#__PURE__*/_react.default.createElement(_promptForm.default, {
-    prompt: prompt,
-    setPrompt: setPrompt,
-    panelActive: panelActive,
-    promptSettings: promptSettings,
-    updatePromptSettings: updatePromptSettings
-  }), images.length ? /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+  }), /*#__PURE__*/_react.default.createElement(_imageForm.default, {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/_react.default.createElement(_promptField.default, {
+    value: prompt,
+    disabled: isLoading,
+    placeholder: promptPlaceholder,
+    onChange: setPrompt
+  }), /*#__PURE__*/_react.default.createElement(_imageTypeSelect.default, {
+    disabled: isLoading,
+    value: settings[_usePromptSettings2.IMAGE_TYPE],
+    onChange: function onChange(event) {
+      return updateSettings((0, _defineProperty2.default)({}, _usePromptSettings2.IMAGE_TYPE, event.target.value));
+    }
+  }), /*#__PURE__*/_react.default.createElement(_imageStyleSelect.default, {
+    type: settings[_usePromptSettings2.IMAGE_TYPE],
+    value: settings[_usePromptSettings2.IMAGE_STYLE],
+    disabled: isLoading || !settings[_usePromptSettings2.IMAGE_TYPE] || false,
+    onChange: function onChange(event) {
+      return updateSettings((0, _defineProperty2.default)({}, _usePromptSettings2.IMAGE_STYLE, event.target.value));
+    }
+  }), /*#__PURE__*/_react.default.createElement(_imageRatioSelect.default, {
+    disabled: isLoading,
+    value: settings[_usePromptSettings2.IMAGE_RATIO],
+    onChange: function onChange(event) {
+      return updateSettings((0, _defineProperty2.default)({}, _usePromptSettings2.IMAGE_RATIO, event.target.value));
+    }
+  }), generatedImages !== null && generatedImages !== void 0 && generatedImages.result ? /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     gap: 5,
     sx: {
       my: 6
     }
-  }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
-    fullWidth: true,
-    type: "submit",
-    variant: "contained",
-    color: "secondary",
-    startIcon: /*#__PURE__*/_react.default.createElement(_refreshIcon.default, null),
-    disabled: !panelActive || '' === prompt,
-    sx: {
-      // TODO: Remove on @elementor/ui 1.4.51.
-      color: 'background.paper'
+  }, /*#__PURE__*/_react.default.createElement(_generateAgainSubmit.default, {
+    disabled: isLoading || '' === prompt
+  }), /*#__PURE__*/_react.default.createElement(_newPromptButton.default, {
+    disabled: isLoading,
+    onClick: function onClick() {
+      resetSettings();
+      setPrompt('');
+      reset();
     }
-  }, __('Generate again', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Button, {
-    fullWidth: true,
-    variant: "text",
-    color: "secondary",
-    disabled: !panelActive,
-    onClick: generateNewPrompt
-  }, __('New prompt', 'elementor'))) : /*#__PURE__*/_react.default.createElement(_generateButton.default, {
-    size: "medium",
-    disabled: !panelActive || '' === prompt,
-    fullWidth: true,
-    sx: {
-      my: 6
-    }
-  }, __('Generate images', 'elementor')));
+  })) : /*#__PURE__*/_react.default.createElement(_generateImagesSubmit.default, {
+    disabled: isLoading || '' === prompt
+  }))), /*#__PURE__*/_react.default.createElement(_view.default.Content, {
+    isLoading: isPreloading || isUploading,
+    isGenerating: isGenerating
+  }, generatedImages !== null && generatedImages !== void 0 && generatedImages.result ? /*#__PURE__*/_react.default.createElement(_imagesDisplay.default, {
+    images: generatedImages === null || generatedImages === void 0 ? void 0 : generatedImages.result,
+    aspectRatio: generateAspectRatio,
+    onUseImage: use,
+    onEditImage: edit
+  }) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_view.default.ContentHeading, {
+    primary: __('Spark your imagination with images generated by our community', 'elementor')
+  }), /*#__PURE__*/_react.default.createElement(_gallery.default, {
+    cols: 3
+  }, suggestedImages === null || suggestedImages === void 0 ? void 0 : suggestedImages.map(function (suggestedPrompt) {
+    return /*#__PURE__*/_react.default.createElement(_gallery.default.Image, {
+      variant: "thumbnail",
+      key: suggestedPrompt.prompt,
+      alt: suggestedPrompt.prompt,
+      text: suggestedPrompt.prompt,
+      src: suggestedPrompt.thumbnailUrl
+    }, /*#__PURE__*/_react.default.createElement(_imageActions.default, null, /*#__PURE__*/_react.default.createElement(_imageActions.default.UseImage, {
+      onClick: function onClick() {
+        return use(suggestedPrompt);
+      },
+      fullWidth: true
+    }), /*#__PURE__*/_react.default.createElement(_imageActions.default.CopyIcon, {
+      onClick: function onClick() {
+        return handleCopyPrompt(suggestedPrompt);
+      }
+    }), /*#__PURE__*/_react.default.createElement(_imageActions.default.EditIcon, {
+      onClick: function onClick() {
+        return edit(suggestedPrompt);
+      }
+    })));
+  })))));
 };
-ImagePromptForm.propTypes = {
-  panelActive: PropTypes.bool,
-  prompt: PropTypes.string,
-  setPrompt: PropTypes.func,
-  generateNewPrompt: PropTypes.func,
-  images: PropTypes.array,
-  promptSettings: PropTypes.object,
-  updatePromptSettings: PropTypes.func,
-  submitPrompt: PropTypes.func,
-  error: PropTypes.string,
-  backToTools: PropTypes.func
-};
-var _default = ImagePromptForm;
+var _default = Generate;
 exports["default"] = _default;
 
 /***/ }),
 
-/***/ "../modules/ai/assets/js/editor/pages/form-media/panel-content/image-tools.js":
-/*!************************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/panel-content/image-tools.js ***!
-  \************************************************************************************/
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/image-tools/image-tools-content.js":
+/*!************************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/image-tools/image-tools-content.js ***!
+  \************************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _singleImagePreview = _interopRequireDefault(__webpack_require__(/*! ../../components/single-image-preview */ "../modules/ai/assets/js/editor/pages/form-media/components/single-image-preview.js"));
+var _imageActions = _interopRequireDefault(__webpack_require__(/*! ../../components/image-actions */ "../modules/ai/assets/js/editor/pages/form-media/components/image-actions.js"));
+var _editImageContext = __webpack_require__(/*! ../../context/edit-image-context */ "../modules/ai/assets/js/editor/pages/form-media/context/edit-image-context.js");
+var _useImageActions2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-actions */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-actions.js"));
+var ImageToolsContent = function ImageToolsContent() {
+  var _useEditImage = (0, _editImageContext.useEditImage)(),
+    editImage = _useEditImage.editImage,
+    width = _useEditImage.width,
+    height = _useEditImage.height;
+  var _useImageActions = (0, _useImageActions2.default)(),
+    use = _useImageActions.use;
+  return /*#__PURE__*/_react.default.createElement(_singleImagePreview.default, null, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default.Image, {
+    src: editImage.url,
+    style: {
+      width: width,
+      height: height
+    },
+    alt: editImage.alt || __('Image preview', 'elementor')
+  }, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default.Actions, null, /*#__PURE__*/_react.default.createElement(_imageActions.default.UseImage, {
+    onClick: function onClick() {
+      return use(editImage);
+    }
+  }))));
+};
+var _default = ImageToolsContent;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/image-tools/image-tools-panel.js":
+/*!**********************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/image-tools/image-tools-panel.js ***!
+  \**********************************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -4009,13 +5886,14 @@ Object.defineProperty(exports, "__esModule", ({
 exports["default"] = void 0;
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _expandIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/expand-icon */ "../modules/ai/assets/js/editor/icons/expand-icon.js"));
-var _brushIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/brush-icon */ "../modules/ai/assets/js/editor/icons/brush-icon.js"));
-var _evolveIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/evolve-icon */ "../modules/ai/assets/js/editor/icons/evolve-icon.js"));
-var _enlargerIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/enlarger-icon */ "../modules/ai/assets/js/editor/icons/enlarger-icon.js"));
-var _consts = __webpack_require__(/*! ../consts/consts */ "../modules/ai/assets/js/editor/pages/form-media/consts/consts.js");
-var _chevronLeftIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/chevron-left-icon */ "../modules/ai/assets/js/editor/icons/chevron-left-icon.js"));
-var StyledChevronLeftIcon = (0, _ui.withDirection)(_chevronLeftIcon.default);
+var _expandIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/expand-icon */ "../modules/ai/assets/js/editor/icons/expand-icon.js"));
+var _brushIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/brush-icon */ "../modules/ai/assets/js/editor/icons/brush-icon.js"));
+var _evolveIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/evolve-icon */ "../modules/ai/assets/js/editor/icons/evolve-icon.js"));
+var _enlargerIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/enlarger-icon */ "../modules/ai/assets/js/editor/icons/enlarger-icon.js"));
+var _removeBg = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/remove-bg */ "../modules/ai/assets/js/editor/icons/remove-bg.js"));
+var _replaceBg = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/replace-bg */ "../modules/ai/assets/js/editor/icons/replace-bg.js"));
+var _constants = __webpack_require__(/*! ../../constants */ "../modules/ai/assets/js/editor/pages/form-media/constants/index.js");
+var _locationContext = __webpack_require__(/*! ../../context/location-context */ "../modules/ai/assets/js/editor/pages/form-media/context/location-context.js");
 var TeaserDrawing = function TeaserDrawing() {
   return /*#__PURE__*/_react.default.createElement(_ui.SvgIcon, {
     viewBox: "0 0 184 80",
@@ -4088,7 +5966,7 @@ var TeaserDrawing = function TeaserDrawing() {
 var ImageToolsContainer = (0, _ui.styled)(_ui.Box)(function (_ref) {
   var theme = _ref.theme;
   return {
-    height: "calc(100% - ".concat(theme.spacing(8), ")")
+    height: "calc(100% - 140px)"
   };
 });
 var ToolsTeaserContainer = (0, _ui.styled)(_ui.Box)(function (_ref2) {
@@ -4098,68 +5976,61 @@ var ToolsTeaserContainer = (0, _ui.styled)(_ui.Box)(function (_ref2) {
     top: "calc(100% - ".concat(theme.spacing(10), ")")
   };
 });
-var ImageTools = function ImageTools(_ref3) {
-  var setTool = _ref3.setTool,
-    generateNewPrompt = _ref3.generateNewPrompt,
-    panelActive = _ref3.panelActive;
+var ImageToolsPanel = function ImageToolsPanel() {
+  var _useLocation = (0, _locationContext.useLocation)(),
+    navigate = _useLocation.navigate;
   var tools = [{
     label: __('Expand Image', 'elementor'),
     Icon: _expandIcon.default,
     onClick: function onClick() {
-      return setTool(_consts.PANELS.OUT_PAINTING);
+      return navigate(_constants.LOCATIONS.OUT_PAINTING);
     }
   }, {
     label: __('Generative Fill', 'elementor'),
     Icon: _brushIcon.default,
     onClick: function onClick() {
-      return setTool(_consts.PANELS.IN_PAINTING);
+      return navigate(_constants.LOCATIONS.IN_PAINTING);
     }
   }, {
     label: __('Resize', 'elementor'),
     Icon: _enlargerIcon.default,
     onClick: function onClick() {
-      return setTool(_consts.PANELS.UPSCALE);
+      return navigate(_constants.LOCATIONS.RESIZE);
     }
   }, {
     label: __('Variations', 'elementor'),
     Icon: _evolveIcon.default,
     onClick: function onClick() {
-      return setTool(_consts.PANELS.IMAGE_TO_IMAGE);
+      return navigate(_constants.LOCATIONS.VARIATIONS);
+    }
+  }, {
+    label: __('Remove Background', 'elementor'),
+    Icon: _removeBg.default,
+    onClick: function onClick() {
+      return navigate(_constants.LOCATIONS.REMOVE_BACKGROUND);
+    }
+  }, {
+    label: __('Replace Background', 'elementor'),
+    Icon: _replaceBg.default,
+    onClick: function onClick() {
+      return navigate(_constants.LOCATIONS.REPLACE_BACKGROUND);
     }
   }];
   return /*#__PURE__*/_react.default.createElement(ImageToolsContainer, null, /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    sx: {
-      mb: 3
-    }
-  }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
-    size: "small",
-    variant: "text",
-    color: "secondary",
-    startIcon: /*#__PURE__*/_react.default.createElement(StyledChevronLeftIcon, null),
-    onClick: function onClick(e) {
-      e.preventDefault();
-      generateNewPrompt();
-    }
-  }, __('Generate with a prompt', 'elementor'))), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "h3",
-    sx: {
-      mb: 7
-    }
-  }, __('Edit with AI', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Box, {
     display: "grid",
     gridTemplateColumns: "repeat(2, 1fr)",
     gap: 3,
-    justifyContent: 'center'
-  }, tools.map(function (_ref4) {
-    var label = _ref4.label,
-      Icon = _ref4.Icon,
-      onClick = _ref4.onClick;
+    justifyContent: "center"
+  }, tools.map(function (_ref3) {
+    var label = _ref3.label,
+      Icon = _ref3.Icon,
+      onClick = _ref3.onClick;
     return /*#__PURE__*/_react.default.createElement(_ui.Button, {
       onClick: onClick,
       key: label,
       variant: "outlined",
       color: "secondary",
-      disabled: !panelActive,
+      disabled: false,
       sx: {
         py: 7,
         fontSize: '12px',
@@ -4189,1252 +6060,87 @@ var ImageTools = function ImageTools(_ref3) {
     }
   }, __('Stay tuned! More incredible AI tools are coming your way soon.', 'elementor'))));
 };
-ImageTools.propTypes = {
-  setTool: PropTypes.func.isRequired,
-  generateNewPrompt: PropTypes.func.isRequired,
-  panelActive: PropTypes.bool.isRequired
+ImageToolsPanel.propTypes = {
+  generateNewPrompt: PropTypes.func,
+  panelActive: PropTypes.bool
+};
+var _default = ImageToolsPanel;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/image-tools/index.js":
+/*!**********************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/image-tools/index.js ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _view = _interopRequireDefault(__webpack_require__(/*! ../../components/view */ "../modules/ai/assets/js/editor/pages/form-media/components/view.js"));
+var _imageToolsPanel = _interopRequireDefault(__webpack_require__(/*! ./image-tools-panel */ "../modules/ai/assets/js/editor/pages/form-media/views/image-tools/image-tools-panel.js"));
+var _imageToolsContent = _interopRequireDefault(__webpack_require__(/*! ./image-tools-content */ "../modules/ai/assets/js/editor/pages/form-media/views/image-tools/image-tools-content.js"));
+var _locationContext = __webpack_require__(/*! ../../context/location-context */ "../modules/ai/assets/js/editor/pages/form-media/context/location-context.js");
+var _constants = __webpack_require__(/*! ../../constants */ "../modules/ai/assets/js/editor/pages/form-media/constants/index.js");
+var ImageTools = function ImageTools() {
+  var _useLocation = (0, _locationContext.useLocation)(),
+    navigate = _useLocation.navigate;
+  return /*#__PURE__*/_react.default.createElement(_view.default, null, /*#__PURE__*/_react.default.createElement(_view.default.Panel, null, /*#__PURE__*/_react.default.createElement(_view.default.BackButton, {
+    onClick: function onClick() {
+      return navigate(_constants.LOCATIONS.GENERATE);
+    }
+  }, __('Generate with a prompt', 'elementor')), /*#__PURE__*/_react.default.createElement(_view.default.PanelHeading, {
+    primary: __('Edit with AI', 'elementor')
+  }), /*#__PURE__*/_react.default.createElement(_imageToolsPanel.default, null)), /*#__PURE__*/_react.default.createElement(_view.default.Content, null, /*#__PURE__*/_react.default.createElement(_imageToolsContent.default, null)));
 };
 var _default = ImageTools;
 exports["default"] = _default;
 
 /***/ }),
 
-/***/ "../modules/ai/assets/js/editor/pages/form-media/panel-content/image-variations-form.js":
-/*!**********************************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/panel-content/image-variations-form.js ***!
-  \**********************************************************************************************/
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/in-painting/hooks/use-in-painting.js":
+/*!**************************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/in-painting/hooks/use-in-painting.js ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _api = __webpack_require__(/*! ../../../../../api */ "../modules/ai/assets/js/editor/api/index.js");
+var _useImagePrompt = _interopRequireDefault(__webpack_require__(/*! ../../../hooks/use-image-prompt */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-prompt.js"));
+var useInPainting = function useInPainting(initialValue) {
+  var fetchAction = function fetchAction(prompt, promptSettings, image, mask) {
+    return (0, _api.getImageToImageMaskGeneration)(prompt, promptSettings, image, mask);
+  };
+  return (0, _useImagePrompt.default)(fetchAction, initialValue);
+};
+var _default = useInPainting;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/in-painting/in-painting-content.js":
+/*!************************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/in-painting/in-painting-content.js ***!
+  \************************************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 /* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
-/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
-var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _generateButton = _interopRequireDefault(__webpack_require__(/*! ../../../components/generate-button */ "../modules/ai/assets/js/editor/components/generate-button.js"));
-var _promptForm = _interopRequireDefault(__webpack_require__(/*! ./form-controls/prompt-form */ "../modules/ai/assets/js/editor/pages/form-media/panel-content/form-controls/prompt-form.js"));
-var _promptErrorMessage = _interopRequireDefault(__webpack_require__(/*! ../../../components/prompt-error-message */ "../modules/ai/assets/js/editor/components/prompt-error-message.js"));
-var _refreshIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/refresh-icon */ "../modules/ai/assets/js/editor/icons/refresh-icon.js"));
-var _chevronLeftIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/chevron-left-icon */ "../modules/ai/assets/js/editor/icons/chevron-left-icon.js"));
-var StyledChevronLeftIcon = (0, _ui.withDirection)(_chevronLeftIcon.default);
-var ImageVariationsForm = function ImageVariationsForm(_ref) {
-  var panelActive = _ref.panelActive,
-    editImage = _ref.editImage,
-    _ref$prompt = _ref.prompt,
-    prompt = _ref$prompt === void 0 ? '' : _ref$prompt,
-    setPrompt = _ref.setPrompt,
-    promptSettings = _ref.promptSettings,
-    updatePromptSettings = _ref.updatePromptSettings,
-    submitPrompt = _ref.submitPrompt,
-    error = _ref.error,
-    images = _ref.images,
-    _ref$disableAspectRat = _ref.disableAspectRatio,
-    disableAspectRatio = _ref$disableAspectRat === void 0 ? false : _ref$disableAspectRat,
-    backToTools = _ref.backToTools,
-    viewData = _ref.viewData;
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
-    submitPrompt();
-  };
-  return /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    component: "form",
-    onSubmit: handleSubmit
-  }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    sx: {
-      mb: 3
-    }
-  }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
-    size: "small",
-    variant: "text",
-    color: "secondary",
-    startIcon: /*#__PURE__*/_react.default.createElement(StyledChevronLeftIcon, null),
-    onClick: function onClick(e) {
-      e.preventDefault();
-      backToTools();
-    }
-  }, __('Back', 'elementor'))), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "h3",
-    sx: {
-      mb: 3
-    }
-  }, __('Variations', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "body1",
-    color: "secondary",
-    sx: {
-      mb: 8
-    }
-  }, __('Create new versions of the original image.', 'elementor')), error && /*#__PURE__*/_react.default.createElement(_promptErrorMessage.default, {
-    error: error,
-    sx: {
-      mb: 6
-    },
-    actionPosition: "bottom",
-    onRetry: handleSubmit
-  }), /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    sx: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      bgcolor: 'secondary.background',
-      mb: 4
-    }
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    src: (editImage === null || editImage === void 0 ? void 0 : editImage.image_url) || editImage.url,
-    alt: prompt,
-    style: {
-      width: 'auto',
-      height: 'auto',
-      maxWidth: '100%',
-      maxHeight: 166,
-      objectFit: 'contained'
-    }
-  })), /*#__PURE__*/_react.default.createElement(_promptForm.default, {
-    prompt: prompt,
-    setPrompt: setPrompt,
-    panelActive: panelActive,
-    promptSettings: promptSettings,
-    updatePromptSettings: updatePromptSettings,
-    hasImage: true,
-    disableAspectRatio: disableAspectRatio,
-    viewData: viewData
-  }), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    gap: 5,
-    sx: {
-      my: 6
-    }
-  }, images.length ? /*#__PURE__*/_react.default.createElement(_ui.Button, {
-    fullWidth: true,
-    type: "submit",
-    variant: "contained",
-    color: "secondary",
-    startIcon: /*#__PURE__*/_react.default.createElement(_refreshIcon.default, null),
-    disabled: !panelActive || '' === prompt,
-    sx: {
-      // TODO: Remove on @elementor/ui 1.4.51.
-      color: 'background.paper'
-    }
-  }, __('Generate again', 'elementor')) : /*#__PURE__*/_react.default.createElement(_generateButton.default, {
-    size: "medium",
-    disabled: !panelActive || '' === prompt
-  }, __('Generate images', 'elementor'))));
-};
-ImageVariationsForm.propTypes = {
-  panelActive: PropTypes.bool,
-  prompt: PropTypes.string,
-  setPrompt: PropTypes.func,
-  editImage: PropTypes.object,
-  promptSettings: PropTypes.object,
-  updatePromptSettings: PropTypes.func,
-  submitPrompt: PropTypes.func,
-  error: PropTypes.string,
-  images: PropTypes.array,
-  disableAspectRatio: PropTypes.bool,
-  backToTools: PropTypes.func,
-  viewData: PropTypes.object
-};
-var _default = ImageVariationsForm;
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../modules/ai/assets/js/editor/pages/form-media/panel-content/in-painting-form.js":
-/*!*****************************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/panel-content/in-painting-form.js ***!
-  \*****************************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
-/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
-var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _promptErrorMessage = _interopRequireDefault(__webpack_require__(/*! ../../../components/prompt-error-message */ "../modules/ai/assets/js/editor/components/prompt-error-message.js"));
-var _consts = __webpack_require__(/*! ../consts/consts */ "../modules/ai/assets/js/editor/pages/form-media/consts/consts.js");
-var _wandIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/wand-icon */ "../modules/ai/assets/js/editor/icons/wand-icon.js"));
-var _textarea = _interopRequireDefault(__webpack_require__(/*! ../../../components/textarea */ "../modules/ai/assets/js/editor/components/textarea.js"));
-var _useImagePromptEnhancer = _interopRequireDefault(__webpack_require__(/*! ../../../hooks/use-image-prompt-enhancer */ "../modules/ai/assets/js/editor/hooks/use-image-prompt-enhancer.js"));
-var _chevronLeftIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/chevron-left-icon */ "../modules/ai/assets/js/editor/icons/chevron-left-icon.js"));
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-var StyledChevronLeftIcon = (0, _ui.withDirection)(_chevronLeftIcon.default);
-var InPaintingForm = function InPaintingForm(_ref) {
-  var panelActive = _ref.panelActive,
-    _ref$prompt = _ref.prompt,
-    prompt = _ref$prompt === void 0 ? '' : _ref$prompt,
-    setPrompt = _ref.setPrompt,
-    submitPrompt = _ref.submitPrompt,
-    error = _ref.error,
-    maskImage = _ref.maskImage,
-    backToTools = _ref.backToTools;
-  var _useImagePromptEnhanc = (0, _useImagePromptEnhancer.default)(prompt),
-    imagePromptData = _useImagePromptEnhanc.data,
-    imagePromptIsLoading = _useImagePromptEnhanc.isLoading,
-    imagePromptEnhancer = _useImagePromptEnhanc.send;
-
-  // Image Prompt Enhancer
-  (0, _react.useEffect)(function () {
-    if (!imagePromptIsLoading && imagePromptData !== null && imagePromptData !== void 0 && imagePromptData.result) {
-      setPrompt(imagePromptData === null || imagePromptData === void 0 ? void 0 : imagePromptData.result);
-    }
-  }, [imagePromptIsLoading]);
-  var handleSubmit = function handleSubmit(event) {
-    // The fallback instruction should be hidden for the user.
-    event.preventDefault();
-    var finalPrompt = prompt || 'Remove object and fill based on the surroundings';
-    submitPrompt(_consts.PANELS.IN_PAINTING, finalPrompt, maskImage);
-  };
-  return /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    component: "form",
-    onSubmit: handleSubmit
-  }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    sx: {
-      mb: 3
-    }
-  }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
-    size: "small",
-    variant: "text",
-    color: "secondary",
-    startIcon: /*#__PURE__*/_react.default.createElement(StyledChevronLeftIcon, null),
-    onClick: function onClick(e) {
-      e.preventDefault();
-      backToTools();
-    }
-  }, __('Back', 'elementor'))), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "h3",
-    sx: {
-      mb: 3
-    }
-  }, __('Generative Fill', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "body1",
-    color: "secondary",
-    sx: {
-      mb: 8
-    }
-  }, __('Mark an area and edit it with a prompt.', 'elementor')), error && /*#__PURE__*/_react.default.createElement(_promptErrorMessage.default, {
-    error: error,
-    sx: {
-      mb: 6
-    },
-    actionPosition: "bottom",
-    onRetry: handleSubmit
-  }), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    gap: 5,
-    sx: {
-      my: 6
-    }
-  }, /*#__PURE__*/_react.default.createElement(_textarea.default, {
-    minRows: 3,
-    maxRows: 6,
-    disabled: !panelActive || imagePromptIsLoading,
-    placeholder: __('Describe what you want to generate in the marked area (English only)', 'elementor'),
-    onChange: function onChange(event) {
-      return setPrompt(event.target.value);
-    },
-    value: prompt,
-    InputProps: {
-      endAdornment: /*#__PURE__*/_react.default.createElement(_ui.InputAdornment, {
-        position: "end",
-        sx: {
-          position: 'absolute',
-          bottom: '24px',
-          right: '8px'
-        }
-      }, imagePromptIsLoading ? /*#__PURE__*/_react.default.createElement(_ui.CircularProgress, {
-        color: "secondary",
-        size: 20,
-        sx: {
-          mr: 2
-        }
-      }) : /*#__PURE__*/_react.default.createElement(_ui.Tooltip, {
-        title: __('Enhance prompt', 'elementor')
-      }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
-        component: "span",
-        sx: {
-          cursor: 'pointer'
-        }
-      }, /*#__PURE__*/_react.default.createElement(_ui.IconButton, {
-        size: "small",
-        color: "secondary",
-        onClick: function onClick() {
-          return imagePromptEnhancer(prompt);
-        },
-        disabled: !panelActive || imagePromptIsLoading || !prompt
-      }, /*#__PURE__*/_react.default.createElement(_wandIcon.default, null)))))
-    },
-    sx: {
-      '& .MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputMultiline': {
-        pb: 9,
-        width: '89%'
-      }
-    }
-  }), /*#__PURE__*/_react.default.createElement(_ui.Button, {
-    type: "submit",
-    variant: "contained",
-    disabled: !panelActive
-  }, __('Generate', 'elementor'))));
-};
-InPaintingForm.propTypes = {
-  panelActive: PropTypes.bool,
-  prompt: PropTypes.string,
-  setPrompt: PropTypes.func,
-  generateNewPrompt: PropTypes.func,
-  editImage: PropTypes.object,
-  promptSettings: PropTypes.object,
-  updatePromptSettings: PropTypes.func,
-  submitPrompt: PropTypes.func,
-  error: PropTypes.string,
-  images: PropTypes.array,
-  maskImage: PropTypes.string,
-  backToTools: PropTypes.func
-};
-var _default = InPaintingForm;
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../modules/ai/assets/js/editor/pages/form-media/panel-content/out-painting-form.js":
-/*!******************************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/panel-content/out-painting-form.js ***!
-  \******************************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
-/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
-var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
-var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _promptErrorMessage = _interopRequireDefault(__webpack_require__(/*! ../../../components/prompt-error-message */ "../modules/ai/assets/js/editor/components/prompt-error-message.js"));
-var _consts = __webpack_require__(/*! ../consts/consts */ "../modules/ai/assets/js/editor/pages/form-media/consts/consts.js");
-var _promptActionSelection = _interopRequireDefault(__webpack_require__(/*! ../../../components/prompt-action-selection */ "../modules/ai/assets/js/editor/components/prompt-action-selection.js"));
-var _textarea = _interopRequireDefault(__webpack_require__(/*! ../../../components/textarea */ "../modules/ai/assets/js/editor/components/textarea.js"));
-var _wandIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/wand-icon */ "../modules/ai/assets/js/editor/icons/wand-icon.js"));
-var _useImagePromptEnhancer = _interopRequireDefault(__webpack_require__(/*! ../../../hooks/use-image-prompt-enhancer */ "../modules/ai/assets/js/editor/hooks/use-image-prompt-enhancer.js"));
-var _chevronLeftIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/chevron-left-icon */ "../modules/ai/assets/js/editor/icons/chevron-left-icon.js"));
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-var StyledChevronLeftIcon = (0, _ui.withDirection)(_chevronLeftIcon.default);
-var OutPaintingForm = function OutPaintingForm(_ref) {
-  var panelActive = _ref.panelActive,
-    _ref$prompt = _ref.prompt,
-    prompt = _ref$prompt === void 0 ? '' : _ref$prompt,
-    setPrompt = _ref.setPrompt,
-    updatePromptSettings = _ref.updatePromptSettings,
-    submitPrompt = _ref.submitPrompt,
-    error = _ref.error,
-    maskImage = _ref.maskImage,
-    backToTools = _ref.backToTools,
-    viewData = _ref.viewData;
-  var initialAspectRatio = (0, _react.useMemo)(function () {
-    return viewData.ratio;
-  }, []);
-  var _useImagePromptEnhanc = (0, _useImagePromptEnhancer.default)(prompt),
-    imagePromptData = _useImagePromptEnhanc.data,
-    imagePromptIsLoading = _useImagePromptEnhanc.isLoading,
-    imagePromptEnhancer = _useImagePromptEnhanc.send;
-
-  // Image Prompt Enhancer
-  (0, _react.useEffect)(function () {
-    if (!imagePromptIsLoading && imagePromptData !== null && imagePromptData !== void 0 && imagePromptData.result) {
-      setPrompt(imagePromptData === null || imagePromptData === void 0 ? void 0 : imagePromptData.result);
-    }
-  }, [imagePromptIsLoading]);
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
-    var finalPrompt = prompt || 'Fill based on the surroundings';
-    submitPrompt(_consts.PANELS.OUT_PAINTING, finalPrompt, maskImage);
-  };
-  return /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    component: "form",
-    onSubmit: handleSubmit
-  }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    sx: {
-      mb: 3
-    }
-  }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
-    size: "small",
-    variant: "text",
-    color: "secondary",
-    startIcon: /*#__PURE__*/_react.default.createElement(StyledChevronLeftIcon, null),
-    onClick: function onClick(e) {
-      e.preventDefault();
-      backToTools();
-
-      // Restoring the initial aspect ratio for not affecting other views when the new aspect ratio is not saved.
-      if (initialAspectRatio !== viewData.ratio) {
-        updatePromptSettings((0, _defineProperty2.default)({}, _consts.IMAGE_PROMPT_SETTINGS.ASPECT_RATIO, initialAspectRatio));
-      }
-    }
-  }, __('Back', 'elementor'))), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "h3",
-    sx: {
-      mb: 3
-    }
-  }, __('Expand Image', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "body1",
-    color: "secondary",
-    sx: {
-      mb: 8
-    }
-  }, __('Position image in it’s new size to generate content around the edges.', 'elementor')), error && /*#__PURE__*/_react.default.createElement(_promptErrorMessage.default, {
-    error: error,
-    sx: {
-      mb: 6
-    },
-    actionPosition: "bottom",
-    onRetry: handleSubmit
-  }), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    gap: 6
-  }, /*#__PURE__*/_react.default.createElement(_promptActionSelection.default, {
-    wrapperStyle: {
-      width: '100%'
-    },
-    label: __('Aspect ratio', 'elementor'),
-    options: Object.entries(_consts.IMAGE_ASPECT_RATIOS).map(function (_ref2) {
-      var _ref3 = (0, _slicedToArray2.default)(_ref2, 2),
-        value = _ref3[0],
-        label = _ref3[1];
-      return {
-        label: label,
-        value: value
-      };
-    }),
-    onChange: function onChange(event) {
-      updatePromptSettings((0, _defineProperty2.default)({}, _consts.IMAGE_PROMPT_SETTINGS.ASPECT_RATIO, event.target.value));
-    },
-    value: viewData.ratio,
-    disabled: !panelActive
-  }), /*#__PURE__*/_react.default.createElement(_ui.FormControl, {
-    sx: {
-      width: '100%',
-      mb: 6
-    }
-  }, /*#__PURE__*/_react.default.createElement(_ui.Slider, {
-    onChange: function onChange(_, value) {
-      return updatePromptSettings((0, _defineProperty2.default)({}, _consts.IMAGE_PROMPT_SETTINGS.ZOOM, value));
-    },
-    id: 'zoom',
-    name: 'zoom',
-    "aria-label": __('Reference strength', 'elementor'),
-    defaultValue: 1,
-    valueLabelDisplay: "auto",
-    step: 0.1,
-    marks: true,
-    min: 0.1,
-    max: 2,
-    color: "secondary",
-    "aria-labelledby": "image-size-slider"
-  }), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    id: "image-size-slider",
-    variant: "caption",
-    gutterBottom: true
-  }, __('Original image size', 'elementor'))), /*#__PURE__*/_react.default.createElement(_textarea.default, {
-    minRows: 3,
-    maxRows: 6,
-    disabled: !panelActive || imagePromptIsLoading,
-    placeholder: __('Describe what you want to generate in the expended area (English only)', 'elementor'),
-    onChange: function onChange(event) {
-      return setPrompt(event.target.value);
-    },
-    value: prompt,
-    InputProps: {
-      endAdornment: /*#__PURE__*/_react.default.createElement(_ui.InputAdornment, {
-        position: "end",
-        sx: {
-          position: 'absolute',
-          bottom: '24px',
-          right: '8px'
-        }
-      }, imagePromptIsLoading ? /*#__PURE__*/_react.default.createElement(_ui.CircularProgress, {
-        color: "secondary",
-        size: 20,
-        sx: {
-          mr: 2
-        }
-      }) : /*#__PURE__*/_react.default.createElement(_ui.Tooltip, {
-        title: __('Enhance prompt', 'elementor')
-      }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
-        component: "span",
-        sx: {
-          cursor: 'pointer'
-        }
-      }, /*#__PURE__*/_react.default.createElement(_ui.IconButton, {
-        size: "small",
-        color: "secondary",
-        onClick: function onClick() {
-          return imagePromptEnhancer(prompt);
-        },
-        disabled: !panelActive || imagePromptIsLoading || !prompt
-      }, /*#__PURE__*/_react.default.createElement(_wandIcon.default, null)))))
-    },
-    sx: {
-      '& .MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputMultiline': {
-        pb: 9,
-        width: '89%'
-      }
-    }
-  })), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    gap: 5,
-    sx: {
-      my: 6
-    }
-  }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
-    type: "submit",
-    variant: "contained",
-    disabled: !panelActive
-  }, __('Generate', 'elementor'))));
-};
-OutPaintingForm.propTypes = {
-  panelActive: PropTypes.bool,
-  prompt: PropTypes.string,
-  setPrompt: PropTypes.func,
-  promptSettings: PropTypes.object,
-  updatePromptSettings: PropTypes.func,
-  submitPrompt: PropTypes.func,
-  error: PropTypes.string,
-  maskImage: PropTypes.string,
-  backToTools: PropTypes.func,
-  viewData: PropTypes.object
-};
-var _default = OutPaintingForm;
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../modules/ai/assets/js/editor/pages/form-media/panel-content/panel-content.js":
-/*!**************************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/panel-content/panel-content.js ***!
-  \**************************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.PanelContent = void 0;
-var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
-var _consts = __webpack_require__(/*! ../consts/consts */ "../modules/ai/assets/js/editor/pages/form-media/consts/consts.js");
-var _imagePromptForm = _interopRequireDefault(__webpack_require__(/*! ./image-prompt-form */ "../modules/ai/assets/js/editor/pages/form-media/panel-content/image-prompt-form.js"));
-var _imageVariationsForm = _interopRequireDefault(__webpack_require__(/*! ./image-variations-form */ "../modules/ai/assets/js/editor/pages/form-media/panel-content/image-variations-form.js"));
-var _imageTools = _interopRequireDefault(__webpack_require__(/*! ./image-tools */ "../modules/ai/assets/js/editor/pages/form-media/panel-content/image-tools.js"));
-var _inPaintingForm = _interopRequireDefault(__webpack_require__(/*! ./in-painting-form */ "../modules/ai/assets/js/editor/pages/form-media/panel-content/in-painting-form.js"));
-var _outPaintingForm = _interopRequireDefault(__webpack_require__(/*! ./out-painting-form */ "../modules/ai/assets/js/editor/pages/form-media/panel-content/out-painting-form.js"));
-var _upscaleForm = _interopRequireDefault(__webpack_require__(/*! ./upscale-form */ "../modules/ai/assets/js/editor/pages/form-media/panel-content/upscale-form.js"));
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-var PanelContent = function PanelContent(_ref) {
-  var error = _ref.error,
-    images = _ref.images,
-    submitPrompt = _ref.submitPrompt,
-    generateNewPrompt = _ref.generateNewPrompt,
-    promptSettings = _ref.promptSettings,
-    updatePromptSettings = _ref.updatePromptSettings,
-    editImage = _ref.editImage,
-    panel = _ref.panel,
-    prompt = _ref.prompt,
-    setPrompt = _ref.setPrompt,
-    panelActive = _ref.panelActive,
-    setTool = _ref.setTool,
-    maskImage = _ref.maskImage,
-    reset = _ref.reset,
-    viewData = _ref.viewData;
-  var backToTools = function backToTools() {
-    // TODO: Temp solution for preventing the error message to follow to other screens.
-    if (error) {
-      reset();
-    }
-    setTool(false);
-  };
-  var commonProps = {
-    prompt: prompt,
-    setPrompt: setPrompt,
-    panelActive: panelActive,
-    generateNewPrompt: generateNewPrompt,
-    promptSettings: promptSettings,
-    updatePromptSettings: updatePromptSettings,
-    submitPrompt: submitPrompt,
-    error: error,
-    images: images,
-    backToTools: backToTools
-  };
-  if (panel === _consts.PANELS.TEXT_TO_IMAGE) {
-    return /*#__PURE__*/_react.default.createElement(_imagePromptForm.default, commonProps);
-  }
-  if (panel === _consts.PANELS.IMAGE_TO_IMAGE) {
-    return /*#__PURE__*/_react.default.createElement(_imageVariationsForm.default, _objectSpread({
-      editImage: editImage
-    }, commonProps));
-  }
-  if (panel === _consts.PANELS.IN_PAINTING) {
-    return /*#__PURE__*/_react.default.createElement(_inPaintingForm.default, _objectSpread(_objectSpread({
-      editImage: editImage
-    }, commonProps), {}, {
-      disableAspectRatio: true,
-      maskImage: maskImage
-    }));
-  }
-  if (panel === _consts.PANELS.OUT_PAINTING) {
-    return /*#__PURE__*/_react.default.createElement(_outPaintingForm.default, _objectSpread(_objectSpread({
-      editImage: editImage
-    }, commonProps), {}, {
-      disableAspectRatio: true,
-      maskImage: maskImage,
-      viewData: viewData
-    }));
-  }
-  if (panel === _consts.PANELS.UPSCALE) {
-    return /*#__PURE__*/_react.default.createElement(_upscaleForm.default, _objectSpread({
-      editImage: editImage
-    }, commonProps));
-  }
-  return /*#__PURE__*/_react.default.createElement(_imageTools.default, {
-    setTool: setTool,
-    generateNewPrompt: generateNewPrompt,
-    panelActive: panelActive
-  });
-};
-exports.PanelContent = PanelContent;
-PanelContent.propTypes = {
-  error: PropTypes.any.isRequired,
-  images: PropTypes.array,
-  generateNewPrompt: PropTypes.func,
-  promptSettings: PropTypes.object,
-  updatePromptSettings: PropTypes.func,
-  editImage: PropTypes.object,
-  submitPrompt: PropTypes.func,
-  panel: PropTypes.string,
-  prompt: PropTypes.string,
-  setPrompt: PropTypes.func,
-  panelActive: PropTypes.bool,
-  setTool: PropTypes.func,
-  maskImage: PropTypes.string,
-  reset: PropTypes.func,
-  viewData: PropTypes.object
-};
-
-/***/ }),
-
-/***/ "../modules/ai/assets/js/editor/pages/form-media/panel-content/upscale-form.js":
-/*!*************************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/panel-content/upscale-form.js ***!
-  \*************************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
-/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
-var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _promptErrorMessage = _interopRequireDefault(__webpack_require__(/*! ../../../components/prompt-error-message */ "../modules/ai/assets/js/editor/components/prompt-error-message.js"));
-var _consts = __webpack_require__(/*! ../consts/consts */ "../modules/ai/assets/js/editor/pages/form-media/consts/consts.js");
-var _chevronLeftIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/chevron-left-icon */ "../modules/ai/assets/js/editor/icons/chevron-left-icon.js"));
-var StyledChevronLeftIcon = (0, _ui.withDirection)(_chevronLeftIcon.default);
-var UpscaleForm = function UpscaleForm(_ref) {
-  var panelActive = _ref.panelActive,
-    updatePromptSettings = _ref.updatePromptSettings,
-    submitPrompt = _ref.submitPrompt,
-    error = _ref.error,
-    backToTools = _ref.backToTools;
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
-    submitPrompt(_consts.PANELS.UPSCALE);
-  };
-  return /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    component: "form",
-    onSubmit: handleSubmit
-  }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    sx: {
-      mb: 3
-    }
-  }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
-    size: "small",
-    variant: "text",
-    color: "secondary",
-    startIcon: /*#__PURE__*/_react.default.createElement(StyledChevronLeftIcon, null),
-    onClick: function onClick(e) {
-      e.preventDefault();
-      backToTools();
-    }
-  }, __('Back', 'elementor'))), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "h3",
-    sx: {
-      mb: 3
-    }
-  }, __('Resize', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "body1",
-    color: "secondary",
-    sx: {
-      mb: 8
-    }
-  }, __('Make an image larger and improve it’s resolution.', 'elementor')), error && /*#__PURE__*/_react.default.createElement(_promptErrorMessage.default, {
-    error: error,
-    sx: {
-      mb: 6
-    },
-    actionPosition: "bottom",
-    onRetry: handleSubmit
-  }), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    gap: 6
-  }, /*#__PURE__*/_react.default.createElement(_ui.FormControl, {
-    sx: {
-      width: '100%'
-    }
-  }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center"
-  }, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "caption"
-  }, "512"), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "caption"
-  }, "1024")), /*#__PURE__*/_react.default.createElement(_ui.Slider, {
-    onChange: function onChange(_, value) {
-      return updatePromptSettings((0, _defineProperty2.default)({}, _consts.IMAGE_PROMPT_SETTINGS.UPSCALE_TO, value));
-    },
-    id: 'upscale_to',
-    name: 'upscale_to',
-    "aria-label": __('Upscale to', 'elementor'),
-    defaultValue: 1,
-    valueLabelDisplay: "auto",
-    step: 64,
-    marks: true,
-    min: 512,
-    max: 1024,
-    color: "secondary"
-  }), /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center"
-  }, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "caption"
-  }, __('Current', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "caption"
-  }, __('Output', 'elementor'))), /*#__PURE__*/_react.default.createElement(_ui.Button, {
-    type: "submit",
-    variant: "contained",
-    disabled: !panelActive,
-    sx: {
-      mt: 6
-    }
-  }, __('Generate', 'elementor')))));
-};
-UpscaleForm.propTypes = {
-  panelActive: PropTypes.bool,
-  prompt: PropTypes.string,
-  setPrompt: PropTypes.func,
-  generateNewPrompt: PropTypes.func,
-  editImage: PropTypes.object,
-  promptSettings: PropTypes.object,
-  updatePromptSettings: PropTypes.func,
-  submitPrompt: PropTypes.func,
-  error: PropTypes.string,
-  maskImage: PropTypes.string,
-  backToTools: PropTypes.func
-};
-var _default = UpscaleForm;
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../modules/ai/assets/js/editor/pages/form-media/screens/components/results-grid.js":
-/*!******************************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/screens/components/results-grid.js ***!
-  \******************************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
-/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
-var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _consts = __webpack_require__(/*! ../../consts/consts */ "../modules/ai/assets/js/editor/pages/form-media/consts/consts.js");
-var _overlay = _interopRequireDefault(__webpack_require__(/*! ../../../../components/ui/overlay */ "../modules/ai/assets/js/editor/components/ui/overlay.js"));
-var _overlayBar = _interopRequireDefault(__webpack_require__(/*! ../../../../components/ui/overlay-bar */ "../modules/ai/assets/js/editor/components/ui/overlay-bar.js"));
-var _zoomInIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/zoom-in-icon */ "../modules/ai/assets/js/editor/icons/zoom-in-icon.js"));
-var _editIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/edit-icon */ "../modules/ai/assets/js/editor/icons/edit-icon.js"));
-var _downloadIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/download-icon */ "../modules/ai/assets/js/editor/icons/download-icon.js"));
-var ResultsGrid = function ResultsGrid(_ref) {
-  var images = _ref.images,
-    handleImageAction = _ref.handleImageAction,
-    aspectRatio = _ref.aspectRatio;
-  // TODO: temp solution for displaying the resized image result.
-  if (1 === images.length) {
-    var image = images[0];
-    return /*#__PURE__*/_react.default.createElement(_ui.Box, null, /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-      spacing: 2,
-      justifyContent: "space-around",
-      alignItems: "center"
-    }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
-      display: "flex",
-      width: "100%",
-      justifyContent: "flex-end",
-      alignItems: "center",
-      sx: {
-        mb: 4
-      }
-    }, /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-      direction: "row",
-      spacing: 3,
-      justifyContent: "flex-end",
-      width: "100%"
-    }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
-      size: "small",
-      color: "secondary",
-      startIcon: /*#__PURE__*/_react.default.createElement(_editIcon.default, null),
-      onClick: function onClick() {
-        return handleImageAction(_consts.IMAGE_ACTIONS.REFERENCE, image);
-      }
-    }, __('Edit', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Button, {
-      size: "small",
-      variant: "contained",
-      startIcon: /*#__PURE__*/_react.default.createElement(_downloadIcon.default, null),
-      onClick: function onClick() {
-        return handleImageAction(_consts.IMAGE_ACTIONS.USE, image);
-      }
-    }, __('Use Image', 'elementor'))))), /*#__PURE__*/_react.default.createElement(_ui.Box, {
-      display: "flex",
-      justifyContent: "center"
-    }, /*#__PURE__*/_react.default.createElement("img", {
-      src: image.image_url,
-      alt: "generated--resized",
-      style: {
-        maxWidth: '100%',
-        width: 'auto',
-        maxHeight: '100%'
-      }
-    })));
-  }
-  return /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    display: "grid",
-    gridTemplateColumns: "repeat(2, 1fr)",
-    gap: 7
-  }, images.map(function (image, index) {
-    return /*#__PURE__*/_react.default.createElement(_ui.Box, {
-      key: "result-".concat(image.seed),
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      sx: {
-        bgcolor: 'secondary.background',
-        height: 336,
-        position: 'relative',
-        overflow: 'hidden'
-      }
-    }, /*#__PURE__*/_react.default.createElement("img", {
-      src: image.image_url,
-      alt: "generated-".concat(index),
-      style: {
-        width: 'auto',
-        height: 'auto',
-        maxWidth: '100%',
-        maxHeight: '1:1' === aspectRatio ? 'initial' : '100%',
-        objectFit: 'contain',
-        aspectRatio: aspectRatio.replace(':', ' / ')
-      }
-    }), /*#__PURE__*/_react.default.createElement(_overlay.default, null, /*#__PURE__*/_react.default.createElement(_overlayBar.default, {
-      position: "bottom",
-      direction: "row",
-      gap: 3,
-      alignItems: "center",
-      justifyContent: "space-between"
-    }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
-      fullWidth: true,
-      variant: "contained",
-      startIcon: /*#__PURE__*/_react.default.createElement(_downloadIcon.default, null),
-      onClick: function onClick() {
-        return handleImageAction(_consts.IMAGE_ACTIONS.USE, image);
-      }
-    }, __('Use Image', 'Elementor')), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-      direction: "row",
-      gap: 1
-    }, /*#__PURE__*/_react.default.createElement(_ui.Tooltip, {
-      title: __('Zoom', 'elementor')
-    }, /*#__PURE__*/_react.default.createElement(_ui.IconButton, {
-      color: "secondary",
-      sx: {
-        color: 'common.white',
-        '&:hover': {
-          color: 'common.white'
-        }
-      },
-      "aria-label": __('Zoom', 'elementor'),
-      onClick: function onClick() {
-        return handleImageAction(_consts.IMAGE_ACTIONS.ZOOM, index);
-      }
-    }, /*#__PURE__*/_react.default.createElement(_zoomInIcon.default, null))), /*#__PURE__*/_react.default.createElement(_ui.Tooltip, {
-      title: __('Edit', 'elementor')
-    }, /*#__PURE__*/_react.default.createElement(_ui.IconButton, {
-      color: "secondary",
-      sx: {
-        color: 'common.white',
-        '&:hover': {
-          color: 'common.white'
-        }
-      },
-      "aria-label": __('Edit', 'elementor'),
-      onClick: function onClick() {
-        return handleImageAction(_consts.IMAGE_ACTIONS.REFERENCE, image);
-      }
-    }, /*#__PURE__*/_react.default.createElement(_editIcon.default, null)))))));
-  }));
-};
-ResultsGrid.propTypes = {
-  images: PropTypes.array,
-  handleImageAction: PropTypes.func,
-  aspectRatio: PropTypes.string
-};
-var _default = ResultsGrid;
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../modules/ai/assets/js/editor/pages/form-media/screens/components/zoom-image.js":
-/*!****************************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/screens/components/zoom-image.js ***!
-  \****************************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
-/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
-var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _consts = __webpack_require__(/*! ../../consts/consts */ "../modules/ai/assets/js/editor/pages/form-media/consts/consts.js");
-var _downloadIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/download-icon */ "../modules/ai/assets/js/editor/icons/download-icon.js"));
-var _editIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/edit-icon */ "../modules/ai/assets/js/editor/icons/edit-icon.js"));
-var _chevronRightIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/chevron-right-icon */ "../modules/ai/assets/js/editor/icons/chevron-right-icon.js"));
-var _chevronLeftIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/chevron-left-icon */ "../modules/ai/assets/js/editor/icons/chevron-left-icon.js"));
-var StyledChevronLeftIcon = (0, _ui.withDirection)(_chevronLeftIcon.default);
-var StyledChevronRightIcon = (0, _ui.withDirection)(_chevronRightIcon.default);
-var ZoomImage = function ZoomImage(_ref) {
-  var images = _ref.images,
-    zoomedImageIndex = _ref.zoomedImageIndex,
-    imageNavigation = _ref.imageNavigation,
-    handleImageAction = _ref.handleImageAction,
-    viewData = _ref.viewData;
-  var currentImage = images[zoomedImageIndex];
-  var width = viewData.width,
-    height = viewData.height;
-  return /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    alignItems: "flex-start",
-    spacing: 2
-  }, /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    direction: "row",
-    spacing: 6,
-    alignSelf: "center",
-    alignItems: "center"
-  }, /*#__PURE__*/_react.default.createElement(_ui.IconButton, {
-    onClick: function onClick() {
-      return imageNavigation.navigatePrevImage();
-    },
-    size: "large",
-    color: "secondary"
-  }, /*#__PURE__*/_react.default.createElement(StyledChevronLeftIcon, null)), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    spacing: 2,
-    justifyContent: "space-around",
-    alignItems: "center"
-  }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    display: "flex",
-    width: "100%",
-    justifyContent: "space-between",
-    alignItems: "center",
-    sx: {
-      mb: 4
-    }
-  }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
-    size: "small",
-    variant: "text",
-    color: "secondary",
-    startIcon: /*#__PURE__*/_react.default.createElement(StyledChevronLeftIcon, null),
-    onClick: function onClick() {
-      return imageNavigation.backToResults();
-    }
-  }, __('Back', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    direction: "row",
-    spacing: 3,
-    justifyContent: "flex-end",
-    width: "100%"
-  }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
-    size: "small",
-    color: "secondary",
-    startIcon: /*#__PURE__*/_react.default.createElement(_editIcon.default, null),
-    onClick: function onClick() {
-      return handleImageAction(_consts.IMAGE_ACTIONS.REFERENCE, currentImage);
-    }
-  }, __('Edit', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Button, {
-    size: "small",
-    variant: "contained",
-    startIcon: /*#__PURE__*/_react.default.createElement(_downloadIcon.default, null),
-    onClick: function onClick() {
-      return handleImageAction(_consts.IMAGE_ACTIONS.USE, currentImage);
-    }
-  }, __('Use Image', 'elementor')))), /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    src: currentImage.image_url,
-    alt: '',
-    style: {
-      width: width,
-      height: height
-    }
-  }))), /*#__PURE__*/_react.default.createElement(_ui.IconButton, {
-    onClick: function onClick() {
-      return imageNavigation.navigateNextImage();
-    },
-    size: "large",
-    color: "secondary"
-  }, /*#__PURE__*/_react.default.createElement(StyledChevronRightIcon, null))));
-};
-ZoomImage.propTypes = {
-  images: PropTypes.array,
-  zoomedImageIndex: PropTypes.number,
-  handleImageAction: PropTypes.func,
-  imageNavigation: PropTypes.object,
-  viewData: PropTypes.object
-};
-var _default = ZoomImage;
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../modules/ai/assets/js/editor/pages/form-media/screens/generate-result.js":
-/*!**********************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/screens/generate-result.js ***!
-  \**********************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
-var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _consts = __webpack_require__(/*! ../consts/consts */ "../modules/ai/assets/js/editor/pages/form-media/consts/consts.js");
-var _useImageNavigation2 = _interopRequireDefault(__webpack_require__(/*! ../../../hooks/use-image-navigation */ "../modules/ai/assets/js/editor/hooks/use-image-navigation.js"));
-var _zoomImage = _interopRequireDefault(__webpack_require__(/*! ./components/zoom-image */ "../modules/ai/assets/js/editor/pages/form-media/screens/components/zoom-image.js"));
-var _resultsGrid = _interopRequireDefault(__webpack_require__(/*! ./components/results-grid */ "../modules/ai/assets/js/editor/pages/form-media/screens/components/results-grid.js"));
-var FormGenerateResult = function FormGenerateResult(_ref) {
-  var maybeUploadImage = _ref.maybeUploadImage,
-    images = _ref.images,
-    aspectRatio = _ref.aspectRatio,
-    viewData = _ref.viewData;
-  var _useImageNavigation = (0, _useImageNavigation2.default)(images),
-    zoomedImageIndex = _useImageNavigation.zoomedImageIndex,
-    setZoomedImageIndex = _useImageNavigation.setZoomedImageIndex,
-    imageNavigation = _useImageNavigation.imageNavigation;
-  var handleImageAction = function handleImageAction(imageAction, imageForAction) {
-    switch (imageAction) {
-      case _consts.IMAGE_ACTIONS.USE:
-        maybeUploadImage(imageForAction, true);
-        break;
-      case _consts.IMAGE_ACTIONS.REFERENCE:
-        // TODO: currently the reference action is the edit action.
-        maybeUploadImage(imageForAction);
-        break;
-      case _consts.IMAGE_ACTIONS.ZOOM:
-        setZoomedImageIndex(imageForAction);
-        break;
-    }
-  };
-  return /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    sx: {
-      overflowY: 'scroll',
-      p: 8
-    },
-    flexGrow: 1
-  }, zoomedImageIndex > -1 ? /*#__PURE__*/_react.default.createElement(_zoomImage.default, {
-    images: images,
-    zoomedImageIndex: zoomedImageIndex,
-    handleImageAction: handleImageAction,
-    imageNavigation: imageNavigation,
-    viewData: viewData
-  }) : /*#__PURE__*/_react.default.createElement(_resultsGrid.default, {
-    images: images,
-    handleImageAction: handleImageAction,
-    aspectRatio: aspectRatio
-  }));
-};
-FormGenerateResult.propTypes = {
-  maybeUploadImage: PropTypes.func.isRequired,
-  images: PropTypes.array,
-  aspectRatio: PropTypes.string,
-  viewData: PropTypes.object.isRequired
-};
-var _default = FormGenerateResult;
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../modules/ai/assets/js/editor/pages/form-media/screens/image-loader.js":
-/*!*******************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/screens/image-loader.js ***!
-  \*******************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
-var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _icons = __webpack_require__(/*! @elementor/icons */ "@elementor/icons");
-var ImageLoader = function ImageLoader() {
-  return /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 5,
-    width: "100%"
-  }, /*#__PURE__*/_react.default.createElement(_icons.AIIcon, {
-    sx: {
-      color: 'text.primary',
-      fontSize: '60px',
-      mb: 3
-    }
-  }), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "h4",
-    sx: {
-      color: 'text.primary'
-    }
-  }, __('Bringing your vision to life...', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "body2"
-  }, __('Hold tight, painting dreams might take a moment.', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    sx: {
-      px: 4,
-      py: 6,
-      width: '100%',
-      maxWidth: 600
-    }
-  }, /*#__PURE__*/_react.default.createElement(_ui.LinearProgress, {
-    color: "inherit"
-  })));
-};
-var _default = ImageLoader;
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../modules/ai/assets/js/editor/pages/form-media/screens/image-preview.js":
-/*!********************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/screens/image-preview.js ***!
-  \********************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
-var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var ImagePreview = function ImagePreview(_ref) {
-  var editImage = _ref.editImage;
-  return /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    alignItems: "flex-start",
-    spacing: 2,
-    flexGrow: 1,
-    sx: {
-      py: 9,
-      overflowY: 'scroll'
-    }
-  }, /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    direction: "row",
-    spacing: 6,
-    alignSelf: "center",
-    alignItems: "center"
-  }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    src: editImage.url,
-    alt: '',
-    style: {
-      maxWidth: '90%',
-      maxHeight: '100%'
-    }
-  }))));
-};
-ImagePreview.propTypes = {
-  editImage: PropTypes.object.isRequired
-};
-var _default = ImagePreview;
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../modules/ai/assets/js/editor/pages/form-media/screens/in-painting.js":
-/*!******************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/screens/in-painting.js ***!
-  \******************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
 /* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
 
 
@@ -5450,11 +6156,14 @@ var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/r
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var _reactSketchCanvas = __webpack_require__(/*! react-sketch-canvas */ "../node_modules/react-sketch-canvas/dist/react-sketch-canvas.esm.js");
-var _undoIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/undo-icon */ "../modules/ai/assets/js/editor/icons/undo-icon.js"));
-var _redoIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/redo-icon */ "../modules/ai/assets/js/editor/icons/redo-icon.js"));
+var _undoIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/undo-icon */ "../modules/ai/assets/js/editor/icons/undo-icon.js"));
+var _redoIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/redo-icon */ "../modules/ai/assets/js/editor/icons/redo-icon.js"));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 var STROKE_SELECT_WIDTH = 120;
+var BRUSH_COLOR = 'rgba(0, 0, 0, 0.75)';
+var StyledUndoIcon = (0, _ui.withDirection)(_undoIcon.default);
+var StyledRedoIcon = (0, _ui.withDirection)(_redoIcon.default);
 var BrushCursor = (0, _ui.styled)(_ui.Box, {
   shouldForwardProp: function shouldForwardProp(prop) {
     return 'size' === prop;
@@ -5467,9 +6176,10 @@ var BrushCursor = (0, _ui.styled)(_ui.Box, {
     width: size,
     height: size,
     borderRadius: '50%',
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: BRUSH_COLOR,
     pointerEvents: 'none',
-    transform: "translate(".concat('rtl' === theme.direction ? '50%' : '-50%', ", -50%)")
+    transform: "translate(".concat('rtl' === theme.direction ? '50%' : '-50%', ", -50%)"),
+    border: "1px solid #fff"
   };
 });
 var BrishSizeIcon = (0, _ui.styled)(_ui.Box, {
@@ -5486,18 +6196,17 @@ var BrishSizeIcon = (0, _ui.styled)(_ui.Box, {
     backgroundColor: theme.palette.secondary.main
   };
 });
-var InPainting = function InPainting(_ref3) {
+var InPaintingContent = function InPaintingContent(_ref3) {
   var editImage = _ref3.editImage,
-    setMaskImage = _ref3.setMaskImage,
-    viewData = _ref3.viewData;
+    setMask = _ref3.setMask,
+    canvasWidth = _ref3.width,
+    canvasHeight = _ref3.height;
   var sketchRef = (0, _react.useRef)();
   var _useState = (0, _react.useState)(30),
     _useState2 = (0, _slicedToArray2.default)(_useState, 2),
     stroke = _useState2[0],
     setStroke = _useState2[1];
   var brushCursorRef = (0, _react.useRef)();
-  var canvasWidth = viewData.width,
-    canvasHeight = viewData.height;
   (0, _react.useEffect)(function () {
     var canvas = document.querySelector('.eui-in-painting-canvas');
 
@@ -5523,10 +6232,7 @@ var InPainting = function InPainting(_ref3) {
   return /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     alignItems: "flex-start",
     spacing: 2,
-    flexGrow: 1,
-    sx: {
-      pt: 9
-    }
+    flexGrow: 1
   }, /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     width: "100%",
     direction: "row",
@@ -5540,7 +6246,7 @@ var InPainting = function InPainting(_ref3) {
     direction: "row",
     gap: 3
   }, /*#__PURE__*/_react.default.createElement(_ui.Tooltip, {
-    title: "Undo"
+    title: __('Undo', 'elementor')
   }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
     variant: "outlined",
     color: "secondary",
@@ -5550,8 +6256,8 @@ var InPainting = function InPainting(_ref3) {
     sx: {
       px: 0
     }
-  }, /*#__PURE__*/_react.default.createElement(_undoIcon.default, null))), /*#__PURE__*/_react.default.createElement(_ui.Tooltip, {
-    title: "Redo"
+  }, /*#__PURE__*/_react.default.createElement(StyledUndoIcon, null))), /*#__PURE__*/_react.default.createElement(_ui.Tooltip, {
+    title: __('Redo', 'elementor')
   }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
     variant: "outlined",
     color: "secondary",
@@ -5561,7 +6267,7 @@ var InPainting = function InPainting(_ref3) {
     sx: {
       px: 0
     }
-  }, /*#__PURE__*/_react.default.createElement(_redoIcon.default, null)))), /*#__PURE__*/_react.default.createElement(_ui.FormControl, {
+  }, /*#__PURE__*/_react.default.createElement(StyledRedoIcon, null)))), /*#__PURE__*/_react.default.createElement(_ui.FormControl, {
     sx: {
       minWidth: STROKE_SELECT_WIDTH
     }
@@ -5631,7 +6337,7 @@ var InPainting = function InPainting(_ref3) {
     height: canvasHeight + 'px',
     width: canvasWidth + 'px',
     strokeWidth: stroke,
-    strokeColor: 'black',
+    strokeColor: BRUSH_COLOR,
     backgroundImage: editImage.url,
     onChange: /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
       var svg;
@@ -5642,7 +6348,7 @@ var InPainting = function InPainting(_ref3) {
             return sketchRef.current.exportSvg();
           case 2:
             svg = _context.sent;
-            setMaskImage(svg);
+            setMask(svg);
           case 4:
           case "end":
             return _context.stop();
@@ -5651,21 +6357,317 @@ var InPainting = function InPainting(_ref3) {
     }))
   })));
 };
-InPainting.propTypes = {
-  editImage: PropTypes.object.isRequired,
-  setMaskImage: PropTypes.func.isRequired,
-  promptSettings: PropTypes.object.isRequired,
-  viewData: PropTypes.object.isRequired
+InPaintingContent.propTypes = {
+  setMask: PropTypes.func.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  editImage: PropTypes.object.isRequired
+};
+var _default = InPaintingContent;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/in-painting/index.js":
+/*!**********************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/in-painting/index.js ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _view = _interopRequireDefault(__webpack_require__(/*! ../../components/view */ "../modules/ai/assets/js/editor/pages/form-media/components/view.js"));
+var _imageForm = _interopRequireDefault(__webpack_require__(/*! ../../components/image-form */ "../modules/ai/assets/js/editor/pages/form-media/components/image-form.js"));
+var _promptField = _interopRequireDefault(__webpack_require__(/*! ../../components/prompt-field */ "../modules/ai/assets/js/editor/pages/form-media/components/prompt-field.js"));
+var _inPaintingContent = _interopRequireDefault(__webpack_require__(/*! ./in-painting-content */ "../modules/ai/assets/js/editor/pages/form-media/views/in-painting/in-painting-content.js"));
+var _generateSubmit = _interopRequireDefault(__webpack_require__(/*! ../../components/generate-submit */ "../modules/ai/assets/js/editor/pages/form-media/components/generate-submit.js"));
+var _generateAgainSubmit = _interopRequireDefault(__webpack_require__(/*! ../../components/generate-again-submit */ "../modules/ai/assets/js/editor/pages/form-media/components/generate-again-submit.js"));
+var _newPromptButton = _interopRequireDefault(__webpack_require__(/*! ../../components/new-prompt-button */ "../modules/ai/assets/js/editor/pages/form-media/components/new-prompt-button.js"));
+var _imagesDisplay = _interopRequireDefault(__webpack_require__(/*! ../../components/images-display */ "../modules/ai/assets/js/editor/pages/form-media/components/images-display.js"));
+var _usePromptSettings2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-prompt-settings */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-prompt-settings.js"));
+var _useInPainting2 = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-in-painting */ "../modules/ai/assets/js/editor/pages/form-media/views/in-painting/hooks/use-in-painting.js"));
+var _editImageContext = __webpack_require__(/*! ../../context/edit-image-context */ "../modules/ai/assets/js/editor/pages/form-media/context/edit-image-context.js");
+var _useImageActions2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-actions */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-actions.js"));
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+var InPainting = function InPainting() {
+  var _useState = (0, _react.useState)(''),
+    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+    prompt = _useState2[0],
+    setPrompt = _useState2[1];
+  var _useState3 = (0, _react.useState)(''),
+    _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
+    mask = _useState4[0],
+    setMask = _useState4[1];
+  var _usePromptSettings = (0, _usePromptSettings2.default)(),
+    settings = _usePromptSettings.settings,
+    resetSettings = _usePromptSettings.resetSettings;
+  var _useEditImage = (0, _editImageContext.useEditImage)(),
+    editImage = _useEditImage.editImage,
+    width = _useEditImage.width,
+    height = _useEditImage.height;
+  var _useImageActions = (0, _useImageActions2.default)(),
+    use = _useImageActions.use,
+    edit = _useImageActions.edit,
+    isUploading = _useImageActions.isLoading;
+  var _useInPainting = (0, _useInPainting2.default)(),
+    data = _useInPainting.data,
+    send = _useInPainting.send,
+    isGenerating = _useInPainting.isLoading,
+    error = _useInPainting.error,
+    reset = _useInPainting.reset;
+  var isLoading = isGenerating || isUploading;
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+
+    // The fallback instruction should be hidden for the user.
+    var finalPrompt = prompt || 'Remove object and fill based on the surroundings';
+    send(finalPrompt, settings, editImage, mask);
+  };
+  return /*#__PURE__*/_react.default.createElement(_view.default, null, /*#__PURE__*/_react.default.createElement(_view.default.Panel, null, /*#__PURE__*/_react.default.createElement(_view.default.BackButton, null), /*#__PURE__*/_react.default.createElement(_view.default.PanelHeading, {
+    primary: __('Generative Fill', 'elementor'),
+    secondary: __('Mark an area and edit it with a prompt.', 'elementor')
+  }), error && /*#__PURE__*/_react.default.createElement(_view.default.ErrorMessage, {
+    error: error,
+    onRetry: handleSubmit
+  }), /*#__PURE__*/_react.default.createElement(_imageForm.default, {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/_react.default.createElement(_promptField.default, {
+    value: prompt,
+    disabled: isLoading,
+    onChange: setPrompt,
+    placeholder: __('Describe what you want to generate in the marked area (English only)', 'elementor')
+  }), data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+    gap: 5,
+    sx: {
+      my: 6
+    }
+  }, /*#__PURE__*/_react.default.createElement(_generateAgainSubmit.default, {
+    disabled: isLoading
+  }), /*#__PURE__*/_react.default.createElement(_newPromptButton.default, {
+    disabled: isLoading,
+    onClick: function onClick() {
+      resetSettings();
+      setPrompt('');
+      reset();
+    }
+  })) : /*#__PURE__*/_react.default.createElement(_generateSubmit.default, {
+    disabled: isLoading
+  }))), /*#__PURE__*/_react.default.createElement(_view.default.Content, {
+    isGenerating: isLoading
+  }, data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_imagesDisplay.default, {
+    images: data.result,
+    aspectRatio: editImage.aspectRatio,
+    onUseImage: use,
+    onEditImage: edit
+  }) : /*#__PURE__*/_react.default.createElement(_inPaintingContent.default, {
+    editImage: editImage,
+    width: width,
+    height: height,
+    setMask: setMask
+  })));
 };
 var _default = InPainting;
 exports["default"] = _default;
 
 /***/ }),
 
-/***/ "../modules/ai/assets/js/editor/pages/form-media/screens/out-painting.js":
-/*!*******************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/screens/out-painting.js ***!
-  \*******************************************************************************/
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/out-painting/hooks/use-out-painting.js":
+/*!****************************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/out-painting/hooks/use-out-painting.js ***!
+  \****************************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _api = __webpack_require__(/*! ../../../../../api */ "../modules/ai/assets/js/editor/api/index.js");
+var _useImagePrompt = _interopRequireDefault(__webpack_require__(/*! ../../../hooks/use-image-prompt */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-prompt.js"));
+var useOutPainting = function useOutPainting(initialValue) {
+  var fetchAction = function fetchAction(prompt, promptSettings, image, mask) {
+    return (0, _api.getImageToImageOutPainting)(prompt, promptSettings, image, mask);
+  };
+  return (0, _useImagePrompt.default)(fetchAction, initialValue);
+};
+var _default = useOutPainting;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/out-painting/index.js":
+/*!***********************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/out-painting/index.js ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _view = _interopRequireDefault(__webpack_require__(/*! ../../components/view */ "../modules/ai/assets/js/editor/pages/form-media/components/view.js"));
+var _imageForm = _interopRequireDefault(__webpack_require__(/*! ../../components/image-form */ "../modules/ai/assets/js/editor/pages/form-media/components/image-form.js"));
+var _imageRatioSelect = _interopRequireDefault(__webpack_require__(/*! ../../components/image-ratio-select */ "../modules/ai/assets/js/editor/pages/form-media/components/image-ratio-select.js"));
+var _generateSubmit = _interopRequireDefault(__webpack_require__(/*! ../../components/generate-submit */ "../modules/ai/assets/js/editor/pages/form-media/components/generate-submit.js"));
+var _generateAgainSubmit = _interopRequireDefault(__webpack_require__(/*! ../../components/generate-again-submit */ "../modules/ai/assets/js/editor/pages/form-media/components/generate-again-submit.js"));
+var _newPromptButton = _interopRequireDefault(__webpack_require__(/*! ../../components/new-prompt-button */ "../modules/ai/assets/js/editor/pages/form-media/components/new-prompt-button.js"));
+var _promptField = _interopRequireDefault(__webpack_require__(/*! ../../components/prompt-field */ "../modules/ai/assets/js/editor/pages/form-media/components/prompt-field.js"));
+var _outPaintingContent = _interopRequireDefault(__webpack_require__(/*! ./out-painting-content */ "../modules/ai/assets/js/editor/pages/form-media/views/out-painting/out-painting-content.js"));
+var _imagesDisplay = _interopRequireDefault(__webpack_require__(/*! ../../components/images-display */ "../modules/ai/assets/js/editor/pages/form-media/components/images-display.js"));
+var _editImageContext = __webpack_require__(/*! ../../context/edit-image-context */ "../modules/ai/assets/js/editor/pages/form-media/context/edit-image-context.js");
+var _useImageActions2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-actions */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-actions.js"));
+var _usePromptSettings2 = _interopRequireWildcard(__webpack_require__(/*! ../../hooks/use-prompt-settings */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-prompt-settings.js"));
+var _useOutPainting2 = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-out-painting */ "../modules/ai/assets/js/editor/pages/form-media/views/out-painting/hooks/use-out-painting.js"));
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+var OutPainting = function OutPainting() {
+  var _useState = (0, _react.useState)(''),
+    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+    prompt = _useState2[0],
+    setPrompt = _useState2[1];
+  var _useEditImage = (0, _editImageContext.useEditImage)(),
+    editImage = _useEditImage.editImage,
+    initialAspectRatio = _useEditImage.aspectRatio;
+  var _useState3 = (0, _react.useState)(''),
+    _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
+    mask = _useState4[0],
+    setMask = _useState4[1];
+  var _usePromptSettings = (0, _usePromptSettings2.default)({
+      aspectRatio: initialAspectRatio
+    }),
+    settings = _usePromptSettings.settings,
+    updateSettings = _usePromptSettings.updateSettings,
+    resetSettings = _usePromptSettings.resetSettings;
+  var _useImageActions = (0, _useImageActions2.default)(),
+    use = _useImageActions.use,
+    edit = _useImageActions.edit,
+    isUploading = _useImageActions.isLoading;
+  var _useOutPainting = (0, _useOutPainting2.default)(),
+    data = _useOutPainting.data,
+    send = _useOutPainting.send,
+    isGenerating = _useOutPainting.isLoading,
+    error = _useOutPainting.error,
+    reset = _useOutPainting.reset;
+  var isLoading = isGenerating || isUploading;
+  var generatedAspectRatio = (0, _react.useMemo)(function () {
+    return settings[_usePromptSettings2.IMAGE_RATIO];
+  }, [data === null || data === void 0 ? void 0 : data.result]);
+  var hasGeneratedResult = !!(data !== null && data !== void 0 && data.result);
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+
+    // The fallback instruction should be hidden for the user.
+    var finalPrompt = prompt || 'Fill based on the surroundings';
+    send(finalPrompt, settings, editImage, mask);
+  };
+  return /*#__PURE__*/_react.default.createElement(_view.default, null, /*#__PURE__*/_react.default.createElement(_view.default.Panel, null, /*#__PURE__*/_react.default.createElement(_view.default.BackButton, null), /*#__PURE__*/_react.default.createElement(_view.default.PanelHeading, {
+    primary: __('Expand Image', 'elementor'),
+    secondary: __('Position image in it’s new size to generate content around the edges.', 'elementor')
+  }), error && /*#__PURE__*/_react.default.createElement(_view.default.ErrorMessage, {
+    error: error,
+    onRetry: handleSubmit
+  }), /*#__PURE__*/_react.default.createElement(_imageForm.default, {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/_react.default.createElement(_imageRatioSelect.default, {
+    disabled: isLoading || hasGeneratedResult,
+    value: settings[_usePromptSettings2.IMAGE_RATIO],
+    onChange: function onChange(event) {
+      return updateSettings((0, _defineProperty2.default)({}, _usePromptSettings2.IMAGE_RATIO, event.target.value));
+    }
+  }), /*#__PURE__*/_react.default.createElement(_ui.FormControl, {
+    sx: {
+      width: '100%',
+      mb: 6
+    }
+  }, /*#__PURE__*/_react.default.createElement(_ui.Slider, {
+    marks: true,
+    id: "zoom",
+    name: "zoom",
+    max: 2,
+    min: 0.1,
+    step: 0.1,
+    color: "secondary",
+    defaultValue: 1,
+    disabled: isLoading || hasGeneratedResult,
+    valueLabelDisplay: "auto",
+    "aria-labelledby": "image-size-slider",
+    "aria-label": __('Reference strength', 'elementor'),
+    onChange: function onChange(_, value) {
+      return updateSettings((0, _defineProperty2.default)({}, _usePromptSettings2.IMAGE_ZOOM, value));
+    }
+  }), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    id: "image-size-slider",
+    variant: "caption",
+    gutterBottom: true
+  }, __('Original image size', 'elementor'))), /*#__PURE__*/_react.default.createElement(_promptField.default, {
+    value: prompt,
+    disabled: isLoading,
+    onChange: setPrompt,
+    placeholder: __('Describe what you want to generate in the expended area (English only)', 'elementor')
+  }), data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+    gap: 5,
+    sx: {
+      my: 6
+    }
+  }, /*#__PURE__*/_react.default.createElement(_generateAgainSubmit.default, {
+    disabled: isLoading
+  }), /*#__PURE__*/_react.default.createElement(_newPromptButton.default, {
+    disabled: isLoading,
+    onClick: function onClick() {
+      resetSettings();
+      setPrompt('');
+      reset();
+    }
+  })) : /*#__PURE__*/_react.default.createElement(_generateSubmit.default, {
+    disabled: isLoading
+  }))), /*#__PURE__*/_react.default.createElement(_view.default.Content, {
+    isGenerating: isLoading
+  }, hasGeneratedResult ? /*#__PURE__*/_react.default.createElement(_imagesDisplay.default, {
+    onUseImage: use,
+    onEditImage: edit,
+    images: data.result,
+    aspectRatio: generatedAspectRatio
+  }) : /*#__PURE__*/_react.default.createElement(_outPaintingContent.default, {
+    setMask: setMask,
+    editImage: editImage,
+    scale: settings[_usePromptSettings2.IMAGE_ZOOM],
+    aspectRatio: settings[_usePromptSettings2.IMAGE_RATIO]
+  })));
+};
+var _default = OutPainting;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/out-painting/out-painting-content.js":
+/*!**************************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/out-painting/out-painting-content.js ***!
+  \**************************************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -5683,18 +6685,18 @@ var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var _reactAvatarEditor = _interopRequireDefault(__webpack_require__(/*! react-avatar-editor */ "../node_modules/react-avatar-editor/dist/index.js"));
-var _consts = __webpack_require__(/*! ../consts/consts */ "../modules/ai/assets/js/editor/pages/form-media/consts/consts.js");
+var _useImageSize2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-size */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-size.js"));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-var OutPainting = function OutPainting(_ref) {
-  var editImage = _ref.editImage,
-    setMaskImage = _ref.setMaskImage,
-    promptSettings = _ref.promptSettings,
-    viewData = _ref.viewData;
+var OutPaintingContent = function OutPaintingContent(_ref) {
+  var scale = _ref.scale,
+    setMask = _ref.setMask,
+    editImage = _ref.editImage,
+    aspectRatio = _ref.aspectRatio;
   var cropperRef = (0, _react.useRef)();
-  var width = viewData.width,
-    height = viewData.height;
-  var scale = promptSettings[_consts.IMAGE_PROMPT_SETTINGS.ZOOM] || 1;
+  var _useImageSize = (0, _useImageSize2.default)(aspectRatio),
+    width = _useImageSize.width,
+    height = _useImageSize.height;
   var updateMask = /*#__PURE__*/function () {
     var _ref2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
       var imageDataURL;
@@ -5705,7 +6707,7 @@ var OutPainting = function OutPainting(_ref) {
             return cropperRef.current.getImageScaledToCanvas().toDataURL();
           case 2:
             imageDataURL = _context.sent;
-            setMaskImage(imageDataURL);
+            setMask(imageDataURL);
           case 4:
           case "end":
             return _context.stop();
@@ -5719,10 +6721,7 @@ var OutPainting = function OutPainting(_ref) {
   return /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     alignItems: 'center',
     spacing: 2,
-    flexGrow: 1,
-    sx: {
-      pt: 9
-    }
+    flexGrow: 1
   }, /*#__PURE__*/_react.default.createElement(_reactAvatarEditor.default, {
     ref: cropperRef,
     image: editImage.url,
@@ -5750,26 +6749,168 @@ var OutPainting = function OutPainting(_ref) {
     scale: scale
   }));
 };
-OutPainting.propTypes = {
+OutPaintingContent.propTypes = {
+  scale: PropTypes.number.isRequired,
+  setMask: PropTypes.func.isRequired,
   editImage: PropTypes.object.isRequired,
-  setMaskImage: PropTypes.func.isRequired,
-  promptSettings: PropTypes.object.isRequired,
-  viewData: PropTypes.object.isRequired
+  aspectRatio: PropTypes.string.isRequired
 };
-var _default = OutPainting;
+var _default = OutPaintingContent;
 exports["default"] = _default;
 
 /***/ }),
 
-/***/ "../modules/ai/assets/js/editor/pages/form-media/screens/prompt-gallery.js":
-/*!*********************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/screens/prompt-gallery.js ***!
-  \*********************************************************************************/
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/remove-background/hooks/use-remove-background.js":
+/*!**************************************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/remove-background/hooks/use-remove-background.js ***!
+  \**************************************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _api = __webpack_require__(/*! ../../../../../api */ "../modules/ai/assets/js/editor/api/index.js");
+var _useImagePrompt = _interopRequireDefault(__webpack_require__(/*! ../../../hooks/use-image-prompt */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-prompt.js"));
+var useRemoveBackground = function useRemoveBackground(initialValue) {
+  var fetchAction = function fetchAction(image) {
+    return (0, _api.getImageToImageRemoveBackground)(image);
+  };
+  return (0, _useImagePrompt.default)(fetchAction, initialValue);
+};
+var _default = useRemoveBackground;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/remove-background/index.js":
+/*!****************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/remove-background/index.js ***!
+  \****************************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 /* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
-/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _view = _interopRequireDefault(__webpack_require__(/*! ../../components/view */ "../modules/ai/assets/js/editor/pages/form-media/components/view.js"));
+var _generateSubmit = _interopRequireDefault(__webpack_require__(/*! ../../components/generate-submit */ "../modules/ai/assets/js/editor/pages/form-media/components/generate-submit.js"));
+var _imageForm = _interopRequireDefault(__webpack_require__(/*! ../../components/image-form */ "../modules/ai/assets/js/editor/pages/form-media/components/image-form.js"));
+var _imagesDisplay = _interopRequireDefault(__webpack_require__(/*! ../../components/images-display */ "../modules/ai/assets/js/editor/pages/form-media/components/images-display.js"));
+var _singleImagePreview = _interopRequireDefault(__webpack_require__(/*! ../../components/single-image-preview */ "../modules/ai/assets/js/editor/pages/form-media/components/single-image-preview.js"));
+var _editImageContext = __webpack_require__(/*! ../../context/edit-image-context */ "../modules/ai/assets/js/editor/pages/form-media/context/edit-image-context.js");
+var _useImageActions2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-actions */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-actions.js"));
+var _useRemoveBackground2 = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-remove-background */ "../modules/ai/assets/js/editor/pages/form-media/views/remove-background/hooks/use-remove-background.js"));
+var _newPromptButton = _interopRequireDefault(__webpack_require__(/*! ../../components/new-prompt-button */ "../modules/ai/assets/js/editor/pages/form-media/components/new-prompt-button.js"));
+var _constants = __webpack_require__(/*! ../../constants */ "../modules/ai/assets/js/editor/pages/form-media/constants/index.js");
+var _locationContext = __webpack_require__(/*! ../../context/location-context */ "../modules/ai/assets/js/editor/pages/form-media/context/location-context.js");
+var RemoveBackground = function RemoveBackground() {
+  var _useEditImage = (0, _editImageContext.useEditImage)(),
+    editImage = _useEditImage.editImage;
+  var _useImageActions = (0, _useImageActions2.default)(),
+    use = _useImageActions.use,
+    edit = _useImageActions.edit,
+    isUploading = _useImageActions.isLoading;
+  var _useRemoveBackground = (0, _useRemoveBackground2.default)(),
+    data = _useRemoveBackground.data,
+    send = _useRemoveBackground.send,
+    isGenerating = _useRemoveBackground.isLoading,
+    error = _useRemoveBackground.error;
+  var _useLocation = (0, _locationContext.useLocation)(),
+    navigate = _useLocation.navigate;
+  var isLoading = isGenerating || isUploading;
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    send(editImage);
+  };
+  return /*#__PURE__*/_react.default.createElement(_view.default, null, /*#__PURE__*/_react.default.createElement(_view.default.Panel, null, /*#__PURE__*/_react.default.createElement(_view.default.BackButton, null), /*#__PURE__*/_react.default.createElement(_view.default.PanelHeading, {
+    primary: __('Remove Background', 'elementor'),
+    secondary: __('Create an image of the subject with a transparent background', 'elementor')
+  }), error && /*#__PURE__*/_react.default.createElement(_view.default.ErrorMessage, {
+    error: error,
+    onRetry: handleSubmit
+  }), /*#__PURE__*/_react.default.createElement(_imageForm.default, {
+    onSubmit: handleSubmit
+  }, data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_newPromptButton.default, {
+    disabled: isLoading,
+    onClick: function onClick() {
+      return navigate(_constants.LOCATIONS.GENERATE);
+    }
+  }) : /*#__PURE__*/_react.default.createElement(_generateSubmit.default, {
+    disabled: isLoading
+  }, __('Remove Background', 'elementor')))), /*#__PURE__*/_react.default.createElement(_view.default.Content, {
+    isGenerating: isLoading
+  }, data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_ui.Box, {
+    sx: {
+      backgroundImage: 'linear-gradient(45deg, #bbb 25%, transparent 25%), linear-gradient(-45deg, #bbb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #bbb 75%), linear-gradient(-45deg, transparent 75%, #bbb 75%)',
+      backgroundSize: '20px 20px',
+      backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px'
+    }
+  }, /*#__PURE__*/_react.default.createElement(_imagesDisplay.default, {
+    onUseImage: use,
+    onEditImage: edit,
+    images: data.result,
+    aspectRatio: editImage.aspectRatio
+  })) : /*#__PURE__*/_react.default.createElement(_singleImagePreview.default, null, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default.Image, {
+    src: editImage.url,
+    alt: editImage.alt,
+    style: {
+      width: editImage.width,
+      height: editImage.height
+    }
+  }))));
+};
+var _default = RemoveBackground;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/replace-background/hooks/use-replace-background.js":
+/*!****************************************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/replace-background/hooks/use-replace-background.js ***!
+  \****************************************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _api = __webpack_require__(/*! ../../../../../api */ "../modules/ai/assets/js/editor/api/index.js");
+var _useImagePrompt = _interopRequireDefault(__webpack_require__(/*! ../../../hooks/use-image-prompt */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-prompt.js"));
+var useReplaceBackground = function useReplaceBackground(initialValue) {
+  var fetchAction = function fetchAction(prompt, image) {
+    return (0, _api.getImageToImageReplaceBackground)(prompt, image);
+  };
+  return (0, _useImagePrompt.default)(fetchAction, initialValue);
+};
+var _default = useReplaceBackground;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/replace-background/index.js":
+/*!*****************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/replace-background/index.js ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -5779,191 +6920,110 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
-var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _loader = _interopRequireDefault(__webpack_require__(/*! ../../../components/loader */ "../modules/ai/assets/js/editor/components/loader.js"));
-var _useImagesPreload2 = _interopRequireDefault(__webpack_require__(/*! ../../../hooks/use-images-preload */ "../modules/ai/assets/js/editor/hooks/use-images-preload.js"));
-var _consts = __webpack_require__(/*! ../consts/consts */ "../modules/ai/assets/js/editor/pages/form-media/consts/consts.js");
-var _useSessionStorage2 = _interopRequireDefault(__webpack_require__(/*! ../../../hooks/use-session-storage */ "../modules/ai/assets/js/editor/hooks/use-session-storage.js"));
-var _overlay = _interopRequireDefault(__webpack_require__(/*! ../../../components/ui/overlay */ "../modules/ai/assets/js/editor/components/ui/overlay.js"));
-var _overlayBar = _interopRequireDefault(__webpack_require__(/*! ../../../components/ui/overlay-bar */ "../modules/ai/assets/js/editor/components/ui/overlay-bar.js"));
-var _copyIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/copy-icon */ "../modules/ai/assets/js/editor/icons/copy-icon.js"));
-var _downloadIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/download-icon */ "../modules/ai/assets/js/editor/icons/download-icon.js"));
-var _editIcon = _interopRequireDefault(__webpack_require__(/*! ../../../icons/edit-icon */ "../modules/ai/assets/js/editor/icons/edit-icon.js"));
+var _view = _interopRequireDefault(__webpack_require__(/*! ../../components/view */ "../modules/ai/assets/js/editor/pages/form-media/components/view.js"));
+var _generateSubmit = _interopRequireDefault(__webpack_require__(/*! ../../components/generate-submit */ "../modules/ai/assets/js/editor/pages/form-media/components/generate-submit.js"));
+var _imageForm = _interopRequireDefault(__webpack_require__(/*! ../../components/image-form */ "../modules/ai/assets/js/editor/pages/form-media/components/image-form.js"));
+var _imagesDisplay = _interopRequireDefault(__webpack_require__(/*! ../../components/images-display */ "../modules/ai/assets/js/editor/pages/form-media/components/images-display.js"));
+var _singleImagePreview = _interopRequireDefault(__webpack_require__(/*! ../../components/single-image-preview */ "../modules/ai/assets/js/editor/pages/form-media/components/single-image-preview.js"));
+var _editImageContext = __webpack_require__(/*! ../../context/edit-image-context */ "../modules/ai/assets/js/editor/pages/form-media/context/edit-image-context.js");
+var _useImageActions2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-actions */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-actions.js"));
+var _useReplaceBackground2 = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-replace-background */ "../modules/ai/assets/js/editor/pages/form-media/views/replace-background/hooks/use-replace-background.js"));
+var _promptField = _interopRequireDefault(__webpack_require__(/*! ../../components/prompt-field */ "../modules/ai/assets/js/editor/pages/form-media/components/prompt-field.js"));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-var shuffleImages = function shuffleImages(images) {
-  return images.map(function (image) {
-    return [Math.random(), image];
-  }).sort(function (_ref, _ref2) {
-    var _ref3 = (0, _slicedToArray2.default)(_ref, 1),
-      a = _ref3[0];
-    var _ref4 = (0, _slicedToArray2.default)(_ref2, 1),
-      b = _ref4[0];
-    return a - b;
-  }).map(function (_ref5) {
-    var _ref6 = (0, _slicedToArray2.default)(_ref5, 2),
-      image = _ref6[1];
-    return image;
-  });
-};
-var PromptGallery = function PromptGallery(_ref7) {
-  var maybeUploadImage = _ref7.maybeUploadImage,
-    setPrompt = _ref7.setPrompt,
-    selectedCategory = _ref7.selectedCategory,
-    updatePromptSettings = _ref7.updatePromptSettings;
-  var _useSessionStorage = (0, _useSessionStorage2.default)('ai-image-gallery', {
-      images: []
-    }),
-    data = _useSessionStorage.data,
-    setStateAndSessionData = _useSessionStorage.setStateAndSessionData;
-  var _useImagesPreload = (0, _useImagesPreload2.default)('thumbnailUrl'),
-    imagesPreloaded = _useImagesPreload.imagesPreloaded,
-    preloadImages = _useImagesPreload.preloadImages;
-  var imagesToRender = (0, _react.useMemo)(function () {
-    var shuffledImages = shuffleImages(data.images);
-    if (!selectedCategory) {
-      return shuffledImages;
-    }
-    var categoryImages = shuffledImages.filter(function (_ref8) {
-      var imageType = _ref8.imageType;
-      return imageType.includes(selectedCategory);
-    });
-
-    // Some categories don't have images, so we TEMPORARLY fallback to the shuffled images.
-    return categoryImages.length ? categoryImages : shuffledImages;
-  }, [selectedCategory, data]);
-  var fetchJson = function fetchJson() {
-    fetch('https://my.elementor.com/ai/images-prompt-gallery/ai-gallery.json').then(function (response) {
-      return response.json();
-    }).then(function (json) {
-      return setStateAndSessionData(json);
-    }).catch(function (e) {
-      return console.log(e.message);
-    });
+var RemoveBackground = function RemoveBackground() {
+  var _useState = (0, _react.useState)(''),
+    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+    prompt = _useState2[0],
+    setPrompt = _useState2[1];
+  var _useEditImage = (0, _editImageContext.useEditImage)(),
+    editImage = _useEditImage.editImage;
+  var _useImageActions = (0, _useImageActions2.default)(),
+    use = _useImageActions.use,
+    edit = _useImageActions.edit,
+    isUploading = _useImageActions.isLoading;
+  var _useReplaceBackground = (0, _useReplaceBackground2.default)(),
+    data = _useReplaceBackground.data,
+    send = _useReplaceBackground.send,
+    isGenerating = _useReplaceBackground.isLoading,
+    error = _useReplaceBackground.error;
+  var isLoading = isGenerating || isUploading;
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    send(prompt, editImage);
   };
-  (0, _react.useEffect)(function () {
-    if (0 === (data === null || data === void 0 ? void 0 : data.images.length)) {
-      fetchJson();
-      return;
+  return /*#__PURE__*/_react.default.createElement(_view.default, null, /*#__PURE__*/_react.default.createElement(_view.default.Panel, null, /*#__PURE__*/_react.default.createElement(_view.default.BackButton, null), /*#__PURE__*/_react.default.createElement(_view.default.PanelHeading, {
+    primary: __('Replace Background', 'elementor'),
+    secondary: __('Generate a new background with a prompt.', 'elementor')
+  }), error && /*#__PURE__*/_react.default.createElement(_view.default.ErrorMessage, {
+    error: error,
+    onRetry: handleSubmit
+  }), /*#__PURE__*/_react.default.createElement(_imageForm.default, {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/_react.default.createElement(_promptField.default, {
+    value: prompt,
+    disabled: isLoading,
+    onChange: setPrompt,
+    placeholder: __('Describe what you want to generate in the background (English only)', 'elementor')
+  }), /*#__PURE__*/_react.default.createElement(_generateSubmit.default, {
+    disabled: isLoading || '' === prompt
+  }, __('Replace Background', 'elementor')))), /*#__PURE__*/_react.default.createElement(_view.default.Content, {
+    isGenerating: isLoading
+  }, data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_imagesDisplay.default, {
+    onUseImage: use,
+    onEditImage: edit,
+    images: data.result,
+    aspectRatio: editImage.aspectRatio
+  }) : /*#__PURE__*/_react.default.createElement(_singleImagePreview.default, null, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default.Image, {
+    src: editImage.url,
+    alt: editImage.alt,
+    style: {
+      width: editImage.width,
+      height: editImage.height
     }
-    preloadImages(data.images);
-  }, [data]);
-  if (!imagesPreloaded) {
-    return /*#__PURE__*/_react.default.createElement(_ui.Box, {
-      sx: {
-        width: '100%',
-        maxWidth: 600,
-        margin: '0 auto',
-        alignSelf: 'center'
-      }
-    }, /*#__PURE__*/_react.default.createElement(_loader.default, {
-      color: "inherit"
-    }));
-  }
-  return /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    sx: {
-      overflowY: 'scroll',
-      p: 8
-    },
-    flexGrow: 1
-  }, /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    gap: 4,
-    sx: {
-      mb: 7
-    }
-  }, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "h6"
-  }, __('Spark your imagination with images generated by our community', 'elementor'))), /*#__PURE__*/_react.default.createElement(_ui.ImageList, {
-    width: "100%",
-    cols: 3,
-    gap: 24
-  }, imagesToRender.map(function (suggestedPrompt) {
-    return /*#__PURE__*/_react.default.createElement(_ui.ImageListItem, {
-      key: suggestedPrompt.prompt
-    }, /*#__PURE__*/_react.default.createElement("img", {
-      src: "".concat(suggestedPrompt.thumbnailUrl),
-      alt: suggestedPrompt.prompt,
-      style: {
-        width: '100%',
-        maxHeight: '238px'
-      }
-    }), /*#__PURE__*/_react.default.createElement(_overlay.default, null, /*#__PURE__*/_react.default.createElement(_overlayBar.default, {
-      gap: 3,
-      position: "bottom"
-    }, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-      variant: "caption",
-      color: "common.white"
-    }, suggestedPrompt.prompt), /*#__PURE__*/_react.default.createElement(_ui.Box, {
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center"
-    }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
-      fullWidth: true,
-      size: "small",
-      variant: "contained",
-      startIcon: /*#__PURE__*/_react.default.createElement(_downloadIcon.default, null),
-      onClick: function onClick() {
-        return maybeUploadImage(suggestedPrompt, true);
-      }
-    }, __('Use Image', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Tooltip, {
-      title: __('Copy prompt', 'elementor')
-    }, /*#__PURE__*/_react.default.createElement(_ui.IconButton, {
-      sx: {
-        mr: -4,
-        ml: 2,
-        color: 'common.white',
-        '&:hover': {
-          color: 'common.white'
-        }
-      },
-      onClick: function onClick() {
-        var _updatePromptSettings;
-        setPrompt(suggestedPrompt.prompt);
-        var _suggestedPrompt$imag = suggestedPrompt.imageType.split('/'),
-          _suggestedPrompt$imag2 = (0, _slicedToArray2.default)(_suggestedPrompt$imag, 2),
-          stylePreset = _suggestedPrompt$imag2[0],
-          imageType = _suggestedPrompt$imag2[1];
-        updatePromptSettings((_updatePromptSettings = {}, (0, _defineProperty2.default)(_updatePromptSettings, _consts.IMAGE_PROMPT_SETTINGS.IMAGE_TYPE, stylePreset), (0, _defineProperty2.default)(_updatePromptSettings, _consts.IMAGE_PROMPT_SETTINGS.STYLE_PRESET, imageType), _updatePromptSettings));
-      }
-    }, /*#__PURE__*/_react.default.createElement(_copyIcon.default, null))), /*#__PURE__*/_react.default.createElement(_ui.Tooltip, {
-      title: __('Edit', 'elementor')
-    }, /*#__PURE__*/_react.default.createElement(_ui.IconButton, {
-      sx: {
-        mr: -4,
-        ml: 2,
-        color: 'common.white',
-        '&:hover': {
-          color: 'common.white'
-        }
-      },
-      onClick: function onClick() {
-        return maybeUploadImage(suggestedPrompt);
-      }
-    }, /*#__PURE__*/_react.default.createElement(_editIcon.default, null)))))));
-  })));
+  }))));
 };
-PromptGallery.propTypes = {
-  maybeUploadImage: PropTypes.func,
-  setPrompt: PropTypes.func,
-  selectedCategory: PropTypes.string,
-  updatePromptSettings: PropTypes.func,
-  aspectRatio: PropTypes.string
-};
-var _default = PromptGallery;
+var _default = RemoveBackground;
 exports["default"] = _default;
 
 /***/ }),
 
-/***/ "../modules/ai/assets/js/editor/pages/form-media/screens/screen.js":
-/*!*************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/screens/screen.js ***!
-  \*************************************************************************/
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/resize/hooks/use-resize.js":
+/*!****************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/resize/hooks/use-resize.js ***!
+  \****************************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _api = __webpack_require__(/*! ../../../../../api */ "../modules/ai/assets/js/editor/api/index.js");
+var _useImagePrompt = _interopRequireDefault(__webpack_require__(/*! ../../../hooks/use-image-prompt */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-prompt.js"));
+var useResize = function useResize(initialValue) {
+  var fetchAction = function fetchAction(prompt, promptSettings, image) {
+    return (0, _api.getImageToImageUpscale)(prompt, promptSettings, image);
+  };
+  return (0, _useImagePrompt.default)(fetchAction, initialValue);
+};
+var _default = useResize;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/resize/index.js":
+/*!*****************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/resize/index.js ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -5971,105 +7031,110 @@ var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.Screen = void 0;
-var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
-var _imageLoader = _interopRequireDefault(__webpack_require__(/*! ./image-loader */ "../modules/ai/assets/js/editor/pages/form-media/screens/image-loader.js"));
-var _consts = __webpack_require__(/*! ../consts/consts */ "../modules/ai/assets/js/editor/pages/form-media/consts/consts.js");
-var _generateResult = _interopRequireDefault(__webpack_require__(/*! ./generate-result */ "../modules/ai/assets/js/editor/pages/form-media/screens/generate-result.js"));
-var _promptGallery = _interopRequireDefault(__webpack_require__(/*! ./prompt-gallery */ "../modules/ai/assets/js/editor/pages/form-media/screens/prompt-gallery.js"));
-var _variationsPlaceholder = _interopRequireDefault(__webpack_require__(/*! ./variations-placeholder */ "../modules/ai/assets/js/editor/pages/form-media/screens/variations-placeholder.js"));
-var _imagePreview = _interopRequireDefault(__webpack_require__(/*! ./image-preview */ "../modules/ai/assets/js/editor/pages/form-media/screens/image-preview.js"));
-var _inPainting = _interopRequireDefault(__webpack_require__(/*! ./in-painting */ "../modules/ai/assets/js/editor/pages/form-media/screens/in-painting.js"));
-var _outPainting = _interopRequireDefault(__webpack_require__(/*! ./out-painting */ "../modules/ai/assets/js/editor/pages/form-media/screens/out-painting.js"));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _view = _interopRequireDefault(__webpack_require__(/*! ../../components/view */ "../modules/ai/assets/js/editor/pages/form-media/components/view.js"));
+var _generateSubmit = _interopRequireDefault(__webpack_require__(/*! ../../components/generate-submit */ "../modules/ai/assets/js/editor/pages/form-media/components/generate-submit.js"));
+var _imageForm = _interopRequireDefault(__webpack_require__(/*! ../../components/image-form */ "../modules/ai/assets/js/editor/pages/form-media/components/image-form.js"));
+var _imagesDisplay = _interopRequireDefault(__webpack_require__(/*! ../../components/images-display */ "../modules/ai/assets/js/editor/pages/form-media/components/images-display.js"));
+var _singleImagePreview = _interopRequireDefault(__webpack_require__(/*! ../../components/single-image-preview */ "../modules/ai/assets/js/editor/pages/form-media/components/single-image-preview.js"));
+var _editImageContext = __webpack_require__(/*! ../../context/edit-image-context */ "../modules/ai/assets/js/editor/pages/form-media/context/edit-image-context.js");
+var _useResize2 = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-resize */ "../modules/ai/assets/js/editor/pages/form-media/views/resize/hooks/use-resize.js"));
+var _useImageActions2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-actions */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-actions.js"));
+var _usePromptSettings2 = _interopRequireWildcard(__webpack_require__(/*! ../../hooks/use-prompt-settings */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-prompt-settings.js"));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-var Screen = function Screen(_ref) {
-  var isLoading = _ref.isLoading,
-    isUploading = _ref.isUploading,
-    screen = _ref.screen,
-    images = _ref.images,
-    generateNewPrompt = _ref.generateNewPrompt,
-    maybeUploadImage = _ref.maybeUploadImage,
-    setPrompt = _ref.setPrompt,
-    promptSettings = _ref.promptSettings,
-    updatePromptSettings = _ref.updatePromptSettings,
-    editImage = _ref.editImage,
-    setMaskImage = _ref.setMaskImage,
-    viewData = _ref.viewData,
-    shouldWaitForInitialImage = _ref.shouldWaitForInitialImage;
-  /**
-   * The aspect ratio value should be changed only when getting a new instance of the images array.
-   * Otherwise, each change of the selection will cause a re-render and will affect the current images.
-   */
-  var cachedAspectRation = (0, _react.useMemo)(function () {
-    return promptSettings[_consts.IMAGE_PROMPT_SETTINGS.ASPECT_RATIO];
-  }, [images]);
-  if (isLoading || isUploading || shouldWaitForInitialImage) {
-    return /*#__PURE__*/_react.default.createElement(_imageLoader.default, null);
-  }
-  if (screen === _consts.SCREENS.GENERATE_RESULTS) {
-    return /*#__PURE__*/_react.default.createElement(_generateResult.default, {
-      images: images,
-      generateNewPrompt: generateNewPrompt,
-      maybeUploadImage: maybeUploadImage,
-      aspectRatio: cachedAspectRation,
-      viewData: viewData
-    });
-  }
-  if (screen === _consts.SCREENS.VARIATIONS) {
-    return /*#__PURE__*/_react.default.createElement(_variationsPlaceholder.default, null);
-  }
-  if (screen === _consts.SCREENS.IMAGE_EDITOR) {
-    return /*#__PURE__*/_react.default.createElement(_imagePreview.default, {
-      editImage: editImage
-    });
-  }
-  if (screen === _consts.SCREENS.IN_PAINTING) {
-    return /*#__PURE__*/_react.default.createElement(_inPainting.default, {
-      editImage: editImage,
-      setMaskImage: setMaskImage,
-      promptSettings: promptSettings,
-      viewData: viewData
-    });
-  }
-  if (screen === _consts.SCREENS.OUT_PAINTING) {
-    return /*#__PURE__*/_react.default.createElement(_outPainting.default, {
-      editImage: editImage,
-      setMaskImage: setMaskImage,
-      promptSettings: promptSettings,
-      viewData: viewData
-    });
-  }
-  return /*#__PURE__*/_react.default.createElement(_promptGallery.default, {
-    setPrompt: setPrompt,
-    maybeUploadImage: maybeUploadImage,
-    updatePromptSettings: updatePromptSettings,
-    selectedCategory: promptSettings[_consts.IMAGE_PROMPT_SETTINGS.IMAGE_TYPE]
-  });
+var Resize = function Resize() {
+  var _useEditImage = (0, _editImageContext.useEditImage)(),
+    editImage = _useEditImage.editImage,
+    initialEditImageWidth = _useEditImage.width;
+  var _useImageActions = (0, _useImageActions2.default)(),
+    use = _useImageActions.use,
+    edit = _useImageActions.edit,
+    isUploading = _useImageActions.isLoading;
+  var _usePromptSettings = (0, _usePromptSettings2.default)(),
+    settings = _usePromptSettings.settings,
+    updateSettings = _usePromptSettings.updateSettings;
+  var _useResize = (0, _useResize2.default)(),
+    data = _useResize.data,
+    send = _useResize.send,
+    isGenerating = _useResize.isLoading,
+    error = _useResize.error;
+  var isLoading = isGenerating || isUploading;
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    send(null, settings, editImage);
+  };
+  return /*#__PURE__*/_react.default.createElement(_view.default, null, /*#__PURE__*/_react.default.createElement(_view.default.Panel, null, /*#__PURE__*/_react.default.createElement(_view.default.BackButton, null), /*#__PURE__*/_react.default.createElement(_view.default.PanelHeading, {
+    primary: __('Resize', 'elementor'),
+    secondary: __('Make an image larger and improve it’s resolution.', 'elementor')
+  }), error && /*#__PURE__*/_react.default.createElement(_view.default.ErrorMessage, {
+    error: error,
+    onRetry: handleSubmit
+  }), /*#__PURE__*/_react.default.createElement(_imageForm.default, {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+    spacing: 2
+  }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center"
+  }, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    variant: "caption"
+  }, "512px"), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    variant: "caption"
+  }, "2048px")), /*#__PURE__*/_react.default.createElement(_ui.Slider, {
+    marks: true,
+    step: 64,
+    min: 512,
+    max: 2048,
+    id: "upscale_to",
+    color: "secondary",
+    name: "upscale_to",
+    disabled: isLoading,
+    defaultValue: initialEditImageWidth,
+    valueLabelDisplay: "auto",
+    "aria-label": __('Upscale to', 'elementor'),
+    onChange: function onChange(_, value) {
+      return updateSettings((0, _defineProperty2.default)({}, _usePromptSettings2.IMAGE_UPSCALE, value));
+    }
+  }), /*#__PURE__*/_react.default.createElement(_ui.Box, {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center"
+  }, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    variant: "caption"
+  }, __('Current', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    variant: "caption"
+  }, __('Output', 'elementor')))), /*#__PURE__*/_react.default.createElement(_generateSubmit.default, {
+    disabled: isLoading
+  }))), /*#__PURE__*/_react.default.createElement(_view.default.Content, {
+    isGenerating: isLoading
+  }, data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_imagesDisplay.default, {
+    onUseImage: use,
+    onEditImage: edit,
+    images: data.result,
+    aspectRatio: editImage.aspectRatio
+  }) : /*#__PURE__*/_react.default.createElement(_singleImagePreview.default, null, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default.Image, {
+    src: editImage.url,
+    alt: editImage.alt,
+    style: {
+      width: editImage.width,
+      height: editImage.height
+    }
+  }))));
 };
-exports.Screen = Screen;
-Screen.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
-  isUploading: PropTypes.bool.isRequired,
-  screen: PropTypes.string,
-  images: PropTypes.array,
-  generateNewPrompt: PropTypes.func,
-  maybeUploadImage: PropTypes.func,
-  setPrompt: PropTypes.func,
-  promptSettings: PropTypes.object,
-  updatePromptSettings: PropTypes.func,
-  editImage: PropTypes.object,
-  setMaskImage: PropTypes.func,
-  viewData: PropTypes.object,
-  shouldWaitForInitialImage: PropTypes.bool
-};
+var _default = Resize;
+exports["default"] = _default;
 
 /***/ }),
 
-/***/ "../modules/ai/assets/js/editor/pages/form-media/screens/variations-placeholder.js":
-/*!*****************************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/screens/variations-placeholder.js ***!
-  \*****************************************************************************************/
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/variations/components/variations-placeholder.js":
+/*!*************************************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/variations/components/variations-placeholder.js ***!
+  \*************************************************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -6086,8 +7151,7 @@ var _icons = __webpack_require__(/*! @elementor/icons */ "@elementor/icons");
 var VariationsPlaceholder = function VariationsPlaceholder() {
   return /*#__PURE__*/_react.default.createElement(_ui.Box, {
     sx: {
-      overflowY: 'scroll',
-      p: 8
+      overflowY: 'scroll'
     },
     flexGrow: 1
   }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
@@ -6118,10 +7182,10 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ "../modules/ai/assets/js/editor/pages/form-media/utils/index.js":
-/*!**********************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/utils/index.js ***!
-  \**********************************************************************/
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/variations/hooks/use-image-to-image.js":
+/*!****************************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/variations/hooks/use-image-to-image.js ***!
+  \****************************************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -6131,33 +7195,166 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.getAspectRatioSizes = void 0;
+exports["default"] = void 0;
+var _api = __webpack_require__(/*! ../../../../../api */ "../modules/ai/assets/js/editor/api/index.js");
+var _useImagePrompt = _interopRequireDefault(__webpack_require__(/*! ../../../hooks/use-image-prompt */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-prompt.js"));
+var useImageToImage = function useImageToImage(initialValue) {
+  var fetchAction = function fetchAction(prompt, promptSettings, image) {
+    return (0, _api.getImageToImageGeneration)(prompt, promptSettings, image);
+  };
+  return (0, _useImagePrompt.default)(fetchAction, initialValue);
+};
+var _default = useImageToImage;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/variations/index.js":
+/*!*********************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/variations/index.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
-var _consts = __webpack_require__(/*! ../consts/consts */ "../modules/ai/assets/js/editor/pages/form-media/consts/consts.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-var getAspectRatioSizes = function getAspectRatioSizes(width, height) {
-  var aspectRatios = Object.keys(_consts.IMAGE_ASPECT_RATIO_DIMENSIONS);
-  var targetRatio = width / height;
-  var closestRatio = aspectRatios[0];
-  var minDiff = Infinity;
-  aspectRatios.forEach(function (ratio) {
-    var _ratio$split$map = ratio.split(':').map(Number),
-      _ratio$split$map2 = (0, _slicedToArray2.default)(_ratio$split$map, 2),
-      w = _ratio$split$map2[0],
-      h = _ratio$split$map2[1];
-    var diff = Math.abs(targetRatio - w / h);
-    if (diff < minDiff) {
-      minDiff = diff;
-      closestRatio = ratio;
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _view = _interopRequireDefault(__webpack_require__(/*! ../../components/view */ "../modules/ai/assets/js/editor/pages/form-media/components/view.js"));
+var _imageForm = _interopRequireDefault(__webpack_require__(/*! ../../components/image-form */ "../modules/ai/assets/js/editor/pages/form-media/components/image-form.js"));
+var _imageStrengthSlider = _interopRequireDefault(__webpack_require__(/*! ../../components/image-strength-slider */ "../modules/ai/assets/js/editor/pages/form-media/components/image-strength-slider.js"));
+var _promptField = _interopRequireDefault(__webpack_require__(/*! ../../components/prompt-field */ "../modules/ai/assets/js/editor/pages/form-media/components/prompt-field.js"));
+var _imageTypeSelect = _interopRequireDefault(__webpack_require__(/*! ../../components/image-type-select */ "../modules/ai/assets/js/editor/pages/form-media/components/image-type-select.js"));
+var _imageStyleSelect = _interopRequireDefault(__webpack_require__(/*! ../../components/image-style-select */ "../modules/ai/assets/js/editor/pages/form-media/components/image-style-select.js"));
+var _imageRatioSelect = _interopRequireDefault(__webpack_require__(/*! ../../components/image-ratio-select */ "../modules/ai/assets/js/editor/pages/form-media/components/image-ratio-select.js"));
+var _generateAgainSubmit = _interopRequireDefault(__webpack_require__(/*! ../../components/generate-again-submit */ "../modules/ai/assets/js/editor/pages/form-media/components/generate-again-submit.js"));
+var _generateImagesSubmit = _interopRequireDefault(__webpack_require__(/*! ../../components/generate-images-submit */ "../modules/ai/assets/js/editor/pages/form-media/components/generate-images-submit.js"));
+var _imagesDisplay = _interopRequireDefault(__webpack_require__(/*! ../../components/images-display */ "../modules/ai/assets/js/editor/pages/form-media/components/images-display.js"));
+var _variationsPlaceholder = _interopRequireDefault(__webpack_require__(/*! ./components/variations-placeholder */ "../modules/ai/assets/js/editor/pages/form-media/views/variations/components/variations-placeholder.js"));
+var _useImageToImage2 = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-image-to-image */ "../modules/ai/assets/js/editor/pages/form-media/views/variations/hooks/use-image-to-image.js"));
+var _useImageActions2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-actions */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-actions.js"));
+var _editImageContext = __webpack_require__(/*! ../../context/edit-image-context */ "../modules/ai/assets/js/editor/pages/form-media/context/edit-image-context.js");
+var _usePromptSettings2 = _interopRequireWildcard(__webpack_require__(/*! ../../hooks/use-prompt-settings */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-prompt-settings.js"));
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+var IMAGE_WEIGHT_DEFAULT = 45;
+var Variations = function Variations() {
+  var _data$result;
+  var _useState = (0, _react.useState)(''),
+    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+    prompt = _useState2[0],
+    setPrompt = _useState2[1];
+  var _useEditImage = (0, _editImageContext.useEditImage)(),
+    editImage = _useEditImage.editImage,
+    initialAspectRatio = _useEditImage.aspectRatio;
+  var _usePromptSettings = (0, _usePromptSettings2.default)({
+      aspectRatio: initialAspectRatio,
+      imageWeight: IMAGE_WEIGHT_DEFAULT
+    }),
+    settings = _usePromptSettings.settings,
+    updateSettings = _usePromptSettings.updateSettings;
+  var _useImageToImage = (0, _useImageToImage2.default)(),
+    data = _useImageToImage.data,
+    send = _useImageToImage.send,
+    isGenerating = _useImageToImage.isLoading,
+    error = _useImageToImage.error;
+  var _useImageActions = (0, _useImageActions2.default)(),
+    use = _useImageActions.use,
+    edit = _useImageActions.edit,
+    isUploading = _useImageActions.isLoading;
+  var isLoading = isGenerating || isUploading;
+  var generatedAspectRatio = (0, _react.useMemo)(function () {
+    return settings[_usePromptSettings2.IMAGE_RATIO];
+  }, [data === null || data === void 0 ? void 0 : data.result]);
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    send(prompt, settings, editImage);
+  };
+  return /*#__PURE__*/_react.default.createElement(_view.default, null, /*#__PURE__*/_react.default.createElement(_view.default.Panel, null, /*#__PURE__*/_react.default.createElement(_view.default.BackButton, null), /*#__PURE__*/_react.default.createElement(_view.default.PanelHeading, {
+    primary: __('Variations', 'elementor'),
+    secondary: __('Create new versions of the original image.', 'elementor')
+  }), error && /*#__PURE__*/_react.default.createElement(_view.default.ErrorMessage, {
+    error: error,
+    onRetry: handleSubmit
+  }), /*#__PURE__*/_react.default.createElement(_imageForm.default, {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
+    sx: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      bgcolor: 'secondary.background'
     }
-  });
-  return _objectSpread({
-    ratio: closestRatio
-  }, _consts.IMAGE_ASPECT_RATIO_DIMENSIONS[closestRatio]);
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: (editImage === null || editImage === void 0 ? void 0 : editImage.image_url) || (editImage === null || editImage === void 0 ? void 0 : editImage.url),
+    alt: prompt,
+    style: {
+      width: 'auto',
+      height: 'auto',
+      maxWidth: '100%',
+      maxHeight: 166,
+      objectFit: 'contained'
+    }
+  })), /*#__PURE__*/_react.default.createElement(_imageStrengthSlider.default, {
+    disabled: isLoading,
+    defaultValue: IMAGE_WEIGHT_DEFAULT,
+    onChange: function onChange(event) {
+      return updateSettings((0, _defineProperty2.default)({}, _usePromptSettings2.IMAGE_STRENGTH, event.target.value));
+    }
+  }), /*#__PURE__*/_react.default.createElement(_promptField.default, {
+    value: prompt,
+    disabled: isLoading,
+    placeholder: __('describe your image', 'elementor'),
+    onChange: setPrompt
+  }), /*#__PURE__*/_react.default.createElement(_imageTypeSelect.default, {
+    disabled: isLoading,
+    value: settings[_usePromptSettings2.IMAGE_TYPE],
+    onChange: function onChange(event) {
+      return updateSettings((0, _defineProperty2.default)({}, _usePromptSettings2.IMAGE_TYPE, event.target.value));
+    }
+  }), /*#__PURE__*/_react.default.createElement(_imageStyleSelect.default, {
+    type: settings[_usePromptSettings2.IMAGE_TYPE],
+    value: settings[_usePromptSettings2.IMAGE_STYLE],
+    disabled: isLoading || !settings[_usePromptSettings2.IMAGE_TYPE] || false,
+    onChange: function onChange(event) {
+      return updateSettings((0, _defineProperty2.default)({}, _usePromptSettings2.IMAGE_STYLE, event.target.value));
+    }
+  }), /*#__PURE__*/_react.default.createElement(_imageRatioSelect.default, {
+    disabled: isLoading,
+    value: settings[_usePromptSettings2.IMAGE_RATIO],
+    onChange: function onChange(event) {
+      return updateSettings((0, _defineProperty2.default)({}, _usePromptSettings2.IMAGE_RATIO, event.target.value));
+    }
+  }), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+    gap: 5,
+    sx: {
+      my: 6
+    }
+  }, (data === null || data === void 0 ? void 0 : (_data$result = data.result) === null || _data$result === void 0 ? void 0 : _data$result.length) > 0 ? /*#__PURE__*/_react.default.createElement(_generateAgainSubmit.default, {
+    disabled: isLoading || '' === prompt
+  }) : /*#__PURE__*/_react.default.createElement(_generateImagesSubmit.default, {
+    disabled: isLoading || '' === prompt
+  })))), /*#__PURE__*/_react.default.createElement(_view.default.Content, {
+    isGenerating: isLoading
+  }, data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_imagesDisplay.default, {
+    images: data.result,
+    aspectRatio: generatedAspectRatio,
+    onUseImage: use,
+    onEditImage: edit
+  }) : /*#__PURE__*/_react.default.createElement(_variationsPlaceholder.default, null)));
 };
-exports.getAspectRatioSizes = getAspectRatioSizes;
+Variations.propTypes = {};
+var _default = Variations;
+exports["default"] = _default;
 
 /***/ }),
 
@@ -12644,6 +13841,20 @@ module.exports = _arrayWithHoles, module.exports.__esModule = true, module.expor
 
 /***/ }),
 
+/***/ "../node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
+/*!*******************************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
+  \*******************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray.js */ "../node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
+}
+module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
 /***/ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js":
 /*!******************************************************************!*\
   !*** ../node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
@@ -12748,6 +13959,19 @@ module.exports = _interopRequireDefault, module.exports.__esModule = true, modul
 
 /***/ }),
 
+/***/ "../node_modules/@babel/runtime/helpers/iterableToArray.js":
+/*!*****************************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/iterableToArray.js ***!
+  \*****************************************************************/
+/***/ ((module) => {
+
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
+}
+module.exports = _iterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
 /***/ "../node_modules/@babel/runtime/helpers/iterableToArrayLimit.js":
 /*!**********************************************************************!*\
   !*** ../node_modules/@babel/runtime/helpers/iterableToArrayLimit.js ***!
@@ -12795,6 +14019,19 @@ function _nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 module.exports = _nonIterableRest, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ "../node_modules/@babel/runtime/helpers/nonIterableSpread.js":
+/*!*******************************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
+  \*******************************************************************/
+/***/ ((module) => {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
@@ -13173,6 +14410,23 @@ function _slicedToArray(arr, i) {
   return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
 }
 module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ "../node_modules/@babel/runtime/helpers/toConsumableArray.js":
+/*!*******************************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
+  \*******************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles.js */ "../node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
+var iterableToArray = __webpack_require__(/*! ./iterableToArray.js */ "../node_modules/@babel/runtime/helpers/iterableToArray.js");
+var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ "../node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js");
+var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread.js */ "../node_modules/@babel/runtime/helpers/nonIterableSpread.js");
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+}
+module.exports = _toConsumableArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 

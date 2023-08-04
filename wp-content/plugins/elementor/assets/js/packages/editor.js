@@ -2,6 +2,38 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./node_modules/react-dom/client.js":
+/*!******************************************!*\
+  !*** ./node_modules/react-dom/client.js ***!
+  \******************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+
+var m = __webpack_require__(/*! react-dom */ "react-dom");
+if (false) {} else {
+  var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+  exports.createRoot = function(c, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.createRoot(c, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+  exports.hydrateRoot = function(c, h, o) {
+    i.usingClientEntryPoint = true;
+    try {
+      return m.hydrateRoot(c, h, o);
+    } finally {
+      i.usingClientEntryPoint = false;
+    }
+  };
+}
+
+
+/***/ }),
+
 /***/ "react":
 /*!************************!*\
   !*** external "React" ***!
@@ -152,11 +184,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _elementor_locations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @elementor/locations */ "@elementor/locations");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "react-dom");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _elementor_editor_documents__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @elementor/editor-documents */ "@elementor/editor-documents");
-/* harmony import */ var _elementor_ui__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-/* harmony import */ var _elementor_store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @elementor/store */ "@elementor/store");
-/* harmony import */ var _elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @elementor/editor-v1-adapters */ "@elementor/editor-v1-adapters");
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _elementor_editor_documents__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @elementor/editor-documents */ "@elementor/editor-documents");
+/* harmony import */ var _elementor_ui__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+/* harmony import */ var _elementor_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @elementor/store */ "@elementor/store");
+/* harmony import */ var _elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @elementor/editor-v1-adapters */ "@elementor/editor-v1-adapters");
 // src/locations.ts
 
 var {
@@ -169,6 +202,7 @@ var {
 
 
 
+
 // src/components/shell.tsx
 
 
@@ -177,38 +211,21 @@ var {
 
 
 function useSyncDocumentTitle() {
-  const activeDocument = (0,_elementor_editor_documents__WEBPACK_IMPORTED_MODULE_4__.useActiveDocument)();
-  const hostDocument = (0,_elementor_editor_documents__WEBPACK_IMPORTED_MODULE_4__.useHostDocument)();
+  const activeDocument = (0,_elementor_editor_documents__WEBPACK_IMPORTED_MODULE_5__.useActiveDocument)();
+  const hostDocument = (0,_elementor_editor_documents__WEBPACK_IMPORTED_MODULE_5__.useHostDocument)();
   const document = activeDocument && activeDocument.type.value !== "kit" ? activeDocument : hostDocument;
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     if (document?.title === void 0) {
       return;
     }
-    const title = (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)('Edit "%s" with Elementor', "elementor").replace("%s", document.title);
+    const title = (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Edit "%s" with Elementor', "elementor").replace("%s", document.title);
     window.document.title = title;
   }, [document?.title]);
-}
-
-// src/hooks/use-sync-document-query-params.ts
-
-
-function useSyncDocumentQueryParams() {
-  const hostDocument = (0,_elementor_editor_documents__WEBPACK_IMPORTED_MODULE_4__.useHostDocument)();
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    if (!hostDocument?.id) {
-      return;
-    }
-    const url = new URL(window.location.href);
-    url.searchParams.set("post", hostDocument.id.toString());
-    url.searchParams.delete("active-document");
-    history.replaceState({}, "", url);
-  }, [hostDocument?.id]);
 }
 
 // src/components/shell.tsx
 function Shell() {
   useSyncDocumentTitle();
-  useSyncDocumentQueryParams();
   return /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(TopSlot, null);
 }
 
@@ -227,14 +244,14 @@ function Shell() {
 function useColorScheme() {
   const [colorScheme, setColorScheme] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(() => getV1ColorScheme());
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    return (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_7__.listenTo)(
-      (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_7__.v1ReadyEvent)(),
+    return (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_8__.listenTo)(
+      (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_8__.v1ReadyEvent)(),
       () => setColorScheme(getV1ColorScheme())
     );
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    return (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_7__.listenTo)(
-      (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_7__.commandEndEvent)("document/elements/settings"),
+    return (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_8__.listenTo)(
+      (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_8__.commandEndEvent)("document/elements/settings"),
       (e) => {
         const event = e;
         const isColorScheme = event.args?.settings && "ui_theme" in event.args.settings;
@@ -253,14 +270,28 @@ function getV1ColorScheme() {
 // src/components/theme-provider.tsx
 function ThemeProvider({ children }) {
   const colorScheme = useColorScheme();
-  return /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_5__.ThemeProvider, { colorScheme }, children);
+  return /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_6__.ThemeProvider, { colorScheme }, children);
 }
 
 // src/init.tsx
 function init(domElement) {
-  const store = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_6__.createStore)();
-  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_7__.dispatchReadyEvent)();
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render(/* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_store__WEBPACK_IMPORTED_MODULE_6__.StoreProvider, { store }, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_5__.DirectionProvider, { rtl: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.isRTL)() }, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(ThemeProvider, null, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(Shell, null)))), domElement);
+  const store = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_7__.createStore)();
+  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_8__.dispatchReadyEvent)();
+  render2(/* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_store__WEBPACK_IMPORTED_MODULE_7__.StoreProvider, { store }, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_6__.DirectionProvider, { rtl: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.isRTL)() }, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(ThemeProvider, null, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(Shell, null)))), domElement);
+}
+function render2(app, domElement) {
+  let renderFn;
+  try {
+    const root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_3__.createRoot)(domElement);
+    renderFn = () => {
+      root.render(app);
+    };
+  } catch (e) {
+    renderFn = () => {
+      react_dom__WEBPACK_IMPORTED_MODULE_2__.render(app, domElement);
+    };
+  }
+  renderFn();
 }
 
 //# sourceMappingURL=index.mjs.map

@@ -86,6 +86,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "isRouteActive": function() { return /* binding */ isRouteActive; },
 /* harmony export */   "listenTo": function() { return /* binding */ listenTo; },
 /* harmony export */   "openRoute": function() { return /* binding */ openRoute; },
+/* harmony export */   "registerRoute": function() { return /* binding */ registerRoute; },
 /* harmony export */   "routeCloseEvent": function() { return /* binding */ routeCloseEvent; },
 /* harmony export */   "routeOpenEvent": function() { return /* binding */ routeOpenEvent; },
 /* harmony export */   "runCommand": function() { return /* binding */ runCommand; },
@@ -131,6 +132,25 @@ function openRoute(route) {
   try {
     return Promise.resolve(
       extendedWindow.$e.route(route)
+    );
+  } catch (e) {
+    return Promise.reject(e);
+  }
+}
+function registerRoute(route) {
+  const extendedWindow = window;
+  if (!extendedWindow.$e?.routes?.register) {
+    return Promise.reject("`$e.routes.register()` is not available");
+  }
+  const routeParts = route.split("/");
+  if (routeParts.length < 2) {
+    return Promise.reject(`\`${route}\` is an invalid route`);
+  }
+  const componentRoute = routeParts.pop();
+  const component = routeParts.join("/");
+  try {
+    return Promise.resolve(
+      extendedWindow.$e.routes.register(component, componentRoute, () => null)
     );
   } catch (e) {
     return Promise.reject(e);

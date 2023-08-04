@@ -1,4 +1,4 @@
-/*! elementor - v3.14.0 - 26-06-2023 */
+/*! elementor - v3.15.0 - 02-08-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -1896,6 +1896,140 @@ function useAjax() {
 
 /***/ }),
 
+/***/ "../app/assets/js/hooks/use-confirm-action.js":
+/*!****************************************************!*\
+  !*** ../app/assets/js/hooks/use-confirm-action.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = useConfirmAction;
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "../node_modules/@babel/runtime/helpers/toConsumableArray.js"));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
+var _react = __webpack_require__(/*! react */ "react");
+var _useIntroduction2 = _interopRequireDefault(__webpack_require__(/*! ./use-introduction */ "../app/assets/js/hooks/use-introduction.js"));
+function useConfirmAction(_ref) {
+  var action = _ref.action,
+    _ref$doNotShowAgainKe = _ref.doNotShowAgainKey,
+    doNotShowAgainKey = _ref$doNotShowAgainKe === void 0 ? null : _ref$doNotShowAgainKe;
+  var _useIntroduction = (0, _useIntroduction2.default)(doNotShowAgainKey),
+    shouldNotShowAgain = _useIntroduction.isViewed,
+    markAsShouldNotShowAgain = _useIntroduction.markAsViewed;
+  var _useState = (0, _react.useState)({
+      isOpen: false,
+      actionArgs: []
+    }),
+    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+    dialogState = _useState2[0],
+    setDialogState = _useState2[1];
+  var _useState3 = (0, _react.useState)(false),
+    _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
+    doNotShowAgainCheckboxState = _useState4[0],
+    setDoNotShowAgainCheckboxState = _useState4[1];
+  return {
+    checkbox: {
+      isChecked: doNotShowAgainCheckboxState,
+      setIsChecked: setDoNotShowAgainCheckboxState
+    },
+    dialog: {
+      isOpen: dialogState.isOpen,
+      approve: function approve() {
+        action.apply(void 0, (0, _toConsumableArray2.default)(dialogState.actionArgs));
+        if (doNotShowAgainCheckboxState && doNotShowAgainKey) {
+          markAsShouldNotShowAgain();
+        }
+        setDialogState({
+          isOpen: false,
+          actionArgs: []
+        });
+      },
+      dismiss: function dismiss() {
+        setDialogState({
+          isOpen: false,
+          actionArgs: []
+        });
+      }
+    },
+    runAction: function runAction() {
+      for (var _len = arguments.length, actionArgs = new Array(_len), _key = 0; _key < _len; _key++) {
+        actionArgs[_key] = arguments[_key];
+      }
+      if (shouldNotShowAgain) {
+        action.apply(void 0, actionArgs);
+        return;
+      }
+      setDialogState({
+        isOpen: true,
+        actionArgs: actionArgs
+      });
+    }
+  };
+}
+
+/***/ }),
+
+/***/ "../app/assets/js/hooks/use-introduction.js":
+/*!**************************************************!*\
+  !*** ../app/assets/js/hooks/use-introduction.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = useIntroduction;
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
+var _react = __webpack_require__(/*! react */ "react");
+function useIntroduction(key) {
+  var _window$elementorAppC, _window$elementorAppC2, _window$elementorAppC3;
+  var _useState = (0, _react.useState)(!!((_window$elementorAppC = window.elementorAppConfig) !== null && _window$elementorAppC !== void 0 && (_window$elementorAppC2 = _window$elementorAppC.user) !== null && _window$elementorAppC2 !== void 0 && (_window$elementorAppC3 = _window$elementorAppC2.introduction) !== null && _window$elementorAppC3 !== void 0 && _window$elementorAppC3[key])),
+    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
+    isViewed = _useState2[0],
+    setIsViewed = _useState2[1];
+  function markAsViewed() {
+    if (!key) {
+      return Promise.reject();
+    }
+    return new Promise(function (resolve, reject) {
+      if (isViewed) {
+        reject();
+      }
+      elementorCommon.ajax.addRequest('introduction_viewed', {
+        data: {
+          introductionKey: key
+        },
+        error: function error() {
+          return reject();
+        },
+        success: function success() {
+          var _window$elementorAppC4, _window$elementorAppC5;
+          setIsViewed(true);
+          if ((_window$elementorAppC4 = window.elementorAppConfig) !== null && _window$elementorAppC4 !== void 0 && (_window$elementorAppC5 = _window$elementorAppC4.user) !== null && _window$elementorAppC5 !== void 0 && _window$elementorAppC5.introduction) {
+            window.elementorAppConfig.user.introduction[key] = true;
+          }
+          resolve();
+        }
+      });
+    });
+  }
+  return {
+    isViewed: isViewed,
+    markAsViewed: markAsViewed
+  };
+}
+
+/***/ }),
+
 /***/ "../app/assets/js/hooks/use-page-title.js":
 /*!************************************************!*\
   !*** ../app/assets/js/hooks/use-page-title.js ***!
@@ -3016,6 +3150,8 @@ var _useAjax = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-ajax *
 var _useAction = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-action */ "../app/assets/js/hooks/use-action.js"));
 var _usePageTitle = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-page-title */ "../app/assets/js/hooks/use-page-title.js"));
 var _useQueryParams = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-query-params */ "../app/assets/js/hooks/use-query-params.js"));
+var _useIntroduction = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-introduction */ "../app/assets/js/hooks/use-introduction.js"));
+var _useConfirmAction = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-confirm-action */ "../app/assets/js/hooks/use-confirm-action.js"));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 // Alphabetical order.
@@ -3070,7 +3206,9 @@ var hooks = {
   useAjax: _useAjax.default,
   useAction: _useAction.default,
   usePageTitle: _usePageTitle.default,
-  useQueryParams: _useQueryParams.default
+  useQueryParams: _useQueryParams.default,
+  useIntroduction: _useIntroduction.default,
+  useConfirmAction: _useConfirmAction.default
 };
 exports.hooks = hooks;
 
@@ -3238,7 +3376,8 @@ function Checkbox(_ref) {
     indeterminate = _ref.indeterminate,
     error = _ref.error,
     disabled = _ref.disabled,
-    onChange = _ref.onChange;
+    onChange = _ref.onChange,
+    id = _ref.id;
   var baseClassName = 'eps-checkbox',
     classes = [baseClassName, className];
   if (rounded) {
@@ -3255,7 +3394,8 @@ function Checkbox(_ref) {
     type: "checkbox",
     checked: checked,
     disabled: disabled,
-    onChange: onChange
+    onChange: onChange,
+    id: id
   });
 }
 Checkbox.propTypes = {
@@ -3265,7 +3405,8 @@ Checkbox.propTypes = {
   indeterminate: PropTypes.bool,
   rounded: PropTypes.bool,
   error: PropTypes.bool,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  id: PropTypes.string
 };
 Checkbox.defaultProps = {
   className: '',
@@ -4698,7 +4839,7 @@ exports["default"] = AddNewButton;
 }));
 (0, _defineProperty2.default)(AddNewButton, "defaultProps", _objectSpread(_objectSpread({}, _button.default.defaultProps), {}, {
   className: 'eps-add-new-button',
-  text: __('Add New', 'elementor-pro'),
+  text: __('Add New', 'elementor'),
   icon: 'eicon-plus'
 }));
 
