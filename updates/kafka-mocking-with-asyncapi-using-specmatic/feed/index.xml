@@ -11,11 +11,11 @@
 	<atom:link href="/updates/kafka-mocking-with-asyncapi-using-specmatic/feed/" rel="self" type="application/rss+xml" />
 	<link>/updates/kafka-mocking-with-asyncapi-using-specmatic/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Tue, 25 Jul 2023 06:05:58 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 14 Aug 2023 04:49:03 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.2.2</generator>
+	<generator>https://wordpress.org/?v=6.3</generator>
 </channel>
 </rss>

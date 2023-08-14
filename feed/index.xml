@@ -12,13 +12,13 @@
 	<atom:link href="/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Fri, 04 Aug 2023 04:55:51 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 14 Aug 2023 10:23:30 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.2.2</generator>
+	<generator>https://wordpress.org/?v=6.3</generator>
 
 <image>
 	<url>/wp-content/uploads/2022/09/Favicon.png</url>
@@ -28,6 +28,25 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Break the Chains of Database Dependencies: Leveraging Specmatic for JDBC Stubbing</title>
+		<link>/updates/jdbc-stubbing-with-specmatic-contract-testing/</link>
+		
+		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
+		<pubDate>Mon, 14 Aug 2023 10:23:30 +0000</pubDate>
+				<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[JDBC]]></category>
+		<category><![CDATA[Stubbing]]></category>
+		<guid isPermaLink="false">/?p=1742</guid>
+
+					<description><![CDATA[With Specmatic JDBC stub, you can easily test APIs without the need for a complex database setup. By switching out the real database with a Specmatic JDBC stub, we can set expectations for the stub to respond to specific queries. These expectations can be recorded based on actual interactions. Once the expectations are set, we no longer need the database for our tests!]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>JMS Mocking with AsyncAPI using Specmatic</title>
 		<link>/updates/jms-mocking-with-asyncapi-using-specmatic/</link>
 		
