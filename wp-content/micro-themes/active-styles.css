@@ -200,14 +200,14 @@ html {
 	margin-bottom: 0 !important;
 }
 
-/** General 2 >> Ditty item title link _3 **/
-.mtp-10 .ditty-item__title__link {
-	vertical-align: top !important;
-}
-
 /** General 2 >> Ditty item title **/
 .mtp-10 .ditty-item__title {
 	vertical-align: top !important;
+}
+
+/** General 2 >> Ditty item time link **/
+.mtp-10 .ditty-item__time__link {
+	font-weight: 300 !important;
 }
 
 
@@ -362,6 +362,16 @@ html {
 	margin: 0px 7px !important;
 }
 
+	/** General 2 >> Ditty item elements **/
+	.mtp-10 .ditty-item__elements {
+	line-height: 17px !important;
+}
+
+	/** General 2 >> Ditty item title link **/
+	.mtp-10 .ditty-item__title__link {
+	vertical-align: top !important;
+}
+
 	/** Footer >> Ast footer copyright paragraph **/
 	.ast-footer-copyright p {
 	text-align: center !important;
@@ -400,6 +410,22 @@ html {
 	.ast-social-element-style-filled {
 	padding-right: 140px !important;
 	justify-items: start !important;
+}
+
+	/** General 2 >> Ditty item elements **/
+	.mtp-10 .ditty-item__elements {
+	display: grid !important;
+}
+.mtp-10 .ditty-item__elements > :nth-child(1) {
+	grid-area: 1 / 1 / 2 / 6 !important;
+}
+.mtp-10 .ditty-item__elements > :nth-child(2) {
+	grid-area: 2 / 1 / 3 / 6 !important;
+}
+
+	/** General 2 >> Ditty item heading **/
+	.mtp-10 .ditty-item-heading {
+	padding-left: 0 !important;
 }
 
 	/** Footer >> Site footer above section 1 footer widget area inner **/
