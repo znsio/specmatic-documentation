@@ -95,6 +95,7 @@ tr > .gsc-input {
 /** General >> Div _3 **/
 .mtp-10 .elementor-element-b16017f > div {
 	padding-bottom: 5px !important;
+	display: none !important;
 }
 
 /** General >> Elementor widget heading (#1) **/
@@ -180,6 +181,33 @@ html {
 /** General 2 >> Iframe **/
 .elementor-facebook-widget iframe {
 	height: 40px !important;
+}
+
+/** General 2 >> Ditty item elements **/
+.mtp-10 .ditty-item__elements {
+	display: grid !important;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr !important;
+	grid-template-rows: auto !important;
+}
+.mtp-10 .ditty-item__elements > :nth-child(2) {
+	grid-area: 1 / 2 / 2 / 6 !important;
+}
+
+/** General 2 >> Ditty item heading **/
+.mtp-10 .ditty-item-heading {
+	vertical-align: top !important;
+	padding-left: 20px !important;
+	margin-bottom: 0 !important;
+}
+
+/** General 2 >> Ditty item title link _3 **/
+.mtp-10 .ditty-item__title__link {
+	vertical-align: top !important;
+}
+
+/** General 2 >> Ditty item title **/
+.mtp-10 .ditty-item__title {
+	vertical-align: top !important;
 }
 
 
