@@ -141,6 +141,15 @@ html {
 	overflow-x: hidden !important;
 }
 
+/** General >> Elementor element 46b76cb **/
+.mtp-10 .elementor-element-46b76cb {
+	position: fixed !important;
+	bottom: 0 !important;
+	left: 0 !important;
+	right: 0 !important;
+	z-index: 10 !important;
+}
+
 
 /*= Main Menu ================= */
 
