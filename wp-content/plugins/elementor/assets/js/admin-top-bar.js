@@ -1,4 +1,4 @@
-/*! elementor - v3.15.0 - 09-08-2023 */
+/*! elementor - v3.15.0 - 20-08-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -1631,14 +1631,7 @@ var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 var _adminTopBar = _interopRequireDefault(__webpack_require__(/*! ./admin-top-bar */ "../modules/admin-top-bar/assets/js/admin-top-bar.js"));
 var AppWrapper = elementorCommon.config.isDebug ? _react.default.StrictMode : _react.default.Fragment;
 var adminTopBarElement = document.getElementById('e-admin-top-bar-root');
-var elementorMenuItemIds = ['toplevel_page_elementor', 'menu-posts-elementor_library'];
-var menuItemSelector = elementorMenuItemIds.map(function (itemId) {
-  return "#".concat(itemId, " .wp-menu-open");
-}).join(', ');
-var isElementorPage = !!document.querySelector(menuItemSelector);
-if (isElementorPage) {
-  ReactDOM.render( /*#__PURE__*/_react.default.createElement(AppWrapper, null, /*#__PURE__*/_react.default.createElement(_adminTopBar.default, null)), adminTopBarElement);
-}
+ReactDOM.render( /*#__PURE__*/_react.default.createElement(AppWrapper, null, /*#__PURE__*/_react.default.createElement(_adminTopBar.default, null)), adminTopBarElement);
 })();
 
 /******/ })()

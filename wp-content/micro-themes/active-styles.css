@@ -204,7 +204,9 @@ html {
 
 /** General 2 >> Ditty item heading **/
 .mtp-10 .ditty-item-heading {
+	font-size: 18px !important;
 	vertical-align: top !important;
+	padding-top: 3px !important;
 	padding-left: 20px !important;
 	margin-bottom: 0 !important;
 }
@@ -216,7 +218,14 @@ html {
 
 /** General 2 >> Ditty item time link **/
 .mtp-10 .ditty-item__time__link {
+	font-size: 15px !important;
 	font-weight: 300 !important;
+}
+
+/** General 2 >> Elementor widget container **/
+.mtp-10 .e-con-inner .elementor-widget-container {
+	height: auto !important;
+	margin: 15px !important;
 }
 
 

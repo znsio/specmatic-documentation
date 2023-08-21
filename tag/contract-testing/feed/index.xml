@@ -12,7 +12,7 @@
 	<atom:link href="/tag/contract-testing/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Mon, 14 Aug 2023 11:39:37 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 21 Aug 2023 04:26:32 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -81,6 +81,24 @@
 		<guid isPermaLink="false">/?p=1665</guid>
 
 					<description><![CDATA[The Specmatic Kafka mock is wire compatible and entirely within the control of the test, the test can run locally and in CI and deliver quick feedback early in the cycle. So the application itself runs exactly as it would with a real Kafka.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>&#8220;Easy Microservice Testing&#8221; &#8211; Specmatic featured on Continuous Delivery channel</title>
+		<link>/updates/specmatic-featured-on-dave-farleys-continuous-delivery-channel/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Thu, 06 Jul 2023 03:29:00 +0000</pubDate>
+				<category><![CDATA[In the Media]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[Continuous Delivery]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[microservices]]></category>
+		<guid isPermaLink="false">/?p=1934</guid>
+
+					<description><![CDATA[Dave Farley is a respected author and widely recognised proponent of Continuous Delivery. In this video on his Continuous Delivery YouTube channel he discusses why Contract Testing is important for microservices.]]></description>
 		
 		
 		

@@ -1,4 +1,4 @@
-/*! elementor - v3.15.0 - 09-08-2023 */
+/*! elementor - v3.15.0 - 20-08-2023 */
 "use strict";
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["tabs"],{
 

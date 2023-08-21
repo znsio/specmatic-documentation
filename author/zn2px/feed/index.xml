@@ -12,13 +12,13 @@
 	<atom:link href="/author/zn2px/feed/" rel="self" type="application/rss+xml" />
 	<link>/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Tue, 25 Jul 2023 06:06:56 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 21 Aug 2023 04:26:32 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.2.2</generator>
+	<generator>https://wordpress.org/?v=6.3</generator>
 
 <image>
 	<url>/wp-content/uploads/2022/09/Favicon.png</url>
@@ -28,20 +28,19 @@
 	<height>32</height>
 </image> 
 	<item>
-		<title>JMS Mocking with AsyncAPI using Specmatic</title>
-		<link>/updates/jms-mocking-with-asyncapi-using-specmatic/</link>
+		<title>&#8220;Easy Microservice Testing&#8221; &#8211; Specmatic featured on Continuous Delivery channel</title>
+		<link>/updates/specmatic-featured-on-dave-farleys-continuous-delivery-channel/</link>
 		
 		<dc:creator><![CDATA[John]]></dc:creator>
-		<pubDate>Tue, 25 Jul 2023 06:05:31 +0000</pubDate>
-				<category><![CDATA[Feature Spotlight]]></category>
+		<pubDate>Thu, 06 Jul 2023 03:29:00 +0000</pubDate>
+				<category><![CDATA[In the Media]]></category>
 		<category><![CDATA[Updates]]></category>
-		<category><![CDATA[AsyncAPI]]></category>
-		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[Continuous Delivery]]></category>
 		<category><![CDATA[Contract Testing]]></category>
-		<category><![CDATA[Demonstration]]></category>
-		<guid isPermaLink="false">/?p=1702</guid>
+		<category><![CDATA[microservices]]></category>
+		<guid isPermaLink="false">/?p=1934</guid>
 
-					<description><![CDATA[The JMS mock is wire compatible and can be controlled entirely from within the test. This means you can run the test locally or also as part of your continuous integration build to provide quick feedback early in the cycle.]]></description>
+					<description><![CDATA[Dave Farley is a respected author and widely recognised proponent of Continuous Delivery. In this video on his Continuous Delivery YouTube channel he discusses why Contract Testing is important for microservices.]]></description>
 		
 		
 		
