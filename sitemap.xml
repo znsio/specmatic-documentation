@@ -137,37 +137,38 @@
       <lastmod>2023-06-11</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
-         </url>
+   </url>
    <url>
       <loc>https://specmatic.in/updates/jdbc-stubbing-with-specmatic-contract-testing/</loc>
       <lastmod>2023-08-14</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
-   </url>			  
+   </url>	
+   <url>
       <loc>https://specmatic.in/updates/kafka-mocking-with-asyncapi-using-specmatic/</loc>
       <lastmod>2023-07-25</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
    </url>
-      <url>
+   <url>
       <loc>https://specmatic.in/updates/redis-stubbing-with-specmatic-contract-testing/</loc>
       <lastmod>2023-07-21</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
    </url>
-        <url>
+   <url>
       <loc>https://specmatic.in/updates/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/</loc>
       <lastmod>2023-08-29</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
    </url>
-        <url>
+   <url>
       <loc>https://specmatic.in/updates/jms-mocking-with-asyncapi-using-specmatic/</loc>
       <lastmod>2023-07-25</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
    </url>
-      <url>
+   <url>
       <loc>https://specmatic.in/updates/specmatic-featured-on-dave-farleys-continuous-delivery-channel/</loc>
       <lastmod>2023-07-06</lastmod>
       <changefreq>monthly</changefreq>
@@ -179,7 +180,7 @@
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
    </url>
-      <url>
+   <url>
       <loc>https://specmatic.in/appearance/contract-driven-development-deploying-your-microservices-independently-without-integration-testing/</loc>
       <lastmod>2023-06-11</lastmod>
       <changefreq>monthly</changefreq>
