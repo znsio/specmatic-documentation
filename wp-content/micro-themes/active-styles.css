@@ -8,6 +8,12 @@ aside > section:nth-of-type(1) > .has-ast-global-color-4-color {
 	font-weight: 600 !important;
 }
 
+/** General >> Block 13 **/
+#block-13 {
+	position: relative !important;
+	top: -15px !important;
+}
+
 /** General >> Colophon site primary footer wrap **/
 #colophon .site-primary-footer-wrap {
 	padding-top: 0 !important;
@@ -38,6 +44,11 @@ aside > section:nth-of-type(1) > .has-ast-global-color-4-color {
 /** General >> Content ast container **/
 #content .ast-container {
 	background-color: rgb(255, 255, 255) !important;
+}
+
+/** General >> Paragraph _3 **/
+.mtp-2003 .uael-timeline-desc-content p {
+	margin-bottom: 0 !important;
 }
 
 /** General >> Secondary heading 2 **/
@@ -79,6 +90,7 @@ tr > .gsc-input {
 #menu-about .menu-link {
 	color: rgb(255, 255, 255) !important;
 	font-weight: 600 !important;
+	top: - !important;
 }
 
 /** General >> Button link **/
@@ -150,6 +162,12 @@ html {
 	z-index: 10 !important;
 }
 
+/** General >> Footer blurb **/
+.footer-blurb {
+	position: relative !important;
+	top: -4px !important;
+}
+
 
 /*= Main Menu ================= */
 
@@ -205,6 +223,7 @@ html {
 /** General 2 >> Ditty item heading **/
 .mtp-10 .ditty-item-heading {
 	font-size: 18px !important;
+	line-height: 20px !important;
 	vertical-align: top !important;
 	padding-top: 3px !important;
 	padding-left: 20px !important;
@@ -237,6 +256,11 @@ html {
 	padding-left: 40px !important;
 }
 
+	/** General >> Ast builder grid row tablet 2 equal **/
+	#colophon .ast-builder-grid-row-tablet-2-equal {
+	padding-left: 25px !important;
+}
+
 	/** General 2 >> Has ast global color 6 color **/
 	#block-21 .has-ast-global-color-6-color {
 	margin-right: 40px !important;
@@ -267,6 +291,11 @@ html {
 	/** General >> Div _3 **/
 	.mtp-10 .elementor-element-b16017f > div {
 	padding-top: 5px !important;
+}
+
+	/** General >> Ast builder grid row tablet 2 equal **/
+	#colophon .ast-builder-grid-row-tablet-2-equal {
+	padding-right: 25px !important;
 }
 
 	/** General 2 >> Elementor element populated Moved 1 **/
@@ -330,6 +359,12 @@ html {
 	.mtp-10 .elementor-element-46b76cb {
 	padding-top: 10px !important;
 	padding-bottom: 20px !important;
+}
+
+	/** General >> Footer widget area inner **/
+	.site-footer-above-section-2 .footer-widget-area-inner {
+	position: relative !important;
+	top: -13px !important;
 }
 
 	/** General 2 >> Ast menu toggle **/

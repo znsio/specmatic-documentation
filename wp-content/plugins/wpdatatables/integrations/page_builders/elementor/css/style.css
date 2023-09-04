@@ -8,8 +8,8 @@
     background-position: center center;
 }
 .elementor-element .icon .wpdt-table-logo:before {
-    background-image: url('/wp-content/plugins/wpdatatables/assets/img/logo-large.png');
+    background-image: url('https://specmatic.in/wp-content/plugins/wpdatatables/assets/img/logo-large.png');
 }
 .elementor-element .icon .wpdt-chart-logo:before {
-    background-image: url('/wp-content/plugins/wpdatatables/assets/img/chart-icon.png');
+    background-image: url('https://specmatic.in/wp-content/plugins/wpdatatables/assets/img/chart-icon.png');
 }

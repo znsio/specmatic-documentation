@@ -8,14 +8,14 @@
 <channel>
 	<title>
 	Comments on: Comparison: Specmatic vs Pact.io and Pactflow.io	</title>
-	<atom:link href="/comparisons/specmatic-vs-pact-io-and-pactflow-io/feed/" rel="self" type="application/rss+xml" />
-	<link>/comparisons/specmatic-vs-pact-io-and-pactflow-io/</link>
+	<atom:link href="https://specmatic.in/comparisons/specmatic-vs-pact-io-and-pactflow-io/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.in/comparisons/specmatic-vs-pact-io-and-pactflow-io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Thu, 13 Jul 2023 04:19:53 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 31 Aug 2023 05:08:29 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.3</generator>
+	<generator>https://wordpress.org/?v=6.3.1</generator>
 </channel>
 </rss>

@@ -9,27 +9,27 @@
 
 <channel>
 	<title>wiremock &#8211; Specmatic</title>
-	<atom:link href="/tag/wiremock/feed/" rel="self" type="application/rss+xml" />
-	<link>/</link>
+	<atom:link href="https://specmatic.in/tag/wiremock/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.in/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Thu, 13 Jul 2023 04:41:13 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 31 Aug 2023 05:08:07 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.3</generator>
+	<generator>https://wordpress.org/?v=6.3.1</generator>
 
 <image>
-	<url>/wp-content/uploads/2022/09/Favicon.png</url>
+	<url>https://specmatic.in/wp-content/uploads/2022/09/Favicon.png</url>
 	<title>wiremock &#8211; Specmatic</title>
-	<link>/</link>
+	<link>https://specmatic.in/</link>
 	<width>32</width>
 	<height>32</height>
 </image> 
 	<item>
 		<title>Comparison: Specmatic vs WireMock</title>
-		<link>/comparisons/comparison-specmatic-vs-wiremock/</link>
+		<link>https://specmatic.in/comparisons/comparison-specmatic-vs-wiremock/</link>
 		
 		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
 		<pubDate>Sat, 26 Nov 2022 08:34:32 +0000</pubDate>
@@ -41,7 +41,7 @@
 		<category><![CDATA[OpenAPI]]></category>
 		<category><![CDATA[Specmatic]]></category>
 		<category><![CDATA[wiremock]]></category>
-		<guid isPermaLink="false">/?p=820</guid>
+		<guid isPermaLink="false">https://specmatic.in/?p=820</guid>
 
 					<description><![CDATA[API mocking is only effective if the mocks are truly representative of the provider / services they are emulating. Deviations between mocks and providers can lead to integration issues much later in the development cycle. In order to avoid such issues it is important to keep in mind that selecting an API mocking tool is not an isolated decision. It has to be in line with your overall microservices development, testing and deployment goals.]]></description>
 		

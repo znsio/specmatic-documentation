@@ -9,21 +9,21 @@
 
 <channel>
 	<title>Conference &#8211; Specmatic</title>
-	<atom:link href="/tag/conference/feed/" rel="self" type="application/rss+xml" />
-	<link>/</link>
+	<atom:link href="https://specmatic.in/tag/conference/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.in/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Tue, 29 Aug 2023 06:40:31 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 04 Sep 2023 04:28:39 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.3</generator>
+	<generator>https://wordpress.org/?v=6.3.1</generator>
 
 <image>
-	<url>/wp-content/uploads/2022/09/Favicon.png</url>
+	<url>https://specmatic.in/wp-content/uploads/2022/09/Favicon.png</url>
 	<title>Conference &#8211; Specmatic</title>
-	<link>/</link>
+	<link>https://specmatic.in/</link>
 	<width>32</width>
 	<height>32</height>
 </image> 

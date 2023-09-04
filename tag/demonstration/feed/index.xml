@@ -9,8 +9,8 @@
 
 <channel>
 	<title>Demonstration &#8211; Specmatic</title>
-	<atom:link href="/tag/demonstration/feed/" rel="self" type="application/rss+xml" />
-	<link>/</link>
+	<atom:link href="https://specmatic.in/tag/demonstration/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.in/</link>
 	<description>Contract Driven Development</description>
 	<lastBuildDate>Wed, 26 Jul 2023 03:38:39 +0000</lastBuildDate>
 	<language>en-US</language>
@@ -18,18 +18,18 @@
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.3</generator>
+	<generator>https://wordpress.org/?v=6.3.1</generator>
 
 <image>
-	<url>/wp-content/uploads/2022/09/Favicon.png</url>
+	<url>https://specmatic.in/wp-content/uploads/2022/09/Favicon.png</url>
 	<title>Demonstration &#8211; Specmatic</title>
-	<link>/</link>
+	<link>https://specmatic.in/</link>
 	<width>32</width>
 	<height>32</height>
 </image> 
 	<item>
 		<title>JMS Mocking with AsyncAPI using Specmatic</title>
-		<link>/updates/jms-mocking-with-asyncapi-using-specmatic/</link>
+		<link>https://specmatic.in/updates/jms-mocking-with-asyncapi-using-specmatic/</link>
 		
 		<dc:creator><![CDATA[Jaydeep Kulkarni]]></dc:creator>
 		<pubDate>Tue, 25 Jul 2023 06:05:31 +0000</pubDate>
@@ -39,7 +39,7 @@
 		<category><![CDATA[Contract Driven Development]]></category>
 		<category><![CDATA[Contract Testing]]></category>
 		<category><![CDATA[Demonstration]]></category>
-		<guid isPermaLink="false">/?p=1702</guid>
+		<guid isPermaLink="false">https://specmatic.in/?p=1702</guid>
 
 					<description><![CDATA[The JMS mock is wire compatible and can be controlled entirely from within the test. This means you can run the test locally or also as part of your continuous integration build to provide quick feedback early in the cycle.]]></description>
 		

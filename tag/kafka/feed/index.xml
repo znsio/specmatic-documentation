@@ -9,8 +9,8 @@
 
 <channel>
 	<title>Kafka &#8211; Specmatic</title>
-	<atom:link href="/tag/kafka/feed/" rel="self" type="application/rss+xml" />
-	<link>/</link>
+	<atom:link href="https://specmatic.in/tag/kafka/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.in/</link>
 	<description>Contract Driven Development</description>
 	<lastBuildDate>Mon, 14 Aug 2023 04:49:03 +0000</lastBuildDate>
 	<language>en-US</language>
@@ -18,18 +18,18 @@
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.3</generator>
+	<generator>https://wordpress.org/?v=6.3.1</generator>
 
 <image>
-	<url>/wp-content/uploads/2022/09/Favicon.png</url>
+	<url>https://specmatic.in/wp-content/uploads/2022/09/Favicon.png</url>
 	<title>Kafka &#8211; Specmatic</title>
-	<link>/</link>
+	<link>https://specmatic.in/</link>
 	<width>32</width>
 	<height>32</height>
 </image> 
 	<item>
 		<title>Kafka Mocking with AsyncAPI using Specmatic</title>
-		<link>/updates/kafka-mocking-with-asyncapi-using-specmatic/</link>
+		<link>https://specmatic.in/updates/kafka-mocking-with-asyncapi-using-specmatic/</link>
 		
 		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
 		<pubDate>Tue, 18 Jul 2023 04:40:27 +0000</pubDate>
@@ -40,7 +40,7 @@
 		<category><![CDATA[Contract Testing]]></category>
 		<category><![CDATA[Kafka]]></category>
 		<category><![CDATA[OpenAPI]]></category>
-		<guid isPermaLink="false">/?p=1665</guid>
+		<guid isPermaLink="false">https://specmatic.in/?p=1665</guid>
 
 					<description><![CDATA[The Specmatic Kafka mock is wire compatible and entirely within the control of the test, the test can run locally and in CI and deliver quick feedback early in the cycle. So the application itself runs exactly as it would with a real Kafka.]]></description>
 		

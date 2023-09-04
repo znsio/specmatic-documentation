@@ -9,8 +9,8 @@
 
 <channel>
 	<title>Continuous Delivery &#8211; Specmatic</title>
-	<atom:link href="/tag/continuous-delivery/feed/" rel="self" type="application/rss+xml" />
-	<link>/</link>
+	<atom:link href="https://specmatic.in/tag/continuous-delivery/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.in/</link>
 	<description>Contract Driven Development</description>
 	<lastBuildDate>Mon, 21 Aug 2023 04:26:32 +0000</lastBuildDate>
 	<language>en-US</language>
@@ -18,18 +18,18 @@
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.3</generator>
+	<generator>https://wordpress.org/?v=6.3.1</generator>
 
 <image>
-	<url>/wp-content/uploads/2022/09/Favicon.png</url>
+	<url>https://specmatic.in/wp-content/uploads/2022/09/Favicon.png</url>
 	<title>Continuous Delivery &#8211; Specmatic</title>
-	<link>/</link>
+	<link>https://specmatic.in/</link>
 	<width>32</width>
 	<height>32</height>
 </image> 
 	<item>
 		<title>&#8220;Easy Microservice Testing&#8221; &#8211; Specmatic featured on Continuous Delivery channel</title>
-		<link>/updates/specmatic-featured-on-dave-farleys-continuous-delivery-channel/</link>
+		<link>https://specmatic.in/updates/specmatic-featured-on-dave-farleys-continuous-delivery-channel/</link>
 		
 		<dc:creator><![CDATA[John]]></dc:creator>
 		<pubDate>Thu, 06 Jul 2023 03:29:00 +0000</pubDate>
@@ -38,7 +38,7 @@
 		<category><![CDATA[Continuous Delivery]]></category>
 		<category><![CDATA[Contract Testing]]></category>
 		<category><![CDATA[microservices]]></category>
-		<guid isPermaLink="false">/?p=1934</guid>
+		<guid isPermaLink="false">https://specmatic.in/?p=1934</guid>
 
 					<description><![CDATA[Dave Farley is a respected author and widely recognised proponent of Continuous Delivery. In this video on his Continuous Delivery YouTube channel he discusses why Contract Testing is important for microservices.]]></description>
 		

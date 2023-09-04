@@ -3,7 +3,7 @@
 	font-style: normal;
 	font-weight: normal;
 	font-display: auto;
-	src: url('/wp-content/uploads/2022/09/plusjakartasans-variablefont_wght-webfont.woff2') format('woff2'),
-		url('/wp-content/uploads/2022/09/plusjakartasans-variablefont_wght-webfont.woff') format('woff');
+	src: url('https://specmatic.in/wp-content/uploads/2022/09/plusjakartasans-variablefont_wght-webfont.woff2') format('woff2'),
+		url('https://specmatic.in/wp-content/uploads/2022/09/plusjakartasans-variablefont_wght-webfont.woff') format('woff');
 }
 /* End Custom Fonts CSS */
