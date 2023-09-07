@@ -8,6 +8,19 @@ aside > section:nth-of-type(1) > .has-ast-global-color-4-color {
 	font-weight: 600 !important;
 }
 
+/** General >> Paragraph _2 **/
+#block-14 p {
+	margin-bottom: -5px !important;
+}
+
+/** General >> Ast builder social element **/
+#colophon .ast-builder-social-element {
+	width: 43px !important;
+	display: grid !important;
+	grid-template-columns: 1fr 1fr !important;
+	grid-template-rows: auto auto !important;
+}
+
 /** General >> Block 13 **/
 #block-13 {
 	position: relative !important;
@@ -89,8 +102,42 @@ tr > .gsc-input {
 /** General >> Menu link **/
 #menu-about .menu-link {
 	color: rgb(255, 255, 255) !important;
-	font-weight: 600 !important;
-	top: - !important;
+	font-size: 14px !important;
+	font-weight: 300 !important;
+	position: relative !important;
+	top: 4px !important;
+}
+
+/** General >> Menu link _3 **/
+#menu-license-and-contributing .menu-link {
+	font-size: 14px !important;
+	font-weight: 300 !important;
+}
+
+/** General >> Has ast global color 5 color _2 **/
+#block-30 .has-ast-global-color-5-color {
+	margin-bottom: 12px !important;
+}
+
+/** General >> Has ast global color 5 color **/
+#block-32 .has-ast-global-color-5-color {
+	color: rgb(255, 255, 255) !important;
+	font-size: 14px !important;
+	font-weight: 300 !important;
+	position: relative !important;
+	top: -1px !important;
+}
+#block-32 .has-ast-global-color-5-color a:link {
+	color: rgb(255, 255, 255) !important;
+	font-size: 14px !important;
+	font-weight: 300 !important;
+	position: relative !important;
+}
+#block-32 .has-ast-global-color-5-color a:visited {
+	color: rgb(255, 255, 255) !important;
+	font-size: 14px !important;
+	font-weight: 300 !important;
+	position: relative !important;
 }
 
 /** General >> Button link **/
@@ -164,6 +211,7 @@ html {
 
 /** General >> Footer blurb **/
 .footer-blurb {
+	font-size: 14px !important;
 	position: relative !important;
 	top: -4px !important;
 }
@@ -195,6 +243,12 @@ html {
 
 /*= General 2 ================= */
 
+/** General 2 >> Menu item object custom **/
+#menu-license-and-contributing .menu-item-object-custom {
+	position: relative !important;
+	top: 1px !important;
+}
+
 /** General 2 >> Div _3 **/
 .swiper-slide-active > section:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > section:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div {
 	padding-right: 0 !important;
@@ -205,9 +259,22 @@ html {
 	padding-top: 7px !important;
 }
 
+/** General 2 >> Ast social element style filled **/
+.ast-social-element-style-filled {
+	width: 125px !important;
+	display: grid !important;
+	grid-template-columns: 1fr 1fr !important;
+	grid-template-rows: auto auto !important;
+}
+
 /** General 2 >> Iframe **/
 .elementor-facebook-widget iframe {
 	height: 40px !important;
+}
+
+/** General 2 >> Menu icons **/
+.menu_github > a:nth-of-type(1) > span::before {
+	font-size: 22px !important;
 }
 
 /** General 2 >> Ditty item elements **/
@@ -247,6 +314,11 @@ html {
 	margin: 15px !important;
 }
 
+/** General 2 >> Has ast global color 5 color **/
+#block-26 .has-ast-global-color-5-color {
+	margin-bottom: 18px !important;
+}
+
 
 /*( < 1200 )*/
 @media (max-width: 1199.98px) {
@@ -259,6 +331,11 @@ html {
 	/** General >> Ast builder grid row tablet 2 equal **/
 	#colophon .ast-builder-grid-row-tablet-2-equal {
 	padding-left: 25px !important;
+}
+
+	/** General >> Site above footer inner wrap **/
+	#colophon .site-above-footer-inner-wrap {
+	max-width: 900px !important;
 }
 
 	/** General 2 >> Has ast global color 6 color **/
@@ -275,8 +352,13 @@ html {
 }
 
 
-/*( < 980 )*/
-@media (max-width: 979.98px) {
+/*( < 1024 )*/
+@media (max-width: 1024px) {
+	/** General >> Div _3 **/
+	.mtp-10 .elementor-element-b16017f > div {
+	padding-top: 5px !important;
+}
+
 	/** General >> Post navigation prev title **/
 	.post-navigation__prev--title {
 	padding-right: 10px !important;
@@ -288,14 +370,20 @@ html {
 	padding-bottom: 0 !important;
 }
 
-	/** General >> Div _3 **/
-	.mtp-10 .elementor-element-b16017f > div {
-	padding-top: 5px !important;
-}
-
 	/** General >> Ast builder grid row tablet 2 equal **/
 	#colophon .ast-builder-grid-row-tablet-2-equal {
 	padding-right: 25px !important;
+}
+
+	/** General >> Ast builder social element **/
+	#colophon .ast-builder-social-element {
+	margin-top: 5px !important;
+	margin-bottom: 5px !important;
+}
+
+	/** General >> Site above footer inner wrap **/
+	#colophon .site-above-footer-inner-wrap {
+	max-width: 800px !important;
 }
 
 	/** General 2 >> Elementor element populated Moved 1 **/
@@ -307,24 +395,54 @@ html {
 	/** General 2 >> Ast social element style filled **/
 	.ast-social-element-style-filled {
 	display: grid !important;
-	grid-template-columns: 1fr 1fr 1fr 1fr !important;
-	grid-template-rows: auto !important;
+	grid-template-columns: 1fr 1fr !important;
+	grid-template-rows: auto auto !important;
 }
 .ast-social-element-style-filled > :nth-child(n) {
 	margin: 0 5px !important;
 }
+.ast-social-element-style-filled > :nth-child(2) {
+	grid-area: 1 / 2 / 2 / 3 !important;
+}
+.ast-social-element-style-filled > :nth-child(3) {
+	grid-area: 2 / 1 / 3 / 2 !important;
+}
+.ast-social-element-style-filled > :nth-child(4) {
+	grid-area: 2 / 2 / 3 / 3 !important;
+}
 
 }
 
 
-/*( < 768 )*/
-@media (max-width: 767.98px) {
+/*( < 767 )*/
+@media (max-width: 767px) {
 	/** General >> Block 11 has ast global color 6 color **/
 	#block-11 .has-ast-global-color-6-color {
 	padding-right: 0 !important;
 	padding-left: 0 !important;
 	margin-right: 40px !important;
 	margin-left: 40px !important;
+}
+
+	/** General >> Site above footer inner wrap **/
+	#colophon .site-above-footer-inner-wrap {
+	padding: 0 !important;
+	display: grid !important;
+}
+#colophon .site-above-footer-inner-wrap > :nth-child(1) {
+	grid-area: 1 / 1 / 2 / 6 !important;
+}
+#colophon .site-above-footer-inner-wrap > :nth-child(2) {
+	grid-area: 2 / 1 / 3 / 6 !important;
+}
+#colophon .site-above-footer-inner-wrap > :nth-child(3) {
+	grid-area: 3 / 1 / 4 / 6 !important;
+}
+#colophon .site-above-footer-inner-wrap > :nth-child(4) {
+	grid-area: 4 / 1 / 5 / 6 !important;
+}
+#colophon .site-above-footer-inner-wrap > :nth-child(5) {
+	grid-area: 5 / 1 / 6 / 6 !important;
 }
 
 	/** General >> Elementor element populated **/
@@ -363,8 +481,29 @@ html {
 
 	/** General >> Footer widget area inner **/
 	.site-footer-above-section-2 .footer-widget-area-inner {
+	text-align: center !important;
 	position: relative !important;
 	top: -13px !important;
+}
+
+	/** General >> Ast footer social 1 wrap **/
+	#colophon .ast-footer-social-1-wrap {
+	display: grid !important;
+	justify-items: center !important;
+}
+#colophon .ast-footer-social-1-wrap > :nth-child(1) {
+	grid-area: 1 / 1 / 2 / 2 !important;
+}
+
+	/** General >> Footer blurb **/
+	.footer-blurb {
+	margin-right: 50px !important;
+	margin-left: 50px !important;
+}
+
+	/** General >> Section (#1) has ast global color 4 color **/
+	aside > section:nth-of-type(1) > .has-ast-global-color-4-color {
+	text-align: center !important;
 }
 
 	/** General 2 >> Ast menu toggle **/
@@ -409,10 +548,18 @@ html {
 
 	/** General 2 >> Ast social element style filled **/
 	.ast-social-element-style-filled {
-	
+	display: grid !important;
+	-webkit-justify-content: center !important;
+	justify-content: center !important;
 }
 .ast-social-element-style-filled > :nth-child(n) {
 	margin: 0px 7px !important;
+}
+.ast-social-element-style-filled > :nth-child(3) {
+	grid-area: 1 / 3 / 2 / 4 !important;
+}
+.ast-social-element-style-filled > :nth-child(4) {
+	grid-area: 1 / 4 / 2 / 5 !important;
 }
 
 	/** General 2 >> Ditty item elements **/
@@ -425,10 +572,37 @@ html {
 	vertical-align: top !important;
 }
 
+	/** General 2 >> Footer widget area inner **/
+	.site-footer-above-section-4 .footer-widget-area-inner {
+	text-align: center !important;
+}
+
+	/** General 2 >> Ast builder layout element **/
+	.site-footer-above-section-5 .ast-builder-layout-element {
+	display: grid !important;
+	grid-template-columns: 1fr !important;
+	grid-template-rows: auto !important;
+}
+
 	/** Footer >> Ast footer copyright paragraph **/
 	.ast-footer-copyright p {
 	text-align: center !important;
 	padding-left: 0 !important;
+}
+
+	/** Footer >> Site footer above section 1 footer widget area inner **/
+	.site-footer-above-section-1 .footer-widget-area-inner {
+	text-align: center !important;
+}
+
+	/** Footer >> Footer widget area inner **/
+	.site-footer-above-section-3 .footer-widget-area-inner {
+	text-align: center !important;
+}
+
+	/** Footer >> Site footer above section 5 **/
+	#colophon .site-footer-above-section-5 {
+	text-align: center !important;
 }
 
 }
@@ -459,6 +633,16 @@ html {
 	font-size: 28px !important;
 }
 
+	/** General >> Footer widget area inner **/
+	.site-footer-above-section-2 .footer-widget-area-inner {
+	margin-bottom: 25px !important;
+}
+
+	/** General >> Ast footer social 1 wrap **/
+	#colophon .ast-footer-social-1-wrap {
+	margin-right: 20% !important;
+}
+
 	/** General 2 >> Ast social element style filled **/
 	.ast-social-element-style-filled {
 	padding-right: 140px !important;
@@ -481,10 +665,15 @@ html {
 	padding-left: 0 !important;
 }
 
+	/** Footer >> Site footer above section 1 **/
+	#colophon .site-footer-above-section-1 {
+	width: 100% !important;
+}
+
 	/** Footer >> Site footer above section 1 footer widget area inner **/
 	.site-footer-above-section-1 .footer-widget-area-inner {
-	width: 90% !important;
-	padding-right: 20px !important;
+	width: 100% !important;
+	padding-right: 0 !important;
 }
 
 }

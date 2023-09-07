@@ -149,7 +149,8 @@
       <lastmod>2023-08-14</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
-   </url>			  
+   </url>	
+   <url>		  
       <loc>https://specmatic.in/updates/kafka-mocking-with-asyncapi-using-specmatic/</loc>
       <lastmod>2023-07-25</lastmod>
       <changefreq>monthly</changefreq>
