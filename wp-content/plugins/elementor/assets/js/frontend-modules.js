@@ -1,4 +1,4 @@
-/*! elementor - v3.15.0 - 20-08-2023 */
+/*! elementor - v3.16.0 - 12-09-2023 */
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["frontend-modules"],{
 
 /***/ "../assets/dev/js/editor/utils/is-instanceof.js":
@@ -98,6 +98,203 @@ class _default extends elementorModules.ViewModule {
   onSettingsChange() {}
 }
 exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../assets/dev/js/frontend/handlers/accessibility/nested-title-keyboard-handler.js":
+/*!*****************************************************************************************!*\
+  !*** ../assets/dev/js/frontend/handlers/accessibility/nested-title-keyboard-handler.js ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _base = _interopRequireDefault(__webpack_require__(/*! ../base */ "../assets/dev/js/frontend/handlers/base.js"));
+class NestedTitleKeyboardHandler extends _base.default {
+  __construct(settings) {
+    super.__construct(settings);
+    this.directionNext = 'next';
+    this.directionPrevious = 'previous';
+    this.focusableElementSelector = 'audio, button, canvas, details, iframe, input, select, summary, textarea, video, [accesskey], [contenteditable], [href], [tabindex]:not([tabindex="-1"])';
+  }
+  getDefaultSettings() {
+    return {
+      selectors: {
+        itemTitle: '.e-n-tab-title',
+        itemContainer: '.e-n-tabs-content > .e-con'
+      },
+      ariaAttributes: {
+        titleStateAttribute: 'aria-selected',
+        activeTitleSelector: '[aria-selected="true"]'
+      },
+      datasets: {
+        titleIndex: 'data-tab-index'
+      },
+      keyDirection: {
+        ArrowLeft: elementorFrontendConfig.is_rtl ? this.directionNext : this.directionPrevious,
+        ArrowUp: this.directionPrevious,
+        ArrowRight: elementorFrontendConfig.is_rtl ? this.directionPrevious : this.directionNext,
+        ArrowDown: this.directionNext
+      }
+    };
+  }
+  getDefaultElements() {
+    const selectors = this.getSettings('selectors');
+    return {
+      $itemTitles: this.findElement(selectors.itemTitle),
+      $itemContainers: this.findElement(selectors.itemContainer),
+      $focusableContainerElements: this.getFocusableElements(this.findElement(selectors.itemContainer))
+    };
+  }
+  getFocusableElements($elements) {
+    return $elements.find(this.focusableElementSelector).not('[disabled], [inert]');
+  }
+  getKeyDirectionValue(event) {
+    const direction = this.getSettings('keyDirection')[event.key];
+    return this.directionNext === direction ? 1 : -1;
+  }
+
+  /**
+   * @param {HTMLElement} itemTitleElement
+   *
+   * @return {string}
+   */
+  getTitleIndex(itemTitleElement) {
+    const {
+      titleIndex: indexAttribute
+    } = this.getSettings('datasets');
+    return itemTitleElement.getAttribute(indexAttribute);
+  }
+
+  /**
+   * @param {string|number} titleIndex
+   *
+   * @return {string}
+   */
+  getTitleFilterSelector(titleIndex) {
+    const {
+      titleIndex: indexAttribute
+    } = this.getSettings('datasets');
+    return `[${indexAttribute}="${titleIndex}"]`;
+  }
+  getActiveTitleElement() {
+    const activeTitleFilter = this.getSettings('ariaAttributes').activeTitleSelector;
+    return this.elements.$itemTitles.filter(activeTitleFilter);
+  }
+  onInit() {
+    super.onInit(...arguments);
+  }
+  bindEvents() {
+    this.elements.$itemTitles.on(this.getTitleEvents());
+    this.elements.$focusableContainerElements.on(this.getContentElementEvents());
+  }
+  unbindEvents() {
+    this.elements.$itemTitles.off();
+    this.elements.$itemContainers.children().off();
+  }
+  getTitleEvents() {
+    return {
+      keydown: this.handleTitleKeyboardNavigation.bind(this)
+    };
+  }
+  getContentElementEvents() {
+    return {
+      keydown: this.handleContentElementKeyboardNavigation.bind(this)
+    };
+  }
+  isDirectionKey(event) {
+    const directionKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'];
+    return directionKeys.includes(event.key);
+  }
+  isActivationKey(event) {
+    const activationKeys = ['Enter', ' '];
+    return activationKeys.includes(event.key);
+  }
+  handleTitleKeyboardNavigation(event) {
+    if (this.isDirectionKey(event)) {
+      event.preventDefault();
+      const currentTitleIndex = parseInt(this.getTitleIndex(event.currentTarget)) || 1,
+        numberOfTitles = this.elements.$itemTitles.length,
+        titleIndexUpdated = this.getTitleIndexFocusUpdated(event, currentTitleIndex, numberOfTitles);
+      this.changeTitleFocus(titleIndexUpdated);
+      event.stopPropagation();
+    } else if (this.isActivationKey(event)) {
+      event.preventDefault();
+      if (this.handeTitleLinkEnterOrSpaceEvent(event)) {
+        return;
+      }
+      const titleIndex = this.getTitleIndex(event.currentTarget);
+      elementorFrontend.elements.$window.trigger('elementor/nested-elements/activate-by-keyboard', {
+        widgetId: this.getID(),
+        titleIndex
+      });
+    } else if ('Escape' === event.key) {
+      this.handleTitleEscapeKeyEvents(event);
+    }
+  }
+  handeTitleLinkEnterOrSpaceEvent(event) {
+    const isLinkElement = 'a' === event?.currentTarget?.tagName?.toLowerCase();
+    if (!elementorFrontend.isEditMode() && isLinkElement) {
+      event?.currentTarget?.click();
+      event.stopPropagation();
+    }
+    return isLinkElement;
+  }
+  getTitleIndexFocusUpdated(event, currentTitleIndex, numberOfTitles) {
+    let titleIndexUpdated = 0;
+    switch (event.key) {
+      case 'Home':
+        titleIndexUpdated = 1;
+        break;
+      case 'End':
+        titleIndexUpdated = numberOfTitles;
+        break;
+      default:
+        const directionValue = this.getKeyDirectionValue(event),
+          isEndReached = numberOfTitles < currentTitleIndex + directionValue,
+          isStartReached = 0 === currentTitleIndex + directionValue;
+        if (isEndReached) {
+          titleIndexUpdated = 1;
+        } else if (isStartReached) {
+          titleIndexUpdated = numberOfTitles;
+        } else {
+          titleIndexUpdated = currentTitleIndex + directionValue;
+        }
+    }
+    return titleIndexUpdated;
+  }
+  changeTitleFocus(titleIndexUpdated) {
+    const $newTitle = this.elements.$itemTitles.filter(this.getTitleFilterSelector(titleIndexUpdated));
+    this.setTitleTabindex(titleIndexUpdated);
+    $newTitle.trigger('focus');
+  }
+  setTitleTabindex(titleIndex) {
+    this.elements.$itemTitles.attr('tabindex', '-1');
+    const $newTitle = this.elements.$itemTitles.filter(this.getTitleFilterSelector(titleIndex));
+    $newTitle.attr('tabindex', '0');
+  }
+  handleTitleEscapeKeyEvents() {}
+  handleContentElementKeyboardNavigation(event) {
+    if ('Tab' === event.key && !event.shiftKey) {
+      this.handleContentElementTabEvents(event);
+    } else if ('Escape' === event.key) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.handleContentElementEscapeEvents();
+    }
+  }
+  handleContentElementEscapeEvents() {
+    this.getActiveTitleElement().trigger('focus');
+  }
+  handleContentElementTabEvents() {}
+}
+exports["default"] = NestedTitleKeyboardHandler;
 
 /***/ }),
 
@@ -813,6 +1010,7 @@ var _baseSwiper = _interopRequireDefault(__webpack_require__(/*! ./handlers/base
 var _baseCarousel = _interopRequireDefault(__webpack_require__(/*! ./handlers/base-carousel */ "../assets/dev/js/frontend/handlers/base-carousel.js"));
 var _nestedTabs = _interopRequireDefault(__webpack_require__(/*! elementor/modules/nested-tabs/assets/js/frontend/handlers/nested-tabs */ "../modules/nested-tabs/assets/js/frontend/handlers/nested-tabs.js"));
 var _nestedAccordion = _interopRequireDefault(__webpack_require__(/*! elementor/modules/nested-accordion/assets/js/frontend/handlers/nested-accordion */ "../modules/nested-accordion/assets/js/frontend/handlers/nested-accordion.js"));
+var _nestedTitleKeyboardHandler = _interopRequireDefault(__webpack_require__(/*! ./handlers/accessibility/nested-title-keyboard-handler */ "../assets/dev/js/frontend/handlers/accessibility/nested-title-keyboard-handler.js"));
 _modules.default.frontend = {
   Document: _document.default,
   tools: {
@@ -824,7 +1022,8 @@ _modules.default.frontend = {
     SwiperBase: _baseSwiper.default,
     CarouselBase: _baseCarousel.default,
     NestedTabs: _nestedTabs.default,
-    NestedAccordion: _nestedAccordion.default
+    NestedAccordion: _nestedAccordion.default,
+    NestedTitleKeyboardHandler: _nestedTitleKeyboardHandler.default
   }
 };
 
@@ -847,7 +1046,8 @@ module.exports = elementorModules.ViewModule.extend({
       selectors: {
         container: window
       },
-      considerScrollbar: false
+      considerScrollbar: false,
+      cssOutput: 'inline'
     };
   },
   getDefaultElements() {
@@ -903,13 +1103,38 @@ module.exports = elementorModules.ViewModule.extend({
     }
     css.width = width + 'px';
     css[settings.direction] = correctOffset + 'px';
+    if ('variables' === settings.cssOutput) {
+      this.applyCssVariables($element, css);
+      return;
+    }
     $element.css(css);
   },
   reset() {
-    var css = {};
+    const css = {},
+      settings = this.getSettings(),
+      $element = this.elements.$element;
+    if ('variables' === settings.cssOutput) {
+      this.resetCssVariables($element);
+      return;
+    }
     css.width = '';
-    css[this.getSettings('direction')] = '';
-    this.elements.$element.css(css);
+    css[settings.direction] = '';
+    $element.css(css);
+  },
+  applyCssVariables($element, css) {
+    $element.css('--stretch-width', css.width);
+    if (!!css.left) {
+      $element.css('--stretch-left', css.left);
+    } else {
+      $element.css('--stretch-right', css.right);
+    }
+  },
+  resetCssVariables($element) {
+    $element.css({
+      '--stretch-width': '',
+      '--stretch-left': '',
+      '--stretch-right': ''
+    });
   }
 });
 
@@ -1789,8 +2014,8 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
-var _base = _interopRequireDefault(__webpack_require__(/*! elementor/assets/dev/js/frontend/handlers/base */ "../assets/dev/js/frontend/handlers/base.js"));
-var _flexHorizontalScroll = __webpack_require__(/*! elementor/assets/dev/js/frontend/utils/flex-horizontal-scroll */ "../assets/dev/js/frontend/utils/flex-horizontal-scroll.js");
+var _base = _interopRequireDefault(__webpack_require__(/*! elementor-frontend/handlers/base */ "../assets/dev/js/frontend/handlers/base.js"));
+var _flexHorizontalScroll = __webpack_require__(/*! elementor-frontend-utils/flex-horizontal-scroll */ "../assets/dev/js/frontend/utils/flex-horizontal-scroll.js");
 class NestedTabs extends _base.default {
   constructor() {
     super(...arguments);
@@ -1803,7 +2028,7 @@ class NestedTabs extends _base.default {
    * @return {string}
    */
   getTabTitleFilterSelector(tabIndex) {
-    return `[data-tab="${tabIndex}"]`;
+    return `[data-tab-index="${tabIndex}"]`;
   }
 
   /**
@@ -1812,8 +2037,7 @@ class NestedTabs extends _base.default {
    * @return {string}
    */
   getTabContentFilterSelector(tabIndex) {
-    // Double by 2, since each `e-con` should have 'e-collapse'.
-    return `*:nth-child(${tabIndex * 2})`;
+    return `*:nth-child(${tabIndex})`;
   }
 
   /**
@@ -1822,32 +2046,29 @@ class NestedTabs extends _base.default {
    * @return {string}
    */
   getTabIndex(tabTitleElement) {
-    return tabTitleElement.getAttribute('data-tab');
+    return tabTitleElement.getAttribute('data-tab-index');
   }
   getDefaultSettings() {
     return {
       selectors: {
-        tablist: '[role="tablist"]',
+        widgetContainer: '.e-n-tabs',
         tabTitle: '.e-n-tab-title',
-        tabContent: '.e-con',
+        tabContent: '.e-n-tabs-content > .e-con',
         headingContainer: '.e-n-tabs-heading',
-        activeTabContentContainers: '.e-con.e-active',
-        mobileTabTitle: '.e-collapse'
+        activeTabContentContainers: '.e-con.e-active'
       },
       classes: {
         active: 'e-active'
+      },
+      ariaAttributes: {
+        titleStateAttribute: 'aria-selected',
+        activeTitleSelector: '[aria-selected="true"]'
       },
       showTabFn: 'show',
       hideTabFn: 'hide',
       toggleSelf: false,
       hidePrevious: true,
-      autoExpand: true,
-      keyDirection: {
-        ArrowLeft: elementorFrontendConfig.is_rtl ? 1 : -1,
-        ArrowUp: -1,
-        ArrowRight: elementorFrontendConfig.is_rtl ? -1 : 1,
-        ArrowDown: 1
-      }
+      autoExpand: true
     };
   }
   getDefaultElements() {
@@ -1855,9 +2076,11 @@ class NestedTabs extends _base.default {
     return {
       $tabTitles: this.findElement(selectors.tabTitle),
       $tabContents: this.findElement(selectors.tabContent),
-      $mobileTabTitles: this.findElement(selectors.mobileTabTitle),
       $headingContainer: this.findElement(selectors.headingContainer)
     };
+  }
+  getKeyboardNavigationSettings() {
+    return this.getSettings();
   }
   activateDefaultTab() {
     const settings = this.getSettings();
@@ -1877,68 +2100,33 @@ class NestedTabs extends _base.default {
     // Return back original toggle effects
     this.setSettings(originalToggleMethods);
   }
-  handleKeyboardNavigation(event) {
-    const tab = event.currentTarget,
-      $tabList = jQuery(tab.closest(this.getSettings('selectors').tablist)),
-      // eslint-disable-next-line @wordpress/no-unused-vars-before-return
-      $tabs = $tabList.find(this.getSettings('selectors').tabTitle),
-      isVertical = 'vertical' === $tabList.attr('aria-orientation');
-    switch (event.key) {
-      case 'ArrowLeft':
-      case 'ArrowRight':
-        if (isVertical) {
-          return;
-        }
-        break;
-      case 'ArrowUp':
-      case 'ArrowDown':
-        if (!isVertical) {
-          return;
-        }
-        event.preventDefault();
-        break;
-      case 'Home':
-        event.preventDefault();
-        $tabs.first().trigger('focus');
-        return;
-      case 'End':
-        event.preventDefault();
-        $tabs.last().trigger('focus');
-        return;
-      default:
-        return;
-    }
-    const tabIndex = tab.getAttribute('data-tab') - 1,
-      direction = this.getSettings('keyDirection')[event.key],
-      nextTab = $tabs[tabIndex + direction];
-    if (nextTab) {
-      nextTab.focus();
-    } else if (-1 === tabIndex + direction) {
-      $tabs.last().trigger('focus');
-    } else {
-      $tabs.first().trigger('focus');
-    }
-  }
-  deactivateActiveTab(tabIndex) {
+  deactivateActiveTab(newTabIndex) {
     const settings = this.getSettings(),
       activeClass = settings.classes.active,
-      activeTitleFilter = tabIndex ? this.getTabTitleFilterSelector(tabIndex) : '.' + activeClass,
-      activeContentFilter = tabIndex ? this.getTabContentFilterSelector(tabIndex) : '.' + activeClass,
+      activeTitleFilter = settings.ariaAttributes.activeTitleSelector,
+      activeContentFilter = '.' + activeClass,
       $activeTitle = this.elements.$tabTitles.filter(activeTitleFilter),
       $activeContent = this.elements.$tabContents.filter(activeContentFilter);
-    $activeTitle.add($activeContent).removeClass(activeClass);
-    $activeTitle.attr(this.getTitleDeactivationAttributes());
+    this.setTabDeactivationAttributes($activeTitle, newTabIndex);
+    $activeContent.removeClass(activeClass);
     $activeContent[settings.hideTabFn](0, () => this.onHideTabContent($activeContent));
-    $activeContent.attr('hidden', 'hidden');
+    return $activeContent;
   }
-  getTitleDeactivationAttributes() {
+  getTitleActivationAttributes() {
+    const titleStateAttribute = this.getSettings('ariaAttributes').titleStateAttribute;
     return {
-      tabindex: '-1',
-      'aria-selected': 'false',
-      'aria-expanded': 'false'
+      tabindex: '0',
+      [titleStateAttribute]: 'true'
     };
   }
-  onHideTabContent($activeContent) {}
+  setTabDeactivationAttributes($activeTitle) {
+    const titleStateAttribute = this.getSettings('ariaAttributes').titleStateAttribute;
+    $activeTitle.attr({
+      tabindex: '-1',
+      [titleStateAttribute]: 'false'
+    });
+  }
+  onHideTabContent() {}
   activateTab(tabIndex) {
     const settings = this.getSettings(),
       activeClass = settings.classes.active,
@@ -1953,14 +2141,9 @@ class NestedTabs extends _base.default {
       $requestedTitle = this.elements.$tabTitles.filter(this.getTabTitleFilterSelector(previousTabIndex));
       $requestedContent = this.elements.$tabContents.filter(this.getTabContentFilterSelector(previousTabIndex));
     }
-    $requestedTitle.add($requestedContent).addClass(activeClass);
-    $requestedTitle.attr({
-      tabindex: '0',
-      'aria-selected': 'true',
-      'aria-expanded': 'true'
-    });
+    $requestedTitle.attr(this.getTitleActivationAttributes());
+    $requestedContent.addClass(activeClass);
     $requestedContent[settings.showTabFn](animationDuration, () => this.onShowTabContent($requestedContent));
-    $requestedContent.removeAttr('hidden');
   }
   onShowTabContent($requestedContent) {
     elementorFrontend.elements.$window.trigger('elementor-pro/motion-fx/recalc');
@@ -1968,32 +2151,14 @@ class NestedTabs extends _base.default {
     elementorFrontend.elements.$window.trigger('elementor/bg-video/recalc');
   }
   isActiveTab(tabIndex) {
-    return this.elements.$tabTitles.filter('[data-tab="' + tabIndex + '"]').hasClass(this.getSettings('classes.active'));
+    return 'true' === this.elements.$tabTitles.filter('[data-tab-index="' + tabIndex + '"]').attr(this.getSettings('ariaAttributes').titleStateAttribute);
   }
   onTabClick(event) {
     event.preventDefault();
-    this.changeActiveTab(event.currentTarget.getAttribute('data-tab'), true);
-  }
-  onTabKeyDown(event) {
-    this.onKeydownAvoidUndesiredPageScrolling(event);
-  }
-  onTabKeyUp(event) {
-    switch (event.code) {
-      case 'ArrowLeft':
-      case 'ArrowRight':
-        this.handleKeyboardNavigation(event);
-        break;
-      case 'Enter':
-      case 'Space':
-        event.preventDefault();
-        this.changeActiveTab(event.currentTarget.getAttribute('data-tab'), true);
-        break;
-    }
+    this.changeActiveTab(event.currentTarget?.getAttribute('data-tab-index'), true);
   }
   getTabEvents() {
     return {
-      keydown: this.onTabKeyDown.bind(this),
-      keyup: this.onTabKeyUp.bind(this),
       click: this.onTabClick.bind(this)
     };
   }
@@ -2017,19 +2182,16 @@ class NestedTabs extends _base.default {
     };
     this.resizeListenerNestedTabs = _flexHorizontalScroll.setHorizontalScrollAlignment.bind(this, settingsObject);
     elementorFrontend.elements.$window.on('resize', this.resizeListenerNestedTabs);
+    elementorFrontend.elements.$window.on('resize', this.setTouchMode.bind(this));
     elementorFrontend.elements.$window.on('elementor/nested-tabs/activate', this.reInitSwipers);
+    elementorFrontend.elements.$window.on('elementor/nested-elements/activate-by-keyboard', this.changeActiveTabByKeyboard.bind(this));
   }
   unbindEvents() {
     this.elements.$tabTitles.off();
     this.elements.$headingContainer.off();
+    this.elements.$tabContents.children().off();
     elementorFrontend.elements.$window.off('resize');
     elementorFrontend.elements.$window.off('elementor/nested-tabs/activate');
-  }
-  onKeydownAvoidUndesiredPageScrolling(event) {
-    // We listen to keydowon event for these keys in order to prevent undesired page scrolling
-    if (['End', 'Home', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
-      this.handleKeyboardNavigation(event);
-    }
   }
 
   /**
@@ -2052,11 +2214,7 @@ class NestedTabs extends _base.default {
     }
   }
   onInit() {
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-    this.createMobileTabs(args);
-    super.onInit(...args);
+    super.onInit(...arguments);
     if (this.getSettings('autoExpand')) {
       this.activateDefaultTab();
     }
@@ -2067,6 +2225,10 @@ class NestedTabs extends _base.default {
       horizontalScrollStatus: this.getHorizontalScrollSetting()
     };
     (0, _flexHorizontalScroll.setHorizontalScrollAlignment)(settingsObject);
+    this.setTouchMode();
+    if ('nested-tabs.default' === this.getSettings('elementName')) {
+      new elementorModules.frontend.handlers.NestedTitleKeyboardHandler(this.getKeyboardNavigationSettings());
+    }
   }
   onEditSettingsChange(propertyName, value) {
     if ('activeItemIndex' === propertyName) {
@@ -2085,7 +2247,7 @@ class NestedTabs extends _base.default {
     }
   }
   checkSliderPropsToWatch(propertyName) {
-    return 0 === propertyName.indexOf('horizontal_scroll') || 0 === propertyName.indexOf('tabs_justify_horizontal') || 0 === propertyName.indexOf('tabs_title_space_between');
+    return 0 === propertyName.indexOf('horizontal_scroll') || 'breakpoint_selector' === propertyName || 0 === propertyName.indexOf('tabs_justify_horizontal') || 0 === propertyName.indexOf('tabs_title_space_between');
   }
 
   /**
@@ -2105,19 +2267,24 @@ class NestedTabs extends _base.default {
     const isActiveTab = this.isActiveTab(tabIndex),
       settings = this.getSettings();
     if ((settings.toggleSelf || !isActiveTab) && settings.hidePrevious) {
-      this.deactivateActiveTab();
+      this.deactivateActiveTab(tabIndex);
     }
     if (!settings.hidePrevious && isActiveTab) {
       this.deactivateActiveTab(tabIndex);
     }
     if (!isActiveTab) {
-      const isMobileVersion = 'none' === this.elements.$headingContainer.css('display');
-      if (isMobileVersion) {
+      if (this.isAccordionVersion()) {
         this.activateMobileTab(tabIndex);
         return;
       }
       this.activateTab(tabIndex);
     }
+  }
+  changeActiveTabByKeyboard(event, settings) {
+    if (settings.widgetId !== this.getID()) {
+      return;
+    }
+    this.changeActiveTab(settings.titleIndex, true);
   }
   activateMobileTab(tabIndex) {
     // Timeout time added to ensure that opening of the active tab starts after closing the other tab on Apple devices.
@@ -2130,120 +2297,16 @@ class NestedTabs extends _base.default {
     if (!elementorFrontend.isEditMode()) {
       return;
     }
-    const $activeTabTitle = this.elements.$mobileTabTitles.filter(this.getTabTitleFilterSelector(tabIndex));
+    const $activeTabTitle = this.elements.$tabTitles.filter(this.getTabTitleFilterSelector(tabIndex));
     if (!elementor.helpers.isInViewport($activeTabTitle[0])) {
       $activeTabTitle[0].scrollIntoView({
         block: 'center'
       });
     }
   }
-  createMobileTabs(args) {
-    const settings = this.getSettings();
-    if (elementorFrontend.isEditMode()) {
-      const $widget = this.$element,
-        $removed = this.findElement('.e-collapse').remove();
-      let index = 1;
-      this.findElement('.e-con').each(function () {
-        const $current = jQuery(this),
-          $desktopTabTitle = $widget.find(`${settings.selectors.headingContainer} > *:nth-child(${index})`),
-          mobileTitleHTML = `<div class="${settings.selectors.tabTitle.replace('.', '')} e-collapse" data-tab="${index}" role="tab">${$desktopTabTitle.html()}</div>`;
-        $current.before(mobileTitleHTML);
-        ++index;
-      });
-
-      // On refresh since indexes are rearranged, do not call `activateDefaultTab` let editor control handle it.
-      if ($removed.length) {
-        return elementorModules.ViewModule.prototype.onInit.apply(this, args);
-      }
-    }
-  }
   getActiveClass() {
     const settings = this.getSettings();
     return settings.classes.active;
-  }
-  getVisibleTabTitle(tabTitleFilter) {
-    const $tabTitle = this.elements.$tabTitles.filter(tabTitleFilter),
-      isTabTitleDesktopVisible = null !== $tabTitle[0]?.offsetParent;
-    return isTabTitleDesktopVisible ? $tabTitle[0] : $tabTitle[1];
-  }
-  getKeyPressed(event) {
-    const keyTab = 9,
-      keyEscape = 27,
-      isTabPressed = keyTab === event?.which,
-      isShiftPressed = event?.shiftKey,
-      isShiftAndTabPressed = !!isTabPressed && isShiftPressed,
-      isOnlyTabPressed = !!isTabPressed && !isShiftPressed,
-      isEscapePressed = keyEscape === event?.which;
-    if (isShiftAndTabPressed) {
-      return 'ShiftTab';
-    } else if (isOnlyTabPressed) {
-      return 'Tab';
-    } else if (isEscapePressed) {
-      return 'Escape';
-    }
-  }
-  changeFocusFromContentContainerItemBackToTabTitle(event) {
-    if (this.hasDropdownLayout()) {
-      return;
-    }
-    const isShiftAndTabPressed = 'ShiftTab' === this.getKeyPressed(event),
-      isOnlyTabPressed = 'Tab' === this.getKeyPressed(event),
-      isEscapePressed = 'Escape' === this.getKeyPressed(event),
-      firstItemIsInFocus = this.itemInsideContentContainerHasFocus(0),
-      lastItemIsInFocus = this.itemInsideContentContainerHasFocus('last'),
-      activeTabTitleFilter = `.${this.getActiveClass()}`,
-      activeTabTitleVisible = this.getVisibleTabTitle(activeTabTitleFilter),
-      activeTabTitleIndex = parseInt(activeTabTitleVisible?.getAttribute('data-tab')),
-      nextTabTitleFilter = this.getTabTitleFilterSelector(activeTabTitleIndex + 1),
-      nextTabTitleVisible = this.getVisibleTabTitle(nextTabTitleFilter),
-      pressShiftTabOnFirstFocusableItem = isShiftAndTabPressed && firstItemIsInFocus && !!activeTabTitleVisible,
-      pressTabOnLastFocusableItem = isOnlyTabPressed && lastItemIsInFocus && !!nextTabTitleVisible;
-    if (pressShiftTabOnFirstFocusableItem || isEscapePressed) {
-      event.preventDefault();
-      activeTabTitleVisible?.focus();
-    } else if (pressTabOnLastFocusableItem) {
-      event.preventDefault();
-      this.setTabindexOfActiveContainerItems('-1');
-      nextTabTitleVisible?.focus();
-    }
-  }
-  changeFocusFromActiveTabTitleToContentContainer(event) {
-    const isOnlyTabPressed = 'Tab' === this.getKeyPressed(event),
-      $focusableItems = this.getFocusableItemsInsideActiveContentContainer(),
-      $firstFocusableItem = $focusableItems[0],
-      currentTabTitle = elementorFrontend.elements.window.document.activeElement,
-      currentTabTitleIndex = parseInt(currentTabTitle.getAttribute('data-tab'));
-    if (isOnlyTabPressed && this.tabTitleHasActiveContentContainer(currentTabTitleIndex) && !!$firstFocusableItem) {
-      event.preventDefault();
-      $firstFocusableItem.trigger('focus');
-    }
-  }
-  itemInsideContentContainerHasFocus(position) {
-    const currentItem = elementorFrontend.elements.window.document.activeElement,
-      $focusableItems = this.getFocusableItemsInsideActiveContentContainer(),
-      itemIndex = 'last' === position ? $focusableItems.length - 1 : position;
-    return $focusableItems[itemIndex] === currentItem;
-  }
-  getFocusableItemsInsideActiveContentContainer() {
-    const settings = this.getSettings();
-    return this.$element.find(settings.selectors.activeTabContentContainers).find(':focusable');
-  }
-  setTabindexOfActiveContainerItems(tabIndex) {
-    const $focusableItems = this.getFocusableItemsInsideActiveContentContainer();
-    $focusableItems.attr('tabindex', tabIndex);
-  }
-  setActiveCurrentContainerItemsToFocusable() {
-    const currentTabTitle = elementorFrontend.elements.window.document.activeElement,
-      currentTabTitleIndex = parseInt(currentTabTitle?.getAttribute('data-tab'));
-    if (this.tabTitleHasActiveContentContainer(currentTabTitleIndex)) {
-      this.setTabindexOfActiveContainerItems('0');
-    }
-  }
-  tabTitleHasActiveContentContainer(index) {
-    const $tabTitleElement = this.elements.$tabTitles.filter(this.getTabTitleFilterSelector(index)),
-      isTabTitleActive = $tabTitleElement[0]?.classList.contains(`${this.getActiveClass()}`),
-      $tabTitleContainerElement = this.elements.$tabContents.filter(this.getTabContentFilterSelector(index));
-    return !!$tabTitleContainerElement && isTabTitleActive ? true : false;
   }
   getTabsDirection() {
     const currentDevice = elementorFrontend.getCurrentDeviceMode();
@@ -2252,6 +2315,24 @@ class NestedTabs extends _base.default {
   getHorizontalScrollSetting() {
     const currentDevice = elementorFrontend.getCurrentDeviceMode();
     return elementorFrontend.utils.controls.getResponsiveControlValue(this.getElementSettings(), 'horizontal_scroll', '', currentDevice);
+  }
+  isAccordionVersion() {
+    return 'contents' === this.elements.$headingContainer.css('display');
+  }
+  setTouchMode() {
+    const widgetSelector = this.getSettings('selectors').widgetContainer;
+    if (elementorFrontend.isEditMode() || 'resize' === event?.type) {
+      const responsiveDevices = ['mobile', 'mobile_extra', 'tablet', 'tablet_extra'],
+        currentDevice = elementorFrontend.getCurrentDeviceMode();
+      if (-1 !== responsiveDevices.indexOf(currentDevice)) {
+        this.$element.find(widgetSelector).attr('data-touch-mode', 'true');
+        return;
+      }
+    } else if ('ontouchstart' in window) {
+      this.$element.find(widgetSelector).attr('data-touch-mode', 'true');
+      return;
+    }
+    this.$element.find(widgetSelector).attr('data-touch-mode', 'false');
   }
 }
 exports["default"] = NestedTabs;
@@ -2263,6 +2344,8 @@ exports["default"] = NestedTabs;
   !*** ../node_modules/core-js/internals/a-callable.js ***!
   \*******************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "../node_modules/core-js/internals/is-callable.js");
 var tryToString = __webpack_require__(/*! ../internals/try-to-string */ "../node_modules/core-js/internals/try-to-string.js");
@@ -2284,6 +2367,8 @@ module.exports = function (argument) {
   \*****************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "../node_modules/core-js/internals/is-callable.js");
 
 var $String = String;
@@ -2302,6 +2387,8 @@ module.exports = function (argument) {
   !*** ../node_modules/core-js/internals/an-object.js ***!
   \******************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var isObject = __webpack_require__(/*! ../internals/is-object */ "../node_modules/core-js/internals/is-object.js");
 
@@ -2322,6 +2409,8 @@ module.exports = function (argument) {
   !*** ../node_modules/core-js/internals/array-includes.js ***!
   \***********************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var toIndexedObject = __webpack_require__(/*! ../internals/to-indexed-object */ "../node_modules/core-js/internals/to-indexed-object.js");
 var toAbsoluteIndex = __webpack_require__(/*! ../internals/to-absolute-index */ "../node_modules/core-js/internals/to-absolute-index.js");
@@ -2365,6 +2454,8 @@ module.exports = {
   \********************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "../node_modules/core-js/internals/function-uncurry-this.js");
 
 var toString = uncurryThis({}.toString);
@@ -2382,6 +2473,8 @@ module.exports = function (it) {
   !*** ../node_modules/core-js/internals/classof.js ***!
   \****************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var TO_STRING_TAG_SUPPORT = __webpack_require__(/*! ../internals/to-string-tag-support */ "../node_modules/core-js/internals/to-string-tag-support.js");
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "../node_modules/core-js/internals/is-callable.js");
@@ -2422,6 +2515,8 @@ module.exports = TO_STRING_TAG_SUPPORT ? classofRaw : function (it) {
   \************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var hasOwn = __webpack_require__(/*! ../internals/has-own-property */ "../node_modules/core-js/internals/has-own-property.js");
 var ownKeys = __webpack_require__(/*! ../internals/own-keys */ "../node_modules/core-js/internals/own-keys.js");
 var getOwnPropertyDescriptorModule = __webpack_require__(/*! ../internals/object-get-own-property-descriptor */ "../node_modules/core-js/internals/object-get-own-property-descriptor.js");
@@ -2448,6 +2543,8 @@ module.exports = function (target, source, exceptions) {
   \***************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "../node_modules/core-js/internals/descriptors.js");
 var definePropertyModule = __webpack_require__(/*! ../internals/object-define-property */ "../node_modules/core-js/internals/object-define-property.js");
 var createPropertyDescriptor = __webpack_require__(/*! ../internals/create-property-descriptor */ "../node_modules/core-js/internals/create-property-descriptor.js");
@@ -2468,6 +2565,8 @@ module.exports = DESCRIPTORS ? function (object, key, value) {
   \***********************************************************************/
 /***/ ((module) => {
 
+"use strict";
+
 module.exports = function (bitmap, value) {
   return {
     enumerable: !(bitmap & 1),
@@ -2485,6 +2584,8 @@ module.exports = function (bitmap, value) {
   !*** ../node_modules/core-js/internals/define-built-in.js ***!
   \************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "../node_modules/core-js/internals/is-callable.js");
 var definePropertyModule = __webpack_require__(/*! ../internals/object-define-property */ "../node_modules/core-js/internals/object-define-property.js");
@@ -2523,6 +2624,8 @@ module.exports = function (O, key, value, options) {
   \*******************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var global = __webpack_require__(/*! ../internals/global */ "../node_modules/core-js/internals/global.js");
 
 // eslint-disable-next-line es/no-object-defineproperty -- safe
@@ -2545,6 +2648,8 @@ module.exports = function (key, value) {
   \********************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var fails = __webpack_require__(/*! ../internals/fails */ "../node_modules/core-js/internals/fails.js");
 
 // Detect IE8's incomplete defineProperty implementation
@@ -2561,6 +2666,8 @@ module.exports = !fails(function () {
   !*** ../node_modules/core-js/internals/document-all.js ***!
   \*********************************************************/
 /***/ ((module) => {
+
+"use strict";
 
 var documentAll = typeof document == 'object' && document.all;
 
@@ -2582,6 +2689,8 @@ module.exports = {
   \********************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var global = __webpack_require__(/*! ../internals/global */ "../node_modules/core-js/internals/global.js");
 var isObject = __webpack_require__(/*! ../internals/is-object */ "../node_modules/core-js/internals/is-object.js");
 
@@ -2602,6 +2711,8 @@ module.exports = function (it) {
   \**************************************************************/
 /***/ ((module) => {
 
+"use strict";
+
 module.exports = typeof navigator != 'undefined' && String(navigator.userAgent) || '';
 
 
@@ -2612,6 +2723,8 @@ module.exports = typeof navigator != 'undefined' && String(navigator.userAgent) 
   !*** ../node_modules/core-js/internals/engine-v8-version.js ***!
   \**************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var global = __webpack_require__(/*! ../internals/global */ "../node_modules/core-js/internals/global.js");
 var userAgent = __webpack_require__(/*! ../internals/engine-user-agent */ "../node_modules/core-js/internals/engine-user-agent.js");
@@ -2650,6 +2763,8 @@ module.exports = version;
   \**********************************************************/
 /***/ ((module) => {
 
+"use strict";
+
 // IE8- don't enum bug keys
 module.exports = [
   'constructor',
@@ -2669,6 +2784,8 @@ module.exports = [
   !*** ../node_modules/core-js/internals/error-stack-clear.js ***!
   \**************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "../node_modules/core-js/internals/function-uncurry-this.js");
 
@@ -2695,6 +2812,8 @@ module.exports = function (stack, dropEntries) {
   \****************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var createNonEnumerableProperty = __webpack_require__(/*! ../internals/create-non-enumerable-property */ "../node_modules/core-js/internals/create-non-enumerable-property.js");
 var clearErrorStack = __webpack_require__(/*! ../internals/error-stack-clear */ "../node_modules/core-js/internals/error-stack-clear.js");
 var ERROR_STACK_INSTALLABLE = __webpack_require__(/*! ../internals/error-stack-installable */ "../node_modules/core-js/internals/error-stack-installable.js");
@@ -2718,6 +2837,8 @@ module.exports = function (error, C, stack, dropEntries) {
   \********************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var fails = __webpack_require__(/*! ../internals/fails */ "../node_modules/core-js/internals/fails.js");
 var createPropertyDescriptor = __webpack_require__(/*! ../internals/create-property-descriptor */ "../node_modules/core-js/internals/create-property-descriptor.js");
 
@@ -2737,6 +2858,8 @@ module.exports = !fails(function () {
   !*** ../node_modules/core-js/internals/export.js ***!
   \***************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var global = __webpack_require__(/*! ../internals/global */ "../node_modules/core-js/internals/global.js");
 var getOwnPropertyDescriptor = (__webpack_require__(/*! ../internals/object-get-own-property-descriptor */ "../node_modules/core-js/internals/object-get-own-property-descriptor.js").f);
@@ -2802,6 +2925,8 @@ module.exports = function (options, source) {
   \**************************************************/
 /***/ ((module) => {
 
+"use strict";
+
 module.exports = function (exec) {
   try {
     return !!exec();
@@ -2818,6 +2943,8 @@ module.exports = function (exec) {
   !*** ../node_modules/core-js/internals/function-apply.js ***!
   \***********************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var NATIVE_BIND = __webpack_require__(/*! ../internals/function-bind-native */ "../node_modules/core-js/internals/function-bind-native.js");
 
@@ -2839,6 +2966,8 @@ module.exports = typeof Reflect == 'object' && Reflect.apply || (NATIVE_BIND ? c
   \*****************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var fails = __webpack_require__(/*! ../internals/fails */ "../node_modules/core-js/internals/fails.js");
 
 module.exports = !fails(function () {
@@ -2857,6 +2986,8 @@ module.exports = !fails(function () {
   \**********************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var NATIVE_BIND = __webpack_require__(/*! ../internals/function-bind-native */ "../node_modules/core-js/internals/function-bind-native.js");
 
 var call = Function.prototype.call;
@@ -2873,6 +3004,8 @@ module.exports = NATIVE_BIND ? call.bind(call) : function () {
   !*** ../node_modules/core-js/internals/function-name.js ***!
   \**********************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "../node_modules/core-js/internals/descriptors.js");
 var hasOwn = __webpack_require__(/*! ../internals/has-own-property */ "../node_modules/core-js/internals/has-own-property.js");
@@ -2901,6 +3034,8 @@ module.exports = {
   \***************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "../node_modules/core-js/internals/function-uncurry-this.js");
 var aCallable = __webpack_require__(/*! ../internals/a-callable */ "../node_modules/core-js/internals/a-callable.js");
 
@@ -2919,6 +3054,8 @@ module.exports = function (object, key, method) {
   !*** ../node_modules/core-js/internals/function-uncurry-this.js ***!
   \******************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var NATIVE_BIND = __webpack_require__(/*! ../internals/function-bind-native */ "../node_modules/core-js/internals/function-bind-native.js");
 
@@ -2941,6 +3078,8 @@ module.exports = NATIVE_BIND ? uncurryThisWithBind : function (fn) {
   \*********************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var global = __webpack_require__(/*! ../internals/global */ "../node_modules/core-js/internals/global.js");
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "../node_modules/core-js/internals/is-callable.js");
 
@@ -2961,6 +3100,8 @@ module.exports = function (namespace, method) {
   \*******************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var aCallable = __webpack_require__(/*! ../internals/a-callable */ "../node_modules/core-js/internals/a-callable.js");
 var isNullOrUndefined = __webpack_require__(/*! ../internals/is-null-or-undefined */ "../node_modules/core-js/internals/is-null-or-undefined.js");
 
@@ -2978,7 +3119,9 @@ module.exports = function (V, P) {
 /*!***************************************************!*\
   !*** ../node_modules/core-js/internals/global.js ***!
   \***************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
+
+"use strict";
 
 var check = function (it) {
   return it && it.Math == Math && it;
@@ -2993,7 +3136,7 @@ module.exports =
   check(typeof self == 'object' && self) ||
   check(typeof __webpack_require__.g == 'object' && __webpack_require__.g) ||
   // eslint-disable-next-line no-new-func -- fallback
-  (function () { return this; })() || Function('return this')();
+  (function () { return this; })() || this || Function('return this')();
 
 
 /***/ }),
@@ -3003,6 +3146,8 @@ module.exports =
   !*** ../node_modules/core-js/internals/has-own-property.js ***!
   \*************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "../node_modules/core-js/internals/function-uncurry-this.js");
 var toObject = __webpack_require__(/*! ../internals/to-object */ "../node_modules/core-js/internals/to-object.js");
@@ -3025,6 +3170,8 @@ module.exports = Object.hasOwn || function hasOwn(it, key) {
   \********************************************************/
 /***/ ((module) => {
 
+"use strict";
+
 module.exports = {};
 
 
@@ -3035,6 +3182,8 @@ module.exports = {};
   !*** ../node_modules/core-js/internals/ie8-dom-define.js ***!
   \***********************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "../node_modules/core-js/internals/descriptors.js");
 var fails = __webpack_require__(/*! ../internals/fails */ "../node_modules/core-js/internals/fails.js");
@@ -3056,6 +3205,8 @@ module.exports = !DESCRIPTORS && !fails(function () {
   !*** ../node_modules/core-js/internals/indexed-object.js ***!
   \***********************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "../node_modules/core-js/internals/function-uncurry-this.js");
 var fails = __webpack_require__(/*! ../internals/fails */ "../node_modules/core-js/internals/fails.js");
@@ -3081,6 +3232,8 @@ module.exports = fails(function () {
   !*** ../node_modules/core-js/internals/inherit-if-required.js ***!
   \****************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "../node_modules/core-js/internals/is-callable.js");
 var isObject = __webpack_require__(/*! ../internals/is-object */ "../node_modules/core-js/internals/is-object.js");
@@ -3110,6 +3263,8 @@ module.exports = function ($this, dummy, Wrapper) {
   \***********************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "../node_modules/core-js/internals/function-uncurry-this.js");
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "../node_modules/core-js/internals/is-callable.js");
 var store = __webpack_require__(/*! ../internals/shared-store */ "../node_modules/core-js/internals/shared-store.js");
@@ -3134,6 +3289,8 @@ module.exports = store.inspectSource;
   \****************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var isObject = __webpack_require__(/*! ../internals/is-object */ "../node_modules/core-js/internals/is-object.js");
 var createNonEnumerableProperty = __webpack_require__(/*! ../internals/create-non-enumerable-property */ "../node_modules/core-js/internals/create-non-enumerable-property.js");
 
@@ -3153,6 +3310,8 @@ module.exports = function (O, options) {
   !*** ../node_modules/core-js/internals/internal-state.js ***!
   \***********************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var NATIVE_WEAK_MAP = __webpack_require__(/*! ../internals/weak-map-basic-detection */ "../node_modules/core-js/internals/weak-map-basic-detection.js");
 var global = __webpack_require__(/*! ../internals/global */ "../node_modules/core-js/internals/global.js");
@@ -3234,6 +3393,8 @@ module.exports = {
   \********************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var $documentAll = __webpack_require__(/*! ../internals/document-all */ "../node_modules/core-js/internals/document-all.js");
 
 var documentAll = $documentAll.all;
@@ -3254,6 +3415,8 @@ module.exports = $documentAll.IS_HTMLDDA ? function (argument) {
   !*** ../node_modules/core-js/internals/is-forced.js ***!
   \******************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var fails = __webpack_require__(/*! ../internals/fails */ "../node_modules/core-js/internals/fails.js");
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "../node_modules/core-js/internals/is-callable.js");
@@ -3287,6 +3450,8 @@ module.exports = isForced;
   \*****************************************************************/
 /***/ ((module) => {
 
+"use strict";
+
 // we can't use just `it == null` since of `document.all` special case
 // https://tc39.es/ecma262/#sec-IsHTMLDDA-internal-slot-aec
 module.exports = function (it) {
@@ -3301,6 +3466,8 @@ module.exports = function (it) {
   !*** ../node_modules/core-js/internals/is-object.js ***!
   \******************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "../node_modules/core-js/internals/is-callable.js");
 var $documentAll = __webpack_require__(/*! ../internals/document-all */ "../node_modules/core-js/internals/document-all.js");
@@ -3322,6 +3489,8 @@ module.exports = $documentAll.IS_HTMLDDA ? function (it) {
   \****************************************************/
 /***/ ((module) => {
 
+"use strict";
+
 module.exports = false;
 
 
@@ -3332,6 +3501,8 @@ module.exports = false;
   !*** ../node_modules/core-js/internals/is-symbol.js ***!
   \******************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var getBuiltIn = __webpack_require__(/*! ../internals/get-built-in */ "../node_modules/core-js/internals/get-built-in.js");
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "../node_modules/core-js/internals/is-callable.js");
@@ -3356,6 +3527,8 @@ module.exports = USE_SYMBOL_AS_UID ? function (it) {
   \*****************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var toLength = __webpack_require__(/*! ../internals/to-length */ "../node_modules/core-js/internals/to-length.js");
 
 // `LengthOfArrayLike` abstract operation
@@ -3372,6 +3545,8 @@ module.exports = function (obj) {
   !*** ../node_modules/core-js/internals/make-built-in.js ***!
   \**********************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "../node_modules/core-js/internals/function-uncurry-this.js");
 var fails = __webpack_require__(/*! ../internals/fails */ "../node_modules/core-js/internals/fails.js");
@@ -3437,6 +3612,8 @@ Function.prototype.toString = makeBuiltIn(function toString() {
   \*******************************************************/
 /***/ ((module) => {
 
+"use strict";
+
 var ceil = Math.ceil;
 var floor = Math.floor;
 
@@ -3457,6 +3634,8 @@ module.exports = Math.trunc || function trunc(x) {
   \**********************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var toString = __webpack_require__(/*! ../internals/to-string */ "../node_modules/core-js/internals/to-string.js");
 
 module.exports = function (argument, $default) {
@@ -3471,6 +3650,8 @@ module.exports = function (argument, $default) {
   !*** ../node_modules/core-js/internals/object-define-property.js ***!
   \*******************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
 
 var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "../node_modules/core-js/internals/descriptors.js");
 var IE8_DOM_DEFINE = __webpack_require__(/*! ../internals/ie8-dom-define */ "../node_modules/core-js/internals/ie8-dom-define.js");
@@ -3525,6 +3706,8 @@ exports.f = DESCRIPTORS ? V8_PROTOTYPE_DEFINE_BUG ? function defineProperty(O, P
   \*******************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
+
 var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "../node_modules/core-js/internals/descriptors.js");
 var call = __webpack_require__(/*! ../internals/function-call */ "../node_modules/core-js/internals/function-call.js");
 var propertyIsEnumerableModule = __webpack_require__(/*! ../internals/object-property-is-enumerable */ "../node_modules/core-js/internals/object-property-is-enumerable.js");
@@ -3557,6 +3740,8 @@ exports.f = DESCRIPTORS ? $getOwnPropertyDescriptor : function getOwnPropertyDes
   \**************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
+"use strict";
+
 var internalObjectKeys = __webpack_require__(/*! ../internals/object-keys-internal */ "../node_modules/core-js/internals/object-keys-internal.js");
 var enumBugKeys = __webpack_require__(/*! ../internals/enum-bug-keys */ "../node_modules/core-js/internals/enum-bug-keys.js");
 
@@ -3578,6 +3763,8 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   \****************************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
+
 // eslint-disable-next-line es/no-object-getownpropertysymbols -- safe
 exports.f = Object.getOwnPropertySymbols;
 
@@ -3589,6 +3776,8 @@ exports.f = Object.getOwnPropertySymbols;
   !*** ../node_modules/core-js/internals/object-is-prototype-of.js ***!
   \*******************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "../node_modules/core-js/internals/function-uncurry-this.js");
 
@@ -3602,6 +3791,8 @@ module.exports = uncurryThis({}.isPrototypeOf);
   !*** ../node_modules/core-js/internals/object-keys-internal.js ***!
   \*****************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "../node_modules/core-js/internals/function-uncurry-this.js");
 var hasOwn = __webpack_require__(/*! ../internals/has-own-property */ "../node_modules/core-js/internals/has-own-property.js");
@@ -3658,6 +3849,8 @@ exports.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
   \********************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 /* eslint-disable no-proto -- safe */
 var uncurryThisAccessor = __webpack_require__(/*! ../internals/function-uncurry-this-accessor */ "../node_modules/core-js/internals/function-uncurry-this-accessor.js");
 var anObject = __webpack_require__(/*! ../internals/an-object */ "../node_modules/core-js/internals/an-object.js");
@@ -3694,6 +3887,8 @@ module.exports = Object.setPrototypeOf || ('__proto__' in {} ? function () {
   \******************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var call = __webpack_require__(/*! ../internals/function-call */ "../node_modules/core-js/internals/function-call.js");
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "../node_modules/core-js/internals/is-callable.js");
 var isObject = __webpack_require__(/*! ../internals/is-object */ "../node_modules/core-js/internals/is-object.js");
@@ -3719,6 +3914,8 @@ module.exports = function (input, pref) {
   \*****************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var getBuiltIn = __webpack_require__(/*! ../internals/get-built-in */ "../node_modules/core-js/internals/get-built-in.js");
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "../node_modules/core-js/internals/function-uncurry-this.js");
 var getOwnPropertyNamesModule = __webpack_require__(/*! ../internals/object-get-own-property-names */ "../node_modules/core-js/internals/object-get-own-property-names.js");
@@ -3743,6 +3940,8 @@ module.exports = getBuiltIn('Reflect', 'ownKeys') || function ownKeys(it) {
   \***********************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var defineProperty = (__webpack_require__(/*! ../internals/object-define-property */ "../node_modules/core-js/internals/object-define-property.js").f);
 
 module.exports = function (Target, Source, key) {
@@ -3761,6 +3960,8 @@ module.exports = function (Target, Source, key) {
   !*** ../node_modules/core-js/internals/require-object-coercible.js ***!
   \*********************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var isNullOrUndefined = __webpack_require__(/*! ../internals/is-null-or-undefined */ "../node_modules/core-js/internals/is-null-or-undefined.js");
 
@@ -3782,6 +3983,8 @@ module.exports = function (it) {
   \*******************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var shared = __webpack_require__(/*! ../internals/shared */ "../node_modules/core-js/internals/shared.js");
 var uid = __webpack_require__(/*! ../internals/uid */ "../node_modules/core-js/internals/uid.js");
 
@@ -3800,6 +4003,8 @@ module.exports = function (key) {
   \*********************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var global = __webpack_require__(/*! ../internals/global */ "../node_modules/core-js/internals/global.js");
 var defineGlobalProperty = __webpack_require__(/*! ../internals/define-global-property */ "../node_modules/core-js/internals/define-global-property.js");
 
@@ -3817,16 +4022,18 @@ module.exports = store;
   \***************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var IS_PURE = __webpack_require__(/*! ../internals/is-pure */ "../node_modules/core-js/internals/is-pure.js");
 var store = __webpack_require__(/*! ../internals/shared-store */ "../node_modules/core-js/internals/shared-store.js");
 
 (module.exports = function (key, value) {
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
-  version: '3.30.1',
+  version: '3.32.0',
   mode: IS_PURE ? 'pure' : 'global',
   copyright: '© 2014-2023 Denis Pushkarev (zloirock.ru)',
-  license: 'https://github.com/zloirock/core-js/blob/v3.30.1/LICENSE',
+  license: 'https://github.com/zloirock/core-js/blob/v3.32.0/LICENSE',
   source: 'https://github.com/zloirock/core-js'
 });
 
@@ -3839,16 +4046,23 @@ var store = __webpack_require__(/*! ../internals/shared-store */ "../node_module
   \*************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 /* eslint-disable es/no-symbol -- required for testing */
 var V8_VERSION = __webpack_require__(/*! ../internals/engine-v8-version */ "../node_modules/core-js/internals/engine-v8-version.js");
 var fails = __webpack_require__(/*! ../internals/fails */ "../node_modules/core-js/internals/fails.js");
+var global = __webpack_require__(/*! ../internals/global */ "../node_modules/core-js/internals/global.js");
+
+var $String = global.String;
 
 // eslint-disable-next-line es/no-object-getownpropertysymbols -- required for testing
 module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
   var symbol = Symbol();
   // Chrome 38 Symbol has incorrect toString conversion
   // `get-own-property-symbols` polyfill symbols converted to object are not Symbol instances
-  return !String(symbol) || !(Object(symbol) instanceof Symbol) ||
+  // nb: Do not call `String` directly to avoid this being optimized out to `symbol+''` which will,
+  // of course, fail.
+  return !$String(symbol) || !(Object(symbol) instanceof Symbol) ||
     // Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances
     !Symbol.sham && V8_VERSION && V8_VERSION < 41;
 });
@@ -3861,6 +4075,8 @@ module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
   !*** ../node_modules/core-js/internals/to-absolute-index.js ***!
   \**************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var toIntegerOrInfinity = __webpack_require__(/*! ../internals/to-integer-or-infinity */ "../node_modules/core-js/internals/to-integer-or-infinity.js");
 
@@ -3884,6 +4100,8 @@ module.exports = function (index, length) {
   \**************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 // toObject with fallback for non-array-like ES3 strings
 var IndexedObject = __webpack_require__(/*! ../internals/indexed-object */ "../node_modules/core-js/internals/indexed-object.js");
 var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "../node_modules/core-js/internals/require-object-coercible.js");
@@ -3900,6 +4118,8 @@ module.exports = function (it) {
   !*** ../node_modules/core-js/internals/to-integer-or-infinity.js ***!
   \*******************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var trunc = __webpack_require__(/*! ../internals/math-trunc */ "../node_modules/core-js/internals/math-trunc.js");
 
@@ -3920,6 +4140,8 @@ module.exports = function (argument) {
   \******************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var toIntegerOrInfinity = __webpack_require__(/*! ../internals/to-integer-or-infinity */ "../node_modules/core-js/internals/to-integer-or-infinity.js");
 
 var min = Math.min;
@@ -3939,6 +4161,8 @@ module.exports = function (argument) {
   \******************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "../node_modules/core-js/internals/require-object-coercible.js");
 
 var $Object = Object;
@@ -3957,6 +4181,8 @@ module.exports = function (argument) {
   !*** ../node_modules/core-js/internals/to-primitive.js ***!
   \*********************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var call = __webpack_require__(/*! ../internals/function-call */ "../node_modules/core-js/internals/function-call.js");
 var isObject = __webpack_require__(/*! ../internals/is-object */ "../node_modules/core-js/internals/is-object.js");
@@ -3993,6 +4219,8 @@ module.exports = function (input, pref) {
   \************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var toPrimitive = __webpack_require__(/*! ../internals/to-primitive */ "../node_modules/core-js/internals/to-primitive.js");
 var isSymbol = __webpack_require__(/*! ../internals/is-symbol */ "../node_modules/core-js/internals/is-symbol.js");
 
@@ -4012,6 +4240,8 @@ module.exports = function (argument) {
   \******************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "../node_modules/core-js/internals/well-known-symbol.js");
 
 var TO_STRING_TAG = wellKnownSymbol('toStringTag');
@@ -4030,6 +4260,8 @@ module.exports = String(test) === '[object z]';
   \******************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var classof = __webpack_require__(/*! ../internals/classof */ "../node_modules/core-js/internals/classof.js");
 
 var $String = String;
@@ -4047,6 +4279,8 @@ module.exports = function (argument) {
   !*** ../node_modules/core-js/internals/try-to-string.js ***!
   \**********************************************************/
 /***/ ((module) => {
+
+"use strict";
 
 var $String = String;
 
@@ -4067,6 +4301,8 @@ module.exports = function (argument) {
   \************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ "../node_modules/core-js/internals/function-uncurry-this.js");
 
 var id = 0;
@@ -4086,6 +4322,8 @@ module.exports = function (key) {
   \**************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 /* eslint-disable es/no-symbol -- required for testing */
 var NATIVE_SYMBOL = __webpack_require__(/*! ../internals/symbol-constructor-detection */ "../node_modules/core-js/internals/symbol-constructor-detection.js");
 
@@ -4101,6 +4339,8 @@ module.exports = NATIVE_SYMBOL
   !*** ../node_modules/core-js/internals/v8-prototype-define-bug.js ***!
   \********************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "../node_modules/core-js/internals/descriptors.js");
 var fails = __webpack_require__(/*! ../internals/fails */ "../node_modules/core-js/internals/fails.js");
@@ -4124,6 +4364,8 @@ module.exports = DESCRIPTORS && fails(function () {
   \*********************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 var global = __webpack_require__(/*! ../internals/global */ "../node_modules/core-js/internals/global.js");
 var isCallable = __webpack_require__(/*! ../internals/is-callable */ "../node_modules/core-js/internals/is-callable.js");
 
@@ -4139,6 +4381,8 @@ module.exports = isCallable(WeakMap) && /native code/.test(String(WeakMap));
   !*** ../node_modules/core-js/internals/well-known-symbol.js ***!
   \**************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
 
 var global = __webpack_require__(/*! ../internals/global */ "../node_modules/core-js/internals/global.js");
 var shared = __webpack_require__(/*! ../internals/shared */ "../node_modules/core-js/internals/shared.js");
@@ -4244,6 +4488,8 @@ module.exports = function (FULL_NAME, wrapper, FORCED, IS_AGGREGATE_ERROR) {
   \*********************************************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
+
 /* eslint-disable no-unused-vars -- required for functions `.length` */
 var $ = __webpack_require__(/*! ../internals/export */ "../node_modules/core-js/internals/export.js");
 var global = __webpack_require__(/*! ../internals/global */ "../node_modules/core-js/internals/global.js");
@@ -4270,7 +4516,6 @@ var exportWebAssemblyErrorCauseWrapper = function (ERROR_NAME, wrapper) {
 };
 
 // https://tc39.es/ecma262/#sec-nativeerror
-// https://github.com/tc39/proposal-error-cause
 exportGlobalErrorCauseWrapper('Error', function (init) {
   return function Error(message) { return apply(init, this, arguments); };
 });

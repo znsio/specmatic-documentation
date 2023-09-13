@@ -319,6 +319,16 @@ html {
 	margin-bottom: 18px !important;
 }
 
+/** General 2 >> Uael modal content data **/
+#modal-fe7358e .uael-modal-content-data {
+	height: 100% !important;
+}
+
+/** General 2 >> Uael content **/
+#modal-fe7358e .uael-content {
+	height: 650px !important;
+}
+
 
 /*( < 1200 )*/
 @media (max-width: 1199.98px) {
@@ -570,6 +580,17 @@ html {
 	/** General 2 >> Ditty item title link **/
 	.mtp-10 .ditty-item__title__link {
 	vertical-align: top !important;
+}
+
+	/** General 2 >> Uael content **/
+	#modal-fe7358e .uael-content {
+	width: 400px !important;
+}
+
+	/** General 2 >> Uael modal content data **/
+	#modal-fe7358e .uael-modal-content-data {
+	width: 500px !important;
+	height: 800px !important;
 }
 
 	/** General 2 >> Footer widget area inner **/

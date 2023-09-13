@@ -1,4 +1,4 @@
-/*! elementor - v3.15.0 - 20-08-2023 */
+/*! elementor - v3.16.0 - 12-09-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -1573,6 +1573,9 @@ ControlsStack = Marionette.CompositeView.extend({
       this.activateFirstSection();
     }
     this.listenTo(elementor.channels.deviceMode, 'change', this.onDeviceModeChange);
+  },
+  onDestroy: function onDestroy() {
+    this.stopListening(elementor.channels.deviceMode, 'change', this.onDeviceModeChange);
   },
   initCollection: function initCollection() {
     this.collection = new Backbone.Collection(_.values(elementor.mergeControlsSettings(this.getOption('controls'))));

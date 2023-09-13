@@ -1,4 +1,4 @@
-/*! elementor - v3.15.0 - 20-08-2023 */
+/*! elementor - v3.16.0 - 12-09-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -4211,7 +4211,9 @@ var ImagesDisplay = function ImagesDisplay(_ref2) {
   var images = _ref2.images,
     aspectRatio = _ref2.aspectRatio,
     onUseImage = _ref2.onUseImage,
-    onEditImage = _ref2.onEditImage;
+    onEditImage = _ref2.onEditImage,
+    _ref2$transparentCont = _ref2.transparentContainer,
+    transparentContainer = _ref2$transparentCont === void 0 ? false : _ref2$transparentCont;
   var _useImageNavigation = (0, _useImageNavigation2.default)(images),
     zoomIndex = _useImageNavigation.zoomIndex,
     setZoomIndex = _useImageNavigation.setZoomIndex,
@@ -4247,14 +4249,20 @@ var ImagesDisplay = function ImagesDisplay(_ref2) {
   }
   if (1 === images.length) {
     var image = images[0];
+    var singleImageStyle = {
+      width: width,
+      height: height
+    };
+    if (transparentContainer) {
+      singleImageStyle.backgroundImage = 'linear-gradient(45deg, #bbb 25%, transparent 25%), linear-gradient(-45deg, #bbb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #bbb 75%), linear-gradient(-45deg, transparent 75%, #bbb 75%)';
+      singleImageStyle.backgroundSize = '20px 20px';
+      singleImageStyle.backgroundPosition = '0 0, 0 10px, 10px -10px, -10px 0px';
+    }
     return /*#__PURE__*/_react.default.createElement(Container, {
       flexDirection: "column"
     }, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default, null, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default.Image, {
       src: image.image_url || image.url,
-      style: {
-        width: width,
-        height: height
-      },
+      style: singleImageStyle,
       alt: "generated-image"
     }, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default.Actions, null, /*#__PURE__*/_react.default.createElement(_imageActions.default.EditImage, {
       onClick: function onClick() {
@@ -4299,7 +4307,8 @@ ImagesDisplay.propTypes = {
   images: PropTypes.array,
   aspectRatio: PropTypes.string,
   onUseImage: PropTypes.func,
-  onEditImage: PropTypes.func
+  onEditImage: PropTypes.func,
+  transparentContainer: PropTypes.bool
 };
 ImagesDisplay.Container = Container;
 var _default = ImagesDisplay;
@@ -7133,6 +7142,7 @@ var _useRemoveBackground2 = _interopRequireDefault(__webpack_require__(/*! ./hoo
 var _newPromptButton = _interopRequireDefault(__webpack_require__(/*! ../../components/new-prompt-button */ "../modules/ai/assets/js/editor/pages/form-media/components/new-prompt-button.js"));
 var _constants = __webpack_require__(/*! ../../constants */ "../modules/ai/assets/js/editor/pages/form-media/constants/index.js");
 var _locationContext = __webpack_require__(/*! ../../context/location-context */ "../modules/ai/assets/js/editor/pages/form-media/context/location-context.js");
+var _useImageSize2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-size */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-size.js"));
 var RemoveBackground = function RemoveBackground() {
   var _useEditImage = (0, _editImageContext.useEditImage)(),
     editImage = _useEditImage.editImage;
@@ -7148,6 +7158,9 @@ var RemoveBackground = function RemoveBackground() {
   var _useLocation = (0, _locationContext.useLocation)(),
     navigate = _useLocation.navigate;
   var isLoading = isGenerating || isUploading;
+  var _useImageSize = (0, _useImageSize2.default)(editImage.aspectRatio),
+    width = _useImageSize.width,
+    height = _useImageSize.height;
   var handleSubmit = function handleSubmit(event) {
     event.preventDefault();
     send(editImage);
@@ -7161,6 +7174,7 @@ var RemoveBackground = function RemoveBackground() {
   }), /*#__PURE__*/_react.default.createElement(_imageForm.default, {
     onSubmit: handleSubmit
   }, data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_newPromptButton.default, {
+    variant: "contained",
     disabled: isLoading,
     onClick: function onClick() {
       return navigate(_constants.LOCATIONS.GENERATE);
@@ -7169,25 +7183,20 @@ var RemoveBackground = function RemoveBackground() {
     disabled: isLoading
   }, __('Remove Background', 'elementor')))), /*#__PURE__*/_react.default.createElement(_view.default.Content, {
     isGenerating: isLoading
-  }, data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    sx: {
-      backgroundImage: 'linear-gradient(45deg, #bbb 25%, transparent 25%), linear-gradient(-45deg, #bbb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #bbb 75%), linear-gradient(-45deg, transparent 75%, #bbb 75%)',
-      backgroundSize: '20px 20px',
-      backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px'
-    }
-  }, /*#__PURE__*/_react.default.createElement(_imagesDisplay.default, {
+  }, data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_ui.Box, null, /*#__PURE__*/_react.default.createElement(_imagesDisplay.default, {
+    transparentContainer: true,
     onUseImage: use,
     onEditImage: edit,
     images: data.result,
     aspectRatio: editImage.aspectRatio
-  })) : /*#__PURE__*/_react.default.createElement(_singleImagePreview.default, null, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default.Image, {
+  })) : /*#__PURE__*/_react.default.createElement(_ui.Box, null, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default, null, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default.Image, {
     src: editImage.url,
     alt: editImage.alt,
     style: {
-      width: editImage.width,
-      height: editImage.height
+      width: width,
+      height: height
     }
-  }))));
+  })))));
 };
 var _default = RemoveBackground;
 exports["default"] = _default;
@@ -7248,6 +7257,8 @@ var _editImageContext = __webpack_require__(/*! ../../context/edit-image-context
 var _useImageActions2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-actions */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-actions.js"));
 var _useReplaceBackground2 = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-replace-background */ "../modules/ai/assets/js/editor/pages/form-media/views/replace-background/hooks/use-replace-background.js"));
 var _promptField = _interopRequireDefault(__webpack_require__(/*! ../../components/prompt-field */ "../modules/ai/assets/js/editor/pages/form-media/components/prompt-field.js"));
+var _constants = __webpack_require__(/*! ../../constants */ "../modules/ai/assets/js/editor/pages/form-media/constants/index.js");
+var _newPromptButton = _interopRequireDefault(__webpack_require__(/*! ../../components/new-prompt-button */ "../modules/ai/assets/js/editor/pages/form-media/components/new-prompt-button.js"));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 var RemoveBackground = function RemoveBackground() {
@@ -7285,8 +7296,14 @@ var RemoveBackground = function RemoveBackground() {
     onChange: setPrompt,
     placeholder: __('Describe what you want to generate in the background (English only)', 'elementor')
   }), /*#__PURE__*/_react.default.createElement(_generateSubmit.default, {
-    disabled: isLoading || '' === prompt
-  }, __('Replace Background', 'elementor')))), /*#__PURE__*/_react.default.createElement(_view.default.Content, {
+    disabled: isLoading || '' === prompt,
+    color: data !== null && data !== void 0 && data.result ? 'secondary' : 'primary'
+  }, data !== null && data !== void 0 && data.result ? __('Generate Again', 'elementor') : __('Replace Background', 'elementor')), (data === null || data === void 0 ? void 0 : data.result) && /*#__PURE__*/_react.default.createElement(_newPromptButton.default, {
+    disabled: isLoading,
+    onClick: function onClick() {
+      return navigate(_constants.LOCATIONS.GENERATE);
+    }
+  }))), /*#__PURE__*/_react.default.createElement(_view.default.Content, {
     isGenerating: isLoading
   }, data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_imagesDisplay.default, {
     onUseImage: use,
@@ -8063,7 +8080,7 @@ exports["default"] = _default;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "clsx": () => (/* binding */ clsx),
+/* harmony export */   clsx: () => (/* binding */ clsx),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 function r(e){var t,f,n="";if("string"==typeof e||"number"==typeof e)n+=e;else if("object"==typeof e)if(Array.isArray(e))for(t=0;t<e.length;t++)e[t]&&(f=r(e[t]))&&(n&&(n+=" "),n+=f);else for(t in e)e[t]&&(n&&(n+=" "),n+=t);return n}function clsx(){for(var e,t,f=0,n="";f<arguments.length;)(e=arguments[f++])&&(t=r(e))&&(n&&(n+=" "),n+=t);return n}/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (clsx);
@@ -12437,8 +12454,8 @@ if (false) {} else {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Canvas": () => (/* binding */ Canvas),
-/* harmony export */   "ReactSketchCanvas": () => (/* binding */ ReactSketchCanvas)
+/* harmony export */   Canvas: () => (/* binding */ Canvas),
+/* harmony export */   ReactSketchCanvas: () => (/* binding */ ReactSketchCanvas)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -14099,24 +14116,24 @@ module.exports = ReactDOM;
 /***/ }),
 
 /***/ "@elementor/icons":
-/*!******************************************************!*\
-  !*** external "__UNSTABLE__elementorPackages.icons" ***!
-  \******************************************************/
+/*!************************************!*\
+  !*** external "elementorV2.icons" ***!
+  \************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = __UNSTABLE__elementorPackages.icons;
+module.exports = elementorV2.icons;
 
 /***/ }),
 
 /***/ "@elementor/ui":
-/*!***************************************************!*\
-  !*** external "__UNSTABLE__elementorPackages.ui" ***!
-  \***************************************************/
+/*!*********************************!*\
+  !*** external "elementorV2.ui" ***!
+  \*********************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = __UNSTABLE__elementorPackages.ui;
+module.exports = elementorV2.ui;
 
 /***/ }),
 
@@ -14996,7 +15013,7 @@ try {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "bail": () => (/* binding */ bail)
+/* harmony export */   bail: () => (/* binding */ bail)
 /* harmony export */ });
 /**
  * Throw a given error.
@@ -15023,8 +15040,8 @@ function bail(error) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "parse": () => (/* binding */ parse),
-/* harmony export */   "stringify": () => (/* binding */ stringify)
+/* harmony export */   parse: () => (/* binding */ parse),
+/* harmony export */   stringify: () => (/* binding */ stringify)
 /* harmony export */ });
 /**
  * @typedef Options
@@ -15113,7 +15130,7 @@ function stringify(values, options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "decodeNamedCharacterReference": () => (/* binding */ decodeNamedCharacterReference)
+/* harmony export */   decodeNamedCharacterReference: () => (/* binding */ decodeNamedCharacterReference)
 /* harmony export */ });
 /// <reference lib="dom" />
 
@@ -15161,7 +15178,7 @@ function decodeNamedCharacterReference(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "dequal": () => (/* binding */ dequal)
+/* harmony export */   dequal: () => (/* binding */ dequal)
 /* harmony export */ });
 var has = Object.prototype.hasOwnProperty;
 
@@ -15260,26 +15277,26 @@ function dequal(foo, bar) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Diff": () => (/* binding */ Diff),
-/* harmony export */   "applyPatch": () => (/* binding */ applyPatch),
-/* harmony export */   "applyPatches": () => (/* binding */ applyPatches),
-/* harmony export */   "canonicalize": () => (/* binding */ canonicalize),
-/* harmony export */   "convertChangesToDMP": () => (/* binding */ convertChangesToDMP),
-/* harmony export */   "convertChangesToXML": () => (/* binding */ convertChangesToXML),
-/* harmony export */   "createPatch": () => (/* binding */ createPatch),
-/* harmony export */   "createTwoFilesPatch": () => (/* binding */ createTwoFilesPatch),
-/* harmony export */   "diffArrays": () => (/* binding */ diffArrays),
-/* harmony export */   "diffChars": () => (/* binding */ diffChars),
-/* harmony export */   "diffCss": () => (/* binding */ diffCss),
-/* harmony export */   "diffJson": () => (/* binding */ diffJson),
-/* harmony export */   "diffLines": () => (/* binding */ diffLines),
-/* harmony export */   "diffSentences": () => (/* binding */ diffSentences),
-/* harmony export */   "diffTrimmedLines": () => (/* binding */ diffTrimmedLines),
-/* harmony export */   "diffWords": () => (/* binding */ diffWords),
-/* harmony export */   "diffWordsWithSpace": () => (/* binding */ diffWordsWithSpace),
-/* harmony export */   "merge": () => (/* binding */ merge),
-/* harmony export */   "parsePatch": () => (/* binding */ parsePatch),
-/* harmony export */   "structuredPatch": () => (/* binding */ structuredPatch)
+/* harmony export */   Diff: () => (/* binding */ Diff),
+/* harmony export */   applyPatch: () => (/* binding */ applyPatch),
+/* harmony export */   applyPatches: () => (/* binding */ applyPatches),
+/* harmony export */   canonicalize: () => (/* binding */ canonicalize),
+/* harmony export */   convertChangesToDMP: () => (/* binding */ convertChangesToDMP),
+/* harmony export */   convertChangesToXML: () => (/* binding */ convertChangesToXML),
+/* harmony export */   createPatch: () => (/* binding */ createPatch),
+/* harmony export */   createTwoFilesPatch: () => (/* binding */ createTwoFilesPatch),
+/* harmony export */   diffArrays: () => (/* binding */ diffArrays),
+/* harmony export */   diffChars: () => (/* binding */ diffChars),
+/* harmony export */   diffCss: () => (/* binding */ diffCss),
+/* harmony export */   diffJson: () => (/* binding */ diffJson),
+/* harmony export */   diffLines: () => (/* binding */ diffLines),
+/* harmony export */   diffSentences: () => (/* binding */ diffSentences),
+/* harmony export */   diffTrimmedLines: () => (/* binding */ diffTrimmedLines),
+/* harmony export */   diffWords: () => (/* binding */ diffWords),
+/* harmony export */   diffWordsWithSpace: () => (/* binding */ diffWordsWithSpace),
+/* harmony export */   merge: () => (/* binding */ merge),
+/* harmony export */   parsePatch: () => (/* binding */ parsePatch),
+/* harmony export */   structuredPatch: () => (/* binding */ structuredPatch)
 /* harmony export */ });
 function Diff() {}
 Diff.prototype = {
@@ -16855,7 +16872,7 @@ function escapeHTML(s) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "whitespace": () => (/* binding */ whitespace)
+/* harmony export */   whitespace: () => (/* binding */ whitespace)
 /* harmony export */ });
 /**
  * Check if the given value is *inter-element whitespace*.
@@ -16918,7 +16935,7 @@ function isPlainObject(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "definitions": () => (/* binding */ definitions)
+/* harmony export */   definitions: () => (/* binding */ definitions)
 /* harmony export */ });
 /* harmony import */ var unist_util_visit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! unist-util-visit */ "../node_modules/unist-util-visit/lib/index.js");
 /**
@@ -16998,7 +17015,7 @@ function clean(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "fromMarkdown": () => (/* binding */ fromMarkdown)
+/* harmony export */   fromMarkdown: () => (/* binding */ fromMarkdown)
 /* harmony export */ });
 /* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var mdast_util_to_string__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! mdast-util-to-string */ "../node_modules/mdast-util-to-string/lib/index.js");
@@ -17207,7 +17224,6 @@ const fromMarkdown =
 
       return compiler(options)(
         (0,micromark_lib_postprocess_js__WEBPACK_IMPORTED_MODULE_1__.postprocess)(
-          // @ts-expect-error: micromark types need to accept `null`.
           (0,micromark_lib_parse_js__WEBPACK_IMPORTED_MODULE_2__.parse)(options).document().write((0,micromark_lib_preprocess_js__WEBPACK_IMPORTED_MODULE_3__.preprocess)()(value, encoding, true))
         )
       )
@@ -17519,7 +17535,6 @@ function compiler(options) {
             firstBlankLineIndex &&
             (!lineIndex || firstBlankLineIndex < lineIndex)
           ) {
-            // @ts-expect-error Patched.
             listItem._spread = true
           }
 
@@ -17538,9 +17553,10 @@ function compiler(options) {
         if (event[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.listItemPrefix) {
           listItem = {
             type: 'listItem',
-            // @ts-expect-error Patched
             _spread: false,
-            start: Object.assign({}, event[1].start)
+            start: Object.assign({}, event[1].start),
+            // @ts-expect-error: we’ll add `end` in a second.
+            end: undefined
           }
           // @ts-expect-error: `listItem` is most definitely defined, TS...
           events.splice(index, 0, ['enter', listItem, event[2]])
@@ -17552,7 +17568,6 @@ function compiler(options) {
       }
     }
 
-    // @ts-expect-error Patched.
     events[start][1]._spread = listSpread
     return length
   }
@@ -18354,7 +18369,6 @@ function compiler(options) {
       type: 'list',
       ordered: token.type === 'listOrdered',
       start: null,
-      // @ts-expect-error Patched.
       spread: token._spread,
       children: []
     }
@@ -18367,7 +18381,6 @@ function compiler(options) {
   function listItem(token) {
     return {
       type: 'listItem',
-      // @ts-expect-error Patched.
       spread: token._spread,
       checked: null,
       children: []
@@ -18494,7 +18507,7 @@ function defaultOnError(left, right) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "footer": () => (/* binding */ footer)
+/* harmony export */   footer: () => (/* binding */ footer)
 /* harmony export */ });
 /* harmony import */ var micromark_util_sanitize_uri__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-sanitize-uri */ "../node_modules/micromark-util-sanitize-uri/dev/index.js");
 /**
@@ -18638,7 +18651,7 @@ function footer(state) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "blockquote": () => (/* binding */ blockquote)
+/* harmony export */   blockquote: () => (/* binding */ blockquote)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -18680,7 +18693,7 @@ function blockquote(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "hardBreak": () => (/* binding */ hardBreak)
+/* harmony export */   hardBreak: () => (/* binding */ hardBreak)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -18718,7 +18731,7 @@ function hardBreak(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "code": () => (/* binding */ code)
+/* harmony export */   code: () => (/* binding */ code)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -18784,7 +18797,7 @@ function code(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "strikethrough": () => (/* binding */ strikethrough)
+/* harmony export */   strikethrough: () => (/* binding */ strikethrough)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -18827,7 +18840,7 @@ function strikethrough(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "emphasis": () => (/* binding */ emphasis)
+/* harmony export */   emphasis: () => (/* binding */ emphasis)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -18869,7 +18882,7 @@ function emphasis(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "footnoteReference": () => (/* binding */ footnoteReference)
+/* harmony export */   footnoteReference: () => (/* binding */ footnoteReference)
 /* harmony export */ });
 /* harmony import */ var micromark_util_sanitize_uri__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-sanitize-uri */ "../node_modules/micromark-util-sanitize-uri/dev/index.js");
 /**
@@ -18949,7 +18962,7 @@ function footnoteReference(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "footnote": () => (/* binding */ footnote)
+/* harmony export */   footnote: () => (/* binding */ footnote)
 /* harmony export */ });
 /* harmony import */ var _footnote_reference_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./footnote-reference.js */ "../node_modules/mdast-util-to-hast/lib/handlers/footnote-reference.js");
 /**
@@ -19010,7 +19023,7 @@ function footnote(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "heading": () => (/* binding */ heading)
+/* harmony export */   heading: () => (/* binding */ heading)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -19052,7 +19065,7 @@ function heading(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "html": () => (/* binding */ html)
+/* harmony export */   html: () => (/* binding */ html)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -19096,7 +19109,7 @@ function html(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "imageReference": () => (/* binding */ imageReference)
+/* harmony export */   imageReference: () => (/* binding */ imageReference)
 /* harmony export */ });
 /* harmony import */ var micromark_util_sanitize_uri__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-sanitize-uri */ "../node_modules/micromark-util-sanitize-uri/dev/index.js");
 /* harmony import */ var _revert_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../revert.js */ "../node_modules/mdast-util-to-hast/lib/revert.js");
@@ -19153,7 +19166,7 @@ function imageReference(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "image": () => (/* binding */ image)
+/* harmony export */   image: () => (/* binding */ image)
 /* harmony export */ });
 /* harmony import */ var micromark_util_sanitize_uri__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-sanitize-uri */ "../node_modules/micromark-util-sanitize-uri/dev/index.js");
 /**
@@ -19205,7 +19218,7 @@ function image(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "handlers": () => (/* binding */ handlers)
+/* harmony export */   handlers: () => (/* binding */ handlers)
 /* harmony export */ });
 /* harmony import */ var _blockquote_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blockquote.js */ "../node_modules/mdast-util-to-hast/lib/handlers/blockquote.js");
 /* harmony import */ var _break_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./break.js */ "../node_modules/mdast-util-to-hast/lib/handlers/break.js");
@@ -19308,7 +19321,7 @@ function ignore() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "inlineCode": () => (/* binding */ inlineCode)
+/* harmony export */   inlineCode: () => (/* binding */ inlineCode)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -19355,7 +19368,7 @@ function inlineCode(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "linkReference": () => (/* binding */ linkReference)
+/* harmony export */   linkReference: () => (/* binding */ linkReference)
 /* harmony export */ });
 /* harmony import */ var micromark_util_sanitize_uri__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-sanitize-uri */ "../node_modules/micromark-util-sanitize-uri/dev/index.js");
 /* harmony import */ var _revert_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../revert.js */ "../node_modules/mdast-util-to-hast/lib/revert.js");
@@ -19417,7 +19430,7 @@ function linkReference(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "link": () => (/* binding */ link)
+/* harmony export */   link: () => (/* binding */ link)
 /* harmony export */ });
 /* harmony import */ var micromark_util_sanitize_uri__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-sanitize-uri */ "../node_modules/micromark-util-sanitize-uri/dev/index.js");
 /**
@@ -19470,7 +19483,7 @@ function link(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "listItem": () => (/* binding */ listItem)
+/* harmony export */   listItem: () => (/* binding */ listItem)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -19614,7 +19627,7 @@ function listItemLoose(node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "list": () => (/* binding */ list)
+/* harmony export */   list: () => (/* binding */ list)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -19682,7 +19695,7 @@ function list(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "paragraph": () => (/* binding */ paragraph)
+/* harmony export */   paragraph: () => (/* binding */ paragraph)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -19724,7 +19737,7 @@ function paragraph(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "root": () => (/* binding */ root)
+/* harmony export */   root: () => (/* binding */ root)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Root} HastRoot
@@ -19762,7 +19775,7 @@ function root(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "strong": () => (/* binding */ strong)
+/* harmony export */   strong: () => (/* binding */ strong)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -19804,7 +19817,7 @@ function strong(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "tableCell": () => (/* binding */ tableCell)
+/* harmony export */   tableCell: () => (/* binding */ tableCell)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -19848,7 +19861,7 @@ function tableCell(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "tableRow": () => (/* binding */ tableRow)
+/* harmony export */   tableRow: () => (/* binding */ tableRow)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Properties} Properties
@@ -19935,7 +19948,7 @@ function tableRow(state, node, parent) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "table": () => (/* binding */ table)
+/* harmony export */   table: () => (/* binding */ table)
 /* harmony export */ });
 /* harmony import */ var unist_util_position__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! unist-util-position */ "../node_modules/unist-util-position/lib/index.js");
 /**
@@ -20012,7 +20025,7 @@ function table(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "text": () => (/* binding */ text)
+/* harmony export */   text: () => (/* binding */ text)
 /* harmony export */ });
 /* harmony import */ var trim_lines__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! trim-lines */ "../node_modules/trim-lines/index.js");
 /**
@@ -20053,7 +20066,7 @@ function text(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "thematicBreak": () => (/* binding */ thematicBreak)
+/* harmony export */   thematicBreak: () => (/* binding */ thematicBreak)
 /* harmony export */ });
 /**
  * @typedef {import('hast').Element} Element
@@ -20095,7 +20108,7 @@ function thematicBreak(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "toHast": () => (/* binding */ toHast)
+/* harmony export */   toHast: () => (/* binding */ toHast)
 /* harmony export */ });
 /* harmony import */ var _footer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./footer.js */ "../node_modules/mdast-util-to-hast/lib/footer.js");
 /* harmony import */ var _state_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./state.js */ "../node_modules/mdast-util-to-hast/lib/state.js");
@@ -20223,7 +20236,7 @@ function toHast(tree, options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "revert": () => (/* binding */ revert)
+/* harmony export */   revert: () => (/* binding */ revert)
 /* harmony export */ });
 /**
  * @typedef {import('hast').ElementContent} ElementContent
@@ -20298,10 +20311,10 @@ function revert(state, node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "all": () => (/* binding */ all),
-/* harmony export */   "createState": () => (/* binding */ createState),
-/* harmony export */   "one": () => (/* binding */ one),
-/* harmony export */   "wrap": () => (/* binding */ wrap)
+/* harmony export */   all: () => (/* binding */ all),
+/* harmony export */   createState: () => (/* binding */ createState),
+/* harmony export */   one: () => (/* binding */ one),
+/* harmony export */   wrap: () => (/* binding */ wrap)
 /* harmony export */ });
 /* harmony import */ var unist_util_visit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! unist-util-visit */ "../node_modules/unist-util-visit/lib/index.js");
 /* harmony import */ var unist_util_position__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! unist-util-position */ "../node_modules/unist-util-position/lib/index.js");
@@ -20898,7 +20911,7 @@ function wrap(nodes, loose) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "toString": () => (/* binding */ toString)
+/* harmony export */   toString: () => (/* binding */ toString)
 /* harmony export */ });
 /**
  * @typedef {import('mdast').Root|import('mdast').Content} Node
@@ -21021,24 +21034,25 @@ function node(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "attention": () => (/* binding */ attention)
+/* harmony export */   attention: () => (/* binding */ attention)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-chunked */ "../node_modules/micromark-util-chunked/dev/index.js");
 /* harmony import */ var micromark_util_classify_character__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-classify-character */ "../node_modules/micromark-util-classify-character/dev/index.js");
 /* harmony import */ var micromark_util_resolve_all__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-resolve-all */ "../node_modules/micromark-util-resolve-all/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
+ * @typedef {import('micromark-util-types').Code} Code
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
+ * @typedef {import('micromark-util-types').Event} Event
+ * @typedef {import('micromark-util-types').Point} Point
  * @typedef {import('micromark-util-types').Resolver} Resolver
  * @typedef {import('micromark-util-types').State} State
  * @typedef {import('micromark-util-types').Token} Token
- * @typedef {import('micromark-util-types').Event} Event
- * @typedef {import('micromark-util-types').Code} Code
- * @typedef {import('micromark-util-types').Point} Point
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -21075,7 +21089,7 @@ function resolveAllAttention(events, context) {
   let closingSequence
   /** @type {number} */
   let use
-  /** @type {Event[]} */
+  /** @type {Array<Event>} */
   let nextEvents
   /** @type {number} */
   let offset
@@ -21176,6 +21190,12 @@ function resolveAllAttention(events, context) {
             ['enter', text, context]
           ])
 
+          // Always populated by defaults.
+          ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+            context.parser.constructs.insideSpan.null,
+            'expected `insideSpan` to be populated'
+          )
+
           // Between.
           nextEvents = (0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.push)(
             nextEvents,
@@ -21226,7 +21246,10 @@ function resolveAllAttention(events, context) {
   return events
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeAttention(effects, ok) {
   const attentionMarkers = this.parser.constructs.attentionMarkers.null
   const previous = this.previous
@@ -21237,26 +21260,49 @@ function tokenizeAttention(effects, ok) {
 
   return start
 
-  /** @type {State} */
+  /**
+   * Before a sequence.
+   *
+   * ```markdown
+   * > | **
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_5__.codes.asterisk || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_5__.codes.underscore,
       'expected asterisk or underscore'
     )
-    effects.enter('attentionSequence')
     marker = code
-    return sequence(code)
+    effects.enter('attentionSequence')
+    return inside(code)
   }
 
-  /** @type {State} */
-  function sequence(code) {
+  /**
+   * In a sequence.
+   *
+   * ```markdown
+   * > | **
+   *     ^^
+   * ```
+   *
+   * @type {State}
+   */
+  function inside(code) {
     if (code === marker) {
       effects.consume(code)
-      return sequence
+      return inside
     }
 
     const token = effects.exit('attentionSequence')
+
+    // To do: next major: move this to resolver, just like `markdown-rs`.
     const after = (0,micromark_util_classify_character__WEBPACK_IMPORTED_MODULE_4__.classifyCharacter)(code)
+
+    // Always populated by defaults.
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(attentionMarkers, 'expected `attentionMarkers` to be populated')
 
     const open =
       !after ||
@@ -21305,17 +21351,18 @@ function movePoint(point, offset) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "autolink": () => (/* binding */ autolink)
+/* harmony export */   autolink: () => (/* binding */ autolink)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -21327,13 +21374,27 @@ __webpack_require__.r(__webpack_exports__);
 /** @type {Construct} */
 const autolink = {name: 'autolink', tokenize: tokenizeAutolink}
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeAutolink(effects, ok, nok) {
-  let size = 1
+  let size = 0
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of an autolink.
+   *
+   * ```markdown
+   * > | a<https://example.com>b
+   *      ^
+   * > | a<user@example.com>b
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.lessThan, 'expected `<`')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolink)
@@ -21344,33 +21405,75 @@ function tokenizeAutolink(effects, ok, nok) {
     return open
   }
 
-  /** @type {State} */
+  /**
+   * After `<`, at protocol or atext.
+   *
+   * ```markdown
+   * > | a<https://example.com>b
+   *       ^
+   * > | a<user@example.com>b
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
   function open(code) {
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlpha)(code)) {
       effects.consume(code)
       return schemeOrEmailAtext
     }
 
-    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAtext)(code) ? emailAtext(code) : nok(code)
+    return emailAtext(code)
   }
 
-  /** @type {State} */
+  /**
+   * At second byte of protocol or atext.
+   *
+   * ```markdown
+   * > | a<https://example.com>b
+   *        ^
+   * > | a<user@example.com>b
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function schemeOrEmailAtext(code) {
-    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.plusSign ||
+    // ASCII alphanumeric and `+`, `-`, and `.`.
+    if (
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.plusSign ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dot ||
       (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlphanumeric)(code)
-      ? schemeInsideOrEmailAtext(code)
-      : emailAtext(code)
+    ) {
+      // Count the previous alphabetical from `open` too.
+      size = 1
+      return schemeInsideOrEmailAtext(code)
+    }
+
+    return emailAtext(code)
   }
 
-  /** @type {State} */
+  /**
+   * In ambiguous protocol or atext.
+   *
+   * ```markdown
+   * > | a<https://example.com>b
+   *        ^
+   * > | a<user@example.com>b
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function schemeInsideOrEmailAtext(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.colon) {
       effects.consume(code)
+      size = 0
       return urlInside
     }
 
+    // ASCII alphanumeric and `+`, `-`, and `.`.
     if (
       (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.plusSign ||
         code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash ||
@@ -21382,16 +21485,31 @@ function tokenizeAutolink(effects, ok, nok) {
       return schemeInsideOrEmailAtext
     }
 
+    size = 0
     return emailAtext(code)
   }
 
-  /** @type {State} */
+  /**
+   * After protocol, in URL.
+   *
+   * ```markdown
+   * > | a<https://example.com>b
+   *             ^
+   * ```
+   *
+   * @type {State}
+   */
   function urlInside(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkProtocol)
-      return end(code)
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkMarker)
+      effects.consume(code)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkMarker)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolink)
+      return ok
     }
 
+    // ASCII control, space, or `<`.
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.space ||
@@ -21405,11 +21523,19 @@ function tokenizeAutolink(effects, ok, nok) {
     return urlInside
   }
 
-  /** @type {State} */
+  /**
+   * In email atext.
+   *
+   * ```markdown
+   * > | a<user.name@example.com>b
+   *              ^
+   * ```
+   *
+   * @type {State}
+   */
   function emailAtext(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.atSign) {
       effects.consume(code)
-      size = 0
       return emailAtSignOrDot
     }
 
@@ -21421,12 +21547,30 @@ function tokenizeAutolink(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * In label, after at-sign or dot.
+   *
+   * ```markdown
+   * > | a<user.name@example.com>b
+   *                 ^       ^
+   * ```
+   *
+   * @type {State}
+   */
   function emailAtSignOrDot(code) {
     return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlphanumeric)(code) ? emailLabel(code) : nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * In label, where `.` and `>` are allowed.
+   *
+   * ```markdown
+   * > | a<user.name@example.com>b
+   *                   ^
+   * ```
+   *
+   * @type {State}
+   */
   function emailLabel(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dot) {
       effects.consume(code)
@@ -21435,35 +21579,42 @@ function tokenizeAutolink(effects, ok, nok) {
     }
 
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan) {
-      // Exit, then change the type.
+      // Exit, then change the token type.
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkProtocol).type = micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkEmail
-      return end(code)
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkMarker)
+      effects.consume(code)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkMarker)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolink)
+      return ok
     }
 
     return emailValue(code)
   }
 
-  /** @type {State} */
+  /**
+   * In label, where `.` and `>` are *not* allowed.
+   *
+   * Though, this is also used in `emailLabel` to parse other values.
+   *
+   * ```markdown
+   * > | a<user.name@ex-ample.com>b
+   *                    ^
+   * ```
+   *
+   * @type {State}
+   */
   function emailValue(code) {
+    // ASCII alphanumeric or `-`.
     if (
       (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlphanumeric)(code)) &&
       size++ < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.autolinkDomainSizeMax
     ) {
+      const next = code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash ? emailValue : emailLabel
       effects.consume(code)
-      return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash ? emailValue : emailLabel
+      return next
     }
 
     return nok(code)
-  }
-
-  /** @type {State} */
-  function end(code) {
-    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan, 'expected `>`')
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkMarker)
-    effects.consume(code)
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolinkMarker)
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.autolink)
-    return ok
   }
 }
 
@@ -21479,16 +21630,17 @@ function tokenizeAutolink(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "blankLine": () => (/* binding */ blankLine)
+/* harmony export */   blankLine: () => (/* binding */ blankLine)
 /* harmony export */ });
-/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
-/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
-/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
-/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
+/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
+/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
+/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -21499,13 +21651,49 @@ __webpack_require__.r(__webpack_exports__);
 /** @type {Construct} */
 const blankLine = {tokenize: tokenizeBlankLine, partial: true}
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeBlankLine(effects, ok, nok) {
-  return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_0__.factorySpace)(effects, afterWhitespace, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.linePrefix)
+  return start
 
-  /** @type {State} */
-  function afterWhitespace(code) {
-    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code) ? ok(code) : nok(code)
+  /**
+   * Start of blank line.
+   *
+   * > 👉 **Note**: `␠` represents a space character.
+   *
+   * ```markdown
+   * > | ␠␠␊
+   *     ^
+   * > | ␊
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function start(code) {
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_0__.markdownSpace)(code)
+      ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_1__.factorySpace)(effects, after, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix)(code)
+      : after(code)
+  }
+
+  /**
+   * At eof/eol, after optional whitespace.
+   *
+   * > 👉 **Note**: `␠` represents a space character.
+   *
+   * ```markdown
+   * > | ␠␠␊
+   *       ^
+   * > | ␊
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function after(code) {
+    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_3__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_0__.markdownLineEnding)(code) ? ok(code) : nok(code)
   }
 }
 
@@ -21521,19 +21709,20 @@ function tokenizeBlankLine(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "blockQuote": () => (/* binding */ blockQuote)
+/* harmony export */   blockQuote: () => (/* binding */ blockQuote)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').Exiter} Exiter
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -21551,13 +21740,25 @@ const blockQuote = {
   exit
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeBlockQuoteStart(effects, ok, nok) {
   const self = this
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of block quote.
+   *
+   * ```markdown
+   * > | > a
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan) {
       const state = self.containerState
@@ -21579,7 +21780,16 @@ function tokenizeBlockQuoteStart(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `>`, before optional whitespace.
+   *
+   * ```markdown
+   * > | > a
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
   function after(code) {
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.blockQuotePrefixWhitespace)
@@ -21594,16 +21804,73 @@ function tokenizeBlockQuoteStart(effects, ok, nok) {
   }
 }
 
-/** @type {Tokenizer} */
+/**
+ * Start of block quote continuation.
+ *
+ * ```markdown
+ *   | > a
+ * > | > b
+ *     ^
+ * ```
+ *
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeBlockQuoteContinuation(effects, ok, nok) {
-  return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(
-    effects,
-    effects.attempt(blockQuote, ok, nok),
-    micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix,
-    this.parser.constructs.disable.null.includes('codeIndented')
-      ? undefined
-      : micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__.constants.tabSize
-  )
+  const self = this
+
+  return contStart
+
+  /**
+   * Start of block quote continuation.
+   *
+   * Also used to parse the first block quote opening.
+   *
+   * ```markdown
+   *   | > a
+   * > | > b
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function contStart(code) {
+    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)) {
+      // Always populated by defaults.
+      (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+        self.parser.constructs.disable.null,
+        'expected `disable.null` to be populated'
+      )
+
+      return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(
+        effects,
+        contBefore,
+        micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix,
+        self.parser.constructs.disable.null.includes('codeIndented')
+          ? undefined
+          : micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__.constants.tabSize
+      )(code)
+    }
+
+    return contBefore(code)
+  }
+
+  /**
+   * At `>`, after optional whitespace.
+   *
+   * Also used to parse the first block quote opening.
+   *
+   * ```markdown
+   *   | > a
+   * > | > b
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function contBefore(code) {
+    return effects.attempt(blockQuote, ok, nok)(code)
+  }
 }
 
 /** @type {Exiter} */
@@ -21623,16 +21890,17 @@ function exit(effects) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "characterEscape": () => (/* binding */ characterEscape)
+/* harmony export */   characterEscape: () => (/* binding */ characterEscape)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -21646,22 +21914,44 @@ const characterEscape = {
   tokenize: tokenizeCharacterEscape
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeCharacterEscape(effects, ok, nok) {
   return start
 
-  /** @type {State} */
+  /**
+   * Start of character escape.
+   *
+   * ```markdown
+   * > | a\*b
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.backslash, 'expected `\\`')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterEscape)
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.escapeMarker)
     effects.consume(code)
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.escapeMarker)
-    return open
+    return inside
   }
 
-  /** @type {State} */
-  function open(code) {
+  /**
+   * After `\`, at punctuation.
+   *
+   * ```markdown
+   * > | a\*b
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
+  function inside(code) {
+    // ASCII punctuation.
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiPunctuation)(code)) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterEscapeValue)
       effects.consume(code)
@@ -21686,20 +21976,20 @@ function tokenizeCharacterEscape(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "characterReference": () => (/* binding */ characterReference)
+/* harmony export */   characterReference: () => (/* binding */ characterReference)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var decode_named_character_reference__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! decode-named-character-reference */ "../node_modules/decode-named-character-reference/index.dom.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
- * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
- * @typedef {import('micromark-util-types').Token} Token
- * @typedef {import('micromark-util-types').State} State
  * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').Construct} Construct
+ * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -21715,18 +22005,34 @@ const characterReference = {
   tokenize: tokenizeCharacterReference
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeCharacterReference(effects, ok, nok) {
   const self = this
   let size = 0
   /** @type {number} */
   let max
-  /** @type {(code: Code) => code is number} */
+  /** @type {(code: Code) => boolean} */
   let test
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of character reference.
+   *
+   * ```markdown
+   * > | a&amp;b
+   *      ^
+   * > | a&#123;b
+   *      ^
+   * > | a&#x9;b
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.ampersand, 'expected `&`')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterReference)
@@ -21736,7 +22042,21 @@ function tokenizeCharacterReference(effects, ok, nok) {
     return open
   }
 
-  /** @type {State} */
+  /**
+   * After `&`, at `#` for numeric references or alphanumeric for named
+   * references.
+   *
+   * ```markdown
+   * > | a&amp;b
+   *       ^
+   * > | a&#123;b
+   *       ^
+   * > | a&#x9;b
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
   function open(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.numberSign) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterReferenceMarkerNumeric)
@@ -21751,7 +22071,18 @@ function tokenizeCharacterReference(effects, ok, nok) {
     return value(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `#`, at `x` for hexadecimals or digit for decimals.
+   *
+   * ```markdown
+   * > | a&#123;b
+   *        ^
+   * > | a&#x9;b
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function numeric(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.uppercaseX || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.lowercaseX) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterReferenceMarkerHexadecimal)
@@ -21769,13 +22100,26 @@ function tokenizeCharacterReference(effects, ok, nok) {
     return value(code)
   }
 
-  /** @type {State} */
+  /**
+   * After markers (`&#x`, `&#`, or `&`), in value, before `;`.
+   *
+   * The character reference kind defines what and how many characters are
+   * allowed.
+   *
+   * ```markdown
+   * > | a&amp;b
+   *       ^^^
+   * > | a&#123;b
+   *        ^^^
+   * > | a&#x9;b
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
   function value(code) {
-    /** @type {Token} */
-    let token
-
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.semicolon && size) {
-      token = effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterReferenceValue)
+      const token = effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterReferenceValue)
 
       if (
         test === micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlphanumeric &&
@@ -21784,6 +22128,8 @@ function tokenizeCharacterReference(effects, ok, nok) {
         return nok(code)
       }
 
+      // To do: `markdown-rs` uses a different name:
+      // `CharacterReferenceMarkerSemi`.
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterReferenceMarker)
       effects.consume(code)
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.characterReferenceMarker)
@@ -21812,19 +22158,20 @@ function tokenizeCharacterReference(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "codeFenced": () => (/* binding */ codeFenced)
+/* harmony export */   codeFenced: () => (/* binding */ codeFenced)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
-/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
-/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
-/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
+/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
+/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
+/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
-/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
- * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
- * @typedef {import('micromark-util-types').State} State
  * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').Construct} Construct
+ * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -21835,220 +22182,499 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /** @type {Construct} */
+const nonLazyContinuation = {
+  tokenize: tokenizeNonLazyContinuation,
+  partial: true
+}
+
+/** @type {Construct} */
 const codeFenced = {
   name: 'codeFenced',
   tokenize: tokenizeCodeFenced,
   concrete: true
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeCodeFenced(effects, ok, nok) {
   const self = this
   /** @type {Construct} */
-  const closingFenceConstruct = {tokenize: tokenizeClosingFence, partial: true}
-  /** @type {Construct} */
-  const nonLazyLine = {tokenize: tokenizeNonLazyLine, partial: true}
-  const tail = this.events[this.events.length - 1]
-  const initialPrefix =
-    tail && tail[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.linePrefix
-      ? tail[2].sliceSerialize(tail[1], true).length
-      : 0
+  const closeStart = {tokenize: tokenizeCloseStart, partial: true}
+  let initialPrefix = 0
   let sizeOpen = 0
   /** @type {NonNullable<Code>} */
   let marker
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of code.
+   *
+   * ```markdown
+   * > | ~~~js
+   *     ^
+   *   | alert(1)
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
-      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.graveAccent || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.tilde,
+    // To do: parse whitespace like `markdown-rs`.
+    return beforeSequenceOpen(code)
+  }
+
+  /**
+   * In opening fence, after prefix, at sequence.
+   *
+   * ```markdown
+   * > | ~~~js
+   *     ^
+   *   | alert(1)
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
+  function beforeSequenceOpen(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.graveAccent || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.tilde,
       'expected `` ` `` or `~`'
     )
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFenced)
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFence)
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFenceSequence)
+
+    const tail = self.events[self.events.length - 1]
+    initialPrefix =
+      tail && tail[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix
+        ? tail[2].sliceSerialize(tail[1], true).length
+        : 0
+
     marker = code
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFenced)
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFence)
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFenceSequence)
     return sequenceOpen(code)
   }
 
-  /** @type {State} */
+  /**
+   * In opening fence sequence.
+   *
+   * ```markdown
+   * > | ~~~js
+   *      ^
+   *   | alert(1)
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
   function sequenceOpen(code) {
     if (code === marker) {
-      effects.consume(code)
       sizeOpen++
+      effects.consume(code)
       return sequenceOpen
     }
 
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFenceSequence)
-    return sizeOpen < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.codeFencedSequenceSizeMin
-      ? nok(code)
-      : (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(effects, infoOpen, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.whitespace)(code)
-  }
-
-  /** @type {State} */
-  function infoOpen(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code)) {
-      return openAfter(code)
+    if (sizeOpen < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.codeFencedSequenceSizeMin) {
+      return nok(code)
     }
 
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFenceInfo)
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.chunkString, {contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.contentTypeString})
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFenceSequence)
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownSpace)(code)
+      ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__.factorySpace)(effects, infoBefore, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.whitespace)(code)
+      : infoBefore(code)
+  }
+
+  /**
+   * In opening fence, after the sequence (and optional whitespace), before info.
+   *
+   * ```markdown
+   * > | ~~~js
+   *        ^
+   *   | alert(1)
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
+  function infoBefore(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFence)
+      return self.interrupt
+        ? ok(code)
+        : effects.check(nonLazyContinuation, atNonLazyBreak, after)(code)
+    }
+
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFenceInfo)
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString, {contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.contentTypeString})
     return info(code)
   }
 
-  /** @type {State} */
+  /**
+   * In info.
+   *
+   * ```markdown
+   * > | ~~~js
+   *        ^
+   *   | alert(1)
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
   function info(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEndingOrSpace)(code)) {
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.chunkString)
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFenceInfo)
-      return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(effects, infoAfter, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.whitespace)(code)
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFenceInfo)
+      return infoBefore(code)
     }
 
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.graveAccent && code === marker) return nok(code)
+    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownSpace)(code)) {
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFenceInfo)
+      return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__.factorySpace)(effects, metaBefore, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.whitespace)(code)
+    }
+
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.graveAccent && code === marker) {
+      return nok(code)
+    }
+
     effects.consume(code)
     return info
   }
 
-  /** @type {State} */
-  function infoAfter(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code)) {
-      return openAfter(code)
+  /**
+   * In opening fence, after info and whitespace, before meta.
+   *
+   * ```markdown
+   * > | ~~~js eval
+   *           ^
+   *   | alert(1)
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
+  function metaBefore(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      return infoBefore(code)
     }
 
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFenceMeta)
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.chunkString, {contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.contentTypeString})
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFenceMeta)
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString, {contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.contentTypeString})
     return meta(code)
   }
 
-  /** @type {State} */
+  /**
+   * In meta.
+   *
+   * ```markdown
+   * > | ~~~js eval
+   *           ^
+   *   | alert(1)
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
   function meta(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code)) {
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.chunkString)
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFenceMeta)
-      return openAfter(code)
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFenceMeta)
+      return infoBefore(code)
     }
 
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.graveAccent && code === marker) return nok(code)
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.graveAccent && code === marker) {
+      return nok(code)
+    }
+
     effects.consume(code)
     return meta
   }
 
-  /** @type {State} */
-  function openAfter(code) {
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFence)
-    return self.interrupt ? ok(code) : contentStart(code)
+  /**
+   * At eol/eof in code, before a non-lazy closing fence or content.
+   *
+   * ```markdown
+   * > | ~~~js
+   *          ^
+   * > | alert(1)
+   *             ^
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
+  function atNonLazyBreak(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code), 'expected eol')
+    return effects.attempt(closeStart, after, contentBefore)(code)
   }
 
-  /** @type {State} */
+  /**
+   * Before code content, not a closing fence, at eol.
+   *
+   * ```markdown
+   *   | ~~~js
+   * > | alert(1)
+   *             ^
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
+  function contentBefore(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code), 'expected eol')
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+    effects.consume(code)
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+    return contentStart
+  }
+
+  /**
+   * Before code content, not a closing fence.
+   *
+   * ```markdown
+   *   | ~~~js
+   * > | alert(1)
+   *     ^
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
   function contentStart(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof) {
-      return after(code)
-    }
-
-    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code)) {
-      return effects.attempt(
-        nonLazyLine,
-        effects.attempt(
-          closingFenceConstruct,
-          after,
-          initialPrefix
-            ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(
-                effects,
-                contentStart,
-                micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.linePrefix,
-                initialPrefix + 1
-              )
-            : contentStart
-        ),
-        after
-      )(code)
-    }
-
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFlowValue)
-    return contentContinue(code)
+    return initialPrefix > 0 && (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownSpace)(code)
+      ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__.factorySpace)(
+          effects,
+          beforeContentChunk,
+          micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix,
+          initialPrefix + 1
+        )(code)
+      : beforeContentChunk(code)
   }
 
-  /** @type {State} */
-  function contentContinue(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code)) {
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFlowValue)
-      return contentStart(code)
+  /**
+   * Before code content, after optional prefix.
+   *
+   * ```markdown
+   *   | ~~~js
+   * > | alert(1)
+   *     ^
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
+  function beforeContentChunk(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      return effects.check(nonLazyContinuation, atNonLazyBreak, after)(code)
+    }
+
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFlowValue)
+    return contentChunk(code)
+  }
+
+  /**
+   * In code content.
+   *
+   * ```markdown
+   *   | ~~~js
+   * > | alert(1)
+   *     ^^^^^^^^
+   *   | ~~~
+   * ```
+   *
+   * @type {State}
+   */
+  function contentChunk(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFlowValue)
+      return beforeContentChunk(code)
     }
 
     effects.consume(code)
-    return contentContinue
+    return contentChunk
   }
 
-  /** @type {State} */
+  /**
+   * After code.
+   *
+   * ```markdown
+   *   | ~~~js
+   *   | alert(1)
+   * > | ~~~
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function after(code) {
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFenced)
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFenced)
     return ok(code)
   }
 
-  /** @type {Tokenizer} */
-  function tokenizeNonLazyLine(effects, ok, nok) {
-    const self = this
-
-    return start
-
-    /** @type {State} */
-    function start(code) {
-      ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code), 'expected eol')
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
-      effects.consume(code)
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
-      return lineStart
-    }
-
-    /** @type {State} */
-    function lineStart(code) {
-      return self.parser.lazy[self.now().line] ? nok(code) : ok(code)
-    }
-  }
-
-  /** @type {Tokenizer} */
-  function tokenizeClosingFence(effects, ok, nok) {
+  /**
+   * @this {TokenizeContext}
+   * @type {Tokenizer}
+   */
+  function tokenizeCloseStart(effects, ok, nok) {
     let size = 0
 
-    return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(
-      effects,
-      closingSequenceStart,
-      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.linePrefix,
-      this.parser.constructs.disable.null.includes('codeIndented')
-        ? undefined
-        : micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.tabSize
-    )
+    return startBefore
 
-    /** @type {State} */
-    function closingSequenceStart(code) {
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFence)
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFenceSequence)
-      return closingSequence(code)
+    /**
+     *
+     *
+     * @type {State}
+     */
+    function startBefore(code) {
+      ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code), 'expected eol')
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+      effects.consume(code)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+      return start
     }
 
-    /** @type {State} */
-    function closingSequence(code) {
+    /**
+     * Before closing fence, at optional whitespace.
+     *
+     * ```markdown
+     *   | ~~~js
+     *   | alert(1)
+     * > | ~~~
+     *     ^
+     * ```
+     *
+     * @type {State}
+     */
+    function start(code) {
+      // Always populated by defaults.
+      (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+        self.parser.constructs.disable.null,
+        'expected `disable.null` to be populated'
+      )
+
+      // To do: `enter` here or in next state?
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFence)
+      return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownSpace)(code)
+        ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__.factorySpace)(
+            effects,
+            beforeSequenceClose,
+            micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix,
+            self.parser.constructs.disable.null.includes('codeIndented')
+              ? undefined
+              : micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.tabSize
+          )(code)
+        : beforeSequenceClose(code)
+    }
+
+    /**
+     * In closing fence, after optional whitespace, at sequence.
+     *
+     * ```markdown
+     *   | ~~~js
+     *   | alert(1)
+     * > | ~~~
+     *     ^
+     * ```
+     *
+     * @type {State}
+     */
+    function beforeSequenceClose(code) {
       if (code === marker) {
-        effects.consume(code)
-        size++
-        return closingSequence
+        effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFenceSequence)
+        return sequenceClose(code)
       }
 
-      if (size < sizeOpen) return nok(code)
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFenceSequence)
-      return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(effects, closingSequenceEnd, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.whitespace)(code)
+      return nok(code)
     }
 
-    /** @type {State} */
-    function closingSequenceEnd(code) {
-      if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code)) {
-        effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeFencedFence)
+    /**
+     * In closing fence sequence.
+     *
+     * ```markdown
+     *   | ~~~js
+     *   | alert(1)
+     * > | ~~~
+     *     ^
+     * ```
+     *
+     * @type {State}
+     */
+    function sequenceClose(code) {
+      if (code === marker) {
+        size++
+        effects.consume(code)
+        return sequenceClose
+      }
+
+      if (size >= sizeOpen) {
+        effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFenceSequence)
+        return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownSpace)(code)
+          ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__.factorySpace)(effects, sequenceCloseAfter, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.whitespace)(code)
+          : sequenceCloseAfter(code)
+      }
+
+      return nok(code)
+    }
+
+    /**
+     * After closing fence sequence, after optional whitespace.
+     *
+     * ```markdown
+     *   | ~~~js
+     *   | alert(1)
+     * > | ~~~
+     *        ^
+     * ```
+     *
+     * @type {State}
+     */
+    function sequenceCloseAfter(code) {
+      if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+        effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFencedFence)
         return ok(code)
       }
 
       return nok(code)
     }
+  }
+}
+
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeNonLazyContinuation(effects, ok, nok) {
+  const self = this
+
+  return start
+
+  /**
+   *
+   *
+   * @type {State}
+   */
+  function start(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof) {
+      return nok(code)
+    }
+
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code), 'expected eol')
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+    effects.consume(code)
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+    return lineStart
+  }
+
+  /**
+   *
+   *
+   * @type {State}
+   */
+  function lineStart(code) {
+    return self.parser.lazy[self.now().line] ? nok(code) : ok(code)
   }
 }
 
@@ -22064,20 +22690,21 @@ function tokenizeCodeFenced(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "codeIndented": () => (/* binding */ codeIndented)
+/* harmony export */   codeIndented: () => (/* binding */ codeIndented)
 /* harmony export */ });
-/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
-/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
-/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
-/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
-/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
+/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
+/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
+/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
+/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
- * @typedef {import('micromark-util-types').Resolver} Resolver
- * @typedef {import('micromark-util-types').Token} Token
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
+
 
 
 
@@ -22092,103 +22719,182 @@ const codeIndented = {
 }
 
 /** @type {Construct} */
-const indentedContent = {tokenize: tokenizeIndentedContent, partial: true}
+const furtherStart = {tokenize: tokenizeFurtherStart, partial: true}
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeCodeIndented(effects, ok, nok) {
   const self = this
   return start
 
-  /** @type {State} */
+  /**
+   * Start of code (indented).
+   *
+   * > **Parsing note**: it is not needed to check if this first line is a
+   * > filled line (that it has a non-whitespace character), because blank lines
+   * > are parsed already, so we never run into that.
+   *
+   * ```markdown
+   * > |     aaa
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.codeIndented)
-    return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_1__.factorySpace)(
+    // To do: manually check if interrupting like `markdown-rs`.
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownSpace)(code))
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeIndented)
+    // To do: use an improved `space_or_tab` function like `markdown-rs`,
+    // so that we can drop the next state.
+    return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_3__.factorySpace)(
       effects,
-      afterStartPrefix,
-      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.linePrefix,
-      micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.tabSize + 1
+      afterPrefix,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix,
+      micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.tabSize + 1
     )(code)
   }
 
-  /** @type {State} */
-  function afterStartPrefix(code) {
+  /**
+   * At start, after 1 or 4 spaces.
+   *
+   * ```markdown
+   * > |     aaa
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
+  function afterPrefix(code) {
     const tail = self.events[self.events.length - 1]
     return tail &&
-      tail[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.linePrefix &&
-      tail[2].sliceSerialize(tail[1], true).length >= micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.tabSize
-      ? afterPrefix(code)
+      tail[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix &&
+      tail[2].sliceSerialize(tail[1], true).length >= micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.tabSize
+      ? atBreak(code)
       : nok(code)
   }
 
-  /** @type {State} */
-  function afterPrefix(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_3__.codes.eof) {
+  /**
+   * At a break.
+   *
+   * ```markdown
+   * > |     aaa
+   *         ^  ^
+   * ```
+   *
+   * @type {State}
+   */
+  function atBreak(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_5__.codes.eof) {
       return after(code)
     }
 
-    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
-      return effects.attempt(indentedContent, afterPrefix, after)(code)
+    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownLineEnding)(code)) {
+      return effects.attempt(furtherStart, atBreak, after)(code)
     }
 
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.codeFlowValue)
-    return content(code)
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFlowValue)
+    return inside(code)
   }
 
-  /** @type {State} */
-  function content(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_3__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.codeFlowValue)
-      return afterPrefix(code)
+  /**
+   * In code content.
+   *
+   * ```markdown
+   * > |     aaa
+   *         ^^^^
+   * ```
+   *
+   * @type {State}
+   */
+  function inside(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_5__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownLineEnding)(code)) {
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeFlowValue)
+      return atBreak(code)
     }
 
     effects.consume(code)
-    return content
+    return inside
   }
 
   /** @type {State} */
   function after(code) {
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.codeIndented)
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.codeIndented)
+    // To do: allow interrupting like `markdown-rs`.
+    // Feel free to interrupt.
+    // tokenizer.interrupt = false
     return ok(code)
   }
 }
 
-/** @type {Tokenizer} */
-function tokenizeIndentedContent(effects, ok, nok) {
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeFurtherStart(effects, ok, nok) {
   const self = this
 
-  return start
+  return furtherStart
 
-  /** @type {State} */
-  function start(code) {
+  /**
+   * At eol, trying to parse another indent.
+   *
+   * ```markdown
+   * > |     aaa
+   *            ^
+   *   |     bbb
+   * ```
+   *
+   * @type {State}
+   */
+  function furtherStart(code) {
+    // To do: improve `lazy` / `pierce` handling.
     // If this is a lazy line, it can’t be code.
     if (self.parser.lazy[self.now().line]) {
       return nok(code)
     }
 
-    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.lineEnding)
+    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownLineEnding)(code)) {
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
       effects.consume(code)
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.lineEnding)
-      return start
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+      return furtherStart
     }
 
-    return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_1__.factorySpace)(
+    // To do: the code here in `micromark-js` is a bit different from
+    // `markdown-rs` because there it can attempt spaces.
+    // We can’t yet.
+    //
+    // To do: use an improved `space_or_tab` function like `markdown-rs`,
+    // so that we can drop the next state.
+    return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_3__.factorySpace)(
       effects,
       afterPrefix,
-      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.linePrefix,
-      micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.tabSize + 1
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix,
+      micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.tabSize + 1
     )(code)
   }
 
-  /** @type {State} */
+  /**
+   * At start, after 1 or 4 spaces.
+   *
+   * ```markdown
+   * > |     aaa
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
   function afterPrefix(code) {
     const tail = self.events[self.events.length - 1]
     return tail &&
-      tail[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_0__.types.linePrefix &&
-      tail[2].sliceSerialize(tail[1], true).length >= micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.tabSize
+      tail[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix &&
+      tail[2].sliceSerialize(tail[1], true).length >= micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.tabSize
       ? ok(code)
-      : (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)
-      ? start(code)
+      : (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownLineEnding)(code)
+      ? furtherStart(code)
       : nok(code)
   }
 }
@@ -22205,19 +22911,20 @@ function tokenizeIndentedContent(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "codeText": () => (/* binding */ codeText)
+/* harmony export */   codeText: () => (/* binding */ codeText)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Resolver} Resolver
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').Previous} Previous
- * @typedef {import('micromark-util-types').Token} Token
+ * @typedef {import('micromark-util-types').Resolver} Resolver
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').Token} Token
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -22233,13 +22940,14 @@ const codeText = {
   previous
 }
 
+// To do: next major: don’t resolve, like `markdown-rs`.
 /** @type {Resolver} */
 function resolveCodeText(events) {
   let tailExitIndex = events.length - 4
   let headEnterIndex = 3
   /** @type {number} */
   let index
-  /** @type {number|undefined} */
+  /** @type {number | undefined} */
   let enter
 
   // If we start and end with an EOL or a space.
@@ -22296,7 +23004,10 @@ function resolveCodeText(events) {
   return events
 }
 
-/** @type {Previous} */
+/**
+ * @this {TokenizeContext}
+ * @type {Previous}
+ */
 function previous(code) {
   // If there is a previous code, there will always be a tail.
   return (
@@ -22305,7 +23016,10 @@ function previous(code) {
   )
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeCodeText(effects, ok, nok) {
   const self = this
   let sizeOpen = 0
@@ -22316,55 +23030,85 @@ function tokenizeCodeText(effects, ok, nok) {
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of code (text).
+   *
+   * ```markdown
+   * > | `a`
+   *     ^
+   * > | \`a`
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.graveAccent, 'expected `` ` ``')
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(previous.call(self, self.previous), 'expected correct previous')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeText)
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeTextSequence)
-    return openingSequence(code)
+    return sequenceOpen(code)
   }
 
-  /** @type {State} */
-  function openingSequence(code) {
+  /**
+   * In opening sequence.
+   *
+   * ```markdown
+   * > | `a`
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function sequenceOpen(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.graveAccent) {
       effects.consume(code)
       sizeOpen++
-      return openingSequence
+      return sequenceOpen
     }
 
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeTextSequence)
-    return gap(code)
+    return between(code)
   }
 
-  /** @type {State} */
-  function gap(code) {
+  /**
+   * Between something and something else.
+   *
+   * ```markdown
+   * > | `a`
+   *      ^^
+   * ```
+   *
+   * @type {State}
+   */
+  function between(code) {
     // EOF.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof) {
       return nok(code)
     }
 
-    // Closing fence?
-    // Could also be data.
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.graveAccent) {
-      token = effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeTextSequence)
-      size = 0
-      return closingSequence(code)
-    }
-
+    // To do: next major: don’t do spaces in resolve, but when compiling,
+    // like `markdown-rs`.
     // Tabs don’t work, and virtual spaces don’t make sense.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.space) {
       effects.enter('space')
       effects.consume(code)
       effects.exit('space')
-      return gap
+      return between
+    }
+
+    // Closing fence? Could also be data.
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.graveAccent) {
+      token = effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeTextSequence)
+      size = 0
+      return sequenceClose(code)
     }
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
       effects.consume(code)
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
-      return gap
+      return between
     }
 
     // Data.
@@ -22372,8 +23116,16 @@ function tokenizeCodeText(effects, ok, nok) {
     return data(code)
   }
 
-  // In code.
-  /** @type {State} */
+  /**
+   * In data.
+   *
+   * ```markdown
+   * > | `a`
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
   function data(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof ||
@@ -22382,21 +23134,29 @@ function tokenizeCodeText(effects, ok, nok) {
       (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)
     ) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.codeTextData)
-      return gap(code)
+      return between(code)
     }
 
     effects.consume(code)
     return data
   }
 
-  // Closing fence.
-  /** @type {State} */
-  function closingSequence(code) {
+  /**
+   * In closing sequence.
+   *
+   * ```markdown
+   * > | `a`
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
+  function sequenceClose(code) {
     // More.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.graveAccent) {
       effects.consume(code)
       size++
-      return closingSequence
+      return sequenceClose
     }
 
     // Done!
@@ -22424,21 +23184,22 @@ function tokenizeCodeText(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "content": () => (/* binding */ content)
+/* harmony export */   content: () => (/* binding */ content)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_subtokenize__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-subtokenize */ "../node_modules/micromark-util-subtokenize/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
  * @typedef {import('micromark-util-types').Resolver} Resolver
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
- * @typedef {import('micromark-util-types').Token} Token
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').Token} Token
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -22469,15 +23230,27 @@ function resolveContent(events) {
   return events
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeContent(effects, ok) {
-  /** @type {Token} */
+  /** @type {Token | undefined} */
   let previous
 
-  return start
+  return chunkStart
 
-  /** @type {State} */
-  function start(code) {
+  /**
+   * Before a content chunk.
+   *
+   * ```markdown
+   * > | abc
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function chunkStart(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
       code !== micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof && !(0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code),
       'expected no eof or eol'
@@ -22487,15 +23260,26 @@ function tokenizeContent(effects, ok) {
     previous = effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.chunkContent, {
       contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__.constants.contentTypeContent
     })
-    return data(code)
+    return chunkInside(code)
   }
 
-  /** @type {State} */
-  function data(code) {
+  /**
+   * In a content chunk.
+   *
+   * ```markdown
+   * > | abc
+   *     ^^^
+   * ```
+   *
+   * @type {State}
+   */
+  function chunkInside(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof) {
       return contentEnd(code)
     }
 
+    // To do: in `markdown-rs`, each line is parsed on its own, and everything
+    // is stitched together resolving.
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       return effects.check(
         continuationConstruct,
@@ -22506,37 +23290,53 @@ function tokenizeContent(effects, ok) {
 
     // Data.
     effects.consume(code)
-    return data
+    return chunkInside
   }
 
-  /** @type {State} */
+  /**
+   *
+   *
+   * @type {State}
+   */
   function contentEnd(code) {
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.chunkContent)
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.content)
     return ok(code)
   }
 
-  /** @type {State} */
+  /**
+   *
+   *
+   * @type {State}
+   */
   function contentContinue(code) {
     (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code), 'expected eol')
     effects.consume(code)
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.chunkContent)
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(previous, 'expected previous token')
     previous.next = effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.chunkContent, {
       contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__.constants.contentTypeContent,
       previous
     })
     previous = previous.next
-    return data
+    return chunkInside
   }
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeContinuation(effects, ok, nok) {
   const self = this
 
   return startLookahead
 
-  /** @type {State} */
+  /**
+   *
+   *
+   * @type {State}
+   */
   function startLookahead(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code), 'expected a line ending')
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.chunkContent)
@@ -22546,11 +23346,21 @@ function tokenizeContinuation(effects, ok, nok) {
     return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_6__.factorySpace)(effects, prefixed, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.linePrefix)
   }
 
-  /** @type {State} */
+  /**
+   *
+   *
+   * @type {State}
+   */
   function prefixed(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       return nok(code)
     }
+
+    // Always populated by defaults.
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+      self.parser.constructs.disable.null,
+      'expected `disable.null` to be populated'
+    )
 
     const tail = self.events[self.events.length - 1]
 
@@ -22579,22 +23389,23 @@ function tokenizeContinuation(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "definition": () => (/* binding */ definition)
+/* harmony export */   definition: () => (/* binding */ definition)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
-/* harmony import */ var micromark_factory_destination__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-factory-destination */ "../node_modules/micromark-factory-destination/dev/index.js");
+/* harmony import */ var micromark_factory_destination__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! micromark-factory-destination */ "../node_modules/micromark-factory-destination/dev/index.js");
 /* harmony import */ var micromark_factory_label__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-factory-label */ "../node_modules/micromark-factory-label/dev/index.js");
-/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
+/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_factory_title__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! micromark-factory-title */ "../node_modules/micromark-factory-title/dev/index.js");
-/* harmony import */ var micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-factory-whitespace */ "../node_modules/micromark-factory-whitespace/dev/index.js");
+/* harmony import */ var micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-factory-whitespace */ "../node_modules/micromark-factory-whitespace/dev/index.js");
+/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_normalize_identifier__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-normalize-identifier */ "../node_modules/micromark-util-normalize-identifier/dev/index.js");
-/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
-/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
-/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
+/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -22612,9 +23423,12 @@ __webpack_require__.r(__webpack_exports__);
 const definition = {name: 'definition', tokenize: tokenizeDefinition}
 
 /** @type {Construct} */
-const titleConstruct = {tokenize: tokenizeTitle, partial: true}
+const titleBefore = {tokenize: tokenizeTitleBefore, partial: true}
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeDefinition(effects, ok, nok) {
   const self = this
   /** @type {string} */
@@ -22622,64 +23436,171 @@ function tokenizeDefinition(effects, ok, nok) {
 
   return start
 
-  /** @type {State} */
+  /**
+   * At start of a definition.
+   *
+   * ```markdown
+   * > | [a]: b "c"
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.leftSquareBracket, 'expected `[`')
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definition)
+    // Do not interrupt paragraphs (but do follow definitions).
+    // To do: do `interrupt` the way `markdown-rs` does.
+    // To do: parse whitespace the way `markdown-rs` does.
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definition)
+    return before(code)
+  }
+
+  /**
+   * After optional whitespace, at `[`.
+   *
+   * ```markdown
+   * > | [a]: b "c"
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function before(code) {
+    // To do: parse whitespace the way `markdown-rs` does.
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.leftSquareBracket, 'expected `[`')
     return micromark_factory_label__WEBPACK_IMPORTED_MODULE_3__.factoryLabel.call(
       self,
       effects,
       labelAfter,
+      // Note: we don’t need to reset the way `markdown-rs` does.
       nok,
-      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionLabel,
-      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionLabelMarker,
-      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionLabelString
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionLabel,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionLabelMarker,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionLabelString
     )(code)
   }
 
-  /** @type {State} */
+  /**
+   * After label.
+   *
+   * ```markdown
+   * > | [a]: b "c"
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function labelAfter(code) {
     identifier = (0,micromark_util_normalize_identifier__WEBPACK_IMPORTED_MODULE_4__.normalizeIdentifier)(
       self.sliceSerialize(self.events[self.events.length - 1][1]).slice(1, -1)
     )
 
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.colon) {
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionMarker)
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.colon) {
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionMarker)
       effects.consume(code)
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionMarker)
-
-      // Note: blank lines can’t exist in content.
-      return (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_5__.factoryWhitespace)(
-        effects,
-        (0,micromark_factory_destination__WEBPACK_IMPORTED_MODULE_6__.factoryDestination)(
-          effects,
-          effects.attempt(
-            titleConstruct,
-            (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_7__.factorySpace)(effects, after, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.whitespace),
-            (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_7__.factorySpace)(effects, after, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.whitespace)
-          ),
-          nok,
-          micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionDestination,
-          micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionDestinationLiteral,
-          micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionDestinationLiteralMarker,
-          micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionDestinationRaw,
-          micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionDestinationString
-        )
-      )
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionMarker)
+      return markerAfter
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After marker.
+   *
+   * ```markdown
+   * > | [a]: b "c"
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
+  function markerAfter(code) {
+    // Note: whitespace is optional.
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEndingOrSpace)(code)
+      ? (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_6__.factoryWhitespace)(effects, destinationBefore)(code)
+      : destinationBefore(code)
+  }
+
+  /**
+   * Before destination.
+   *
+   * ```markdown
+   * > | [a]: b "c"
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
+  function destinationBefore(code) {
+    return (0,micromark_factory_destination__WEBPACK_IMPORTED_MODULE_7__.factoryDestination)(
+      effects,
+      destinationAfter,
+      // Note: we don’t need to reset the way `markdown-rs` does.
+      nok,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionDestination,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionDestinationLiteral,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionDestinationLiteralMarker,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionDestinationRaw,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionDestinationString
+    )(code)
+  }
+
+  /**
+   * After destination.
+   *
+   * ```markdown
+   * > | [a]: b "c"
+   *           ^
+   * ```
+   *
+   * @type {State}
+   */
+  function destinationAfter(code) {
+    return effects.attempt(titleBefore, after, after)(code)
+  }
+
+  /**
+   * After definition.
+   *
+   * ```markdown
+   * > | [a]: b
+   *           ^
+   * > | [a]: b "c"
+   *               ^
+   * ```
+   *
+   * @type {State}
+   */
   function after(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_8__.markdownLineEnding)(code)) {
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definition)
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownSpace)(code)
+      ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_8__.factorySpace)(effects, afterWhitespace, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.whitespace)(code)
+      : afterWhitespace(code)
+  }
 
-      if (!self.parser.defined.includes(identifier)) {
-        self.parser.defined.push(identifier)
-      }
+  /**
+   * After definition, after optional whitespace.
+   *
+   * ```markdown
+   * > | [a]: b
+   *           ^
+   * > | [a]: b "c"
+   *               ^
+   * ```
+   *
+   * @type {State}
+   */
+  function afterWhitespace(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code)) {
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definition)
 
+      // Note: we don’t care about uniqueness.
+      // It’s likely that that doesn’t happen very frequently.
+      // It is more likely that it wastes precious time.
+      self.parser.defined.push(identifier)
+
+      // To do: `markdown-rs` interrupt.
+      // // You’d be interrupting.
+      // tokenizer.interrupt = true
       return ok(code)
     }
 
@@ -22687,40 +23608,85 @@ function tokenizeDefinition(effects, ok, nok) {
   }
 }
 
-/** @type {Tokenizer} */
-function tokenizeTitle(effects, ok, nok) {
-  return start
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeTitleBefore(effects, ok, nok) {
+  return titleBefore
 
-  /** @type {State} */
-  function start(code) {
-    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_8__.markdownLineEndingOrSpace)(code)
-      ? (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_5__.factoryWhitespace)(effects, before)(code)
+  /**
+   * After destination, at whitespace.
+   *
+   * ```markdown
+   * > | [a]: b
+   *           ^
+   * > | [a]: b "c"
+   *           ^
+   * ```
+   *
+   * @type {State}
+   */
+  function titleBefore(code) {
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEndingOrSpace)(code)
+      ? (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_6__.factoryWhitespace)(effects, beforeMarker)(code)
       : nok(code)
   }
 
-  /** @type {State} */
-  function before(code) {
-    if (
-      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.quotationMark ||
-      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.apostrophe ||
-      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.leftParenthesis
-    ) {
-      return (0,micromark_factory_title__WEBPACK_IMPORTED_MODULE_9__.factoryTitle)(
-        effects,
-        (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_7__.factorySpace)(effects, after, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.whitespace),
-        nok,
-        micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionTitle,
-        micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionTitleMarker,
-        micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.definitionTitleString
-      )(code)
-    }
-
-    return nok(code)
+  /**
+   * At title.
+   *
+   * ```markdown
+   *   | [a]: b
+   * > | "c"
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function beforeMarker(code) {
+    return (0,micromark_factory_title__WEBPACK_IMPORTED_MODULE_9__.factoryTitle)(
+      effects,
+      titleAfter,
+      nok,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionTitle,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionTitleMarker,
+      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.definitionTitleString
+    )(code)
   }
 
-  /** @type {State} */
-  function after(code) {
-    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_8__.markdownLineEnding)(code) ? ok(code) : nok(code)
+  /**
+   * After title.
+   *
+   * ```markdown
+   * > | [a]: b "c"
+   *               ^
+   * ```
+   *
+   * @type {State}
+   */
+  function titleAfter(code) {
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownSpace)(code)
+      ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_8__.factorySpace)(
+          effects,
+          titleAfterOptionalWhitespace,
+          micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.whitespace
+        )(code)
+      : titleAfterOptionalWhitespace(code)
+  }
+
+  /**
+   * After title, after optional whitespace.
+   *
+   * ```markdown
+   * > | [a]: b "c"
+   *               ^
+   * ```
+   *
+   * @type {State}
+   */
+  function titleAfterOptionalWhitespace(code) {
+    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code) ? ok(code) : nok(code)
   }
 }
 
@@ -22736,16 +23702,17 @@ function tokenizeTitle(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "hardBreakEscape": () => (/* binding */ hardBreakEscape)
+/* harmony export */   hardBreakEscape: () => (/* binding */ hardBreakEscape)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -22759,23 +23726,44 @@ const hardBreakEscape = {
   tokenize: tokenizeHardBreakEscape
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeHardBreakEscape(effects, ok, nok) {
   return start
 
-  /** @type {State} */
+  /**
+   * Start of a hard break (escape).
+   *
+   * ```markdown
+   * > | a\
+   *      ^
+   *   | b
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.backslash, 'expected `\\`')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.hardBreakEscape)
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.escapeMarker)
     effects.consume(code)
-    return open
+    return after
   }
 
-  /** @type {State} */
-  function open(code) {
+  /**
+   * After `\`, at eol.
+   *
+   * ```markdown
+   * > | a\
+   *       ^
+   *   | b
+   * ```
+   *
+   *  @type {State}
+   */
+  function after(code) {
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.escapeMarker)
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.hardBreakEscape)
       return ok(code)
     }
@@ -22796,21 +23784,22 @@ function tokenizeHardBreakEscape(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "headingAtx": () => (/* binding */ headingAtx)
+/* harmony export */   headingAtx: () => (/* binding */ headingAtx)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_chunked__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-chunked */ "../node_modules/micromark-util-chunked/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
  * @typedef {import('micromark-util-types').Resolver} Resolver
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
- * @typedef {import('micromark-util-types').Token} Token
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').Token} Token
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -22869,7 +23858,6 @@ function resolveHeadingAtx(events, context) {
       type: micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.chunkText,
       start: events[contentStart][1].start,
       end: events[contentEnd][1].end,
-      // @ts-expect-error Constants are fine to assign.
       contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.contentTypeText
     }
 
@@ -22884,71 +23872,141 @@ function resolveHeadingAtx(events, context) {
   return events
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeHeadingAtx(effects, ok, nok) {
-  const self = this
   let size = 0
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of a heading (atx).
+   *
+   * ```markdown
+   * > | ## aa
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.numberSign, 'expected `#`')
+    // To do: parse indent like `markdown-rs`.
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeading)
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeadingSequence)
-    return fenceOpenInside(code)
+    return before(code)
   }
 
-  /** @type {State} */
-  function fenceOpenInside(code) {
+  /**
+   * After optional whitespace, at `#`.
+   *
+   * ```markdown
+   * > | ## aa
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function before(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.numberSign, 'expected `#`')
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeadingSequence)
+    return sequenceOpen(code)
+  }
+
+  /**
+   * In opening sequence.
+   *
+   * ```markdown
+   * > | ## aa
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function sequenceOpen(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.numberSign &&
       size++ < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.atxHeadingOpeningFenceSizeMax
     ) {
       effects.consume(code)
-      return fenceOpenInside
+      return sequenceOpen
     }
 
+    // Always at least one `#`.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEndingOrSpace)(code)) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeadingSequence)
-      return self.interrupt ? ok(code) : headingBreak(code)
+      return atBreak(code)
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
-  function headingBreak(code) {
+  /**
+   * After something, before something else.
+   *
+   * ```markdown
+   * > | ## aa
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
+  function atBreak(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.numberSign) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeadingSequence)
-      return sequence(code)
+      return sequenceFurther(code)
     }
 
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEnding)(code)) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeading)
+      // To do: interrupt like `markdown-rs`.
+      // // Feel free to interrupt.
+      // tokenizer.interrupt = false
       return ok(code)
     }
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownSpace)(code)) {
-      return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_6__.factorySpace)(effects, headingBreak, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.whitespace)(code)
+      return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_6__.factorySpace)(effects, atBreak, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.whitespace)(code)
     }
 
+    // To do: generate `data` tokens, add the `text` token later.
+    // Needs edit map, see: `markdown.rs`.
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeadingText)
     return data(code)
   }
 
-  /** @type {State} */
-  function sequence(code) {
+  /**
+   * In further sequence (after whitespace).
+   *
+   * Could be normal “visible” hashes in the heading or a final sequence.
+   *
+   * ```markdown
+   * > | ## aa ##
+   *           ^
+   * ```
+   *
+   * @type {State}
+   */
+  function sequenceFurther(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.numberSign) {
       effects.consume(code)
-      return sequence
+      return sequenceFurther
     }
 
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeadingSequence)
-    return headingBreak(code)
+    return atBreak(code)
   }
 
-  /** @type {State} */
+  /**
+   * In text.
+   *
+   * ```markdown
+   * > | ## aa
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function data(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.eof ||
@@ -22956,7 +24014,7 @@ function tokenizeHeadingAtx(effects, ok, nok) {
       (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_5__.markdownLineEndingOrSpace)(code)
     ) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.atxHeadingText)
-      return headingBreak(code)
+      return atBreak(code)
     }
 
     effects.consume(code)
@@ -22976,21 +24034,22 @@ function tokenizeHeadingAtx(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "htmlFlow": () => (/* binding */ htmlFlow)
+/* harmony export */   htmlFlow: () => (/* binding */ htmlFlow)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_html_tag_name__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-html-tag-name */ "../node_modules/micromark-util-html-tag-name/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var _blank_line_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./blank-line.js */ "../node_modules/micromark-core-commonmark/dev/lib/blank-line.js");
 /**
+ * @typedef {import('micromark-util-types').Code} Code
  * @typedef {import('micromark-util-types').Construct} Construct
  * @typedef {import('micromark-util-types').Resolver} Resolver
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
- * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -23010,7 +24069,11 @@ const htmlFlow = {
 }
 
 /** @type {Construct} */
-const nextBlankConstruct = {tokenize: tokenizeNextBlank, partial: true}
+const blankLineBefore = {tokenize: tokenizeBlankLineBefore, partial: true}
+const nonLazyContinuationStart = {
+  tokenize: tokenizeNonLazyContinuationStart,
+  partial: true
+}
 
 /** @type {Resolver} */
 function resolveToHtmlFlow(events) {
@@ -23037,114 +24100,209 @@ function resolveToHtmlFlow(events) {
   return events
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeHtmlFlow(effects, ok, nok) {
   const self = this
   /** @type {number} */
-  let kind
+  let marker
   /** @type {boolean} */
-  let startTag
+  let closingTag
   /** @type {string} */
   let buffer
   /** @type {number} */
   let index
   /** @type {Code} */
-  let marker
+  let markerB
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of HTML (flow).
+   *
+   * ```markdown
+   * > | <x />
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.lessThan, 'expected `<`')
+    // To do: parse indent like `markdown-rs`.
+    return before(code)
+  }
+
+  /**
+   * At `<`, after optional whitespace.
+   *
+   * ```markdown
+   * > | <x />
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function before(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.lessThan, 'expected `<`')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.htmlFlow)
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.htmlFlowData)
     effects.consume(code)
     return open
   }
 
-  /** @type {State} */
+  /**
+   * After `<`, at tag name or other stuff.
+   *
+   * ```markdown
+   * > | <x />
+   *      ^
+   * > | <!doctype>
+   *      ^
+   * > | <!--xxx-->
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
   function open(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.exclamationMark) {
       effects.consume(code)
-      return declarationStart
+      return declarationOpen
     }
 
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.slash) {
       effects.consume(code)
+      closingTag = true
       return tagCloseStart
     }
 
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.questionMark) {
       effects.consume(code)
-      kind = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlInstruction
+      marker = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlInstruction
+      // To do:
+      // tokenizer.concrete = true
+      // To do: use `markdown-rs` style interrupt.
       // While we’re in an instruction instead of a declaration, we’re on a `?`
       // right now, so we do need to search for `>`, similar to declarations.
       return self.interrupt ? ok : continuationDeclarationInside
     }
 
+    // ASCII alphabetical.
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlpha)(code)) {
       effects.consume(code)
+      // @ts-expect-error: not null.
       buffer = String.fromCharCode(code)
-      startTag = true
       return tagName
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
-  function declarationStart(code) {
+  /**
+   * After `<!`, at declaration, comment, or CDATA.
+   *
+   * ```markdown
+   * > | <!doctype>
+   *       ^
+   * > | <!--xxx-->
+   *       ^
+   * > | <![CDATA[>&<]]>
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
+  function declarationOpen(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash) {
       effects.consume(code)
-      kind = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComment
+      marker = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComment
       return commentOpenInside
     }
 
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.leftSquareBracket) {
       effects.consume(code)
-      kind = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlCdata
-      buffer = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.cdataOpeningString
+      marker = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlCdata
       index = 0
       return cdataOpenInside
     }
 
+    // ASCII alphabetical.
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlpha)(code)) {
       effects.consume(code)
-      kind = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlDeclaration
+      marker = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlDeclaration
+      // // Do not form containers.
+      // tokenizer.concrete = true
       return self.interrupt ? ok : continuationDeclarationInside
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `<!-`, inside a comment, at another `-`.
+   *
+   * ```markdown
+   * > | <!--xxx-->
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function commentOpenInside(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash) {
       effects.consume(code)
+      // // Do not form containers.
+      // tokenizer.concrete = true
       return self.interrupt ? ok : continuationDeclarationInside
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `<![`, inside CDATA, expecting `CDATA[`.
+   *
+   * ```markdown
+   * > | <![CDATA[>&<]]>
+   *        ^^^^^^
+   * ```
+   *
+   * @type {State}
+   */
   function cdataOpenInside(code) {
-    if (code === buffer.charCodeAt(index++)) {
+    const value = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.cdataOpeningString
+
+    if (code === value.charCodeAt(index++)) {
       effects.consume(code)
-      return index === buffer.length
-        ? self.interrupt
-          ? ok
-          : continuation
-        : cdataOpenInside
+
+      if (index === value.length) {
+        // // Do not form containers.
+        // tokenizer.concrete = true
+        return self.interrupt ? ok : continuation
+      }
+
+      return cdataOpenInside
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `</`, in closing tag, at tag name.
+   *
+   * ```markdown
+   * > | </x>
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagCloseStart(code) {
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlpha)(code)) {
       effects.consume(code)
+      // @ts-expect-error: not null.
       buffer = String.fromCharCode(code)
       return tagName
     }
@@ -23152,7 +24310,18 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * In tag name.
+   *
+   * ```markdown
+   * > | <ab>
+   *      ^^
+   * > | </ab>
+   *       ^^
+   * ```
+   *
+   * @type {State}
+   */
   function tagName(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof ||
@@ -23160,35 +24329,39 @@ function tokenizeHtmlFlow(effects, ok, nok) {
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.greaterThan ||
       (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEndingOrSpace)(code)
     ) {
-      if (
-        code !== micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.slash &&
-        startTag &&
-        micromark_util_html_tag_name__WEBPACK_IMPORTED_MODULE_5__.htmlRawNames.includes(buffer.toLowerCase())
-      ) {
-        kind = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlRaw
+      const slash = code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.slash
+      const name = buffer.toLowerCase()
+
+      if (!slash && !closingTag && micromark_util_html_tag_name__WEBPACK_IMPORTED_MODULE_5__.htmlRawNames.includes(name)) {
+        marker = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlRaw
+        // // Do not form containers.
+        // tokenizer.concrete = true
         return self.interrupt ? ok(code) : continuation(code)
       }
 
       if (micromark_util_html_tag_name__WEBPACK_IMPORTED_MODULE_5__.htmlBlockNames.includes(buffer.toLowerCase())) {
-        kind = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlBasic
+        marker = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlBasic
 
-        if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.slash) {
+        if (slash) {
           effects.consume(code)
           return basicSelfClosing
         }
 
+        // // Do not form containers.
+        // tokenizer.concrete = true
         return self.interrupt ? ok(code) : continuation(code)
       }
 
-      kind = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComplete
-      // Do not support complete HTML when interrupting
+      marker = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComplete
+      // Do not support complete HTML when interrupting.
       return self.interrupt && !self.parser.lazy[self.now().line]
         ? nok(code)
-        : startTag
-        ? completeAttributeNameBefore(code)
-        : completeClosingTagAfter(code)
+        : closingTag
+        ? completeClosingTagAfter(code)
+        : completeAttributeNameBefore(code)
     }
 
+    // ASCII alphanumerical and `-`.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlphanumeric)(code)) {
       effects.consume(code)
       buffer += String.fromCharCode(code)
@@ -23198,17 +24371,37 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After closing slash of a basic tag name.
+   *
+   * ```markdown
+   * > | <div/>
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
   function basicSelfClosing(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.greaterThan) {
       effects.consume(code)
+      // // Do not form containers.
+      // tokenizer.concrete = true
       return self.interrupt ? ok : continuation
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After closing slash of a complete tag name.
+   *
+   * ```markdown
+   * > | <x/>
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeClosingTagAfter(code) {
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownSpace)(code)) {
       effects.consume(code)
@@ -23218,13 +24411,36 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return completeEnd(code)
   }
 
-  /** @type {State} */
+  /**
+   * At an attribute name.
+   *
+   * At first, this state is used after a complete tag name, after whitespace,
+   * where it expects optional attributes or the end of the tag.
+   * It is also reused after attributes, when expecting more optional
+   * attributes.
+   *
+   * ```markdown
+   * > | <a />
+   *        ^
+   * > | <a :b>
+   *        ^
+   * > | <a _b>
+   *        ^
+   * > | <a b>
+   *        ^
+   * > | <a >
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeAttributeNameBefore(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.slash) {
       effects.consume(code)
       return completeEnd
     }
 
+    // ASCII alphanumerical and `:` and `_`.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.colon || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.underscore || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlpha)(code)) {
       effects.consume(code)
       return completeAttributeName
@@ -23238,8 +24454,22 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return completeEnd(code)
   }
 
-  /** @type {State} */
+  /**
+   * In attribute name.
+   *
+   * ```markdown
+   * > | <a :b>
+   *         ^
+   * > | <a _b>
+   *         ^
+   * > | <a b>
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeAttributeName(code) {
+    // ASCII alphanumerical and `-`, `.`, `:`, and `_`.
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dot ||
@@ -23254,7 +24484,19 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return completeAttributeNameAfter(code)
   }
 
-  /** @type {State} */
+  /**
+   * After attribute name, at an optional initializer, the end of the tag, or
+   * whitespace.
+   *
+   * ```markdown
+   * > | <a b>
+   *         ^
+   * > | <a b=c>
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeAttributeNameAfter(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.equalsTo) {
       effects.consume(code)
@@ -23269,7 +24511,19 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return completeAttributeNameBefore(code)
   }
 
-  /** @type {State} */
+  /**
+   * Before unquoted, double quoted, or single quoted attribute value, allowing
+   * whitespace.
+   *
+   * ```markdown
+   * > | <a b=c>
+   *          ^
+   * > | <a b="c">
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeAttributeValueBefore(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof ||
@@ -23283,7 +24537,7 @@ function tokenizeHtmlFlow(effects, ok, nok) {
 
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.quotationMark || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.apostrophe) {
       effects.consume(code)
-      marker = code
+      markerB = code
       return completeAttributeValueQuoted
     }
 
@@ -23292,31 +24546,52 @@ function tokenizeHtmlFlow(effects, ok, nok) {
       return completeAttributeValueBefore
     }
 
-    marker = null
     return completeAttributeValueUnquoted(code)
   }
 
-  /** @type {State} */
+  /**
+   * In double or single quoted attribute value.
+   *
+   * ```markdown
+   * > | <a b="c">
+   *           ^
+   * > | <a b='c'>
+   *           ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeAttributeValueQuoted(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
-      return nok(code)
+    if (code === markerB) {
+      effects.consume(code)
+      markerB = null
+      return completeAttributeValueQuotedAfter
     }
 
-    if (code === marker) {
-      effects.consume(code)
-      return completeAttributeValueQuotedAfter
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      return nok(code)
     }
 
     effects.consume(code)
     return completeAttributeValueQuoted
   }
 
-  /** @type {State} */
+  /**
+   * In unquoted attribute value.
+   *
+   * ```markdown
+   * > | <a b=c>
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeAttributeValueUnquoted(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.quotationMark ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.apostrophe ||
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.slash ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.lessThan ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.equalsTo ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.greaterThan ||
@@ -23330,7 +24605,17 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return completeAttributeValueUnquoted
   }
 
-  /** @type {State} */
+  /**
+   * After double or single quoted attribute value, before whitespace or the
+   * end of the tag.
+   *
+   * ```markdown
+   * > | <a b="c">
+   *            ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeAttributeValueQuotedAfter(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.slash ||
@@ -23343,7 +24628,16 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * In certain circumstances of a complete tag where only an `>` is allowed.
+   *
+   * ```markdown
+   * > | <a b="c">
+   *             ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeEnd(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.greaterThan) {
       effects.consume(code)
@@ -23353,108 +24647,156 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `>` in a complete tag.
+   *
+   * ```markdown
+   * > | <x>
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function completeAfter(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      // // Do not form containers.
+      // tokenizer.concrete = true
+      return continuation(code)
+    }
+
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownSpace)(code)) {
       effects.consume(code)
       return completeAfter
     }
 
-    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)
-      ? continuation(code)
-      : nok(code)
+    return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * In continuation of any HTML kind.
+   *
+   * ```markdown
+   * > | <!--xxx-->
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
   function continuation(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash && kind === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComment) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash && marker === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComment) {
       effects.consume(code)
       return continuationCommentInside
     }
 
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.lessThan && kind === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlRaw) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.lessThan && marker === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlRaw) {
       effects.consume(code)
       return continuationRawTagOpen
     }
 
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.greaterThan && kind === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlDeclaration) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.greaterThan && marker === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlDeclaration) {
       effects.consume(code)
       return continuationClose
     }
 
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.questionMark && kind === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlInstruction) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.questionMark && marker === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlInstruction) {
       effects.consume(code)
       return continuationDeclarationInside
     }
 
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.rightSquareBracket && kind === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlCdata) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.rightSquareBracket && marker === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlCdata) {
       effects.consume(code)
-      return continuationCharacterDataInside
+      return continuationCdataInside
     }
 
     if (
       (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code) &&
-      (kind === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlBasic || kind === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComplete)
+      (marker === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlBasic || marker === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComplete)
     ) {
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.htmlFlowData)
       return effects.check(
-        nextBlankConstruct,
-        continuationClose,
-        continuationAtLineEnding
+        blankLineBefore,
+        continuationAfter,
+        continuationStart
       )(code)
     }
 
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
-      return continuationAtLineEnding(code)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.htmlFlowData)
+      return continuationStart(code)
     }
 
     effects.consume(code)
     return continuation
   }
 
-  /** @type {State} */
-  function continuationAtLineEnding(code) {
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.htmlFlowData)
-    return htmlContinueStart(code)
+  /**
+   * In continuation, at eol.
+   *
+   * ```markdown
+   * > | <x>
+   *        ^
+   *   | asd
+   * ```
+   *
+   * @type {State}
+   */
+  function continuationStart(code) {
+    return effects.check(
+      nonLazyContinuationStart,
+      continuationStartNonLazy,
+      continuationAfter
+    )(code)
   }
 
-  /** @type {State} */
-  function htmlContinueStart(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof) {
-      return done(code)
-    }
+  /**
+   * In continuation, at eol, before non-lazy content.
+   *
+   * ```markdown
+   * > | <x>
+   *        ^
+   *   | asd
+   * ```
+   *
+   * @type {State}
+   */
+  function continuationStartNonLazy(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code))
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
+    effects.consume(code)
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
+    return continuationBefore
+  }
 
-    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
-      return effects.attempt(
-        {tokenize: htmlLineEnd, partial: true},
-        htmlContinueStart,
-        done
-      )(code)
+  /**
+   * In continuation, before non-lazy content.
+   *
+   * ```markdown
+   *   | <x>
+   * > | asd
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function continuationBefore(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      return continuationStart(code)
     }
 
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.htmlFlowData)
     return continuation(code)
   }
 
-  /** @type {Tokenizer} */
-  function htmlLineEnd(effects, ok, nok) {
-    return start
-
-    /** @type {State} */
-    function start(code) {
-      ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code), 'expected eol')
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
-      effects.consume(code)
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
-      return lineStart
-    }
-
-    /** @type {State} */
-    function lineStart(code) {
-      return self.parser.lazy[self.now().line] ? nok(code) : ok(code)
-    }
-  }
-
-  /** @type {State} */
+  /**
+   * In comment continuation, after one `-`, expecting another.
+   *
+   * ```markdown
+   * > | <!--xxx-->
+   *             ^
+   * ```
+   *
+   * @type {State}
+   */
   function continuationCommentInside(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash) {
       effects.consume(code)
@@ -23464,7 +24806,16 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return continuation(code)
   }
 
-  /** @type {State} */
+  /**
+   * In raw continuation, after `<`, at `/`.
+   *
+   * ```markdown
+   * > | <script>console.log(1)</script>
+   *                            ^
+   * ```
+   *
+   * @type {State}
+   */
   function continuationRawTagOpen(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.slash) {
       effects.consume(code)
@@ -23475,18 +24826,31 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return continuation(code)
   }
 
-  /** @type {State} */
+  /**
+   * In raw continuation, after `</`, in a raw tag name.
+   *
+   * ```markdown
+   * > | <script>console.log(1)</script>
+   *                             ^^^^^^
+   * ```
+   *
+   * @type {State}
+   */
   function continuationRawEndTag(code) {
-    if (
-      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.greaterThan &&
-      micromark_util_html_tag_name__WEBPACK_IMPORTED_MODULE_5__.htmlRawNames.includes(buffer.toLowerCase())
-    ) {
-      effects.consume(code)
-      return continuationClose
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.greaterThan) {
+      const name = buffer.toLowerCase()
+
+      if (micromark_util_html_tag_name__WEBPACK_IMPORTED_MODULE_5__.htmlRawNames.includes(name)) {
+        effects.consume(code)
+        return continuationClose
+      }
+
+      return continuation(code)
     }
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.asciiAlpha)(code) && buffer.length < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlRawSizeMax) {
       effects.consume(code)
+      // @ts-expect-error: not null.
       buffer += String.fromCharCode(code)
       return continuationRawEndTag
     }
@@ -23494,8 +24858,17 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return continuation(code)
   }
 
-  /** @type {State} */
-  function continuationCharacterDataInside(code) {
+  /**
+   * In cdata continuation, after `]`, expecting `]>`.
+   *
+   * ```markdown
+   * > | <![CDATA[>&<]]>
+   *                  ^
+   * ```
+   *
+   * @type {State}
+   */
+  function continuationCdataInside(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.rightSquareBracket) {
       effects.consume(code)
       return continuationDeclarationInside
@@ -23504,7 +24877,24 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return continuation(code)
   }
 
-  /** @type {State} */
+  /**
+   * In declaration or instruction continuation, at `>`.
+   *
+   * ```markdown
+   * > | <!-->
+   *         ^
+   * > | <?>
+   *       ^
+   * > | <!q>
+   *        ^
+   * > | <!--ab-->
+   *             ^
+   * > | <![CDATA[>&<]]>
+   *                   ^
+   * ```
+   *
+   * @type {State}
+   */
   function continuationDeclarationInside(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.greaterThan) {
       effects.consume(code)
@@ -23512,7 +24902,7 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     }
 
     // More dashes.
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash && kind === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComment) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash && marker === micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.htmlComment) {
       effects.consume(code)
       return continuationDeclarationInside
     }
@@ -23520,35 +24910,116 @@ function tokenizeHtmlFlow(effects, ok, nok) {
     return continuation(code)
   }
 
-  /** @type {State} */
+  /**
+   * In closed continuation: everything we get until the eol/eof is part of it.
+   *
+   * ```markdown
+   * > | <!doctype>
+   *               ^
+   * ```
+   *
+   * @type {State}
+   */
   function continuationClose(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.htmlFlowData)
-      return done(code)
+      return continuationAfter(code)
     }
 
     effects.consume(code)
     return continuationClose
   }
 
-  /** @type {State} */
-  function done(code) {
+  /**
+   * Done.
+   *
+   * ```markdown
+   * > | <!doctype>
+   *               ^
+   * ```
+   *
+   * @type {State}
+   */
+  function continuationAfter(code) {
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.htmlFlow)
+    // // Feel free to interrupt.
+    // tokenizer.interrupt = false
+    // // No longer concrete.
+    // tokenizer.concrete = false
     return ok(code)
   }
 }
 
-/** @type {Tokenizer} */
-function tokenizeNextBlank(effects, ok, nok) {
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeNonLazyContinuationStart(effects, ok, nok) {
+  const self = this
+
   return start
 
-  /** @type {State} */
+  /**
+   * At eol, before continuation.
+   *
+   * ```markdown
+   * > | * ```js
+   *            ^
+   *   | b
+   * ```
+   *
+   * @type {State}
+   */
+  function start(code) {
+    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
+      effects.consume(code)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
+      return after
+    }
+
+    return nok(code)
+  }
+
+  /**
+   * A continuation.
+   *
+   * ```markdown
+   *   | * ```js
+   * > | b
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function after(code) {
+    return self.parser.lazy[self.now().line] ? nok(code) : ok(code)
+  }
+}
+
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeBlankLineBefore(effects, ok, nok) {
+  return start
+
+  /**
+   * Before eol, expecting blank line.
+   *
+   * ```markdown
+   * > | <div>
+   *          ^
+   *   |
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code), 'expected a line ending')
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.htmlFlowData)
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEndingBlank)
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
     effects.consume(code)
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEndingBlank)
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding)
     return effects.attempt(_blank_line_js__WEBPACK_IMPORTED_MODULE_6__.blankLine, ok, nok)
   }
 }
@@ -23565,19 +25036,20 @@ function tokenizeNextBlank(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "htmlText": () => (/* binding */ htmlText)
+/* harmony export */   htmlText: () => (/* binding */ htmlText)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
- * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
- * @typedef {import('micromark-util-types').State} State
  * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').Construct} Construct
+ * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -23590,13 +25062,14 @@ __webpack_require__.r(__webpack_exports__);
 /** @type {Construct} */
 const htmlText = {name: 'htmlText', tokenize: tokenizeHtmlText}
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeHtmlText(effects, ok, nok) {
   const self = this
-  /** @type {NonNullable<Code>|undefined} */
+  /** @type {NonNullable<Code> | undefined} */
   let marker
-  /** @type {string} */
-  let buffer
   /** @type {number} */
   let index
   /** @type {State} */
@@ -23604,7 +25077,16 @@ function tokenizeHtmlText(effects, ok, nok) {
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of HTML (text).
+   *
+   * ```markdown
+   * > | a <b> c
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.lessThan, 'expected `<`')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.htmlText)
@@ -23613,7 +25095,20 @@ function tokenizeHtmlText(effects, ok, nok) {
     return open
   }
 
-  /** @type {State} */
+  /**
+   * After `<`, at tag name or other stuff.
+   *
+   * ```markdown
+   * > | a <b> c
+   *        ^
+   * > | a <!doctype> c
+   *        ^
+   * > | a <!--b--> c
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function open(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.exclamationMark) {
       effects.consume(code)
@@ -23630,6 +25125,7 @@ function tokenizeHtmlText(effects, ok, nok) {
       return instruction
     }
 
+    // ASCII alphabetical.
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlpha)(code)) {
       effects.consume(code)
       return tagOpen
@@ -23638,18 +25134,30 @@ function tokenizeHtmlText(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `<!`, at declaration, comment, or CDATA.
+   *
+   * ```markdown
+   * > | a <!doctype> c
+   *         ^
+   * > | a <!--b--> c
+   *         ^
+   * > | a <![CDATA[>&<]]> c
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
   function declarationOpen(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash) {
       effects.consume(code)
-      return commentOpen
+      return commentOpenInside
     }
 
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.leftSquareBracket) {
       effects.consume(code)
-      buffer = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.cdataOpeningString
       index = 0
-      return cdataOpen
+      return cdataOpenInside
     }
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlpha)(code)) {
@@ -23660,40 +25168,35 @@ function tokenizeHtmlText(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
-  function commentOpen(code) {
+  /**
+   * In a comment, after `<!-`, at another `-`.
+   *
+   * ```markdown
+   * > | a <!--b--> c
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
+  function commentOpenInside(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash) {
       effects.consume(code)
-      return commentStart
+      return commentEnd
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
-  function commentStart(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan) {
-      return nok(code)
-    }
-
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash) {
-      effects.consume(code)
-      return commentStartDash
-    }
-
-    return comment(code)
-  }
-
-  /** @type {State} */
-  function commentStartDash(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan) {
-      return nok(code)
-    }
-
-    return comment(code)
-  }
-
-  /** @type {State} */
+  /**
+   * In comment.
+   *
+   * ```markdown
+   * > | a <!--b--> c
+   *           ^
+   * ```
+   *
+   * @type {State}
+   */
   function comment(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof) {
       return nok(code)
@@ -23706,34 +25209,81 @@ function tokenizeHtmlText(effects, ok, nok) {
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       returnState = comment
-      return atLineEnding(code)
+      return lineEndingBefore(code)
     }
 
     effects.consume(code)
     return comment
   }
 
-  /** @type {State} */
+  /**
+   * In comment, after `-`.
+   *
+   * ```markdown
+   * > | a <!--b--> c
+   *             ^
+   * ```
+   *
+   * @type {State}
+   */
   function commentClose(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash) {
       effects.consume(code)
-      return end
+      return commentEnd
     }
 
     return comment(code)
   }
 
-  /** @type {State} */
-  function cdataOpen(code) {
-    if (code === buffer.charCodeAt(index++)) {
+  /**
+   * In comment, after `--`.
+   *
+   * ```markdown
+   * > | a <!--b--> c
+   *              ^
+   * ```
+   *
+   * @type {State}
+   */
+  function commentEnd(code) {
+    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan
+      ? end(code)
+      : code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash
+      ? commentClose(code)
+      : comment(code)
+  }
+
+  /**
+   * After `<![`, in CDATA, expecting `CDATA[`.
+   *
+   * ```markdown
+   * > | a <![CDATA[>&<]]> b
+   *          ^^^^^^
+   * ```
+   *
+   * @type {State}
+   */
+  function cdataOpenInside(code) {
+    const value = micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.cdataOpeningString
+
+    if (code === value.charCodeAt(index++)) {
       effects.consume(code)
-      return index === buffer.length ? cdata : cdataOpen
+      return index === value.length ? cdata : cdataOpenInside
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * In CDATA.
+   *
+   * ```markdown
+   * > | a <![CDATA[>&<]]> b
+   *                ^^^
+   * ```
+   *
+   * @type {State}
+   */
   function cdata(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof) {
       return nok(code)
@@ -23746,14 +25296,23 @@ function tokenizeHtmlText(effects, ok, nok) {
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       returnState = cdata
-      return atLineEnding(code)
+      return lineEndingBefore(code)
     }
 
     effects.consume(code)
     return cdata
   }
 
-  /** @type {State} */
+  /**
+   * In CDATA, after `]`, at another `]`.
+   *
+   * ```markdown
+   * > | a <![CDATA[>&<]]> b
+   *                    ^
+   * ```
+   *
+   * @type {State}
+   */
   function cdataClose(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.rightSquareBracket) {
       effects.consume(code)
@@ -23763,7 +25322,16 @@ function tokenizeHtmlText(effects, ok, nok) {
     return cdata(code)
   }
 
-  /** @type {State} */
+  /**
+   * In CDATA, after `]]`, at `>`.
+   *
+   * ```markdown
+   * > | a <![CDATA[>&<]]> b
+   *                     ^
+   * ```
+   *
+   * @type {State}
+   */
   function cdataEnd(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan) {
       return end(code)
@@ -23777,7 +25345,16 @@ function tokenizeHtmlText(effects, ok, nok) {
     return cdata(code)
   }
 
-  /** @type {State} */
+  /**
+   * In declaration.
+   *
+   * ```markdown
+   * > | a <!b> c
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
   function declaration(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan) {
       return end(code)
@@ -23785,14 +25362,23 @@ function tokenizeHtmlText(effects, ok, nok) {
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       returnState = declaration
-      return atLineEnding(code)
+      return lineEndingBefore(code)
     }
 
     effects.consume(code)
     return declaration
   }
 
-  /** @type {State} */
+  /**
+   * In instruction.
+   *
+   * ```markdown
+   * > | a <?b?> c
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
   function instruction(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof) {
       return nok(code)
@@ -23805,20 +25391,39 @@ function tokenizeHtmlText(effects, ok, nok) {
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       returnState = instruction
-      return atLineEnding(code)
+      return lineEndingBefore(code)
     }
 
     effects.consume(code)
     return instruction
   }
 
-  /** @type {State} */
+  /**
+   * In instruction, after `?`, at `>`.
+   *
+   * ```markdown
+   * > | a <?b?> c
+   *           ^
+   * ```
+   *
+   * @type {State}
+   */
   function instructionClose(code) {
     return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan ? end(code) : instruction(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `</`, in closing tag, at tag name.
+   *
+   * ```markdown
+   * > | a </b> c
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagCloseStart(code) {
+    // ASCII alphabetical.
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlpha)(code)) {
       effects.consume(code)
       return tagClose
@@ -23827,8 +25432,18 @@ function tokenizeHtmlText(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `</x`, in a tag name.
+   *
+   * ```markdown
+   * > | a </b> c
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagClose(code) {
+    // ASCII alphanumerical and `-`.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlphanumeric)(code)) {
       effects.consume(code)
       return tagClose
@@ -23837,11 +25452,20 @@ function tokenizeHtmlText(effects, ok, nok) {
     return tagCloseBetween(code)
   }
 
-  /** @type {State} */
+  /**
+   * In closing tag, after tag name.
+   *
+   * ```markdown
+   * > | a </b> c
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagCloseBetween(code) {
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       returnState = tagCloseBetween
-      return atLineEnding(code)
+      return lineEndingBefore(code)
     }
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)) {
@@ -23852,8 +25476,18 @@ function tokenizeHtmlText(effects, ok, nok) {
     return end(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `<x`, in opening tag name.
+   *
+   * ```markdown
+   * > | a <b> c
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagOpen(code) {
+    // ASCII alphanumerical and `-`.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlphanumeric)(code)) {
       effects.consume(code)
       return tagOpen
@@ -23870,13 +25504,23 @@ function tokenizeHtmlText(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * In opening tag, after tag name.
+   *
+   * ```markdown
+   * > | a <b> c
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagOpenBetween(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.slash) {
       effects.consume(code)
       return end
     }
 
+    // ASCII alphabetical and `:` and `_`.
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.colon || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.underscore || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiAlpha)(code)) {
       effects.consume(code)
       return tagOpenAttributeName
@@ -23884,7 +25528,7 @@ function tokenizeHtmlText(effects, ok, nok) {
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       returnState = tagOpenBetween
-      return atLineEnding(code)
+      return lineEndingBefore(code)
     }
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)) {
@@ -23895,8 +25539,18 @@ function tokenizeHtmlText(effects, ok, nok) {
     return end(code)
   }
 
-  /** @type {State} */
+  /**
+   * In attribute name.
+   *
+   * ```markdown
+   * > | a <b c> d
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagOpenAttributeName(code) {
+    // ASCII alphabetical and `-`, `.`, `:`, and `_`.
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dot ||
@@ -23911,7 +25565,17 @@ function tokenizeHtmlText(effects, ok, nok) {
     return tagOpenAttributeNameAfter(code)
   }
 
-  /** @type {State} */
+  /**
+   * After attribute name, before initializer, the end of the tag, or
+   * whitespace.
+   *
+   * ```markdown
+   * > | a <b c> d
+   *           ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagOpenAttributeNameAfter(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.equalsTo) {
       effects.consume(code)
@@ -23920,7 +25584,7 @@ function tokenizeHtmlText(effects, ok, nok) {
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       returnState = tagOpenAttributeNameAfter
-      return atLineEnding(code)
+      return lineEndingBefore(code)
     }
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)) {
@@ -23931,7 +25595,17 @@ function tokenizeHtmlText(effects, ok, nok) {
     return tagOpenBetween(code)
   }
 
-  /** @type {State} */
+  /**
+   * Before unquoted, double quoted, or single quoted attribute value, allowing
+   * whitespace.
+   *
+   * ```markdown
+   * > | a <b c=d> e
+   *            ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagOpenAttributeValueBefore(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof ||
@@ -23951,7 +25625,7 @@ function tokenizeHtmlText(effects, ok, nok) {
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       returnState = tagOpenAttributeValueBefore
-      return atLineEnding(code)
+      return lineEndingBefore(code)
     }
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)) {
@@ -23960,14 +25634,23 @@ function tokenizeHtmlText(effects, ok, nok) {
     }
 
     effects.consume(code)
-    marker = undefined
     return tagOpenAttributeValueUnquoted
   }
 
-  /** @type {State} */
+  /**
+   * In double or single quoted attribute value.
+   *
+   * ```markdown
+   * > | a <b c="d"> e
+   *             ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagOpenAttributeValueQuoted(code) {
     if (code === marker) {
       effects.consume(code)
+      marker = undefined
       return tagOpenAttributeValueQuotedAfter
     }
 
@@ -23977,27 +25660,23 @@ function tokenizeHtmlText(effects, ok, nok) {
 
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       returnState = tagOpenAttributeValueQuoted
-      return atLineEnding(code)
+      return lineEndingBefore(code)
     }
 
     effects.consume(code)
     return tagOpenAttributeValueQuoted
   }
 
-  /** @type {State} */
-  function tagOpenAttributeValueQuotedAfter(code) {
-    if (
-      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan ||
-      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.slash ||
-      (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEndingOrSpace)(code)
-    ) {
-      return tagOpenBetween(code)
-    }
-
-    return nok(code)
-  }
-
-  /** @type {State} */
+  /**
+   * In unquoted attribute value.
+   *
+   * ```markdown
+   * > | a <b c=d> e
+   *            ^
+   * ```
+   *
+   * @type {State}
+   */
   function tagOpenAttributeValueUnquoted(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof ||
@@ -24010,7 +25689,11 @@ function tokenizeHtmlText(effects, ok, nok) {
       return nok(code)
     }
 
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEndingOrSpace)(code)) {
+    if (
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.slash ||
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan ||
+      (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEndingOrSpace)(code)
+    ) {
       return tagOpenBetween(code)
     }
 
@@ -24018,33 +25701,39 @@ function tokenizeHtmlText(effects, ok, nok) {
     return tagOpenAttributeValueUnquoted
   }
 
-  // We can’t have blank lines in content, so no need to worry about empty
-  // tokens.
-  /** @type {State} */
-  function atLineEnding(code) {
-    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(returnState, 'expected return state')
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code), 'expected eol')
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.htmlTextData)
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
-    effects.consume(code)
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
-    return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__.factorySpace)(
-      effects,
-      afterPrefix,
-      micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix,
-      self.parser.constructs.disable.null.includes('codeIndented')
-        ? undefined
-        : micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.tabSize
-    )
+  /**
+   * After double or single quoted attribute value, before whitespace or the end
+   * of the tag.
+   *
+   * ```markdown
+   * > | a <b c="d"> e
+   *               ^
+   * ```
+   *
+   * @type {State}
+   */
+  function tagOpenAttributeValueQuotedAfter(code) {
+    if (
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.slash ||
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan ||
+      (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEndingOrSpace)(code)
+    ) {
+      return tagOpenBetween(code)
+    }
+
+    return nok(code)
   }
 
-  /** @type {State} */
-  function afterPrefix(code) {
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.htmlTextData)
-    return returnState(code)
-  }
-
-  /** @type {State} */
+  /**
+   * In certain circumstances of a tag where only an `>` is allowed.
+   *
+   * ```markdown
+   * > | a <b c="d"> e
+   *               ^
+   * ```
+   *
+   * @type {State}
+   */
   function end(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.greaterThan) {
       effects.consume(code)
@@ -24054,6 +25743,81 @@ function tokenizeHtmlText(effects, ok, nok) {
     }
 
     return nok(code)
+  }
+
+  /**
+   * At eol.
+   *
+   * > 👉 **Note**: we can’t have blank lines in text, so no need to worry about
+   * > empty tokens.
+   *
+   * ```markdown
+   * > | a <!--a
+   *            ^
+   *   | b-->
+   * ```
+   *
+   * @type {State}
+   */
+  function lineEndingBefore(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(returnState, 'expected return state')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code), 'expected eol')
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.htmlTextData)
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+    effects.consume(code)
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+    return lineEndingAfter
+  }
+
+  /**
+   * After eol, at optional whitespace.
+   *
+   * > 👉 **Note**: we can’t have blank lines in text, so no need to worry about
+   * > empty tokens.
+   *
+   * ```markdown
+   *   | a <!--a
+   * > | b-->
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function lineEndingAfter(code) {
+    // Always populated by defaults.
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+      self.parser.constructs.disable.null,
+      'expected `disable.null` to be populated'
+    )
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)
+      ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__.factorySpace)(
+          effects,
+          lineEndingAfterPrefix,
+          micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix,
+          self.parser.constructs.disable.null.includes('codeIndented')
+            ? undefined
+            : micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.tabSize
+        )(code)
+      : lineEndingAfterPrefix(code)
+  }
+
+  /**
+   * After eol, after optional whitespace.
+   *
+   * > 👉 **Note**: we can’t have blank lines in text, so no need to worry about
+   * > empty tokens.
+   *
+   * ```markdown
+   *   | a <!--a
+   * > | b-->
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function lineEndingAfterPrefix(code) {
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.htmlTextData)
+    return returnState(code)
   }
 }
 
@@ -24069,28 +25833,28 @@ function tokenizeHtmlText(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "labelEnd": () => (/* binding */ labelEnd)
+/* harmony export */   labelEnd: () => (/* binding */ labelEnd)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
-/* harmony import */ var micromark_factory_destination__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! micromark-factory-destination */ "../node_modules/micromark-factory-destination/dev/index.js");
+/* harmony import */ var micromark_factory_destination__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! micromark-factory-destination */ "../node_modules/micromark-factory-destination/dev/index.js");
 /* harmony import */ var micromark_factory_label__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! micromark-factory-label */ "../node_modules/micromark-factory-label/dev/index.js");
 /* harmony import */ var micromark_factory_title__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! micromark-factory-title */ "../node_modules/micromark-factory-title/dev/index.js");
-/* harmony import */ var micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-factory-whitespace */ "../node_modules/micromark-factory-whitespace/dev/index.js");
-/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
+/* harmony import */ var micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! micromark-factory-whitespace */ "../node_modules/micromark-factory-whitespace/dev/index.js");
+/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-chunked */ "../node_modules/micromark-util-chunked/dev/index.js");
 /* harmony import */ var micromark_util_normalize_identifier__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-normalize-identifier */ "../node_modules/micromark-util-normalize-identifier/dev/index.js");
 /* harmony import */ var micromark_util_resolve_all__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-resolve-all */ "../node_modules/micromark-util-resolve-all/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
-/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
+/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Resolver} Resolver
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').Event} Event
- * @typedef {import('micromark-util-types').Token} Token
+ * @typedef {import('micromark-util-types').Resolver} Resolver
  * @typedef {import('micromark-util-types').State} State
- * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').Token} Token
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -24117,18 +25881,16 @@ const labelEnd = {
 /** @type {Construct} */
 const resourceConstruct = {tokenize: tokenizeResource}
 /** @type {Construct} */
-const fullReferenceConstruct = {tokenize: tokenizeFullReference}
+const referenceFullConstruct = {tokenize: tokenizeReferenceFull}
 /** @type {Construct} */
-const collapsedReferenceConstruct = {tokenize: tokenizeCollapsedReference}
+const referenceCollapsedConstruct = {tokenize: tokenizeReferenceCollapsed}
 
 /** @type {Resolver} */
 function resolveAllLabelEnd(events) {
   let index = -1
-  /** @type {Token} */
-  let token
 
   while (++index < events.length) {
-    token = events[index][1]
+    const token = events[index][1]
 
     if (
       token.type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.labelImage ||
@@ -24151,11 +25913,11 @@ function resolveToLabelEnd(events, context) {
   let offset = 0
   /** @type {Token} */
   let token
-  /** @type {number|undefined} */
+  /** @type {number | undefined} */
   let open
-  /** @type {number|undefined} */
+  /** @type {number | undefined} */
   let close
-  /** @type {Event[]} */
+  /** @type {Array<Event>} */
   let media
 
   // Find an opening.
@@ -24226,6 +25988,11 @@ function resolveToLabelEnd(events, context) {
   // Text open.
   media = (0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.push)(media, [['enter', text, context]])
 
+  // Always populated by defaults.
+  ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+    context.parser.constructs.insideSpan.null,
+    'expected `insideSpan.null` to be populated'
+  )
   // Between.
   media = (0,micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__.push)(
     media,
@@ -24255,7 +26022,10 @@ function resolveToLabelEnd(events, context) {
   return events
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeLabelEnd(effects, ok, nok) {
   const self = this
   let index = self.events.length
@@ -24278,16 +26048,42 @@ function tokenizeLabelEnd(effects, ok, nok) {
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of label end.
+   *
+   * ```markdown
+   * > | [a](b) c
+   *       ^
+   * > | [a][b] c
+   *       ^
+   * > | [a][] b
+   *       ^
+   * > | [a] b
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.rightSquareBracket, 'expected `]`')
 
+    // If there is not an okay opening.
     if (!labelStart) {
       return nok(code)
     }
 
-    // It’s a balanced bracket, but contains a link.
-    if (labelStart._inactive) return balanced(code)
+    // If the corresponding label (link) start is marked as inactive,
+    // it means we’d be wrapping a link, like this:
+    //
+    // ```markdown
+    // > | a [b [c](d) e](f) g.
+    //                  ^
+    // ```
+    //
+    // We can’t have that, so it’s just balanced brackets.
+    if (labelStart._inactive) {
+      return labelEndNok(code)
+    }
+
     defined = self.parser.defined.includes(
       (0,micromark_util_normalize_identifier__WEBPACK_IMPORTED_MODULE_5__.normalizeIdentifier)(
         self.sliceSerialize({start: labelStart.end, end: self.now()})
@@ -24298,84 +26094,227 @@ function tokenizeLabelEnd(effects, ok, nok) {
     effects.consume(code)
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.labelMarker)
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.labelEnd)
-    return afterLabelEnd
+    return after
   }
 
-  /** @type {State} */
-  function afterLabelEnd(code) {
-    // Resource: `[asd](fgh)`.
+  /**
+   * After `]`.
+   *
+   * ```markdown
+   * > | [a](b) c
+   *       ^
+   * > | [a][b] c
+   *       ^
+   * > | [a][] b
+   *       ^
+   * > | [a] b
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
+  function after(code) {
+    // Note: `markdown-rs` also parses GFM footnotes here, which for us is in
+    // an extension.
+
+    // Resource (`[asd](fgh)`)?
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.leftParenthesis) {
       return effects.attempt(
         resourceConstruct,
-        ok,
-        defined ? ok : balanced
+        labelEndOk,
+        defined ? labelEndOk : labelEndNok
       )(code)
     }
 
-    // Collapsed (`[asd][]`) or full (`[asd][fgh]`) reference?
+    // Full (`[asd][fgh]`) or collapsed (`[asd][]`) reference?
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.leftSquareBracket) {
       return effects.attempt(
-        fullReferenceConstruct,
-        ok,
-        defined
-          ? effects.attempt(collapsedReferenceConstruct, ok, balanced)
-          : balanced
+        referenceFullConstruct,
+        labelEndOk,
+        defined ? referenceNotFull : labelEndNok
       )(code)
     }
 
-    // Shortcut reference: `[asd]`?
-    return defined ? ok(code) : balanced(code)
+    // Shortcut (`[asd]`) reference?
+    return defined ? labelEndOk(code) : labelEndNok(code)
   }
 
-  /** @type {State} */
-  function balanced(code) {
+  /**
+   * After `]`, at `[`, but not at a full reference.
+   *
+   * > 👉 **Note**: we only get here if the label is defined.
+   *
+   * ```markdown
+   * > | [a][] b
+   *        ^
+   * > | [a] b
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
+  function referenceNotFull(code) {
+    return effects.attempt(
+      referenceCollapsedConstruct,
+      labelEndOk,
+      labelEndNok
+    )(code)
+  }
+
+  /**
+   * Done, we found something.
+   *
+   * ```markdown
+   * > | [a](b) c
+   *           ^
+   * > | [a][b] c
+   *           ^
+   * > | [a][] b
+   *          ^
+   * > | [a] b
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
+  function labelEndOk(code) {
+    // Note: `markdown-rs` does a bunch of stuff here.
+    return ok(code)
+  }
+
+  /**
+   * Done, it’s nothing.
+   *
+   * There was an okay opening, but we didn’t match anything.
+   *
+   * ```markdown
+   * > | [a](b c
+   *        ^
+   * > | [a][b c
+   *        ^
+   * > | [a] b
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
+  function labelEndNok(code) {
     labelStart._balanced = true
     return nok(code)
   }
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeResource(effects, ok, nok) {
-  return start
+  return resourceStart
 
-  /** @type {State} */
-  function start(code) {
+  /**
+   * At a resource.
+   *
+   * ```markdown
+   * > | [a](b) c
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
+  function resourceStart(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.leftParenthesis, 'expected left paren')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resource)
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceMarker)
     effects.consume(code)
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceMarker)
-    return (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_6__.factoryWhitespace)(effects, open)
+    return resourceBefore
   }
 
-  /** @type {State} */
-  function open(code) {
+  /**
+   * In resource, after `(`, at optional whitespace.
+   *
+   * ```markdown
+   * > | [a](b) c
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
+  function resourceBefore(code) {
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_6__.markdownLineEndingOrSpace)(code)
+      ? (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_7__.factoryWhitespace)(effects, resourceOpen)(code)
+      : resourceOpen(code)
+  }
+
+  /**
+   * In resource, after optional whitespace, at `)` or a destination.
+   *
+   * ```markdown
+   * > | [a](b) c
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
+  function resourceOpen(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.rightParenthesis) {
-      return end(code)
+      return resourceEnd(code)
     }
 
-    return (0,micromark_factory_destination__WEBPACK_IMPORTED_MODULE_7__.factoryDestination)(
+    return (0,micromark_factory_destination__WEBPACK_IMPORTED_MODULE_8__.factoryDestination)(
       effects,
-      destinationAfter,
-      nok,
+      resourceDestinationAfter,
+      resourceDestinationMissing,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceDestination,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceDestinationLiteral,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceDestinationLiteralMarker,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceDestinationRaw,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceDestinationString,
-      micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_8__.constants.linkResourceDestinationBalanceMax
+      micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_9__.constants.linkResourceDestinationBalanceMax
     )(code)
   }
 
-  /** @type {State} */
-  function destinationAfter(code) {
-    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_9__.markdownLineEndingOrSpace)(code)
-      ? (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_6__.factoryWhitespace)(effects, between)(code)
-      : end(code)
+  /**
+   * In resource, after destination, at optional whitespace.
+   *
+   * ```markdown
+   * > | [a](b) c
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
+  function resourceDestinationAfter(code) {
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_6__.markdownLineEndingOrSpace)(code)
+      ? (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_7__.factoryWhitespace)(effects, resourceBetween)(code)
+      : resourceEnd(code)
   }
 
-  /** @type {State} */
-  function between(code) {
+  /**
+   * At invalid destination.
+   *
+   * ```markdown
+   * > | [a](<<) b
+   *         ^
+   * ```
+   *
+   * @type {State}
+   */
+  function resourceDestinationMissing(code) {
+    return nok(code)
+  }
+
+  /**
+   * In resource, after destination and whitespace, at `(` or title.
+   *
+   * ```markdown
+   * > | [a](b ) c
+   *           ^
+   * ```
+   *
+   * @type {State}
+   */
+  function resourceBetween(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.quotationMark ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.apostrophe ||
@@ -24383,7 +26322,7 @@ function tokenizeResource(effects, ok, nok) {
     ) {
       return (0,micromark_factory_title__WEBPACK_IMPORTED_MODULE_10__.factoryTitle)(
         effects,
-        (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_6__.factoryWhitespace)(effects, end),
+        resourceTitleAfter,
         nok,
         micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceTitle,
         micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceTitleMarker,
@@ -24391,11 +26330,36 @@ function tokenizeResource(effects, ok, nok) {
       )(code)
     }
 
-    return end(code)
+    return resourceEnd(code)
   }
 
-  /** @type {State} */
-  function end(code) {
+  /**
+   * In resource, after title, at optional whitespace.
+   *
+   * ```markdown
+   * > | [a](b "c") d
+   *              ^
+   * ```
+   *
+   * @type {State}
+   */
+  function resourceTitleAfter(code) {
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_6__.markdownLineEndingOrSpace)(code)
+      ? (0,micromark_factory_whitespace__WEBPACK_IMPORTED_MODULE_7__.factoryWhitespace)(effects, resourceEnd)(code)
+      : resourceEnd(code)
+  }
+
+  /**
+   * In resource, at `)`.
+   *
+   * ```markdown
+   * > | [a](b) d
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
+  function resourceEnd(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.rightParenthesis) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.resourceMarker)
       effects.consume(code)
@@ -24408,28 +26372,49 @@ function tokenizeResource(effects, ok, nok) {
   }
 }
 
-/** @type {Tokenizer} */
-function tokenizeFullReference(effects, ok, nok) {
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeReferenceFull(effects, ok, nok) {
   const self = this
 
-  return start
+  return referenceFull
 
-  /** @type {State} */
-  function start(code) {
+  /**
+   * In a reference (full), at the `[`.
+   *
+   * ```markdown
+   * > | [a][b] d
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
+  function referenceFull(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.leftSquareBracket, 'expected left bracket')
     return micromark_factory_label__WEBPACK_IMPORTED_MODULE_11__.factoryLabel.call(
       self,
       effects,
-      afterLabel,
-      nok,
+      referenceFullAfter,
+      referenceFullMissing,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.reference,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.referenceMarker,
       micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.referenceString
     )(code)
   }
 
-  /** @type {State} */
-  function afterLabel(code) {
+  /**
+   * In a reference (full), after `]`.
+   *
+   * ```markdown
+   * > | [a][b] d
+   *          ^
+   * ```
+   *
+   * @type {State}
+   */
+  function referenceFullAfter(code) {
     return self.parser.defined.includes(
       (0,micromark_util_normalize_identifier__WEBPACK_IMPORTED_MODULE_5__.normalizeIdentifier)(
         self.sliceSerialize(self.events[self.events.length - 1][1]).slice(1, -1)
@@ -24438,24 +26423,64 @@ function tokenizeFullReference(effects, ok, nok) {
       ? ok(code)
       : nok(code)
   }
+
+  /**
+   * In reference (full) that was missing.
+   *
+   * ```markdown
+   * > | [a][b d
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
+  function referenceFullMissing(code) {
+    return nok(code)
+  }
 }
 
-/** @type {Tokenizer} */
-function tokenizeCollapsedReference(effects, ok, nok) {
-  return start
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
+function tokenizeReferenceCollapsed(effects, ok, nok) {
+  return referenceCollapsedStart
 
-  /** @type {State} */
-  function start(code) {
+  /**
+   * In reference (collapsed), at `[`.
+   *
+   * > 👉 **Note**: we only get here if the label is defined.
+   *
+   * ```markdown
+   * > | [a][] d
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
+  function referenceCollapsedStart(code) {
+    // We only attempt a collapsed label if there’s a `[`.
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.leftSquareBracket, 'expected left bracket')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.reference)
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.referenceMarker)
     effects.consume(code)
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.referenceMarker)
-    return open
+    return referenceCollapsedOpen
   }
 
-  /** @type {State} */
-  function open(code) {
+  /**
+   * In reference (collapsed), at `]`.
+   *
+   * > 👉 **Note**: we only get here if the label is defined.
+   *
+   * ```markdown
+   * > | [a][] d
+   *         ^
+   * ```
+   *
+   *  @type {State}
+   */
+  function referenceCollapsedOpen(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_4__.codes.rightSquareBracket) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.referenceMarker)
       effects.consume(code)
@@ -24480,16 +26505,17 @@ function tokenizeCollapsedReference(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "labelStartImage": () => (/* binding */ labelStartImage)
+/* harmony export */   labelStartImage: () => (/* binding */ labelStartImage)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var _label_end_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./label-end.js */ "../node_modules/micromark-core-commonmark/dev/lib/label-end.js");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -24504,13 +26530,25 @@ const labelStartImage = {
   resolveAll: _label_end_js__WEBPACK_IMPORTED_MODULE_1__.labelEnd.resolveAll
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeLabelStartImage(effects, ok, nok) {
   const self = this
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of label (image) start.
+   *
+   * ```markdown
+   * > | a ![b] c
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.exclamationMark, 'expected `!`')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__.types.labelImage)
@@ -24520,7 +26558,16 @@ function tokenizeLabelStartImage(effects, ok, nok) {
     return open
   }
 
-  /** @type {State} */
+  /**
+   * After `!`, at `[`.
+   *
+   * ```markdown
+   * > | a ![b] c
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function open(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.leftSquareBracket) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__.types.labelMarker)
@@ -24533,12 +26580,38 @@ function tokenizeLabelStartImage(effects, ok, nok) {
     return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * After `![`.
+   *
+   * ```markdown
+   * > | a ![b] c
+   *         ^
+   * ```
+   *
+   * This is needed in because, when GFM footnotes are enabled, images never
+   * form when started with a `^`.
+   * Instead, links form:
+   *
+   * ```markdown
+   * ![^a](b)
+   *
+   * ![^a][b]
+   *
+   * [b]: c
+   * ```
+   *
+   * ```html
+   * <p>!<a href=\"b\">^a</a></p>
+   * <p>!<a href=\"c\">^a</a></p>
+   * ```
+   *
+   * @type {State}
+   */
   function after(code) {
-    /* To do: remove in the future once we’ve switched from
-     * `micromark-extension-footnote` to `micromark-extension-gfm-footnote`,
-     * which doesn’t need this */
-    /* Hidden footnotes hook */
+    // To do: use a new field to do this, this is still needed for
+    // `micromark-extension-gfm-footnote`, but the `label-start-link`
+    // behavior isn’t.
+    // Hidden footnotes hook.
     /* c8 ignore next 3 */
     return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.caret &&
       '_hiddenFootnoteSupport' in self.parser.constructs
@@ -24559,16 +26632,17 @@ function tokenizeLabelStartImage(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "labelStartLink": () => (/* binding */ labelStartLink)
+/* harmony export */   labelStartLink: () => (/* binding */ labelStartLink)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var _label_end_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./label-end.js */ "../node_modules/micromark-core-commonmark/dev/lib/label-end.js");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -24583,13 +26657,25 @@ const labelStartLink = {
   resolveAll: _label_end_js__WEBPACK_IMPORTED_MODULE_1__.labelEnd.resolveAll
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeLabelStartLink(effects, ok, nok) {
   const self = this
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of label (link) start.
+   *
+   * ```markdown
+   * > | a [b] c
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.leftSquareBracket, 'expected `[`')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__.types.labelLink)
@@ -24602,10 +26688,9 @@ function tokenizeLabelStartLink(effects, ok, nok) {
 
   /** @type {State} */
   function after(code) {
-    /* To do: remove in the future once we’ve switched from
-     * `micromark-extension-footnote` to `micromark-extension-gfm-footnote`,
-     * which doesn’t need this */
-    /* Hidden footnotes hook. */
+    // To do: this isn’t needed in `micromark-extension-gfm-footnote`,
+    // remove.
+    // Hidden footnotes hook.
     /* c8 ignore next 3 */
     return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.caret &&
       '_hiddenFootnoteSupport' in self.parser.constructs
@@ -24626,16 +26711,17 @@ function tokenizeLabelStartLink(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "lineEnding": () => (/* binding */ lineEnding)
+/* harmony export */   lineEnding: () => (/* binding */ lineEnding)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -24646,7 +26732,10 @@ __webpack_require__.r(__webpack_exports__);
 /** @type {Construct} */
 const lineEnding = {name: 'lineEnding', tokenize: tokenizeLineEnding}
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeLineEnding(effects, ok) {
   return start
 
@@ -24672,28 +26761,24 @@ function tokenizeLineEnding(effects, ok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "list": () => (/* binding */ list)
+/* harmony export */   list: () => (/* binding */ list)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var _blank_line_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./blank-line.js */ "../node_modules/micromark-core-commonmark/dev/lib/blank-line.js");
 /* harmony import */ var _thematic_break_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./thematic-break.js */ "../node_modules/micromark-core-commonmark/dev/lib/thematic-break.js");
 /**
- * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
- * @typedef {import('micromark-util-types').Exiter} Exiter
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
- * @typedef {import('micromark-util-types').State} State
  * @typedef {import('micromark-util-types').Code} Code
- */
-
-/**
- * @typedef {Record<string, unknown> & {marker: Code, type: string, size: number}} ListContainerState
- * @typedef {TokenizeContext & {containerState: ListContainerState}} TokenizeContextWithState
+ * @typedef {import('micromark-util-types').Construct} Construct
+ * @typedef {import('micromark-util-types').ContainerState} ContainerState
+ * @typedef {import('micromark-util-types').Exiter} Exiter
+ * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -24722,9 +26807,12 @@ const listItemPrefixWhitespaceConstruct = {
 /** @type {Construct} */
 const indentConstruct = {tokenize: tokenizeIndent, partial: true}
 
+// To do: `markdown-rs` parses list items on their own and later stitches them
+// together.
+
 /**
  * @type {Tokenizer}
- * @this {TokenizeContextWithState}
+ * @this {TokenizeContext}
  */
 function tokenizeListStart(effects, ok, nok) {
   const self = this
@@ -24739,6 +26827,7 @@ function tokenizeListStart(effects, ok, nok) {
 
   /** @type {State} */
   function start(code) {
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
     const kind =
       self.containerState.type ||
       (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.asterisk || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.plusSign || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash
@@ -24774,6 +26863,7 @@ function tokenizeListStart(effects, ok, nok) {
 
   /** @type {State} */
   function inside(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.asciiDigit)(code) && ++size < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__.constants.listItemValueSizeMax) {
       effects.consume(code)
       return inside
@@ -24796,7 +26886,8 @@ function tokenizeListStart(effects, ok, nok) {
    * @type {State}
    **/
   function atMarker(code) {
-    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code !== micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof, 'eof (`null`) is not a marker')
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code !== micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof, 'eof (`null`) is not a marker')
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.listItemMarker)
     effects.consume(code)
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.listItemMarker)
@@ -24815,6 +26906,7 @@ function tokenizeListStart(effects, ok, nok) {
 
   /** @type {State} */
   function onBlank(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
     self.containerState.initialBlankLine = true
     initialSize++
     return endOfPrefix(code)
@@ -24834,6 +26926,7 @@ function tokenizeListStart(effects, ok, nok) {
 
   /** @type {State} */
   function endOfPrefix(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
     self.containerState.size =
       initialSize +
       self.sliceSerialize(effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.listItemPrefix), true).length
@@ -24843,17 +26936,20 @@ function tokenizeListStart(effects, ok, nok) {
 
 /**
  * @type {Tokenizer}
- * @this {TokenizeContextWithState}
+ * @this {TokenizeContext}
  */
 function tokenizeListContinuation(effects, ok, nok) {
   const self = this
 
+  ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
   self.containerState._closeFlow = undefined
 
   return effects.check(_blank_line_js__WEBPACK_IMPORTED_MODULE_6__.blankLine, onBlank, notBlank)
 
   /** @type {State} */
   function onBlank(code) {
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(typeof self.containerState.size === 'number', 'expected size')
     self.containerState.furtherBlankLines =
       self.containerState.furtherBlankLines ||
       self.containerState.initialBlankLine
@@ -24870,6 +26966,7 @@ function tokenizeListContinuation(effects, ok, nok) {
 
   /** @type {State} */
   function notBlank(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
     if (self.containerState.furtherBlankLines || !(0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)) {
       self.containerState.furtherBlankLines = undefined
       self.containerState.initialBlankLine = undefined
@@ -24883,10 +26980,16 @@ function tokenizeListContinuation(effects, ok, nok) {
 
   /** @type {State} */
   function notInCurrentItem(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
     // While we do continue, we signal that the flow should be closed.
     self.containerState._closeFlow = true
     // As we’re closing flow, we’re no longer interrupting.
     self.interrupt = undefined
+    // Always populated by defaults.
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+      self.parser.constructs.disable.null,
+      'expected `disable.null` to be populated'
+    )
     return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_7__.factorySpace)(
       effects,
       effects.attempt(list, ok, nok),
@@ -24900,10 +27003,13 @@ function tokenizeListContinuation(effects, ok, nok) {
 
 /**
  * @type {Tokenizer}
- * @this {TokenizeContextWithState}
+ * @this {TokenizeContext}
  */
 function tokenizeIndent(effects, ok, nok) {
   const self = this
+
+  ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
+  ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(typeof self.containerState.size === 'number', 'expected size')
 
   return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_7__.factorySpace)(
     effects,
@@ -24914,6 +27020,7 @@ function tokenizeIndent(effects, ok, nok) {
 
   /** @type {State} */
   function afterPrefix(code) {
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(self.containerState, 'expected state')
     const tail = self.events[self.events.length - 1]
     return tail &&
       tail[1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.listItemIndent &&
@@ -24925,18 +27032,26 @@ function tokenizeIndent(effects, ok, nok) {
 
 /**
  * @type {Exiter}
- * @this {TokenizeContextWithState}
+ * @this {TokenizeContext}
  */
 function tokenizeListEnd(effects) {
+  (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(this.containerState, 'expected state')
+  ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(typeof this.containerState.type === 'string', 'expected type')
   effects.exit(this.containerState.type)
 }
 
 /**
  * @type {Tokenizer}
- * @this {TokenizeContextWithState}
+ * @this {TokenizeContext}
  */
 function tokenizeListItemPrefixWhitespace(effects, ok, nok) {
   const self = this
+
+  // Always populated by defaults.
+  ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+    self.parser.constructs.disable.null,
+    'expected `disable.null` to be populated'
+  )
 
   return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_7__.factorySpace)(
     effects,
@@ -24971,19 +27086,20 @@ function tokenizeListItemPrefixWhitespace(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "setextUnderline": () => (/* binding */ setextUnderline)
+/* harmony export */   setextUnderline: () => (/* binding */ setextUnderline)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
-/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
-/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
+/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
+/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
+ * @typedef {import('micromark-util-types').Code} Code
  * @typedef {import('micromark-util-types').Construct} Construct
  * @typedef {import('micromark-util-types').Resolver} Resolver
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  * @typedef {import('micromark-util-types').State} State
- * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -25001,12 +27117,13 @@ const setextUnderline = {
 
 /** @type {Resolver} */
 function resolveToSetextUnderline(events, context) {
+  // To do: resolve like `markdown-rs`.
   let index = events.length
-  /** @type {number|undefined} */
+  /** @type {number | undefined} */
   let content
-  /** @type {number|undefined} */
+  /** @type {number | undefined} */
   let text
-  /** @type {number|undefined} */
+  /** @type {number | undefined} */
   let definition
 
   // Find the opening of the content.
@@ -25063,62 +27180,116 @@ function resolveToSetextUnderline(events, context) {
   return events
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeSetextUnderline(effects, ok, nok) {
   const self = this
-  let index = self.events.length
   /** @type {NonNullable<Code>} */
   let marker
-  /** @type {boolean} */
-  let paragraph
-
-  // Find an opening.
-  while (index--) {
-    // Skip enter/exit of line ending, line prefix, and content.
-    // We can now either have a definition or a paragraph.
-    if (
-      self.events[index][1].type !== micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding &&
-      self.events[index][1].type !== micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.linePrefix &&
-      self.events[index][1].type !== micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.content
-    ) {
-      paragraph = self.events[index][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.paragraph
-      break
-    }
-  }
 
   return start
 
-  /** @type {State} */
+  /**
+   * At start of heading (setext) underline.
+   *
+   * ```markdown
+   *   | aa
+   * > | ==
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
+    let index = self.events.length
+    /** @type {boolean | undefined} */
+    let paragraph
+
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.equalsTo,
       'expected `=` or `-`'
     )
 
+    // Find an opening.
+    while (index--) {
+      // Skip enter/exit of line ending, line prefix, and content.
+      // We can now either have a definition or a paragraph.
+      if (
+        self.events[index][1].type !== micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding &&
+        self.events[index][1].type !== micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.linePrefix &&
+        self.events[index][1].type !== micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.content
+      ) {
+        paragraph = self.events[index][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.paragraph
+        break
+      }
+    }
+
+    // To do: handle lazy/pierce like `markdown-rs`.
+    // To do: parse indent like `markdown-rs`.
     if (!self.parser.lazy[self.now().line] && (self.interrupt || paragraph)) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.setextHeadingLine)
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.setextHeadingLineSequence)
       marker = code
-      return closingSequence(code)
+      return before(code)
     }
 
     return nok(code)
   }
 
-  /** @type {State} */
-  function closingSequence(code) {
+  /**
+   * After optional whitespace, at `-` or `=`.
+   *
+   * ```markdown
+   *   | aa
+   * > | ==
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function before(code) {
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.setextHeadingLineSequence)
+    return inside(code)
+  }
+
+  /**
+   * In sequence.
+   *
+   * ```markdown
+   *   | aa
+   * > | ==
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function inside(code) {
     if (code === marker) {
       effects.consume(code)
-      return closingSequence
+      return inside
     }
 
     effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.setextHeadingLineSequence)
-    return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_3__.factorySpace)(effects, closingSequenceEnd, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineSuffix)(code)
+
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)
+      ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(effects, after, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineSuffix)(code)
+      : after(code)
   }
 
-  /** @type {State} */
-  function closingSequenceEnd(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code)) {
+  /**
+   * After sequence, after optional whitespace.
+   *
+   * ```markdown
+   *   | aa
+   * > | ==
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
+  function after(code) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.setextHeadingLine)
       return ok(code)
     }
@@ -25139,19 +27310,20 @@ function tokenizeSetextUnderline(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "thematicBreak": () => (/* binding */ thematicBreak)
+/* harmony export */   thematicBreak: () => (/* binding */ thematicBreak)
 /* harmony export */ });
+/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
+/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
+/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
+/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
+/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
 /* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
-/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
-/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
-/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
-/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
-/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
 /**
- * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
- * @typedef {import('micromark-util-types').State} State
  * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').Construct} Construct
+ * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
  */
 
 
@@ -25167,7 +27339,10 @@ const thematicBreak = {
   tokenize: tokenizeThematicBreak
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeThematicBreak(effects, ok, nok) {
   let size = 0
   /** @type {NonNullable<Code>} */
@@ -25175,43 +27350,80 @@ function tokenizeThematicBreak(effects, ok, nok) {
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of thematic break.
+   *
+   * ```markdown
+   * > | ***
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
-      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.asterisk ||
-        code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.dash ||
-        code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.underscore,
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.thematicBreak)
+    // To do: parse indent like `markdown-rs`.
+    return before(code)
+  }
+
+  /**
+   * After optional whitespace, at marker.
+   *
+   * ```markdown
+   * > | ***
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function before(code) {
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.asterisk ||
+        code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.dash ||
+        code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.underscore,
       'expected `*`, `-`, or `_`'
     )
-
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.thematicBreak)
     marker = code
     return atBreak(code)
   }
 
-  /** @type {State} */
+  /**
+   * After something, before something else.
+   *
+   * ```markdown
+   * > | ***
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function atBreak(code) {
     if (code === marker) {
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.thematicBreakSequence)
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.thematicBreakSequence)
       return sequence(code)
     }
 
-    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)) {
-      return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(effects, atBreak, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.whitespace)(code)
-    }
-
     if (
-      size < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__.constants.thematicBreakMarkerCountMin ||
-      (code !== micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof && !(0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code))
+      size >= micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.thematicBreakMarkerCountMin &&
+      (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownLineEnding)(code))
     ) {
-      return nok(code)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.thematicBreak)
+      return ok(code)
     }
 
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.thematicBreak)
-    return ok(code)
+    return nok(code)
   }
 
-  /** @type {State} */
+  /**
+   * In sequence.
+   *
+   * ```markdown
+   * > | ***
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function sequence(code) {
     if (code === marker) {
       effects.consume(code)
@@ -25219,8 +27431,10 @@ function tokenizeThematicBreak(effects, ok, nok) {
       return sequence
     }
 
-    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.thematicBreakSequence)
-    return atBreak(code)
+    effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.thematicBreakSequence)
+    return (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_4__.markdownSpace)(code)
+      ? (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_5__.factorySpace)(effects, atBreak, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.whitespace)(code)
+      : atBreak(code)
   }
 }
 
@@ -25236,7 +27450,7 @@ function tokenizeThematicBreak(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "factoryDestination": () => (/* binding */ factoryDestination)
+/* harmony export */   factoryDestination: () => (/* binding */ factoryDestination)
 /* harmony export */ });
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
@@ -25245,6 +27459,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * @typedef {import('micromark-util-types').Effects} Effects
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenType} TokenType
  */
 
 
@@ -25253,16 +27468,41 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
+ * Parse destinations.
+ *
+ * ###### Examples
+ *
+ * ```markdown
+ * <a>
+ * <a\>b>
+ * <a b>
+ * <a)>
+ * a
+ * a\)b
+ * a(b)c
+ * a(b)
+ * ```
+ *
  * @param {Effects} effects
+ *   Context.
  * @param {State} ok
+ *   State switched to when successful.
  * @param {State} nok
- * @param {string} type
- * @param {string} literalType
- * @param {string} literalMarkerType
- * @param {string} rawType
- * @param {string} stringType
- * @param {number} [max=Infinity]
+ *   State switched to when unsuccessful.
+ * @param {TokenType} type
+ *   Type for whole (`<a>` or `b`).
+ * @param {TokenType} literalType
+ *   Type when enclosed (`<a>`).
+ * @param {TokenType} literalMarkerType
+ *   Type for enclosing (`<` and `>`).
+ * @param {TokenType} rawType
+ *   Type when not enclosed (`b`).
+ * @param {TokenType} stringType
+ *   Type for the value (`a` or `b`).
+ * @param {number | undefined} [max=Infinity]
+ *   Depth of nested parens (inclusive).
  * @returns {State}
+ *   Start state.
  */
 // eslint-disable-next-line max-params
 function factoryDestination(
@@ -25281,7 +27521,18 @@ function factoryDestination(
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of destination.
+   *
+   * ```markdown
+   * > | <aa>
+   *     ^
+   * > | aa
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.lessThan) {
       effects.enter(type)
@@ -25289,11 +27540,13 @@ function factoryDestination(
       effects.enter(literalMarkerType)
       effects.consume(code)
       effects.exit(literalMarkerType)
-      return destinationEnclosedBefore
+      return enclosedBefore
     }
 
+    // ASCII control, space, closing paren.
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.eof ||
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.rightParenthesis ||
       (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.asciiControl)(code)
     ) {
@@ -25304,11 +27557,20 @@ function factoryDestination(
     effects.enter(rawType)
     effects.enter(stringType)
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString, {contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.contentTypeString})
-    return destinationRaw(code)
+    return raw(code)
   }
 
-  /** @type {State} */
-  function destinationEnclosedBefore(code) {
+  /**
+   * After `<`, at an enclosed destination.
+   *
+   * ```markdown
+   * > | <aa>
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
+  function enclosedBefore(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.greaterThan) {
       effects.enter(literalMarkerType)
       effects.consume(code)
@@ -25320,15 +27582,24 @@ function factoryDestination(
 
     effects.enter(stringType)
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString, {contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.contentTypeString})
-    return destinationEnclosed(code)
+    return enclosed(code)
   }
 
-  /** @type {State} */
-  function destinationEnclosed(code) {
+  /**
+   * In enclosed destination.
+   *
+   * ```markdown
+   * > | <aa>
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
+  function enclosed(code) {
     if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.greaterThan) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString)
       effects.exit(stringType)
-      return destinationEnclosedBefore(code)
+      return enclosedBefore(code)
     }
 
     if (
@@ -25340,48 +27611,49 @@ function factoryDestination(
     }
 
     effects.consume(code)
-    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.backslash
-      ? destinationEnclosedEscape
-      : destinationEnclosed
+    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.backslash ? enclosedEscape : enclosed
   }
 
-  /** @type {State} */
-  function destinationEnclosedEscape(code) {
+  /**
+   * After `\`, at a special character.
+   *
+   * ```markdown
+   * > | <a\*a>
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
+  function enclosedEscape(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.lessThan ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.greaterThan ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.backslash
     ) {
       effects.consume(code)
-      return destinationEnclosed
+      return enclosed
     }
 
-    return destinationEnclosed(code)
+    return enclosed(code)
   }
 
-  /** @type {State} */
-  function destinationRaw(code) {
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.leftParenthesis) {
-      if (++balance > limit) return nok(code)
-      effects.consume(code)
-      return destinationRaw
-    }
-
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.rightParenthesis) {
-      if (!balance--) {
-        effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString)
-        effects.exit(stringType)
-        effects.exit(rawType)
-        effects.exit(type)
-        return ok(code)
-      }
-
-      effects.consume(code)
-      return destinationRaw
-    }
-
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownLineEndingOrSpace)(code)) {
-      if (balance) return nok(code)
+  /**
+   * In raw destination.
+   *
+   * ```markdown
+   * > | aa
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
+  function raw(code) {
+    if (
+      !balance &&
+      (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.eof ||
+        code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.rightParenthesis ||
+        (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownLineEndingOrSpace)(code))
+    ) {
       effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString)
       effects.exit(stringType)
       effects.exit(rawType)
@@ -25389,23 +27661,55 @@ function factoryDestination(
       return ok(code)
     }
 
-    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.asciiControl)(code)) return nok(code)
+    if (balance < limit && code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.leftParenthesis) {
+      effects.consume(code)
+      balance++
+      return raw
+    }
+
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.rightParenthesis) {
+      effects.consume(code)
+      balance--
+      return raw
+    }
+
+    // ASCII control (but *not* `\0`) and space and `(`.
+    // Note: in `markdown-rs`, `\0` exists in codes, in `micromark-js` it
+    // doesn’t.
+    if (
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.eof ||
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space ||
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.leftParenthesis ||
+      (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.asciiControl)(code)
+    ) {
+      return nok(code)
+    }
+
     effects.consume(code)
-    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.backslash ? destinationRawEscape : destinationRaw
+    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.backslash ? rawEscape : raw
   }
 
-  /** @type {State} */
-  function destinationRawEscape(code) {
+  /**
+   * After `\`, at special character.
+   *
+   * ```markdown
+   * > | a\*a
+   *       ^
+   * ```
+   *
+   * @type {State}
+   */
+  function rawEscape(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.leftParenthesis ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.rightParenthesis ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.backslash
     ) {
       effects.consume(code)
-      return destinationRaw
+      return raw
     }
 
-    return destinationRaw(code)
+    return raw(code)
   }
 }
 
@@ -25421,17 +27725,18 @@ function factoryDestination(
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "factoryLabel": () => (/* binding */ factoryLabel)
+/* harmony export */   factoryLabel: () => (/* binding */ factoryLabel)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').Effects} Effects
- * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').TokenType} TokenType
  */
 
 
@@ -25441,25 +27746,55 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
+ * Parse labels.
+ *
+ * > 👉 **Note**: labels in markdown are capped at 999 characters in the string.
+ *
+ * ###### Examples
+ *
+ * ```markdown
+ * [a]
+ * [a
+ * b]
+ * [a\]b]
+ * ```
+ *
  * @this {TokenizeContext}
+ *   Tokenize context.
  * @param {Effects} effects
+ *   Context.
  * @param {State} ok
+ *   State switched to when successful.
  * @param {State} nok
- * @param {string} type
- * @param {string} markerType
- * @param {string} stringType
+ *   State switched to when unsuccessful.
+ * @param {TokenType} type
+ *   Type of the whole label (`[a]`).
+ * @param {TokenType} markerType
+ *   Type for the markers (`[` and `]`).
+ * @param {TokenType} stringType
+ *   Type for the identifier (`a`).
  * @returns {State}
+ *   Start state.
  */
 // eslint-disable-next-line max-params
 function factoryLabel(effects, ok, nok, type, markerType, stringType) {
   const self = this
   let size = 0
   /** @type {boolean} */
-  let data
+  let seen
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of label.
+   *
+   * ```markdown
+   * > | [a]
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
     ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.leftSquareBracket, 'expected `[`')
     effects.enter(type)
@@ -25470,21 +27805,30 @@ function factoryLabel(effects, ok, nok, type, markerType, stringType) {
     return atBreak
   }
 
-  /** @type {State} */
+  /**
+   * In label, at something, before something else.
+   *
+   * ```markdown
+   * > | [a]
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
   function atBreak(code) {
     if (
+      size > micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.linkReferenceSizeMax ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.leftSquareBracket ||
-      (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.rightSquareBracket && !data) ||
-      /* To do: remove in the future once we’ve switched from
-       * `micromark-extension-footnote` to `micromark-extension-gfm-footnote`,
-       * which doesn’t need this */
-      /* Hidden footnotes hook */
+      (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.rightSquareBracket && !seen) ||
+      // To do: remove in the future once we’ve switched from
+      // `micromark-extension-footnote` to `micromark-extension-gfm-footnote`,
+      // which doesn’t need this.
+      // Hidden footnotes hook.
       /* c8 ignore next 3 */
       (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.caret &&
         !size &&
-        '_hiddenFootnoteSupport' in self.parser.constructs) ||
-      size > micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.linkReferenceSizeMax
+        '_hiddenFootnoteSupport' in self.parser.constructs)
     ) {
       return nok(code)
     }
@@ -25498,6 +27842,7 @@ function factoryLabel(effects, ok, nok, type, markerType, stringType) {
       return ok
     }
 
+    // To do: indent? Link chunks and EOLs together?
     if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownLineEnding)(code)) {
       effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.lineEnding)
       effects.consume(code)
@@ -25506,11 +27851,20 @@ function factoryLabel(effects, ok, nok, type, markerType, stringType) {
     }
 
     effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__.types.chunkString, {contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.contentTypeString})
-    return label(code)
+    return labelInside(code)
   }
 
-  /** @type {State} */
-  function label(code) {
+  /**
+   * In label, in text.
+   *
+   * ```markdown
+   * > | [a]
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
+  function labelInside(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof ||
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.leftSquareBracket ||
@@ -25523,11 +27877,20 @@ function factoryLabel(effects, ok, nok, type, markerType, stringType) {
     }
 
     effects.consume(code)
-    data = data || !(0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)
-    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.backslash ? labelEscape : label
+    if (!seen) seen = !(0,micromark_util_character__WEBPACK_IMPORTED_MODULE_3__.markdownSpace)(code)
+    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.backslash ? labelEscape : labelInside
   }
 
-  /** @type {State} */
+  /**
+   * After `\`, at a special character.
+   *
+   * ```markdown
+   * > | [a\*a]
+   *        ^
+   * ```
+   *
+   * @type {State}
+   */
   function labelEscape(code) {
     if (
       code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.leftSquareBracket ||
@@ -25536,10 +27899,10 @@ function factoryLabel(effects, ok, nok, type, markerType, stringType) {
     ) {
       effects.consume(code)
       size++
-      return label
+      return labelInside
     }
 
-    return label(code)
+    return labelInside(code)
   }
 }
 
@@ -25555,22 +27918,50 @@ function factoryLabel(effects, ok, nok, type, markerType, stringType) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "factorySpace": () => (/* binding */ factorySpace)
+/* harmony export */   factorySpace: () => (/* binding */ factorySpace)
 /* harmony export */ });
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /**
  * @typedef {import('micromark-util-types').Effects} Effects
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenType} TokenType
  */
 
 
 
+// To do: implement `spaceOrTab`, `spaceOrTabMinMax`, `spaceOrTabWithOptions`.
+
 /**
+ * Parse spaces and tabs.
+ *
+ * There is no `nok` parameter:
+ *
+ * *   spaces in markdown are often optional, in which case this factory can be
+ *     used and `ok` will be switched to whether spaces were found or not
+ * *   one line ending or space can be detected with `markdownSpace(code)` right
+ *     before using `factorySpace`
+ *
+ * ###### Examples
+ *
+ * Where `␉` represents a tab (plus how much it expands) and `␠` represents a
+ * single space.
+ *
+ * ```markdown
+ * ␉
+ * ␠␠␠␠
+ * ␉␠
+ * ```
+ *
  * @param {Effects} effects
+ *   Context.
  * @param {State} ok
- * @param {string} type
- * @param {number} [max=Infinity]
- * @returns {State}
+ *   State switched to when successful.
+ * @param {TokenType} type
+ *   Type (`' \t'`).
+ * @param {number | undefined} [max=Infinity]
+ *   Max (exclusive).
+ * @returns
+ *   Start state.
  */
 function factorySpace(effects, ok, type, max) {
   const limit = max ? max - 1 : Number.POSITIVE_INFINITY
@@ -25612,18 +28003,18 @@ function factorySpace(effects, ok, type, max) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "factoryTitle": () => (/* binding */ factoryTitle)
+/* harmony export */   factoryTitle: () => (/* binding */ factoryTitle)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
-/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
-/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
-/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
-/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
-/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
+/* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
+/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
+/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
+/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
 /**
+ * @typedef {import('micromark-util-types').Code} Code
  * @typedef {import('micromark-util-types').Effects} Effects
  * @typedef {import('micromark-util-types').State} State
- * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').TokenType} TokenType
  */
 
 
@@ -25632,15 +28023,36 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 /**
+ * Parse titles.
+ *
+ * ###### Examples
+ *
+ * ```markdown
+ * "a"
+ * 'b'
+ * (c)
+ * "a
+ * b"
+ * 'a
+ *     b'
+ * (a\)b)
+ * ```
+ *
  * @param {Effects} effects
+ *   Context.
  * @param {State} ok
+ *   State switched to when successful.
  * @param {State} nok
- * @param {string} type
- * @param {string} markerType
- * @param {string} stringType
+ *   State switched to when unsuccessful.
+ * @param {TokenType} type
+ *   Type of the whole title (`"a"`, `'b'`, `(c)`).
+ * @param {TokenType} markerType
+ *   Type for the markers (`"`, `'`, `(`, and `)`).
+ * @param {TokenType} stringType
+ *   Type for the value (`a`).
  * @returns {State}
+ *   Start state.
  */
 // eslint-disable-next-line max-params
 function factoryTitle(effects, ok, nok, type, markerType, stringType) {
@@ -25649,24 +28061,46 @@ function factoryTitle(effects, ok, nok, type, markerType, stringType) {
 
   return start
 
-  /** @type {State} */
+  /**
+   * Start of title.
+   *
+   * ```markdown
+   * > | "a"
+   *     ^
+   * ```
+   *
+   * @type {State}
+   */
   function start(code) {
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
-      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.quotationMark ||
-        code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.apostrophe ||
-        code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.leftParenthesis,
-      'expected `"`, `\'`, or `(`'
-    )
-    effects.enter(type)
-    effects.enter(markerType)
-    effects.consume(code)
-    effects.exit(markerType)
-    marker = code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.leftParenthesis ? micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.rightParenthesis : code
-    return atFirstTitleBreak
+    if (
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.quotationMark ||
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.apostrophe ||
+      code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.leftParenthesis
+    ) {
+      effects.enter(type)
+      effects.enter(markerType)
+      effects.consume(code)
+      effects.exit(markerType)
+      marker = code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.leftParenthesis ? micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.rightParenthesis : code
+      return begin
+    }
+
+    return nok(code)
   }
 
-  /** @type {State} */
-  function atFirstTitleBreak(code) {
+  /**
+   * After opening marker.
+   *
+   * This is also used at the closing marker.
+   *
+   * ```markdown
+   * > | "a"
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
+  function begin(code) {
     if (code === marker) {
       effects.enter(markerType)
       effects.consume(code)
@@ -25676,51 +28110,74 @@ function factoryTitle(effects, ok, nok, type, markerType, stringType) {
     }
 
     effects.enter(stringType)
-    return atTitleBreak(code)
+    return atBreak(code)
   }
 
-  /** @type {State} */
-  function atTitleBreak(code) {
+  /**
+   * At something, before something else.
+   *
+   * ```markdown
+   * > | "a"
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
+  function atBreak(code) {
     if (code === marker) {
       effects.exit(stringType)
-      return atFirstTitleBreak(marker)
+      return begin(marker)
     }
 
-    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof) {
+    if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.eof) {
       return nok(code)
     }
 
     // Note: blank lines can’t exist in content.
-    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_2__.markdownLineEnding)(code)) {
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__.types.lineEnding)
+    if ((0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownLineEnding)(code)) {
+      // To do: use `space_or_tab_eol_with_options`, connect.
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
       effects.consume(code)
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__.types.lineEnding)
-      return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__.factorySpace)(effects, atTitleBreak, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__.types.linePrefix)
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding)
+      return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_3__.factorySpace)(effects, atBreak, micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.linePrefix)
     }
 
-    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__.types.chunkString, {contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__.constants.contentTypeString})
-    return title(code)
+    effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString, {contentType: micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__.constants.contentTypeString})
+    return inside(code)
   }
 
-  /** @type {State} */
-  function title(code) {
-    if (code === marker || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_2__.markdownLineEnding)(code)) {
-      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__.types.chunkString)
-      return atTitleBreak(code)
+  /**
+   *
+   *
+   * @type {State}
+   */
+  function inside(code) {
+    if (code === marker || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.eof || (0,micromark_util_character__WEBPACK_IMPORTED_MODULE_1__.markdownLineEnding)(code)) {
+      effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.chunkString)
+      return atBreak(code)
     }
 
     effects.consume(code)
-    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.backslash ? titleEscape : title
+    return code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.backslash ? escape : inside
   }
 
-  /** @type {State} */
-  function titleEscape(code) {
-    if (code === marker || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.backslash) {
+  /**
+   * After `\`, at a special character.
+   *
+   * ```markdown
+   * > | "a\*b"
+   *      ^
+   * ```
+   *
+   * @type {State}
+   */
+  function escape(code) {
+    if (code === marker || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.backslash) {
       effects.consume(code)
-      return title
+      return inside
     }
 
-    return title(code)
+    return inside(code)
   }
 }
 
@@ -25736,7 +28193,7 @@ function factoryTitle(effects, ok, nok, type, markerType, stringType) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "factoryWhitespace": () => (/* binding */ factoryWhitespace)
+/* harmony export */   factoryWhitespace: () => (/* binding */ factoryWhitespace)
 /* harmony export */ });
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
@@ -25751,8 +28208,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
+ * Parse spaces and tabs.
+ *
+ * There is no `nok` parameter:
+ *
+ * *   line endings or spaces in markdown are often optional, in which case this
+ *     factory can be used and `ok` will be switched to whether spaces were found
+ *     or not
+ * *   one line ending or space can be detected with
+ *     `markdownLineEndingOrSpace(code)` right before using `factoryWhitespace`
+ *
  * @param {Effects} effects
+ *   Context.
  * @param {State} ok
+ *   State switched to when successful.
+ * @returns
+ *   Start state.
  */
 function factoryWhitespace(effects, ok) {
   /** @type {boolean} */
@@ -25794,18 +28265,18 @@ function factoryWhitespace(effects, ok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "asciiAlpha": () => (/* binding */ asciiAlpha),
-/* harmony export */   "asciiAlphanumeric": () => (/* binding */ asciiAlphanumeric),
-/* harmony export */   "asciiAtext": () => (/* binding */ asciiAtext),
-/* harmony export */   "asciiControl": () => (/* binding */ asciiControl),
-/* harmony export */   "asciiDigit": () => (/* binding */ asciiDigit),
-/* harmony export */   "asciiHexDigit": () => (/* binding */ asciiHexDigit),
-/* harmony export */   "asciiPunctuation": () => (/* binding */ asciiPunctuation),
-/* harmony export */   "markdownLineEnding": () => (/* binding */ markdownLineEnding),
-/* harmony export */   "markdownLineEndingOrSpace": () => (/* binding */ markdownLineEndingOrSpace),
-/* harmony export */   "markdownSpace": () => (/* binding */ markdownSpace),
-/* harmony export */   "unicodePunctuation": () => (/* binding */ unicodePunctuation),
-/* harmony export */   "unicodeWhitespace": () => (/* binding */ unicodeWhitespace)
+/* harmony export */   asciiAlpha: () => (/* binding */ asciiAlpha),
+/* harmony export */   asciiAlphanumeric: () => (/* binding */ asciiAlphanumeric),
+/* harmony export */   asciiAtext: () => (/* binding */ asciiAtext),
+/* harmony export */   asciiControl: () => (/* binding */ asciiControl),
+/* harmony export */   asciiDigit: () => (/* binding */ asciiDigit),
+/* harmony export */   asciiHexDigit: () => (/* binding */ asciiHexDigit),
+/* harmony export */   asciiPunctuation: () => (/* binding */ asciiPunctuation),
+/* harmony export */   markdownLineEnding: () => (/* binding */ markdownLineEnding),
+/* harmony export */   markdownLineEndingOrSpace: () => (/* binding */ markdownLineEndingOrSpace),
+/* harmony export */   markdownSpace: () => (/* binding */ markdownSpace),
+/* harmony export */   unicodePunctuation: () => (/* binding */ unicodePunctuation),
+/* harmony export */   unicodeWhitespace: () => (/* binding */ unicodeWhitespace)
 /* harmony export */ });
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var _lib_unicode_punctuation_regex_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lib/unicode-punctuation-regex.js */ "../node_modules/micromark-util-character/dev/lib/unicode-punctuation-regex.js");
@@ -25827,31 +28298,13 @@ __webpack_require__.r(__webpack_exports__);
  *
  * An **ASCII lower alpha** is a character in the inclusive range U+0061 (`a`)
  * to U+007A (`z`).
+ *
+ * @param code
+ *   Code.
+ * @returns
+ *   Whether it matches.
  */
 const asciiAlpha = regexCheck(/[A-Za-z]/)
-
-/**
- * Check whether the character code represents an ASCII digit (`0` through `9`).
- *
- * An **ASCII digit** is a character in the inclusive range U+0030 (`0`) to
- * U+0039 (`9`).
- */
-const asciiDigit = regexCheck(/\d/)
-
-/**
- * Check whether the character code represents an ASCII hex digit (`a` through
- * `f`, case insensitive, or `0` through `9`).
- *
- * An **ASCII hex digit** is an ASCII digit (see `asciiDigit`), ASCII upper hex
- * digit, or an ASCII lower hex digit.
- *
- * An **ASCII upper hex digit** is a character in the inclusive range U+0041
- * (`A`) to U+0046 (`F`).
- *
- * An **ASCII lower hex digit** is a character in the inclusive range U+0061
- * (`a`) to U+0066 (`f`).
- */
-const asciiHexDigit = regexCheck(/[\dA-Fa-f]/)
 
 /**
  * Check whether the character code represents an ASCII alphanumeric (`a`
@@ -25859,18 +28312,13 @@ const asciiHexDigit = regexCheck(/[\dA-Fa-f]/)
  *
  * An **ASCII alphanumeric** is an ASCII digit (see `asciiDigit`) or ASCII alpha
  * (see `asciiAlpha`).
+ *
+ * @param code
+ *   Code.
+ * @returns
+ *   Whether it matches.
  */
 const asciiAlphanumeric = regexCheck(/[\dA-Za-z]/)
-
-/**
- * Check whether the character code represents ASCII punctuation.
- *
- * An **ASCII punctuation** is a character in the inclusive ranges U+0021
- * EXCLAMATION MARK (`!`) to U+002F SLASH (`/`), U+003A COLON (`:`) to U+0040 AT
- * SIGN (`@`), U+005B LEFT SQUARE BRACKET (`[`) to U+0060 GRAVE ACCENT
- * (`` ` ``), or U+007B LEFT CURLY BRACE (`{`) to U+007E TILDE (`~`).
- */
-const asciiPunctuation = regexCheck(/[!-/:-@[-`{-~]/)
 
 /**
  * Check whether the character code represents an ASCII atext.
@@ -25887,6 +28335,11 @@ const asciiPunctuation = regexCheck(/[!-/:-@[-`{-~]/)
  * [Internet Message Format](https://tools.ietf.org/html/rfc5322).
  * P. Resnick.
  * IETF.
+ *
+ * @param code
+ *   Code.
+ * @returns
+ *   Whether it matches.
  */
 const asciiAtext = regexCheck(/[#-'*+\--9=?A-Z^-~]/)
 
@@ -25897,7 +28350,9 @@ const asciiAtext = regexCheck(/[#-'*+\--9=?A-Z^-~]/)
  * to U+001F (US), or U+007F (DEL).
  *
  * @param {Code} code
- * @returns {code is number}
+ *   Code.
+ * @returns {boolean}
+ *   Whether it matches.
  */
 function asciiControl(code) {
   return (
@@ -25908,15 +28363,52 @@ function asciiControl(code) {
 }
 
 /**
- * Check whether a character code is a markdown line ending (see
- * `markdownLineEnding`) or markdown space (see `markdownSpace`).
+ * Check whether the character code represents an ASCII digit (`0` through `9`).
  *
- * @param {Code} code
- * @returns {code is number}
+ * An **ASCII digit** is a character in the inclusive range U+0030 (`0`) to
+ * U+0039 (`9`).
+ *
+ * @param code
+ *   Code.
+ * @returns
+ *   Whether it matches.
  */
-function markdownLineEndingOrSpace(code) {
-  return code !== null && (code < micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.nul || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space)
-}
+const asciiDigit = regexCheck(/\d/)
+
+/**
+ * Check whether the character code represents an ASCII hex digit (`a` through
+ * `f`, case insensitive, or `0` through `9`).
+ *
+ * An **ASCII hex digit** is an ASCII digit (see `asciiDigit`), ASCII upper hex
+ * digit, or an ASCII lower hex digit.
+ *
+ * An **ASCII upper hex digit** is a character in the inclusive range U+0041
+ * (`A`) to U+0046 (`F`).
+ *
+ * An **ASCII lower hex digit** is a character in the inclusive range U+0061
+ * (`a`) to U+0066 (`f`).
+ *
+ * @param code
+ *   Code.
+ * @returns
+ *   Whether it matches.
+ */
+const asciiHexDigit = regexCheck(/[\dA-Fa-f]/)
+
+/**
+ * Check whether the character code represents ASCII punctuation.
+ *
+ * An **ASCII punctuation** is a character in the inclusive ranges U+0021
+ * EXCLAMATION MARK (`!`) to U+002F SLASH (`/`), U+003A COLON (`:`) to U+0040 AT
+ * SIGN (`@`), U+005B LEFT SQUARE BRACKET (`[`) to U+0060 GRAVE ACCENT
+ * (`` ` ``), or U+007B LEFT CURLY BRACE (`{`) to U+007E TILDE (`~`).
+ *
+ * @param code
+ *   Code.
+ * @returns
+ *   Whether it matches.
+ */
+const asciiPunctuation = regexCheck(/[!-/:-@[-`{-~]/)
 
 /**
  * Check whether a character code is a markdown line ending.
@@ -25929,10 +28421,25 @@ function markdownLineEndingOrSpace(code) {
  * they occurred together.
  *
  * @param {Code} code
- * @returns {code is number}
+ *   Code.
+ * @returns {boolean}
+ *   Whether it matches.
  */
 function markdownLineEnding(code) {
   return code !== null && code < micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.horizontalTab
+}
+
+/**
+ * Check whether a character code is a markdown line ending (see
+ * `markdownLineEnding`) or markdown space (see `markdownSpace`).
+ *
+ * @param {Code} code
+ *   Code.
+ * @returns {boolean}
+ *   Whether it matches.
+ */
+function markdownLineEndingOrSpace(code) {
+  return code !== null && (code < micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.nul || code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space)
 }
 
 /**
@@ -25946,7 +28453,9 @@ function markdownLineEnding(code) {
  * SPACE (VS) characters, depending on the column at which the tab occurred.
  *
  * @param {Code} code
- * @returns {code is number}
+ *   Code.
+ * @returns {boolean}
+ *   Whether it matches.
  */
 function markdownSpace(code) {
   return (
@@ -25955,6 +28464,29 @@ function markdownSpace(code) {
     code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space
   )
 }
+
+// Size note: removing ASCII from the regex and using `asciiPunctuation` here
+// In fact adds to the bundle size.
+/**
+ * Check whether the character code represents Unicode punctuation.
+ *
+ * A **Unicode punctuation** is a character in the Unicode `Pc` (Punctuation,
+ * Connector), `Pd` (Punctuation, Dash), `Pe` (Punctuation, Close), `Pf`
+ * (Punctuation, Final quote), `Pi` (Punctuation, Initial quote), `Po`
+ * (Punctuation, Other), or `Ps` (Punctuation, Open) categories, or an ASCII
+ * punctuation (see `asciiPunctuation`).
+ *
+ * See:
+ * **\[UNICODE]**:
+ * [The Unicode Standard](https://www.unicode.org/versions/).
+ * Unicode Consortium.
+ *
+ * @param code
+ *   Code.
+ * @returns
+ *   Whether it matches.
+ */
+const unicodePunctuation = regexCheck(_lib_unicode_punctuation_regex_js__WEBPACK_IMPORTED_MODULE_1__.unicodePunctuationRegex)
 
 /**
  * Check whether the character code represents Unicode whitespace.
@@ -25970,32 +28502,19 @@ function markdownSpace(code) {
  * **\[UNICODE]**:
  * [The Unicode Standard](https://www.unicode.org/versions/).
  * Unicode Consortium.
+ *
+ * @param code
+ *   Code.
+ * @returns
+ *   Whether it matches.
  */
 const unicodeWhitespace = regexCheck(/\s/)
-
-/**
- * Check whether the character code represents Unicode punctuation.
- *
- * A **Unicode punctuation** is a character in the Unicode `Pc` (Punctuation,
- * Connector), `Pd` (Punctuation, Dash), `Pe` (Punctuation, Close), `Pf`
- * (Punctuation, Final quote), `Pi` (Punctuation, Initial quote), `Po`
- * (Punctuation, Other), or `Ps` (Punctuation, Open) categories, or an ASCII
- * punctuation (see `asciiPunctuation`).
- *
- * See:
- * **\[UNICODE]**:
- * [The Unicode Standard](https://www.unicode.org/versions/).
- * Unicode Consortium.
- */
-// Size note: removing ASCII from the regex and using `asciiPunctuation` here
-// In fact adds to the bundle size.
-const unicodePunctuation = regexCheck(_lib_unicode_punctuation_regex_js__WEBPACK_IMPORTED_MODULE_1__.unicodePunctuationRegex)
 
 /**
  * Create a code check from a regex.
  *
  * @param {RegExp} regex
- * @returns {(code: Code) => code is number}
+ * @returns {(code: Code) => boolean}
  */
 function regexCheck(regex) {
   return check
@@ -26003,8 +28522,10 @@ function regexCheck(regex) {
   /**
    * Check whether a code matches the bound regex.
    *
-   * @param {Code} code Character code
-   * @returns {code is number} Whether the character code matches the bound regex
+   * @param {Code} code
+   *   Character code.
+   * @returns {boolean}
+   *   Whether the character code matches the bound regex.
    */
   function check(code) {
     return code !== null && regex.test(String.fromCharCode(code))
@@ -26023,7 +28544,7 @@ function regexCheck(regex) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "unicodePunctuationRegex": () => (/* binding */ unicodePunctuationRegex)
+/* harmony export */   unicodePunctuationRegex: () => (/* binding */ unicodePunctuationRegex)
 /* harmony export */ });
 // This module is generated by `script/`.
 //
@@ -26031,6 +28552,10 @@ __webpack_require__.r(__webpack_exports__);
 // before or after them.
 // One such difference is if those characters are Unicode punctuation.
 // This script is generated from the Unicode data.
+
+/**
+ * Regular expression that matches a unicode punctuation character.
+ */
 const unicodePunctuationRegex =
   /[!-/:-@[-`{-~\u00A1\u00A7\u00AB\u00B6\u00B7\u00BB\u00BF\u037E\u0387\u055A-\u055F\u0589\u058A\u05BE\u05C0\u05C3\u05C6\u05F3\u05F4\u0609\u060A\u060C\u060D\u061B\u061D-\u061F\u066A-\u066D\u06D4\u0700-\u070D\u07F7-\u07F9\u0830-\u083E\u085E\u0964\u0965\u0970\u09FD\u0A76\u0AF0\u0C77\u0C84\u0DF4\u0E4F\u0E5A\u0E5B\u0F04-\u0F12\u0F14\u0F3A-\u0F3D\u0F85\u0FD0-\u0FD4\u0FD9\u0FDA\u104A-\u104F\u10FB\u1360-\u1368\u1400\u166E\u169B\u169C\u16EB-\u16ED\u1735\u1736\u17D4-\u17D6\u17D8-\u17DA\u1800-\u180A\u1944\u1945\u1A1E\u1A1F\u1AA0-\u1AA6\u1AA8-\u1AAD\u1B5A-\u1B60\u1B7D\u1B7E\u1BFC-\u1BFF\u1C3B-\u1C3F\u1C7E\u1C7F\u1CC0-\u1CC7\u1CD3\u2010-\u2027\u2030-\u2043\u2045-\u2051\u2053-\u205E\u207D\u207E\u208D\u208E\u2308-\u230B\u2329\u232A\u2768-\u2775\u27C5\u27C6\u27E6-\u27EF\u2983-\u2998\u29D8-\u29DB\u29FC\u29FD\u2CF9-\u2CFC\u2CFE\u2CFF\u2D70\u2E00-\u2E2E\u2E30-\u2E4F\u2E52-\u2E5D\u3001-\u3003\u3008-\u3011\u3014-\u301F\u3030\u303D\u30A0\u30FB\uA4FE\uA4FF\uA60D-\uA60F\uA673\uA67E\uA6F2-\uA6F7\uA874-\uA877\uA8CE\uA8CF\uA8F8-\uA8FA\uA8FC\uA92E\uA92F\uA95F\uA9C1-\uA9CD\uA9DE\uA9DF\uAA5C-\uAA5F\uAADE\uAADF\uAAF0\uAAF1\uABEB\uFD3E\uFD3F\uFE10-\uFE19\uFE30-\uFE52\uFE54-\uFE61\uFE63\uFE68\uFE6A\uFE6B\uFF01-\uFF03\uFF05-\uFF0A\uFF0C-\uFF0F\uFF1A\uFF1B\uFF1F\uFF20\uFF3B-\uFF3D\uFF3F\uFF5B\uFF5D\uFF5F-\uFF65]/
 
@@ -26046,8 +28571,8 @@ const unicodePunctuationRegex =
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "push": () => (/* binding */ push),
-/* harmony export */   "splice": () => (/* binding */ splice)
+/* harmony export */   push: () => (/* binding */ push),
+/* harmony export */   splice: () => (/* binding */ splice)
 /* harmony export */ });
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 
@@ -26062,16 +28587,22 @@ __webpack_require__.r(__webpack_exports__);
  * array instead of rest parameters.
  *
  * @template {unknown} T
- * @param {T[]} list
+ *   Item type.
+ * @param {Array<T>} list
+ *   List to operate on.
  * @param {number} start
+ *   Index to remove/insert at (can be negative).
  * @param {number} remove
- * @param {T[]} items
+ *   Number of items to remove.
+ * @param {Array<T>} items
+ *   Items to inject into `list`.
  * @returns {void}
+ *   Nothing.
  */
 function splice(list, start, remove, items) {
   const end = list.length
   let chunkStart = 0
-  /** @type {unknown[]} */
+  /** @type {Array<unknown>} */
   let parameters
 
   // Make start between zero and `end` (included).
@@ -26088,10 +28619,10 @@ function splice(list, start, remove, items) {
     parameters = Array.from(items)
     parameters.unshift(start, remove)
     // @ts-expect-error Hush, it’s fine.
-    ;[].splice.apply(list, parameters)
+    list.splice(...parameters)
   } else {
     // Delete `remove` items starting from `start`
-    if (remove) [].splice.apply(list, [start, remove])
+    if (remove) list.splice(start, remove)
 
     // Insert the items in chunks to not cause stack overflows.
     while (chunkStart < items.length) {
@@ -26101,7 +28632,7 @@ function splice(list, start, remove, items) {
       )
       parameters.unshift(start, 0)
       // @ts-expect-error Hush, it’s fine.
-      ;[].splice.apply(list, parameters)
+      list.splice(...parameters)
 
       chunkStart += micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_0__.constants.v8MaxSafeChunkSize
       start += micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_0__.constants.v8MaxSafeChunkSize
@@ -26117,9 +28648,13 @@ function splice(list, start, remove, items) {
  * and adds items in batches to prevent V8 from hanging.
  *
  * @template {unknown} T
- * @param {T[]} list
- * @param {T[]} items
- * @returns {T[]}
+ *   Item type.
+ * @param {Array<T>} list
+ *   List to operate on.
+ * @param {Array<T>} items
+ *   Items to add to `list`.
+ * @returns {Array<T>}
+ *   Either `list` or `items`.
  */
 function push(list, items) {
   if (list.length > 0) {
@@ -26142,7 +28677,7 @@ function push(list, items) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "classifyCharacter": () => (/* binding */ classifyCharacter)
+/* harmony export */   classifyCharacter: () => (/* binding */ classifyCharacter)
 /* harmony export */ });
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
@@ -26156,16 +28691,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
- * Classify whether a character code represents whitespace, punctuation, or
- * something else.
+ * Classify whether a code represents whitespace, punctuation, or something
+ * else.
  *
  * Used for attention (emphasis, strong), whose sequences can open or close
  * based on the class of surrounding characters.
  *
- * Note that eof (`null`) is seen as whitespace.
+ * > 👉 **Note**: eof (`null`) is seen as whitespace.
  *
  * @param {Code} code
- * @returns {number|undefined}
+ *   Code.
+ * @returns {typeof constants.characterGroupWhitespace | typeof constants.characterGroupPunctuation | undefined}
+ *   Group.
  */
 function classifyCharacter(code) {
   if (
@@ -26193,15 +28730,15 @@ function classifyCharacter(code) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "combineExtensions": () => (/* binding */ combineExtensions),
-/* harmony export */   "combineHtmlExtensions": () => (/* binding */ combineHtmlExtensions)
+/* harmony export */   combineExtensions: () => (/* binding */ combineExtensions),
+/* harmony export */   combineHtmlExtensions: () => (/* binding */ combineHtmlExtensions)
 /* harmony export */ });
 /* harmony import */ var micromark_util_chunked__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-chunked */ "../node_modules/micromark-util-chunked/dev/index.js");
 /**
- * @typedef {import('micromark-util-types').NormalizedExtension} NormalizedExtension
  * @typedef {import('micromark-util-types').Extension} Extension
- * @typedef {import('micromark-util-types').Construct} Construct
+ * @typedef {import('micromark-util-types').Handles} Handles
  * @typedef {import('micromark-util-types').HtmlExtension} HtmlExtension
+ * @typedef {import('micromark-util-types').NormalizedExtension} NormalizedExtension
  */
 
 
@@ -26209,10 +28746,12 @@ __webpack_require__.r(__webpack_exports__);
 const hasOwnProperty = {}.hasOwnProperty
 
 /**
- * Combine several syntax extensions into one.
+ * Combine multiple syntax extensions into one.
  *
- * @param {Extension[]} extensions List of syntax extensions.
- * @returns {NormalizedExtension} A single combined extension.
+ * @param {Array<Extension>} extensions
+ *   List of syntax extensions.
+ * @returns {NormalizedExtension}
+ *   A single combined extension.
  */
 function combineExtensions(extensions) {
   /** @type {NormalizedExtension} */
@@ -26229,29 +28768,35 @@ function combineExtensions(extensions) {
 /**
  * Merge `extension` into `all`.
  *
- * @param {NormalizedExtension} all Extension to merge into.
- * @param {Extension} extension Extension to merge.
+ * @param {NormalizedExtension} all
+ *   Extension to merge into.
+ * @param {Extension} extension
+ *   Extension to merge.
  * @returns {void}
  */
 function syntaxExtension(all, extension) {
-  /** @type {string} */
+  /** @type {keyof Extension} */
   let hook
 
   for (hook in extension) {
     const maybe = hasOwnProperty.call(all, hook) ? all[hook] : undefined
+    /** @type {Record<string, unknown>} */
     const left = maybe || (all[hook] = {})
+    /** @type {Record<string, unknown> | undefined} */
     const right = extension[hook]
     /** @type {string} */
     let code
 
-    for (code in right) {
-      if (!hasOwnProperty.call(left, code)) left[code] = []
-      const value = right[code]
-      constructs(
-        // @ts-expect-error Looks like a list.
-        left[code],
-        Array.isArray(value) ? value : value ? [value] : []
-      )
+    if (right) {
+      for (code in right) {
+        if (!hasOwnProperty.call(left, code)) left[code] = []
+        const value = right[code]
+        constructs(
+          // @ts-expect-error Looks like a list.
+          left[code],
+          Array.isArray(value) ? value : value ? [value] : []
+        )
+      }
     }
   }
 }
@@ -26260,13 +28805,13 @@ function syntaxExtension(all, extension) {
  * Merge `list` into `existing` (both lists of constructs).
  * Mutates `existing`.
  *
- * @param {unknown[]} existing
- * @param {unknown[]} list
+ * @param {Array<unknown>} existing
+ * @param {Array<unknown>} list
  * @returns {void}
  */
 function constructs(existing, list) {
   let index = -1
-  /** @type {unknown[]} */
+  /** @type {Array<unknown>} */
   const before = []
 
   while (++index < list.length) {
@@ -26278,10 +28823,12 @@ function constructs(existing, list) {
 }
 
 /**
- * Combine several HTML extensions into one.
+ * Combine multiple HTML extensions into one.
  *
- * @param {HtmlExtension[]} htmlExtensions List of HTML extensions.
- * @returns {HtmlExtension} A single combined extension.
+ * @param {Array<HtmlExtension>} htmlExtensions
+ *   List of HTML extensions.
+ * @returns {HtmlExtension}
+ *   A single combined HTML extension.
  */
 function combineHtmlExtensions(htmlExtensions) {
   /** @type {HtmlExtension} */
@@ -26298,23 +28845,26 @@ function combineHtmlExtensions(htmlExtensions) {
 /**
  * Merge `extension` into `all`.
  *
- * @param {HtmlExtension} all Extension to merge into.
- * @param {HtmlExtension} extension Extension to merge.
+ * @param {HtmlExtension} all
+ *   Extension to merge into.
+ * @param {HtmlExtension} extension
+ *   Extension to merge.
  * @returns {void}
  */
 function htmlExtension(all, extension) {
-  /** @type {string} */
+  /** @type {keyof HtmlExtension} */
   let hook
 
   for (hook in extension) {
     const maybe = hasOwnProperty.call(all, hook) ? all[hook] : undefined
     const left = maybe || (all[hook] = {})
     const right = extension[hook]
-    /** @type {string} */
+    /** @type {keyof Handles} */
     let type
 
     if (right) {
       for (type in right) {
+        // @ts-expect-error assume document vs regular handler are managed correctly.
         left[type] = right[type]
       }
     }
@@ -26333,7 +28883,7 @@ function htmlExtension(all, extension) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "decodeNumericCharacterReference": () => (/* binding */ decodeNumericCharacterReference)
+/* harmony export */   decodeNumericCharacterReference: () => (/* binding */ decodeNumericCharacterReference)
 /* harmony export */ });
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_values_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/values.js */ "../node_modules/micromark-util-symbol/values.js");
@@ -26344,28 +28894,34 @@ __webpack_require__.r(__webpack_exports__);
  * Turn the number (in string form as either hexa- or plain decimal) coming from
  * a numeric character reference into a character.
  *
+ * Sort of like `String.fromCharCode(Number.parseInt(value, base))`, but makes
+ * non-characters and control characters safe.
+ *
  * @param {string} value
  *   Value to decode.
  * @param {number} base
  *   Numeric base.
  * @returns {string}
+ *   Character.
  */
 function decodeNumericCharacterReference(value, base) {
   const code = Number.parseInt(value, base)
 
   if (
-    // C0 except for HT, LF, FF, CR, space
+    // C0 except for HT, LF, FF, CR, space.
     code < micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.ht ||
     code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.vt ||
     (code > micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.cr && code < micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space) ||
-    // Control character (DEL) of the basic block and C1 controls.
+    // Control character (DEL) of C0, and C1 controls.
     (code > micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.tilde && code < 160) ||
     // Lone high surrogates and low surrogates.
     (code > 55295 && code < 57344) ||
     // Noncharacters.
     (code > 64975 && code < 65008) ||
+    /* eslint-disable no-bitwise */
     (code & 65535) === 65535 ||
     (code & 65535) === 65534 ||
+    /* eslint-enable no-bitwise */
     // Out of range
     code > 1114111
   ) {
@@ -26387,7 +28943,7 @@ function decodeNumericCharacterReference(value, base) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "decodeString": () => (/* binding */ decodeString)
+/* harmony export */   decodeString: () => (/* binding */ decodeString)
 /* harmony export */ });
 /* harmony import */ var decode_named_character_reference__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! decode-named-character-reference */ "../node_modules/decode-named-character-reference/index.dom.js");
 /* harmony import */ var micromark_util_decode_numeric_character_reference__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-decode-numeric-character-reference */ "../node_modules/micromark-util-decode-numeric-character-reference/dev/index.js");
@@ -26402,13 +28958,16 @@ const characterEscapeOrReference =
   /\\([!-/:-@[-`{-~])|&(#(?:\d{1,7}|x[\da-f]{1,6})|[\da-z]{1,31});/gi
 
 /**
- * Utility to decode markdown strings (which occur in places such as fenced
- * code info strings, destinations, labels, and titles).
+ * Decode markdown strings (which occur in places such as fenced code info
+ * strings, destinations, labels, and titles).
+ *
  * The “string” content type allows character escapes and -references.
  * This decodes those.
  *
  * @param {string} value
+ *   Value to decode.
  * @returns {string}
+ *   Decoded value.
  */
 function decodeString(value) {
   return value.replace(characterEscapeOrReference, decode)
@@ -26453,7 +29012,7 @@ function decode($0, $1, $2) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "encode": () => (/* binding */ encode)
+/* harmony export */   encode: () => (/* binding */ encode)
 /* harmony export */ });
 const characterReferences = {'"': 'quot', '&': 'amp', '<': 'lt', '>': 'gt'}
 
@@ -26465,7 +29024,9 @@ const characterReferences = {'"': 'quot', '&': 'amp', '<': 'lt', '>': 'gt'}
  * Technically, we can skip `>` and `"` in many cases, but CM includes them.
  *
  * @param {string} value
+ *   Value to encode.
  * @returns {string}
+ *   Encoded value.
  */
 function encode(value) {
   return value.replace(/["&<>]/g, replace)
@@ -26492,18 +29053,23 @@ function encode(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "htmlBlockNames": () => (/* binding */ htmlBlockNames),
-/* harmony export */   "htmlRawNames": () => (/* binding */ htmlRawNames)
+/* harmony export */   htmlBlockNames: () => (/* binding */ htmlBlockNames),
+/* harmony export */   htmlRawNames: () => (/* binding */ htmlRawNames)
 /* harmony export */ });
 /**
- * List of lowercase HTML tag names which when parsing HTML (flow), result
- * in more relaxed rules (condition 6): because they are known blocks, the
- * HTML-like syntax doesn’t have to be strictly parsed.
+ * List of lowercase HTML “block” tag names.
+ *
+ * The list, when parsing HTML (flow), results in more relaxed rules (condition
+ * 6).
+ * Because they are known blocks, the HTML-like syntax doesn’t have to be
+ * strictly parsed.
  * For tag names not in this list, a more strict algorithm (condition 7) is used
  * to detect whether the HTML-like syntax is seen as HTML (flow) or not.
  *
  * This is copied from:
  * <https://spec.commonmark.org/0.30/#html-blocks>.
+ *
+ * > 👉 **Note**: `search` was added in `CommonMark@0.31`.
  */
 const htmlBlockNames = [
   'address',
@@ -26555,6 +29121,7 @@ const htmlBlockNames = [
   'option',
   'p',
   'param',
+  'search',
   'section',
   'summary',
   'table',
@@ -26570,14 +29137,16 @@ const htmlBlockNames = [
 ]
 
 /**
- * List of lowercase HTML tag names which when parsing HTML (flow), result in
- * HTML that can include lines w/o exiting, until a closing tag also in this
- * list is found (condition 1).
+ * List of lowercase HTML “raw” tag names.
+ *
+ * The list, when parsing HTML (flow), results in HTML that can include lines
+ * without exiting, until a closing tag also in this list is found (condition
+ * 1).
  *
  * This module is copied from:
  * <https://spec.commonmark.org/0.30/#html-blocks>.
  *
- * Note that `textarea` was added in `CommonMark@0.30`.
+ * > 👉 **Note**: `textarea` was added in `CommonMark@0.30`.
  */
 const htmlRawNames = ['pre', 'script', 'style', 'textarea']
 
@@ -26593,21 +29162,34 @@ const htmlRawNames = ['pre', 'script', 'style', 'textarea']
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "normalizeIdentifier": () => (/* binding */ normalizeIdentifier)
+/* harmony export */   normalizeIdentifier: () => (/* binding */ normalizeIdentifier)
 /* harmony export */ });
 /* harmony import */ var micromark_util_symbol_values_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/values.js */ "../node_modules/micromark-util-symbol/values.js");
 
 
 /**
- * Normalize an identifier (such as used in definitions).
+ * Normalize an identifier (as found in references, definitions).
+ *
+ * Collapses markdown whitespace, trim, and then lower- and uppercase.
+ *
+ * Some characters are considered “uppercase”, such as U+03F4 (`ϴ`), but if their
+ * lowercase counterpart (U+03B8 (`θ`)) is uppercased will result in a different
+ * uppercase character (U+0398 (`Θ`)).
+ * So, to get a canonical form, we perform both lower- and uppercase.
+ *
+ * Using uppercase last makes sure keys will never interact with default
+ * prototypal values (such as `constructor`): nothing in the prototype of
+ * `Object` is uppercase.
  *
  * @param {string} value
+ *   Identifier to normalize.
  * @returns {string}
+ *   Normalized identifier.
  */
 function normalizeIdentifier(value) {
   return (
     value
-      // Collapse Markdown whitespace.
+      // Collapse markdown whitespace.
       .replace(/[\t\n\r ]+/g, micromark_util_symbol_values_js__WEBPACK_IMPORTED_MODULE_0__.values.space)
       // Trim.
       .replace(/^ | $/g, '')
@@ -26634,24 +29216,28 @@ function normalizeIdentifier(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "resolveAll": () => (/* binding */ resolveAll)
+/* harmony export */   resolveAll: () => (/* binding */ resolveAll)
 /* harmony export */ });
 /**
- * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
  * @typedef {import('micromark-util-types').Event} Event
  * @typedef {import('micromark-util-types').Resolver} Resolver
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
  */
 
 /**
  * Call all `resolveAll`s.
  *
- * @param {{resolveAll?: Resolver}[]} constructs
- * @param {Event[]} events
+ * @param {Array<{resolveAll?: Resolver | undefined}>} constructs
+ *   List of constructs, optionally with `resolveAll`s.
+ * @param {Array<Event>} events
+ *   List of events.
  * @param {TokenizeContext} context
- * @returns {Event[]}
+ *   Context used by `tokenize`.
+ * @returns {Array<Event>}
+ *   Changed events.
  */
 function resolveAll(constructs, events, context) {
-  /** @type {Resolver[]} */
+  /** @type {Array<Resolver>} */
   const called = []
   let index = -1
 
@@ -26679,8 +29265,8 @@ function resolveAll(constructs, events, context) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "normalizeUri": () => (/* binding */ normalizeUri),
-/* harmony export */   "sanitizeUri": () => (/* binding */ sanitizeUri)
+/* harmony export */   normalizeUri: () => (/* binding */ normalizeUri),
+/* harmony export */   sanitizeUri: () => (/* binding */ sanitizeUri)
 /* harmony export */ });
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_encode__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-encode */ "../node_modules/micromark-util-encode/index.js");
@@ -26695,20 +29281,23 @@ __webpack_require__.r(__webpack_exports__);
  * Make a value safe for injection as a URL.
  *
  * This encodes unsafe characters with percent-encoding and skips already
- * encoded sequences (see `normalizeUri` below).
+ * encoded sequences (see `normalizeUri`).
  * Further unsafe characters are encoded as character references (see
  * `micromark-util-encode`).
  *
- * Then, a regex of allowed protocols can be given, in which case the URL is
+ * A regex of allowed protocols can be given, in which case the URL is
  * sanitized.
- * For example, `/^(https?|ircs?|mailto|xmpp)$/i` can be used for `a[href]`,
- * or `/^https?$/i` for `img[src]`.
+ * For example, `/^(https?|ircs?|mailto|xmpp)$/i` can be used for `a[href]`, or
+ * `/^https?$/i` for `img[src]` (this is what `github.com` allows).
  * If the URL includes an unknown protocol (one not matched by `protocol`, such
  * as a dangerous example, `javascript:`), the value is ignored.
  *
- * @param {string|undefined} url
- * @param {RegExp} [protocol]
+ * @param {string | undefined} url
+ *   URI to sanitize.
+ * @param {RegExp | null | undefined} [protocol]
+ *   Allowed protocols.
  * @returns {string}
+ *   Sanitized URI.
  */
 function sanitizeUri(url, protocol) {
   const value = (0,micromark_util_encode__WEBPACK_IMPORTED_MODULE_0__.encode)(normalizeUri(url || ''))
@@ -26739,13 +29328,15 @@ function sanitizeUri(url, protocol) {
 }
 
 /**
- * Normalize a URL (such as used in definitions).
+ * Normalize a URL.
  *
  * Encode unsafe characters with percent-encoding, skipping already encoded
  * sequences.
  *
  * @param {string} value
+ *   URI to normalize.
  * @returns {string}
+ *   Normalized URI.
  */
 function normalizeUri(value) {
   /** @type {Array<string>} */
@@ -26819,16 +29410,16 @@ function normalizeUri(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "subtokenize": () => (/* binding */ subtokenize)
+/* harmony export */   subtokenize: () => (/* binding */ subtokenize)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-chunked */ "../node_modules/micromark-util-chunked/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
- * @typedef {import('micromark-util-types').Token} Token
  * @typedef {import('micromark-util-types').Chunk} Chunk
  * @typedef {import('micromark-util-types').Event} Event
+ * @typedef {import('micromark-util-types').Token} Token
  */
 
 
@@ -26839,8 +29430,10 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * Tokenize subcontent.
  *
- * @param {Event[]} events
+ * @param {Array<Event>} events
+ *   List of events.
  * @returns {boolean}
+ *   Whether subtokens were found.
  */
 function subtokenize(events) {
   /** @type {Record<string, number>} */
@@ -26848,17 +29441,17 @@ function subtokenize(events) {
   let index = -1
   /** @type {Event} */
   let event
-  /** @type {number|undefined} */
+  /** @type {number | undefined} */
   let lineIndex
   /** @type {number} */
   let otherIndex
   /** @type {Event} */
   let otherEvent
-  /** @type {Event[]} */
+  /** @type {Array<Event>} */
   let parameters
-  /** @type {Event[]} */
+  /** @type {Array<Event>} */
   let subevents
-  /** @type {boolean|undefined} */
+  /** @type {boolean | undefined} */
   let more
 
   while (++index < events.length) {
@@ -26954,7 +29547,7 @@ function subtokenize(events) {
 /**
  * Tokenize embedded tokens.
  *
- * @param {Event[]} events
+ * @param {Array<Event>} events
  * @param {number} eventIndex
  * @returns {Record<string, number>}
  */
@@ -26962,22 +29555,22 @@ function subcontent(events, eventIndex) {
   const token = events[eventIndex][1]
   const context = events[eventIndex][2]
   let startPosition = eventIndex - 1
-  /** @type {number[]} */
+  /** @type {Array<number>} */
   const startPositions = []
   ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(token.contentType, 'expected `contentType` on subtokens')
   const tokenizer =
     token._tokenizer || context.parser[token.contentType](token.start)
   const childEvents = tokenizer.events
-  /** @type {[number, number][]} */
+  /** @type {Array<[number, number]>} */
   const jumps = []
   /** @type {Record<string, number>} */
   const gaps = {}
-  /** @type {Chunk[]} */
+  /** @type {Array<Chunk>} */
   let stream
-  /** @type {Token|undefined} */
+  /** @type {Token | undefined} */
   let previous
   let index = -1
-  /** @type {Token|undefined} */
+  /** @type {Token | undefined} */
   let current = token
   let adjust = 0
   let start = 0
@@ -27097,7 +29690,7 @@ function subcontent(events, eventIndex) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "codes": () => (/* binding */ codes)
+/* harmony export */   codes: () => (/* binding */ codes)
 /* harmony export */ });
 /**
  * Character codes.
@@ -27117,7 +29710,7 @@ __webpack_require__.r(__webpack_exports__);
  *
  * Unicode basic latin block.
  */
-const codes = {
+const codes = /** @type {const} */ ({
   carriageReturn: -5,
   lineFeed: -4,
   carriageReturnLineFeed: -3,
@@ -27256,7 +29849,7 @@ const codes = {
   byteOrderMarker: 65279,
   // Unicode Specials block.
   replacementCharacter: 65533 // ``
-}
+})
 
 
 /***/ }),
@@ -27270,7 +29863,7 @@ const codes = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "constants": () => (/* binding */ constants)
+/* harmony export */   constants: () => (/* binding */ constants)
 /* harmony export */ });
 /**
  * This module is compiled away!
@@ -27280,7 +29873,7 @@ __webpack_require__.r(__webpack_exports__);
  * Additionally, there are a couple symbols used inside micromark.
  * These are all defined here, but compiled away by scripts.
  */
-const constants = {
+const constants = /** @type {const} */ ({
   attentionSideBefore: 1, // Symbol to mark an attention sequence as before content: `*a`
   attentionSideAfter: 2, // Symbol to mark an attention sequence as after content: `a*`
   atxHeadingOpeningFenceSizeMax: 6, // 6 number signs is fine, 7 isn’t.
@@ -27315,7 +29908,7 @@ const constants = {
   tabSize: 4, // Tabs have a hard-coded size of 4, per CommonMark.
   thematicBreakMarkerCountMin: 3, // At least 3 asterisks, dashes, or underscores are needed.
   v8MaxSafeChunkSize: 10000 // V8 (and potentially others) have problems injecting giant arrays into other arrays, hence we operate in chunks.
-}
+})
 
 
 /***/ }),
@@ -27329,7 +29922,7 @@ const constants = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "types": () => (/* binding */ types)
+/* harmony export */   types: () => (/* binding */ types)
 /* harmony export */ });
 /**
  * This module is compiled away!
@@ -27342,7 +29935,9 @@ __webpack_require__.r(__webpack_exports__);
  * instead of one shared name.
  */
 
-const types = {
+// Note: when changing the next record, you must also change `TokenTypeMap`
+// in `micromark-util-types/index.d.ts`.
+const types = /** @type {const} */ ({
   // Generic type for data, such as in a title, a destination, etc.
   data: 'data',
 
@@ -27554,7 +30149,7 @@ const types = {
   escapeMarker: 'escapeMarker',
 
   // A hard break created with a backslash (`\\n`).
-  // Includes `escapeMarker` (does not include the line ending)
+  // Note: does not include the line ending.
   hardBreakEscape: 'hardBreakEscape',
 
   // A hard break created with trailing spaces (`  \n`).
@@ -27781,7 +30376,7 @@ const types = {
   chunkFlow: 'chunkFlow',
   chunkText: 'chunkText',
   chunkString: 'chunkString'
-}
+})
 
 
 /***/ }),
@@ -27795,15 +30390,17 @@ const types = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "values": () => (/* binding */ values)
+/* harmony export */   values: () => (/* binding */ values)
 /* harmony export */ });
-// This module is compiled away!
-//
-// While micromark works based on character codes, this module includes the
-// string versions of ’em.
-// The C0 block, except for LF, CR, HT, and w/ the replacement character added,
-// are available here.
-const values = {
+/**
+ * This module is compiled away!
+ *
+ * While micromark works based on character codes, this module includes the
+ * string versions of ’em.
+ * The C0 block, except for LF, CR, HT, and w/ the replacement character added,
+ * are available here.
+ */
+const values = /** @type {const} */ ({
   ht: '\t',
   lf: '\n',
   cr: '\r',
@@ -27903,7 +30500,7 @@ const values = {
   rightCurlyBrace: '}',
   tilde: '~',
   replacementCharacter: ''
-}
+})
 
 
 /***/ }),
@@ -27917,15 +30514,15 @@ const values = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "attentionMarkers": () => (/* binding */ attentionMarkers),
-/* harmony export */   "contentInitial": () => (/* binding */ contentInitial),
-/* harmony export */   "disable": () => (/* binding */ disable),
-/* harmony export */   "document": () => (/* binding */ document),
-/* harmony export */   "flow": () => (/* binding */ flow),
-/* harmony export */   "flowInitial": () => (/* binding */ flowInitial),
-/* harmony export */   "insideSpan": () => (/* binding */ insideSpan),
-/* harmony export */   "string": () => (/* binding */ string),
-/* harmony export */   "text": () => (/* binding */ text)
+/* harmony export */   attentionMarkers: () => (/* binding */ attentionMarkers),
+/* harmony export */   contentInitial: () => (/* binding */ contentInitial),
+/* harmony export */   disable: () => (/* binding */ disable),
+/* harmony export */   document: () => (/* binding */ document),
+/* harmony export */   flow: () => (/* binding */ flow),
+/* harmony export */   flowInitial: () => (/* binding */ flowInitial),
+/* harmony export */   insideSpan: () => (/* binding */ insideSpan),
+/* harmony export */   string: () => (/* binding */ string),
+/* harmony export */   text: () => (/* binding */ text)
 /* harmony export */ });
 /* harmony import */ var micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-core-commonmark */ "../node_modules/micromark-core-commonmark/dev/lib/list.js");
 /* harmony import */ var micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-core-commonmark */ "../node_modules/micromark-core-commonmark/dev/lib/block-quote.js");
@@ -27957,7 +30554,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/** @type {Extension['document']} */
+/** @satisfies {Extension['document']} */
 const document = {
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.asterisk]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_1__.list,
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.plusSign]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_1__.list,
@@ -27975,19 +30572,19 @@ const document = {
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.greaterThan]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_2__.blockQuote
 }
 
-/** @type {Extension['contentInitial']} */
+/** @satisfies {Extension['contentInitial']} */
 const contentInitial = {
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.leftSquareBracket]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_3__.definition
 }
 
-/** @type {Extension['flowInitial']} */
+/** @satisfies {Extension['flowInitial']} */
 const flowInitial = {
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.horizontalTab]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_4__.codeIndented,
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.virtualSpace]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_4__.codeIndented,
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_4__.codeIndented
 }
 
-/** @type {Extension['flow']} */
+/** @satisfies {Extension['flow']} */
 const flow = {
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.numberSign]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_5__.headingAtx,
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.asterisk]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_6__.thematicBreak,
@@ -27999,13 +30596,13 @@ const flow = {
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.tilde]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_9__.codeFenced
 }
 
-/** @type {Extension['string']} */
+/** @satisfies {Extension['string']} */
 const string = {
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.ampersand]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_10__.characterReference,
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.backslash]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_11__.characterEscape
 }
 
-/** @type {Extension['text']} */
+/** @satisfies {Extension['text']} */
 const text = {
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.carriageReturn]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_12__.lineEnding,
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.lineFeed]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_12__.lineEnding,
@@ -28021,13 +30618,13 @@ const text = {
   [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.graveAccent]: micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_20__.codeText
 }
 
-/** @type {Extension['insideSpan']} */
+/** @satisfies {Extension['insideSpan']} */
 const insideSpan = {null: [micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_14__.attention, _initialize_text_js__WEBPACK_IMPORTED_MODULE_21__.resolver]}
 
-/** @type {Extension['attentionMarkers']} */
+/** @satisfies {Extension['attentionMarkers']} */
 const attentionMarkers = {null: [micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.asterisk, micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.underscore]}
 
-/** @type {Extension['disable']} */
+/** @satisfies {Extension['disable']} */
 const disable = {null: []}
 
 
@@ -28042,32 +30639,36 @@ const disable = {null: []}
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createTokenizer": () => (/* binding */ createTokenizer)
+/* harmony export */   createTokenizer: () => (/* binding */ createTokenizer)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
-/* harmony import */ var debug__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! debug */ "../node_modules/debug/src/browser.js");
+/* harmony import */ var debug__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! debug */ "../node_modules/debug/src/browser.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_chunked__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-chunked */ "../node_modules/micromark-util-chunked/dev/index.js");
 /* harmony import */ var micromark_util_resolve_all__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-resolve-all */ "../node_modules/micromark-util-resolve-all/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_values_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-util-symbol/values.js */ "../node_modules/micromark-util-symbol/values.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
- * @typedef {import('micromark-util-types').Code} Code
  * @typedef {import('micromark-util-types').Chunk} Chunk
- * @typedef {import('micromark-util-types').Point} Point
- * @typedef {import('micromark-util-types').Token} Token
- * @typedef {import('micromark-util-types').Effects} Effects
- * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').Code} Code
  * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').InitialConstruct} InitialConstruct
  * @typedef {import('micromark-util-types').ConstructRecord} ConstructRecord
- * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
+ * @typedef {import('micromark-util-types').Effects} Effects
+ * @typedef {import('micromark-util-types').InitialConstruct} InitialConstruct
  * @typedef {import('micromark-util-types').ParseContext} ParseContext
+ * @typedef {import('micromark-util-types').Point} Point
+ * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').Token} Token
+ * @typedef {import('micromark-util-types').TokenType} TokenType
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
  */
 
 /**
+ * @callback Restore
+ * @returns {void}
+ *
  * @typedef Info
- * @property {() => void} restore
+ * @property {Restore} restore
  * @property {number} from
  *
  * @callback ReturnHandle
@@ -28085,7 +30686,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const debug = debug__WEBPACK_IMPORTED_MODULE_1__('micromark')
+const debug = debug__WEBPACK_IMPORTED_MODULE_0__('micromark')
 
 /**
  * Create a tokenizer.
@@ -28098,7 +30699,7 @@ const debug = debug__WEBPACK_IMPORTED_MODULE_1__('micromark')
  *
  * @param {ParseContext} parser
  * @param {InitialConstruct} initialize
- * @param {Omit<Point, '_index'|'_bufferIndex'>} [from]
+ * @param {Omit<Point, '_bufferIndex' | '_index'> | undefined} [from]
  * @returns {TokenizeContext}
  */
 function createTokenizer(parser, initialize, from) {
@@ -28115,7 +30716,7 @@ function createTokenizer(parser, initialize, from) {
   let chunks = []
   /** @type {Array<Token>} */
   let stack = []
-  /** @type {boolean|undefined} */
+  /** @type {boolean | undefined} */
   let consumed = true
 
   /**
@@ -28153,7 +30754,7 @@ function createTokenizer(parser, initialize, from) {
   /**
    * The state function.
    *
-   * @type {State|void}
+   * @type {State | void}
    */
   let state = initialize.tokenize.call(context, effects)
 
@@ -28205,7 +30806,9 @@ function createTokenizer(parser, initialize, from) {
 
   /** @type {TokenizeContext['now']} */
   function now() {
-    return Object.assign({}, point)
+    // This is a hot path, so we clone manually instead of `Object.assign({}, point)`
+    const {line, column, offset, _index, _bufferIndex} = point
+    return {line, column, offset, _index, _bufferIndex}
   }
 
   /** @type {TokenizeContext['defineSkip']} */
@@ -28263,25 +30866,25 @@ function createTokenizer(parser, initialize, from) {
    * @returns {void}
    */
   function go(code) {
-    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(consumed === true, 'expected character to be consumed')
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(consumed === true, 'expected character to be consumed')
     consumed = undefined
     debug('main: passing `%s` to %s', code, state && state.name)
     expectedCode = code
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(typeof state === 'function', 'expected state')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(typeof state === 'function', 'expected state')
     state = state(code)
   }
 
   /** @type {Effects['consume']} */
   function consume(code) {
-    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === expectedCode, 'expected given code to equal expected code')
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(code === expectedCode, 'expected given code to equal expected code')
 
     debug('consume: `%s`', code)
 
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(
       consumed === undefined,
       'expected code to not have been consumed: this might be because `return x(code)` instead of `return x` was used'
     )
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(
       code === null
         ? context.events.length === 0 ||
             context.events[context.events.length - 1][0] === 'exit'
@@ -28330,8 +30933,8 @@ function createTokenizer(parser, initialize, from) {
     token.type = type
     token.start = now()
 
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(typeof type === 'string', 'expected string type')
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(type.length > 0, 'expected non-empty string')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(typeof type === 'string', 'expected string type')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(type.length > 0, 'expected non-empty string')
     debug('enter: `%s`', type)
 
     context.events.push(['enter', token, context])
@@ -28343,16 +30946,16 @@ function createTokenizer(parser, initialize, from) {
 
   /** @type {Effects['exit']} */
   function exit(type) {
-    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(typeof type === 'string', 'expected string type')
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(type.length > 0, 'expected non-empty string')
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(typeof type === 'string', 'expected string type')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(type.length > 0, 'expected non-empty string')
 
     const token = stack.pop()
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(token, 'cannot close w/o open tokens')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(token, 'cannot close w/o open tokens')
     token.end = now()
 
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(type === token.type, 'expected exit token to match current token')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(type === token.type, 'expected exit token to match current token')
 
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(
       !(
         token.start._index === token.end._index &&
         token.start._bufferIndex === token.end._bufferIndex
@@ -28388,7 +30991,7 @@ function createTokenizer(parser, initialize, from) {
    * Factory to attempt/check/interrupt.
    *
    * @param {ReturnHandle} onreturn
-   * @param {Record<string, unknown>} [fields]
+   * @param {{interrupt?: boolean | undefined} | undefined} [fields]
    */
   function constructFactory(onreturn, fields) {
     return hook
@@ -28397,9 +31000,9 @@ function createTokenizer(parser, initialize, from) {
      * Handle either an object mapping codes to constructs, a list of
      * constructs, or a single construct.
      *
-     * @param {Construct|Array<Construct>|ConstructRecord} constructs
+     * @param {Array<Construct> | Construct | ConstructRecord} constructs
      * @param {State} returnState
-     * @param {State} [bogusState]
+     * @param {State | undefined} [bogusState]
      * @returns {State}
      */
     function hook(constructs, returnState, bogusState) {
@@ -28455,7 +31058,7 @@ function createTokenizer(parser, initialize, from) {
         constructIndex = 0
 
         if (list.length === 0) {
-          (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(bogusState, 'expected `bogusState` to be given')
+          (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(bogusState, 'expected `bogusState` to be given')
           return bogusState
         }
 
@@ -28484,6 +31087,12 @@ function createTokenizer(parser, initialize, from) {
             context.currentConstruct = construct
           }
 
+          // Always populated by defaults.
+          (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(
+            context.parser.constructs.disable.null,
+            'expected `disable.null` to be populated'
+          )
+
           if (
             construct.name &&
             context.parser.constructs.disable.null.includes(construct.name)
@@ -28505,7 +31114,7 @@ function createTokenizer(parser, initialize, from) {
 
       /** @type {State} */
       function ok(code) {
-        (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === expectedCode, 'expected code')
+        (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(code === expectedCode, 'expected code')
         consumed = true
         onreturn(currentConstruct, info)
         return returnState
@@ -28513,7 +31122,7 @@ function createTokenizer(parser, initialize, from) {
 
       /** @type {State} */
       function nok(code) {
-        (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(code === expectedCode, 'expected code')
+        (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(code === expectedCode, 'expected code')
         consumed = true
         info.restore()
 
@@ -28549,7 +31158,7 @@ function createTokenizer(parser, initialize, from) {
       context.events = construct.resolveTo(context.events, context)
     }
 
-    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(
       construct.partial ||
         context.events.length === 0 ||
         context.events[context.events.length - 1][0] === 'exit',
@@ -28605,7 +31214,7 @@ function createTokenizer(parser, initialize, from) {
  * Get the chunks from a slice of chunks in the range of a token.
  *
  * @param {Array<Chunk>} chunks
- * @param {Pick<Token, 'start'|'end'>} token
+ * @param {Pick<Token, 'end' | 'start'>} token
  * @returns {Array<Chunk>}
  */
 function sliceChunks(chunks, token) {
@@ -28617,16 +31226,21 @@ function sliceChunks(chunks, token) {
   let view
 
   if (startIndex === endIndex) {
-    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(endBufferIndex > -1, 'expected non-negative end buffer index')
-    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(startBufferIndex > -1, 'expected non-negative start buffer index')
+    (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(endBufferIndex > -1, 'expected non-negative end buffer index')
+    ;(0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(startBufferIndex > -1, 'expected non-negative start buffer index')
     // @ts-expect-error `_bufferIndex` is used on string chunks.
     view = [chunks[startIndex].slice(startBufferIndex, endBufferIndex)]
   } else {
     view = chunks.slice(startIndex, endIndex)
 
     if (startBufferIndex > -1) {
-      // @ts-expect-error `_bufferIndex` is used on string chunks.
-      view[0] = view[0].slice(startBufferIndex)
+      const head = view[0]
+      if (typeof head === 'string') {
+        view[0] = head.slice(startBufferIndex)
+      } else {
+        (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(startBufferIndex === 0, 'expected `startBufferIndex` to be `0`')
+        view.shift()
+      }
     }
 
     if (endBufferIndex > 0) {
@@ -28642,14 +31256,14 @@ function sliceChunks(chunks, token) {
  * Get the string value of a slice of chunks.
  *
  * @param {Array<Chunk>} chunks
- * @param {boolean} [expandTabs=false]
+ * @param {boolean | undefined} [expandTabs=false]
  * @returns {string}
  */
 function serializeChunks(chunks, expandTabs) {
   let index = -1
   /** @type {Array<string>} */
   const result = []
-  /** @type {boolean|undefined} */
+  /** @type {boolean | undefined} */
   let atTab
 
   while (++index < chunks.length) {
@@ -28693,7 +31307,7 @@ function serializeChunks(chunks, expandTabs) {
         }
 
         default: {
-          (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(typeof chunk === 'number', 'expected number')
+          (0,uvu_assert__WEBPACK_IMPORTED_MODULE_1__.ok)(typeof chunk === 'number', 'expected number')
           // Currently only replacement character.
           value = String.fromCharCode(chunk)
         }
@@ -28718,19 +31332,20 @@ function serializeChunks(chunks, expandTabs) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "content": () => (/* binding */ content)
+/* harmony export */   content: () => (/* binding */ content)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').InitialConstruct} InitialConstruct
  * @typedef {import('micromark-util-types').Initializer} Initializer
- * @typedef {import('micromark-util-types').Token} Token
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').Token} Token
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
  */
 
 
@@ -28743,7 +31358,10 @@ __webpack_require__.r(__webpack_exports__);
 /** @type {InitialConstruct} */
 const content = {tokenize: initializeContent}
 
-/** @type {Initializer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Initializer}
+ */
 function initializeContent(effects) {
   const contentStart = effects.attempt(
     this.parser.constructs.contentInitial,
@@ -28832,29 +31450,29 @@ function initializeContent(effects) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "document": () => (/* binding */ document)
+/* harmony export */   document: () => (/* binding */ document)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
+/* harmony import */ var micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-chunked */ "../node_modules/micromark-util-chunked/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
-/* harmony import */ var micromark_util_chunked__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-chunked */ "../node_modules/micromark-util-chunked/dev/index.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
+ * @typedef {import('micromark-util-types').Construct} Construct
+ * @typedef {import('micromark-util-types').ContainerState} ContainerState
  * @typedef {import('micromark-util-types').InitialConstruct} InitialConstruct
  * @typedef {import('micromark-util-types').Initializer} Initializer
- * @typedef {import('micromark-util-types').Construct} Construct
+ * @typedef {import('micromark-util-types').Point} Point
+ * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').Token} Token
  * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
  * @typedef {import('micromark-util-types').Tokenizer} Tokenizer
- * @typedef {import('micromark-util-types').Token} Token
- * @typedef {import('micromark-util-types').State} State
- * @typedef {import('micromark-util-types').Point} Point
  */
 
 /**
- * @typedef {Record<string, unknown>} StackState
- * @typedef {[Construct, StackState]} StackItem
+ * @typedef {[Construct, ContainerState]} StackItem
  */
 
 
@@ -28871,15 +31489,18 @@ const document = {tokenize: initializeDocument}
 /** @type {Construct} */
 const containerConstruct = {tokenize: tokenizeContainer}
 
-/** @type {Initializer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Initializer}
+ */
 function initializeDocument(effects) {
   const self = this
   /** @type {Array<StackItem>} */
   const stack = []
   let continued = 0
-  /** @type {TokenizeContext|undefined} */
+  /** @type {TokenizeContext | undefined} */
   let childFlow
-  /** @type {Token|undefined} */
+  /** @type {Token | undefined} */
   let childToken
   /** @type {number} */
   let lineStartOffset
@@ -28939,7 +31560,7 @@ function initializeDocument(effects) {
       // algorithm when dealing with lazy lines in `writeToChild`.
       const indexBeforeExits = self.events.length
       let indexBeforeFlow = indexBeforeExits
-      /** @type {Point|undefined} */
+      /** @type {Point | undefined} */
       let point
 
       // Find the flow chunk.
@@ -29007,6 +31628,8 @@ function initializeDocument(effects) {
       // If we do have flow, it could still be a blank line,
       // but we’d be interrupting it w/ a new container if there’s a current
       // construct.
+      // To do: next major: remove `_gfmTableDynamicInterruptHack` (no longer
+      // needed in micromark-extension-gfm-table@1.0.6).
       self.interrupt = Boolean(
         childFlow.currentConstruct && !childFlow._gfmTableDynamicInterruptHack
       )
@@ -29105,7 +31728,7 @@ function initializeDocument(effects) {
 
   /**
    * @param {Token} token
-   * @param {boolean} [eof]
+   * @param {boolean | undefined} [eof]
    * @returns {void}
    */
   function writeToChild(token, eof) {
@@ -29173,9 +31796,9 @@ function initializeDocument(effects) {
       // algorithm when closing flow in `documentContinue`.
       const indexBeforeExits = self.events.length
       let indexBeforeFlow = indexBeforeExits
-      /** @type {boolean|undefined} */
+      /** @type {boolean | undefined} */
       let seen
-      /** @type {Point|undefined} */
+      /** @type {Point | undefined} */
       let point
 
       // Find the previous chunk (the one before the lazy line).
@@ -29252,8 +31875,16 @@ function initializeDocument(effects) {
   }
 }
 
-/** @type {Tokenizer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Tokenizer}
+ */
 function tokenizeContainer(effects, ok, nok) {
+  // Always populated by defaults.
+  (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(
+    this.parser.constructs.disable.null,
+    'expected `disable.null` to be populated'
+  )
   return (0,micromark_factory_space__WEBPACK_IMPORTED_MODULE_6__.factorySpace)(
     effects,
     effects.attempt(this.parser.constructs.document, ok, nok),
@@ -29276,19 +31907,20 @@ function tokenizeContainer(effects, ok, nok) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "flow": () => (/* binding */ flow)
+/* harmony export */   flow: () => (/* binding */ flow)
 /* harmony export */ });
-/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /* harmony import */ var micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-core-commonmark */ "../node_modules/micromark-core-commonmark/dev/lib/blank-line.js");
 /* harmony import */ var micromark_core_commonmark__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-core-commonmark */ "../node_modules/micromark-core-commonmark/dev/lib/content.js");
 /* harmony import */ var micromark_factory_space__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-factory-space */ "../node_modules/micromark-factory-space/dev/index.js");
 /* harmony import */ var micromark_util_character__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! micromark-util-character */ "../node_modules/micromark-util-character/dev/index.js");
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
  * @typedef {import('micromark-util-types').InitialConstruct} InitialConstruct
  * @typedef {import('micromark-util-types').Initializer} Initializer
  * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
  */
 
 
@@ -29301,7 +31933,10 @@ __webpack_require__.r(__webpack_exports__);
 /** @type {InitialConstruct} */
 const flow = {tokenize: initializeFlow}
 
-/** @type {Initializer} */
+/**
+ * @this {TokenizeContext}
+ * @type {Initializer}
+ */
 function initializeFlow(effects) {
   const self = this
   const initial = effects.attempt(
@@ -29377,21 +32012,23 @@ function initializeFlow(effects) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "resolver": () => (/* binding */ resolver),
-/* harmony export */   "string": () => (/* binding */ string),
-/* harmony export */   "text": () => (/* binding */ text)
+/* harmony export */   resolver: () => (/* binding */ resolver),
+/* harmony export */   string: () => (/* binding */ string),
+/* harmony export */   text: () => (/* binding */ text)
 /* harmony export */ });
-/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
-/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
-/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
+/* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
+/* harmony import */ var micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! micromark-util-symbol/types.js */ "../node_modules/micromark-util-symbol/types.js");
+/* harmony import */ var uvu_assert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! uvu/assert */ "../node_modules/uvu/assert/index.mjs");
 /**
- * @typedef {import('micromark-util-types').Resolver} Resolver
- * @typedef {import('micromark-util-types').Initializer} Initializer
- * @typedef {import('micromark-util-types').Construct} Construct
- * @typedef {import('micromark-util-types').InitialConstruct} InitialConstruct
- * @typedef {import('micromark-util-types').State} State
  * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').InitialConstruct} InitialConstruct
+ * @typedef {import('micromark-util-types').Initializer} Initializer
+ * @typedef {import('micromark-util-types').Resolver} Resolver
+ * @typedef {import('micromark-util-types').State} State
+ * @typedef {import('micromark-util-types').TokenizeContext} TokenizeContext
  */
+
 
 
 
@@ -29402,7 +32039,7 @@ const string = initializeFactory('string')
 const text = initializeFactory('text')
 
 /**
- * @param {'string'|'text'} field
+ * @param {'string' | 'text'} field
  * @returns {InitialConstruct}
  */
 function initializeFactory(field) {
@@ -29413,7 +32050,10 @@ function initializeFactory(field) {
     )
   }
 
-  /** @type {Initializer} */
+  /**
+   * @this {TokenizeContext}
+   * @type {Initializer}
+   */
   function initializeText(effects) {
     const self = this
     const constructs = this.parser.constructs[field]
@@ -29428,12 +32068,12 @@ function initializeFactory(field) {
 
     /** @type {State} */
     function notText(code) {
-      if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.eof) {
+      if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof) {
         effects.consume(code)
         return
       }
 
-      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.data)
+      effects.enter(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.data)
       effects.consume(code)
       return data
     }
@@ -29441,7 +32081,7 @@ function initializeFactory(field) {
     /** @type {State} */
     function data(code) {
       if (atBreak(code)) {
-        effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.data)
+        effects.exit(micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.data)
         return text(code)
       }
 
@@ -29455,7 +32095,7 @@ function initializeFactory(field) {
      * @returns {boolean}
      */
     function atBreak(code) {
-      if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.eof) {
+      if (code === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.eof) {
         return true
       }
 
@@ -29463,6 +32103,9 @@ function initializeFactory(field) {
       let index = -1
 
       if (list) {
+        // Always populated by defaults.
+        (0,uvu_assert__WEBPACK_IMPORTED_MODULE_0__.ok)(Array.isArray(list), 'expected `disable.null` to be populated')
+
         while (++index < list.length) {
           const item = list[index]
           if (!item.previous || item.previous.call(self, self.previous)) {
@@ -29477,7 +32120,7 @@ function initializeFactory(field) {
 }
 
 /**
- * @param {Resolver} [extraResolver]
+ * @param {Resolver | undefined} [extraResolver]
  * @returns {Resolver}
  */
 function createResolver(extraResolver) {
@@ -29486,18 +32129,18 @@ function createResolver(extraResolver) {
   /** @type {Resolver} */
   function resolveAllText(events, context) {
     let index = -1
-    /** @type {number|undefined} */
+    /** @type {number | undefined} */
     let enter
 
     // A rather boring computation (to merge adjacent `data` events) which
     // improves mm performance by 29%.
     while (++index <= events.length) {
       if (enter === undefined) {
-        if (events[index] && events[index][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.data) {
+        if (events[index] && events[index][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.data) {
           enter = index
           index++
         }
-      } else if (!events[index] || events[index][1].type !== micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.data) {
+      } else if (!events[index] || events[index][1].type !== micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.data) {
         // Don’t do anything if there is one data token.
         if (index !== enter + 2) {
           events[enter][1].end = events[index - 1][1].end
@@ -29530,15 +32173,15 @@ function resolveAllLineSuffixes(events, context) {
   while (++eventIndex <= events.length) {
     if (
       (eventIndex === events.length ||
-        events[eventIndex][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineEnding) &&
-      events[eventIndex - 1][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.data
+        events[eventIndex][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineEnding) &&
+      events[eventIndex - 1][1].type === micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.data
     ) {
       const data = events[eventIndex - 1][1]
       const chunks = context.sliceStream(data)
       let index = chunks.length
       let bufferIndex = -1
       let size = 0
-      /** @type {boolean|undefined} */
+      /** @type {boolean | undefined} */
       let tabs
 
       while (index--) {
@@ -29547,7 +32190,7 @@ function resolveAllLineSuffixes(events, context) {
         if (typeof chunk === 'string') {
           bufferIndex = chunk.length
 
-          while (chunk.charCodeAt(bufferIndex - 1) === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.space) {
+          while (chunk.charCodeAt(bufferIndex - 1) === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.space) {
             size++
             bufferIndex--
           }
@@ -29556,10 +32199,10 @@ function resolveAllLineSuffixes(events, context) {
           bufferIndex = -1
         }
         // Number
-        else if (chunk === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.horizontalTab) {
+        else if (chunk === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.horizontalTab) {
           tabs = true
           size++
-        } else if (chunk === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.virtualSpace) {
+        } else if (chunk === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_1__.codes.virtualSpace) {
           // Empty
         } else {
           // Replacement character, exit.
@@ -29573,9 +32216,9 @@ function resolveAllLineSuffixes(events, context) {
           type:
             eventIndex === events.length ||
             tabs ||
-            size < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_2__.constants.hardBreakPrefixSizeMin
-              ? micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.lineSuffix
-              : micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_1__.types.hardBreakTrailing,
+            size < micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_3__.constants.hardBreakPrefixSizeMin
+              ? micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.lineSuffix
+              : micromark_util_symbol_types_js__WEBPACK_IMPORTED_MODULE_2__.types.hardBreakTrailing,
           start: {
             line: data.end.line,
             column: data.end.column - size,
@@ -29622,7 +32265,7 @@ function resolveAllLineSuffixes(events, context) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "parse": () => (/* binding */ parse)
+/* harmony export */   parse: () => (/* binding */ parse)
 /* harmony export */ });
 /* harmony import */ var micromark_util_combine_extensions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-combine-extensions */ "../node_modules/micromark-util-combine-extensions/index.js");
 /* harmony import */ var _initialize_content_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./initialize/content.js */ "../node_modules/micromark/dev/lib/initialize/content.js");
@@ -29632,11 +32275,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _create_tokenizer_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./create-tokenizer.js */ "../node_modules/micromark/dev/lib/create-tokenizer.js");
 /* harmony import */ var _constructs_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constructs.js */ "../node_modules/micromark/dev/lib/constructs.js");
 /**
- * @typedef {import('micromark-util-types').InitialConstruct} InitialConstruct
- * @typedef {import('micromark-util-types').FullNormalizedExtension} FullNormalizedExtension
- * @typedef {import('micromark-util-types').ParseOptions} ParseOptions
- * @typedef {import('micromark-util-types').ParseContext} ParseContext
  * @typedef {import('micromark-util-types').Create} Create
+ * @typedef {import('micromark-util-types').FullNormalizedExtension} FullNormalizedExtension
+ * @typedef {import('micromark-util-types').InitialConstruct} InitialConstruct
+ * @typedef {import('micromark-util-types').ParseContext} ParseContext
+ * @typedef {import('micromark-util-types').ParseOptions} ParseOptions
  */
 
 
@@ -29648,16 +32291,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
- * @param {ParseOptions} [options]
+ * @param {ParseOptions | null | undefined} [options]
  * @returns {ParseContext}
  */
-function parse(options = {}) {
-  /** @type {FullNormalizedExtension} */
-  // @ts-expect-error `defaultConstructs` is full, so the result will be too.
-  const constructs = (0,micromark_util_combine_extensions__WEBPACK_IMPORTED_MODULE_0__.combineExtensions)(
-    // @ts-expect-error Same as above.
-    [_constructs_js__WEBPACK_IMPORTED_MODULE_1__].concat(options.extensions || [])
+function parse(options) {
+  const settings = options || {}
+  const constructs = /** @type {FullNormalizedExtension} */ (
+    (0,micromark_util_combine_extensions__WEBPACK_IMPORTED_MODULE_0__.combineExtensions)([_constructs_js__WEBPACK_IMPORTED_MODULE_1__, ...(settings.extensions || [])])
   )
+
   /** @type {ParseContext} */
   const parser = {
     defined: [],
@@ -29696,7 +32338,7 @@ function parse(options = {}) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "postprocess": () => (/* binding */ postprocess)
+/* harmony export */   postprocess: () => (/* binding */ postprocess)
 /* harmony export */ });
 /* harmony import */ var micromark_util_subtokenize__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-subtokenize */ "../node_modules/micromark-util-subtokenize/dev/index.js");
 /**
@@ -29729,22 +32371,22 @@ function postprocess(events) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "preprocess": () => (/* binding */ preprocess)
+/* harmony export */   preprocess: () => (/* binding */ preprocess)
 /* harmony export */ });
 /* harmony import */ var micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! micromark-util-symbol/codes.js */ "../node_modules/micromark-util-symbol/codes.js");
 /* harmony import */ var micromark_util_symbol_constants_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! micromark-util-symbol/constants.js */ "../node_modules/micromark-util-symbol/constants.js");
 /**
- * @typedef {import('micromark-util-types').Encoding} Encoding
- * @typedef {import('micromark-util-types').Value} Value
  * @typedef {import('micromark-util-types').Chunk} Chunk
  * @typedef {import('micromark-util-types').Code} Code
+ * @typedef {import('micromark-util-types').Encoding} Encoding
+ * @typedef {import('micromark-util-types').Value} Value
  */
 
 /**
  * @callback Preprocessor
  * @param {Value} value
- * @param {Encoding} [encoding]
- * @param {boolean} [end=false]
+ * @param {Encoding | null | undefined} [encoding]
+ * @param {boolean | null | undefined} [end=false]
  * @returns {Array<Chunk>}
  */
 
@@ -29759,9 +32401,9 @@ const search = /[\0\t\n\r]/g
 function preprocess() {
   let column = 1
   let buffer = ''
-  /** @type {boolean|undefined} */
+  /** @type {boolean | undefined} */
   let start = true
-  /** @type {boolean|undefined} */
+  /** @type {boolean | undefined} */
   let atCarriageReturn
 
   return preprocessor
@@ -29770,7 +32412,7 @@ function preprocess() {
   function preprocessor(value, encoding, end) {
     /** @type {Array<Chunk>} */
     const chunks = []
-    /** @type {RegExpMatchArray|null} */
+    /** @type {RegExpMatchArray | null} */
     let match
     /** @type {number} */
     let next
@@ -29787,6 +32429,7 @@ function preprocess() {
     buffer = ''
 
     if (start) {
+      // To do: `markdown-rs` actually parses BOMs (byte order mark).
       if (value.charCodeAt(0) === micromark_util_symbol_codes_js__WEBPACK_IMPORTED_MODULE_0__.codes.byteOrderMarker) {
         startPosition++
       }
@@ -29879,11 +32522,11 @@ function preprocess() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "find": () => (/* reexport safe */ _lib_find_js__WEBPACK_IMPORTED_MODULE_0__.find),
-/* harmony export */   "hastToReact": () => (/* reexport safe */ _lib_hast_to_react_js__WEBPACK_IMPORTED_MODULE_1__.hastToReact),
-/* harmony export */   "html": () => (/* binding */ html),
-/* harmony export */   "normalize": () => (/* reexport safe */ _lib_normalize_js__WEBPACK_IMPORTED_MODULE_2__.normalize),
-/* harmony export */   "svg": () => (/* binding */ svg)
+/* harmony export */   find: () => (/* reexport safe */ _lib_find_js__WEBPACK_IMPORTED_MODULE_0__.find),
+/* harmony export */   hastToReact: () => (/* reexport safe */ _lib_hast_to_react_js__WEBPACK_IMPORTED_MODULE_1__.hastToReact),
+/* harmony export */   html: () => (/* binding */ html),
+/* harmony export */   normalize: () => (/* reexport safe */ _lib_normalize_js__WEBPACK_IMPORTED_MODULE_2__.normalize),
+/* harmony export */   svg: () => (/* binding */ svg)
 /* harmony export */ });
 /* harmony import */ var _lib_util_merge_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lib/util/merge.js */ "../node_modules/property-information/lib/util/merge.js");
 /* harmony import */ var _lib_xlink_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./lib/xlink.js */ "../node_modules/property-information/lib/xlink.js");
@@ -29926,7 +32569,7 @@ const svg = (0,_lib_util_merge_js__WEBPACK_IMPORTED_MODULE_3__.merge)([_lib_xml_
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "aria": () => (/* binding */ aria)
+/* harmony export */   aria: () => (/* binding */ aria)
 /* harmony export */ });
 /* harmony import */ var _util_types_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util/types.js */ "../node_modules/property-information/lib/util/types.js");
 /* harmony import */ var _util_create_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util/create.js */ "../node_modules/property-information/lib/util/create.js");
@@ -30002,7 +32645,7 @@ const aria = (0,_util_create_js__WEBPACK_IMPORTED_MODULE_0__.create)({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "find": () => (/* binding */ find)
+/* harmony export */   find: () => (/* binding */ find)
 /* harmony export */ });
 /* harmony import */ var _normalize_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./normalize.js */ "../node_modules/property-information/lib/normalize.js");
 /* harmony import */ var _util_defined_info_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util/defined-info.js */ "../node_modules/property-information/lib/util/defined-info.js");
@@ -30088,7 +32731,7 @@ function camelcase($0) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "hastToReact": () => (/* binding */ hastToReact)
+/* harmony export */   hastToReact: () => (/* binding */ hastToReact)
 /* harmony export */ });
 /**
  * `hast` is close to `React`, but differs in a couple of cases.
@@ -30131,7 +32774,7 @@ const hastToReact = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "html": () => (/* binding */ html)
+/* harmony export */   html: () => (/* binding */ html)
 /* harmony export */ });
 /* harmony import */ var _util_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util/types.js */ "../node_modules/property-information/lib/util/types.js");
 /* harmony import */ var _util_create_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util/create.js */ "../node_modules/property-information/lib/util/create.js");
@@ -30453,7 +33096,7 @@ const html = (0,_util_create_js__WEBPACK_IMPORTED_MODULE_0__.create)({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "normalize": () => (/* binding */ normalize)
+/* harmony export */   normalize: () => (/* binding */ normalize)
 /* harmony export */ });
 /**
  * @param {string} value
@@ -30475,7 +33118,7 @@ function normalize(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "svg": () => (/* binding */ svg)
+/* harmony export */   svg: () => (/* binding */ svg)
 /* harmony export */ });
 /* harmony import */ var _util_types_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util/types.js */ "../node_modules/property-information/lib/util/types.js");
 /* harmony import */ var _util_create_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util/create.js */ "../node_modules/property-information/lib/util/create.js");
@@ -31052,7 +33695,7 @@ const svg = (0,_util_create_js__WEBPACK_IMPORTED_MODULE_0__.create)({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "caseInsensitiveTransform": () => (/* binding */ caseInsensitiveTransform)
+/* harmony export */   caseInsensitiveTransform: () => (/* binding */ caseInsensitiveTransform)
 /* harmony export */ });
 /* harmony import */ var _case_sensitive_transform_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./case-sensitive-transform.js */ "../node_modules/property-information/lib/util/case-sensitive-transform.js");
 
@@ -31078,7 +33721,7 @@ function caseInsensitiveTransform(attributes, property) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "caseSensitiveTransform": () => (/* binding */ caseSensitiveTransform)
+/* harmony export */   caseSensitiveTransform: () => (/* binding */ caseSensitiveTransform)
 /* harmony export */ });
 /**
  * @param {Record<string, string>} attributes
@@ -31101,7 +33744,7 @@ function caseSensitiveTransform(attributes, attribute) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "create": () => (/* binding */ create)
+/* harmony export */   create: () => (/* binding */ create)
 /* harmony export */ });
 /* harmony import */ var _normalize_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../normalize.js */ "../node_modules/property-information/lib/normalize.js");
 /* harmony import */ var _schema_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./schema.js */ "../node_modules/property-information/lib/util/schema.js");
@@ -31177,7 +33820,7 @@ function create(definition) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "DefinedInfo": () => (/* binding */ DefinedInfo)
+/* harmony export */   DefinedInfo: () => (/* binding */ DefinedInfo)
 /* harmony export */ });
 /* harmony import */ var _info_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./info.js */ "../node_modules/property-information/lib/util/info.js");
 /* harmony import */ var _types_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types.js */ "../node_modules/property-information/lib/util/types.js");
@@ -31238,7 +33881,7 @@ function mark(values, key, value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Info": () => (/* binding */ Info)
+/* harmony export */   Info: () => (/* binding */ Info)
 /* harmony export */ });
 class Info {
   /**
@@ -31278,7 +33921,7 @@ Info.prototype.defined = false
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "merge": () => (/* binding */ merge)
+/* harmony export */   merge: () => (/* binding */ merge)
 /* harmony export */ });
 /* harmony import */ var _schema_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./schema.js */ "../node_modules/property-information/lib/util/schema.js");
 /**
@@ -31320,7 +33963,7 @@ function merge(definitions, space) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Schema": () => (/* binding */ Schema)
+/* harmony export */   Schema: () => (/* binding */ Schema)
 /* harmony export */ });
 /**
  * @typedef {import('./info.js').Info} Info
@@ -31363,13 +34006,13 @@ Schema.prototype.space = null
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "boolean": () => (/* binding */ boolean),
-/* harmony export */   "booleanish": () => (/* binding */ booleanish),
-/* harmony export */   "commaOrSpaceSeparated": () => (/* binding */ commaOrSpaceSeparated),
-/* harmony export */   "commaSeparated": () => (/* binding */ commaSeparated),
-/* harmony export */   "number": () => (/* binding */ number),
-/* harmony export */   "overloadedBoolean": () => (/* binding */ overloadedBoolean),
-/* harmony export */   "spaceSeparated": () => (/* binding */ spaceSeparated)
+/* harmony export */   boolean: () => (/* binding */ boolean),
+/* harmony export */   booleanish: () => (/* binding */ booleanish),
+/* harmony export */   commaOrSpaceSeparated: () => (/* binding */ commaOrSpaceSeparated),
+/* harmony export */   commaSeparated: () => (/* binding */ commaSeparated),
+/* harmony export */   number: () => (/* binding */ number),
+/* harmony export */   overloadedBoolean: () => (/* binding */ overloadedBoolean),
+/* harmony export */   spaceSeparated: () => (/* binding */ spaceSeparated)
 /* harmony export */ });
 let powers = 0
 
@@ -31397,7 +34040,7 @@ function increment() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "xlink": () => (/* binding */ xlink)
+/* harmony export */   xlink: () => (/* binding */ xlink)
 /* harmony export */ });
 /* harmony import */ var _util_create_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util/create.js */ "../node_modules/property-information/lib/util/create.js");
 
@@ -31430,7 +34073,7 @@ const xlink = (0,_util_create_js__WEBPACK_IMPORTED_MODULE_0__.create)({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "xml": () => (/* binding */ xml)
+/* harmony export */   xml: () => (/* binding */ xml)
 /* harmony export */ });
 /* harmony import */ var _util_create_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util/create.js */ "../node_modules/property-information/lib/util/create.js");
 
@@ -31455,7 +34098,7 @@ const xml = (0,_util_create_js__WEBPACK_IMPORTED_MODULE_0__.create)({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "xmlns": () => (/* binding */ xmlns)
+/* harmony export */   xmlns: () => (/* binding */ xmlns)
 /* harmony export */ });
 /* harmony import */ var _util_create_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./util/create.js */ "../node_modules/property-information/lib/util/create.js");
 /* harmony import */ var _util_case_insensitive_transform_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util/case-insensitive-transform.js */ "../node_modules/property-information/lib/util/case-insensitive-transform.js");
@@ -31482,7 +34125,7 @@ const xmlns = (0,_util_create_js__WEBPACK_IMPORTED_MODULE_0__.create)({
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* reexport safe */ _lib_react_markdown_js__WEBPACK_IMPORTED_MODULE_1__.ReactMarkdown),
-/* harmony export */   "uriTransformer": () => (/* reexport safe */ _lib_uri_transformer_js__WEBPACK_IMPORTED_MODULE_0__.uriTransformer)
+/* harmony export */   uriTransformer: () => (/* reexport safe */ _lib_uri_transformer_js__WEBPACK_IMPORTED_MODULE_0__.uriTransformer)
 /* harmony export */ });
 /* harmony import */ var _lib_uri_transformer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/uri-transformer.js */ "../node_modules/react-markdown/lib/uri-transformer.js");
 /* harmony import */ var _lib_react_markdown_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lib/react-markdown.js */ "../node_modules/react-markdown/lib/react-markdown.js");
@@ -31507,7 +34150,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "childrenToReact": () => (/* binding */ childrenToReact)
+/* harmony export */   childrenToReact: () => (/* binding */ childrenToReact)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-is */ "../node_modules/react-is/index.js");
@@ -31983,12 +34626,12 @@ function flattenPosition(pos) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ReactMarkdown": () => (/* binding */ ReactMarkdown)
+/* harmony export */   ReactMarkdown: () => (/* binding */ ReactMarkdown)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var vfile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vfile */ "../node_modules/vfile/lib/index.js");
 /* harmony import */ var unified__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! unified */ "../node_modules/unified/lib/index.js");
-/* harmony import */ var remark_parse__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! remark-parse */ "../node_modules/remark-parse/index.js");
+/* harmony import */ var remark_parse__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! remark-parse */ "../node_modules/remark-parse/lib/index.js");
 /* harmony import */ var remark_rehype__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! remark-rehype */ "../node_modules/remark-rehype/lib/index.js");
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
 /* harmony import */ var property_information__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! property-information */ "../node_modules/property-information/index.js");
@@ -32273,7 +34916,7 @@ function rehypeFilter(options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "uriTransformer": () => (/* binding */ uriTransformer)
+/* harmony export */   uriTransformer: () => (/* binding */ uriTransformer)
 /* harmony export */ });
 const protocols = ['http', 'https', 'mailto', 'tel']
 
@@ -32324,25 +34967,6 @@ function uriTransformer(uri) {
 
 /***/ }),
 
-/***/ "../node_modules/remark-parse/index.js":
-/*!*********************************************!*\
-  !*** ../node_modules/remark-parse/index.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _lib_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/index.js */ "../node_modules/remark-parse/lib/index.js");
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_lib_index_js__WEBPACK_IMPORTED_MODULE_0__["default"]);
-
-
-/***/ }),
-
 /***/ "../node_modules/remark-parse/lib/index.js":
 /*!*************************************************!*\
   !*** ../node_modules/remark-parse/lib/index.js ***!
@@ -32362,7 +34986,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/** @type {import('unified').Plugin<[Options?] | void[], string, Root>} */
+/**
+ * @this {import('unified').Processor}
+ * @type {import('unified').Plugin<[Options?] | void[], string, Root>}
+ */
 function remarkParse(options) {
   /** @type {import('unified').ParserFunction<Root>} */
   const parser = (doc) => {
@@ -32483,8 +35110,8 @@ function mutate(options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "parse": () => (/* binding */ parse),
-/* harmony export */   "stringify": () => (/* binding */ stringify)
+/* harmony export */   parse: () => (/* binding */ parse),
+/* harmony export */   stringify: () => (/* binding */ stringify)
 /* harmony export */ });
 /**
  * Parse space-separated tokens to an array of strings.
@@ -32542,7 +35169,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "trimLines": () => (/* binding */ trimLines)
+/* harmony export */   trimLines: () => (/* binding */ trimLines)
 /* harmony export */ });
 const tab = 9 /* `\t` */
 const space = 32 /* ` ` */
@@ -32626,8 +35253,8 @@ function trimLine(value, start, end) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "trough": () => (/* binding */ trough),
-/* harmony export */   "wrap": () => (/* binding */ wrap)
+/* harmony export */   trough: () => (/* binding */ trough),
+/* harmony export */   wrap: () => (/* binding */ wrap)
 /* harmony export */ });
 /**
  * @typedef {(error?: Error|null|undefined, ...output: Array<any>) => void} Callback
@@ -32802,7 +35429,7 @@ function wrap(middleware, callback) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "unified": () => (/* binding */ unified)
+/* harmony export */   unified: () => (/* binding */ unified)
 /* harmony export */ });
 /* harmony import */ var bail__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! bail */ "../node_modules/bail/index.js");
 /* harmony import */ var is_buffer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! is-buffer */ "../node_modules/is-buffer/index.js");
@@ -33422,7 +36049,7 @@ function looksLikeAVFileValue(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "generated": () => (/* binding */ generated)
+/* harmony export */   generated: () => (/* binding */ generated)
 /* harmony export */ });
 /**
  * @typedef PointLike
@@ -33471,8 +36098,8 @@ function generated(node) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "convert": () => (/* binding */ convert),
-/* harmony export */   "is": () => (/* binding */ is)
+/* harmony export */   convert: () => (/* binding */ convert),
+/* harmony export */   is: () => (/* binding */ is)
 /* harmony export */ });
 /**
  * @typedef {import('unist').Node} Node
@@ -33788,9 +36415,9 @@ function ok() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "pointEnd": () => (/* binding */ pointEnd),
-/* harmony export */   "pointStart": () => (/* binding */ pointStart),
-/* harmony export */   "position": () => (/* binding */ position)
+/* harmony export */   pointEnd: () => (/* binding */ pointEnd),
+/* harmony export */   pointStart: () => (/* binding */ pointStart),
+/* harmony export */   position: () => (/* binding */ position)
 /* harmony export */ });
 /**
  * @typedef {import('unist').Position} Position
@@ -33889,7 +36516,7 @@ function point(type) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "stringifyPosition": () => (/* binding */ stringifyPosition)
+/* harmony export */   stringifyPosition: () => (/* binding */ stringifyPosition)
 /* harmony export */ });
 /**
  * @typedef {import('unist').Node} Node
@@ -33988,7 +36615,7 @@ function index(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "color": () => (/* binding */ color)
+/* harmony export */   color: () => (/* binding */ color)
 /* harmony export */ });
 /**
  * @param {string} d
@@ -34010,10 +36637,10 @@ function color(d) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "CONTINUE": () => (/* binding */ CONTINUE),
-/* harmony export */   "EXIT": () => (/* binding */ EXIT),
-/* harmony export */   "SKIP": () => (/* binding */ SKIP),
-/* harmony export */   "visitParents": () => (/* binding */ visitParents)
+/* harmony export */   CONTINUE: () => (/* binding */ CONTINUE),
+/* harmony export */   EXIT: () => (/* binding */ EXIT),
+/* harmony export */   SKIP: () => (/* binding */ SKIP),
+/* harmony export */   visitParents: () => (/* binding */ visitParents)
 /* harmony export */ });
 /* harmony import */ var unist_util_is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! unist-util-is */ "../node_modules/unist-util-is/lib/index.js");
 /* harmony import */ var _color_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./color.js */ "../node_modules/unist-util-visit-parents/lib/color.browser.js");
@@ -34271,10 +36898,10 @@ function toResult(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "CONTINUE": () => (/* reexport safe */ unist_util_visit_parents__WEBPACK_IMPORTED_MODULE_0__.CONTINUE),
-/* harmony export */   "EXIT": () => (/* reexport safe */ unist_util_visit_parents__WEBPACK_IMPORTED_MODULE_0__.EXIT),
-/* harmony export */   "SKIP": () => (/* reexport safe */ unist_util_visit_parents__WEBPACK_IMPORTED_MODULE_0__.SKIP),
-/* harmony export */   "visit": () => (/* binding */ visit)
+/* harmony export */   CONTINUE: () => (/* reexport safe */ unist_util_visit_parents__WEBPACK_IMPORTED_MODULE_0__.CONTINUE),
+/* harmony export */   EXIT: () => (/* reexport safe */ unist_util_visit_parents__WEBPACK_IMPORTED_MODULE_0__.EXIT),
+/* harmony export */   SKIP: () => (/* reexport safe */ unist_util_visit_parents__WEBPACK_IMPORTED_MODULE_0__.SKIP),
+/* harmony export */   visit: () => (/* binding */ visit)
 /* harmony export */ });
 /* harmony import */ var unist_util_visit_parents__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! unist-util-visit-parents */ "../node_modules/unist-util-visit-parents/lib/index.js");
 /**
@@ -34472,18 +37099,18 @@ const visit =
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Assertion": () => (/* binding */ Assertion),
-/* harmony export */   "equal": () => (/* binding */ equal),
-/* harmony export */   "fixture": () => (/* binding */ fixture),
-/* harmony export */   "instance": () => (/* binding */ instance),
-/* harmony export */   "is": () => (/* binding */ is),
-/* harmony export */   "match": () => (/* binding */ match),
-/* harmony export */   "not": () => (/* binding */ not),
-/* harmony export */   "ok": () => (/* binding */ ok),
-/* harmony export */   "snapshot": () => (/* binding */ snapshot),
-/* harmony export */   "throws": () => (/* binding */ throws),
-/* harmony export */   "type": () => (/* binding */ type),
-/* harmony export */   "unreachable": () => (/* binding */ unreachable)
+/* harmony export */   Assertion: () => (/* binding */ Assertion),
+/* harmony export */   equal: () => (/* binding */ equal),
+/* harmony export */   fixture: () => (/* binding */ fixture),
+/* harmony export */   instance: () => (/* binding */ instance),
+/* harmony export */   is: () => (/* binding */ is),
+/* harmony export */   match: () => (/* binding */ match),
+/* harmony export */   not: () => (/* binding */ not),
+/* harmony export */   ok: () => (/* binding */ ok),
+/* harmony export */   snapshot: () => (/* binding */ snapshot),
+/* harmony export */   throws: () => (/* binding */ throws),
+/* harmony export */   type: () => (/* binding */ type),
+/* harmony export */   unreachable: () => (/* binding */ unreachable)
 /* harmony export */ });
 /* harmony import */ var dequal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dequal */ "../node_modules/dequal/dist/index.mjs");
 /* harmony import */ var uvu_diff__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! uvu/diff */ "../node_modules/uvu/diff/index.mjs");
@@ -34660,14 +37287,14 @@ not.throws = function (blk, exp, msg) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "arrays": () => (/* binding */ arrays),
-/* harmony export */   "chars": () => (/* binding */ chars),
-/* harmony export */   "circular": () => (/* binding */ circular),
-/* harmony export */   "compare": () => (/* binding */ compare),
-/* harmony export */   "direct": () => (/* binding */ direct),
-/* harmony export */   "lines": () => (/* binding */ lines),
-/* harmony export */   "sort": () => (/* binding */ sort),
-/* harmony export */   "stringify": () => (/* binding */ stringify)
+/* harmony export */   arrays: () => (/* binding */ arrays),
+/* harmony export */   chars: () => (/* binding */ chars),
+/* harmony export */   circular: () => (/* binding */ circular),
+/* harmony export */   compare: () => (/* binding */ compare),
+/* harmony export */   direct: () => (/* binding */ direct),
+/* harmony export */   lines: () => (/* binding */ lines),
+/* harmony export */   sort: () => (/* binding */ sort),
+/* harmony export */   stringify: () => (/* binding */ stringify)
 /* harmony export */ });
 /* harmony import */ var kleur__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! kleur */ "../node_modules/uvu/node_modules/kleur/index.mjs");
 /* harmony import */ var diff__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! diff */ "../node_modules/diff/lib/index.mjs");
@@ -35028,7 +37655,7 @@ function init(open, close) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "VFileMessage": () => (/* binding */ VFileMessage)
+/* harmony export */   VFileMessage: () => (/* binding */ VFileMessage)
 /* harmony export */ });
 /* harmony import */ var unist_util_stringify_position__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! unist-util-stringify-position */ "../node_modules/unist-util-stringify-position/lib/index.js");
 /**
@@ -35269,7 +37896,7 @@ VFileMessage.prototype.position = null
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "VFile": () => (/* binding */ VFile)
+/* harmony export */   VFile: () => (/* binding */ VFile)
 /* harmony export */ });
 /* harmony import */ var is_buffer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! is-buffer */ "../node_modules/is-buffer/index.js");
 /* harmony import */ var vfile_message__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vfile-message */ "../node_modules/vfile-message/lib/index.js");
@@ -35810,7 +38437,7 @@ function buffer(value) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "path": () => (/* binding */ path)
+/* harmony export */   path: () => (/* binding */ path)
 /* harmony export */ });
 // A derivative work based on:
 // <https://github.com/browserify/path-browserify>.
@@ -36247,7 +38874,7 @@ function assertPath(path) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "proc": () => (/* binding */ proc)
+/* harmony export */   proc: () => (/* binding */ proc)
 /* harmony export */ });
 // Somewhat based on:
 // <https://github.com/defunctzombie/node-process/blob/master/browser.js>.
@@ -36270,8 +38897,8 @@ function cwd() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "isUrl": () => (/* reexport safe */ _minurl_shared_js__WEBPACK_IMPORTED_MODULE_0__.isUrl),
-/* harmony export */   "urlToPath": () => (/* binding */ urlToPath)
+/* harmony export */   isUrl: () => (/* reexport safe */ _minurl_shared_js__WEBPACK_IMPORTED_MODULE_0__.isUrl),
+/* harmony export */   urlToPath: () => (/* binding */ urlToPath)
 /* harmony export */ });
 /* harmony import */ var _minurl_shared_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./minurl.shared.js */ "../node_modules/vfile/lib/minurl.shared.js");
 /// <reference lib="dom" />
@@ -36365,7 +38992,7 @@ function getPathFromURLPosix(url) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "isUrl": () => (/* binding */ isUrl)
+/* harmony export */   isUrl: () => (/* binding */ isUrl)
 /* harmony export */ });
 /**
  * @typedef URL

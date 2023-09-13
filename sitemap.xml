@@ -150,13 +150,13 @@
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
    </url>	
-   <url>		  
+   <url>   
       <loc>https://specmatic.in/updates/kafka-mocking-with-asyncapi-using-specmatic/</loc>
       <lastmod>2023-07-25</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.5</priority>
    </url>
-      <url>
+   <url>
       <loc>https://specmatic.in/updates/redis-stubbing-with-specmatic-contract-testing/</loc>
       <lastmod>2023-07-21</lastmod>
       <changefreq>monthly</changefreq>
