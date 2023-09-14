@@ -277,6 +277,16 @@ html {
 	font-size: 22px !important;
 }
 
+/** General 2 >> InvolveMe form iframe **/
+.mtp-475.involveme_embed iframe {
+	
+}
+.mtp-475 .involveme_embed iframe {
+	width: 1200px !important;
+	height: 800px !important;
+	padding-top: 0 !important;
+}
+
 /** General 2 >> Ditty item elements **/
 .mtp-10 .ditty-item__elements {
 	display: grid !important;
@@ -594,11 +604,6 @@ html {
 	vertical-align: top !important;
 }
 
-	/** General 2 >> Uael content **/
-	#modal-fe7358e .uael-content {
-	width: 400px !important;
-}
-
 	/** General 2 >> Uael modal content data **/
 	#modal-fe7358e .uael-modal-content-data {
 	width: 500px !important;
@@ -615,6 +620,11 @@ html {
 	display: grid !important;
 	grid-template-columns: 1fr !important;
 	grid-template-rows: auto !important;
+}
+
+	/** General 2 >> Uael content **/
+	#modal-fe7358e .uael-content {
+	width: 400px !important;
 }
 
 	/** Footer >> Ast footer copyright paragraph **/
