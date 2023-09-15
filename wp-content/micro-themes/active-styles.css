@@ -278,13 +278,9 @@ html {
 }
 
 /** General 2 >> InvolveMe form iframe **/
-.mtp-475.involveme_embed iframe {
-	
-}
 .mtp-475 .involveme_embed iframe {
 	width: 1200px !important;
-	height: 800px !important;
-	padding-top: 0 !important;
+	height: 795px !important;
 }
 
 /** General 2 >> Ditty item elements **/
