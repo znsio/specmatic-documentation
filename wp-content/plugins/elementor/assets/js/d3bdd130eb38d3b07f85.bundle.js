@@ -1,4 +1,4 @@
-/*! elementor - v3.16.0 - 13-09-2023 */
+/*! elementor - v3.16.0 - 14-09-2023 */
 "use strict";
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["modules_styleguide_assets_js_frontend_app_js"],{
 

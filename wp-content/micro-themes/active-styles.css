@@ -704,6 +704,11 @@ html {
 	padding-left: 0 !important;
 }
 
+	/** General 2 >> Uael content **/
+	#modal-fe7358e .uael-content {
+	max-width: 360px !important;
+}
+
 	/** Footer >> Site footer above section 1 **/
 	#colophon .site-footer-above-section-1 {
 	width: 100% !important;
