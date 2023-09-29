@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.16.0 - 12-09-2023 */
+/*! elementor-pro - v3.16.0 - 20-09-2023 */
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["preloaded-elements-handlers"],{
 
 /***/ "../assets/dev/js/frontend/preloaded-elements-handlers.js":
@@ -4492,8 +4492,9 @@ class MegaMenu extends elementorModules.frontend.handlers.NestedTabs {
   }
   getMenuItemContainerAbsolutePosition($contentContainer) {
     const tabIndex = $contentContainer.data('tab-index'),
-      $titleEl = this.elements.$tabDropdowns.filter(this.getTabTitleFilterSelector(tabIndex))[0],
-      titleBoundingBox = $titleEl.getBoundingClientRect(),
+      $activeDropdown = this.elements.$tabDropdowns.filter(this.getTabTitleFilterSelector(tabIndex))[0],
+      $titleElement = $activeDropdown.closest(this.getSettings('selectors').tabTitle),
+      titleBoundingBox = $titleElement.getBoundingClientRect(),
       contentContainerWidth = $contentContainer[0].clientWidth;
     let menuItemContainerOffset = null;
     switch (this.getElementSettings('content_horizontal_position')) {

@@ -171,7 +171,9 @@ tr > .gsc-input {
 
 /** General >> Paragraph **/
 .elementor-widget-text-editor p {
+	padding-left: 10px !important;
 	margin-bottom: 0 !important;
+	justify-items: center !important;
 }
 
 /** General >> Gs id50 **/
@@ -277,6 +279,67 @@ html {
 	font-size: 22px !important;
 }
 
+/** General 2 >> Elementor widget container _2 **/
+.mtp-2463 .elementor-widget-uael-infobox .elementor-widget-container {
+	border-right-color: rgb(63, 2, 97) !important;
+	border-bottom-color: rgb(63, 2, 97) !important;
+	border-left-color: rgb(63, 2, 97) !important;
+	border-top-width: 2px !important;
+	border-style: solid !important;
+	border-radius: 15px !important;
+}
+
+/** General 2 >> Fa tools (::before) **/
+.mtp-2463 .fa-tools::before {
+	background-color: rgb(63, 2, 97) !important;
+	padding: 15px !important;
+	border-radius: 46px !important;
+}
+
+/** General 2 >> Elementor element 4304b01 **/
+.mtp-2463 .elementor-element-4304b01 {
+	width: 80% !important;
+}
+
+/** General 2 >> Elementor blockquote content **/
+.mtp-2463 .elementor-blockquote__content {
+	margin-bottom: 0 !important;
+}
+
+/** General 2 >> Heading 3 _2 **/
+.mtp-2463 .elementor-element-5b97048 h3 {
+	text-align: center !important;
+	background-color: rgb(255, 238, 4) !important;
+	width: 140px !important;
+	padding: 5px !important;
+	border-radius: 6px !important;
+}
+
+/** General 2 >> Heading 4 **/
+.mtp-2463 h4 {
+	background-color: rgba(63, 2, 97, 0.13) !important;
+	padding: 2px 5px 2px 5px !important;
+	border-radius: 6px !important;
+}
+
+/** General 2 >> Elementor element c92f59c **/
+.mtp-2463 .elementor-element-c92f59c {
+	background-color: rgb(255, 255, 255) !important;
+	padding-right: 15px !important;
+	padding-left: 5px !important;
+	border: 2px solid rgb(63, 2, 97) !important;
+	border-radius: 15px !important;
+}
+
+/** General 2 >> Heading 3 **/
+.mtp-2463 .elementor-element-b55b113 h3 {
+	text-align: center !important;
+	background-color: rgb(255, 238, 4) !important;
+	width: 140px !important;
+	padding: 5px !important;
+	border-radius: 6px !important;
+}
+
 /** General 2 >> InvolveMe form iframe **/
 .mtp-475 .involveme_embed iframe {
 	width: 1200px !important;
@@ -345,6 +408,75 @@ html {
 #modal-fe7358e .uael-content {
 	height: 650px !important;
 	border-radius: 15px !important;
+}
+
+/** General 2 >> Elementor widget container _3 **/
+.mtp-2463 .elementor-element-75a02c8 .elementor-widget-container {
+	background-color: rgb(255, 255, 255) !important;
+	padding-right: 25px !important;
+	padding-left: 25px !important;
+	border: 2px solid rgb(63, 2, 97) !important;
+	border-radius: 15px !important;
+}
+
+/** General 2 >> List item _2 **/
+.mtp-2463 ol > li {
+	padding-top: 10px !important;
+	position: relative !important;
+	left: -10px !important;
+}
+
+/** General 2 >> Elementor widget container _4 **/
+.mtp-2463 .elementor-element-07a70f5 .elementor-widget-container {
+	background-color: rgb(255, 255, 255) !important;
+	padding-right: 25px !important;
+	padding-left: 25px !important;
+	border: 2px solid rgb(63, 2, 97) !important;
+	border-radius: 15px !important;
+}
+
+/** General 2 >> Elementor widget container _5 **/
+.mtp-2463 .elementor-element-445cd94 .elementor-widget-container {
+	background-color: rgb(255, 255, 255) !important;
+	padding-right: 25px !important;
+	padding-left: 25px !important;
+	border: 2px solid rgb(63, 2, 97) !important;
+	border-radius: 15px !important;
+}
+
+
+/*= General 3 ================= */
+
+/** General 3 >> Heading 3 **/
+.mtp-2463 .elementor-widget-text-editor h3 {
+	padding-left: 15px !important;
+	margin-top: 10px !important;
+}
+
+/** General 3 >> Strong **/
+.mtp-2463 h3 strong {
+	color: rgb(255, 255, 255) !important;
+	background-color: rgb(63, 2, 97) !important;
+	padding: 7px 17px 7px 17px !important;
+	border-width: 0 !important;
+	border-style: solid !important;
+	border-radius: 40px !important;
+}
+
+/** General 3 >> Fa book open (::before) **/
+.mtp-2463 .fa-book-open::before {
+	color: rgb(255, 255, 255) !important;
+	background-color: rgb(63, 2, 97) !important;
+	padding: 12px !important;
+	border-width: 0 !important;
+	border-style: solid !important;
+	border-radius: 25px !important;
+}
+
+/** General 3 >> Strong _3 **/
+.mtp-2463 .elementor-element-ce20982 strong {
+	padding-right: 20px !important;
+	padding-left: 20px !important;
 }
 
 
@@ -679,12 +811,21 @@ html {
 
 	/** General >> Ast footer social 1 wrap **/
 	#colophon .ast-footer-social-1-wrap {
-	margin-right: 20% !important;
+	width: 100% !important;
+	display: grid !important;
+	justify-items: center !important;
+}
+#colophon .ast-footer-social-1-wrap > :nth-child(1) {
+	grid-area: 1 / 1 / 2 / 2 !important;
+}
+
+	/** General >> Paragraph _2 **/
+	#block-14 p {
+	width: 100% !important;
 }
 
 	/** General 2 >> Ast social element style filled **/
 	.ast-social-element-style-filled {
-	padding-right: 140px !important;
 	justify-items: start !important;
 }
 
@@ -718,6 +859,12 @@ html {
 	.site-footer-above-section-1 .footer-widget-area-inner {
 	width: 100% !important;
 	padding-right: 0 !important;
+}
+
+	/** General 3 >> Footer widget area inner **/
+	.mtp-10 .site-footer-above-section-5 .footer-widget-area-inner {
+	width: 100% !important;
+	margin-right: 0 !important;
 }
 
 }

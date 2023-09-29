@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.16.0 - 12-09-2023 */
+/*! elementor-pro - v3.16.0 - 20-09-2023 */
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["frontend"],{
 
 /***/ "../assets/dev/js/frontend/frontend.js":

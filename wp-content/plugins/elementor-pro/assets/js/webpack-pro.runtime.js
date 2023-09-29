@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.16.0 - 12-09-2023 */
+/*! elementor-pro - v3.16.0 - 20-09-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({});
@@ -115,7 +115,7 @@
 /******/ 			if (chunkId === "product-add-to-cart") return "" + chunkId + ".39fbaae6c856c483b4b4.bundle.js";
 /******/ 			if (chunkId === "loop") return "loop.cfa59b67362d5bf08739.bundle.js";
 /******/ 			if (chunkId === "loop-carousel") return "" + chunkId + ".8c8c442ebf9839e07d4e.bundle.js";
-/******/ 			if (chunkId === "mega-menu") return "" + chunkId + ".a55621b680e3d8ff735a.bundle.js";
+/******/ 			if (chunkId === "mega-menu") return "" + chunkId + ".44b2f84edff9ca08fd3e.bundle.js";
 /******/ 			if (chunkId === "mega-menu-stretch-content") return "" + chunkId + ".f944dc8ea698fb0aa2d3.bundle.js";
 /******/ 			if (chunkId === "menu-title-keyboard-handler") return "" + chunkId + ".e2dc2ddb36cf93b671ba.bundle.js";
 /******/ 			if (chunkId === "nested-carousel") return "" + chunkId + ".bd618e5f000147859de7.bundle.js";
