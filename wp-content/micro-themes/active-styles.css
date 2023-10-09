@@ -479,6 +479,101 @@ html {
 	padding-left: 20px !important;
 }
 
+/** General 3 >> Swiper slide **/
+.mtp-10 .elementor-main-swiper .swiper-slide {
+	filter: grayscale(1) !important;
+	opacity: 0.5 !important;
+}
+
+/** General 3 >> Swiper slide active **/
+.mtp-10 .elementor-main-swiper .swiper-slide-next {
+	filter: grayscale(0) !important;
+	opacity: 1 !important;
+}
+
+/** General 3 >> Elementor swiper button prev **/
+.mtp-10 .elementor-swiper-button-prev {
+	box-shadow: 0 0 0 3px rgba(132, 130, 130, 0.3) !important;
+	background-color: rgb(255, 255, 255) !important;
+	width: 45px !important;
+	height: 45px !important;
+	border: 0 none rgb(193, 193, 193) !important;
+	border-radius: 25px !important;
+	position: relative !important;
+	top: -190px !important;
+	bottom: 0 !important;
+	left: 385px !important;
+	right: 0 !important;
+	box-shadow: 0 0 5px 0 rgb(65, 65, 65) !important;
+}
+
+/** General 3 >> Eicon chevron left (::before) **/
+.mtp-10 .eicon-chevron-left::before {
+	width: 55px !important;
+	padding-top: auto !important;
+	margin-left: 8px !important;
+	border-radius: 25px !important;
+	position: relative !important;
+	top: 8px !important;
+}
+
+/** General 3 >> Elementor swiper button next **/
+.mtp-10 .elementor-swiper-button-next {
+	background-color: rgb(255, 255, 255) !important;
+	width: 45px !important;
+	height: 45px !important;
+	border: 0 none rgb(193, 193, 193) !important;
+	border-radius: 25px !important;
+	position: relative !important;
+	top: -190px !important;
+	bottom: 0 !important;
+	left: -385px !important;
+	right: 0 !important;
+	float: right !important;
+	box-shadow: 0 0 0 3px rgba(65, 65, 65, 0.3) !important;
+	box-shadow: 0 0 5px 0 rgb(38, 38, 38) !important;
+}
+
+/** General 3 >> Eicon chevron right (::before) **/
+.mtp-10 .eicon-chevron-right::before {
+	position: relative !important;
+	top: 8px !important;
+	left: 10px !important;
+}
+
+/** General 3 >> Page template elementor header footermtp 10 **/
+.show_suggestions_menu .page-template-elementor_header_footer.mtp-10 {
+	opacity: 1.0 !important;
+}
+
+
+/*= General 2 2 =============== */
+
+/** General 2 2 >> Elementor testimonial content **/
+.mtp-10 .elementor-testimonial__content {
+	display: grid !important;
+	grid-template-columns: 1fr !important;
+	grid-template-rows: auto auto !important;
+}
+.mtp-10 .elementor-testimonial__content > :nth-child(2) {
+	grid-area: 1 / 1 / 2 / 2 !important;
+}
+
+/** General 2 2 >> Elementor testimonial text **/
+.mtp-10 .elementor-testimonial__text {
+	padding-top: 30px !important;
+}
+
+/** General 2 2 >> Elementor element 0b33ca6 **/
+.mtp-10 .elementor-element-0b33ca6 {
+	display: none !important;
+}
+
+/** General 2 2 >> Elementor background overlay **/
+.mtp-10 .elementor-element-0b33ca6 .elementor-background-overlay {
+	display: none !important;
+}
+
 
 /*( < 1200 )*/
 @media (max-width: 1199.98px) {
@@ -507,6 +602,18 @@ html {
 	/** Footer >> Ast footer copyright paragraph **/
 	.ast-footer-copyright p {
 	padding-left: 40px !important;
+}
+
+	/** General 3 >> Elementor swiper button prev **/
+	.mtp-10 .elementor-swiper-button-prev {
+	top: -215px !important;
+	left: 345px !important;
+}
+
+	/** General 3 >> Elementor swiper button next **/
+	.mtp-10 .elementor-swiper-button-next {
+	top: -215px !important;
+	left: -345px !important;
 }
 
 }
@@ -569,6 +676,35 @@ html {
 }
 .ast-social-element-style-filled > :nth-child(4) {
 	grid-area: 2 / 2 / 3 / 3 !important;
+}
+
+	/** General 3 >> Swiper slide **/
+	.mtp-10 .elementor-main-swiper .swiper-slide {
+	filter: grayscale(0) !important;
+	opacity: 1 !important;
+}
+
+	/** General 3 >> Swiper slide active **/
+	.mtp-10 .elementor-main-swiper .swiper-slide-next {
+	filter: grayscale(0) !important;
+	opacity: 1 !important;
+}
+
+	/** General 3 >> Elementor swiper button prev **/
+	.mtp-10 .elementor-swiper-button-prev {
+	top: -170px !important;
+	left: 10px !important;
+	float: left !important;
+}
+
+	/** General 3 >> Elementor swiper button next **/
+	.mtp-10 .elementor-swiper-button-next {
+	margin-right: 5px !important;
+	position: relative !important;
+	top: -170px !important;
+	left: -5px !important;
+	right: 56px !important;
+	float: right !important;
 }
 
 }
@@ -776,6 +912,19 @@ html {
 	text-align: center !important;
 }
 
+	/** General 3 >> Elementor swiper button prev **/
+	.mtp-10 .elementor-swiper-button-prev {
+	top: -170px !important;
+}
+
+	/** General 3 >> Elementor swiper button next **/
+	.mtp-10 .elementor-swiper-button-next {
+	margin-right: 10px !important;
+	position: relative !important;
+	top: -170px !important;
+	left: 0 !important;
+}
+
 }
 
 
@@ -859,6 +1008,19 @@ html {
 	.site-footer-above-section-1 .footer-widget-area-inner {
 	width: 100% !important;
 	padding-right: 0 !important;
+}
+
+	/** General 3 >> Elementor swiper button prev **/
+	.mtp-10 .elementor-swiper-button-prev {
+	top: -215px !important;
+	left: 5px !important;
+}
+
+	/** General 3 >> Elementor swiper button next **/
+	.mtp-10 .elementor-swiper-button-next {
+	top: -215px !important;
+	left: 5px !important;
+	right: 56px !important;
 }
 
 	/** General 3 >> Footer widget area inner **/
