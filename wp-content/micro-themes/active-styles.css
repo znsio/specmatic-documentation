@@ -96,6 +96,7 @@ tr > .gsc-input {
 /** General >> Content uael team member content **/
 #content .uael-team-member-content {
 	padding-right: 0 !important;
+	padding-bottom: 0 !important;
 	padding-left: 0 !important;
 }
 
@@ -200,6 +201,11 @@ tr > .gsc-input {
 /** General >> Html **/
 html {
 	overflow-x: hidden !important;
+}
+
+/** General >> Heading 1 **/
+.mtp-10 #content h1 {
+	text-align: left !important;
 }
 
 /** General >> Elementor element 46b76cb **/
@@ -377,12 +383,6 @@ html {
 	font-weight: 300 !important;
 }
 
-/** General 2 >> Elementor widget container **/
-.mtp-10 .e-con-inner .elementor-widget-container {
-	height: auto !important;
-	margin: 15px !important;
-}
-
 /** General 2 >> Has ast global color 5 color **/
 #block-26 .has-ast-global-color-5-color {
 	margin-bottom: 18px !important;
@@ -391,6 +391,7 @@ html {
 /** General 2 >> Uael modal content data **/
 #modal-fe7358e .uael-modal-content-data {
 	height: 100% !important;
+	border-radius: 15px !important;
 }
 
 /** General 2 >> Elementor inline editing **/
@@ -549,6 +550,13 @@ html {
 
 /*= General 2 2 =============== */
 
+/** General 2 2 >> Elementor widget container **/
+.mtp-10 .elementor-widget-uael-team-member .elementor-widget-container {
+	background-color: rgb(255, 255, 255) !important;
+	padding: 25px 25px 0 25px !important;
+	border-radius: 15px !important;
+}
+
 /** General 2 2 >> Elementor testimonial content **/
 .mtp-10 .elementor-testimonial__content {
 	display: grid !important;
@@ -562,16 +570,6 @@ html {
 /** General 2 2 >> Elementor testimonial text **/
 .mtp-10 .elementor-testimonial__text {
 	padding-top: 30px !important;
-}
-
-/** General 2 2 >> Elementor element 0b33ca6 **/
-.mtp-10 .elementor-element-0b33ca6 {
-	display: none !important;
-}
-
-/** General 2 2 >> Elementor background overlay **/
-.mtp-10 .elementor-element-0b33ca6 .elementor-background-overlay {
-	display: none !important;
 }
 
 

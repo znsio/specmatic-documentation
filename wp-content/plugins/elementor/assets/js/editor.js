@@ -1,4 +1,4 @@
-/*! elementor - v3.16.0 - 20-09-2023 */
+/*! elementor - v3.16.0 - 17-10-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -9298,8 +9298,10 @@ var Component = /*#__PURE__*/function (_ComponentBase) {
   }, {
     key: "renderTab",
     value: function renderTab(tab, args) {
-      var activeControl = args.activeControl;
-      if (this.shouldRenderPage(tab)) {
+      var activeControl = args.activeControl,
+        _args$refresh = args.refresh,
+        refresh = _args$refresh === void 0 ? false : _args$refresh;
+      if (this.shouldRenderPage(tab) || refresh) {
         elementor.getPanelView().setPage('page_settings').activateTab(tab);
       }
       this.activateControl(activeControl);
@@ -9307,9 +9309,10 @@ var Component = /*#__PURE__*/function (_ComponentBase) {
   }, {
     key: "shouldRenderPage",
     value: function shouldRenderPage(tab) {
+      var _currentPanelView$get;
       var currentPanelView = elementor.getPanelView();
       var isSamePage = 'page_settings' === currentPanelView.getCurrentPageName();
-      var isSameTab = tab === currentPanelView.getCurrentPageView().activeTab;
+      var isSameTab = tab === ((_currentPanelView$get = currentPanelView.getCurrentPageView()) === null || _currentPanelView$get === void 0 ? void 0 : _currentPanelView$get.activeTab);
       return !isSamePage || !isSameTab;
     }
   }, {
