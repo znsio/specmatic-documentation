@@ -1,4 +1,4 @@
-/*! elementor - v3.16.0 - 17-10-2023 */
+/*! elementor - v3.17.0 - 08-11-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -462,7 +462,7 @@ try {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if (chunkId === "modules_nested-accordion_assets_js_editor_module_js") return "d6220da5189e9a2aac43.bundle.js";
+/******/ 			if (chunkId === "modules_nested-accordion_assets_js_editor_module_js") return "040b7af5d80abfa2be44.bundle.js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

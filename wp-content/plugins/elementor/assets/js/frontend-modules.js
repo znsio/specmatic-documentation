@@ -1,4 +1,4 @@
-/*! elementor - v3.16.0 - 17-10-2023 */
+/*! elementor - v3.17.0 - 08-11-2023 */
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["frontend-modules"],{
 
 /***/ "../assets/dev/js/editor/utils/is-instanceof.js":
@@ -286,7 +286,7 @@ class NestedTitleKeyboardHandler extends _base.default {
     } else if ('Escape' === event.key) {
       event.preventDefault();
       event.stopPropagation();
-      this.handleContentElementEscapeEvents();
+      this.handleContentElementEscapeEvents(event);
     }
   }
   handleContentElementEscapeEvents() {
@@ -426,6 +426,11 @@ class CarouselHandlerBase extends _baseSwiper.default {
       slideChange: () => {
         this.a11ySetPaginationTabindex();
         this.handleElementHandlers();
+      },
+      init: () => {
+        this.a11ySetWidgetAriaDetails();
+        this.a11ySetPaginationTabindex();
+        this.a11ySetSlideAriaHidden('initialisation');
       }
     };
     this.applyOffsetSettings(elementSettings, swiperOptions, slidesToShow);
@@ -476,9 +481,6 @@ class CarouselHandlerBase extends _baseSwiper.default {
     if ('yes' === elementSettings.pause_on_hover) {
       this.togglePauseOnHover(true);
     }
-    this.a11ySetWidgetAriaDetails();
-    this.a11ySetPaginationTabindex();
-    this.a11ySetSlideAriaHidden('initialisation');
   }
   bindEvents() {
     this.elements.$swiperArrows.on('keydown', this.onDirectionArrowKeydown.bind(this));
@@ -495,7 +497,7 @@ class CarouselHandlerBase extends _baseSwiper.default {
     elementorFrontend.elements.$window.off('resize');
   }
   onDirectionArrowKeydown(event) {
-    const isRTL = elementorFrontend.config.isRTL,
+    const isRTL = elementorFrontend.config.is_rtl,
       inlineDirectionArrows = ['ArrowLeft', 'ArrowRight'],
       currentKeydown = event.originalEvent.code,
       isDirectionInlineKeydown = -1 !== inlineDirectionArrows.indexOf(currentKeydown),
@@ -586,12 +588,12 @@ class CarouselHandlerBase extends _baseSwiper.default {
     const bulletClass = this.swiper?.params.pagination.bulletClass,
       activeBulletClass = this.swiper?.params.pagination.bulletActiveClass;
     this.getPaginationBullets().forEach(bullet => {
-      if (!bullet.classList.contains(activeBulletClass)) {
+      if (!bullet.classList?.contains(activeBulletClass)) {
         bullet.removeAttribute('tabindex');
       }
     });
     const isDirectionInlineArrowKey = 'ArrowLeft' === event?.code || 'ArrowRight' === event?.code;
-    if (event?.target?.classList.contains(bulletClass) && isDirectionInlineArrowKey) {
+    if (event?.target?.classList?.contains(bulletClass) && isDirectionInlineArrowKey) {
       this.$element.find(`.${activeBulletClass}`).trigger('focus');
     }
   }
@@ -1220,7 +1222,7 @@ function getChildrenWidth(children) {
   return totalWidth;
 }
 function initialScrollPosition(element, direction, justifyCSSVariable) {
-  const isRTL = elementorCommon.config.isRTL;
+  const isRTL = elementorFrontend.config.is_rtl;
   switch (direction) {
     case 'end':
       element.style.setProperty(justifyCSSVariable, 'start');
@@ -1864,6 +1866,63 @@ exports["default"] = _default;
 
 /***/ }),
 
+/***/ "../modules/nested-accordion/assets/js/frontend/handlers/nested-accordion-title-keyboard-handler.js":
+/*!**********************************************************************************************************!*\
+  !*** ../modules/nested-accordion/assets/js/frontend/handlers/nested-accordion-title-keyboard-handler.js ***!
+  \**********************************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _nestedTitleKeyboardHandler = _interopRequireDefault(__webpack_require__(/*! elementor-assets-js/frontend/handlers/accessibility/nested-title-keyboard-handler */ "../assets/dev/js/frontend/handlers/accessibility/nested-title-keyboard-handler.js"));
+class NestedAccordionTitleKeyboardHandler extends _nestedTitleKeyboardHandler.default {
+  __construct() {
+    super.__construct(...arguments);
+    const config = arguments.length <= 0 ? undefined : arguments[0];
+    this.toggleTitle = config.toggleTitle;
+  }
+  getDefaultSettings() {
+    const parentSettings = super.getDefaultSettings();
+    return {
+      ...parentSettings,
+      selectors: {
+        itemTitle: '.e-n-accordion-item-title',
+        itemContainer: '.e-n-accordion-item > .e-con'
+      },
+      ariaAttributes: {
+        titleStateAttribute: 'aria-expanded',
+        activeTitleSelector: '[aria-expanded="true"]'
+      },
+      datasets: {
+        titleIndex: 'data-accordion-index'
+      }
+    };
+  }
+  handeTitleLinkEnterOrSpaceEvent(event) {
+    this.toggleTitle(event);
+  }
+  handleContentElementEscapeEvents(event) {
+    this.getActiveTitleElement().trigger('focus');
+    this.toggleTitle(event);
+  }
+  handleTitleEscapeKeyEvents(event) {
+    const detailsNode = event?.currentTarget?.parentElement,
+      isOpen = detailsNode?.open;
+    if (isOpen) {
+      this.toggleTitle(event);
+    }
+  }
+}
+exports["default"] = NestedAccordionTitleKeyboardHandler;
+
+/***/ }),
+
 /***/ "../modules/nested-accordion/assets/js/frontend/handlers/nested-accordion.js":
 /*!***********************************************************************************!*\
   !*** ../modules/nested-accordion/assets/js/frontend/handlers/nested-accordion.js ***!
@@ -1878,7 +1937,8 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
-var _base = _interopRequireDefault(__webpack_require__(/*! elementor/assets/dev/js/frontend/handlers/base */ "../assets/dev/js/frontend/handlers/base.js"));
+var _base = _interopRequireDefault(__webpack_require__(/*! elementor-frontend/handlers/base */ "../assets/dev/js/frontend/handlers/base.js"));
+var _nestedAccordionTitleKeyboardHandler = _interopRequireDefault(__webpack_require__(/*! ./nested-accordion-title-keyboard-handler */ "../modules/nested-accordion/assets/js/frontend/handlers/nested-accordion-title-keyboard-handler.js"));
 class NestedAccordion extends _base.default {
   constructor() {
     super(...arguments);
@@ -1891,7 +1951,8 @@ class NestedAccordion extends _base.default {
         accordionContentContainers: '.e-n-accordion > .e-con',
         accordionItems: '.e-n-accordion-item',
         accordionItemTitles: '.e-n-accordion-item-title',
-        accordionContent: '.e-n-accordion-item > .e-con'
+        accordionContent: '.e-n-accordion-item > .e-con',
+        accordionWrapper: '.e-n-accordion-item'
       },
       default_state: 'expanded'
     };
@@ -1911,6 +1972,15 @@ class NestedAccordion extends _base.default {
     if (elementorFrontend.isEditMode()) {
       this.interlaceContainers();
     }
+    this.injectKeyboardHandler();
+  }
+  injectKeyboardHandler() {
+    if ('nested-accordion.default' === this.getSettings('elementName')) {
+      new _nestedAccordionTitleKeyboardHandler.default({
+        $element: this.$element,
+        toggleTitle: this.clickListener.bind(this)
+      });
+    }
   }
   interlaceContainers() {
     const {
@@ -1929,8 +1999,9 @@ class NestedAccordion extends _base.default {
   }
   clickListener(event) {
     event.preventDefault();
-    const accordionItem = event.currentTarget.parentElement,
-      settings = this.getSettings(),
+    const settings = this.getSettings(),
+      accordionItem = event?.currentTarget?.closest(settings.selectors.accordionWrapper),
+      itemSummary = accordionItem.querySelector(settings.selectors.accordionItemTitles),
       accordionContent = accordionItem.querySelector(settings.selectors.accordionContent),
       {
         max_items_expended: maxItemsExpended
@@ -1943,9 +2014,9 @@ class NestedAccordion extends _base.default {
       this.closeAllItems($accordionItems, $accordionTitles);
     }
     if (!accordionItem.open) {
-      this.prepareOpenAnimation(accordionItem, event.currentTarget, accordionContent);
+      this.prepareOpenAnimation(accordionItem, itemSummary, accordionContent);
     } else {
-      this.closeAccordionItem(accordionItem, event.currentTarget);
+      this.closeAccordionItem(accordionItem, itemSummary);
     }
   }
   animateItem(accordionItem, startHeight, endHeight, isOpen) {
@@ -1961,6 +2032,7 @@ class NestedAccordion extends _base.default {
     });
     animation.onfinish = () => this.onAnimationFinish(accordionItem, isOpen);
     this.animations.set(accordionItem, animation);
+    accordionItem.querySelector('summary')?.setAttribute('aria-expanded', isOpen);
   }
   closeAccordionItem(accordionItem, accordionItemTitle) {
     const startHeight = `${accordionItem.offsetHeight}px`,

@@ -1,4 +1,4 @@
-/*! elementor - v3.16.0 - 17-10-2023 */
+/*! elementor - v3.17.0 - 08-11-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -62,7 +62,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   removeListener: () => (/* binding */ removeListener),
 /* harmony export */   unwrapResult: () => (/* binding */ unwrapResult)
 /* harmony export */ });
-/* harmony import */ var immer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! immer */ "../node_modules/immer/dist/immer.esm.mjs");
+/* harmony import */ var immer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! immer */ "../node_modules/@reduxjs/toolkit/node_modules/immer/dist/immer.esm.mjs");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "../node_modules/redux/es/redux.js");
 /* harmony import */ var reselect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reselect */ "../node_modules/reselect/es/index.js");
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux-thunk */ "../node_modules/redux-thunk/es/index.js");
@@ -9062,7 +9062,7 @@ module.exports = elementorModules.ViewModule.extend({
               },
               error: function error() {
                 // eslint-disable-next-line no-alert
-                alert('An error occurred');
+                alert('An error occurred.');
               }
             }));
           case 6:
@@ -10171,7 +10171,7 @@ TemplateLibraryManager = function TemplateLibraryManager() {
     if (!errorDialog) {
       errorDialog = elementorCommon.dialogsManager.createWidget('alert', {
         id: 'elementor-template-library-error-dialog',
-        headerMessage: __('An error occurred', 'elementor')
+        headerMessage: __('An error occurred.', 'elementor')
       });
     }
     return errorDialog;
@@ -29826,6 +29826,7 @@ BaseElementView = BaseContainer.extend({
     return {};
   },
   initialize: function initialize() {
+    var _this2 = this;
     BaseContainer.prototype.initialize.apply(this, arguments);
     var editModel = this.getEditModel();
     if (this.collection && this.onCollectionChanged) {
@@ -29838,6 +29839,12 @@ BaseElementView = BaseContainer.extend({
     }
     this.listenTo(editModel.get('editSettings'), 'change', this.onEditSettingsChanged).listenTo(this.model, 'request:edit', this.onEditRequest).listenTo(this.model, 'request:toggleVisibility', this.toggleVisibility);
     this.initControlsCSSParser();
+    if (!this.onDynamicServerRequestEnd) {
+      this.onDynamicServerRequestEnd = _.debounce(function () {
+        _this2.render();
+        _this2.$el.removeClass('elementor-loading');
+      }, 100);
+    }
   },
   getHandlesOverlay: function getHandlesOverlay() {
     var elementType = this.getElementType(),
@@ -30175,7 +30182,7 @@ BaseElementView = BaseContainer.extend({
    * Not working with dynamics, will required full re-render.
    */
   linkDataBindings: function linkDataBindings() {
-    var _this2 = this;
+    var _this3 = this;
     /**
      * @type {Array.<DataBinding>}
      */
@@ -30192,7 +30199,7 @@ BaseElementView = BaseContainer.extend({
       // To support nested data-binding bypass nested data-binding that are not part of the current.
       if (jQuery(current).closest('.elementor-element').data('id') === id) {
         if (current.dataset.bindingType) {
-          _this2.dataBindings.push({
+          _this3.dataBindings.push({
             el: current,
             dataset: current.dataset
           });
@@ -30284,10 +30291,7 @@ BaseElementView = BaseContainer.extend({
       onServerRequestStart: function onServerRequestStart() {
         self.$el.addClass('elementor-loading');
       },
-      onServerRequestEnd: function onServerRequestEnd() {
-        self.render();
-        self.$el.removeClass('elementor-loading');
-      }
+      onServerRequestEnd: self.onDynamicServerRequestEnd
     };
   },
   serializeData: function serializeData() {
@@ -30308,7 +30312,7 @@ BaseElementView = BaseContainer.extend({
     BaseContainer.prototype.render.apply(this, arguments);
   },
   onRender: function onRender() {
-    var _this3 = this;
+    var _this4 = this;
     this.linkDataBindings();
     this.renderUI();
     this.runReadyTrigger();
@@ -30329,8 +30333,8 @@ BaseElementView = BaseContainer.extend({
 
     // Defer to wait for all of the children to render.
     setTimeout(function () {
-      _this3.initDraggable();
-      _this3.dispatchElementLifeCycleEvent('rendered');
+      _this4.initDraggable();
+      _this4.dispatchElementLifeCycleEvent('rendered');
     });
   },
   dispatchElementLifeCycleEvent: function dispatchElementLifeCycleEvent(eventType) {
@@ -30412,7 +30416,7 @@ BaseElementView = BaseContainer.extend({
     elementorFrontend.elements.window.document.activeElement.blur();
   },
   onDestroy: function onDestroy() {
-    var _this4 = this;
+    var _this5 = this;
     if (this.dataBindings) {
       delete this.dataBindings;
     }
@@ -30422,7 +30426,7 @@ BaseElementView = BaseContainer.extend({
 
     // Defer so the event is fired after the element is removed from the DOM.
     setTimeout(function () {
-      return _this4.dispatchElementLifeCycleEvent('destroyed');
+      return _this5.dispatchElementLifeCycleEvent('destroyed');
     });
   },
   // eslint-disable-next-line jsdoc/require-returns-check
@@ -30457,7 +30461,7 @@ BaseElementView = BaseContainer.extend({
    * Initialize the Droppable instance.
    */
   initDraggable: function initDraggable() {
-    var _this5 = this;
+    var _this6 = this;
     if (!elementor.userCan('design')) {
       return;
     }
@@ -30468,20 +30472,20 @@ BaseElementView = BaseContainer.extend({
     }
     this.$el.html5Draggable({
       onDragStart: function onDragStart(e) {
-        var _this5$options$dragga;
+        var _this6$options$dragga;
         e.stopPropagation();
-        if (_this5.getContainer().isLocked()) {
+        if (_this6.getContainer().isLocked()) {
           e.originalEvent.preventDefault();
           return;
         }
 
         // Need to stop this event when the element is absolute since it clashes with this one.
         // See `behaviors/widget-draggable.js`.
-        if ((_this5$options$dragga = _this5.options.draggable) !== null && _this5$options$dragga !== void 0 && _this5$options$dragga.isActive) {
+        if ((_this6$options$dragga = _this6.options.draggable) !== null && _this6$options$dragga !== void 0 && _this6$options$dragga.isActive) {
           return;
         }
-        var helper = _this5.getDraggableHelper();
-        _this5.$el[0].appendChild(helper);
+        var helper = _this6.getDraggableHelper();
+        _this6.$el[0].appendChild(helper);
 
         // Set the x & y coordinates of the helper the same as the legacy jQuery sortable.
         e.originalEvent.dataTransfer.setDragImage(helper, 25, 20);
@@ -30491,12 +30495,12 @@ BaseElementView = BaseContainer.extend({
         setTimeout(function () {
           helper.remove();
         });
-        _this5.onDragStart(e);
-        elementor.channels.editor.reply('element:dragged', _this5);
+        _this6.onDragStart(e);
+        elementor.channels.editor.reply('element:dragged', _this6);
       },
       onDragEnd: function onDragEnd(e) {
         e.stopPropagation();
-        _this5.onDragEnd(e);
+        _this6.onDragEnd(e);
       },
       groups: ['elementor-element']
     });
@@ -35297,6 +35301,8 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _classPrivateFieldGet2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classPrivateFieldGet */ "../node_modules/@babel/runtime/helpers/classPrivateFieldGet.js"));
+var _classPrivateFieldSet2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classPrivateFieldSet */ "../node_modules/@babel/runtime/helpers/classPrivateFieldSet.js"));
 var _componentBase = _interopRequireDefault(__webpack_require__(/*! elementor-editor/component-base */ "../assets/dev/js/editor/component-base.js"));
 var commands = _interopRequireWildcard(__webpack_require__(/*! ./commands/ */ "../assets/dev/js/editor/regions/panel/commands/index.js"));
 var commandsInternal = _interopRequireWildcard(__webpack_require__(/*! ./commands/internal/ */ "../assets/dev/js/editor/regions/panel/commands/internal/index.js"));
@@ -35304,6 +35310,9 @@ function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "functio
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+function _classPrivateFieldInitSpec(obj, privateMap, value) { _checkPrivateRedeclaration(obj, privateMap); privateMap.set(obj, value); }
+function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollection.has(obj)) { throw new TypeError("Cannot initialize the same private elements twice on an object"); } }
+var _userInteractionsBlocked = /*#__PURE__*/new WeakMap();
 var Component = /*#__PURE__*/function (_ComponentBase) {
   (0, _inherits2.default)(Component, _ComponentBase);
   var _super = _createSuper(Component);
@@ -35315,6 +35324,10 @@ var Component = /*#__PURE__*/function (_ComponentBase) {
     }
     _this = _super.call.apply(_super, [this].concat(args));
     (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "stateReadyOnce", false);
+    _classPrivateFieldInitSpec((0, _assertThisInitialized2.default)(_this), _userInteractionsBlocked, {
+      writable: true,
+      value: false
+    });
     return _this;
   }
   (0, _createClass2.default)(Component, [{
@@ -35354,9 +35367,13 @@ var Component = /*#__PURE__*/function (_ComponentBase) {
   }, {
     key: "defaultShortcuts",
     value: function defaultShortcuts() {
+      var _this3 = this;
       return {
         toggle: {
-          keys: 'ctrl+p'
+          keys: 'ctrl+p',
+          dependency: function dependency() {
+            return !_this3.isUserInteractionsBlocked();
+          }
         },
         save: {
           keys: 'ctrl+s'
@@ -35379,6 +35396,23 @@ var Component = /*#__PURE__*/function (_ComponentBase) {
           keys: 'ctrl+shift+u'
         }
       };
+    }
+  }, {
+    key: "blockUserInteractions",
+    value: function blockUserInteractions() {
+      elementor.panel.$el.addClass('e-panel-block-interactions');
+      (0, _classPrivateFieldSet2.default)(this, _userInteractionsBlocked, true);
+    }
+  }, {
+    key: "unblockUserInteractions",
+    value: function unblockUserInteractions() {
+      elementor.panel.$el.removeClass('e-panel-block-interactions');
+      (0, _classPrivateFieldSet2.default)(this, _userInteractionsBlocked, false);
+    }
+  }, {
+    key: "isUserInteractionsBlocked",
+    value: function isUserInteractionsBlocked() {
+      return (0, _classPrivateFieldGet2.default)(this, _userInteractionsBlocked);
     }
   }]);
   return Component;
@@ -37104,6 +37138,14 @@ PanelMenu.addAdminMenu = function () {
       return $e.route('finder');
     }
   }, 'navigate_from_page', 'view-page');
+  PanelMenu.addItem({
+    name: 'apps',
+    icon: 'eicon-apps',
+    title: __('Apps', 'elementor'),
+    type: 'link',
+    link: elementor.config.admin_apps_url,
+    newTab: true
+  }, 'navigate_from_page', 'finder');
 };
 PanelMenu.addExitItem = function () {
   var itemArgs;
@@ -39032,9 +39074,21 @@ module.exports = {
       }
     }
   },
+  /**
+   * @param {string}                   url
+   * @param {jQuery}                   $document
+   * @param {{ crossOrigin: boolean }} options
+   */
   enqueueCSS: function enqueueCSS(url, $document) {
-    var selector = 'link[href="' + url + '"]',
-      link = '<link href="' + url + '" rel="stylesheet" type="text/css">';
+    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    var selector = 'link[href="' + url + '"]';
+    var link = document.createElement('link');
+    link.href = url;
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    if (options.crossOrigin) {
+      link.crossOrigin = 'anonymous';
+    }
     if (!$document) {
       return;
     }
@@ -39215,6 +39269,7 @@ module.exports = {
         el: 'greek',
         he_IL: 'hebrew'
       };
+    var enqueueOptions = {};
     var fontUrl;
     switch (fontType) {
       case 'googlefonts':
@@ -39222,11 +39277,13 @@ module.exports = {
         if (subsets[elementor.config.locale]) {
           fontUrl += '&subset=' + subsets[elementor.config.locale];
         }
+        enqueueOptions.crossOrigin = true;
         break;
       case 'earlyaccess':
         {
           var fontLowerString = font.replace(/\s+/g, '').toLowerCase();
           fontUrl = 'https://fonts.googleapis.com/earlyaccess/' + fontLowerString + '.css';
+          enqueueOptions.crossOrigin = true;
           break;
         }
     }
@@ -39235,7 +39292,7 @@ module.exports = {
         // TODO: Find better solution, temporary fix, covering issue: 'fonts does not rendered in global styles'.
         this.enqueueCSS(fontUrl, elementorCommon.elements.$document);
       } else {
-        this.enqueueCSS(fontUrl, elementor.$previewContents);
+        this.enqueueCSS(fontUrl, elementor.$previewContents, enqueueOptions);
       }
     }
     this._enqueuedFonts[target].push(font);
@@ -40679,13 +40736,14 @@ var AddSectionBase = /*#__PURE__*/function (_Marionette$ItemView) {
   }, {
     key: "behaviors",
     value: function behaviors() {
-      return {
+      var behaviors = {
         contextMenu: {
           behaviorClass: __webpack_require__(/*! elementor-behaviors/context-menu */ "../assets/dev/js/editor/elements/views/behaviors/context-menu.js"),
           groups: this.getContextMenuGroups(),
           eventTargets: ['.elementor-add-section-inner']
         }
       };
+      return elementor.hooks.applyFilters('views/add-section/behaviors', behaviors, this);
     }
   }, {
     key: "className",
@@ -41657,8 +41715,8 @@ ControlsStack = Marionette.CompositeView.extend({
 }, {
   handlePopovers: function handlePopovers(view) {
     var popover;
-    view.popovers = [];
     this.removePopovers(view);
+    view.popovers = [];
     view.children.each(function (control) {
       if (popover) {
         popover.addChild(control);
@@ -41677,7 +41735,8 @@ ControlsStack = Marionette.CompositeView.extend({
     });
   },
   removePopovers: function removePopovers(view) {
-    view.popovers.forEach(function (popover) {
+    var _view$popovers;
+    (_view$popovers = view.popovers) === null || _view$popovers === void 0 ? void 0 : _view$popovers.forEach(function (popover) {
       return popover.destroy();
     });
   }
@@ -46492,7 +46551,7 @@ var Apply = /*#__PURE__*/function (_$e$modules$CommandBa) {
         var prevText = trigger.swatch.dataset.text;
 
         // Show `Selected!` message.
-        trigger.swatch.dataset.text = __('Selected!', 'elementor');
+        trigger.swatch.dataset.text = __('Selected', 'elementor');
 
         // Hide message after a second.
         setTimeout(function () {
@@ -49863,7 +49922,7 @@ module.exports = Marionette.CompositeView.extend({
         revisionView.$el.removeClass('elementor-revision-item-loading');
 
         // eslint-disable-next-line no-alert
-        alert('An error occurred');
+        alert('An error occurred.');
       }
     });
   },
@@ -54956,6 +55015,42 @@ module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exp
 
 /***/ }),
 
+/***/ "../node_modules/@babel/runtime/helpers/classApplyDescriptorGet.js":
+/*!*************************************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/classApplyDescriptorGet.js ***!
+  \*************************************************************************/
+/***/ ((module) => {
+
+function _classApplyDescriptorGet(receiver, descriptor) {
+  if (descriptor.get) {
+    return descriptor.get.call(receiver);
+  }
+  return descriptor.value;
+}
+module.exports = _classApplyDescriptorGet, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ "../node_modules/@babel/runtime/helpers/classApplyDescriptorSet.js":
+/*!*************************************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/classApplyDescriptorSet.js ***!
+  \*************************************************************************/
+/***/ ((module) => {
+
+function _classApplyDescriptorSet(receiver, descriptor, value) {
+  if (descriptor.set) {
+    descriptor.set.call(receiver, value);
+  } else {
+    if (!descriptor.writable) {
+      throw new TypeError("attempted to set read only private field");
+    }
+    descriptor.value = value;
+  }
+}
+module.exports = _classApplyDescriptorSet, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
 /***/ "../node_modules/@babel/runtime/helpers/classCallCheck.js":
 /*!****************************************************************!*\
   !*** ../node_modules/@babel/runtime/helpers/classCallCheck.js ***!
@@ -54968,6 +55063,55 @@ function _classCallCheck(instance, Constructor) {
   }
 }
 module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ "../node_modules/@babel/runtime/helpers/classExtractFieldDescriptor.js":
+/*!*****************************************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/classExtractFieldDescriptor.js ***!
+  \*****************************************************************************/
+/***/ ((module) => {
+
+function _classExtractFieldDescriptor(receiver, privateMap, action) {
+  if (!privateMap.has(receiver)) {
+    throw new TypeError("attempted to " + action + " private field on non-instance");
+  }
+  return privateMap.get(receiver);
+}
+module.exports = _classExtractFieldDescriptor, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ "../node_modules/@babel/runtime/helpers/classPrivateFieldGet.js":
+/*!**********************************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/classPrivateFieldGet.js ***!
+  \**********************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var classApplyDescriptorGet = __webpack_require__(/*! ./classApplyDescriptorGet.js */ "../node_modules/@babel/runtime/helpers/classApplyDescriptorGet.js");
+var classExtractFieldDescriptor = __webpack_require__(/*! ./classExtractFieldDescriptor.js */ "../node_modules/@babel/runtime/helpers/classExtractFieldDescriptor.js");
+function _classPrivateFieldGet(receiver, privateMap) {
+  var descriptor = classExtractFieldDescriptor(receiver, privateMap, "get");
+  return classApplyDescriptorGet(receiver, descriptor);
+}
+module.exports = _classPrivateFieldGet, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ "../node_modules/@babel/runtime/helpers/classPrivateFieldSet.js":
+/*!**********************************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/classPrivateFieldSet.js ***!
+  \**********************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var classApplyDescriptorSet = __webpack_require__(/*! ./classApplyDescriptorSet.js */ "../node_modules/@babel/runtime/helpers/classApplyDescriptorSet.js");
+var classExtractFieldDescriptor = __webpack_require__(/*! ./classExtractFieldDescriptor.js */ "../node_modules/@babel/runtime/helpers/classExtractFieldDescriptor.js");
+function _classPrivateFieldSet(receiver, privateMap, value) {
+  var descriptor = classExtractFieldDescriptor(receiver, privateMap, "set");
+  classApplyDescriptorSet(receiver, descriptor, value);
+  return value;
+}
+module.exports = _classPrivateFieldSet, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
@@ -55950,10 +56094,10 @@ function _typeof(obj) {
 
 /***/ }),
 
-/***/ "../node_modules/immer/dist/immer.esm.mjs":
-/*!************************************************!*\
-  !*** ../node_modules/immer/dist/immer.esm.mjs ***!
-  \************************************************/
+/***/ "../node_modules/@reduxjs/toolkit/node_modules/immer/dist/immer.esm.mjs":
+/*!******************************************************************************!*\
+  !*** ../node_modules/@reduxjs/toolkit/node_modules/immer/dist/immer.esm.mjs ***!
+  \******************************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";

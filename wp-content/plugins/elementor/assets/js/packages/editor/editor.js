@@ -221,8 +221,8 @@ var {
 
 
 function useSyncDocumentTitle() {
-  const activeDocument = (0,_elementor_editor_documents__WEBPACK_IMPORTED_MODULE_4__.useActiveDocument)();
-  const hostDocument = (0,_elementor_editor_documents__WEBPACK_IMPORTED_MODULE_4__.useHostDocument)();
+  const activeDocument = (0,_elementor_editor_documents__WEBPACK_IMPORTED_MODULE_4__.__useActiveDocument)();
+  const hostDocument = (0,_elementor_editor_documents__WEBPACK_IMPORTED_MODULE_4__.__useHostDocument)();
   const document = activeDocument && activeDocument.type.value !== "kit" ? activeDocument : hostDocument;
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
     if (document?.title === void 0) {
@@ -254,13 +254,13 @@ function Shell() {
 function useColorScheme() {
   const [colorScheme, setColorScheme] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(() => getV1ColorScheme());
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    return (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_8__.listenTo)(
+    return (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_8__.__privateListenTo)(
       (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_8__.v1ReadyEvent)(),
       () => setColorScheme(getV1ColorScheme())
     );
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => {
-    return (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_8__.listenTo)(
+    return (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_8__.__privateListenTo)(
       (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_8__.commandEndEvent)("document/elements/settings"),
       (e) => {
         const event = e;
@@ -286,10 +286,10 @@ function ThemeProvider({ children }) {
 // src/init.tsx
 
 function init(domElement) {
-  const store = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_7__.createStore)();
+  const store = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_7__.__createStore)();
   const queryClient = (0,_elementor_query__WEBPACK_IMPORTED_MODULE_9__.createQueryClient)();
-  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_8__.dispatchReadyEvent)();
-  render2(/* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_store__WEBPACK_IMPORTED_MODULE_7__.StoreProvider, { store }, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_query__WEBPACK_IMPORTED_MODULE_9__.QueryClientProvider, { client: queryClient }, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_6__.DirectionProvider, { rtl: window.document.dir === "rtl" }, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(ThemeProvider, null, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(Shell, null))))), domElement);
+  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_8__.__privateDispatchReadyEvent)();
+  render2(/* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_store__WEBPACK_IMPORTED_MODULE_7__.__StoreProvider, { store }, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_query__WEBPACK_IMPORTED_MODULE_9__.QueryClientProvider, { client: queryClient }, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_6__.DirectionProvider, { rtl: window.document.dir === "rtl" }, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(ThemeProvider, null, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(Shell, null))))), domElement);
 }
 function render2(app, domElement) {
   let renderFn;

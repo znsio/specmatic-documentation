@@ -40,16 +40,16 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   InvalidEnvError: function() { return /* binding */ InvalidEnvError; },
+/* harmony export */   __resetEnv: function() { return /* binding */ __resetEnv; },
 /* harmony export */   initEnv: function() { return /* binding */ initEnv; },
-/* harmony export */   parseEnv: function() { return /* binding */ parseEnv; },
-/* harmony export */   resetEnv: function() { return /* binding */ resetEnv; }
+/* harmony export */   parseEnv: function() { return /* binding */ parseEnv; }
 /* harmony export */ });
 // src/index.ts
 var globalEnv = null;
 function initEnv(env) {
   globalEnv = env;
 }
-function resetEnv() {
+function __resetEnv() {
   globalEnv = null;
 }
 function parseEnv(key, parseFn = (rawSettings) => rawSettings) {

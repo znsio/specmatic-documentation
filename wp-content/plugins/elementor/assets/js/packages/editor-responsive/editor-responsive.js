@@ -131,7 +131,7 @@ var initialState = {
   entities: {},
   activeId: null
 };
-var slice = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
+var slice = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__createSlice)({
   name: "breakpoints",
   initialState,
   reducers: {
@@ -165,10 +165,10 @@ function syncStore() {
 }
 function syncInitialization() {
   const { init: init2 } = slice.actions;
-  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.listenTo)(
+  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.__privateListenTo)(
     (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.v1ReadyEvent)(),
     () => {
-      (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.dispatch)(init2({
+      (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__dispatch)(init2({
         entities: getBreakpoints(),
         activeId: getActiveBreakpoint()
       }));
@@ -177,11 +177,11 @@ function syncInitialization() {
 }
 function syncOnChange() {
   const { activateBreakpoint } = slice.actions;
-  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.listenTo)(
+  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.__privateListenTo)(
     deviceModeChangeEvent(),
     () => {
       const activeBreakpoint = getActiveBreakpoint();
-      (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.dispatch)(activateBreakpoint(activeBreakpoint));
+      (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__dispatch)(activateBreakpoint(activeBreakpoint));
     }
   );
 }
@@ -226,12 +226,12 @@ function deviceModeChangeEvent() {
 
 var selectEntities = (state) => state.breakpoints.entities;
 var selectActiveId = (state) => state.breakpoints.activeId;
-var selectActiveBreakpoint = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.createSelector)(
+var selectActiveBreakpoint = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__createSelector)(
   selectEntities,
   selectActiveId,
   (entities, activeId) => activeId && entities[activeId] ? entities[activeId] : null
 );
-var selectSortedBreakpoints = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.createSelector)(
+var selectSortedBreakpoints = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__createSelector)(
   selectEntities,
   (entities) => {
     const byWidth = (a, b) => {
@@ -251,8 +251,8 @@ var selectSortedBreakpoints = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.c
 
 // src/hooks/use-breakpoints.ts
 function useBreakpoints() {
-  const all = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.useSelector)(selectSortedBreakpoints);
-  const active = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.useSelector)(selectActiveBreakpoint);
+  const all = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__useSelector)(selectSortedBreakpoints);
+  const active = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__useSelector)(selectActiveBreakpoint);
   return {
     all,
     active
@@ -268,7 +268,7 @@ function useBreakpoints() {
 
 function useBreakpointsActions() {
   const activate = (0,react__WEBPACK_IMPORTED_MODULE_4__.useCallback)((device) => {
-    return (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.runCommand)("panel/change-device-mode", { device });
+    return (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.__privateRunCommand)("panel/change-device-mode", { device });
   }, []);
   return {
     activate
@@ -283,19 +283,35 @@ function BreakpointsSwitcher() {
     return null;
   }
   const onChange = (_, value) => activate(value);
-  return /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_4__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_5__.Tabs, { value: active.id, onChange, "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Switch Device", "elementor") }, all.map(({ id, label, type, width }) => {
-    const Icon = iconsMap[id];
-    const title = labelsMap[type || "default"].replace("%s", label).replace("%d", width?.toString() || "");
-    return /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_4__.createElement(
-      _elementor_ui__WEBPACK_IMPORTED_MODULE_5__.Tab,
-      {
-        value: id,
-        key: id,
-        "aria-label": title,
-        icon: /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_4__.createElement(Tooltip, { title }, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_4__.createElement(Icon, null))
+  return /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_4__.createElement(
+    _elementor_ui__WEBPACK_IMPORTED_MODULE_5__.Tabs,
+    {
+      textColor: "inherit",
+      indicatorColor: "secondary",
+      value: active.id,
+      onChange,
+      "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Switch Device", "elementor"),
+      sx: {
+        "& .MuiTabs-indicator": {
+          backgroundColor: "text.primary"
+        }
       }
-    );
-  }));
+    },
+    all.map(({ id, label, type, width }) => {
+      const Icon = iconsMap[id];
+      const title = labelsMap[type || "default"].replace("%s", label).replace("%d", width?.toString() || "");
+      return /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_4__.createElement(
+        _elementor_ui__WEBPACK_IMPORTED_MODULE_5__.Tab,
+        {
+          value: id,
+          key: id,
+          "aria-label": title,
+          icon: /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_4__.createElement(Tooltip, { title }, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_4__.createElement(Icon, null)),
+          sx: { minWidth: "auto" }
+        }
+      );
+    })
+  );
 }
 function Tooltip(props) {
   return /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_4__.createElement(
@@ -304,7 +320,7 @@ function Tooltip(props) {
       PopperProps: {
         sx: {
           "&.MuiTooltip-popper .MuiTooltip-tooltip.MuiTooltip-tooltipPlacementBottom": {
-            mt: 7
+            mt: 2.5
           }
         }
       },
@@ -336,7 +352,7 @@ function init() {
   registerAppBarUI();
 }
 function initStore() {
-  (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.registerSlice)(slice);
+  (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__registerSlice)(slice);
   syncStore();
 }
 function registerAppBarUI() {

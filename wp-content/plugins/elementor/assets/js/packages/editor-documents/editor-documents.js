@@ -96,10 +96,10 @@ var __webpack_exports__ = {};
   \*****************************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   useActiveDocument: function() { return /* binding */ useActiveDocument; },
-/* harmony export */   useActiveDocumentActions: function() { return /* binding */ useActiveDocumentActions; },
-/* harmony export */   useHostDocument: function() { return /* binding */ useHostDocument; },
-/* harmony export */   useNavigateToDocument: function() { return /* binding */ useNavigateToDocument; }
+/* harmony export */   __useActiveDocument: function() { return /* binding */ useActiveDocument; },
+/* harmony export */   __useActiveDocumentActions: function() { return /* binding */ useActiveDocumentActions; },
+/* harmony export */   __useHostDocument: function() { return /* binding */ useHostDocument; },
+/* harmony export */   __useNavigateToDocument: function() { return /* binding */ useNavigateToDocument; }
 /* harmony export */ });
 /* harmony import */ var _elementor_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @elementor/store */ "@elementor/store");
 /* harmony import */ var _elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @elementor/editor-v1-adapters */ "@elementor/editor-v1-adapters");
@@ -114,7 +114,7 @@ var initialState = {
 function hasActiveEntity(state) {
   return !!(state.activeId && state.entities[state.activeId]);
 }
-var slice = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
+var slice = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__createSlice)({
   name: "documents",
   initialState,
   reducers: {
@@ -224,7 +224,7 @@ function syncStore() {
 }
 function syncInitialization() {
   const { init: init2 } = slice.actions;
-  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.listenTo)(
+  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.__privateListenTo)(
     (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.v1ReadyEvent)(),
     () => {
       const documentsManager = getV1DocumentsManager();
@@ -232,7 +232,7 @@ function syncInitialization() {
         acc[id] = normalizeV1Document(document);
         return acc;
       }, {});
-      (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.dispatch)(init2({
+      (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__dispatch)(init2({
         entities,
         hostId: documentsManager.getInitialId(),
         activeId: documentsManager.getCurrentId()
@@ -242,14 +242,14 @@ function syncInitialization() {
 }
 function syncActiveDocument() {
   const { activateDocument, setAsHost } = slice.actions;
-  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.listenTo)(
+  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.__privateListenTo)(
     (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.commandEndEvent)("editor/documents/open"),
     () => {
       const documentsManager = getV1DocumentsManager();
       const currentDocument = normalizeV1Document(documentsManager.getCurrent());
-      (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.dispatch)(activateDocument(currentDocument));
+      (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__dispatch)(activateDocument(currentDocument));
       if (documentsManager.getInitialId() === currentDocument.id) {
-        (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.dispatch)(setAsHost(currentDocument.id));
+        (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__dispatch)(setAsHost(currentDocument.id));
       }
     }
   );
@@ -260,26 +260,26 @@ function syncOnDocumentSave() {
     const event = e;
     return event.args?.status === "autosave";
   };
-  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.listenTo)(
+  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.__privateListenTo)(
     (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.commandStartEvent)("document/save/save"),
     (e) => {
       if (isDraft(e)) {
-        (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.dispatch)(startSavingDraft());
+        (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__dispatch)(startSavingDraft());
         return;
       }
-      (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.dispatch)(startSaving());
+      (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__dispatch)(startSaving());
     }
   );
-  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.listenTo)(
+  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.__privateListenTo)(
     (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.commandEndEvent)("document/save/save"),
     (e) => {
       const activeDocument = normalizeV1Document(
         getV1DocumentsManager().getCurrent()
       );
       if (isDraft(e)) {
-        (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.dispatch)(endSavingDraft(activeDocument));
+        (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__dispatch)(endSavingDraft(activeDocument));
       } else {
-        (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.dispatch)(endSaving(activeDocument));
+        (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__dispatch)(endSaving(activeDocument));
       }
     }
   );
@@ -293,24 +293,24 @@ function syncOnTitleChange() {
     }
     const currentDocument = getV1DocumentsManager().getCurrent();
     const newTitle = currentDocument.container.settings.get("post_title");
-    (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.dispatch)(updateActiveDocument({ title: newTitle }));
+    (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__dispatch)(updateActiveDocument({ title: newTitle }));
   }, 400);
-  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.listenTo)(
+  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.__privateListenTo)(
     (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.commandEndEvent)("document/elements/settings"),
     updateTitle
   );
 }
 function syncOnDocumentChange() {
   const { markAsDirty, markAsPristine } = slice.actions;
-  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.listenTo)(
+  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.__privateListenTo)(
     (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.commandEndEvent)("document/save/set-is-modified"),
     () => {
       const currentDocument = getV1DocumentsManager().getCurrent();
       if (currentDocument.editor.isChanged) {
-        (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.dispatch)(markAsDirty());
+        (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__dispatch)(markAsDirty());
         return;
       }
-      (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.dispatch)(markAsPristine());
+      (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__dispatch)(markAsPristine());
     }
   );
 }
@@ -330,7 +330,7 @@ function init() {
   initStore();
 }
 function initStore() {
-  (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.registerSlice)(slice);
+  (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__registerSlice)(slice);
   syncStore();
 }
 
@@ -342,12 +342,12 @@ function initStore() {
 var selectEntities = (state) => state.documents.entities;
 var selectActiveId = (state) => state.documents.activeId;
 var selectHostId = (state) => state.documents.hostId;
-var selectActiveDocument = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.createSelector)(
+var selectActiveDocument = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__createSelector)(
   selectEntities,
   selectActiveId,
   (entities, activeId) => activeId && entities[activeId] ? entities[activeId] : null
 );
-var selectHostDocument = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.createSelector)(
+var selectHostDocument = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__createSelector)(
   selectEntities,
   selectHostId,
   (entities, hostId) => hostId && entities[hostId] ? entities[hostId] : null
@@ -355,16 +355,16 @@ var selectHostDocument = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.create
 
 // src/hooks/use-active-document.ts
 function useActiveDocument() {
-  return (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.useSelector)(selectActiveDocument);
+  return (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__useSelector)(selectActiveDocument);
 }
 
 // src/hooks/use-active-document-actions.ts
 
 
 function useActiveDocumentActions() {
-  const save = (0,react__WEBPACK_IMPORTED_MODULE_2__.useCallback)(() => (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.runCommand)("document/save/default"), []);
-  const saveDraft = (0,react__WEBPACK_IMPORTED_MODULE_2__.useCallback)(() => (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.runCommand)("document/save/draft"), []);
-  const saveTemplate = (0,react__WEBPACK_IMPORTED_MODULE_2__.useCallback)(() => (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.openRoute)("library/save-template"), []);
+  const save = (0,react__WEBPACK_IMPORTED_MODULE_2__.useCallback)(() => (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.__privateRunCommand)("document/save/default"), []);
+  const saveDraft = (0,react__WEBPACK_IMPORTED_MODULE_2__.useCallback)(() => (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.__privateRunCommand)("document/save/draft"), []);
+  const saveTemplate = (0,react__WEBPACK_IMPORTED_MODULE_2__.useCallback)(() => (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.__privateOpenRoute)("library/save-template"), []);
   return {
     save,
     saveDraft,
@@ -375,7 +375,7 @@ function useActiveDocumentActions() {
 // src/hooks/use-host-document.ts
 
 function useHostDocument() {
-  return (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.useSelector)(selectHostDocument);
+  return (0,_elementor_store__WEBPACK_IMPORTED_MODULE_0__.__useSelector)(selectHostDocument);
 }
 
 // src/hooks/use-navigate-to-document.ts
@@ -383,7 +383,7 @@ function useHostDocument() {
 
 function useNavigateToDocument() {
   return (0,react__WEBPACK_IMPORTED_MODULE_2__.useCallback)(async (id) => {
-    await (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.runCommand)("editor/documents/switch", {
+    await (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_1__.__privateRunCommand)("editor/documents/switch", {
       id,
       setAsInitial: true
     });

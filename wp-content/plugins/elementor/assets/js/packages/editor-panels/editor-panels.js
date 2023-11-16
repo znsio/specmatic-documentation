@@ -130,8 +130,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   PanelBody: function() { return /* binding */ PanelBody; },
 /* harmony export */   PanelHeader: function() { return /* binding */ PanelHeader; },
 /* harmony export */   PanelHeaderTitle: function() { return /* binding */ PanelHeaderTitle; },
-/* harmony export */   createPanel: function() { return /* binding */ createPanel; },
-/* harmony export */   registerPanel: function() { return /* binding */ registerPanel; }
+/* harmony export */   __createPanel: function() { return /* binding */ createPanel; },
+/* harmony export */   __registerPanel: function() { return /* binding */ registerPanel; }
 /* harmony export */ });
 /* harmony import */ var _elementor_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @elementor/editor */ "@elementor/editor");
 /* harmony import */ var _elementor_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @elementor/store */ "@elementor/store");
@@ -164,7 +164,7 @@ var selectOpenId = (state) => state.panels.openId;
 var initialState = {
   openId: null
 };
-var slice_default = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_1__.createSlice)({
+var slice_default = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_1__.__createSlice)({
   name: "panels",
   initialState,
   reducers: {
@@ -183,7 +183,7 @@ var slice_default = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_1__.createSlice
 
 function useOpenPanelInjection() {
   const injections = usePanelsInjections();
-  const openId = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_1__.useSelector)(selectOpenId);
+  const openId = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_1__.__useSelector)(selectOpenId);
   return (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(
     () => injections.find((injection) => openId === injection.id),
     [injections, openId]
@@ -203,17 +203,17 @@ function getPortalContainer() {
   return document.querySelector("#elementor-panel-inner");
 }
 function useV1PanelStatus() {
-  return (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.useRouteStatus)(V2_PANEL, {
+  return (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.__privateUseRouteStatus)(V2_PANEL, {
     blockOnKitRoutes: true,
     blockOnPreviewMode: true
   });
 }
 function sync() {
-  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.listenTo)(
+  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.__privateListenTo)(
     (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.windowEvent)("elementor/panel/init"),
-    () => (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.registerRoute)(V2_PANEL)
+    () => (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.__privateRegisterRoute)(V2_PANEL)
   );
-  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.listenTo)(
+  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.__privateListenTo)(
     (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.routeOpenEvent)(V2_PANEL),
     () => {
       getV1PanelElements().forEach((el) => {
@@ -222,11 +222,11 @@ function sync() {
       });
     }
   );
-  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.listenTo)(
+  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.__privateListenTo)(
     (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.routeCloseEvent)(V2_PANEL),
-    () => selectOpenId((0,_elementor_store__WEBPACK_IMPORTED_MODULE_1__.getState)()) && (0,_elementor_store__WEBPACK_IMPORTED_MODULE_1__.dispatch)(slice_default.actions.close())
+    () => selectOpenId((0,_elementor_store__WEBPACK_IMPORTED_MODULE_1__.__getState)()) && (0,_elementor_store__WEBPACK_IMPORTED_MODULE_1__.__dispatch)(slice_default.actions.close())
   );
-  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.listenTo)(
+  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.__privateListenTo)(
     (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.routeCloseEvent)(V2_PANEL),
     () => {
       getV1PanelElements().forEach((el) => {
@@ -235,22 +235,22 @@ function sync() {
       });
     }
   );
-  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.listenTo)(
+  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.__privateListenTo)(
     (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.windowEvent)("elementor/panel/init"),
     () => subscribe({
       on: (state) => selectOpenId(state),
       when: ({ prev, current }) => !!(!prev && current),
       // is panel opened
-      callback: () => (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.openRoute)(V2_PANEL)
+      callback: () => (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.__privateOpenRoute)(V2_PANEL)
     })
   );
-  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.listenTo)(
+  (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.__privateListenTo)(
     (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.windowEvent)("elementor/panel/init"),
     () => subscribe({
       on: (state) => selectOpenId(state),
       when: ({ prev, current }) => !!(!current && prev),
       // is panel closed
-      callback: () => (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.isRouteActive)(V2_PANEL) && (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.openRoute)(getDefaultRoute())
+      callback: () => (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.__privateIsRouteActive)(V2_PANEL) && (0,_elementor_editor_v1_adapters__WEBPACK_IMPORTED_MODULE_5__.__privateOpenRoute)(getDefaultRoute())
     })
   );
 }
@@ -273,8 +273,8 @@ function subscribe({
   callback
 }) {
   let prev;
-  (0,_elementor_store__WEBPACK_IMPORTED_MODULE_1__.subscribe)(() => {
-    const current = on((0,_elementor_store__WEBPACK_IMPORTED_MODULE_1__.getState)());
+  (0,_elementor_store__WEBPACK_IMPORTED_MODULE_1__.__subscribe)(() => {
+    const current = on((0,_elementor_store__WEBPACK_IMPORTED_MODULE_1__.__getState)());
     if (when({ prev, current })) {
       callback({ prev, current });
     }
@@ -304,7 +304,7 @@ function Panels() {
 // src/init.ts
 function init() {
   sync();
-  (0,_elementor_store__WEBPACK_IMPORTED_MODULE_1__.registerSlice)(slice_default);
+  (0,_elementor_store__WEBPACK_IMPORTED_MODULE_1__.__registerSlice)(slice_default);
   (0,_elementor_editor__WEBPACK_IMPORTED_MODULE_0__.injectIntoTop)({ id: "panels", component: Panels });
 }
 
@@ -330,7 +330,7 @@ function registerPanel({ id, component }) {
 }
 function createUseStatus(id) {
   return () => {
-    const openPanelId = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_1__.useSelector)(selectOpenId);
+    const openPanelId = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_1__.__useSelector)(selectOpenId);
     const v1PanelStatus = useV1PanelStatus();
     return {
       isOpen: openPanelId === id && v1PanelStatus.isActive,
@@ -340,20 +340,20 @@ function createUseStatus(id) {
 }
 function createUseActions(id, useStatus) {
   return () => {
-    const dispatch2 = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_1__.useDispatch)();
+    const dispatch = (0,_elementor_store__WEBPACK_IMPORTED_MODULE_1__.__useDispatch)();
     const { isBlocked } = useStatus();
     return {
       open: async () => {
         if (isBlocked) {
           return;
         }
-        dispatch2(slice_default.actions.open(id));
+        dispatch(slice_default.actions.open(id));
       },
       close: async () => {
         if (isBlocked) {
           return;
         }
-        dispatch2(slice_default.actions.close(id));
+        dispatch(slice_default.actions.close(id));
       }
     };
   };
@@ -388,7 +388,7 @@ function Panel({ children, sx, ...props }) {
 
 
 var Header = (0,_elementor_ui__WEBPACK_IMPORTED_MODULE_4__.styled)(_elementor_ui__WEBPACK_IMPORTED_MODULE_4__.Box)(({ theme }) => ({
-  height: theme?.sizing?.["600"] || "48px",
+  height: theme?.spacing(6) || "48px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center"
