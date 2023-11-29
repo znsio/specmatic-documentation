@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.in/tag/contract-testing/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.in/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Thu, 19 Oct 2023 08:02:43 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 29 Nov 2023 04:17:59 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,24 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Stubbing an HTTP end-point with Specmatic</title>
+		<link>https://specmatic.in/updates/stubbing-an-http-end-point-with-specmatic/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Wed, 29 Nov 2023 04:17:59 +0000</pubDate>
+				<category><![CDATA[In the Media]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[Specmatic]]></category>
+		<category><![CDATA[Stubbing]]></category>
+		<guid isPermaLink="false">https://specmatic.in/?p=3640</guid>
+
+					<description><![CDATA[Markus Oberlehner gives a brief overview on the topic of Contract Testing with Specmatic and his experience using it for stubbing an HTTP end-point.]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>TMForum ODA CTK API specification conformance testing with Specmatic</title>
 		<link>https://specmatic.in/updates/tmforum-oda-ctk-api-specification-conformance-testing-with-specmatic/</link>
 		

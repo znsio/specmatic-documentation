@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.in/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.in/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Thu, 19 Oct 2023 08:02:43 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 29 Nov 2023 04:17:59 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,24 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Stubbing an HTTP end-point with Specmatic</title>
+		<link>https://specmatic.in/updates/stubbing-an-http-end-point-with-specmatic/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Wed, 29 Nov 2023 04:17:59 +0000</pubDate>
+				<category><![CDATA[In the Media]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[Specmatic]]></category>
+		<category><![CDATA[Stubbing]]></category>
+		<guid isPermaLink="false">https://specmatic.in/?p=3640</guid>
+
+					<description><![CDATA[Markus Oberlehner gives a brief overview on the topic of Contract Testing with Specmatic and his experience using it for stubbing an HTTP end-point.]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>TMForum ODA CTK API specification conformance testing with Specmatic</title>
 		<link>https://specmatic.in/updates/tmforum-oda-ctk-api-specification-conformance-testing-with-specmatic/</link>
 		
@@ -197,33 +215,6 @@
 		<guid isPermaLink="false">https://specmatic.in/?p=820</guid>
 
 					<description><![CDATA[API mocking is only effective if the mocks are truly representative of the provider / services they are emulating. Deviations between mocks and providers can lead to integration issues much later in the development cycle. In order to avoid such issues it is important to keep in mind that selecting an API mocking tool is not an isolated decision. It has to be in line with your overall microservices development, testing and deployment goals.]]></description>
-		
-		
-		
-			</item>
-		<item>
-		<title>Comparison: Specmatic vs Pact.io and Pactflow.io</title>
-		<link>https://specmatic.in/comparisons/specmatic-vs-pact-io-and-pactflow-io/</link>
-		
-		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
-		<pubDate>Tue, 08 Nov 2022 04:25:35 +0000</pubDate>
-				<category><![CDATA[Comparisons]]></category>
-		<category><![CDATA[Updates]]></category>
-		<category><![CDATA[BDCT]]></category>
-		<category><![CDATA[Bi-Directional Contract Testing]]></category>
-		<category><![CDATA[CDCT]]></category>
-		<category><![CDATA[CDD]]></category>
-		<category><![CDATA[Consumer Driven Contract Testing]]></category>
-		<category><![CDATA[Contract Driven Development]]></category>
-		<category><![CDATA[Contract Testing]]></category>
-		<category><![CDATA[Integration Testing]]></category>
-		<category><![CDATA[OpenAPI]]></category>
-		<category><![CDATA[pact]]></category>
-		<category><![CDATA[Pactflow]]></category>
-		<category><![CDATA[Specmatic]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=585</guid>
-
-					<description><![CDATA[Specmatic and Contract Driven Development differ significantly from Pact. We built Specmatic out of our own necessity where Pact did not fit the bill for us. We have tried to cover as many areas of comparison as possible, however we would love to hear if you have any other criteria on which you would like to see additional details.]]></description>
 		
 		
 		
