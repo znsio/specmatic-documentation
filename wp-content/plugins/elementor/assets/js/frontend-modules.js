@@ -1,4 +1,4 @@
-/*! elementor - v3.17.0 - 08-11-2023 */
+/*! elementor - v3.18.0 - 06-12-2023 */
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["frontend-modules"],{
 
 /***/ "../assets/dev/js/editor/utils/is-instanceof.js":
@@ -2353,7 +2353,7 @@ class NestedTabs extends _base.default {
     }
   }
   changeActiveTabByKeyboard(event, settings) {
-    if (settings.widgetId !== this.getID()) {
+    if (settings.widgetId.toString() !== this.getID().toString()) {
       return;
     }
     this.changeActiveTab(settings.titleIndex, true);

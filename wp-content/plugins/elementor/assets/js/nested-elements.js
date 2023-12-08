@@ -1,4 +1,4 @@
-/*! elementor - v3.17.0 - 08-11-2023 */
+/*! elementor - v3.18.0 - 06-12-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -189,14 +189,14 @@ module.exports = _toPropertyKey, module.exports.__esModule = true, module.export
   \********************************************************/
 /***/ ((module) => {
 
-function _typeof(obj) {
+function _typeof(o) {
   "@babel/helpers - typeof";
 
-  return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
-    return typeof obj;
-  } : function (obj) {
-    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(obj);
+  return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+    return typeof o;
+  } : function (o) {
+    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(o);
 }
 module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
@@ -251,7 +251,7 @@ module.exports = _typeof, module.exports.__esModule = true, module.exports["defa
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
 /******/ 			if (chunkId === "modules_nested-elements_assets_js_editor_module_js") return "f9b37afff6a65f7b9541.bundle.js";
-/******/ 			if (chunkId === "vendors-node_modules_prop-types_index_js-node_modules_babel_runtime_helpers_slicedToArray_js") return "6ed74dd3befaff90b65c.bundle.js";
+/******/ 			if (chunkId === "vendors-node_modules_prop-types_index_js-node_modules_babel_runtime_helpers_slicedToArray_js") return "fd6a00ae23a1bc2c6190.bundle.js";
 /******/ 			if (chunkId === "modules_nested-elements_assets_js_editor_nested-element-types-base_js") return "e8a7573e654d921656ab.bundle.js";
 /******/ 			if (chunkId === "modules_nested-elements_assets_js_editor_views_view_js") return "46e544e5863270fc32f2.bundle.js";
 /******/ 			// return url for filenames based on template

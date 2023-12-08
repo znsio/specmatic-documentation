@@ -282,7 +282,7 @@ function DocTypeChip({ postType, docType, label }) {
     {
       component: "span",
       size: "small",
-      variant: "standard",
+      variant: "outlined",
       label,
       "data-value": docType,
       color,
@@ -326,7 +326,7 @@ function PostListItem({ post, closePopup, ...props }) {
       _elementor_ui__WEBPACK_IMPORTED_MODULE_2__.ListItemText,
       {
         sx: { flexGrow: 0 },
-        primaryTypographyProps: { noWrap: true },
+        primaryTypographyProps: { variant: "body2", noWrap: true },
         primary: postTitle
       }
     ),
@@ -384,8 +384,14 @@ function CreatePostListItem({ closePopup, ...props }) {
       },
       ...props
     },
-    /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.ListItemIcon, null, isLoading ? /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.CircularProgress, null) : /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_icons__WEBPACK_IMPORTED_MODULE_0__.PlusIcon, null)),
-    /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.ListItemText, { primary: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Add new page", "elementor") })
+    /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.ListItemIcon, null, isLoading ? /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.CircularProgress, { size: "1.25rem" }) : /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_icons__WEBPACK_IMPORTED_MODULE_0__.PlusIcon, { fontSize: "small" })),
+    /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(
+      _elementor_ui__WEBPACK_IMPORTED_MODULE_2__.ListItemText,
+      {
+        primaryTypographyProps: { variant: "body2" },
+        primary: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Add new page", "elementor")
+      }
+    )
   );
 }
 
@@ -618,22 +624,22 @@ function CollapsibleList({
 function usePostActions(postTypeSlug) {
   const invalidatePosts = useInvalidatePosts(postTypeSlug);
   const onSuccess = () => invalidatePosts({ exact: true });
-  const createPost = (0,_elementor_query__WEBPACK_IMPORTED_MODULE_9__.useMutation)(
-    (newPost) => createRequest(postTypeSlug, newPost),
-    { onSuccess }
-  );
-  const updatePost = (0,_elementor_query__WEBPACK_IMPORTED_MODULE_9__.useMutation)(
-    (updatedPost) => updateRequest(postTypeSlug, updatedPost),
-    { onSuccess }
-  );
-  const deletePost = (0,_elementor_query__WEBPACK_IMPORTED_MODULE_9__.useMutation)(
-    (postId) => deleteRequest(postTypeSlug, postId),
-    { onSuccess }
-  );
-  const duplicatePost = (0,_elementor_query__WEBPACK_IMPORTED_MODULE_9__.useMutation)(
-    (originalPost) => duplicateRequest(originalPost),
-    { onSuccess }
-  );
+  const createPost = (0,_elementor_query__WEBPACK_IMPORTED_MODULE_9__.useMutation)({
+    mutationFn: (newPost) => createRequest(postTypeSlug, newPost),
+    onSuccess
+  });
+  const updatePost = (0,_elementor_query__WEBPACK_IMPORTED_MODULE_9__.useMutation)({
+    mutationFn: (updatedPost) => updateRequest(postTypeSlug, updatedPost),
+    onSuccess
+  });
+  const deletePost = (0,_elementor_query__WEBPACK_IMPORTED_MODULE_9__.useMutation)({
+    mutationFn: (postId) => deleteRequest(postTypeSlug, postId),
+    onSuccess
+  });
+  const duplicatePost = (0,_elementor_query__WEBPACK_IMPORTED_MODULE_9__.useMutation)({
+    mutationFn: (originalPost) => duplicateRequest(originalPost),
+    onSuccess
+  });
   return {
     createPost,
     updatePost,
@@ -645,7 +651,7 @@ function useInvalidatePosts(postTypeSlug) {
   const queryClient = (0,_elementor_query__WEBPACK_IMPORTED_MODULE_9__.useQueryClient)();
   return (options = {}) => {
     const queryKey = postsQueryKey(postTypeSlug);
-    return queryClient.invalidateQueries(queryKey, options);
+    return queryClient.invalidateQueries({ queryKey }, options);
   };
 }
 
@@ -739,7 +745,7 @@ function ListItemRename({ post }) {
       }
     });
   };
-  return /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(EditModeTemplate, { postTitle: post.title.rendered, isLoading: updatePost.isLoading, callback: renamePostCallback });
+  return /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(EditModeTemplate, { postTitle: post.title.rendered, isLoading: updatePost.isPending, callback: renamePostCallback });
 }
 
 // src/components/panel/posts-list/list-items/list-item-create.tsx
@@ -761,7 +767,7 @@ function ListItemCreate() {
       }
     });
   };
-  return /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(EditModeTemplate, { postTitle: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("New Page", "elementor"), isLoading: createPost.isLoading, callback: createPostCallback });
+  return /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(EditModeTemplate, { postTitle: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("New Page", "elementor"), isLoading: createPost.isPending, callback: createPostCallback });
 }
 
 // src/components/panel/posts-list/list-items/list-item-duplicate.tsx
@@ -786,7 +792,7 @@ function ListItemDuplicate() {
       }
     });
   };
-  return /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(EditModeTemplate, { postTitle: `${editMode.details.title} ${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("copy", "elementor")}`, isLoading: duplicatePost.isLoading, callback: duplicatePostCallback });
+  return /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(EditModeTemplate, { postTitle: `${editMode.details.title} ${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("copy", "elementor")}`, isLoading: duplicatePost.isPending, callback: duplicatePostCallback });
 }
 
 // src/components/panel/posts-list/list-items/list-item-view.tsx
@@ -939,7 +945,7 @@ function DeleteDialog({ post, setIsDialogOpen }) {
     await deletePost.mutateAsync(post.id);
   };
   const handleCancel = () => {
-    if (deletePost.isLoading) {
+    if (deletePost.isPending) {
       return;
     }
     setIsDialogOpen(false);
@@ -954,7 +960,7 @@ function DeleteDialog({ post, setIsDialogOpen }) {
     /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.DialogTitle, { noWrap: true }, dialogTitle),
     /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.Divider, null),
     /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.DialogContent, null, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.DialogContentText, null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("The page and its content will be deleted forever and we won\u2019t be able to recover them.", "elementor"))),
-    /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.DialogActions, null, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.Button, { variant: "contained", color: "secondary", onClick: handleCancel, disabled: deletePost.isLoading }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Cancel", "elementor")), /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.Button, { variant: "contained", color: "error", onClick: deletePage, disabled: deletePost.isLoading }, !deletePost.isLoading ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Delete", "elementor") : /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.CircularProgress, null)))
+    /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.DialogActions, null, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.Button, { variant: "contained", color: "secondary", onClick: handleCancel, disabled: deletePost.isPending }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Cancel", "elementor")), /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.Button, { variant: "contained", color: "error", onClick: deletePage, disabled: deletePost.isPending }, !deletePost.isPending ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Delete", "elementor") : /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_1__.createElement(_elementor_ui__WEBPACK_IMPORTED_MODULE_2__.CircularProgress, null)))
   );
 }
 
@@ -1018,17 +1024,17 @@ function useHomepage() {
 function useHomepageActions() {
   const invalidateSettings = useInvalidateSettings();
   const onSuccess = async () => invalidateSettings({ exact: true });
-  const updateSettingsMutation = (0,_elementor_query__WEBPACK_IMPORTED_MODULE_9__.useMutation)(
-    (settings) => updateSettings(settings),
-    { onSuccess }
-  );
+  const updateSettingsMutation = (0,_elementor_query__WEBPACK_IMPORTED_MODULE_9__.useMutation)({
+    mutationFn: (settings) => updateSettings(settings),
+    onSuccess
+  });
   return { updateSettingsMutation };
 }
 function useInvalidateSettings() {
   const queryClient = (0,_elementor_query__WEBPACK_IMPORTED_MODULE_9__.useQueryClient)();
   return (options = {}) => {
     const queryKey = settingsQueryKey();
-    return queryClient.invalidateQueries(queryKey, options);
+    return queryClient.invalidateQueries({ queryKey }, options);
   };
 }
 
@@ -1043,9 +1049,9 @@ function SetHome({ post }) {
     ActionMenuItem,
     {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_6__.__)("Set as homepage", "elementor"),
-      icon: !updateSettingsMutation.isLoading ? _elementor_icons__WEBPACK_IMPORTED_MODULE_0__.HomeIcon : _elementor_ui__WEBPACK_IMPORTED_MODULE_2__.CircularProgress,
+      icon: !updateSettingsMutation.isPending ? _elementor_icons__WEBPACK_IMPORTED_MODULE_0__.HomeIcon : _elementor_ui__WEBPACK_IMPORTED_MODULE_2__.CircularProgress,
       ListItemButtonProps: {
-        disabled: !!post.isHome || post.status !== "publish" || updateSettingsMutation.isLoading,
+        disabled: !!post.isHome || post.status !== "publish" || updateSettingsMutation.isPending,
         onClick: handleClick
       }
     }

@@ -193,8 +193,10 @@ function ToolbarMenuItem({ title, ...props }) {
       "aria-label": title,
       size: "medium",
       sx: {
-        "& .MuiSvgIcon-root": {
-          fontSize: "1.25rem"
+        "& svg": {
+          fontSize: "1.25rem",
+          height: "1em",
+          width: "1em"
         },
         "&:hover": {
           color: "text.primary"
@@ -285,8 +287,10 @@ function ToolbarMenuToggleItem({ title, onClick, ...props }) {
           border: 0
           // Temp fix until the style of the ToggleButton component will be decided.
         },
-        "& .MuiSvgIcon-root": {
-          fontSize: "1.25rem"
+        "& svg": {
+          fontSize: "1.25rem",
+          height: "1em",
+          width: "1em"
         }
       }
     }
@@ -534,7 +538,7 @@ function PopoverSubMenu({ children, ...props }) {
       PaperProps: {
         sx: {
           // This is a workaround to support RTL in PopoverMenu, since it doesn't support it yet.
-          ...isRTL ? { marginInlineEnd: -2 } : { marginInlineStart: 2 },
+          ...isRTL ? { marginInlineEnd: -1 } : { marginInlineStart: 1 },
           pointerEvents: "auto"
         }
       },

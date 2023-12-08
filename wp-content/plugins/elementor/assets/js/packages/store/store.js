@@ -1111,10 +1111,22 @@ function createSelectorHook(context = _components_Context__WEBPACK_IMPORTED_MODU
             const toCompare = selector(state);
 
             if (!equalityFn(selected, toCompare)) {
+              let stack = undefined;
+
+              try {
+                throw new Error();
+              } catch (e) {
+                ;
+                ({
+                  stack
+                } = e);
+              }
+
               console.warn('Selector ' + (selector.name || 'unknown') + ' returned a different result when called with the same parameters. This can lead to unnecessary rerenders.' + '\nSelectors that return a new reference (such as an object or an array) should be memoized: https://redux.js.org/usage/deriving-data-selectors#optimizing-selectors-with-memoization', {
                 state,
                 selected,
-                selected2: toCompare
+                selected2: toCompare,
+                stack
               });
             }
           }
@@ -1124,7 +1136,20 @@ function createSelectorHook(context = _components_Context__WEBPACK_IMPORTED_MODU
           if (finalNoopCheck === 'always' || finalNoopCheck === 'once' && firstRun.current) {
             // @ts-ignore
             if (selected === state) {
-              console.warn('Selector ' + (selector.name || 'unknown') + ' returned the root state when called. This can lead to unnecessary rerenders.' + '\nSelectors that return the entire state are almost certainly a mistake, as they will cause a rerender whenever *anything* in state changes.');
+              let stack = undefined;
+
+              try {
+                throw new Error();
+              } catch (e) {
+                ;
+                ({
+                  stack
+                } = e);
+              }
+
+              console.warn('Selector ' + (selector.name || 'unknown') + ' returned the root state when called. This can lead to unnecessary rerenders.' + '\nSelectors that return the entire state are almost certainly a mistake, as they will cause a rerender whenever *anything* in state changes.', {
+                stack
+              });
             }
           }
 
@@ -1369,11 +1394,24 @@ const nullListeners = {
 };
 function createSubscription(store, parentSub) {
   let unsubscribe;
-  let listeners = nullListeners;
+  let listeners = nullListeners; // Reasons to keep the subscription active
+
+  let subscriptionsAmount = 0; // Is this specific subscription subscribed (or only nested ones?)
+
+  let selfSubscribed = false;
 
   function addNestedSub(listener) {
     trySubscribe();
-    return listeners.subscribe(listener);
+    const cleanupListener = listeners.subscribe(listener); // cleanup nested sub
+
+    let removed = false;
+    return () => {
+      if (!removed) {
+        removed = true;
+        cleanupListener();
+        tryUnsubscribe();
+      }
+    };
   }
 
   function notifyNestedSubs() {
@@ -1387,10 +1425,12 @@ function createSubscription(store, parentSub) {
   }
 
   function isSubscribed() {
-    return Boolean(unsubscribe);
+    return selfSubscribed;
   }
 
   function trySubscribe() {
+    subscriptionsAmount++;
+
     if (!unsubscribe) {
       unsubscribe = parentSub ? parentSub.addNestedSub(handleChangeWrapper) : store.subscribe(handleChangeWrapper);
       listeners = createListenerCollection();
@@ -1398,11 +1438,27 @@ function createSubscription(store, parentSub) {
   }
 
   function tryUnsubscribe() {
-    if (unsubscribe) {
+    subscriptionsAmount--;
+
+    if (unsubscribe && subscriptionsAmount === 0) {
       unsubscribe();
       unsubscribe = undefined;
       listeners.clear();
       listeners = nullListeners;
+    }
+  }
+
+  function trySubscribeSelf() {
+    if (!selfSubscribed) {
+      selfSubscribed = true;
+      trySubscribe();
+    }
+  }
+
+  function tryUnsubscribeSelf() {
+    if (selfSubscribed) {
+      selfSubscribed = false;
+      tryUnsubscribe();
     }
   }
 
@@ -1411,8 +1467,8 @@ function createSubscription(store, parentSub) {
     notifyNestedSubs,
     handleChangeWrapper,
     isSubscribed,
-    trySubscribe,
-    tryUnsubscribe,
+    trySubscribe: trySubscribeSelf,
+    tryUnsubscribe: tryUnsubscribeSelf,
     getListeners: () => listeners
   };
   return subscription;
@@ -1680,6 +1736,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   compose: function() { return /* reexport safe */ redux__WEBPACK_IMPORTED_MODULE_0__.compose; },
 /* harmony export */   configureStore: function() { return /* binding */ configureStore; },
 /* harmony export */   createAction: function() { return /* binding */ createAction; },
+/* harmony export */   createActionCreatorInvariantMiddleware: function() { return /* binding */ createActionCreatorInvariantMiddleware; },
 /* harmony export */   createAsyncThunk: function() { return /* binding */ createAsyncThunk; },
 /* harmony export */   createDraftSafeSelector: function() { return /* binding */ createDraftSafeSelector; },
 /* harmony export */   createEntityAdapter: function() { return /* binding */ createEntityAdapter; },
@@ -1697,6 +1754,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   getDefaultMiddleware: function() { return /* binding */ getDefaultMiddleware; },
 /* harmony export */   getType: function() { return /* binding */ getType; },
 /* harmony export */   isAction: function() { return /* binding */ isAction; },
+/* harmony export */   isActionCreator: function() { return /* binding */ isActionCreator; },
 /* harmony export */   isAllOf: function() { return /* binding */ isAllOf; },
 /* harmony export */   isAnyOf: function() { return /* binding */ isAnyOf; },
 /* harmony export */   isAsyncThunkAction: function() { return /* binding */ isAsyncThunkAction; },
@@ -1864,6 +1922,66 @@ function isPlainObject(value) {
 }
 // src/getDefaultMiddleware.ts
 
+// src/tsHelpers.ts
+var hasMatchFunction = function (v) {
+    return v && typeof v.match === "function";
+};
+// src/createAction.ts
+function createAction(type, prepareAction) {
+    function actionCreator() {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        if (prepareAction) {
+            var prepared = prepareAction.apply(void 0, args);
+            if (!prepared) {
+                throw new Error("prepareAction did not return an object");
+            }
+            return __spreadValues(__spreadValues({
+                type: type,
+                payload: prepared.payload
+            }, "meta" in prepared && { meta: prepared.meta }), "error" in prepared && { error: prepared.error });
+        }
+        return { type: type, payload: args[0] };
+    }
+    actionCreator.toString = function () { return "" + type; };
+    actionCreator.type = type;
+    actionCreator.match = function (action) { return action.type === type; };
+    return actionCreator;
+}
+function isAction(action) {
+    return isPlainObject(action) && "type" in action;
+}
+function isActionCreator(action) {
+    return typeof action === "function" && "type" in action && hasMatchFunction(action);
+}
+function isFSA(action) {
+    return isAction(action) && typeof action.type === "string" && Object.keys(action).every(isValidKey);
+}
+function isValidKey(key) {
+    return ["type", "payload", "error", "meta"].indexOf(key) > -1;
+}
+function getType(actionCreator) {
+    return "" + actionCreator;
+}
+// src/actionCreatorInvariantMiddleware.ts
+function getMessage(type) {
+    var splitType = type ? ("" + type).split("/") : [];
+    var actionName = splitType[splitType.length - 1] || "actionCreator";
+    return "Detected an action creator with type \"" + (type || "unknown") + "\" being dispatched. \nMake sure you're calling the action creator before dispatching, i.e. `dispatch(" + actionName + "())` instead of `dispatch(" + actionName + ")`. This is necessary even if the action has no payload.";
+}
+function createActionCreatorInvariantMiddleware(options) {
+    if (options === void 0) { options = {}; }
+    if (false) {}
+    var _c = options.isActionCreator, isActionCreator2 = _c === void 0 ? isActionCreator : _c;
+    return function () { return function (next) { return function (action) {
+        if (isActionCreator2(action)) {
+            console.warn(getMessage(action.type));
+        }
+        return next(action);
+    }; }; };
+}
 // src/utils.ts
 
 function getTimeMeasureUtils(maxDelay, fnName) {
@@ -2011,11 +2129,13 @@ function trackForMutations(isImmutable, ignorePaths, obj) {
         }
     };
 }
-function trackProperties(isImmutable, ignorePaths, obj, path) {
+function trackProperties(isImmutable, ignorePaths, obj, path, checkedObjects) {
     if (ignorePaths === void 0) { ignorePaths = []; }
     if (path === void 0) { path = ""; }
+    if (checkedObjects === void 0) { checkedObjects = new Set(); }
     var tracked = { value: obj };
-    if (!isImmutable(obj)) {
+    if (!isImmutable(obj) && !checkedObjects.has(obj)) {
+        checkedObjects.add(obj);
         tracked.children = {};
         for (var key in obj) {
             var childPath = path ? path + "." + key : key;
@@ -2216,7 +2336,7 @@ function curryGetDefaultMiddleware() {
 }
 function getDefaultMiddleware(options) {
     if (options === void 0) { options = {}; }
-    var _c = options.thunk, thunk = _c === void 0 ? true : _c, _d = options.immutableCheck, immutableCheck = _d === void 0 ? true : _d, _e = options.serializableCheck, serializableCheck = _e === void 0 ? true : _e;
+    var _c = options.thunk, thunk = _c === void 0 ? true : _c, _d = options.immutableCheck, immutableCheck = _d === void 0 ? true : _d, _e = options.serializableCheck, serializableCheck = _e === void 0 ? true : _e, _f = options.actionCreatorCheck, actionCreatorCheck = _f === void 0 ? true : _f;
     var middlewareArray = new MiddlewareArray();
     if (thunk) {
         if (isBoolean(thunk)) {
@@ -2240,6 +2360,13 @@ function getDefaultMiddleware(options) {
                 serializableOptions = serializableCheck;
             }
             middlewareArray.push(createSerializableStateInvariantMiddleware(serializableOptions));
+        }
+        if (actionCreatorCheck) {
+            var actionCreatorOptions = {};
+            if (!isBoolean(actionCreatorCheck)) {
+                actionCreatorOptions = actionCreatorCheck;
+            }
+            middlewareArray.unshift(createActionCreatorInvariantMiddleware(actionCreatorOptions));
         }
     }
     return middlewareArray;
@@ -2287,42 +2414,6 @@ function configureStore(options) {
     var composedEnhancer = finalCompose.apply(void 0, storeEnhancers);
     return (0,redux__WEBPACK_IMPORTED_MODULE_0__.createStore)(rootReducer, preloadedState, composedEnhancer);
 }
-// src/createAction.ts
-function createAction(type, prepareAction) {
-    function actionCreator() {
-        var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
-        }
-        if (prepareAction) {
-            var prepared = prepareAction.apply(void 0, args);
-            if (!prepared) {
-                throw new Error("prepareAction did not return an object");
-            }
-            return __spreadValues(__spreadValues({
-                type: type,
-                payload: prepared.payload
-            }, "meta" in prepared && { meta: prepared.meta }), "error" in prepared && { error: prepared.error });
-        }
-        return { type: type, payload: args[0] };
-    }
-    actionCreator.toString = function () { return "" + type; };
-    actionCreator.type = type;
-    actionCreator.match = function (action) { return action.type === type; };
-    return actionCreator;
-}
-function isAction(action) {
-    return isPlainObject(action) && "type" in action;
-}
-function isFSA(action) {
-    return isAction(action) && typeof action.type === "string" && Object.keys(action).every(isValidKey);
-}
-function isValidKey(key) {
-    return ["type", "payload", "error", "meta"].indexOf(key) > -1;
-}
-function getType(actionCreator) {
-    return "" + actionCreator;
-}
 // src/createReducer.ts
 
 // src/mapBuilders.ts
@@ -2341,8 +2432,11 @@ function executeReducerBuilderCallback(builderCallback) {
                 }
             }
             var type = typeof typeOrActionCreator === "string" ? typeOrActionCreator : typeOrActionCreator.type;
+            if (!type) {
+                throw new Error("`builder.addCase` cannot be called with an empty action type");
+            }
             if (type in actionsMap) {
-                throw new Error("addCase cannot be called with two reducers for the same action type");
+                throw new Error("`builder.addCase` cannot be called with two reducers for the same action type");
             }
             actionsMap[type] = reducer;
             return builder;
@@ -3066,10 +3160,6 @@ function unwrapResult(action) {
 function isThenable(value) {
     return value !== null && typeof value === "object" && typeof value.then === "function";
 }
-// src/tsHelpers.ts
-var hasMatchFunction = function (v) {
-    return v && typeof v.match === "function";
-};
 // src/matchers.ts
 var matches = function (matcher, action) {
     if (hasMatchFunction(matcher)) {
@@ -3318,9 +3408,9 @@ var createDelay = function (signal) {
 var assign = Object.assign;
 var INTERNAL_NIL_TOKEN = {};
 var alm = "listenerMiddleware";
-var createFork = function (parentAbortSignal) {
+var createFork = function (parentAbortSignal, parentBlockingPromises) {
     var linkControllers = function (controller) { return addAbortSignalListener(parentAbortSignal, function () { return abortControllerWithReason(controller, parentAbortSignal.reason); }); };
-    return function (taskExecutor) {
+    return function (taskExecutor, opts) {
         assertFunction(taskExecutor, "taskExecutor");
         var childAbortController = new AbortController();
         linkControllers(childAbortController);
@@ -3343,6 +3433,9 @@ var createFork = function (parentAbortSignal) {
                 }
             });
         }); }, function () { return abortControllerWithReason(childAbortController, taskCompleted); });
+        if (opts == null ? void 0 : opts.autoJoin) {
+            parentBlockingPromises.push(result);
+        }
         return {
             result: createPause(parentAbortSignal)(result),
             cancel: function () {
@@ -3513,15 +3606,16 @@ function createListenerMiddleware(middlewareOptions) {
         return !!entry;
     };
     var notifyListener = function (entry, action, api, getOriginalState) { return __async(_this, null, function () {
-        var internalTaskController, take, listenerError_1;
+        var internalTaskController, take, autoJoinPromises, listenerError_1;
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
                     internalTaskController = new AbortController();
                     take = createTakePattern(startListening, internalTaskController.signal);
+                    autoJoinPromises = [];
                     _c.label = 1;
                 case 1:
-                    _c.trys.push([1, 3, 4, 5]);
+                    _c.trys.push([1, 3, 4, 6]);
                     entry.pending.add(internalTaskController);
                     return [4 /*yield*/, Promise.resolve(entry.effect(action, assign({}, api, {
                             getOriginalState: getOriginalState,
@@ -3531,7 +3625,7 @@ function createListenerMiddleware(middlewareOptions) {
                             pause: createPause(internalTaskController.signal),
                             extra: extra,
                             signal: internalTaskController.signal,
-                            fork: createFork(internalTaskController.signal),
+                            fork: createFork(internalTaskController.signal, autoJoinPromises),
                             unsubscribe: entry.unsubscribe,
                             subscribe: function () {
                                 listenerMap.set(entry.id, entry);
@@ -3547,7 +3641,7 @@ function createListenerMiddleware(middlewareOptions) {
                         })))];
                 case 2:
                     _c.sent();
-                    return [3 /*break*/, 5];
+                    return [3 /*break*/, 6];
                 case 3:
                     listenerError_1 = _c.sent();
                     if (!(listenerError_1 instanceof TaskAbortError)) {
@@ -3555,12 +3649,14 @@ function createListenerMiddleware(middlewareOptions) {
                             raisedBy: "effect"
                         });
                     }
-                    return [3 /*break*/, 5];
-                case 4:
+                    return [3 /*break*/, 6];
+                case 4: return [4 /*yield*/, Promise.allSettled(autoJoinPromises)];
+                case 5:
+                    _c.sent();
                     abortControllerWithReason(internalTaskController, listenerCompleted);
                     entry.pending.delete(internalTaskController);
                     return [7 /*endfinally*/];
-                case 5: return [2 /*return*/];
+                case 6: return [2 /*return*/];
             }
         });
     }); };
@@ -5884,26 +5980,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _defineProperty_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./defineProperty.js */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
 
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
+function ownKeys(e, r) {
+  var t = Object.keys(e);
   if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    enumerableOnly && (symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    })), keys.push.apply(keys, symbols);
+    var o = Object.getOwnPropertySymbols(e);
+    r && (o = o.filter(function (r) {
+      return Object.getOwnPropertyDescriptor(e, r).enumerable;
+    })), t.push.apply(t, o);
   }
-  return keys;
+  return t;
 }
-function _objectSpread2(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = null != arguments[i] ? arguments[i] : {};
-    i % 2 ? ownKeys(Object(source), !0).forEach(function (key) {
-      (0,_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(target, key, source[key]);
-    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) {
-      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+function _objectSpread2(e) {
+  for (var r = 1; r < arguments.length; r++) {
+    var t = null != arguments[r] ? arguments[r] : {};
+    r % 2 ? ownKeys(Object(t), !0).forEach(function (r) {
+      (0,_defineProperty_js__WEBPACK_IMPORTED_MODULE_0__["default"])(e, r, t[r]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) {
+      Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r));
     });
   }
-  return target;
+  return e;
 }
 
 /***/ }),
@@ -5989,14 +6085,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": function() { return /* binding */ _typeof; }
 /* harmony export */ });
-function _typeof(obj) {
+function _typeof(o) {
   "@babel/helpers - typeof";
 
-  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
-    return typeof obj;
-  } : function (obj) {
-    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-  }, _typeof(obj);
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+    return typeof o;
+  } : function (o) {
+    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+  }, _typeof(o);
 }
 
 /***/ }),
