@@ -12,13 +12,13 @@
 	<atom:link href="https://specmatic.in/tag/asyncapi/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.in/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Mon, 02 Oct 2023 04:38:35 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 06 Dec 2023 23:16:36 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.4.1</generator>
+	<generator>https://wordpress.org/?v=6.4.2</generator>
 
 <image>
 	<url>https://specmatic.in/wp-content/uploads/2022/09/Favicon.png</url>
@@ -28,6 +28,28 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Introduction to Contract Driven Development with Specmatic</title>
+		<link>https://specmatic.in/updates/introduction-to-contract-driven-development-with-specmatic/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Wed, 06 Dec 2023 22:52:34 +0000</pubDate>
+				<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[AsyncAPI]]></category>
+		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Kafka]]></category>
+		<category><![CDATA[OpenAPI]]></category>
+		<category><![CDATA[Specmatic]]></category>
+		<guid isPermaLink="false">https://specmatic.in/?p=3776</guid>
+
+					<description><![CDATA[Transcript Hi, welcome to this demo of contract-driven development where I&#8217;m going to use Specmatic and open-source tool to turn your API specification into executable contracts. We have an app which sends a request to a BFF, a backend for frontend, which in turn sends a request to a domain service. Notice you could have &#8230;<p class="read-more"> <a class="" href="https://specmatic.in/updates/introduction-to-contract-driven-development-with-specmatic/"> <span class="screen-reader-text">Introduction to Contract Driven Development with Specmatic</span> Read More »</a></p>]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>JMS Mocking with AsyncAPI using Specmatic</title>
 		<link>https://specmatic.in/updates/jms-mocking-with-asyncapi-using-specmatic/</link>
 		
