@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.in/tag/demonstration/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.in/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 06 Dec 2023 23:16:36 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 15 Dec 2023 03:16:32 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -44,7 +44,7 @@
 		<category><![CDATA[Specmatic]]></category>
 		<guid isPermaLink="false">https://specmatic.in/?p=3776</guid>
 
-					<description><![CDATA[Transcript Hi, welcome to this demo of contract-driven development where I&#8217;m going to use Specmatic and open-source tool to turn your API specification into executable contracts. We have an app which sends a request to a BFF, a backend for frontend, which in turn sends a request to a domain service. Notice you could have &#8230;<p class="read-more"> <a class="" href="https://specmatic.in/updates/introduction-to-contract-driven-development-with-specmatic/"> <span class="screen-reader-text">Introduction to Contract Driven Development with Specmatic</span> Read More »</a></p>]]></description>
+					<description><![CDATA[Transcript Hi, welcome to this demo of contract-driven development where I&#8217;m going to use Specmatic, an open-source tool to turn your API specification into executable contracts. We have an app which sends a request to a BFF, a backend for frontend, which in turn sends a request to a domain service. Notice you could have &#8230;<p class="read-more"> <a class="" href="https://specmatic.in/updates/introduction-to-contract-driven-development-with-specmatic/"> <span class="screen-reader-text">Introduction to Contract Driven Development with Specmatic</span> Read More »</a></p>]]></description>
 		
 		
 		
