@@ -1,4 +1,4 @@
-/*! elementor - v3.18.0 - 06-12-2023 */
+/*! elementor - v3.18.0 - 08-12-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -5584,7 +5584,9 @@ var ConfigProvider = function ConfigProvider(props) {
       onSelect: props.onSelect,
       onGenerate: props.onGenerate,
       currentContext: props.currentContext,
-      hasPro: props.hasPro
+      hasPro: props.hasPro,
+      sessionId: props.sessionId,
+      editorSessionId: props.editorSessionId
     }
   }, props.children);
 };
@@ -5600,7 +5602,9 @@ ConfigProvider.propTypes = {
   onSelect: _propTypes.default.func.isRequired,
   onGenerate: _propTypes.default.func.isRequired,
   currentContext: _propTypes.default.object,
-  hasPro: _propTypes.default.bool
+  hasPro: _propTypes.default.bool,
+  sessionId: _propTypes.default.string,
+  editorSessionId: _propTypes.default.string
 };
 var _default = ConfigContext;
 exports["default"] = _default;
