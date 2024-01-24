@@ -132,12 +132,19 @@ viewPlansButton.addEventListener("click", function () {
         .filter(input => input.value.trim() === '')
         .map(input => document.querySelector(`label[for="${input.id}"]`).innerText.replace('*', ''));
 
+    const emailInput = document.querySelector('input[name="email"]');
+    const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value);
     const unfilledEmail = emailFilled ? [] : [document.querySelector('label[for="email"]').innerText.replace('*', '')];
 
     const uncheckedCheckboxes = Array.from(document.querySelectorAll('input[name="spec"]'))
         .some(checkbox => checkbox.checked) ? [] : ["API specifications"];
 
     const messages = [...unfilledTextInputs, ...unfilledEmail, ...uncheckedCheckboxes];
+
+    if (!emailIsValid && emailFilled) {
+        alert("The email address is not valid.");
+        return;
+    }
 
     if (messages.length > 0) {
         viewPlansButton.classList.add("disabled-btn");
