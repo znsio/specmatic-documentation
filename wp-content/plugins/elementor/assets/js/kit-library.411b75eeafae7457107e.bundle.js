@@ -1,4 +1,4 @@
-/*! elementor - v3.18.0 - 08-12-2023 */
+/*! elementor - v3.18.0 - 20-12-2023 */
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["kit-library"],{
 
 /***/ "../app/modules/kit-library/assets/js/components/badge.scss":

@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('https://specmatic.in/wp-content/uploads/elementor/custom-icons/icomoon/fonts/icomoon.eot?r58wq5');
-  src:  url('https://specmatic.in/wp-content/uploads/elementor/custom-icons/icomoon/fonts/icomoon.eot?r58wq5#iefix') format('embedded-opentype'),
-    url('https://specmatic.in/wp-content/uploads/elementor/custom-icons/icomoon/fonts/icomoon.ttf?r58wq5') format('truetype'),
-    url('https://specmatic.in/wp-content/uploads/elementor/custom-icons/icomoon/fonts/icomoon.woff?r58wq5') format('woff'),
-    url('https://specmatic.in/wp-content/uploads/elementor/custom-icons/icomoon/fonts/icomoon.svg?r58wq5#icomoon') format('svg');
+  src:  url('https://specmatic.in/wp-content/uploads/elementor/custom-icons/icomoon/fonts/icomoon.eot?5rx3z8');
+  src:  url('https://specmatic.in/wp-content/uploads/elementor/custom-icons/icomoon/fonts/icomoon.eot?5rx3z8#iefix') format('embedded-opentype'),
+    url('https://specmatic.in/wp-content/uploads/elementor/custom-icons/icomoon/fonts/icomoon.ttf?5rx3z8') format('truetype'),
+    url('https://specmatic.in/wp-content/uploads/elementor/custom-icons/icomoon/fonts/icomoon.woff?5rx3z8') format('woff'),
+    url('https://specmatic.in/wp-content/uploads/elementor/custom-icons/icomoon/fonts/icomoon.svg?5rx3z8#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,81 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-openai:before {
+  content: "\e912";
+  color: #aa762b;
+}
+.icon-And-more:before {
+  content: "\e900";
+  color: #ab7500;
+}
+.icon-API-Coverage-Reports:before {
+  content: "\e901";
+  color: #ab7500;
+}
+.icon-Capture-API-Specifications:before {
+  content: "\e902";
+  color: #ab7500;
+}
+.icon-Database-stubbing:before {
+  content: "\e903";
+  color: #ab7500;
+}
+.icon-Import-your-APIs:before {
+  content: "\e904";
+  color: #ab7500;
+}
+.icon-Language-Agnostic:before {
+  content: "\e905";
+  color: #ab7500;
+}
+.icon-Multiple-Protocols:before {
+  content: "\e906";
+  color: #ab7500;
+}
+.icon-Negative-Testing:before {
+  content: "\e907";
+  color: #ab7500;
+}
+.icon-No-Code:before {
+  content: "\e908";
+  color: #ab7500;
+}
+.icon-Platform-Independent:before {
+  content: "\e909";
+  color: #ab7500;
+}
+.icon-Proxy-Mode:before {
+  content: "\e90a";
+  color: #ab7500;
+}
+.icon-Woven-into-your-CI-Pipelines:before {
+  content: "\e90b";
+  color: #ab7500;
+}
+.icon-openapiinitiative:before {
+  content: "\e914";
+  color: #6ba539;
+}
+.icon-visualstudio:before {
+  content: "\e915";
+  color: #5c2d91;
+}
+.icon-visualstudiocode:before {
+  content: "\e90c";
+}
+.icon-play:before {
+  content: "\e911";
+}
+.icon-download:before {
+  content: "\e90d";
+}
+.icon-smile:before {
+  content: "\e90e";
+}
+.icon-clock:before {
+  content: "\e90f";
+}
 .icon-mail4:before {
   content: "\ea86";
 }

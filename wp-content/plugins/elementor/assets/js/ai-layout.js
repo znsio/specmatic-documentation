@@ -1,4 +1,4 @@
-/*! elementor - v3.18.0 - 08-12-2023 */
+/*! elementor - v3.18.0 - 20-12-2023 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -61,6 +61,7 @@ var AiLayoutBehavior = /*#__PURE__*/function (_Marionette$Behavior) {
     value: function onAiButtonClick(e) {
       e.stopPropagation();
       (0, _editorIntegration.renderLayoutApp)({
+        parentContainer: elementor.getPreviewContainer(),
         mode: _config.MODE_LAYOUT,
         at: this.view.getOption('at'),
         onInsert: this.onInsert.bind(this),
@@ -82,6 +83,7 @@ var AiLayoutBehavior = /*#__PURE__*/function (_Marionette$Behavior) {
     value: function onInsert(template) {
       this.hideDropArea();
       (0, _editorIntegration.importToEditor)({
+        parentContainer: elementor.getPreviewContainer(),
         at: this.view.getOption('at'),
         template: template,
         historyTitle: (0, _i18n.__)('AI Layout', 'elementor')
@@ -4849,6 +4851,7 @@ var EDITOR_SESSION_ID = "editor-session-".concat((0, _generateIds.getUniqueId)()
 var renderLayoutApp = function renderLayoutApp() {
   var _options$onRenderApp;
   var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    parentContainer: null,
     mode: '',
     at: null,
     onClose: null,
@@ -4859,7 +4862,7 @@ var renderLayoutApp = function renderLayoutApp() {
     attachments: []
   };
   closePanel();
-  var previewContainer = (0, _previewContainer.createPreviewContainer)({
+  var previewContainer = (0, _previewContainer.createPreviewContainer)(options.parentContainer, {
     // Create the container at the "drag widget here" area position.
     at: options.at
   });
@@ -4967,7 +4970,8 @@ var renderLayoutApp = function renderLayoutApp() {
 };
 exports.renderLayoutApp = renderLayoutApp;
 var importToEditor = function importToEditor(_ref2) {
-  var at = _ref2.at,
+  var parentContainer = _ref2.parentContainer,
+    at = _ref2.at,
     template = _ref2.template,
     historyTitle = _ref2.historyTitle,
     _ref2$replace = _ref2.replace,
@@ -4978,11 +4982,11 @@ var importToEditor = function importToEditor(_ref2) {
   });
   if (replace) {
     $e.run('document/elements/delete', {
-      container: elementor.getPreviewContainer().children.at(at)
+      container: parentContainer.children.at(at)
     });
   }
   $e.run('document/elements/create', {
-    container: elementor.getPreviewContainer(),
+    container: parentContainer,
     model: (0, _generateIds.generateIds)(template),
     options: {
       at: at,
@@ -5087,13 +5091,24 @@ var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/
 var _history = __webpack_require__(/*! ./history */ "../modules/ai/assets/js/editor/utils/history.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+/**
+ * @typedef {import('elementor/assets/dev/js/editor/container/container')} Container
+ */
+
 var PREFIX = 'e-ai-preview-container';
 var CLASS_HIDDEN = PREFIX + '--hidden';
 var CLASS_IDLE = PREFIX + '--idle';
-function createPreviewContainer() {
-  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+/**
+ * @param {Container} parentContainer
+ * @param {{}}        containerOptions
+ * @return {{init, setContent, reset, destroy}}
+ */
+
+function createPreviewContainer(parentContainer) {
+  var containerOptions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   var createdContainers = new Map();
-  var idleContainer = createIdleContainer(options);
+  var idleContainer = createIdleContainer(parentContainer, containerOptions);
   function init() {
     showContainer(idleContainer);
   }
@@ -5111,7 +5126,7 @@ function createPreviewContainer() {
     }
     hideContainers(getAllContainers());
     if (!createdContainers.has(template)) {
-      var newContainer = createContainer(template, options);
+      var newContainer = createContainer(parentContainer, template, containerOptions);
       createdContainers.set(template, newContainer);
     }
     showContainer(createdContainers.get(template));
@@ -5127,11 +5142,18 @@ function createPreviewContainer() {
     destroy: destroy
   };
 }
-function createContainer(model) {
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+/**
+ * @param {Container} parentContainer
+ * @param {{}}        model
+ * @param {{}}        options
+ * @return {*}
+ */
+function createContainer(parentContainer, model) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
   (0, _history.toggleHistory)(false);
   var container = $e.run('document/elements/create', {
-    container: elementor.getPreviewContainer(),
+    container: parentContainer,
     model: _objectSpread(_objectSpread({}, model), {}, {
       id: "".concat(PREFIX, "-").concat(elementorCommon.helpers.getUniqueId().toString())
     }),
@@ -5143,12 +5165,18 @@ function createContainer(model) {
   container.view.$el.addClass(CLASS_HIDDEN);
   return container;
 }
-function createIdleContainer() {
-  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+/**
+ * @param {Container} parentContainer
+ * @param {{}}        containerOptions
+ * @return {*}
+ */
+function createIdleContainer(parentContainer) {
+  var containerOptions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   // Create an empty container that'll be used of UI purposes.
-  var container = createContainer({
+  var container = createContainer(parentContainer, {
     elType: 'container'
-  }, options);
+  }, containerOptions);
   container.view.$el.addClass(CLASS_IDLE);
   return container;
 }
@@ -10445,6 +10473,7 @@ var Module = /*#__PURE__*/function (_elementorModules$edi) {
                     label: container.model.get('title')
                   }];
                   (0, _editorIntegration.renderLayoutApp)({
+                    parentContainer: container.parent,
                     mode: _config.MODE_VARIATION,
                     at: container.view._index,
                     attachments: attachments,
@@ -10456,6 +10485,7 @@ var Module = /*#__PURE__*/function (_elementorModules$edi) {
                     },
                     onInsert: function onInsert(template) {
                       (0, _editorIntegration.importToEditor)({
+                        parentContainer: container.parent,
                         at: container.view._index,
                         template: template,
                         historyTitle: (0, _i18n.__)('AI Variation', 'elementor'),

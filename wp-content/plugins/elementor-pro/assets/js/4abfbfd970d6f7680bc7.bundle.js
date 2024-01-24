@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.18.0 - 06-12-2023 */
+/*! elementor-pro - v3.18.0 - 17-01-2024 */
 "use strict";
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["modules_query-control_assets_js_editor_template-query-control_js"],{
 
