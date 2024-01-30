@@ -1,5 +1,7 @@
 // @ts-nocheck
 
+document.addEventListener('DOMContentLoaded', function() {
+
 // Selectors
 const planCards = document.querySelectorAll(".specmatic-user-type-card");
 const pricingForm = document.getElementById("pricing-form");
@@ -221,4 +223,6 @@ otherCheckboxes.forEach(checkbox => {
             noneCheckbox.disabled = false;
         }
     });
+});
+
 });
