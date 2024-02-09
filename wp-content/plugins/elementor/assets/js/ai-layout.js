@@ -1,4 +1,4 @@
-/*! elementor - v3.19.0 - 29-01-2024 */
+/*! elementor - v3.19.0 - 07-02-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -3037,54 +3037,6 @@ LibraryDialog.propTypes = {
 
 /***/ }),
 
-/***/ "../modules/ai/assets/js/editor/pages/form-layout/components/attachments/menu-item.js":
-/*!********************************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-layout/components/attachments/menu-item.js ***!
-  \********************************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.MenuItem = void 0;
-var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
-var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js"));
-var MenuItem = function MenuItem(props) {
-  var IconComponent = props.icon;
-  return /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    direction: "row",
-    spacing: 1,
-    sx: {
-      cursor: 'pointer',
-      alignItems: 'center',
-      p: 2
-    },
-    variant: "body2",
-    onClick: props.onClick
-  }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    sx: {
-      height: 18
-    }
-  }, /*#__PURE__*/_react.default.createElement(IconComponent, {
-    sx: {
-      me: 1
-    }
-  })), /*#__PURE__*/_react.default.createElement(_ui.Typography, null, props.title));
-};
-exports.MenuItem = MenuItem;
-MenuItem.propTypes = {
-  title: _propTypes.default.string.isRequired,
-  onClick: _propTypes.default.func.isRequired,
-  icon: _propTypes.default.elementType
-};
-
-/***/ }),
-
 /***/ "../modules/ai/assets/js/editor/pages/form-layout/components/attachments/menu.js":
 /*!***************************************************************************************!*\
   !*** ../modules/ai/assets/js/editor/pages/form-layout/components/attachments/menu.js ***!
@@ -3103,7 +3055,6 @@ exports.Menu = void 0;
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _menuItem = __webpack_require__(/*! ./menu-item */ "../modules/ai/assets/js/editor/pages/form-layout/components/attachments/menu-item.js");
 var _xCircleIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/x-circle-icon */ "../modules/ai/assets/js/editor/icons/x-circle-icon.js"));
 var _plusCircleIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/plus-circle-icon */ "../modules/ai/assets/js/editor/icons/plus-circle-icon.js"));
 var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js"));
@@ -3153,15 +3104,14 @@ var Menu = function Menu(props) {
       width: 440
     }
   }, props.items.map(function (item) {
-    return /*#__PURE__*/_react.default.createElement(_menuItem.MenuItem, {
+    var IconComponent = item.icon;
+    return /*#__PURE__*/_react.default.createElement(_ui.MenuItem, {
       key: item.type,
-      title: item.title,
-      icon: item.icon,
       onClick: function onClick() {
         setSelectedType(item.type);
         setIsOpen(false);
       }
-    });
+    }, /*#__PURE__*/_react.default.createElement(_ui.ListItemIcon, null, /*#__PURE__*/_react.default.createElement(IconComponent, null)), item.title);
   }))), /*#__PURE__*/_react.default.createElement(_attachDialog.AttachDialog, {
     type: selectedType,
     onAttach: props.onAttach,

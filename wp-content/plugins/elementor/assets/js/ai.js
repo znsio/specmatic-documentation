@@ -1,4 +1,4 @@
-/*! elementor - v3.19.0 - 29-01-2024 */
+/*! elementor - v3.19.0 - 07-02-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -4999,9 +4999,10 @@ var Module = /*#__PURE__*/function (_elementorModules$edi) {
   }, {
     key: "getContextData",
     value: function getContextData(view, controlType) {
+      var controlName = view.options.model.get('name');
       if (!view.options.container) {
         return {
-          controlName: view.options.model.get('name'),
+          controlName: controlName,
           controlType: controlType
         };
       }
@@ -5010,8 +5011,9 @@ var Module = /*#__PURE__*/function (_elementorModules$edi) {
         elementType: view.options.container.args.model.get('elType'),
         elementId: view.options.container.id,
         widgetType: view.options.container.args.model.get('widgetType'),
-        controlName: view.options.model.get('name'),
-        controlType: controlType
+        controlName: controlName,
+        controlType: controlType,
+        controlValue: view.options.container.settings.get(controlName)
       };
     }
   }]);
