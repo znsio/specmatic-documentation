@@ -6,6 +6,7 @@
 /** General >> Section (#1) has ast global color 4 color **/
 aside > section:nth-of-type(1) > .has-ast-global-color-4-color {
 	font-weight: 600 !important;
+	margin-bottom: 20px !important;
 }
 
 /** General >> Paragraph _2 **/
@@ -654,6 +655,12 @@ html {
 	max-width: 800px !important;
 }
 
+	/** General >> Footer widget area inner **/
+	.site-footer-above-section-2 .footer-widget-area-inner {
+	position: relative !important;
+	top: -10px !important;
+}
+
 	/** General 2 >> Elementor element populated Moved 1 **/
 	.mtp-10 .elementor-element-8b3e7ba .elementor-element-populated {
 	min-width: 130px !important;
@@ -801,6 +808,7 @@ html {
 	/** General >> Section (#1) has ast global color 4 color **/
 	aside > section:nth-of-type(1) > .has-ast-global-color-4-color {
 	text-align: center !important;
+	margin-bottom: 20px !important;
 }
 
 	/** General 2 >> Ast menu toggle **/
@@ -956,7 +964,7 @@ html {
 
 	/** General >> Footer widget area inner **/
 	.site-footer-above-section-2 .footer-widget-area-inner {
-	margin-bottom: 25px !important;
+	margin-bottom: 0 !important;
 }
 
 	/** General >> Ast footer social 1 wrap **/
