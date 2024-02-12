@@ -3,6 +3,7 @@
     --specmatic-purple-1: #47006f;
     --specmatic-purple-2: #580089;
     --specmatic-hover-gold: #FFB30F;
+    --specmatic-hover-green: #32a412;
 }
 
 .pricing-body {
@@ -23,11 +24,17 @@
 
 .pricing-form {
     display: none;
-    width: calc(100% - 40px);
-    max-width: 800px;
     padding: 20px;
     margin: 0 auto;
 }
+
+.spec-team-grp,
+.personal-info-inputs{
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+
 
 .input-container {
     margin-bottom: 20px;
@@ -38,21 +45,23 @@
 }
 
 .pricing-form input[type="range"] {
-    width: calc(100% - 40px);
+    /* width: calc(100% - 40px); */
+    width: 100%;
 }
 
 .pricing-form input[type="email"],
 .pricing-form input[type="text"]
  {
-    width: calc(100% - 40px);
-    height: 25px;
+    width: 100%;
+    height: 35px;
     padding: 5px 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
 }
 
 .pricing-form select {
-    width: calc(100% - 20px);
+    /* width: calc(100% - 20px); */
+    width: 100%;
     height: 35px;
     padding: 5px 10px;
     border: 1px solid #ccc;
@@ -238,16 +247,21 @@
     cursor: pointer;
     border: none;
     width: 100%;
-    height: 48px;
     border-radius: 6px;
     color: #fff;
+    border: 1px solid gray;
     background: linear-gradient(90deg, var(--specmatic-purple-1) 0%, #7100ad 100%);
+}
+
+.pricing-cta-btn:hover {
+    background: var(--specmatic-hover-green);
+    color:#fff;
 }
 
 .recommended-header {
     width: 100%;
     border-radius: 6px 6px 0px 0px;
-    background: #ffb30f;
+    background: var(--specmatic-hover-gold);
     display: none;
     justify-content: center;
     align-items: center;
@@ -276,11 +290,18 @@
 }
 
 .recommended-plan button {
-    background: white !important;
+    background: white;
+    color: var(--specmatic-purple-2);
 }
 
-.recommended-plan button {
-    color: var(--specmatic-purple-2) !important;
+.recommended-plan button:hover {
+    background: var(--specmatic-hover-green);
+    color:#fff;
+}
+
+.recommended-plan button:hover:disabled,
+.pricing-cta-btn:hover:disabled {
+    background: darkgray;
 }
 
 .recommended-plan .feature-list li {
@@ -391,12 +412,6 @@
     line-height: normal;
 }
 
-.view-cta {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .pricing-grids {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -416,7 +431,6 @@
     position: absolute;
     bottom: 40px;
     left: 50%;
-
     padding: 5px 10px;
     border-radius: 4px;
     background-color: var(--specmatic-purple-1);
@@ -460,17 +474,6 @@
     background: #fff;
 }
 
-.disabled-btn {
-    cursor: not-allowed;
-    opacity: 0.5;
-    width: 300px;
-    height: 48px;
-    flex-shrink: 0;
-    border-radius: 6px;
-    border: 1px solid gray;
-    background: #fff;
-}
-
 .plan-unavailable {
     cursor: not-allowed;
     border: 1px solid gray;
@@ -487,7 +490,8 @@
     font-size: large;
 }
 .pricing-cta-btn {
-	padding-top: 5px !important;
+	padding-top: 10px;
+    padding-bottom: 10px;
 }
 .plan-name {
     font-size: xx-large;
@@ -498,6 +502,15 @@
 .plan-price {
     font-size: x-large;
     padding-bottom: 20px;
+}
+
+.hide-inputs{
+    display: none;
+}
+
+.personal-info-inputs{
+    margin-top: 50px;
+    margin-bottom: 20px;
 }
 
 @media (max-width: 768px) {
@@ -523,11 +536,6 @@
     .pricing-grids {
         display: grid;
         grid-template-columns: 1fr;
-    }
-
-    .enabled-btn,
-    .disabled-btn {
-       width: calc(100% - 20px);
     }
 
     .pricing-form select {
