@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>JDBC &#8211; Specmatic</title>
+	<atom:link href="https://specmatic.in/tag/jdbc/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.in/</link>
+	<description>Contract Driven Development</description>
+	<lastBuildDate>Mon, 14 Aug 2023 11:39:37 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.4.3</generator>
+
+<image>
+	<url>https://specmatic.in/wp-content/uploads/2022/09/Favicon.png</url>
+	<title>JDBC &#8211; Specmatic</title>
+	<link>https://specmatic.in/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Break the Chains of Database Dependencies: Leveraging Specmatic for JDBC Stubbing</title>
+		<link>https://specmatic.in/updates/jdbc-stubbing-with-specmatic-contract-testing/</link>
+		
+		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
+		<pubDate>Mon, 14 Aug 2023 10:23:30 +0000</pubDate>
+				<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[JDBC]]></category>
+		<category><![CDATA[Stubbing]]></category>
+		<guid isPermaLink="false">https://specmatic.in/?p=1742</guid>
+
+					<description><![CDATA[With Specmatic JDBC stub, you can easily test APIs without the need for a complex database setup. By switching out the real database with a Specmatic JDBC stub, we can set expectations for the stub to respond to specific queries. These expectations can be recorded based on actual interactions. Once the expectations are set, we no longer need the database for our tests!]]></description>
+		
+		
+		
+			</item>
+	</channel>
+</rss>

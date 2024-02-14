@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Feature Spotlight &#8211; Specmatic</title>
+	<atom:link href="https://specmatic.in/category/features/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.in/</link>
+	<description>Contract Driven Development</description>
+	<lastBuildDate>Fri, 15 Dec 2023 03:16:32 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.4.3</generator>
+
+<image>
+	<url>https://specmatic.in/wp-content/uploads/2022/09/Favicon.png</url>
+	<title>Feature Spotlight &#8211; Specmatic</title>
+	<link>https://specmatic.in/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Introduction to Contract Driven Development with Specmatic</title>
+		<link>https://specmatic.in/updates/introduction-to-contract-driven-development-with-specmatic/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Wed, 06 Dec 2023 22:52:34 +0000</pubDate>
+				<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[AsyncAPI]]></category>
+		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Kafka]]></category>
+		<category><![CDATA[OpenAPI]]></category>
+		<category><![CDATA[Specmatic]]></category>
+		<guid isPermaLink="false">https://specmatic.in/?p=3776</guid>
+
+					<description><![CDATA[Transcript Hi, welcome to this demo of contract-driven development where I&#8217;m going to use Specmatic, an open-source tool to turn your API specification into executable contracts. We have an app which sends a request to a BFF, a backend for frontend, which in turn sends a request to a domain service. Notice you could have [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Early detection of mismatches between your API specs and implementation: Exploring Specmatic&#8217;s API Coverage Report</title>
+		<link>https://specmatic.in/updates/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/</link>
+		
+		<dc:creator><![CDATA[Jaydeep Kulkarni]]></dc:creator>
+		<pubDate>Tue, 29 Aug 2023 00:47:04 +0000</pubDate>
+				<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[API Coverage Report]]></category>
+		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[OpenAPI]]></category>
+		<guid isPermaLink="false">https://specmatic.in/?p=1966</guid>
+
+					<description><![CDATA[Specmatic’s API coverage report helps identify any mismatches between an OpenAPI specification and an application's endpoints early in the development lifecycle. The report lists all the endpoints, their coverage, and indicates if they are missing in the spec or not implemented in the application. You can define success criteria for the API coverage report and fix issues. ]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Break the Chains of Database Dependencies: Leveraging Specmatic for JDBC Stubbing</title>
+		<link>https://specmatic.in/updates/jdbc-stubbing-with-specmatic-contract-testing/</link>
+		
+		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
+		<pubDate>Mon, 14 Aug 2023 10:23:30 +0000</pubDate>
+				<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[JDBC]]></category>
+		<category><![CDATA[Stubbing]]></category>
+		<guid isPermaLink="false">https://specmatic.in/?p=1742</guid>
+
+					<description><![CDATA[With Specmatic JDBC stub, you can easily test APIs without the need for a complex database setup. By switching out the real database with a Specmatic JDBC stub, we can set expectations for the stub to respond to specific queries. These expectations can be recorded based on actual interactions. Once the expectations are set, we no longer need the database for our tests!]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>JMS Mocking with AsyncAPI using Specmatic</title>
+		<link>https://specmatic.in/updates/jms-mocking-with-asyncapi-using-specmatic/</link>
+		
+		<dc:creator><![CDATA[Jaydeep Kulkarni]]></dc:creator>
+		<pubDate>Tue, 25 Jul 2023 06:05:31 +0000</pubDate>
+				<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[AsyncAPI]]></category>
+		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[Demonstration]]></category>
+		<guid isPermaLink="false">https://specmatic.in/?p=1702</guid>
+
+					<description><![CDATA[The JMS mock is wire compatible and can be controlled entirely from within the test. This means you can run the test locally or also as part of your continuous integration build to provide quick feedback early in the cycle.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Kafka Mocking with AsyncAPI using Specmatic</title>
+		<link>https://specmatic.in/updates/kafka-mocking-with-asyncapi-using-specmatic/</link>
+		
+		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
+		<pubDate>Tue, 18 Jul 2023 04:40:27 +0000</pubDate>
+				<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[AsyncAPI]]></category>
+		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[Kafka]]></category>
+		<category><![CDATA[OpenAPI]]></category>
+		<guid isPermaLink="false">https://specmatic.in/?p=1665</guid>
+
+					<description><![CDATA[The Specmatic Kafka mock is wire compatible and entirely within the control of the test, the test can run locally and in CI and deliver quick feedback early in the cycle. So the application itself runs exactly as it would with a real Kafka.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Redis Stubbing with Specmatic Contract Testing</title>
+		<link>https://specmatic.in/updates/redis-stubbing-with-specmatic-contract-testing/</link>
+		
+		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
+		<pubDate>Tue, 11 Jul 2023 03:17:59 +0000</pubDate>
+				<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[Redis]]></category>
+		<category><![CDATA[Stubbing]]></category>
+		<guid isPermaLink="false">https://specmatic.in/?p=1625</guid>
+
+					<description><![CDATA[Instead of using an actual instance of Redis, we'll stub it out and have the contract test set expectations so that the Redis stub knows what data to return for any query sent to it by the application. Now, when we run the contract tests and the service object does a look up in Redis, it's actually hitting the Redis stub.]]></description>
+		
+		
+		
+			</item>
+	</channel>
+</rss>

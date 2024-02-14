@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Jaydeep Kulkarni &#8211; Specmatic</title>
+	<atom:link href="https://specmatic.in/author/jaydeep/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.in/</link>
+	<description>Contract Driven Development</description>
+	<lastBuildDate>Mon, 02 Oct 2023 04:38:35 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.4.3</generator>
+
+<image>
+	<url>https://specmatic.in/wp-content/uploads/2022/09/Favicon.png</url>
+	<title>Jaydeep Kulkarni &#8211; Specmatic</title>
+	<link>https://specmatic.in/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Early detection of mismatches between your API specs and implementation: Exploring Specmatic&#8217;s API Coverage Report</title>
+		<link>https://specmatic.in/updates/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/</link>
+		
+		<dc:creator><![CDATA[Jaydeep Kulkarni]]></dc:creator>
+		<pubDate>Tue, 29 Aug 2023 00:47:04 +0000</pubDate>
+				<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[API Coverage Report]]></category>
+		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[OpenAPI]]></category>
+		<guid isPermaLink="false">https://specmatic.in/?p=1966</guid>
+
+					<description><![CDATA[Specmatic’s API coverage report helps identify any mismatches between an OpenAPI specification and an application's endpoints early in the development lifecycle. The report lists all the endpoints, their coverage, and indicates if they are missing in the spec or not implemented in the application. You can define success criteria for the API coverage report and fix issues. ]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>JMS Mocking with AsyncAPI using Specmatic</title>
+		<link>https://specmatic.in/updates/jms-mocking-with-asyncapi-using-specmatic/</link>
+		
+		<dc:creator><![CDATA[Jaydeep Kulkarni]]></dc:creator>
+		<pubDate>Tue, 25 Jul 2023 06:05:31 +0000</pubDate>
+				<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[AsyncAPI]]></category>
+		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[Demonstration]]></category>
+		<guid isPermaLink="false">https://specmatic.in/?p=1702</guid>
+
+					<description><![CDATA[The JMS mock is wire compatible and can be controlled entirely from within the test. This means you can run the test locally or also as part of your continuous integration build to provide quick feedback early in the cycle.]]></description>
+		
+		
+		
+			</item>
+	</channel>
+</rss>
