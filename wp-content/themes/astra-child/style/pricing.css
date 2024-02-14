@@ -254,8 +254,8 @@
 }
 
 .pricing-cta-btn:hover {
-    background: var(--specmatic-hover-green);
-    color:#fff;
+    background: var(--specmatic-hover-green) !important;
+    color:#fff !important;
 }
 
 .recommended-header {
