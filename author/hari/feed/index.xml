@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.in/author/hari/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.in/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Mon, 02 Oct 2023 04:34:22 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 23 Feb 2024 03:15:21 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,21 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Specmatic Docker Image now available</title>
+		<link>https://specmatic.in/updates/specmatic-docker-image/</link>
+		
+		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
+		<pubDate>Fri, 23 Feb 2024 03:12:41 +0000</pubDate>
+				<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<guid isPermaLink="false">https://specmatic.in/?p=4423</guid>
+
+					<description><![CDATA[Specmatic is now available as a Docker image! Turn your API specifications into executable contracts in seconds. Your favorite features such as contract tests, intelligent service virtualization, backward compatibility testing and more are all available through Specmatic Docker image. Getting started has never been easier. Get the Docker Image Now: https://hub.docker.com/r/znsio/specmatic Getting started in 5 [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Break the Chains of Database Dependencies: Leveraging Specmatic for JDBC Stubbing</title>
 		<link>https://specmatic.in/updates/jdbc-stubbing-with-specmatic-contract-testing/</link>
 		
