@@ -8,8 +8,8 @@
 	>
 
 <channel>
-	<title>Naresh Jain &#8211; Specmatic</title>
-	<atom:link href="https://specmatic.in/author/naresh/feed/" rel="self" type="application/rss+xml" />
+	<title>Workshop &#8211; Specmatic</title>
+	<atom:link href="https://specmatic.in/category/workshop/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.in/</link>
 	<description>Contract Driven Development</description>
 	<lastBuildDate>Mon, 26 Feb 2024 09:32:53 +0000</lastBuildDate>
@@ -22,7 +22,7 @@
 
 <image>
 	<url>https://specmatic.in/wp-content/uploads/2022/09/Favicon.png</url>
-	<title>Naresh Jain &#8211; Specmatic</title>
+	<title>Workshop &#8211; Specmatic</title>
 	<link>https://specmatic.in/</link>
 	<width>32</width>
 	<height>32</height>
