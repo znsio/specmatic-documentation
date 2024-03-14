@@ -1,4 +1,4 @@
-/*! elementor - v3.19.0 - 07-02-2024 */
+/*! elementor - v3.20.0 - 13-03-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -835,31 +835,27 @@ var getRemoteConfig = function getRemoteConfig() {
   return request('ai_get_remote_config');
 };
 exports.getRemoteConfig = getRemoteConfig;
-var getCompletionText = function getCompletionText(prompt) {
+var getCompletionText = function getCompletionText(payload) {
   return request('ai_get_completion_text', {
-    prompt: prompt
+    payload: payload
   });
 };
 exports.getCompletionText = getCompletionText;
-var getEditText = function getEditText(input, instruction) {
+var getEditText = function getEditText(payload) {
   return request('ai_get_edit_text', {
-    input: input,
-    instruction: instruction
+    payload: payload
   });
 };
 exports.getEditText = getEditText;
-var getCustomCode = function getCustomCode(prompt, language) {
+var getCustomCode = function getCustomCode(payload) {
   return request('ai_get_custom_code', {
-    prompt: prompt,
-    language: language
+    payload: payload
   });
 };
 exports.getCustomCode = getCustomCode;
-var getCustomCSS = function getCustomCSS(prompt, htmlMarkup, elementId) {
+var getCustomCSS = function getCustomCSS(payload) {
   return request('ai_get_custom_css', {
-    prompt: prompt,
-    html_markup: htmlMarkup,
-    element_id: elementId
+    payload: payload
   });
 };
 exports.getCustomCSS = getCustomCSS;
@@ -873,56 +869,45 @@ var setStatusFeedback = function setStatusFeedback(responseId) {
   });
 };
 exports.setStatusFeedback = setStatusFeedback;
-var getTextToImageGeneration = function getTextToImageGeneration(prompt, promptSettings) {
+var getTextToImageGeneration = function getTextToImageGeneration(payload) {
   return request('ai_get_text_to_image', {
-    prompt: prompt,
-    promptSettings: promptSettings
+    payload: payload
   });
 };
 exports.getTextToImageGeneration = getTextToImageGeneration;
-var getImageToImageGeneration = function getImageToImageGeneration(prompt, promptSettings, image) {
+var getImageToImageGeneration = function getImageToImageGeneration(payload) {
   return request('ai_get_image_to_image', {
-    prompt: prompt,
-    promptSettings: promptSettings,
-    image: image
+    payload: payload
   });
 };
 exports.getImageToImageGeneration = getImageToImageGeneration;
-var getImageToImageMaskGeneration = function getImageToImageMaskGeneration(prompt, promptSettings, image, mask) {
+var getImageToImageMaskGeneration = function getImageToImageMaskGeneration(payload) {
   return request('ai_get_image_to_image_mask', {
-    prompt: prompt,
-    promptSettings: promptSettings,
-    image: image,
-    mask: mask
+    payload: payload
   });
 };
 exports.getImageToImageMaskGeneration = getImageToImageMaskGeneration;
-var getImageToImageOutPainting = function getImageToImageOutPainting(prompt, promptSettings, image, mask) {
+var getImageToImageOutPainting = function getImageToImageOutPainting(payload) {
   return request('ai_get_image_to_image_outpainting', {
-    prompt: prompt,
-    promptSettings: promptSettings,
-    mask: mask
+    payload: payload
   });
 };
 exports.getImageToImageOutPainting = getImageToImageOutPainting;
-var getImageToImageUpscale = function getImageToImageUpscale(prompt, promptSettings, image) {
+var getImageToImageUpscale = function getImageToImageUpscale(payload) {
   return request('ai_get_image_to_image_upscale', {
-    prompt: prompt,
-    promptSettings: promptSettings,
-    image: image
+    payload: payload
   });
 };
 exports.getImageToImageUpscale = getImageToImageUpscale;
-var getImageToImageRemoveBackground = function getImageToImageRemoveBackground(image) {
+var getImageToImageRemoveBackground = function getImageToImageRemoveBackground(payload) {
   return request('ai_get_image_to_image_remove_background', {
-    image: image
+    payload: payload
   });
 };
 exports.getImageToImageRemoveBackground = getImageToImageRemoveBackground;
-var getImageToImageReplaceBackground = function getImageToImageReplaceBackground(prompt, image) {
+var getImageToImageReplaceBackground = function getImageToImageReplaceBackground(payload) {
   return request('ai_get_image_to_image_replace_background', {
-    prompt: prompt,
-    image: image
+    payload: payload
   });
 };
 exports.getImageToImageReplaceBackground = getImageToImageReplaceBackground;
@@ -1451,7 +1436,7 @@ var PromptLibraryLink = function PromptLibraryLink(props) {
   return /*#__PURE__*/_react.default.createElement(_ui.Typography, {
     variant: "body2",
     color: "text.secondary"
-  }, (0, _i18n.__)('For more inspiration, try experimenting with proven prompts from our'), ' ', /*#__PURE__*/_react.default.createElement(_ui.Link, {
+  }, (0, _i18n.__)('For more suggestions, explore our'), ' ', /*#__PURE__*/_react.default.createElement(_ui.Link, {
     href: props.libraryLink,
     className: "elementor-clickable",
     target: "_blank"
@@ -1643,6 +1628,62 @@ UpgradeChip.propTypes = {
 
 /***/ }),
 
+/***/ "../modules/ai/assets/js/editor/components/voice-promotion-alert.js":
+/*!**************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/voice-promotion-alert.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = exports.VoicePromotionAlert = void 0;
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _bulbIcon = _interopRequireDefault(__webpack_require__(/*! ../icons/bulb-icon */ "../modules/ai/assets/js/editor/icons/bulb-icon.js"));
+var _useIntroduction2 = _interopRequireDefault(__webpack_require__(/*! ../hooks/use-introduction */ "../modules/ai/assets/js/editor/hooks/use-introduction.js"));
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+var VoicePromotionAlert = function VoicePromotionAlert(props) {
+  var _useIntroduction = (0, _useIntroduction2.default)(props.introductionKey),
+    isViewed = _useIntroduction.isViewed,
+    markAsViewed = _useIntroduction.markAsViewed;
+  if (!isViewed) {
+    return null;
+  }
+  return /*#__PURE__*/_react.default.createElement(_ui.Box, {
+    sx: _objectSpread({
+      mt: 2
+    }, props.sx),
+    alignItems: "top"
+  }, /*#__PURE__*/_react.default.createElement(_ui.Alert, {
+    severity: "info",
+    variant: "standard",
+    icon: /*#__PURE__*/_react.default.createElement(_bulbIcon.default, {
+      sx: {
+        alignSelf: 'flex-start'
+      }
+    }),
+    onClose: markAsViewed
+  }, __('Get improved results from AI by adding some personal context. Go to Site Settings > AI Context to get started.')));
+};
+exports.VoicePromotionAlert = VoicePromotionAlert;
+VoicePromotionAlert.propTypes = {
+  sx: PropTypes.object,
+  introductionKey: PropTypes.string
+};
+var _default = VoicePromotionAlert;
+exports["default"] = _default;
+
+/***/ }),
+
 /***/ "../modules/ai/assets/js/editor/components/wizard-dialog.js":
 /*!******************************************************************!*\
   !*** ../modules/ai/assets/js/editor/components/wizard-dialog.js ***!
@@ -1706,6 +1747,92 @@ WizardDialogContent.propTypes = {
 WizardDialog.Header = _dialogHeader.default;
 WizardDialog.Content = WizardDialogContent;
 var _default = WizardDialog;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/context/requests-ids.js":
+/*!**************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/context/requests-ids.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = exports.RequestIdsProvider = void 0;
+exports.generateIds = generateIds;
+exports.useRequestIds = exports.getUniqueId = void 0;
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js"));
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+var Context = (0, _react.createContext)({});
+var useRequestIds = function useRequestIds() {
+  var context = (0, _react.useContext)(Context);
+  if (!context) {
+    throw new Error('useRequestIds must be used within a RequestIdsProvider');
+  }
+  return context;
+};
+exports.useRequestIds = useRequestIds;
+var getUniqueId = function getUniqueId(prefix) {
+  return prefix + '-' + Math.random().toString(16).substr(2, 7);
+};
+exports.getUniqueId = getUniqueId;
+window.EDITOR_SESSION_ID = window.EDITOR_SESSION_ID || getUniqueId('editor-session');
+function generateIds(template) {
+  var _template$elements;
+  template.id = getUniqueId().toString();
+  if ((_template$elements = template.elements) !== null && _template$elements !== void 0 && _template$elements.length) {
+    template.elements.map(function (child) {
+      return generateIds(child);
+    });
+  }
+  return template;
+}
+var RequestIdsProvider = function RequestIdsProvider(props) {
+  var editorSessionId = (0, _react.useRef)(window.EDITOR_SESSION_ID);
+  var sessionId = (0, _react.useRef)('');
+  var generateId = (0, _react.useRef)('');
+  var batchId = (0, _react.useRef)('');
+  var requestId = (0, _react.useRef)('');
+  sessionId.current = getUniqueId('session');
+  var setGenerate = function setGenerate() {
+    generateId.current = getUniqueId('generate');
+    return generateId;
+  };
+  var setBatch = function setBatch() {
+    batchId.current = getUniqueId('batch');
+    return batchId;
+  };
+  var setRequest = function setRequest() {
+    requestId.current = getUniqueId('request');
+    return requestId;
+  };
+  return /*#__PURE__*/_react.default.createElement(Context.Provider, {
+    value: {
+      editorSessionId: editorSessionId,
+      sessionId: sessionId,
+      generateId: generateId,
+      batchId: batchId,
+      requestId: requestId,
+      setGenerate: setGenerate,
+      setBatch: setBatch,
+      setRequest: setRequest
+    }
+  }, props.children);
+};
+exports.RequestIdsProvider = RequestIdsProvider;
+RequestIdsProvider.propTypes = {
+  children: _propTypes.default.node.isRequired
+};
+var _default = Context;
 exports["default"] = _default;
 
 /***/ }),
@@ -1841,6 +1968,7 @@ var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runt
 var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
 var _react = __webpack_require__(/*! react */ "react");
 var _api = __webpack_require__(/*! ../api */ "../modules/ai/assets/js/editor/api/index.js");
+var _requestsIds = __webpack_require__(/*! ../context/requests-ids */ "../modules/ai/assets/js/editor/context/requests-ids.js");
 var _excluded = ["text", "response_id", "usage", "images"];
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -1877,22 +2005,32 @@ var usePrompt = function usePrompt(fetchData, initialState) {
     _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
     data = _useState6[0],
     setData = _useState6[1];
+  var _useRequestIds = (0, _requestsIds.useRequestIds)(),
+    setRequest = _useRequestIds.setRequest,
+    editorSessionId = _useRequestIds.editorSessionId,
+    sessionId = _useRequestIds.sessionId,
+    generateId = _useRequestIds.generateId,
+    batchId = _useRequestIds.batchId;
   var send = /*#__PURE__*/function () {
-    var _ref2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-      var _len,
-        args,
-        _key,
-        _args = arguments;
+    var _ref2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(payload) {
       return _regenerator.default.wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
-            for (_len = _args.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-              args[_key] = _args[_key];
-            }
             return _context.abrupt("return", new Promise(function (resolve, reject) {
               setError('');
               setIsLoading(true);
-              fetchData.apply(void 0, args).then(function (result) {
+              var requestId = setRequest();
+              var requestIds = {
+                editorSessionId: editorSessionId.current,
+                sessionId: sessionId.current,
+                generateId: generateId.current,
+                batchId: batchId.current,
+                requestId: requestId.current
+              };
+              payload = _objectSpread(_objectSpread({}, payload), {}, {
+                requestIds: requestIds
+              });
+              fetchData(payload).then(function (result) {
                 var normalizedData = normalizeResponse(result);
                 setData(normalizedData);
                 resolve(normalizedData);
@@ -1904,13 +2042,13 @@ var usePrompt = function usePrompt(fetchData, initialState) {
                 return setIsLoading(false);
               });
             }));
-          case 2:
+          case 1:
           case "end":
             return _context.stop();
         }
       }, _callee);
     }));
-    return function send() {
+    return function send(_x) {
       return _ref2.apply(this, arguments);
     };
   }();
@@ -2116,6 +2254,65 @@ var ArrowLeftIcon = _react.default.forwardRef(function (props, ref) {
   }));
 });
 var _default = ArrowLeftIcon;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/icons/bulb-icon.js":
+/*!*********************************************************!*\
+  !*** ../modules/ai/assets/js/editor/icons/bulb-icon.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var BulbIcon = _react.default.forwardRef(function (props, ref) {
+  return /*#__PURE__*/_react.default.createElement(_ui.SvgIcon, (0, _extends2.default)({}, props, {
+    ref: ref
+  }), /*#__PURE__*/_react.default.createElement("svg", {
+    width: "22",
+    height: "22",
+    viewBox: "0 0 22 22",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/_react.default.createElement("g", {
+    clipPath: "url(#clip0_10743_8902)"
+  }, /*#__PURE__*/_react.default.createElement("path", {
+    d: "M2.75 10.0833H3.66667M11 2.75V3.66667M18.3333 10.0833H19.25M5.13333 5.13333L5.775 5.775M16.8667 5.13333L16.225 5.775",
+    stroke: "#2563EB",
+    strokeWidth: "1.5",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M9.16675 16.041C8.70841 15.1243 6.91205 13.2842 6.62523 12.366C6.3384 11.4477 6.34775 10.4626 6.65195 9.54997C6.95615 8.63738 7.53978 7.84362 8.32016 7.28116C9.10054 6.71869 10.0381 6.41602 11.0001 6.41602C11.962 6.41602 12.8996 6.71869 13.68 7.28116C14.4604 7.84362 15.044 8.63738 15.3482 9.54997C15.6524 10.4626 15.6618 11.4477 15.3749 12.366C15.0881 13.2842 13.2917 15.1243 12.8334 16.041C12.8334 16.041 12.7597 17.3762 12.8334 17.8743C12.8334 18.3606 12.6403 18.8269 12.2964 19.1707C11.9526 19.5145 11.4863 19.7077 11.0001 19.7077C10.5139 19.7077 10.0475 19.5145 9.70372 19.1707C9.3599 18.8269 9.16675 18.3606 9.16675 17.8743C9.2405 17.3762 9.16675 16.041 9.16675 16.041Z",
+    stroke: "#2563EB",
+    strokeWidth: "1.5",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    d: "M10.0833 16.5H11.9166",
+    stroke: "#2563EB",
+    strokeWidth: "1.5",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  })), /*#__PURE__*/_react.default.createElement("defs", null, /*#__PURE__*/_react.default.createElement("clipPath", {
+    id: "clip0_10743_8902"
+  }, /*#__PURE__*/_react.default.createElement("rect", {
+    width: "22",
+    height: "22",
+    fill: "white"
+  })))));
+});
+var _default = BulbIcon;
 exports["default"] = _default;
 
 /***/ }),
@@ -2600,11 +2797,11 @@ var _layoutContent = _interopRequireDefault(__webpack_require__(/*! ./layout-con
 var _attachment = __webpack_require__(/*! ./types/attachment */ "../modules/ai/assets/js/editor/types/attachment.js");
 var _config = __webpack_require__(/*! ./pages/form-layout/context/config */ "../modules/ai/assets/js/editor/pages/form-layout/context/config.js");
 var _remoteConfig = __webpack_require__(/*! ./pages/form-layout/context/remote-config */ "../modules/ai/assets/js/editor/pages/form-layout/context/remote-config.js");
-var _generateIds = __webpack_require__(/*! ./utils/generate-ids */ "../modules/ai/assets/js/editor/utils/generate-ids.js");
+var _requestsIds = __webpack_require__(/*! ./context/requests-ids */ "../modules/ai/assets/js/editor/context/requests-ids.js");
 var LayoutApp = function LayoutApp(props) {
   return /*#__PURE__*/_react.default.createElement(_remoteConfig.RemoteConfigProvider, {
     onError: props.onClose
-  }, /*#__PURE__*/_react.default.createElement(_config.ConfigProvider, {
+  }, /*#__PURE__*/_react.default.createElement(_requestsIds.RequestIdsProvider, null, /*#__PURE__*/_react.default.createElement(_config.ConfigProvider, {
     mode: props.mode,
     attachmentsTypes: props.attachmentsTypes,
     onClose: props.onClose,
@@ -2614,12 +2811,10 @@ var LayoutApp = function LayoutApp(props) {
     onSelect: props.onSelect,
     onGenerate: props.onGenerate,
     currentContext: props.currentContext,
-    hasPro: props.hasPro,
-    sessionId: "session-".concat((0, _generateIds.getUniqueId)()),
-    editorSessionId: props.editorSessionId
+    hasPro: props.hasPro
   }, /*#__PURE__*/_react.default.createElement(_layoutContent.default, {
     attachments: props.attachments
-  })));
+  }))));
 };
 LayoutApp.propTypes = {
   mode: _propTypes.default.oneOf(_config.LAYOUT_APP_MODES).isRequired,
@@ -2632,9 +2827,7 @@ LayoutApp.propTypes = {
   onSelect: _propTypes.default.func.isRequired,
   onGenerate: _propTypes.default.func.isRequired,
   currentContext: _propTypes.default.object,
-  hasPro: _propTypes.default.bool,
-  sessionId: _propTypes.default.string,
-  editorSessionId: _propTypes.default.string
+  hasPro: _propTypes.default.bool
 };
 var _default = LayoutApp;
 exports["default"] = _default;
@@ -3059,6 +3252,7 @@ var _xCircleIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../ic
 var _plusCircleIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/plus-circle-icon */ "../modules/ai/assets/js/editor/icons/plus-circle-icon.js"));
 var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js"));
 var _attachDialog = __webpack_require__(/*! ./attach-dialog */ "../modules/ai/assets/js/editor/pages/form-layout/components/attachments/attach-dialog.js");
+var _useIntroduction2 = _interopRequireDefault(__webpack_require__(/*! ../../../../hooks/use-introduction */ "../modules/ai/assets/js/editor/hooks/use-introduction.js"));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 var Menu = function Menu(props) {
@@ -3073,19 +3267,36 @@ var Menu = function Menu(props) {
   var _useTheme = (0, _ui.useTheme)(),
     direction = _useTheme.direction;
   var anchorRef = (0, _react.useRef)(null);
+  var _useIntroduction = (0, _useIntroduction2.default)('e-ai-attachment-badge'),
+    isViewed = _useIntroduction.isViewed,
+    markAsViewed = _useIntroduction.markAsViewed;
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_ui.IconButton, {
     size: "small",
     ref: anchorRef,
     disabled: props.disabled,
     onClick: function onClick() {
-      return setIsOpen(true);
+      setIsOpen(true);
+      markAsViewed();
     },
     color: "secondary"
-  }, isOpen ? /*#__PURE__*/_react.default.createElement(_xCircleIcon.default, {
-    fontSize: "small"
-  }) : /*#__PURE__*/_react.default.createElement(_plusCircleIcon.default, {
-    fontSize: "small"
-  })), /*#__PURE__*/_react.default.createElement(_ui.Popover, {
+  }, function () {
+    if (isOpen) {
+      return /*#__PURE__*/_react.default.createElement(_xCircleIcon.default, {
+        fontSize: "small"
+      });
+    } else if (isViewed) {
+      return /*#__PURE__*/_react.default.createElement(_plusCircleIcon.default, {
+        fontSize: "small"
+      });
+    }
+    return /*#__PURE__*/_react.default.createElement(_ui.Badge, {
+      color: "primary",
+      badgeContent: " ",
+      variant: "dot"
+    }, /*#__PURE__*/_react.default.createElement(_plusCircleIcon.default, {
+      fontSize: "small"
+    }));
+  }()), /*#__PURE__*/_react.default.createElement(_ui.Popover, {
     open: isOpen,
     anchorEl: anchorRef.current,
     onClose: function onClose() {
@@ -4601,9 +4812,7 @@ var ConfigProvider = function ConfigProvider(props) {
       onSelect: props.onSelect,
       onGenerate: props.onGenerate,
       currentContext: props.currentContext,
-      hasPro: props.hasPro,
-      sessionId: props.sessionId,
-      editorSessionId: props.editorSessionId
+      hasPro: props.hasPro
     }
   }, props.children);
 };
@@ -4619,9 +4828,7 @@ ConfigProvider.propTypes = {
   onSelect: _propTypes.default.func.isRequired,
   onGenerate: _propTypes.default.func.isRequired,
   currentContext: _propTypes.default.object,
-  hasPro: _propTypes.default.bool,
-  sessionId: _propTypes.default.string,
-  editorSessionId: _propTypes.default.string
+  hasPro: _propTypes.default.bool
 };
 var _default = ConfigContext;
 exports["default"] = _default;
@@ -4915,7 +5122,7 @@ var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runt
 var _react = __webpack_require__(/*! react */ "react");
 var _useScreenshot = _interopRequireDefault(__webpack_require__(/*! ./use-screenshot */ "../modules/ai/assets/js/editor/pages/form-layout/hooks/use-screenshot.js"));
 var _config = __webpack_require__(/*! ../context/config */ "../modules/ai/assets/js/editor/pages/form-layout/context/config.js");
-var _generateIds = __webpack_require__(/*! ../../../utils/generate-ids */ "../modules/ai/assets/js/editor/utils/generate-ids.js");
+var _requestsIds = __webpack_require__(/*! ../../../context/requests-ids */ "../modules/ai/assets/js/editor/context/requests-ids.js");
 var PENDING_VALUE = {
   isPending: true
 };
@@ -4936,11 +5143,15 @@ var useScreenshots = function useScreenshots(_ref) {
    */
 
   var _useConfig = (0, _config.useConfig)(),
-    currentContext = _useConfig.currentContext,
-    sessionId = _useConfig.sessionId,
-    editorSessionId = _useConfig.editorSessionId;
+    currentContext = _useConfig.currentContext;
+  var _useRequestIds = (0, _requestsIds.useRequestIds)(),
+    editorSessionId = _useRequestIds.editorSessionId,
+    sessionId = _useRequestIds.sessionId,
+    setRequest = _useRequestIds.setRequest,
+    setBatch = _useRequestIds.setBatch,
+    setGenerate = _useRequestIds.setGenerate;
   var generateIdRef = (0, _react.useRef)('');
-  var batchId = "batch-".concat((0, _generateIds.getUniqueId)());
+  var batchId = setBatch();
   var screenshotsData = [(0, _useScreenshot.default)(0, onData), (0, _useScreenshot.default)(1, onData), (0, _useScreenshot.default)(2, onData)];
   var screenshotsGroupCount = screenshotsData.length;
   var error = screenshotsData.every(function (s) {
@@ -4991,11 +5202,11 @@ var useScreenshots = function useScreenshots(_ref) {
                 prevGeneratedIds: prevGeneratedIds,
                 currentContext: currentContext,
                 ids: {
-                  editorSessionId: editorSessionId,
-                  sessionId: sessionId,
+                  editorSessionId: editorSessionId.current,
+                  sessionId: sessionId.current,
                   generateId: generateIdRef.current,
-                  batchId: batchId,
-                  requestId: "request-".concat((0, _generateIds.getUniqueId)())
+                  batchId: batchId.current,
+                  requestId: setRequest().current
                 },
                 attachments: attachments.map(function (_ref4) {
                   var type = _ref4.type,
@@ -5039,7 +5250,7 @@ var useScreenshots = function useScreenshots(_ref) {
   }();
   var generate = function generate(prompt, attachments) {
     var placeholders = Array(screenshotsGroupCount).fill(PENDING_VALUE);
-    generateIdRef.current = "generate-".concat((0, _generateIds.getUniqueId)());
+    generateIdRef.current = setGenerate().current;
     setScreenshots(placeholders);
     createScreenshots(prompt, attachments);
   };
@@ -5161,6 +5372,7 @@ var _proWidgetsNotice = __webpack_require__(/*! ./components/pro-widgets-notice 
 var _attachments = __webpack_require__(/*! ./components/attachments */ "../modules/ai/assets/js/editor/pages/form-layout/components/attachments.js");
 var _attachDialog = _interopRequireDefault(__webpack_require__(/*! ./components/attachments/attach-dialog */ "../modules/ai/assets/js/editor/pages/form-layout/components/attachments/attach-dialog.js"));
 var _isURL = _interopRequireDefault(__webpack_require__(/*! validator/lib/isURL */ "../node_modules/validator/lib/isURL.js"));
+var _voicePromotionAlert = __webpack_require__(/*! ../../components/voice-promotion-alert */ "../modules/ai/assets/js/editor/components/voice-promotion-alert.js");
 var _excluded = ["children"];
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -5469,7 +5681,9 @@ var FormLayout = function FormLayout(_ref) {
         flex: "0 0 ".concat(slideWidthPercentage, "%")
       }
     });
-  })))), screenshots.length > 0 && /*#__PURE__*/_react.default.createElement(_ui.Box, {
+  }))), /*#__PURE__*/_react.default.createElement(_voicePromotionAlert.VoicePromotionAlert, {
+    introductionKey: "ai-context-layout-promotion"
+  })), screenshots.length > 0 && /*#__PURE__*/_react.default.createElement(_ui.Box, {
     sx: {
       pt: 0,
       px: 2,
@@ -5773,8 +5987,8 @@ var _layoutApp = _interopRequireDefault(__webpack_require__(/*! ../layout-app */
 var _screenshot = __webpack_require__(/*! ./screenshot */ "../modules/ai/assets/js/editor/utils/screenshot.js");
 var _history = __webpack_require__(/*! ./history */ "../modules/ai/assets/js/editor/utils/history.js");
 var _i18n = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-var _generateIds = __webpack_require__(/*! ./generate-ids */ "../modules/ai/assets/js/editor/utils/generate-ids.js");
 var _layoutAppWrapper = _interopRequireDefault(__webpack_require__(/*! ../layout-app-wrapper */ "../modules/ai/assets/js/editor/layout-app-wrapper.js"));
+var _requestsIds = __webpack_require__(/*! ../context/requests-ids */ "../modules/ai/assets/js/editor/context/requests-ids.js");
 var closePanel = function closePanel() {
   $e.run('panel/close');
   $e.components.get('panel').blockUserInteractions();
@@ -5821,7 +6035,6 @@ var VARIATIONS_PROMPTS = [{
   text: (0, _i18n.__)('Warm hues with comforting visuals about', 'elementor')
 }];
 var PROMPT_PLACEHOLDER = (0, _i18n.__)("Press '/' for suggestions or describe the changes you want to apply (optional)...", 'elementor');
-var EDITOR_SESSION_ID = "editor-session-".concat((0, _generateIds.getUniqueId)());
 var renderLayoutApp = function renderLayoutApp() {
   var _options$onRenderApp;
   var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
@@ -5935,8 +6148,7 @@ var renderLayoutApp = function renderLayoutApp() {
       previewContainer.setContent(template);
     },
     onInsert: options.onInsert,
-    hasPro: elementor.helpers.hasPro(),
-    editorSessionId: EDITOR_SESSION_ID
+    hasPro: elementor.helpers.hasPro()
   })), rootElement);
   (_options$onRenderApp = options.onRenderApp) === null || _options$onRenderApp === void 0 ? void 0 : _options$onRenderApp.call(options, {
     previewContainer: previewContainer
@@ -5961,7 +6173,7 @@ var importToEditor = function importToEditor(_ref2) {
   }
   $e.run('document/elements/create', {
     container: parentContainer,
-    model: (0, _generateIds.generateIds)(template),
+    model: (0, _requestsIds.generateIds)(template),
     options: {
       at: at,
       edit: true
@@ -5970,38 +6182,6 @@ var importToEditor = function importToEditor(_ref2) {
   endHistoryLog();
 };
 exports.importToEditor = importToEditor;
-
-/***/ }),
-
-/***/ "../modules/ai/assets/js/editor/utils/generate-ids.js":
-/*!************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/utils/generate-ids.js ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.generateIds = generateIds;
-exports.getUniqueId = void 0;
-// Create missing IDs for the elements.
-var getUniqueId = function getUniqueId() {
-  return Math.random().toString(16).substr(2, 7);
-};
-exports.getUniqueId = getUniqueId;
-function generateIds(template) {
-  var _template$elements;
-  template.id = getUniqueId().toString();
-  if ((_template$elements = template.elements) !== null && _template$elements !== void 0 && _template$elements.length) {
-    template.elements.map(function (child) {
-      return generateIds(child);
-    });
-  }
-  return template;
-}
 
 /***/ }),
 
@@ -6199,7 +6379,7 @@ var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
 var _htmlToImage = __webpack_require__(/*! html-to-image */ "../node_modules/html-to-image/es/index.js");
 var _history = __webpack_require__(/*! ./history */ "../modules/ai/assets/js/editor/utils/history.js");
-var _generateIds = __webpack_require__(/*! ./generate-ids */ "../modules/ai/assets/js/editor/utils/generate-ids.js");
+var _requestsIds = __webpack_require__(/*! ../context/requests-ids */ "../modules/ai/assets/js/editor/context/requests-ids.js");
 var takeScreenshot = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(template) {
     var hiddenWrapper, container, screenshot;
@@ -6301,7 +6481,7 @@ function createHiddenWrapper() {
   return wrapper;
 }
 function createContainer(template) {
-  var model = (0, _generateIds.generateIds)(template);
+  var model = (0, _requestsIds.generateIds)(template);
 
   // Set a custom ID, so it can be used later on in the backend.
   model.id = "e-ai-screenshot-container-".concat(model.id);

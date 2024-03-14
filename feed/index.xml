@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.in/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.in/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Fri, 23 Feb 2024 03:15:21 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 13 Mar 2024 21:34:20 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,23 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Contract vs. Approval Testing: Identifying Bugs in RESTfulBooker&#8217;s API with Specmatic and TextTest</title>
+		<link>https://specmatic.in/comparisons/contract-vs-approval-testing-identifying-bugs-in-restfulbookers-api-with-texttest-and-specmatic/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Wed, 13 Mar 2024 04:17:32 +0000</pubDate>
+				<category><![CDATA[Comparisons]]></category>
+		<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[In the Media]]></category>
+		<category><![CDATA[Updates]]></category>
+		<guid isPermaLink="false">https://specmatic.in/?p=4470</guid>
+
+					<description><![CDATA[Testing APIs: Specmatic vs TextTest Emily Bache wanted to compare TextTest with Specmatic and has published a video about her experience: The BEST way to find BUGS in an API &#124; Contract vs Approval Testing She observes, “Specmatic works best when the spec is defined independently in an ongoing discussion about expectations between the service [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Specmatic Docker Image now available</title>
 		<link>https://specmatic.in/updates/specmatic-docker-image/</link>
 		
@@ -60,7 +77,7 @@
 		<title>Introduction to Contract Driven Development with Specmatic</title>
 		<link>https://specmatic.in/updates/introduction-to-contract-driven-development-with-specmatic/</link>
 		
-		<dc:creator><![CDATA[John]]></dc:creator>
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
 		<pubDate>Wed, 06 Dec 2023 22:52:34 +0000</pubDate>
 				<category><![CDATA[Feature Spotlight]]></category>
 		<category><![CDATA[Updates]]></category>
@@ -186,23 +203,6 @@
 		<guid isPermaLink="false">https://specmatic.in/?p=1665</guid>
 
 					<description><![CDATA[The Specmatic Kafka mock is wire compatible and entirely within the control of the test, the test can run locally and in CI and deliver quick feedback early in the cycle. So the application itself runs exactly as it would with a real Kafka.]]></description>
-		
-		
-		
-			</item>
-		<item>
-		<title>Redis Stubbing with Specmatic Contract Testing</title>
-		<link>https://specmatic.in/updates/redis-stubbing-with-specmatic-contract-testing/</link>
-		
-		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
-		<pubDate>Tue, 11 Jul 2023 03:17:59 +0000</pubDate>
-				<category><![CDATA[Feature Spotlight]]></category>
-		<category><![CDATA[Updates]]></category>
-		<category><![CDATA[Redis]]></category>
-		<category><![CDATA[Stubbing]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=1625</guid>
-
-					<description><![CDATA[Instead of using an actual instance of Redis, we'll stub it out and have the contract test set expectations so that the Redis stub knows what data to return for any query sent to it by the application. Now, when we run the contract tests and the service object does a look up in Redis, it's actually hitting the Redis stub.]]></description>
 		
 		
 		

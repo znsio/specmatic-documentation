@@ -1,4 +1,4 @@
-/*! elementor - v3.19.0 - 07-02-2024 */
+/*! elementor - v3.20.0 - 13-03-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -1644,8 +1644,6 @@ var saveDisabledWidgets = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(widgetsDisabled) {
     var elementsRestriction,
       bodyData,
-      response,
-      data,
       _args = arguments;
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
@@ -1669,22 +1667,17 @@ var saveDisabledWidgets = /*#__PURE__*/function () {
             body: new URLSearchParams(bodyData)
           });
         case 6:
-          response = _context.sent;
-          _context.next = 9;
-          return response.json();
-        case 9:
-          data = _context.sent;
-          _context.next = 15;
+          _context.next = 11;
           break;
-        case 12:
-          _context.prev = 12;
+        case 8:
+          _context.prev = 8;
           _context.t0 = _context["catch"](1);
-          console.error(_context.t0);
-        case 15:
+          console.error(_context.t0); // eslint-disable-line no-console
+        case 11:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[1, 12]]);
+    }, _callee, null, [[1, 8]]);
   }));
   return function saveDisabledWidgets(_x) {
     return _ref.apply(this, arguments);
@@ -1726,7 +1719,7 @@ var getAdminAppData = /*#__PURE__*/function () {
         case 11:
           _context2.prev = 11;
           _context2.t0 = _context2["catch"](0);
-          console.error(_context2.t0);
+          console.error(_context2.t0); // eslint-disable-line no-console
         case 14:
         case "end":
           return _context2.stop();
@@ -1773,7 +1766,7 @@ var getUsageWidgets = /*#__PURE__*/function () {
         case 11:
           _context3.prev = 11;
           _context3.t0 = _context3["catch"](0);
-          console.error(_context3.t0);
+          console.error(_context3.t0); // eslint-disable-line no-console
         case 14:
         case "end":
           return _context3.stop();
@@ -1820,7 +1813,7 @@ var markNoticeViewed = /*#__PURE__*/function () {
         case 11:
           _context4.prev = 11;
           _context4.t0 = _context4["catch"](0);
-          console.error(_context4.t0);
+          console.error(_context4.t0); // eslint-disable-line no-console
         case 14:
         case "end":
           return _context4.stop();
@@ -1938,6 +1931,12 @@ var App = function App() {
     _useState34 = (0, _slicedToArray2.default)(_useState33, 2),
     widgetsRoleRestrictions = _useState34[0],
     setWidgetsRoleRestrictions = _useState34[1];
+  var _useState35 = (0, _element.useState)([]),
+    _useState36 = (0, _slicedToArray2.default)(_useState35, 2),
+    promotionData = _useState36[0],
+    setPromotionData = _useState36[1];
+  var managerPermissions = promotionData.manager_permissions,
+    elementManager = promotionData.element_manager;
   var getWidgetUsage = function getWidgetUsage(widgetName) {
     if (!usageWidgets.data || !usageWidgets.data.hasOwnProperty(widgetName)) {
       return 0;
@@ -2100,6 +2099,7 @@ var App = function App() {
               setWidgetsDisabled(appData.disabled_elements);
               setWidgets(appData.widgets);
               setPromotionWidgets(appData.promotion_widgets);
+              setPromotionData(appData.promotion_data);
               if ((_appData$additional_d = appData.additional_data) !== null && _appData$additional_d !== void 0 && _appData$additional_d.roles) {
                 setRoles(appData.additional_data.roles);
               }
@@ -2118,7 +2118,7 @@ var App = function App() {
               });
               setPlugins(pluginsData);
               setIsLoading(false);
-            case 13:
+            case 14:
             case "end":
               return _context3.stop();
           }
@@ -2322,8 +2322,9 @@ var App = function App() {
       marginInlineStart: '10px'
     }
   }, /*#__PURE__*/_react.default.createElement(_upgradeButton.UpgradeButton, {
-    href: promotionWidgets.length ? 'https://go.elementor.com/go-pro-element-manager-permissions/' : 'https://go.elementor.com/go-pro-advanced-element-manager-permissions/',
-    size: 'small'
+    href: promotionWidgets.length ? managerPermissions.pro.url : managerPermissions.advanced.url,
+    size: 'small',
+    text: promotionWidgets.length ? managerPermissions.pro.text : managerPermissions.advanced.text
   })))))), /*#__PURE__*/_react.default.createElement("tbody", null, sortedAndFilteredWidgets.map(function (widget) {
     return /*#__PURE__*/_react.default.createElement("tr", {
       key: widget.name
@@ -2360,7 +2361,8 @@ var App = function App() {
       marginBottom: '20px'
     }
   }, /*#__PURE__*/_react.default.createElement(_components.FlexItem, null, /*#__PURE__*/_react.default.createElement("h3", null, (0, _i18n.__)('Elementor Pro Elements', 'elementor')), /*#__PURE__*/_react.default.createElement("p", null, (0, _i18n.__)('Unleash the full power of Elementor\'s features and web creation tools.', 'elementor'))), /*#__PURE__*/_react.default.createElement(_components.FlexItem, null, /*#__PURE__*/_react.default.createElement(_upgradeButton.UpgradeButton, {
-    href: "https://go.elementor.com/go-pro-element-manager/"
+    href: elementManager.url,
+    text: elementManager.text
   })))), /*#__PURE__*/_react.default.createElement(_components.PanelRow, null, /*#__PURE__*/_react.default.createElement("table", {
     className: 'wp-list-table widefat fixed striped table-view-list'
   }, /*#__PURE__*/_react.default.createElement("thead", null, /*#__PURE__*/_react.default.createElement("tr", null, /*#__PURE__*/_react.default.createElement("th", {
@@ -2587,7 +2589,6 @@ exports.UpgradeButton = void 0;
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
 var _components = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-var _i18n = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 var UpgradeButton = function UpgradeButton(props) {
   return /*#__PURE__*/_react.default.createElement(_components.Button, (0, _extends2.default)({}, props, {
     variant: "primary",
@@ -2596,7 +2597,7 @@ var UpgradeButton = function UpgradeButton(props) {
     style: {
       background: 'var(--e-a-btn-bg-accent, #93003f)'
     }
-  }), (0, _i18n.__)('Upgrade Now', 'elementor'));
+  }));
 };
 exports.UpgradeButton = UpgradeButton;
 

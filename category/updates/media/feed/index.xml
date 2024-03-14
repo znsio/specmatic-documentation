@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.in/category/updates/media/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.in/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 29 Nov 2023 04:17:59 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 13 Mar 2024 21:29:53 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,23 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Contract vs. Approval Testing: Identifying Bugs in RESTfulBooker&#8217;s API with Specmatic and TextTest</title>
+		<link>https://specmatic.in/comparisons/contract-vs-approval-testing-identifying-bugs-in-restfulbookers-api-with-texttest-and-specmatic/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Wed, 13 Mar 2024 04:17:32 +0000</pubDate>
+				<category><![CDATA[Comparisons]]></category>
+		<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[In the Media]]></category>
+		<category><![CDATA[Updates]]></category>
+		<guid isPermaLink="false">https://specmatic.in/?p=4470</guid>
+
+					<description><![CDATA[Testing APIs: Specmatic vs TextTest Emily Bache wanted to compare TextTest with Specmatic and has published a video about her experience: The BEST way to find BUGS in an API &#124; Contract vs Approval Testing She observes, “Specmatic works best when the spec is defined independently in an ongoing discussion about expectations between the service [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Stubbing an HTTP end-point with Specmatic</title>
 		<link>https://specmatic.in/updates/stubbing-an-http-end-point-with-specmatic/</link>
 		

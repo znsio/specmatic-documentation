@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.in/tag/contract-testing/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.in/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 21 Feb 2024 08:45:41 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 13 Mar 2024 21:34:20 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -31,7 +31,7 @@
 		<title>Introduction to Contract Driven Development with Specmatic</title>
 		<link>https://specmatic.in/updates/introduction-to-contract-driven-development-with-specmatic/</link>
 		
-		<dc:creator><![CDATA[John]]></dc:creator>
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
 		<pubDate>Wed, 06 Dec 2023 22:52:34 +0000</pubDate>
 				<category><![CDATA[Feature Spotlight]]></category>
 		<category><![CDATA[Updates]]></category>
