@@ -2,577 +2,643 @@
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
    <url>
       <loc>https://specmatic.in/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1.0</priority>
    </url>
    <url>
       <loc>https://specmatic.in/tag/redis/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/tag/asyncapi/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/documentation/soap.html</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/tag/asyncapi/</loc>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/tag/openapi/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/specmatic-updates/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/documentation/central_contract_repository.html</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/pricing/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/category/updates/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/category/features/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/appearances/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/category/updates/media/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/category/comparisons/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/comparisons/specmatic-vs-pact-io-and-pactflow-io/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/comparisons/comparison-specmatic-vs-spring-cloud-contract/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/comparisons/comparison-specmatic-vs-wiremock/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/documentation.html</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/documentation/sample_projects.html</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/articles/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/2-week-signup/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/articles/</loc>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/2-day-cdd-workshop/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/roadmap/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/contact-us/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/article/contract-driven-development-a-real-world-adoption-journey/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/article/contract-driven-development-post-1-the-trouble-with-api-mocks-and-stubs/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/article/contract-driven-development-post-2-integration-hell/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/article/contract-driven-development-post-1-the-trouble-with-api-mocks-and-stubs/</loc>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/getting_started.html</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/appearance/beyond-contract-testing-contract-driven-development-2-day-masterclass/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/appearance/contract-driven-development-turn-your-api-specification-into-executable-contracts/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/article/microservices-integration-done-right-using-contract-driven-development/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/contract_driven_development.html</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/documentation/backward_compatibility.html</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/documentation/central_contract_repository.html</loc>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/tag/continuous-delivery/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/updates/specmatic-featured-on-dave-farleys-continuous-delivery-channel/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/appearance/turn-your-openapi-specifications-into-executable-contracts-the-gory-details/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/appearance/contract-driven-development-deploying-your-microservices-independently-without-integration-testing-2/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/appearance/contract-driven-development-deploying-your-microservices-independently-without-integration-testing/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/appearance/turn-your-openapi-specifications-into-executable-contracts-the-gory-details/</loc>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/appearance/contract-driven-development-escape-microservices-integration-deployment-hell/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/appearance/software-architecture-superstream-microservices/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/appearance/kafka-and-jms-mocking-with-asyncapi-using-specmatic/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/category/updates/page/2/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/tag/contract-driven-development/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/tag/contract-testing/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/tag/conference/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
-      <loc>https://specmatic.in/tag/demonstration/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/tag/kafka/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/tag/specmatic/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/updates/jms-mocking-with-asyncapi-using-specmatic/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/updates/kafka-mocking-with-asyncapi-using-specmatic/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <loc>https://specmatic.in/appearance/kafka-and-jms-mocking-with-asyncapi-using-specmatic/</loc>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/download.html</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/documentation/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/documentation/contract_tests.html</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/documentation/service_virtualization_tutorial.html</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/documentation/test_data_format.html</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/documentation/authoring_contracts.html</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/documentation/specmatic_json.html</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/documentation/authentication.html</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/documentation/backward_compatibility_rules.html</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/documentation/reading_reports.html</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/documentation/backward_compatibility_rules.html</loc>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/documentation/continuous_integration.html</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/documentation/stubbing_featurehub.html</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/documentation/troubleshooting.html</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/faqs.html</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
-      <loc>https://specmatic.in/updates/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <loc>https://specmatic.in/tag/contract-driven-development/</loc>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
-      <loc>https://specmatic.in/tag/api-coverage-report/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <loc>https://specmatic.in/tag/demonstration/</loc>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
-      <loc>https://specmatic.in/tag/consumer-driven-contract/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <loc>https://specmatic.in/tag/contract-testing/</loc>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
-      <loc>https://specmatic.in/tag/integration-testing/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <loc>https://specmatic.in/tag/kafka/</loc>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
-      <loc>https://specmatic.in/tag/provider-driven-contract/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <loc>https://specmatic.in/tag/specmatic/</loc>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
-      <loc>https://specmatic.in/tag/microservices/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <loc>https://specmatic.in/updates/jms-mocking-with-asyncapi-using-specmatic/</loc>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
-      <loc>https://specmatic.in/tag/spring-cloud-contract/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <loc>https://specmatic.in/updates/kafka-mocking-with-asyncapi-using-specmatic/</loc>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
-      <loc>https://specmatic.in/tag/api-mocking/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <loc>https://specmatic.in/category/updates/page/2/</loc>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
-      <loc>https://specmatic.in/tag/wiremock/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/tag/bdct/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/tag/bi-directional-contract-testing/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/tag/cdct/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/tag/cdd/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/tag/consumer-driven-contract-testing/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/tag/pact/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/tag/pactflow/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/updates/redis-stubbing-with-specmatic-contract-testing/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/tag/stubbing/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/updates/specmatic-docker-image/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/updates/2023-year-in-review/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/updates/introduction-to-contract-driven-development-with-specmatic/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/updates/stubbing-an-http-end-point-with-specmatic/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <loc>https://specmatic.in/blog/comparisons/specmatic-vs-pact-io-and-pactflow-io/</loc>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/updates/tmforum-oda-ctk-api-specification-conformance-testing-with-specmatic/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/updates/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/tag/api-coverage-report/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/tag/consumer-driven-contract/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/tag/integration-testing/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/tag/microservices/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/tag/provider-driven-contract/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/tag/spring-cloud-contract/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/tag/api-mocking/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/tag/wiremock/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/tag/bdct/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/tag/bi-directional-contract-testing/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/tag/cdct/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/tag/cdd/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/tag/consumer-driven-contract-testing/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/tag/pact/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/tag/pactflow/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/updates/redis-stubbing-with-specmatic-contract-testing/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/tag/stubbing/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/comparisons/contract-vs-approval-testing-identifying-bugs-in-restfulbookers-api-with-texttest-and-specmatic/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/updates/specmatic-docker-image/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/updates/2023-year-in-review/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/updates/introduction-to-contract-driven-development-with-specmatic/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/updates/stubbing-an-http-end-point-with-specmatic/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/category/demonstration/</loc>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/category/workshop/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/specmatic-updates/page/2/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/updates/jdbc-stubbing-with-specmatic-contract-testing/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/tag/jdbc/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
-      <loc>https://specmatic.in/appearance/contract-driven-development-deploying-your-microservices-independently-without-integration-testing-3/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/tag/past/</loc>
-      <lastmod>2024-02-27</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://specmatic.in/contract_driven_development</loc>
-      <lastmod>2024-02-27</lastmod>
+      <loc>https://specmatic.in/documentation/stubbing-jms.html</loc>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/tag/live-stream/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/documentation/api_gateways.html</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/appearance/contract-driven-development-deploying-your-microservices-independently-without-integration-testing-3/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/documentation/stubbing-kafka.html</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/documentation/service_virtualisation.html</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/tag/past/</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/documentation/authentication-by-reaching-another-service.html</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/documentation/stubbing-redis.html</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/documentation/language.html</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/documentation/stubbing_database.html</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/documentation/convert_gherkin_to_openapi.html</loc>
+      <lastmod>2024-03-14</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.in/contract_driven_development</loc>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.in/resources/</loc>
-      <lastmod>2024-02-27</lastmod>
+      <lastmod>2024-03-14</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
