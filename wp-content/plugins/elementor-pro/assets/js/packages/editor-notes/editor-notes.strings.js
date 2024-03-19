@@ -1,1 +1,1 @@
-__( 'Notes', 'elementor-pro' );
+__('Notes','elementor-pro');
