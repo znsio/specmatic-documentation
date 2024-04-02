@@ -1,4 +1,4 @@
-/*! elementor - v3.20.0 - 13-03-2024 */"use strict";(self["webpackChunkelementor"]=self["webpackChunkelementor"]||[]).push([["container"],{"../assets/dev/js/frontend/handlers/container/grid-container.js":
+/*! elementor - v3.20.0 - 26-03-2024 */"use strict";(self["webpackChunkelementor"]=self["webpackChunkelementor"]||[]).push([["container"],{"../assets/dev/js/frontend/handlers/container/grid-container.js":
 /*!**********************************************************************!*\
   !*** ../assets/dev/js/frontend/handlers/container/grid-container.js ***!
   \**********************************************************************/

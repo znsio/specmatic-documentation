@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.20.0 - 11-03-2024 */"use strict";(self["webpackChunkelementor_pro"]=self["webpackChunkelementor_pro"]||[]).push([["progress-tracker"],{"../modules/progress-tracker/assets/js/frontend/handlers/circular-progress.js":
+/*! elementor-pro - v3.20.0 - 26-03-2024 */"use strict";(self["webpackChunkelementor_pro"]=self["webpackChunkelementor_pro"]||[]).push([["progress-tracker"],{"../modules/progress-tracker/assets/js/frontend/handlers/circular-progress.js":
 /*!************************************************************************************!*\
   !*** ../modules/progress-tracker/assets/js/frontend/handlers/circular-progress.js ***!
   \************************************************************************************/

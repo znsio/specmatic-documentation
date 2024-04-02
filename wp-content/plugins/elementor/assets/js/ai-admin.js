@@ -1,4 +1,4 @@
-/*! elementor - v3.20.0 - 13-03-2024 */
+/*! elementor - v3.20.0 - 26-03-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -771,6 +771,7 @@ exports["default"] = _default;
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
+/* provided dependency */ var sprintf = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["sprintf"];
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -792,65 +793,85 @@ var PromptErrorMessage = function PromptErrorMessage(_ref) {
     _ref$actionPosition = _ref.actionPosition,
     actionPosition = _ref$actionPosition === void 0 ? 'default' : _ref$actionPosition,
     props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
-  var messages = {
-    default: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Unknown error. Please try again later.', 'elementor')),
-      description: (0, _i18n.__)('Error code:', 'elementor') + ' ' + error,
-      buttonText: (0, _i18n.__)('Try Again', 'elementor'),
-      buttonAction: onRetry
-    },
-    service_outage_internal: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Elementor AI is temporarily unavailable', 'elementor')),
-      description: (0, _i18n.__)('Seems like we are experiencing technical difficulty. We should be up and running shortly.', 'elementor'),
-      buttonText: (0, _i18n.__)('Try Again', 'elementor'),
-      buttonAction: onRetry
-    },
-    invalid_connect_data: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Reconnect your account', 'elementor')),
-      description: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (0, _i18n.__)('We couldn\'t connect to your account due to technical difficulties on our end. Reconnect your account to continue.', 'elementor'), ' ', /*#__PURE__*/_react.default.createElement("a", {
-        href: "https://elementor.com/help/disconnecting-reconnecting-your-elementor-account/",
-        target: "_blank",
-        rel: "noreferrer"
-      }, (0, _i18n.__)('Show me how', 'elementor'))),
-      buttonText: (0, _i18n.__)('Reconnect', 'elementor'),
-      buttonAction: function buttonAction() {
-        return window.open(window.ElementorAiConfig.connect_url);
-      }
-    },
-    not_connected: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('You aren\'t connected to Elementor AI.', 'elementor')),
-      description: (0, _i18n.__)('Elementor AI is just a few clicks away. Connect your account to instantly create texts and custom code.', 'elementor'),
-      buttonText: (0, _i18n.__)('Connect', 'elementor'),
-      buttonAction: function buttonAction() {
-        return window.open(window.ElementorAiConfig.connect_url);
-      }
-    },
-    quota_reached_trail: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('It\'s time to upgrade.', 'elementor')),
-      description: (0, _i18n.__)('Enjoy the free trial? Upgrade now for unlimited access to built-in image, text and custom code generators.', 'elementor'),
-      buttonText: (0, _i18n.__)('Upgrade', 'elementor'),
-      buttonAction: function buttonAction() {
-        return window.open('https://go.elementor.com/ai-popup-purchase-limit-reached/', '_blank');
-      }
-    },
-    quota_reached_subscription: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('It\'s time to upgrade.', 'elementor')),
-      description: (0, _i18n.__)('Love Elementor AI? Upgrade to continue creating with built-in image, text and custom code generators.', 'elementor'),
-      buttonText: (0, _i18n.__)('Upgrade', 'elementor'),
-      buttonAction: function buttonAction() {
-        return window.open('https://go.elementor.com/ai-popup-purchase-limit-reached/', '_blank');
-      }
-    },
-    rate_limit_network: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Whoa! Slow down there.', 'elementor')),
-      description: (0, _i18n.__)('We can’t process that many requests so fast. Try again in 15 minutes.', 'elementor')
-    },
-    invalid_prompts: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('We were unable to generate that prompt.', 'elementor')),
-      description: (0, _i18n.__)('Seems like the prompt contains words that could generate harmful content. Write a different prompt to continue.', 'elementor')
+  function getQuotaReachedTrailMessage(featureName) {
+    if (!featureName) {
+      return {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('It\'s time to upgrade.', 'elementor')),
+        description: (0, _i18n.__)('Enjoy the free trial? Upgrade now for unlimited access to built-in image, text and custom code generators.', 'elementor'),
+        buttonText: (0, _i18n.__)('Upgrade', 'elementor'),
+        buttonAction: function buttonAction() {
+          return window.open('https://go.elementor.com/ai-popup-purchase-limit-reached/', '_blank');
+        }
+      };
     }
-  };
-  var message = messages[error] || messages.default;
+    return {
+      // Translators: %s is the feature name.
+      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, sprintf((0, _i18n.__)('You\'ve used all AI credits for %s.', 'elementor'), featureName.toLowerCase())),
+      description: (0, _i18n.__)('Upgrade now to keep using this feature. You still have credits for other AI features (Text, Code, Images, Containers, etc.)', 'elementor'),
+      buttonText: (0, _i18n.__)('Upgrade now', 'elementor'),
+      buttonAction: function buttonAction() {
+        return window.open('https://go.elementor.com/ai-popup-purchase-limit-reached/', '_blank');
+      }
+    };
+  }
+  function getErrorMessage() {
+    var _error$extra_data;
+    var errMsg = error.message || error;
+    var featureName = (_error$extra_data = error.extra_data) === null || _error$extra_data === void 0 ? void 0 : _error$extra_data.featureName;
+    var messages = {
+      default: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Unknown error. Please try again later.', 'elementor')),
+        description: (0, _i18n.__)('Error code:', 'elementor') + ' ' + error,
+        buttonText: (0, _i18n.__)('Try Again', 'elementor'),
+        buttonAction: onRetry
+      },
+      service_outage_internal: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Elementor AI is temporarily unavailable', 'elementor')),
+        description: (0, _i18n.__)('Seems like we are experiencing technical difficulty. We should be up and running shortly.', 'elementor'),
+        buttonText: (0, _i18n.__)('Try Again', 'elementor'),
+        buttonAction: onRetry
+      },
+      invalid_connect_data: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Reconnect your account', 'elementor')),
+        description: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (0, _i18n.__)('We couldn\'t connect to your account due to technical difficulties on our end. Reconnect your account to continue.', 'elementor'), ' ', /*#__PURE__*/_react.default.createElement("a", {
+          href: "https://elementor.com/help/disconnecting-reconnecting-your-elementor-account/",
+          target: "_blank",
+          rel: "noreferrer"
+        }, (0, _i18n.__)('Show me how', 'elementor'))),
+        buttonText: (0, _i18n.__)('Reconnect', 'elementor'),
+        buttonAction: function buttonAction() {
+          return window.open(window.ElementorAiConfig.connect_url);
+        }
+      },
+      not_connected: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('You aren\'t connected to Elementor AI.', 'elementor')),
+        description: (0, _i18n.__)('Elementor AI is just a few clicks away. Connect your account to instantly create texts and custom code.', 'elementor'),
+        buttonText: (0, _i18n.__)('Connect', 'elementor'),
+        buttonAction: function buttonAction() {
+          return window.open(window.ElementorAiConfig.connect_url);
+        }
+      },
+      quota_reached_trail: getQuotaReachedTrailMessage(featureName),
+      quota_reached_subscription: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('It\'s time to upgrade.', 'elementor')),
+        description: (0, _i18n.__)('Love Elementor AI? Upgrade to continue creating with built-in image, text and custom code generators.', 'elementor'),
+        buttonText: (0, _i18n.__)('Upgrade', 'elementor'),
+        buttonAction: function buttonAction() {
+          return window.open('https://go.elementor.com/ai-popup-purchase-limit-reached/', '_blank');
+        }
+      },
+      rate_limit_network: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Whoa! Slow down there.', 'elementor')),
+        description: (0, _i18n.__)('We can’t process that many requests so fast. Try again in 15 minutes.', 'elementor')
+      },
+      invalid_prompts: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('We were unable to generate that prompt.', 'elementor')),
+        description: (0, _i18n.__)('Seems like the prompt contains words that could generate harmful content. Write a different prompt to continue.', 'elementor')
+      }
+    };
+    return messages[errMsg] || messages.default;
+  }
+  var message = getErrorMessage();
   var action = (message === null || message === void 0 ? void 0 : message.buttonText) && /*#__PURE__*/_react.default.createElement(_ui.Button, {
     color: "inherit",
     size: "small",
@@ -2235,7 +2256,7 @@ var PromptHistoryUpgrade = function PromptHistoryUpgrade(_ref) {
     }
   }, getMessage(variant, historyType)), /*#__PURE__*/_react.default.createElement(_ui.Button, {
     variant: "contained",
-    color: "accent",
+    color: "promotion",
     size: "small",
     href: actionUrl,
     target: "_blank",
@@ -2245,7 +2266,7 @@ var PromptHistoryUpgrade = function PromptHistoryUpgrade(_ref) {
       width: '50%',
       alignSelf: 'center',
       '&:hover': {
-        color: 'accent.contrastText'
+        color: 'promotion.contrastText'
       }
     }
   }, (0, _i18n.__)('Upgrade now', 'elementor')));
@@ -2719,51 +2740,23 @@ Object.defineProperty(exports, "__esModule", ({
 exports["default"] = void 0;
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _icons = __webpack_require__(/*! @elementor/icons */ "@elementor/icons");
-var _excluded = ["onClose", "sx"];
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-var BannerActions = function BannerActions(_ref) {
-  var onClose = _ref.onClose;
-  return /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    direction: "row",
-    alignItems: "center",
-    gap: 1
-  }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
-    size: "small",
-    color: "inherit",
-    variant: "outlined",
-    onClick: function onClick() {
-      return window.open('https://go.elementor.com/ai-banner-free-upgrade/', '_blank');
-    }
-  }, __('Upgrade', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.IconButton, {
-    color: "inherit",
-    size: "small",
-    onClick: onClose
-  }, /*#__PURE__*/_react.default.createElement(_icons.XIcon, null)));
-};
-BannerActions.propTypes = {
-  onClose: PropTypes.func
-};
-var UpgradeBanner = function UpgradeBanner(_ref2) {
-  var onClose = _ref2.onClose,
-    _ref2$sx = _ref2.sx,
-    sx = _ref2$sx === void 0 ? {} : _ref2$sx,
-    props = (0, _objectWithoutProperties2.default)(_ref2, _excluded);
+var _excluded = ["onClose"];
+var UpgradeBanner = function UpgradeBanner(_ref) {
+  var onClose = _ref.onClose,
+    props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
   return /*#__PURE__*/_react.default.createElement(_ui.Alert, (0, _extends2.default)({
     icon: false,
-    action: /*#__PURE__*/_react.default.createElement(BannerActions, {
-      onClose: onClose
-    })
-  }, props, {
-    sx: _objectSpread({
-      backgroundColor: 'accent.main',
-      color: 'accent.contrastText'
-    }, sx)
-  }), __('You’re using a limited license. Get maximum access to Elementor AI.', 'elementor'));
+    action: /*#__PURE__*/_react.default.createElement(_ui.AlertAction, {
+      onClick: function onClick() {
+        return window.open('https://go.elementor.com/ai-banner-free-upgrade/', '_blank');
+      }
+    }, __('Upgrade', 'elementor')),
+    variant: "filled",
+    color: "promotion",
+    onClose: onClose
+  }, props), __('You’re using a limited license. Get maximum access to Elementor AI.', 'elementor'));
 };
 UpgradeBanner.propTypes = {
   onClose: PropTypes.func,
@@ -2888,7 +2881,7 @@ var UpgradeChip = function UpgradeChip(_ref3) {
     display: "flex",
     alignItems: "center"
   }, /*#__PURE__*/_react.default.createElement(Chip, {
-    color: "accent",
+    color: "promotion",
     label: (0, _i18n.__)('Upgrade', 'elementor'),
     icon: /*#__PURE__*/_react.default.createElement(_icons.AIIcon, null),
     size: "small"
@@ -2931,14 +2924,14 @@ var UpgradeChip = function UpgradeChip(_ref3) {
     }, bullet)));
   })), /*#__PURE__*/_react.default.createElement(_ui.Button, {
     variant: "contained",
-    color: "accent",
+    color: "promotion",
     size: "small",
     href: actionUrl,
     target: "_blank",
     startIcon: /*#__PURE__*/_react.default.createElement(_icons.AIIcon, null),
     sx: {
       '&:hover': {
-        color: 'accent.contrastText'
+        color: 'promotion.contrastText'
       }
     }
   }, actionLabel))));
@@ -2974,24 +2967,36 @@ var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/he
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var _excluded = ["onClose", "usagePercentage", "hasSubscription"];
-var _title, _url, _title2, _url2;
+var _title, _description, _url, _title2, _description2, _url2, _title3, _description3, _url3;
 var KEY_SUBSCRIPTION = 'subscription';
 var KEY_NO_SUBSCRIPTION = 'noSubscription';
 var alertConfigs = [{
   threshold: 95,
-  title: (_title = {}, (0, _defineProperty2.default)(_title, KEY_SUBSCRIPTION, __('You’ve used over 95% of your Elementor AI plan.', 'elementor')), (0, _defineProperty2.default)(_title, KEY_NO_SUBSCRIPTION, __('You’ve used over 95% of the free trial.', 'elementor')), _title),
+  title: (_title = {}, (0, _defineProperty2.default)(_title, KEY_SUBSCRIPTION, __('You’ve used over 95% of your Elementor AI plan.', 'elementor')), (0, _defineProperty2.default)(_title, KEY_NO_SUBSCRIPTION, __('You’ve used 95% of credits for this AI feature.', 'elementor')), _title),
+  description: (_description = {}, (0, _defineProperty2.default)(_description, KEY_SUBSCRIPTION, __('Get maximum access.', 'elementor')), (0, _defineProperty2.default)(_description, KEY_NO_SUBSCRIPTION, __('Upgrade now to keep using this feature. You still have credits for other AI features (Text, Code, Images, Containers, etc.)', 'elementor')), _description),
   url: (_url = {}, (0, _defineProperty2.default)(_url, KEY_SUBSCRIPTION, 'https://go.elementor.com/ai-banner-paid-95-limit-reach/'), (0, _defineProperty2.default)(_url, KEY_NO_SUBSCRIPTION, 'https://go.elementor.com/ai-banner-free-95-limit-reach/'), _url),
   color: 'error'
 }, {
   threshold: 80,
-  title: (_title2 = {}, (0, _defineProperty2.default)(_title2, KEY_SUBSCRIPTION, __('You’ve used over 80% of your Elementor AI plan.', 'elementor')), (0, _defineProperty2.default)(_title2, KEY_NO_SUBSCRIPTION, __('You’ve used over 80% of the free trial.', 'elementor')), _title2),
+  title: (_title2 = {}, (0, _defineProperty2.default)(_title2, KEY_SUBSCRIPTION, __('You’ve used over 80% of your Elementor AI plan.', 'elementor')), (0, _defineProperty2.default)(_title2, KEY_NO_SUBSCRIPTION, __('You’ve used 80% of credits for this AI feature.', 'elementor')), _title2),
+  description: (_description2 = {}, (0, _defineProperty2.default)(_description2, KEY_SUBSCRIPTION, __('Get maximum access.', 'elementor')), (0, _defineProperty2.default)(_description2, KEY_NO_SUBSCRIPTION, __('Upgrade now to keep using this feature. You still have credits for other AI features (Text, Code, Images, Containers, etc.)', 'elementor')), _description2),
   url: (_url2 = {}, (0, _defineProperty2.default)(_url2, KEY_SUBSCRIPTION, 'https://go.elementor.com/ai-banner-paid-80-limit-reach/'), (0, _defineProperty2.default)(_url2, KEY_NO_SUBSCRIPTION, 'https://go.elementor.com/ai-banner-free-80-limit-reach/'), _url2),
+  color: 'warning'
+}, {
+  threshold: 75,
+  title: (_title3 = {}, (0, _defineProperty2.default)(_title3, KEY_SUBSCRIPTION, __('You’ve used over 75% of your Elementor AI plan.', 'elementor')), (0, _defineProperty2.default)(_title3, KEY_NO_SUBSCRIPTION, __(' You’ve used 75% of credits for this AI feature.', 'elementor')), _title3),
+  description: (_description3 = {}, (0, _defineProperty2.default)(_description3, KEY_SUBSCRIPTION, __('Get maximum access.', 'elementor')), (0, _defineProperty2.default)(_description3, KEY_NO_SUBSCRIPTION, __('Upgrade now to keep using this feature. You still have credits for other AI features (Text, Code, Images, Containers, etc.)', 'elementor')), _description3),
+  url: (_url3 = {}, (0, _defineProperty2.default)(_url3, KEY_SUBSCRIPTION, 'https://go.elementor.com/ai-banner-paid-80-limit-reach/'), (0, _defineProperty2.default)(_url3, KEY_NO_SUBSCRIPTION, 'https://go.elementor.com/ai-banner-free-80-limit-reach/'), _url3),
   color: 'warning'
 }];
 var UpgradeButton = function UpgradeButton(props) {
   return /*#__PURE__*/_react.default.createElement(_ui.Button, (0, _extends2.default)({
-    color: "inherit"
-  }, props), __('Upgrade', 'elementor'));
+    color: "inherit",
+    variant: "outlined",
+    sx: {
+      border: '2px solid'
+    }
+  }, props), __('Upgrade now', 'elementor'));
 };
 var UsageLimitAlert = function UsageLimitAlert(_ref) {
   var onClose = _ref.onClose,
@@ -3007,6 +3012,7 @@ var UsageLimitAlert = function UsageLimitAlert(_ref) {
   }
   var subscriptionType = hasSubscription ? KEY_SUBSCRIPTION : KEY_NO_SUBSCRIPTION;
   var title = config.title,
+    description = config.description,
     url = config.url,
     color = config.color;
   var handleUpgradeClick = function handleUpgradeClick() {
@@ -3018,7 +3024,7 @@ var UsageLimitAlert = function UsageLimitAlert(_ref) {
       onClick: handleUpgradeClick
     }),
     color: color
-  }, props), /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, title[subscriptionType]), __('Get maximum access.', 'elementor'));
+  }, props), /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, title[subscriptionType]), description[subscriptionType]);
 };
 UsageLimitAlert.propTypes = {
   onClose: PropTypes.func,
@@ -17478,17 +17484,17 @@ module.exports = _toConsumableArray, module.exports.__esModule = true, module.ex
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var _typeof = (__webpack_require__(/*! ./typeof.js */ "../node_modules/@babel/runtime/helpers/typeof.js")["default"]);
-function _toPrimitive(input, hint) {
-  if (_typeof(input) !== "object" || input === null) return input;
-  var prim = input[Symbol.toPrimitive];
-  if (prim !== undefined) {
-    var res = prim.call(input, hint || "default");
-    if (_typeof(res) !== "object") return res;
+function toPrimitive(t, r) {
+  if ("object" != _typeof(t) || !t) return t;
+  var e = t[Symbol.toPrimitive];
+  if (void 0 !== e) {
+    var i = e.call(t, r || "default");
+    if ("object" != _typeof(i)) return i;
     throw new TypeError("@@toPrimitive must return a primitive value.");
   }
-  return (hint === "string" ? String : Number)(input);
+  return ("string" === r ? String : Number)(t);
 }
-module.exports = _toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
@@ -17500,11 +17506,11 @@ module.exports = _toPrimitive, module.exports.__esModule = true, module.exports[
 
 var _typeof = (__webpack_require__(/*! ./typeof.js */ "../node_modules/@babel/runtime/helpers/typeof.js")["default"]);
 var toPrimitive = __webpack_require__(/*! ./toPrimitive.js */ "../node_modules/@babel/runtime/helpers/toPrimitive.js");
-function _toPropertyKey(arg) {
-  var key = toPrimitive(arg, "string");
-  return _typeof(key) === "symbol" ? key : String(key);
+function toPropertyKey(t) {
+  var i = toPrimitive(t, "string");
+  return "symbol" == _typeof(i) ? i : String(i);
 }
-module.exports = _toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 

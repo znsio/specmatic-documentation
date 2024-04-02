@@ -1,4 +1,4 @@
-/*! elementor - v3.20.0 - 13-03-2024 */
+/*! elementor - v3.20.0 - 26-03-2024 */
 (()=>{"use strict";var __webpack_exports__={};
 /*!************************************************************!*\
   !*** ../core/editor/loader/v2/js/editor-environment-v2.js ***!

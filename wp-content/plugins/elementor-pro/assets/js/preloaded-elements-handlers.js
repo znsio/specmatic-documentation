@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.20.0 - 11-03-2024 */
+/*! elementor-pro - v3.20.0 - 26-03-2024 */
 (self["webpackChunkelementor_pro"]=self["webpackChunkelementor_pro"]||[]).push([["preloaded-elements-handlers"],{"../assets/dev/js/frontend/preloaded-elements-handlers.js":
 /*!****************************************************************!*\
   !*** ../assets/dev/js/frontend/preloaded-elements-handlers.js ***!

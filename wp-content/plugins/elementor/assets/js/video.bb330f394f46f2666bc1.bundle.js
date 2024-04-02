@@ -1,4 +1,4 @@
-/*! elementor - v3.20.0 - 13-03-2024 */"use strict";(self["webpackChunkelementor"]=self["webpackChunkelementor"]||[]).push([["video"],{"../assets/dev/js/frontend/handlers/video.js":
+/*! elementor - v3.20.0 - 26-03-2024 */"use strict";(self["webpackChunkelementor"]=self["webpackChunkelementor"]||[]).push([["video"],{"../assets/dev/js/frontend/handlers/video.js":
 /*!***************************************************!*\
   !*** ../assets/dev/js/frontend/handlers/video.js ***!
   \***************************************************/

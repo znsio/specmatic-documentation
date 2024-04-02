@@ -1,4 +1,4 @@
-/*! elementor - v3.20.0 - 13-03-2024 */
+/*! elementor - v3.20.0 - 26-03-2024 */
 (()=>{"use strict";var __webpack_modules__=({"@wordpress/i18n":
 /*!**************************!*\
   !*** external "wp.i18n" ***!

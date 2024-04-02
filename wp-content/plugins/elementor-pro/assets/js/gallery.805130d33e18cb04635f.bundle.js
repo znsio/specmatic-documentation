@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.20.0 - 11-03-2024 */"use strict";(self["webpackChunkelementor_pro"]=self["webpackChunkelementor_pro"]||[]).push([["gallery"],{"../modules/gallery/assets/js/frontend/handler.js":
+/*! elementor-pro - v3.20.0 - 26-03-2024 */"use strict";(self["webpackChunkelementor_pro"]=self["webpackChunkelementor_pro"]||[]).push([["gallery"],{"../modules/gallery/assets/js/frontend/handler.js":
 /*!********************************************************!*\
   !*** ../modules/gallery/assets/js/frontend/handler.js ***!
   \********************************************************/

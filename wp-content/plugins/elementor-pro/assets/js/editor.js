@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.20.0 - 11-03-2024 */
+/*! elementor-pro - v3.20.0 - 26-03-2024 */
 (()=>{var __webpack_modules__=({"../assets/dev/js/editor/element-editor-module.js":
 /*!********************************************************!*\
   !*** ../assets/dev/js/editor/element-editor-module.js ***!

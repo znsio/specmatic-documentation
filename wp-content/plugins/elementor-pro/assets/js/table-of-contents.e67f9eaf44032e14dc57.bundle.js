@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.20.0 - 11-03-2024 */"use strict";(self["webpackChunkelementor_pro"]=self["webpackChunkelementor_pro"]||[]).push([["table-of-contents"],{"../modules/table-of-contents/assets/js/frontend/handlers/table-of-contents.js":
+/*! elementor-pro - v3.20.0 - 26-03-2024 */"use strict";(self["webpackChunkelementor_pro"]=self["webpackChunkelementor_pro"]||[]).push([["table-of-contents"],{"../modules/table-of-contents/assets/js/frontend/handlers/table-of-contents.js":
 /*!*************************************************************************************!*\
   !*** ../modules/table-of-contents/assets/js/frontend/handlers/table-of-contents.js ***!
   \*************************************************************************************/

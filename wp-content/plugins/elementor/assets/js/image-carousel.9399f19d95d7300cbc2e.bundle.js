@@ -1,4 +1,4 @@
-/*! elementor - v3.20.0 - 13-03-2024 */"use strict";(self["webpackChunkelementor"]=self["webpackChunkelementor"]||[]).push([["image-carousel"],{"../assets/dev/js/frontend/handlers/image-carousel.js":
+/*! elementor - v3.20.0 - 26-03-2024 */"use strict";(self["webpackChunkelementor"]=self["webpackChunkelementor"]||[]).push([["image-carousel"],{"../assets/dev/js/frontend/handlers/image-carousel.js":
 /*!************************************************************!*\
   !*** ../assets/dev/js/frontend/handlers/image-carousel.js ***!
   \************************************************************/

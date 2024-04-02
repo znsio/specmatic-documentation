@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.20.0 - 11-03-2024 */"use strict";(self["webpackChunkelementor_pro"]=self["webpackChunkelementor_pro"]||[]).push([["woocommerce-menu-cart"],{"../modules/woocommerce/assets/js/frontend/handlers/menu-cart.js":
+/*! elementor-pro - v3.20.0 - 26-03-2024 */"use strict";(self["webpackChunkelementor_pro"]=self["webpackChunkelementor_pro"]||[]).push([["woocommerce-menu-cart"],{"../modules/woocommerce/assets/js/frontend/handlers/menu-cart.js":
 /*!***********************************************************************!*\
   !*** ../modules/woocommerce/assets/js/frontend/handlers/menu-cart.js ***!
   \***********************************************************************/

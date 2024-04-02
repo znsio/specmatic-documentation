@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.20.0 - 11-03-2024 */"use strict";(self["webpackChunkelementor_pro"]=self["webpackChunkelementor_pro"]||[]).push([["search-form"],{"../modules/theme-elements/assets/js/frontend/handlers/search-form.js":
+/*! elementor-pro - v3.20.0 - 26-03-2024 */"use strict";(self["webpackChunkelementor_pro"]=self["webpackChunkelementor_pro"]||[]).push([["search-form"],{"../modules/theme-elements/assets/js/frontend/handlers/search-form.js":
 /*!****************************************************************************!*\
   !*** ../modules/theme-elements/assets/js/frontend/handlers/search-form.js ***!
   \****************************************************************************/

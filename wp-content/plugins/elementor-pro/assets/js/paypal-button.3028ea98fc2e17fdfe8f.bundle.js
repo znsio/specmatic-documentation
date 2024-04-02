@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.20.0 - 11-03-2024 */"use strict";(self["webpackChunkelementor_pro"]=self["webpackChunkelementor_pro"]||[]).push([["paypal-button"],{"../modules/payments/assets/js/frontend/handlers/paypal-button.js":
+/*! elementor-pro - v3.20.0 - 26-03-2024 */"use strict";(self["webpackChunkelementor_pro"]=self["webpackChunkelementor_pro"]||[]).push([["paypal-button"],{"../modules/payments/assets/js/frontend/handlers/paypal-button.js":
 /*!************************************************************************!*\
   !*** ../modules/payments/assets/js/frontend/handlers/paypal-button.js ***!
   \************************************************************************/

@@ -1,4 +1,4 @@
-/*! elementor - v3.20.0 - 13-03-2024 */
+/*! elementor - v3.20.0 - 26-03-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -153,6 +153,7 @@ var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*!
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
 var _app = _interopRequireDefault(__webpack_require__(/*! ./app */ "../modules/ai/assets/js/editor/app.js"));
 var _i18n = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+var _aiPromotionInfotipWrapper = _interopRequireDefault(__webpack_require__(/*! ./components/ai-promotion-infotip-wrapper */ "../modules/ai/assets/js/editor/components/ai-promotion-infotip-wrapper.js"));
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 var AiBehavior = /*#__PURE__*/function (_Marionette$Behavior) {
@@ -224,6 +225,29 @@ var AiBehavior = /*#__PURE__*/function (_Marionette$Behavior) {
       return isDefaultValue ? this.getOption('buttonLabel') : this.getOption('editButtonLabel');
     }
   }, {
+    key: "getPromotionTexts",
+    value: function getPromotionTexts(controlType) {
+      switch (controlType) {
+        case 'textarea':
+          return {
+            header: (0, _i18n.__)("Writer's block? Never again!", 'elementor'),
+            contentText: (0, _i18n.__)('Elementor AI can draft your initial content and help you beat the blank page.', 'elementor')
+          };
+        case 'media':
+          return {
+            header: (0, _i18n.__)('Unleash your creativity.', 'elementor'),
+            contentText: (0, _i18n.__)('With Elementor AI, you can generate any image you would like for your website.', 'elementor')
+          };
+        case 'code':
+          return {
+            header: (0, _i18n.__)('Let the elves take care of it.', 'elementor'),
+            contentText: (0, _i18n.__)('Elementor AI can help you write code faster and more efficiently.', 'elementor')
+          };
+        default:
+          return null;
+      }
+    }
+  }, {
     key: "onRender",
     value: function onRender() {
       var isPromotion = !this.config.is_get_started;
@@ -250,6 +274,38 @@ var AiBehavior = /*#__PURE__*/function (_Marionette$Behavior) {
         $wrap = this.$el.find('.elementor-control-title');
       }
       $wrap.after($button);
+      var controlType = this.view.model.get('type');
+      var promotionTexts = this.getPromotionTexts(controlType);
+      if (!promotionTexts) {
+        return;
+      }
+      var editorSessionValue = sessionStorage.getItem('ai_promotion_introduction_editor_session_key');
+      if (!editorSessionValue || editorSessionValue !== EDITOR_SESSION_ID) {
+        sessionStorage.setItem('ai_promotion_introduction_editor_session_key', EDITOR_SESSION_ID);
+      } else {
+        return;
+      }
+      setTimeout(function () {
+        var _elementor2, _elementor2$getPrefer;
+        var rootBox = $button[0].getBoundingClientRect();
+        if (!rootBox || 0 === rootBox.width || 0 === rootBox.height) {
+          return;
+        }
+        var rootElement = document.createElement('div');
+        document.body.append(rootElement);
+        var _ReactUtils$render = ReactUtils.render( /*#__PURE__*/_react.default.createElement(_aiPromotionInfotipWrapper.default, {
+            anchor: $button[0],
+            header: promotionTexts.header,
+            contentText: promotionTexts.contentText,
+            controlType: controlType,
+            unmountAction: function unmountAction() {
+              unmount();
+            },
+            colorScheme: ((_elementor2 = elementor) === null || _elementor2 === void 0 ? void 0 : (_elementor2$getPrefer = _elementor2.getPreferences) === null || _elementor2$getPrefer === void 0 ? void 0 : _elementor2$getPrefer.call(_elementor2, 'ui_theme')) || 'auto',
+            isRTL: elementorCommon.config.isRTL
+          }), rootElement),
+          unmount = _ReactUtils$render.unmount;
+      }, 1000);
     }
   }]);
   return AiBehavior;
@@ -490,6 +546,256 @@ App.propTypes = {
 };
 var _default = App;
 exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/ai-promotion-infotip-content.js":
+/*!*********************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/ai-promotion-infotip-content.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _i18n = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+var AiPromotionInfotipContent = function AiPromotionInfotipContent(props) {
+  return /*#__PURE__*/_react.default.createElement(_ui.Card, {
+    sx: {
+      width: 300
+    },
+    elevation: 0
+  }, /*#__PURE__*/_react.default.createElement(_ui.CardHeader, {
+    subheader: "ELEMENTOR AI"
+  }), /*#__PURE__*/_react.default.createElement(_ui.CardContent, null, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    variant: "subtitle2",
+    color: "text.secondary"
+  }, props.header), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    color: "text.secondary"
+  }, props.contentText)), /*#__PURE__*/_react.default.createElement(_ui.CardActions, {
+    disableSpacing: true,
+    sx: {
+      justifyContent: 'flex-end',
+      gap: 1
+    }
+  }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
+    onClick: function onClick() {
+      return props.onClose();
+    },
+    color: "secondary"
+  }, (0, _i18n.__)('Not Now', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Button, {
+    onClick: function onClick() {
+      return props.onClick();
+    },
+    variant: "contained"
+  }, (0, _i18n.__)('Try it now', 'elementor'))));
+};
+AiPromotionInfotipContent.propTypes = {
+  header: PropTypes.string,
+  contentText: PropTypes.string,
+  onClick: PropTypes.func,
+  onClose: PropTypes.func
+};
+var _default = AiPromotionInfotipContent;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/ai-promotion-infotip-wrapper.js":
+/*!*********************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/ai-promotion-infotip-wrapper.js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _aiPromotionInfotip = _interopRequireDefault(__webpack_require__(/*! ./ai-promotion-infotip */ "../modules/ai/assets/js/editor/components/ai-promotion-infotip.js"));
+var _aiPromotionInfotipContent = _interopRequireDefault(__webpack_require__(/*! ./ai-promotion-infotip-content */ "../modules/ai/assets/js/editor/components/ai-promotion-infotip-content.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _useIntroduction2 = _interopRequireDefault(__webpack_require__(/*! ../hooks/use-introduction */ "../modules/ai/assets/js/editor/hooks/use-introduction.js"));
+var _focusOutListener = __webpack_require__(/*! ../helpers/focus-out-listener */ "../modules/ai/assets/js/editor/helpers/focus-out-listener.js");
+var AiPromotionInfotipWrapper = function AiPromotionInfotipWrapper(_ref) {
+  var anchor = _ref.anchor,
+    header = _ref.header,
+    contentText = _ref.contentText,
+    controlType = _ref.controlType,
+    unmountAction = _ref.unmountAction,
+    colorScheme = _ref.colorScheme,
+    isRTL = _ref.isRTL;
+  var focusOutListener = (0, _focusOutListener.useFocusOutListener)();
+  var _useIntroduction = (0, _useIntroduction2.default)("ai_promotion_introduction_".concat(controlType)),
+    isViewed = _useIntroduction.isViewed,
+    markAsViewed = _useIntroduction.markAsViewed;
+  if (isViewed) {
+    return;
+  }
+  return /*#__PURE__*/_react.default.createElement(_ui.DirectionProvider, {
+    rtl: isRTL
+  }, /*#__PURE__*/_react.default.createElement(_ui.ThemeProvider, {
+    colorScheme: colorScheme
+  }, /*#__PURE__*/_react.default.createElement(_focusOutListener.FocusOutListener, {
+    listener: focusOutListener,
+    onFocusOut: function onFocusOut() {
+      return unmountAction();
+    }
+  }, /*#__PURE__*/_react.default.createElement(_aiPromotionInfotip.default, {
+    anchor: anchor,
+    focusOutListener: focusOutListener,
+    content: /*#__PURE__*/_react.default.createElement(_aiPromotionInfotipContent.default, {
+      focusOutListener: focusOutListener,
+      header: header,
+      contentText: contentText,
+      onClose: function onClose() {
+        markAsViewed();
+        focusOutListener.remove();
+        unmountAction();
+      },
+      onClick: function onClick() {
+        markAsViewed();
+        focusOutListener.remove();
+        unmountAction();
+        anchor.click();
+      }
+    })
+  }))));
+};
+AiPromotionInfotipWrapper.propTypes = {
+  anchor: PropTypes.object,
+  header: PropTypes.string,
+  contentText: PropTypes.string,
+  controlType: PropTypes.string,
+  unmountAction: PropTypes.func,
+  colorScheme: PropTypes.string,
+  isRTL: PropTypes.bool
+};
+var _default = AiPromotionInfotipWrapper;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/components/ai-promotion-infotip.js":
+/*!*************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/components/ai-promotion-infotip.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = AiPromotionInfotip;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var StyledPopper = (0, _ui.styled)(_ui.Popper)(function (_ref) {
+  var theme = _ref.theme;
+  return {
+    '& .MuiTooltip-tooltip': {
+      width: 500,
+      minHeight: 50,
+      padding: 0,
+      backgroundColor: theme.palette.background.paper,
+      color: theme.palette.text.primary,
+      // The shadow angle should guarantee that the arrow is visible clearly.
+      boxShadow: '0px -6px 10px 2px rgba(0,0,0,0.025),6px 0px 10px 2px rgba(0,0,0,0.025),-6px 0px 10px 2px rgba(0,0,0,0.025),0px 6px 10px 2px rgba(0,0,0,0.025)'
+    },
+    '& .MuiTooltip-arrow': {
+      color: theme.palette.background.paper,
+      // Arrow size.
+      fontSize: '1.2rem'
+    },
+    '&.MuiTooltip-popper .MuiTooltip-tooltip.MuiTooltip-tooltipPlacementBottom': {
+      marginTop: theme.spacing(2)
+    },
+    '&.MuiTooltip-popper .MuiTooltip-tooltip.MuiTooltip-tooltipPlacementRight': {
+      marginLeft: theme.spacing(2)
+    },
+    '&.MuiTooltip-popper .MuiTooltip-tooltip.MuiTooltip-tooltipPlacementLeft': {
+      marginRight: theme.spacing(2)
+    },
+    '&.MuiTooltip-popper .MuiTooltip-tooltip.MuiTooltip-tooltipPlacementTop': {
+      marginBottom: theme.spacing(2)
+    }
+  };
+});
+function AiPromotionInfotip(_ref2) {
+  var anchor = _ref2.anchor,
+    content = _ref2.content,
+    focusOutListener = _ref2.focusOutListener;
+  var positionRef = _react.default.useRef({
+    x: 0,
+    y: 0,
+    width: 0,
+    height: 0
+  });
+  var popperRef = _react.default.useRef(null);
+  var showTooltip = function showTooltip() {
+    var _anchor$getBoundingCl = anchor.getBoundingClientRect(),
+      x = _anchor$getBoundingCl.x,
+      y = _anchor$getBoundingCl.y,
+      width = _anchor$getBoundingCl.width,
+      height = _anchor$getBoundingCl.height;
+    positionRef.current = {
+      x: x,
+      y: y,
+      width: width,
+      height: height
+    };
+    if (null === popperRef.current) {
+      return;
+    }
+    popperRef.current.update();
+  };
+  _react.default.useEffect(function () {
+    showTooltip();
+  }, []);
+  return /*#__PURE__*/_react.default.createElement(_ui.Tooltip, {
+    arrow: true,
+    open: true,
+    title: content,
+    placement: "right",
+    PopperComponent: StyledPopper,
+    PopperProps: {
+      onClick: function onClick() {
+        return focusOutListener.reset();
+      },
+      popperRef: popperRef,
+      anchorEl: {
+        getBoundingClientRect: function getBoundingClientRect() {
+          return new DOMRect(positionRef.current.x, positionRef.current.y, positionRef.current.width, positionRef.current.height);
+        }
+      }
+    }
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    style: {
+      display: 'none'
+    }
+  }));
+}
+AiPromotionInfotip.propTypes = {
+  anchor: PropTypes.element.isRequired,
+  content: PropTypes.object.isRequired,
+  focusOutListener: PropTypes.object.isRequired
+};
 
 /***/ }),
 
@@ -899,6 +1205,7 @@ exports["default"] = _default;
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
+/* provided dependency */ var sprintf = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["sprintf"];
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
@@ -920,65 +1227,85 @@ var PromptErrorMessage = function PromptErrorMessage(_ref) {
     _ref$actionPosition = _ref.actionPosition,
     actionPosition = _ref$actionPosition === void 0 ? 'default' : _ref$actionPosition,
     props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
-  var messages = {
-    default: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Unknown error. Please try again later.', 'elementor')),
-      description: (0, _i18n.__)('Error code:', 'elementor') + ' ' + error,
-      buttonText: (0, _i18n.__)('Try Again', 'elementor'),
-      buttonAction: onRetry
-    },
-    service_outage_internal: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Elementor AI is temporarily unavailable', 'elementor')),
-      description: (0, _i18n.__)('Seems like we are experiencing technical difficulty. We should be up and running shortly.', 'elementor'),
-      buttonText: (0, _i18n.__)('Try Again', 'elementor'),
-      buttonAction: onRetry
-    },
-    invalid_connect_data: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Reconnect your account', 'elementor')),
-      description: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (0, _i18n.__)('We couldn\'t connect to your account due to technical difficulties on our end. Reconnect your account to continue.', 'elementor'), ' ', /*#__PURE__*/_react.default.createElement("a", {
-        href: "https://elementor.com/help/disconnecting-reconnecting-your-elementor-account/",
-        target: "_blank",
-        rel: "noreferrer"
-      }, (0, _i18n.__)('Show me how', 'elementor'))),
-      buttonText: (0, _i18n.__)('Reconnect', 'elementor'),
-      buttonAction: function buttonAction() {
-        return window.open(window.ElementorAiConfig.connect_url);
-      }
-    },
-    not_connected: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('You aren\'t connected to Elementor AI.', 'elementor')),
-      description: (0, _i18n.__)('Elementor AI is just a few clicks away. Connect your account to instantly create texts and custom code.', 'elementor'),
-      buttonText: (0, _i18n.__)('Connect', 'elementor'),
-      buttonAction: function buttonAction() {
-        return window.open(window.ElementorAiConfig.connect_url);
-      }
-    },
-    quota_reached_trail: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('It\'s time to upgrade.', 'elementor')),
-      description: (0, _i18n.__)('Enjoy the free trial? Upgrade now for unlimited access to built-in image, text and custom code generators.', 'elementor'),
-      buttonText: (0, _i18n.__)('Upgrade', 'elementor'),
-      buttonAction: function buttonAction() {
-        return window.open('https://go.elementor.com/ai-popup-purchase-limit-reached/', '_blank');
-      }
-    },
-    quota_reached_subscription: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('It\'s time to upgrade.', 'elementor')),
-      description: (0, _i18n.__)('Love Elementor AI? Upgrade to continue creating with built-in image, text and custom code generators.', 'elementor'),
-      buttonText: (0, _i18n.__)('Upgrade', 'elementor'),
-      buttonAction: function buttonAction() {
-        return window.open('https://go.elementor.com/ai-popup-purchase-limit-reached/', '_blank');
-      }
-    },
-    rate_limit_network: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Whoa! Slow down there.', 'elementor')),
-      description: (0, _i18n.__)('We can’t process that many requests so fast. Try again in 15 minutes.', 'elementor')
-    },
-    invalid_prompts: {
-      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('We were unable to generate that prompt.', 'elementor')),
-      description: (0, _i18n.__)('Seems like the prompt contains words that could generate harmful content. Write a different prompt to continue.', 'elementor')
+  function getQuotaReachedTrailMessage(featureName) {
+    if (!featureName) {
+      return {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('It\'s time to upgrade.', 'elementor')),
+        description: (0, _i18n.__)('Enjoy the free trial? Upgrade now for unlimited access to built-in image, text and custom code generators.', 'elementor'),
+        buttonText: (0, _i18n.__)('Upgrade', 'elementor'),
+        buttonAction: function buttonAction() {
+          return window.open('https://go.elementor.com/ai-popup-purchase-limit-reached/', '_blank');
+        }
+      };
     }
-  };
-  var message = messages[error] || messages.default;
+    return {
+      // Translators: %s is the feature name.
+      text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, sprintf((0, _i18n.__)('You\'ve used all AI credits for %s.', 'elementor'), featureName.toLowerCase())),
+      description: (0, _i18n.__)('Upgrade now to keep using this feature. You still have credits for other AI features (Text, Code, Images, Containers, etc.)', 'elementor'),
+      buttonText: (0, _i18n.__)('Upgrade now', 'elementor'),
+      buttonAction: function buttonAction() {
+        return window.open('https://go.elementor.com/ai-popup-purchase-limit-reached/', '_blank');
+      }
+    };
+  }
+  function getErrorMessage() {
+    var _error$extra_data;
+    var errMsg = error.message || error;
+    var featureName = (_error$extra_data = error.extra_data) === null || _error$extra_data === void 0 ? void 0 : _error$extra_data.featureName;
+    var messages = {
+      default: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Unknown error. Please try again later.', 'elementor')),
+        description: (0, _i18n.__)('Error code:', 'elementor') + ' ' + error,
+        buttonText: (0, _i18n.__)('Try Again', 'elementor'),
+        buttonAction: onRetry
+      },
+      service_outage_internal: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Elementor AI is temporarily unavailable', 'elementor')),
+        description: (0, _i18n.__)('Seems like we are experiencing technical difficulty. We should be up and running shortly.', 'elementor'),
+        buttonText: (0, _i18n.__)('Try Again', 'elementor'),
+        buttonAction: onRetry
+      },
+      invalid_connect_data: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Reconnect your account', 'elementor')),
+        description: /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (0, _i18n.__)('We couldn\'t connect to your account due to technical difficulties on our end. Reconnect your account to continue.', 'elementor'), ' ', /*#__PURE__*/_react.default.createElement("a", {
+          href: "https://elementor.com/help/disconnecting-reconnecting-your-elementor-account/",
+          target: "_blank",
+          rel: "noreferrer"
+        }, (0, _i18n.__)('Show me how', 'elementor'))),
+        buttonText: (0, _i18n.__)('Reconnect', 'elementor'),
+        buttonAction: function buttonAction() {
+          return window.open(window.ElementorAiConfig.connect_url);
+        }
+      },
+      not_connected: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('You aren\'t connected to Elementor AI.', 'elementor')),
+        description: (0, _i18n.__)('Elementor AI is just a few clicks away. Connect your account to instantly create texts and custom code.', 'elementor'),
+        buttonText: (0, _i18n.__)('Connect', 'elementor'),
+        buttonAction: function buttonAction() {
+          return window.open(window.ElementorAiConfig.connect_url);
+        }
+      },
+      quota_reached_trail: getQuotaReachedTrailMessage(featureName),
+      quota_reached_subscription: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('It\'s time to upgrade.', 'elementor')),
+        description: (0, _i18n.__)('Love Elementor AI? Upgrade to continue creating with built-in image, text and custom code generators.', 'elementor'),
+        buttonText: (0, _i18n.__)('Upgrade', 'elementor'),
+        buttonAction: function buttonAction() {
+          return window.open('https://go.elementor.com/ai-popup-purchase-limit-reached/', '_blank');
+        }
+      },
+      rate_limit_network: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Whoa! Slow down there.', 'elementor')),
+        description: (0, _i18n.__)('We can’t process that many requests so fast. Try again in 15 minutes.', 'elementor')
+      },
+      invalid_prompts: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('We were unable to generate that prompt.', 'elementor')),
+        description: (0, _i18n.__)('Seems like the prompt contains words that could generate harmful content. Write a different prompt to continue.', 'elementor')
+      }
+    };
+    return messages[errMsg] || messages.default;
+  }
+  var message = getErrorMessage();
   var action = (message === null || message === void 0 ? void 0 : message.buttonText) && /*#__PURE__*/_react.default.createElement(_ui.Button, {
     color: "inherit",
     size: "small",
@@ -2363,7 +2690,7 @@ var PromptHistoryUpgrade = function PromptHistoryUpgrade(_ref) {
     }
   }, getMessage(variant, historyType)), /*#__PURE__*/_react.default.createElement(_ui.Button, {
     variant: "contained",
-    color: "accent",
+    color: "promotion",
     size: "small",
     href: actionUrl,
     target: "_blank",
@@ -2373,7 +2700,7 @@ var PromptHistoryUpgrade = function PromptHistoryUpgrade(_ref) {
       width: '50%',
       alignSelf: 'center',
       '&:hover': {
-        color: 'accent.contrastText'
+        color: 'promotion.contrastText'
       }
     }
   }, (0, _i18n.__)('Upgrade now', 'elementor')));
@@ -2847,51 +3174,23 @@ Object.defineProperty(exports, "__esModule", ({
 exports["default"] = void 0;
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "../node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _icons = __webpack_require__(/*! @elementor/icons */ "@elementor/icons");
-var _excluded = ["onClose", "sx"];
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-var BannerActions = function BannerActions(_ref) {
-  var onClose = _ref.onClose;
-  return /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    direction: "row",
-    alignItems: "center",
-    gap: 1
-  }, /*#__PURE__*/_react.default.createElement(_ui.Button, {
-    size: "small",
-    color: "inherit",
-    variant: "outlined",
-    onClick: function onClick() {
-      return window.open('https://go.elementor.com/ai-banner-free-upgrade/', '_blank');
-    }
-  }, __('Upgrade', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.IconButton, {
-    color: "inherit",
-    size: "small",
-    onClick: onClose
-  }, /*#__PURE__*/_react.default.createElement(_icons.XIcon, null)));
-};
-BannerActions.propTypes = {
-  onClose: PropTypes.func
-};
-var UpgradeBanner = function UpgradeBanner(_ref2) {
-  var onClose = _ref2.onClose,
-    _ref2$sx = _ref2.sx,
-    sx = _ref2$sx === void 0 ? {} : _ref2$sx,
-    props = (0, _objectWithoutProperties2.default)(_ref2, _excluded);
+var _excluded = ["onClose"];
+var UpgradeBanner = function UpgradeBanner(_ref) {
+  var onClose = _ref.onClose,
+    props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
   return /*#__PURE__*/_react.default.createElement(_ui.Alert, (0, _extends2.default)({
     icon: false,
-    action: /*#__PURE__*/_react.default.createElement(BannerActions, {
-      onClose: onClose
-    })
-  }, props, {
-    sx: _objectSpread({
-      backgroundColor: 'accent.main',
-      color: 'accent.contrastText'
-    }, sx)
-  }), __('You’re using a limited license. Get maximum access to Elementor AI.', 'elementor'));
+    action: /*#__PURE__*/_react.default.createElement(_ui.AlertAction, {
+      onClick: function onClick() {
+        return window.open('https://go.elementor.com/ai-banner-free-upgrade/', '_blank');
+      }
+    }, __('Upgrade', 'elementor')),
+    variant: "filled",
+    color: "promotion",
+    onClose: onClose
+  }, props), __('You’re using a limited license. Get maximum access to Elementor AI.', 'elementor'));
 };
 UpgradeBanner.propTypes = {
   onClose: PropTypes.func,
@@ -3016,7 +3315,7 @@ var UpgradeChip = function UpgradeChip(_ref3) {
     display: "flex",
     alignItems: "center"
   }, /*#__PURE__*/_react.default.createElement(Chip, {
-    color: "accent",
+    color: "promotion",
     label: (0, _i18n.__)('Upgrade', 'elementor'),
     icon: /*#__PURE__*/_react.default.createElement(_icons.AIIcon, null),
     size: "small"
@@ -3059,14 +3358,14 @@ var UpgradeChip = function UpgradeChip(_ref3) {
     }, bullet)));
   })), /*#__PURE__*/_react.default.createElement(_ui.Button, {
     variant: "contained",
-    color: "accent",
+    color: "promotion",
     size: "small",
     href: actionUrl,
     target: "_blank",
     startIcon: /*#__PURE__*/_react.default.createElement(_icons.AIIcon, null),
     sx: {
       '&:hover': {
-        color: 'accent.contrastText'
+        color: 'promotion.contrastText'
       }
     }
   }, actionLabel))));
@@ -3102,24 +3401,36 @@ var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/he
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var _excluded = ["onClose", "usagePercentage", "hasSubscription"];
-var _title, _url, _title2, _url2;
+var _title, _description, _url, _title2, _description2, _url2, _title3, _description3, _url3;
 var KEY_SUBSCRIPTION = 'subscription';
 var KEY_NO_SUBSCRIPTION = 'noSubscription';
 var alertConfigs = [{
   threshold: 95,
-  title: (_title = {}, (0, _defineProperty2.default)(_title, KEY_SUBSCRIPTION, __('You’ve used over 95% of your Elementor AI plan.', 'elementor')), (0, _defineProperty2.default)(_title, KEY_NO_SUBSCRIPTION, __('You’ve used over 95% of the free trial.', 'elementor')), _title),
+  title: (_title = {}, (0, _defineProperty2.default)(_title, KEY_SUBSCRIPTION, __('You’ve used over 95% of your Elementor AI plan.', 'elementor')), (0, _defineProperty2.default)(_title, KEY_NO_SUBSCRIPTION, __('You’ve used 95% of credits for this AI feature.', 'elementor')), _title),
+  description: (_description = {}, (0, _defineProperty2.default)(_description, KEY_SUBSCRIPTION, __('Get maximum access.', 'elementor')), (0, _defineProperty2.default)(_description, KEY_NO_SUBSCRIPTION, __('Upgrade now to keep using this feature. You still have credits for other AI features (Text, Code, Images, Containers, etc.)', 'elementor')), _description),
   url: (_url = {}, (0, _defineProperty2.default)(_url, KEY_SUBSCRIPTION, 'https://go.elementor.com/ai-banner-paid-95-limit-reach/'), (0, _defineProperty2.default)(_url, KEY_NO_SUBSCRIPTION, 'https://go.elementor.com/ai-banner-free-95-limit-reach/'), _url),
   color: 'error'
 }, {
   threshold: 80,
-  title: (_title2 = {}, (0, _defineProperty2.default)(_title2, KEY_SUBSCRIPTION, __('You’ve used over 80% of your Elementor AI plan.', 'elementor')), (0, _defineProperty2.default)(_title2, KEY_NO_SUBSCRIPTION, __('You’ve used over 80% of the free trial.', 'elementor')), _title2),
+  title: (_title2 = {}, (0, _defineProperty2.default)(_title2, KEY_SUBSCRIPTION, __('You’ve used over 80% of your Elementor AI plan.', 'elementor')), (0, _defineProperty2.default)(_title2, KEY_NO_SUBSCRIPTION, __('You’ve used 80% of credits for this AI feature.', 'elementor')), _title2),
+  description: (_description2 = {}, (0, _defineProperty2.default)(_description2, KEY_SUBSCRIPTION, __('Get maximum access.', 'elementor')), (0, _defineProperty2.default)(_description2, KEY_NO_SUBSCRIPTION, __('Upgrade now to keep using this feature. You still have credits for other AI features (Text, Code, Images, Containers, etc.)', 'elementor')), _description2),
   url: (_url2 = {}, (0, _defineProperty2.default)(_url2, KEY_SUBSCRIPTION, 'https://go.elementor.com/ai-banner-paid-80-limit-reach/'), (0, _defineProperty2.default)(_url2, KEY_NO_SUBSCRIPTION, 'https://go.elementor.com/ai-banner-free-80-limit-reach/'), _url2),
+  color: 'warning'
+}, {
+  threshold: 75,
+  title: (_title3 = {}, (0, _defineProperty2.default)(_title3, KEY_SUBSCRIPTION, __('You’ve used over 75% of your Elementor AI plan.', 'elementor')), (0, _defineProperty2.default)(_title3, KEY_NO_SUBSCRIPTION, __(' You’ve used 75% of credits for this AI feature.', 'elementor')), _title3),
+  description: (_description3 = {}, (0, _defineProperty2.default)(_description3, KEY_SUBSCRIPTION, __('Get maximum access.', 'elementor')), (0, _defineProperty2.default)(_description3, KEY_NO_SUBSCRIPTION, __('Upgrade now to keep using this feature. You still have credits for other AI features (Text, Code, Images, Containers, etc.)', 'elementor')), _description3),
+  url: (_url3 = {}, (0, _defineProperty2.default)(_url3, KEY_SUBSCRIPTION, 'https://go.elementor.com/ai-banner-paid-80-limit-reach/'), (0, _defineProperty2.default)(_url3, KEY_NO_SUBSCRIPTION, 'https://go.elementor.com/ai-banner-free-80-limit-reach/'), _url3),
   color: 'warning'
 }];
 var UpgradeButton = function UpgradeButton(props) {
   return /*#__PURE__*/_react.default.createElement(_ui.Button, (0, _extends2.default)({
-    color: "inherit"
-  }, props), __('Upgrade', 'elementor'));
+    color: "inherit",
+    variant: "outlined",
+    sx: {
+      border: '2px solid'
+    }
+  }, props), __('Upgrade now', 'elementor'));
 };
 var UsageLimitAlert = function UsageLimitAlert(_ref) {
   var onClose = _ref.onClose,
@@ -3135,6 +3446,7 @@ var UsageLimitAlert = function UsageLimitAlert(_ref) {
   }
   var subscriptionType = hasSubscription ? KEY_SUBSCRIPTION : KEY_NO_SUBSCRIPTION;
   var title = config.title,
+    description = config.description,
     url = config.url,
     color = config.color;
   var handleUpgradeClick = function handleUpgradeClick() {
@@ -3146,7 +3458,7 @@ var UsageLimitAlert = function UsageLimitAlert(_ref) {
       onClick: handleUpgradeClick
     }),
     color: color
-  }, props), /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, title[subscriptionType]), __('Get maximum access.', 'elementor'));
+  }, props), /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, title[subscriptionType]), description[subscriptionType]);
 };
 UsageLimitAlert.propTypes = {
   onClose: PropTypes.func,
@@ -3462,6 +3774,83 @@ var daysDiff = function daysDiff(firstDate, secondDate) {
   return Math.floor((secondUTC - firstUTC) / MS_PER_DAY);
 };
 exports.daysDiff = daysDiff;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/helpers/focus-out-listener.js":
+/*!********************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/helpers/focus-out-listener.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.FocusOutListener = FocusOutListener;
+exports.useFocusOutListener = useFocusOutListener;
+var React = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function FocusOutListener(_ref) {
+  var children = _ref.children,
+    listener = _ref.listener,
+    onFocusOut = _ref.onFocusOut;
+  var indicatorRef = listener.indicatorRef,
+    reset = listener.reset,
+    remove = listener.remove,
+    runAction = listener.runAction;
+  React.useEffect(function () {
+    reset();
+    return remove();
+  }, []);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, children, /*#__PURE__*/React.createElement("input", {
+    style: {
+      width: 0,
+      height: 0,
+      padding: 0,
+      margin: 0,
+      outline: 0,
+      border: 0,
+      opacity: 0,
+      position: 'fixed'
+    },
+    onFocus: remove,
+    onBlur: function onBlur() {
+      return runAction(onFocusOut);
+    },
+    ref: indicatorRef
+  }));
+}
+function useFocusOutListener() {
+  var focusOutTimeout = React.useRef(null);
+  var indicatorRef = React.useRef(null);
+  var reset = function reset() {
+    var _indicatorRef$current;
+    return (_indicatorRef$current = indicatorRef.current) === null || _indicatorRef$current === void 0 ? void 0 : _indicatorRef$current.focus();
+  };
+  var remove = function remove() {
+    return clearTimeout(focusOutTimeout.current);
+  };
+  var runAction = function runAction(callback) {
+    focusOutTimeout.current = setTimeout(callback, 250);
+  };
+  return {
+    indicatorRef: indicatorRef,
+    reset: reset,
+    remove: remove,
+    runAction: runAction
+  };
+}
+FocusOutListener.propTypes = {
+  children: PropTypes.node,
+  listener: PropTypes.object,
+  onFocusOut: PropTypes.func
+};
 
 /***/ }),
 
@@ -17879,17 +18268,17 @@ module.exports = _toConsumableArray, module.exports.__esModule = true, module.ex
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var _typeof = (__webpack_require__(/*! ./typeof.js */ "../node_modules/@babel/runtime/helpers/typeof.js")["default"]);
-function _toPrimitive(input, hint) {
-  if (_typeof(input) !== "object" || input === null) return input;
-  var prim = input[Symbol.toPrimitive];
-  if (prim !== undefined) {
-    var res = prim.call(input, hint || "default");
-    if (_typeof(res) !== "object") return res;
+function toPrimitive(t, r) {
+  if ("object" != _typeof(t) || !t) return t;
+  var e = t[Symbol.toPrimitive];
+  if (void 0 !== e) {
+    var i = e.call(t, r || "default");
+    if ("object" != _typeof(i)) return i;
     throw new TypeError("@@toPrimitive must return a primitive value.");
   }
-  return (hint === "string" ? String : Number)(input);
+  return ("string" === r ? String : Number)(t);
 }
-module.exports = _toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
@@ -17901,11 +18290,11 @@ module.exports = _toPrimitive, module.exports.__esModule = true, module.exports[
 
 var _typeof = (__webpack_require__(/*! ./typeof.js */ "../node_modules/@babel/runtime/helpers/typeof.js")["default"]);
 var toPrimitive = __webpack_require__(/*! ./toPrimitive.js */ "../node_modules/@babel/runtime/helpers/toPrimitive.js");
-function _toPropertyKey(arg) {
-  var key = toPrimitive(arg, "string");
-  return _typeof(key) === "symbol" ? key : String(key);
+function toPropertyKey(t) {
+  var i = toPrimitive(t, "string");
+  return "symbol" == _typeof(i) ? i : String(i);
 }
-module.exports = _toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
