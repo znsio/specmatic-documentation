@@ -8,10 +8,10 @@
 <channel>
 	<title>
 	Comments on: Contract Testing Google Pub/Sub: Using AsyncAPI specs as Executable Contracts	</title>
-	<atom:link href="https://specmatic.in/features/contract-testing-google-pub-sub-using-asyncapi-as-executable-contracts/feed/" rel="self" type="application/rss+xml" />
-	<link>https://specmatic.in/features/contract-testing-google-pub-sub-using-asyncapi-as-executable-contracts/</link>
+	<atom:link href="https://specmatic.in/updates/contract-testing-google-pub-sub-using-asyncapi-as-executable-contracts/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.in/updates/contract-testing-google-pub-sub-using-asyncapi-as-executable-contracts/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 17 Apr 2024 23:41:03 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 18 Apr 2024 00:49:05 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
