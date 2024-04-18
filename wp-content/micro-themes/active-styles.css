@@ -577,8 +577,15 @@ html {
 	padding-top: 30px !important;
 }
 
-/** General 2 2 >> Div **/
-main > div {
+/** General 2 2 >> Ast single related posts container **/
+.ast-single-related-posts-container {
+	padding-right: 45px !important;
+	padding-left: 45px !important;
+}
+
+/** General 2 2 >> Commentbox **/
+.commentbox {
+	padding-top: 25px !important;
 	padding-right: 45px !important;
 	padding-left: 45px !important;
 }
@@ -725,6 +732,19 @@ main > div {
 	left: -5px !important;
 	right: 56px !important;
 	float: right !important;
+}
+
+	/** General 2 2 >> Ast single related posts container **/
+	.ast-single-related-posts-container {
+	padding-right: 30px !important;
+	padding-left: 30px !important;
+}
+
+	/** General 2 2 >> Commentbox **/
+	.commentbox {
+	padding-top: 25px !important;
+	padding-right: 35px !important;
+	padding-left: 35px !important;
 }
 
 }
@@ -946,10 +966,15 @@ main > div {
 	left: 0 !important;
 }
 
-	/** General 2 2 >> Div **/
-	main > div {
-	padding-right: 32px !important;
-	padding-left: 32px !important;
+	/** General 2 2 >> Ast single related posts container **/
+	.ast-single-related-posts-container {
+	padding-right: 25px !important;
+	padding-left: 25px !important;
+}
+
+	/** General 2 2 >> Commentbox **/
+	.commentbox {
+	padding-left: 25px !important;
 }
 
 }
@@ -1061,8 +1086,14 @@ main > div {
 	margin-right: 0 !important;
 }
 
-	/** General 2 2 >> Div **/
-	main > div {
+	/** General 2 2 >> Ast single related posts container **/
+	.ast-single-related-posts-container {
+	padding-right: 15px !important;
+	padding-left: 15px !important;
+}
+
+	/** General 2 2 >> Commentbox **/
+	.commentbox {
 	padding-right: 15px !important;
 	padding-left: 15px !important;
 }
