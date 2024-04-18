@@ -12,13 +12,13 @@
 	<atom:link href="https://specmatic.in/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.in/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 13 Mar 2024 21:34:20 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 17 Apr 2024 23:41:03 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.4.3</generator>
+	<generator>https://wordpress.org/?v=6.5.2</generator>
 
 <image>
 	<url>https://specmatic.in/wp-content/uploads/2022/09/Favicon.png</url>
@@ -28,6 +28,24 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Contract Testing Google Pub/Sub: Using AsyncAPI specs as Executable Contracts</title>
+		<link>https://specmatic.in/features/contract-testing-google-pub-sub-using-asyncapi-as-executable-contracts/</link>
+		
+		<dc:creator><![CDATA[Yogesh Nikam]]></dc:creator>
+		<pubDate>Wed, 17 Apr 2024 05:13:57 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[AsyncAPI]]></category>
+		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<guid isPermaLink="false">https://specmatic.in/?p=4576</guid>
+
+					<description><![CDATA[Shift-Left the identification of integration issues in applications built with Event Driven Architecture (EDA) by leveraging AsyncAPI specs as Executable Contracts Introduction The surge in popularity of microservices has revolutionized the way we think about software architecture. However, as systems grow and inter-service communication increases, the risk of integration issues can also rise. One such [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Contract vs. Approval Testing: Identifying Bugs in RESTfulBooker&#8217;s API with Specmatic and TextTest</title>
 		<link>https://specmatic.in/comparisons/contract-vs-approval-testing-identifying-bugs-in-restfulbookers-api-with-texttest-and-specmatic/</link>
 		
@@ -183,26 +201,6 @@
 		<guid isPermaLink="false">https://specmatic.in/?p=1702</guid>
 
 					<description><![CDATA[The JMS mock is wire compatible and can be controlled entirely from within the test. This means you can run the test locally or also as part of your continuous integration build to provide quick feedback early in the cycle.]]></description>
-		
-		
-		
-			</item>
-		<item>
-		<title>Kafka Mocking with AsyncAPI using Specmatic</title>
-		<link>https://specmatic.in/updates/kafka-mocking-with-asyncapi-using-specmatic/</link>
-		
-		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
-		<pubDate>Tue, 18 Jul 2023 04:40:27 +0000</pubDate>
-				<category><![CDATA[Feature Spotlight]]></category>
-		<category><![CDATA[Updates]]></category>
-		<category><![CDATA[AsyncAPI]]></category>
-		<category><![CDATA[Contract Driven Development]]></category>
-		<category><![CDATA[Contract Testing]]></category>
-		<category><![CDATA[Kafka]]></category>
-		<category><![CDATA[OpenAPI]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=1665</guid>
-
-					<description><![CDATA[The Specmatic Kafka mock is wire compatible and entirely within the control of the test, the test can run locally and in CI and deliver quick feedback early in the cycle. So the application itself runs exactly as it would with a real Kafka.]]></description>
 		
 		
 		

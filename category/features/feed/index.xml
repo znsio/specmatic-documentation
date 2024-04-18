@@ -12,13 +12,13 @@
 	<atom:link href="https://specmatic.in/category/features/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.in/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 13 Mar 2024 21:34:20 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 17 Apr 2024 23:41:03 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.4.3</generator>
+	<generator>https://wordpress.org/?v=6.5.2</generator>
 
 <image>
 	<url>https://specmatic.in/wp-content/uploads/2022/09/Favicon.png</url>
@@ -28,6 +28,24 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Contract Testing Google Pub/Sub: Using AsyncAPI specs as Executable Contracts</title>
+		<link>https://specmatic.in/features/contract-testing-google-pub-sub-using-asyncapi-as-executable-contracts/</link>
+		
+		<dc:creator><![CDATA[Yogesh Nikam]]></dc:creator>
+		<pubDate>Wed, 17 Apr 2024 05:13:57 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[AsyncAPI]]></category>
+		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<guid isPermaLink="false">https://specmatic.in/?p=4576</guid>
+
+					<description><![CDATA[Shift-Left the identification of integration issues in applications built with Event Driven Architecture (EDA) by leveraging AsyncAPI specs as Executable Contracts Introduction The surge in popularity of microservices has revolutionized the way we think about software architecture. However, as systems grow and inter-service communication increases, the risk of integration issues can also rise. One such [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Specmatic Docker Image now available</title>
 		<link>https://specmatic.in/updates/specmatic-docker-image/</link>
 		
