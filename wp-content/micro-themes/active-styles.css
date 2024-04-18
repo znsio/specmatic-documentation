@@ -286,6 +286,12 @@ html {
 	font-size: 22px !important;
 }
 
+/** General 2 >> Post navigation **/
+.post-navigation {
+	padding-right: 45px !important;
+	padding-left: 45px !important;
+}
+
 /** General 2 >> Elementor widget container _2 **/
 .mtp-2463 .elementor-widget-uael-infobox .elementor-widget-container {
 	border-right-color: rgb(63, 2, 97) !important;
@@ -569,6 +575,12 @@ html {
 /** General 2 2 >> Elementor testimonial text **/
 .mtp-10 .elementor-testimonial__text {
 	padding-top: 30px !important;
+}
+
+/** General 2 2 >> Div **/
+main > div {
+	padding-right: 45px !important;
+	padding-left: 45px !important;
 }
 
 
@@ -934,6 +946,12 @@ html {
 	left: 0 !important;
 }
 
+	/** General 2 2 >> Div **/
+	main > div {
+	padding-right: 32px !important;
+	padding-left: 32px !important;
+}
+
 }
 
 
@@ -1041,6 +1059,12 @@ html {
 	.mtp-10 .site-footer-above-section-5 .footer-widget-area-inner {
 	width: 100% !important;
 	margin-right: 0 !important;
+}
+
+	/** General 2 2 >> Div **/
+	main > div {
+	padding-right: 15px !important;
+	padding-left: 15px !important;
 }
 
 }
