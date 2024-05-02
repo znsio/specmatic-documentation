@@ -262,7 +262,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   defaultSpecs.forEach((checkbox) => {
     checkbox.addEventListener("click", function (event) {
-      event.preventDefault();
+      if (event.target.checked) {
+        event.target.checked = true;
+      } else {
+        event.target.checked = true;
+      }
     });
   });
 
@@ -310,32 +314,63 @@ document.addEventListener("DOMContentLoaded", function () {
     sliders.forEach((slider) => setSlider(slider, "organization"));
   });
 
-  function togglePlan() {
-    if (teamCountSlider.value >= 1) {
+  teamCountSlider.addEventListener("change", function () {
+    if (Number(this.value) > 1) {
       toggleRecommendedPlan("organization");
-    } else if (teamCountSlider.value == 0) {
-      let isAnyCheckboxChecked = Array.from(proTeamSpecsCheckboxes).some(
-        (checkbox) => checkbox.checked
-      );
-      let isAnySliderValueGreaterThanZero = proPlanSliders.some(
-        (slider) => slider.value > 0
-      );
-      if (isAnyCheckboxChecked || isAnySliderValueGreaterThanZero) {
-        toggleRecommendedPlan("team");
-      } else {
-        toggleRecommendedPlan("self");
-      }
+    } else if (Number(this.value) === 1) {
+      toggleRecommendedPlan("team");
+    } else {
+      toggleRecommendedPlan("self");
+      sliders.forEach((slider) => setSlider(slider, "self"));
+      proTeamSpecsCheckboxes.forEach((checkbox) => {
+        checkbox.checked = false;
+      });
     }
-  }
-
-  teamCountSlider.addEventListener("change", togglePlan);
+  });
 
   proTeamSpecsCheckboxes.forEach((checkbox) => {
-    checkbox.addEventListener("change", togglePlan);
+    checkbox.addEventListener("change", function () {
+      if (
+        this.checked ||
+        Number(teamCountSlider.value) === 1 ||
+        proPlanSliders.some((slider) => Number(slider.value) > 0)
+      ) {
+        toggleRecommendedPlan("team");
+      } else if (this.checked && Number(teamCountSlider.value) > 1) {
+        toggleRecommendedPlan("organization");
+      } else {
+        toggleRecommendedPlan("self");
+        sliders.forEach((slider) => setSlider(slider, "self"));
+        proTeamSpecsCheckboxes.forEach((checkbox) => {
+          checkbox.checked = false;
+        });
+      }
+    });
   });
 
   proPlanSliders.forEach((slider) => {
-    slider.addEventListener("input", togglePlan);
+    slider.addEventListener("input", function () {
+      let isEverySliderZero = Array.from(sliders).every(
+        (slider) => Number(slider.value) === 0
+      );
+
+      let isAnyCheckboxChecked = Array.from(proTeamSpecsCheckboxes).some(
+        (checkbox) => checkbox.checked
+      );
+
+      if (isEverySliderZero && !isAnyCheckboxChecked) {
+        toggleRecommendedPlan("self");
+        proTeamSpecsCheckboxes.forEach((checkbox) => {
+          checkbox.checked = false;
+        });
+      } else if (isEverySliderZero || isAnyCheckboxChecked) {
+        toggleRecommendedPlan("team");
+      } else if (Number(teamCountSlider.value) > 1) {
+        toggleRecommendedPlan("organization");
+      } else {
+        toggleRecommendedPlan("team");
+      }
+    });
   });
 
   // toggle sign up
