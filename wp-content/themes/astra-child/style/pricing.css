@@ -312,7 +312,7 @@
 .spec-slider {
   -webkit-appearance: none;
   appearance: none;
-  height: 4px;
+  height: 8px;
   border-radius: 2px;
   background: #e5e7eb;
   outline: none;
@@ -329,8 +329,8 @@
 .spec-slider::before {
   content: "";
   position: absolute;
-  width: 6px;
-  height: 6px;
+  width: 15px;
+  height: 15px;
   border: 3px solid var(--specmatic-purple-2);
   border-radius: 100%;
   background: white;
@@ -342,13 +342,14 @@
 .spec-slider::after {
   content: "";
   position: absolute;
-  width: 5px;
-  height: 5px;
-  border: 2px solid rgb(88, 88, 88);
+  width: 15px;
+  height: 15px;
+  border: 3px solid rgb(88, 88, 88);
   border-radius: 100%;
   background: white;
   top: 50%;
   transform: translateY(-50%);
+  margin-top: 2px;
 }
 
 .spec-slider::before {
@@ -366,8 +367,8 @@
 .spec-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 12px;
-  height: 12px;
+  width: 15px;
+  height: 15px;
   border: 3px solid var(--specmatic-purple-2);
   background: #fff;
   border-radius: 100%;
@@ -428,7 +429,7 @@
 }
 
 .slider-container input[type="range"] {
-  margin: 35px 10px 10px 10px;
+  margin: 50px 10px 10px 10px;
 }
 
 .slider-value {
@@ -466,6 +467,8 @@
 
 .slider-value.show {
   display: inline-block;
+  margin-bottom: 1.5%;
+  margin-left: 2%;
 }
 
 .enabled-btn {
