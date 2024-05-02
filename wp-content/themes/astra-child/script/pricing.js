@@ -2,6 +2,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Selectors
   const planCards = document.querySelectorAll(".specmatic-user-type-card");
+  const selfPlan = document.getElementById("self-plan");
+  const proPlan = document.getElementById("team-plan");
+  const orgPlan = document.getElementById("organization-plan");
   const pricingForm = document.getElementById("pricing-form");
   const inputContainers = document.querySelectorAll(".input-container");
   const pricingPlansContainer = document.querySelector(
@@ -14,6 +17,15 @@ document.addEventListener("DOMContentLoaded", function () {
     ".price-plan-card .pricing-cta-btn"
   );
   const selectButtons = document.querySelectorAll(".select-btn");
+  const teamCountSlider = document.getElementById("team-count");
+  const proTeamSpecsCheckboxes = document.querySelectorAll(
+    "input[type=checkbox].pro-org-specs"
+  );
+  const proPlanSliders = Array.from(
+    document.querySelectorAll("input[type=range].spec-slider")
+  ).filter((slider) => slider.id !== "team-count");
+
+  const defaultSpecs = document.querySelectorAll(".default-specs");
 
   const teamPlanBasePrice = 100;
   const orgPlanBasePrice = 1000;
@@ -166,13 +178,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     let teamPlanPrice = document.getElementById("pro-plan-price");
-    let organizationPlanPrice = document.getElementById("organization-plan-price");
+    let organizationPlanPrice = document.getElementById(
+      "organization-plan-price"
+    );
 
     const billableTeamSize = Math.max(teamSize, 10);
     const billableAPICount = Math.max(apiCount, 10);
     const billableBuildCount = Math.max(buildCount, 10);
     const billableTeamCount = Math.max(teamCount, 10);
-    
+
     let tokenCount = billableTeamSize * billableAPICount * billableBuildCount;
 
     let logTokenPrice = Math.log(tokenCount) * 60;
@@ -184,7 +198,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Update organization plan price
     organizationPlanPrice.innerText = formatPrice(
-      Math.ceil(orgPlanBasePrice + apiSpecsSum + (logTokenPrice * billableTeamCount))
+      Math.ceil(
+        orgPlanBasePrice + apiSpecsSum + logTokenPrice * billableTeamCount
+      )
     );
   }
 
@@ -203,37 +219,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   sliders.forEach(handleSlider);
 
-  // Making sure that the "None" checkbox disables the other checkboxes and vice versa for API Spec checkboxes
-  const noneCheckbox = document.getElementById("no-spec");
   const otherCheckboxes = document.querySelectorAll(
     'input[name="spec"]:not(#no-spec)'
   );
-
-  noneCheckbox.addEventListener("change", function () {
-    otherCheckboxes.forEach((checkbox) => {
-      let teamType = document.getElementById("selected-plan-type").value;
-      checkbox.disabled =
-        noneCheckbox.checked ||
-        (teamType === "self" &&
-          checkbox.classList.contains("self-plan-disabled-spec"));
-      if (noneCheckbox.checked) {
-        checkbox.checked = false;
-      }
-    });
-  });
-
-  otherCheckboxes.forEach((checkbox) => {
-    checkbox.addEventListener("change", function () {
-      if (checkbox.checked) {
-        noneCheckbox.checked = false;
-        noneCheckbox.disabled = false;
-      } else if (
-        !Array.from(otherCheckboxes).some((checkbox) => checkbox.checked)
-      ) {
-        noneCheckbox.disabled = false;
-      }
-    });
-  });
 
   pricingSignUpButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -270,5 +258,93 @@ document.addEventListener("DOMContentLoaded", function () {
       // Change the text of the clicked button to a tick mark symbol and "Selected"
       button.innerText = "✓ Selected";
     });
+  });
+
+  defaultSpecs.forEach((checkbox) => {
+    checkbox.addEventListener("click", function (event) {
+      event.preventDefault();
+    });
+  });
+
+  // Set the default plan to pro plan and set the sliders to the default values for the pro plan
+  toggleRecommendedPlan("team");
+  sliders.forEach((slider) => setSlider(slider, "team"));
+
+  function setSlider(slider, plan = "self") {
+    if (plan === "self") {
+      slider.value = 0;
+    } else if (plan === "team") {
+      slider.id === "team-count" ? (slider.value = 1) : (slider.value = 10);
+    } else if (plan === "organization") {
+      slider.value = 10;
+    }
+    const output = slider.parentNode.querySelector(".slider-value");
+
+    // Set the initial value of the tooltip to the default value of the slider
+    output.innerHTML = slider.value;
+
+    // Calculate the initial position of the tooltip
+    const initialPercent =
+      ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+    output.style.left = `calc(${initialPercent}% - (${
+      output.offsetWidth / 2
+    }px))`;
+    slider.style.background = `linear-gradient(to right, #580089 0%, #580089 ${initialPercent}%, #ccc ${initialPercent}%, #ccc 100%)`;
+  }
+
+  selfPlan.addEventListener("click", function () {
+    toggleRecommendedPlan("self");
+    sliders.forEach((slider) => setSlider(slider, "self"));
+    proTeamSpecsCheckboxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+  });
+
+  proPlan.addEventListener("click", function () {
+    toggleRecommendedPlan("team");
+    sliders.forEach((slider) => setSlider(slider, "team"));
+  });
+
+  orgPlan.addEventListener("click", function () {
+    toggleRecommendedPlan("organization");
+    sliders.forEach((slider) => setSlider(slider, "organization"));
+  });
+
+  function togglePlan() {
+    if (teamCountSlider.value >= 1) {
+      toggleRecommendedPlan("organization");
+    } else if (teamCountSlider.value == 0) {
+      let isAnyCheckboxChecked = Array.from(proTeamSpecsCheckboxes).some(
+        (checkbox) => checkbox.checked
+      );
+      let isAnySliderValueGreaterThanZero = proPlanSliders.some(
+        (slider) => slider.value > 0
+      );
+      if (isAnyCheckboxChecked || isAnySliderValueGreaterThanZero) {
+        toggleRecommendedPlan("team");
+      } else {
+        toggleRecommendedPlan("self");
+      }
+    }
+  }
+
+  teamCountSlider.addEventListener("change", togglePlan);
+
+  proTeamSpecsCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener("change", togglePlan);
+  });
+
+  proPlanSliders.forEach((slider) => {
+    slider.addEventListener("input", togglePlan);
+  });
+
+  // toggle sign up
+  const signUpToggleBtn = document.getElementById("toggle-sign-up-btn");
+
+  signUpToggleBtn.addEventListener("click", function () {
+    const personalInfoInputs = document.getElementById("personal-info-inputs");
+    personalInfoInputs.classList.remove("hide-inputs");
+    personalInfoInputs.scrollIntoView({ behavior: "smooth" });
+    signUpToggleBtn.classList.add("hide-inputs");
   });
 });

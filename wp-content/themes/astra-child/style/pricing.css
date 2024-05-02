@@ -1,544 +1,568 @@
-
 :root {
-    --specmatic-purple-1: #47006f;
-    --specmatic-purple-2: #580089;
-    --specmatic-hover-gold: #FFB30F;
-    --specmatic-hover-green: #32a412;
+  --specmatic-purple-1: #47006f;
+  --specmatic-purple-2: #580089;
+  --specmatic-hover-gold: #ffb30f;
+  --specmatic-hover-green: #32a412;
 }
 
 .pricing-body {
-    margin: 0;
-    padding: 20px;
+  margin: 0;
+  padding: 20px;
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 .fe {
-    font-size: 18px;
-    background-color: #e5e7eb;
-    border-radius: 100%;
-    padding: 8px 10px;
+  font-size: 18px;
+  background-color: #e5e7eb;
+  border-radius: 100%;
+  padding: 8px 10px;
 }
 
 .pricing-form {
-    display: none;
-    padding: 20px;
-    margin: 0 auto;
+  /* display: none; */
+  padding: 20px;
+  margin: 0 auto;
 }
 
 .spec-team-grp,
-.personal-info-inputs{
-    max-width: 900px;
-    margin: 0 auto;
+.personal-info-inputs {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-
-
-.input-container {
-    margin-bottom: 20px;
-}
 .pricing-form input[type="checkbox"] {
-	margin-right: 10px;
-	margin-top: 2px;
+  margin-top: 2px;
 }
 
 .pricing-form input[type="range"] {
-    /* width: calc(100% - 40px); */
-    width: 100%;
+  /* width: calc(100% - 40px); */
+  width: 100%;
 }
 
 .pricing-form input[type="email"],
-.pricing-form input[type="text"]
- {
-    width: 100%;
-    height: 35px;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+.pricing-form input[type="text"] {
+  width: 100%;
+  height: 35px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }
 
 .pricing-form select {
-    /* width: calc(100% - 20px); */
-    width: 100%;
-    height: 35px;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    appearance: none;
-    background: url('https://upload.wikimedia.org/wikipedia/commons/9/9d/Arrow-down.svg') no-repeat calc(100% - 7px) center;
-    background-size: 15px;
-    background-color: #fff;
+  /* width: calc(100% - 20px); */
+  width: 100%;
+  height: 35px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  appearance: none;
+  background: url("https://upload.wikimedia.org/wikipedia/commons/9/9d/Arrow-down.svg")
+    no-repeat calc(100% - 7px) center;
+  background-size: 15px;
+  background-color: #fff;
 }
 
 .optional-input {
-    font-size: 11px;
-    color: #4b5563;
+  font-size: 11px;
+  color: #4b5563;
 }
-.required-input{
-    margin-top: 5px;
-    font-size: 18px;
-    color: var(--specmatic-purple-1);
+.required-input {
+  margin-top: 5px;
+  font-size: 18px;
+  color: var(--specmatic-purple-1);
 }
 .pricing-form label,
 .pricing-form p {
-    color: #111827;
+  color: #111827;
 
-    font-size: 16px;
-    font-style: normal;
+  font-size: 16px;
+  font-style: normal;
 
-    line-height: 24px;
-    letter-spacing: -0.32px;
+  line-height: 24px;
+  letter-spacing: -0.32px;
 }
 
 .pricing-form p {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .active-form {
-    display: block;
+  display: block;
 }
 
 .flex {
-    display: flex;
+  display: flex;
 }
 
 .flex-column {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .justify-between {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
 .align-center {
-    align-items: center;
+  align-items: center;
 }
 
 .text-purple {
-    color: var(--specmatic-purple-1);
-}
-
-
-.tell-us-more {
-    display: none;
+  color: var(--specmatic-purple-1);
 }
 
 .user-types-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
-}
-
-.pricing-plans-hidden {
-    display: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
 }
 
 .pricing-plans-visible {
-    display: block;
-    margin-top: 40px;
+  display: block;
+  margin-top: 40px;
 }
 
 .specmatic-user-type-card {
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 50px;
-    padding: 20px;
-    margin: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e5e7eb;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 50px;
+  padding: 20px;
+  margin: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
 }
 
 .specmatic-user-type-card h3 {
-    color: #1f2937;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    letter-spacing: -0.32px;
-    margin-top: 15px
+  color: #1f2937;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.32px;
+  margin-top: 15px;
 }
 
 .specmatic-user-type-card p {
-    color: #4b5563;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 26px;
-    /* 150% */
+  color: #4b5563;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  /* 150% */
 }
 
 .active-plan,
 .specmatic-user-type-card:hover {
-    border-radius: 6px;
-    border: 1px solid var(--specmatic-purple-1)  !important;
-    background: #f6f2f8;
+  border-radius: 6px;
+  border: 1px solid var(--specmatic-purple-1) !important;
+  background: #f6f2f8;
 }
 
 .active-plan .fe,
 .specmatic-user-type-card:hover .fe {
-    background-color: var(--specmatic-purple-1) !important;
-    color: #fff;
+  background-color: var(--specmatic-purple-1) !important;
+  color: #fff;
 }
 
 .active-plan h3,
 .specmatic-user-type-card:hover h3 {
-    color: var(--specmatic-purple-1) !important;
+  color: var(--specmatic-purple-1) !important;
+}
+
+#pricing-plans-container {
+  display: flex;
+  justify-content: center;
 }
 
 .price-plan-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: auto;
-    cursor: pointer;
-    border-radius: 6px;
-    border: 1px solid #e5e7eb;
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0px 4px 12px 0px rgba(31, 41, 55, 0.08);
-    transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: auto;
+  cursor: pointer;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 4px 12px 0px rgba(31, 41, 55, 0.08);
+  transition: all 0.3s ease-in-out;
 }
 
 .price-plan-card:hover {
-    transform: scale(1.02);
+  transform: scale(1.02);
 }
 
 .price-plan-info {
-    width: 80%;
-    max-width: 300px;
+  margin: 0px 20px 10px 20px;
 }
 
 .feature-list a {
-    font-weight: 400;
-    font-size: 14px !important;
-    height: 100%;
-    line-height: 24px;
+  font-weight: 400;
+  font-size: 14px !important;
+  height: 100%;
+  line-height: 24px;
 }
 
 .feature-list li {
-    line-height: 24px !important;
+  line-height: 24px !important;
 }
 
 .price-plan-info h3 {
-	font-size: 2em;
+  font-size: 2em;
 }
 
 .recommended-plan .plan-name {
-    color: white;
+  color: white;
 }
 
 .recommended-plan .plan-price {
-	color: white;
+  color: white;
 }
 
 .recommended-plan a {
-	color: white;
+  color: white;
 }
 
 .pricing-cta-btn {
-    cursor: pointer;
-    border: none;
-    width: 100%;
-    border-radius: 6px;
-    color: #fff;
-    border: 1px solid gray;
-    background: linear-gradient(90deg, var(--specmatic-purple-1) 0%, #7100ad 100%);
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  border-radius: 6px;
+  color: #fff;
+  border: 1px solid gray;
+  background: linear-gradient(
+    90deg,
+    var(--specmatic-purple-1) 0%,
+    #7100ad 100%
+  );
+  margin-top: 20px;
 }
 
 .pricing-cta-btn:hover {
-    background: var(--specmatic-hover-green) !important;
-    color:#fff !important;
+  background: var(--specmatic-hover-green) !important;
+  color: #fff !important;
 }
 
 .recommended-header {
-    width: 100%;
-    border-radius: 6px 6px 0px 0px;
-    background: var(--specmatic-hover-gold);
-    display: none;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  border-radius: 6px 6px 0px 0px;
+  background: var(--specmatic-hover-gold);
+  display: none;
+  justify-content: center;
+  align-items: center;
 }
 
 .recommended-header h3 {
-    margin: 0px;
-    padding: 10px 0px;
+  margin: 0px;
+  padding: 10px 0px;
 
-    color: #1f2937;
+  color: #1f2937;
 
-    text-align: center;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    text-transform: uppercase;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
 }
 
 .recommended-plan {
-    border-radius: 6px;
-    border: 1px solid #e5e7eb;
-    background: var(--specmatic-purple-2) !important;
-    color: white;
-    box-shadow: 0px 4px 20px 0px rgba(31, 41, 55, 0.1);
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  background: var(--specmatic-purple-2) !important;
+  color: white;
+  box-shadow: 0px 4px 20px 0px rgba(31, 41, 55, 0.1);
 }
 
 .recommended-plan button {
-    background: white;
-    color: var(--specmatic-purple-2);
+  background: white;
+  color: var(--specmatic-purple-2);
 }
 
 .recommended-plan button:hover {
-    background: var(--specmatic-hover-green);
-    color:#fff;
+  background: var(--specmatic-hover-green);
+  color: #fff;
 }
 
 .recommended-plan button:hover:disabled,
 .pricing-cta-btn:hover:disabled {
-    background: darkgray;
+  background: darkgray;
 }
 
 .recommended-plan .feature-list li {
-    color: white;
+  color: white;
 }
 
 .feature-list {
-    text-align: left;
-    padding-left: 5px;
-    padding-top: 10px;
-    list-style-type: circle;
-    margin-left: 20px;
+  text-align: left;
+  padding-left: 5px;
+  list-style-type: circle;
+  margin-left: 20px;
+  margin-top: 10px;
 }
 
 .spec-slider {
-    -webkit-appearance: none;
-    appearance: none;
-    height: 4px;
-    border-radius: 2px;
-    background: #e5e7eb;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: 0.2s;
-    transition: opacity 0.2s;
-    position: relative;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  background: #e5e7eb;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  position: relative;
 }
 
 .spec-slider {
-    position: relative;
+  position: relative;
 }
 
 .spec-slider::before {
-    content: "";
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    border: 3px solid var(--specmatic-purple-2);
-    border-radius: 100%;
-    background: white;
-    top: 50%;
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border: 3px solid var(--specmatic-purple-2);
+  border-radius: 100%;
+  background: white;
+  top: 50%;
 
-    transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .spec-slider::after {
-    content: "";
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    border: 2px solid rgb(88, 88, 88);
-    border-radius: 100%;
-    background: white;
-    top: 50%;
-    transform: translateY(-50%);
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border: 2px solid rgb(88, 88, 88);
+  border-radius: 100%;
+  background: white;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .spec-slider::before {
-    left: -11px;
+  left: -11px;
 }
 
 .spec-slider::after {
-    right: -8px;
+  right: -8px;
 }
 
 .spec-slider:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .spec-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 12px;
-    height: 12px;
-    border: 3px solid var(--specmatic-purple-2);
-    background: #fff;
-    border-radius: 100%;
-    cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border: 3px solid var(--specmatic-purple-2);
+  background: #fff;
+  border-radius: 100%;
+  cursor: pointer;
 }
 
 .range-text {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
 }
 
 .deploy-frequency-container {
-    display: flex;
-    gap: 15px;
-    align-items: flex-start;
-    margin: 20px 0px 20px 0px;
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  margin: 20px 0px 20px 0px;
+}
+
+.specs-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
 }
 
 .specs-container {
-    margin: 20px 0px 20px 0px;
+  margin: 20px 0px 5px 0px;
 }
 
 .deploy-frequency-container label,
 .specs-container label,
 .feature-list li {
-    margin-bottom: 0px;
-    margin-top: 3px;
-    margin-left: 3px;
-    color: #111827;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+  margin-bottom: 0px;
+  margin-top: 3px;
+  margin-left: 3px;
+  color: #111827;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.specs-container label {
+  margin-top: 0px;
 }
 
 .pricing-grids {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 40px;
+  max-width: 900px;
 }
 
 .slider-container {
-    position: relative;
+  position: relative;
 }
 
 .slider-container input[type="range"] {
-    margin: 35px 10px 10px 10px;
+  margin: 35px 10px 10px 10px;
 }
 
 .slider-value {
-    display: none;
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    padding: 5px 10px;
-    border-radius: 4px;
-    background-color: var(--specmatic-purple-1);
-    color: #fff;
-    font-size: 14px;
-    white-space: nowrap;
-    opacity: 0.5;
-    /* less opacity when not hovered */
-    transition: opacity 0.3s ease;
-    /* smooth transition */
+  display: none;
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: var(--specmatic-purple-1);
+  color: #fff;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0.5;
+  /* less opacity when not hovered */
+  transition: opacity 0.3s ease;
+  /* smooth transition */
 }
 
-.spec-slider:hover+.slider-value {
-    opacity: 1;
-    /* full opacity when hovered */
+.spec-slider:hover + .slider-value {
+  opacity: 1;
+  /* full opacity when hovered */
 }
 
 .slider-value::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 5px;
-    border-style: solid;
-    border-color: #333 transparent transparent transparent;
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
 }
 
 .slider-value.show {
-    display: inline-block;
+  display: inline-block;
 }
 
 .enabled-btn {
-    cursor: pointer;
-    width: 300px;
-    height: 48px;
-    flex-shrink: 0;
-    border-radius: 6px;
-    color: var(--specmatic-purple-1);
-    border: 1px solid var(--specmatic-purple-1);
-    background: #fff;
+  cursor: pointer;
+  width: 300px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  color: var(--specmatic-purple-1);
+  border: 1px solid var(--specmatic-purple-1);
+  background: #fff;
 }
 
 .plan-unavailable {
-    cursor: not-allowed;
-    border: 1px solid gray;
-    background: lightgray;
+  cursor: not-allowed;
+  border: 1px solid gray;
+  background: lightgray;
 }
 
 .plan-unavailable-btn {
-    cursor: not-allowed;
-    border: 1px solid gray;
-    background: darkgray;
+  cursor: not-allowed;
+  border: 1px solid gray;
+  background: darkgray;
 }
 
 .cta-btn {
-    font-size: large;
+  font-size: large;
 }
 .pricing-cta-btn {
-	padding-top: 10px;
-    padding-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .plan-name {
-    font-size: xx-large;
-    margin-top: 32px;
-	margin-bottom: 32px !important;
+  font-size: xx-large;
+  margin-top: 20px;
+  margin-bottom: 5px !important;
 }
 
 .plan-price {
-    font-size: x-large;
-    padding-bottom: 20px;
+  font-size: x-large;
+  padding-bottom: 5px;
+  margin: 0px;
 }
 
-.hide-inputs{
-    display: none;
+.plan-for {
+  margin: 0px;
+  margin-bottom: 24px !important;
 }
 
-.personal-info-inputs{
-    margin-top: 50px;
-    margin-bottom: 20px;
+.personal-info-inputs {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+p.info-note {
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.input-container {
+  margin-bottom: 20px;
+}
+
+#spec-checkbox-grp {
+  margin-bottom: 0px;
+}
+
+.hide-inputs {
+  display: none;
 }
 
 @media (max-width: 768px) {
-    .user-types-container {
-        grid-template-columns: 1fr;
-    }
+  .user-types-container {
+    grid-template-columns: 1fr;
+  }
 
-    .specmatic-user-type-card {
-        margin: 0px;
-        text-align: center;
-    }
+  .specmatic-user-type-card {
+    margin: 0px;
+    text-align: center;
+  }
 
-    .pricing-form {
-        max-width: calc(100% - 20px)
-    }
+  .pricing-form {
+    max-width: calc(100% - 20px);
+  }
 
-    .pricing-form input[type="email"],
-    .pricing-form input[type="range"],
-    .pricing-form input[type="text"] {
-        width: calc(100% - 20px);
-    }
-    
-    .pricing-grids {
-        display: grid;
-        grid-template-columns: 1fr;
-    }
+  .pricing-form input[type="email"],
+  .pricing-form input[type="range"],
+  .pricing-form input[type="text"] {
+    width: calc(100% - 20px);
+  }
 
-    .pricing-form select {
-        width: 100%;
-    }
+  .pricing-grids {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-form select {
+    width: 100%;
+  }
 }
