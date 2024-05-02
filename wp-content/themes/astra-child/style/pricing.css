@@ -22,7 +22,7 @@
 }
 
 .pricing-form {
-  /* display: none; */
+  display: block;
   padding: 20px;
   margin: 0 auto;
 }
