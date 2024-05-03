@@ -1,4 +1,4 @@
-/*! elementor - v3.21.0 - 18-04-2024 */
+/*! elementor - v3.21.0 - 30-04-2024 */
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["frontend-modules"],{
 
 /***/ "../assets/dev/js/editor/utils/is-instanceof.js":
@@ -1948,8 +1948,8 @@ class NestedAccordion extends _base.default {
         accordionItemTitles: '.e-n-accordion-item-title',
         accordionItemTitlesText: '.e-n-accordion-item-title-text',
         accordionContent: '.e-n-accordion-item > .e-con',
-        directAccordionItems: '& > .e-n-accordion-item',
-        directAccordionItemTitles: '& > .e-n-accordion-item > .e-n-accordion-item-title'
+        directAccordionItems: ':scope > .e-n-accordion-item',
+        directAccordionItemTitles: ':scope > .e-n-accordion-item > .e-n-accordion-item-title'
       },
       default_state: 'expanded',
       attributes: {
