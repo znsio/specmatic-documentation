@@ -261,12 +261,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   defaultSpecs.forEach((checkbox) => {
-    checkbox.addEventListener("click", function (event) {
-      if (event.target.checked) {
-        event.target.checked = true;
-      } else {
-        event.target.checked = true;
-      }
+    checkbox.addEventListener("click", function () {
+      this.checked = true;
     });
   });
 
@@ -278,7 +274,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (plan === "self") {
       slider.value = 0;
     } else if (plan === "team") {
-      slider.id === "team-count" ? (slider.value = 1) : (slider.value = 10);
+      if (slider.id === "team-count") {
+        slider.value = 1;
+      } else {
+        slider.value = 10;
+      }
     } else if (plan === "organization") {
       slider.value = 10;
     }
@@ -296,13 +296,15 @@ document.addEventListener("DOMContentLoaded", function () {
     slider.style.background = `linear-gradient(to right, #580089 0%, #580089 ${initialPercent}%, #ccc ${initialPercent}%, #ccc 100%)`;
   }
 
-  selfPlan.addEventListener("click", function () {
+  function toggleSelfPlanAndResetInputs() {
     toggleRecommendedPlan("self");
     sliders.forEach((slider) => setSlider(slider, "self"));
     proTeamSpecsCheckboxes.forEach((checkbox) => {
       checkbox.checked = false;
     });
-  });
+  }
+
+  selfPlan.addEventListener("click", toggleSelfPlanAndResetInputs);
 
   proPlan.addEventListener("click", function () {
     toggleRecommendedPlan("team");
@@ -320,36 +322,26 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (Number(this.value) === 1) {
       toggleRecommendedPlan("team");
     } else {
-      toggleRecommendedPlan("self");
-      sliders.forEach((slider) => setSlider(slider, "self"));
-      proTeamSpecsCheckboxes.forEach((checkbox) => {
-        checkbox.checked = false;
-      });
+      toggleSelfPlanAndResetInputs();
     }
   });
 
   proTeamSpecsCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener("change", function () {
-      if (
-        this.checked ||
-        Number(teamCountSlider.value) === 1 ||
-        proPlanSliders.some((slider) => Number(slider.value) > 0)
-      ) {
-        toggleRecommendedPlan("team");
-      } else if (this.checked && Number(teamCountSlider.value) > 1) {
+      let teamCount = Number(teamCountSlider.value);
+      if (teamCount > 1) {
         toggleRecommendedPlan("organization");
+      } else if (teamCount === 1 || this.checked) {
+        toggleRecommendedPlan("team");
       } else {
-        toggleRecommendedPlan("self");
-        sliders.forEach((slider) => setSlider(slider, "self"));
-        proTeamSpecsCheckboxes.forEach((checkbox) => {
-          checkbox.checked = false;
-        });
+        toggleSelfPlanAndResetInputs();
       }
     });
   });
 
   proPlanSliders.forEach((slider) => {
     slider.addEventListener("input", function () {
+      let teamCount = Number(teamCountSlider.value);
       let isEverySliderZero = Array.from(sliders).every(
         (slider) => Number(slider.value) === 0
       );
@@ -358,17 +350,15 @@ document.addEventListener("DOMContentLoaded", function () {
         (checkbox) => checkbox.checked
       );
 
-      if (isEverySliderZero && !isAnyCheckboxChecked) {
+      if (teamCount > 1) {
+        toggleRecommendedPlan("organization");
+      } else if (!isEverySliderZero || isAnyCheckboxChecked) {
+        toggleRecommendedPlan("team");
+      } else {
         toggleRecommendedPlan("self");
         proTeamSpecsCheckboxes.forEach((checkbox) => {
           checkbox.checked = false;
         });
-      } else if (isEverySliderZero || isAnyCheckboxChecked) {
-        toggleRecommendedPlan("team");
-      } else if (Number(teamCountSlider.value) > 1) {
-        toggleRecommendedPlan("organization");
-      } else {
-        toggleRecommendedPlan("team");
       }
     });
   });
