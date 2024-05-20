@@ -1,4 +1,4 @@
-/*! elementor - v3.21.0 - 30-04-2024 */
+/*! elementor - v3.21.0 - 08-05-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -3399,7 +3399,7 @@ var StyledArrow = (0, _ui.styled)(_ui.Box)(function (_ref2) {
     }
   };
 });
-var upgradeBullets = [(0, _i18n.__)('Let AI build your container layouts and content with ease and radically transform the way you create websites.', 'elementor'), (0, _i18n.__)('Generate your website\'s text or create custom code without having to write a single line yourself.', 'elementor'), (0, _i18n.__)('Effortlessly create or enhance stunning images and bring your ideas to life.', 'elementor'), (0, _i18n.__)('Access 30-days of AI History with the AI Starter plan and 90-days with the Power plan.', 'elementor')];
+var upgradeBullets = [(0, _i18n.__)('Get spot-on suggestions from AI Copilot and AI Context with appropriate designs, layouts, and content for your business.', 'elementor'), (0, _i18n.__)('Generate professional texts about any topic, in any tone.', 'elementor'), (0, _i18n.__)('Effortlessly create or enhance stunning images and bring your ideas to life.', 'elementor'), (0, _i18n.__)('Unleash infinite possibilities with the custom code generator.', 'elementor'), (0, _i18n.__)('Access 30-days of AI History with the AI Starter plan and 90-days with the Power plan.', 'elementor')];
 var Chip = (0, _ui.styled)(_ui.Chip)(function () {
   return {
     '& .MuiChip-label': {
@@ -3465,7 +3465,7 @@ var UpgradeChip = function UpgradeChip(_ref3) {
   }), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
     variant: "h5",
     color: "text.primary"
-  }, (0, _i18n.__)('Maximize Your Access to Elementor AI', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.List, {
+  }, (0, _i18n.__)('Unlimited access to Elementor AI', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.List, {
     sx: {
       mb: 1
     }
@@ -5642,7 +5642,8 @@ var Module = /*#__PURE__*/function (_elementorModules$edi) {
   }, {
     key: "onCreateContainer",
     value: function onCreateContainer(args) {
-      if (args.container.id !== 'document' || args.model.elType !== 'container') {
+      var _args$container;
+      if (((_args$container = args.container) === null || _args$container === void 0 ? void 0 : _args$container.id) !== 'document' || args.model.elType !== 'container' || args.containers) {
         return;
       }
       if (!(0, _promotionIntroductionSessionValidator.shouldShowPromotionIntroduction)()) {
@@ -7114,57 +7115,6 @@ Image.propTypes = {
 ImageSlider.Actions = Actions;
 ImageSlider.Image = Image;
 var _default = ImageSlider;
-exports["default"] = _default;
-
-/***/ }),
-
-/***/ "../modules/ai/assets/js/editor/pages/form-media/components/image-strength-slider.js":
-/*!*******************************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-media/components/image-strength-slider.js ***!
-  \*******************************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports["default"] = void 0;
-var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
-var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
-var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _i18n = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-var ImageStrengthSlider = function ImageStrengthSlider(props) {
-  return /*#__PURE__*/_react.default.createElement(_ui.FormControl, {
-    sx: {
-      width: '100%'
-    }
-  }, /*#__PURE__*/_react.default.createElement(_ui.Slider, (0, _extends2.default)({
-    marks: true,
-    min: 0,
-    step: 10,
-    max: 100,
-    color: "secondary",
-    id: "image_strength",
-    name: "image_strength",
-    valueLabelDisplay: "auto",
-    getAriaValueText: function getAriaValueText(value) {
-      return "".concat(value, "%");
-    },
-    "aria-label": (0, _i18n.__)('Reference strength', 'elementor')
-  }, props)), /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center"
-  }, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "caption"
-  }, (0, _i18n.__)('Prompt', 'elementor')), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "caption"
-  }, (0, _i18n.__)('Reference image', 'elementor'))));
-};
-var _default = ImageStrengthSlider;
 exports["default"] = _default;
 
 /***/ }),
@@ -10739,17 +10689,11 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var _i18n = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 var _view = _interopRequireDefault(__webpack_require__(/*! ../../components/view */ "../modules/ai/assets/js/editor/pages/form-media/components/view.js"));
 var _imageForm = _interopRequireDefault(__webpack_require__(/*! ../../components/image-form */ "../modules/ai/assets/js/editor/pages/form-media/components/image-form.js"));
-var _imageStrengthSlider = _interopRequireDefault(__webpack_require__(/*! ../../components/image-strength-slider */ "../modules/ai/assets/js/editor/pages/form-media/components/image-strength-slider.js"));
-var _promptField = _interopRequireDefault(__webpack_require__(/*! ../../components/prompt-field */ "../modules/ai/assets/js/editor/pages/form-media/components/prompt-field.js"));
-var _imageTypeSelect = _interopRequireDefault(__webpack_require__(/*! ../../components/image-type-select */ "../modules/ai/assets/js/editor/pages/form-media/components/image-type-select.js"));
-var _imageStyleSelect = _interopRequireDefault(__webpack_require__(/*! ../../components/image-style-select */ "../modules/ai/assets/js/editor/pages/form-media/components/image-style-select.js"));
-var _imageRatioSelect = _interopRequireDefault(__webpack_require__(/*! ../../components/image-ratio-select */ "../modules/ai/assets/js/editor/pages/form-media/components/image-ratio-select.js"));
 var _generateAgainSubmit = _interopRequireDefault(__webpack_require__(/*! ../../components/generate-again-submit */ "../modules/ai/assets/js/editor/pages/form-media/components/generate-again-submit.js"));
 var _generateImagesSubmit = _interopRequireDefault(__webpack_require__(/*! ../../components/generate-images-submit */ "../modules/ai/assets/js/editor/pages/form-media/components/generate-images-submit.js"));
 var _imagesDisplay = _interopRequireDefault(__webpack_require__(/*! ../../components/images-display */ "../modules/ai/assets/js/editor/pages/form-media/components/images-display.js"));
@@ -10765,9 +10709,8 @@ var IMAGE_WEIGHT_DEFAULT = 45;
 var Variations = function Variations() {
   var _data$result;
   var _useState = (0, _react.useState)(''),
-    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
-    prompt = _useState2[0],
-    setPrompt = _useState2[1];
+    _useState2 = (0, _slicedToArray2.default)(_useState, 1),
+    prompt = _useState2[0];
   var _useRequestIds = (0, _requestsIds.useRequestIds)(),
     setGenerate = _useRequestIds.setGenerate;
   var _useEditImage = (0, _editImageContext.useEditImage)(),
@@ -10777,8 +10720,7 @@ var Variations = function Variations() {
       aspectRatio: initialAspectRatio,
       imageWeight: IMAGE_WEIGHT_DEFAULT
     }),
-    settings = _usePromptSettings.settings,
-    updateSettings = _usePromptSettings.updateSettings;
+    settings = _usePromptSettings.settings;
   var _useImageToImage = (0, _useImageToImage2.default)(),
     data = _useImageToImage.data,
     send = _useImageToImage.send,
@@ -10826,45 +10768,15 @@ var Variations = function Variations() {
       maxHeight: 166,
       objectFit: 'contained'
     }
-  })), /*#__PURE__*/_react.default.createElement(_imageStrengthSlider.default, {
-    disabled: isLoading,
-    defaultValue: IMAGE_WEIGHT_DEFAULT,
-    onChange: function onChange(event) {
-      return updateSettings((0, _defineProperty2.default)({}, _usePromptSettings2.IMAGE_STRENGTH, event.target.value));
-    }
-  }), /*#__PURE__*/_react.default.createElement(_promptField.default, {
-    value: prompt,
-    disabled: isLoading,
-    placeholder: (0, _i18n.__)('describe your image', 'elementor'),
-    onChange: setPrompt
-  }), /*#__PURE__*/_react.default.createElement(_imageTypeSelect.default, {
-    disabled: isLoading,
-    value: settings[_usePromptSettings2.IMAGE_TYPE],
-    onChange: function onChange(event) {
-      return updateSettings((0, _defineProperty2.default)({}, _usePromptSettings2.IMAGE_TYPE, event.target.value));
-    }
-  }), /*#__PURE__*/_react.default.createElement(_imageStyleSelect.default, {
-    type: settings[_usePromptSettings2.IMAGE_TYPE],
-    value: settings[_usePromptSettings2.IMAGE_STYLE],
-    disabled: isLoading || !settings[_usePromptSettings2.IMAGE_TYPE] || false,
-    onChange: function onChange(event) {
-      return updateSettings((0, _defineProperty2.default)({}, _usePromptSettings2.IMAGE_STYLE, event.target.value));
-    }
-  }), /*#__PURE__*/_react.default.createElement(_imageRatioSelect.default, {
-    disabled: isLoading,
-    value: settings[_usePromptSettings2.IMAGE_RATIO],
-    onChange: function onChange(event) {
-      return updateSettings((0, _defineProperty2.default)({}, _usePromptSettings2.IMAGE_RATIO, event.target.value));
-    }
-  }), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+  })), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     gap: 2,
     sx: {
       my: 2.5
     }
   }, (data === null || data === void 0 ? void 0 : (_data$result = data.result) === null || _data$result === void 0 ? void 0 : _data$result.length) > 0 ? /*#__PURE__*/_react.default.createElement(_generateAgainSubmit.default, {
-    disabled: isLoading || '' === prompt
+    disabled: isLoading
   }) : /*#__PURE__*/_react.default.createElement(_generateImagesSubmit.default, {
-    disabled: isLoading || '' === prompt
+    disabled: isLoading
   })))), /*#__PURE__*/_react.default.createElement(_view.default.Content, {
     isGenerating: isLoading
   }, data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_imagesDisplay.default, {
