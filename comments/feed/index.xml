@@ -11,11 +11,11 @@
 	<atom:link href="https://specmatic.in/comments/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.in/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Mon, 06 May 2024 04:47:10 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 20 May 2024 03:28:06 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.5.2</generator>
+	<generator>https://wordpress.org/?v=6.5.3</generator>
 </channel>
 </rss>
