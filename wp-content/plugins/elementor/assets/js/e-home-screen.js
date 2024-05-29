@@ -1,4 +1,4 @@
-/*! elementor - v3.21.0 - 08-05-2024 */
+/*! elementor - v3.21.0 - 26-05-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -31813,7 +31813,7 @@ var HomeScreen = function HomeScreen(props) {
         pb: 2
       }
     }, /*#__PURE__*/_react.default.createElement(_topSection.default, {
-      topData: props.homeScreenData.top,
+      topData: props.homeScreenData.top_with_licences,
       createNewPageUrl: props.homeScreenData.create_new_page_url
     }), /*#__PURE__*/_react.default.createElement(_ui.Box, {
       sx: {
@@ -31984,6 +31984,7 @@ var TopSection = function TopSection(_ref) {
         xs: 'column',
         sm: 'row'
       },
+      justifyContent: 'space-between',
       py: {
         xs: 3,
         md: 3
