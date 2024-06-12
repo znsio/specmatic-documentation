@@ -12,13 +12,13 @@
 	<atom:link href="https://specmatic.in/tag/upcoming/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.in/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Fri, 31 May 2024 07:35:01 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 11 Jun 2024 23:37:46 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.5.3</generator>
+	<generator>https://wordpress.org/?v=6.5.4</generator>
 
 <image>
 	<url>https://specmatic.in/wp-content/uploads/2022/09/Favicon.png</url>
