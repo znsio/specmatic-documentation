@@ -1,3 +1,4 @@
+.wp-block {} /*  Ensures MT files load in FSE */
 /*  MICROTHEMER STYLES  */
 
 
@@ -550,6 +551,11 @@ html {
 /** General 3 >> Page template elementor header footermtp 10 **/
 .show_suggestions_menu .page-template-elementor_header_footer.mtp-10 {
 	opacity: 1.0 !important;
+}
+
+/** General 3 >> Link **/
+.mtp-4884 .elementor-widget-text-editor a {
+	color: rgb(255, 255, 255) !important;
 }
 
 
