@@ -1,4 +1,4 @@
-/*! elementor - v3.21.0 - 26-05-2024 */
+/*! elementor - v3.22.0 - 17-06-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -883,7 +883,7 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.uploadImage = exports.toggleFavoriteHistoryItem = exports.setStatusFeedback = exports.setGetStarted = exports.getUserInformation = exports.getTextToImageGeneration = exports.getRemoteConfig = exports.getLayoutPromptEnhanced = exports.getImageToImageUpscale = exports.getImageToImageReplaceBackground = exports.getImageToImageRemoveText = exports.getImageToImageRemoveBackground = exports.getImageToImageOutPainting = exports.getImageToImageMaskGeneration = exports.getImageToImageGeneration = exports.getImagePromptEnhanced = exports.getHistory = exports.getEditText = exports.getCustomCode = exports.getCustomCSS = exports.getCompletionText = exports.generateLayout = exports.deleteHistoryItem = void 0;
+exports.uploadImage = exports.toggleFavoriteHistoryItem = exports.setStatusFeedback = exports.setGetStarted = exports.getUserInformation = exports.getTextToImageGeneration = exports.getRemoteConfig = exports.getLayoutPromptEnhanced = exports.getImageToImageUpscale = exports.getImageToImageReplaceBackground = exports.getImageToImageRemoveText = exports.getImageToImageRemoveBackground = exports.getImageToImageOutPainting = exports.getImageToImageMaskGeneration = exports.getImageToImageGeneration = exports.getImagePromptEnhanced = exports.getHistory = exports.getExcerpt = exports.getEditText = exports.getCustomCode = exports.getCustomCSS = exports.getCompletionText = exports.generateLayout = exports.deleteHistoryItem = void 0;
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -905,8 +905,8 @@ var request = function request(endpoint) {
     }
   });
 };
-var getUserInformation = function getUserInformation() {
-  return request('ai_get_user_information');
+var getUserInformation = function getUserInformation(immediately) {
+  return request('ai_get_user_information', undefined, immediately);
 };
 exports.getUserInformation = getUserInformation;
 var getRemoteConfig = function getRemoteConfig() {
@@ -919,6 +919,12 @@ var getCompletionText = function getCompletionText(payload) {
   });
 };
 exports.getCompletionText = getCompletionText;
+var getExcerpt = function getExcerpt(payload) {
+  return request('ai_get_excerpt', {
+    payload: payload
+  });
+};
+exports.getExcerpt = getExcerpt;
 var getEditText = function getEditText(payload) {
   return request('ai_get_edit_text', {
     payload: payload
@@ -1085,7 +1091,6 @@ var App = function App(props) {
     onConnect: _editorIntegration.onConnect,
     getControlValue: props.getControlValue,
     setControlValue: props.setControlValue,
-    controlView: props.controlView,
     additionalOptions: props.additionalOptions
   }))));
 };
@@ -1097,7 +1102,6 @@ App.propTypes = {
   getControlValue: _propTypes.default.func,
   setControlValue: _propTypes.default.func,
   additionalOptions: _propTypes.default.object,
-  controlView: _propTypes.default.object,
   isRTL: _propTypes.default.bool
 };
 var _default = App;
@@ -1715,7 +1719,7 @@ var PromptErrorMessage = function PromptErrorMessage(_ref) {
   }, action));
 };
 PromptErrorMessage.propTypes = {
-  error: _propTypes.default.string,
+  error: _propTypes.default.oneOfType([_propTypes.default.object, _propTypes.default.string]),
   onRetry: _propTypes.default.func,
   actionPosition: _propTypes.default.oneOf(['default', 'bottom'])
 };
@@ -4987,9 +4991,11 @@ var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/r
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
 var _react = __webpack_require__(/*! react */ "react");
 var _api = __webpack_require__(/*! ../api */ "../modules/ai/assets/js/editor/api/index.js");
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js"));
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var useUserInfo = function useUserInfo() {
+  var immediately = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
   var _useState = (0, _react.useState)(false),
     _useState2 = (0, _slicedToArray2.default)(_useState, 2),
     isLoaded = _useState2[0],
@@ -5021,7 +5027,7 @@ var useUserInfo = function useUserInfo() {
           case 0:
             setIsLoading(true);
             _context.next = 3;
-            return (0, _api.getUserInformation)();
+            return (0, _api.getUserInformation)(immediately);
           case 3:
             userInfoResult = _context.sent;
             setUserInfo(function (prevState) {
@@ -5054,6 +5060,9 @@ var useUserInfo = function useUserInfo() {
     usagePercentage: Math.round(usagePercentage),
     fetchData: fetchData
   };
+};
+useUserInfo.propTypes = {
+  immediately: _propTypes.default.bool
 };
 var _default = useUserInfo;
 exports["default"] = _default;
@@ -6298,8 +6307,7 @@ var _formText = _interopRequireDefault(__webpack_require__(/*! ./pages/form-text
 var _connect = _interopRequireDefault(__webpack_require__(/*! ./pages/connect */ "../modules/ai/assets/js/editor/pages/connect/index.js"));
 var _formCode = _interopRequireDefault(__webpack_require__(/*! ./pages/form-code */ "../modules/ai/assets/js/editor/pages/form-code/index.js"));
 var _getStarted = _interopRequireDefault(__webpack_require__(/*! ./pages/get-started */ "../modules/ai/assets/js/editor/pages/get-started/index.js"));
-var _loader = _interopRequireDefault(__webpack_require__(/*! ./components/loader */ "../modules/ai/assets/js/editor/components/loader.js"));
-var _useUserInfo2 = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-user-info */ "../modules/ai/assets/js/editor/hooks/use-user-info.js"));
+var _useUserInfo = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-user-info */ "../modules/ai/assets/js/editor/hooks/use-user-info.js"));
 var _wizardDialog = _interopRequireDefault(__webpack_require__(/*! ./components/wizard-dialog */ "../modules/ai/assets/js/editor/components/wizard-dialog.js"));
 var _promptDialog = _interopRequireDefault(__webpack_require__(/*! ./components/prompt-dialog */ "../modules/ai/assets/js/editor/components/prompt-dialog.js"));
 var _upgradeChip = _interopRequireDefault(__webpack_require__(/*! ./components/upgrade-chip */ "../modules/ai/assets/js/editor/components/upgrade-chip.js"));
@@ -6310,6 +6318,8 @@ var _promptHistoryActionContext = __webpack_require__(/*! ./components/prompt-hi
 var _promptHistoryContext = __webpack_require__(/*! ./components/prompt-history/context/prompt-history-context */ "../modules/ai/assets/js/editor/components/prompt-history/context/prompt-history-context.js");
 var _useUpgradeMessage2 = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-upgrade-message */ "../modules/ai/assets/js/editor/hooks/use-upgrade-message.js"));
 var _usageMessages = _interopRequireDefault(__webpack_require__(/*! ./components/usage-messages */ "../modules/ai/assets/js/editor/components/usage-messages.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _loader = _interopRequireDefault(__webpack_require__(/*! ./components/loader */ "../modules/ai/assets/js/editor/components/loader.js"));
 var PageContent = function PageContent(_ref) {
   var type = _ref.type,
     controlType = _ref.controlType,
@@ -6317,17 +6327,18 @@ var PageContent = function PageContent(_ref) {
     onConnect = _ref.onConnect,
     getControlValue = _ref.getControlValue,
     setControlValue = _ref.setControlValue,
-    controlView = _ref.controlView,
     additionalOptions = _ref.additionalOptions;
-  var _useUserInfo = (0, _useUserInfo2.default)(),
-    isLoading = _useUserInfo.isLoading,
-    isConnected = _useUserInfo.isConnected,
-    isGetStarted = _useUserInfo.isGetStarted,
-    connectUrl = _useUserInfo.connectUrl,
-    fetchData = _useUserInfo.fetchData,
-    hasSubscription = _useUserInfo.hasSubscription,
-    credits = _useUserInfo.credits,
-    usagePercentage = _useUserInfo.usagePercentage;
+  var _ref2 = function (_additionalOptions$us) {
+      return (_additionalOptions$us = additionalOptions === null || additionalOptions === void 0 ? void 0 : additionalOptions.useCustomInit) !== null && _additionalOptions$us !== void 0 ? _additionalOptions$us : _useUserInfo.default;
+    }()(),
+    isLoading = _ref2.isLoading,
+    isConnected = _ref2.isConnected,
+    isGetStarted = _ref2.isGetStarted,
+    connectUrl = _ref2.connectUrl,
+    fetchData = _ref2.fetchData,
+    hasSubscription = _ref2.hasSubscription,
+    credits = _ref2.credits,
+    usagePercentage = _ref2.usagePercentage;
   var _useUpgradeMessage = (0, _useUpgradeMessage2.default)({
       usagePercentage: usagePercentage,
       hasSubscription: hasSubscription
@@ -6335,6 +6346,8 @@ var PageContent = function PageContent(_ref) {
     showBadge = _useUpgradeMessage.showBadge;
   var promptDialogStyleProps = {
     sx: {
+      zIndex: 170000,
+      // Make sure the dialog is above wp attachment details view
       '& .MuiDialog-container': {
         alignItems: 'flex-start',
         mt: 'media' === type ? '2.5vh' : '18vh'
@@ -6343,6 +6356,9 @@ var PageContent = function PageContent(_ref) {
         willChange: 'height',
         transition: 'height 300ms ease-in-out',
         position: 'relative'
+      },
+      '& .MuiBox-root': {
+        boxSizing: 'border-box'
       }
     },
     PaperProps: {
@@ -6371,7 +6387,17 @@ var PageContent = function PageContent(_ref) {
       onClose: onClose
     }), /*#__PURE__*/_react.default.createElement(_promptDialog.default.Content, {
       dividers: true
-    }, /*#__PURE__*/_react.default.createElement(_loader.default, null)));
+    }, (additionalOptions === null || additionalOptions === void 0 ? void 0 : additionalOptions.loadingTitle) && /*#__PURE__*/_react.default.createElement(_ui.Box, {
+      style: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%' // Ensure the box takes the full width
+      }
+    }, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+      variant: "body1",
+      color: "secondary"
+    }, additionalOptions === null || additionalOptions === void 0 ? void 0 : additionalOptions.loadingTitle)), /*#__PURE__*/_react.default.createElement(_loader.default, null)));
   }
   if (!isConnected) {
     return /*#__PURE__*/_react.default.createElement(_wizardDialog.default, {
@@ -6405,7 +6431,7 @@ var PageContent = function PageContent(_ref) {
     }, /*#__PURE__*/_react.default.createElement(_promptHistoryActionContext.PromptHistoryActionProvider, null, /*#__PURE__*/_react.default.createElement(_formMedia.default, {
       onClose: onClose,
       getControlValue: getControlValue,
-      controlView: controlView,
+      setControlValue: setControlValue,
       additionalOptions: additionalOptions,
       credits: credits,
       maybeRenderUpgradeChip: maybeRenderUpgradeChip,
@@ -6469,11 +6495,10 @@ PageContent.propTypes = {
   type: _propTypes.default.string,
   controlType: _propTypes.default.string,
   onClose: _propTypes.default.func.isRequired,
-  onConnect: _propTypes.default.func.isRequired,
+  onConnect: _propTypes.default.func,
   getControlValue: _propTypes.default.func.isRequired,
   setControlValue: _propTypes.default.func.isRequired,
-  additionalOptions: _propTypes.default.object,
-  controlView: _propTypes.default.object
+  additionalOptions: _propTypes.default.object
 };
 var _default = PageContent;
 exports["default"] = _default;
@@ -8156,27 +8181,31 @@ var _excluded = ["tooltip"];
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 var PROMPT_SUGGESTIONS = Object.freeze([{
-  text: (0, _i18n.__)('Services section with list layout, icons, and service descriptions for [topic]', 'elementor')
+  text: (0, _i18n.__)('Hero section on [topic] with heading, text, buttons on the right, and an image on the left', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('Accordion-style FAQ block with clickable questions about [topic]', 'elementor')
+  text: (0, _i18n.__)('About Us section on [topic] with heading, text, and big image below', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('Hero section with image, heading, subheading, and CTA button about [topic]', 'elementor')
+  text: (0, _i18n.__)('Team section with four image boxes showcasing team members', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('Full-width call-to-action with background image and overlay text about [topic]', 'elementor')
+  text: (0, _i18n.__)('FAQ section with a toggle widget showcasing FAQs about [topic]', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('Carousel testimonial block with user images, names, and feedback about [topic]', 'elementor')
+  text: (0, _i18n.__)('Gallery section with a carousel displaying three images at once', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('Features block showcasing feature title and brief description about [topic]', 'elementor')
+  text: (0, _i18n.__)('Contact section with a form for [topic]', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('Multi-column minimalistic About Us section with icons for [topic]', 'elementor')
+  text: (0, _i18n.__)('Client section featuring companies\' logos', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('Section with contact form and social media icons for [topic]', 'elementor')
+  text: (0, _i18n.__)('Testimonial section with testimonials, each featuring a star rating and an image', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('Statistics display in a 3-column layout with numbers and icons for [topic]', 'elementor')
+  text: (0, _i18n.__)('Service section about [topic], showcasing four services with buttons', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('Pricing table section with highlighted option for [topic]', 'elementor')
+  text: (0, _i18n.__)('Stats section with counters displaying data about [topic]', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('About Us section combining company history and values for [topic]', 'elementor')
+  text: (0, _i18n.__)('Quote section with colored background, featuring a centered quote', 'elementor.com')
+}, {
+  text: (0, _i18n.__)('Pricing section for [topic] with a pricing list', 'elementor.com')
+}, {
+  text: (0, _i18n.__)('Subscribe section featuring a simple email form, inviting users to stay informed on [topic]', 'elementor.com')
 }]);
 var IconButtonWithTooltip = function IconButtonWithTooltip(_ref) {
   var tooltip = _ref.tooltip,
@@ -10735,6 +10764,10 @@ var UnsavedChangesAlert = function UnsavedChangesAlert(_ref) {
     onCancel = _ref.onCancel,
     props = (0, _objectWithoutProperties2.default)(_ref, _excluded);
   return /*#__PURE__*/_react.default.createElement(_ui.Dialog, (0, _extends2.default)({
+    sx: {
+      zIndex: 200000
+    } // Make sure the dialog is above the AI dialog
+    ,
     "aria-labelledby": "unsaved-changes-alert-title",
     "aria-describedby": "unsaved-changes-alert-description"
   }, props), /*#__PURE__*/_react.default.createElement(_ui.DialogTitle, {
@@ -11457,7 +11490,7 @@ var useImageActions = function useImageActions() {
     editImage = _useEditImage.editImage,
     setEditImage = _useEditImage.setEditImage;
   var _useGlobalActions = (0, _globalActionsContext.useGlobalActions)(),
-    setControlImage = _useGlobalActions.setControlImage,
+    setControlValue = _useGlobalActions.setControlValue,
     saveAndClose = _useGlobalActions.saveAndClose;
   var _useImageUpload = (0, _useImageUpload2.default)(),
     attachmentData = _useImageUpload.attachmentData,
@@ -11532,7 +11565,7 @@ var useImageActions = function useImageActions() {
             return getFinalImage(imageToUpload, prompt);
           case 2:
             result = _context3.sent;
-            setControlImage(result);
+            setControlValue(result);
             saveAndClose();
           case 5:
           case "end":
@@ -11835,7 +11868,7 @@ var FormMedia = function FormMedia(_ref2) {
   var onClose = _ref2.onClose,
     DialogProps = _ref2.DialogProps,
     getControlValue = _ref2.getControlValue,
-    controlView = _ref2.controlView,
+    setControlValue = _ref2.setControlValue,
     additionalOptions = _ref2.additionalOptions,
     maybeRenderUpgradeChip = _ref2.maybeRenderUpgradeChip,
     hasSubscription = _ref2.hasSubscription,
@@ -11875,13 +11908,10 @@ var FormMedia = function FormMedia(_ref2) {
   var globalActions = {
     state: state,
     getControlValue: getControlValue,
+    setControlValue: setControlValue,
     saveAndClose: saveAndClose,
     close: onCloseIntent,
-    setHasUnsavedChanges: setHasUnsavedChanges,
-    setControlImage: function setControlImage(image) {
-      controlView.setSettingsModel(image);
-      controlView.applySavedValue();
-    }
+    setHasUnsavedChanges: setHasUnsavedChanges
   };
   (0, _react.useEffect)(function () {
     if (state.isAllSaved) {
@@ -11905,7 +11935,9 @@ var FormMedia = function FormMedia(_ref2) {
     actions: globalActions
   }, /*#__PURE__*/_react.default.createElement(_locationContext.LocationProvider, null, /*#__PURE__*/_react.default.createElement(_editImageContext.EditImageProvider, {
     imageData: editImageInitialData
-  }, /*#__PURE__*/_react.default.createElement(_mediaOutlet.default, null)))))), showUnsavedChangeAlert && /*#__PURE__*/_react.default.createElement(_unsavedChangesAlert.default, {
+  }, /*#__PURE__*/_react.default.createElement(_mediaOutlet.default, {
+    additionalOptions: additionalOptions
+  })))))), showUnsavedChangeAlert && /*#__PURE__*/_react.default.createElement(_unsavedChangesAlert.default, {
     onClose: onClose,
     onCancel: function onCancel() {
       return setShowUnsavedChangeAlert(false);
@@ -11917,7 +11949,7 @@ FormMedia.propTypes = {
   onClose: _propTypes.default.func.isRequired,
   DialogProps: _propTypes.default.object,
   getControlValue: _propTypes.default.func.isRequired,
-  controlView: _propTypes.default.object,
+  setControlValue: _propTypes.default.func.isRequired,
   additionalOptions: _propTypes.default.object,
   credits: _propTypes.default.number,
   maybeRenderUpgradeChip: _propTypes.default.func,
@@ -11959,13 +11991,16 @@ var _removeBackground = _interopRequireDefault(__webpack_require__(/*! ./views/r
 var _locationContext = __webpack_require__(/*! ./context/location-context */ "../modules/ai/assets/js/editor/pages/form-media/context/location-context.js");
 var _editImageContext = __webpack_require__(/*! ./context/edit-image-context */ "../modules/ai/assets/js/editor/pages/form-media/context/edit-image-context.js");
 var _promptHistoryActionContext = __webpack_require__(/*! ../../components/prompt-history/context/prompt-history-action-context */ "../modules/ai/assets/js/editor/components/prompt-history/context/prompt-history-action-context.js");
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js"));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-var MediaOutlet = function MediaOutlet() {
+var MediaOutlet = function MediaOutlet(_ref) {
+  var _ref$additionalOption = _ref.additionalOptions,
+    additionalOptions = _ref$additionalOption === void 0 ? null : _ref$additionalOption;
   var _useEditImage = (0, _editImageContext.useEditImage)(),
     editImage = _useEditImage.editImage;
   var _useLocation = (0, _locationContext.useLocation)({
-      current: _constants.LOCATIONS.GENERATE
+      current: (additionalOptions === null || additionalOptions === void 0 ? void 0 : additionalOptions.location) || _constants.LOCATIONS.GENERATE
     }),
     current = _useLocation.current,
     navigate = _useLocation.navigate;
@@ -11992,6 +12027,9 @@ var MediaOutlet = function MediaOutlet() {
 };
 var _default = MediaOutlet;
 exports["default"] = _default;
+MediaOutlet.propTypes = {
+  additionalOptions: _propTypes.default.object
+};
 
 /***/ }),
 
@@ -12008,7 +12046,9 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.getAspectRatioSizes = void 0;
+exports.getAspectRatioSizes = exports.fetchImageAsBase64 = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
 var _constants = __webpack_require__(/*! ../constants */ "../modules/ai/assets/js/editor/pages/form-media/constants/index.js");
@@ -12035,6 +12075,44 @@ var getAspectRatioSizes = function getAspectRatioSizes(width, height) {
   }, _constants.IMAGE_ASPECT_RATIO[closestRatio]);
 };
 exports.getAspectRatioSizes = getAspectRatioSizes;
+var fetchImageAsBase64 = /*#__PURE__*/function () {
+  var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(url) {
+    var response, blob, reader;
+    return _regenerator.default.wrap(function _callee$(_context) {
+      while (1) switch (_context.prev = _context.next) {
+        case 0:
+          _context.prev = 0;
+          _context.next = 3;
+          return fetch(url);
+        case 3:
+          response = _context.sent;
+          _context.next = 6;
+          return response.blob();
+        case 6:
+          blob = _context.sent;
+          reader = new FileReader();
+          return _context.abrupt("return", new Promise(function (resolve, reject) {
+            reader.onloadend = function () {
+              resolve(reader.result);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+          }));
+        case 11:
+          _context.prev = 11;
+          _context.t0 = _context["catch"](0);
+          throw _context.t0;
+        case 14:
+        case "end":
+          return _context.stop();
+      }
+    }, _callee, null, [[0, 11]]);
+  }));
+  return function fetchImageAsBase64(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+exports.fetchImageAsBase64 = fetchImageAsBase64;
 
 /***/ }),
 
@@ -12708,7 +12786,8 @@ var _redoIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 var STROKE_SELECT_WIDTH = 120;
-var BRUSH_COLOR = 'rgba(0, 0, 0, 0.75)';
+var BRUSH_COLOR = 'rgba(255, 255, 255)';
+var CANVAS_COLOR = 'rgba(0, 0, 0)';
 var StyledUndoIcon = (0, _ui.withDirection)(_undoIcon.default);
 var StyledRedoIcon = (0, _ui.withDirection)(_redoIcon.default);
 var BrushCursor = (0, _ui.styled)(_ui.Box, {
@@ -12886,6 +12965,7 @@ var InPaintingContent = function InPaintingContent(_ref3) {
     width: canvasWidth + 'px',
     strokeWidth: stroke,
     strokeColor: BRUSH_COLOR,
+    canvasColor: CANVAS_COLOR,
     backgroundImage: editImage.url,
     onChange: /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
       var svg;
@@ -12932,6 +13012,8 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var _i18n = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
@@ -12979,19 +13061,33 @@ var InPainting = function InPainting() {
     error = _useInPainting.error,
     reset = _useInPainting.reset;
   var isLoading = isGenerating || isUploading;
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
+  var handleSubmit = /*#__PURE__*/function () {
+    var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(event) {
+      var finalPrompt;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            event.preventDefault();
 
-    // The fallback instruction should be hidden for the user.
-    var finalPrompt = prompt || 'Remove object and fill based on the surroundings';
-    setGenerate();
-    send({
-      prompt: finalPrompt,
-      settings: settings,
-      image: editImage,
-      mask: mask
-    });
-  };
+            // The fallback instruction should be hidden for the user.
+            finalPrompt = prompt || 'Remove object and fill based on the surroundings';
+            setGenerate();
+            send({
+              prompt: finalPrompt,
+              settings: settings,
+              image: editImage,
+              mask: mask
+            });
+          case 4:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    }));
+    return function handleSubmit(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
   return /*#__PURE__*/_react.default.createElement(_view.default, null, /*#__PURE__*/_react.default.createElement(_view.default.Panel, null, /*#__PURE__*/_react.default.createElement(_view.default.BackButton, null), /*#__PURE__*/_react.default.createElement(_view.default.PanelHeading, {
     primary: (0, _i18n.__)('Generative Fill', 'elementor'),
     secondary: (0, _i18n.__)('Mark an area and edit it with a prompt.', 'elementor')
@@ -13083,7 +13179,9 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var _i18n = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
@@ -13092,8 +13190,6 @@ var _imageForm = _interopRequireDefault(__webpack_require__(/*! ../../components
 var _imageRatioSelect = _interopRequireDefault(__webpack_require__(/*! ../../components/image-ratio-select */ "../modules/ai/assets/js/editor/pages/form-media/components/image-ratio-select.js"));
 var _generateSubmit = _interopRequireDefault(__webpack_require__(/*! ../../components/generate-submit */ "../modules/ai/assets/js/editor/pages/form-media/components/generate-submit.js"));
 var _generateAgainSubmit = _interopRequireDefault(__webpack_require__(/*! ../../components/generate-again-submit */ "../modules/ai/assets/js/editor/pages/form-media/components/generate-again-submit.js"));
-var _newPromptButton = _interopRequireDefault(__webpack_require__(/*! ../../components/new-prompt-button */ "../modules/ai/assets/js/editor/pages/form-media/components/new-prompt-button.js"));
-var _promptField = _interopRequireDefault(__webpack_require__(/*! ../../components/prompt-field */ "../modules/ai/assets/js/editor/pages/form-media/components/prompt-field.js"));
 var _outPaintingContent = _interopRequireDefault(__webpack_require__(/*! ./out-painting-content */ "../modules/ai/assets/js/editor/pages/form-media/views/out-painting/out-painting-content.js"));
 var _imagesDisplay = _interopRequireDefault(__webpack_require__(/*! ../../components/images-display */ "../modules/ai/assets/js/editor/pages/form-media/components/images-display.js"));
 var _editImageContext = __webpack_require__(/*! ../../context/edit-image-context */ "../modules/ai/assets/js/editor/pages/form-media/context/edit-image-context.js");
@@ -13101,28 +13197,38 @@ var _useImageActions2 = _interopRequireDefault(__webpack_require__(/*! ../../hoo
 var _usePromptSettings2 = _interopRequireWildcard(__webpack_require__(/*! ../../hooks/use-prompt-settings */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-prompt-settings.js"));
 var _useOutPainting2 = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-out-painting */ "../modules/ai/assets/js/editor/pages/form-media/views/out-painting/hooks/use-out-painting.js"));
 var _requestsIds = __webpack_require__(/*! ../../../../context/requests-ids */ "../modules/ai/assets/js/editor/context/requests-ids.js");
+var _utils = __webpack_require__(/*! ../../utils */ "../modules/ai/assets/js/editor/pages/form-media/utils/index.js");
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 var OutPainting = function OutPainting() {
-  var _useState = (0, _react.useState)(''),
+  var _useState = (0, _react.useState)({
+      width: 0,
+      height: 0
+    }),
     _useState2 = (0, _slicedToArray2.default)(_useState, 2),
-    prompt = _useState2[0],
-    setPrompt = _useState2[1];
+    imageSize = _useState2[0],
+    setImageSize = _useState2[1];
+  var _useState3 = (0, _react.useState)({
+      x: 0.5,
+      y: 0.5
+    }),
+    _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
+    position = _useState4[0],
+    setPosition = _useState4[1];
+  var _useState5 = (0, _react.useState)(''),
+    _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
+    mask = _useState6[0],
+    setMask = _useState6[1];
   var _useRequestIds = (0, _requestsIds.useRequestIds)(),
     setGenerate = _useRequestIds.setGenerate;
   var _useEditImage = (0, _editImageContext.useEditImage)(),
     editImage = _useEditImage.editImage,
     initialAspectRatio = _useEditImage.aspectRatio;
-  var _useState3 = (0, _react.useState)(''),
-    _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
-    mask = _useState4[0],
-    setMask = _useState4[1];
   var _usePromptSettings = (0, _usePromptSettings2.default)({
       aspectRatio: initialAspectRatio
     }),
     settings = _usePromptSettings.settings,
-    updateSettings = _usePromptSettings.updateSettings,
-    resetSettings = _usePromptSettings.resetSettings;
+    updateSettings = _usePromptSettings.updateSettings;
   var _useImageActions = (0, _useImageActions2.default)(),
     use = _useImageActions.use,
     edit = _useImageActions.edit,
@@ -13131,26 +13237,42 @@ var OutPainting = function OutPainting() {
     data = _useOutPainting.data,
     send = _useOutPainting.send,
     isGenerating = _useOutPainting.isLoading,
-    error = _useOutPainting.error,
-    reset = _useOutPainting.reset;
+    error = _useOutPainting.error;
   var isLoading = isGenerating || isUploading;
   var generatedAspectRatio = (0, _react.useMemo)(function () {
     return settings[_usePromptSettings2.IMAGE_RATIO];
   }, [data === null || data === void 0 ? void 0 : data.result]);
   var hasGeneratedResult = !!(data !== null && data !== void 0 && data.result);
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
-
-    // The fallback instruction should be hidden for the user.
-    var finalPrompt = prompt || 'Fill based on the surroundings';
-    setGenerate();
-    send({
-      prompt: finalPrompt,
-      settings: settings,
-      image: editImage,
-      mask: mask
-    });
-  };
+  var handleSubmit = /*#__PURE__*/function () {
+    var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(event) {
+      var imageBase64;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            event.preventDefault();
+            setGenerate();
+            _context.next = 4;
+            return (0, _utils.fetchImageAsBase64)(editImage.url);
+          case 4:
+            imageBase64 = _context.sent;
+            send({
+              settings: settings,
+              image: editImage,
+              mask: mask,
+              size: imageSize,
+              position: position,
+              image_base64: imageBase64
+            });
+          case 6:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee);
+    }));
+    return function handleSubmit(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
   return /*#__PURE__*/_react.default.createElement(_view.default, null, /*#__PURE__*/_react.default.createElement(_view.default.Panel, null, /*#__PURE__*/_react.default.createElement(_view.default.BackButton, null), /*#__PURE__*/_react.default.createElement(_view.default.PanelHeading, {
     primary: (0, _i18n.__)('Expand Image', 'elementor'),
     secondary: (0, _i18n.__)('Position image in it’s new size to generate content around the edges.', 'elementor')
@@ -13174,7 +13296,7 @@ var OutPainting = function OutPainting() {
     marks: true,
     id: "zoom",
     name: "zoom",
-    max: 2,
+    max: 1,
     min: 0.1,
     step: 0.1,
     color: "secondary",
@@ -13190,25 +13312,13 @@ var OutPainting = function OutPainting() {
     id: "image-size-slider",
     variant: "caption",
     gutterBottom: true
-  }, (0, _i18n.__)('Original image size', 'elementor'))), /*#__PURE__*/_react.default.createElement(_promptField.default, {
-    value: prompt,
-    disabled: isLoading,
-    onChange: setPrompt,
-    placeholder: (0, _i18n.__)('Describe what you want to generate in the expended area (English only)', 'elementor')
-  }), data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+  }, (0, _i18n.__)('Original image size', 'elementor'))), data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     gap: 2,
     sx: {
       my: 2.5
     }
   }, /*#__PURE__*/_react.default.createElement(_generateAgainSubmit.default, {
     disabled: isLoading
-  }), /*#__PURE__*/_react.default.createElement(_newPromptButton.default, {
-    disabled: isLoading,
-    onClick: function onClick() {
-      resetSettings();
-      setPrompt('');
-      reset();
-    }
   })) : /*#__PURE__*/_react.default.createElement(_generateSubmit.default, {
     disabled: isLoading
   }))), /*#__PURE__*/_react.default.createElement(_view.default.Content, {
@@ -13222,7 +13332,9 @@ var OutPainting = function OutPainting() {
     setMask: setMask,
     editImage: editImage,
     scale: settings[_usePromptSettings2.IMAGE_ZOOM],
-    aspectRatio: settings[_usePromptSettings2.IMAGE_RATIO]
+    aspectRatio: settings[_usePromptSettings2.IMAGE_RATIO],
+    setImageSize: setImageSize,
+    setPosition: setPosition
   })));
 };
 var _default = OutPainting;
@@ -13258,11 +13370,21 @@ var OutPaintingContent = function OutPaintingContent(_ref) {
   var scale = _ref.scale,
     setMask = _ref.setMask,
     editImage = _ref.editImage,
-    aspectRatio = _ref.aspectRatio;
+    aspectRatio = _ref.aspectRatio,
+    setImageSize = _ref.setImageSize,
+    setPosition = _ref.setPosition;
   var cropperRef = (0, _react.useRef)();
+  var position = (0, _react.useRef)({
+    x: 0.5,
+    y: 0.5
+  });
   var _useImageSize = (0, _useImageSize2.default)(aspectRatio),
     width = _useImageSize.width,
     height = _useImageSize.height;
+  var imageSize = {
+    width: width,
+    height: height
+  };
   var updateMask = /*#__PURE__*/function () {
     var _ref2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
       var imageDataURL;
@@ -13282,6 +13404,52 @@ var OutPaintingContent = function OutPaintingContent(_ref) {
     }));
     return function updateMask() {
       return _ref2.apply(this, arguments);
+    };
+  }();
+  var _onPositionChange = /*#__PURE__*/function () {
+    var _ref3 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(args) {
+      return _regenerator.default.wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            position.current = {
+              x: args.x,
+              y: args.y
+            };
+            _context2.next = 3;
+            return updateMask();
+          case 3:
+            setPosition(position.current);
+          case 4:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2);
+    }));
+    return function onPositionChange(_x) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+  var onImageChange = /*#__PURE__*/function () {
+    var _ref4 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
+      return _regenerator.default.wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            imageSize = {
+              width: imageSize.width * scale,
+              height: imageSize.height * scale
+            };
+            _context3.next = 3;
+            return updateMask();
+          case 3:
+            setImageSize(imageSize);
+          case 4:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3);
+    }));
+    return function onImageChange() {
+      return _ref4.apply(this, arguments);
     };
   }();
   return /*#__PURE__*/_react.default.createElement(_ui.Stack, {
@@ -13304,11 +13472,9 @@ var OutPaintingContent = function OutPaintingContent(_ref) {
     allowZoomOut: true,
     backgroundColor: 'transparent',
     showGrid: true,
-    onImageChange: function onImageChange() {
-      return updateMask();
-    },
-    onPositionChange: function onPositionChange() {
-      return updateMask();
+    onImageChange: onImageChange,
+    onPositionChange: function onPositionChange(args) {
+      return _onPositionChange(args);
     },
     width: width,
     height: height,
@@ -13319,7 +13485,9 @@ OutPaintingContent.propTypes = {
   scale: _propTypes.default.number.isRequired,
   setMask: _propTypes.default.func.isRequired,
   editImage: _propTypes.default.object.isRequired,
-  aspectRatio: _propTypes.default.string.isRequired
+  aspectRatio: _propTypes.default.string.isRequired,
+  setImageSize: _propTypes.default.func.isRequired,
+  setPosition: _propTypes.default.func.isRequired
 };
 var _default = OutPaintingContent;
 exports["default"] = _default;
@@ -14003,6 +14171,7 @@ var promptInstructions = [{
   }
 }];
 var FormText = function FormText(_ref) {
+  var _initialValue$result, _initialValue$credits, _additionalOptions$in;
   var type = _ref.type,
     onClose = _ref.onClose,
     getControlValue = _ref.getControlValue,
@@ -14012,16 +14181,18 @@ var FormText = function FormText(_ref) {
     children = _ref.children;
   var initialValue = getControlValue() === (additionalOptions === null || additionalOptions === void 0 ? void 0 : additionalOptions.defaultValue) ? '' : getControlValue();
   var _useTextPrompt = (0, _useTextPrompt2.default)({
-      result: initialValue,
-      credits: credits
+      result: (_initialValue$result = initialValue === null || initialValue === void 0 ? void 0 : initialValue.result) !== null && _initialValue$result !== void 0 ? _initialValue$result : initialValue,
+      credits: (_initialValue$credits = initialValue === null || initialValue === void 0 ? void 0 : initialValue.credits) !== null && _initialValue$credits !== void 0 ? _initialValue$credits : credits,
+      responseId: initialValue === null || initialValue === void 0 ? void 0 : initialValue.responseId
     }),
     data = _useTextPrompt.data,
     isLoading = _useTextPrompt.isLoading,
-    error = _useTextPrompt.error,
+    txtGenErr = _useTextPrompt.error,
     setResult = _useTextPrompt.setResult,
     reset = _useTextPrompt.reset,
     send = _useTextPrompt.send,
     sendUsageData = _useTextPrompt.sendUsageData;
+  var error = txtGenErr || (additionalOptions === null || additionalOptions === void 0 ? void 0 : additionalOptions.initError);
   var _useState = (0, _react.useState)(''),
     _useState2 = (0, _slicedToArray2.default)(_useState, 2),
     prompt = _useState2[0],
@@ -14042,7 +14213,7 @@ var FormText = function FormText(_ref) {
   }]);
   var searchField = (0, _react.useRef)(null);
   var resultField = (0, _react.useRef)(null);
-  var lastRun = (0, _react.useRef)(function () {});
+  var lastRun = (0, _react.useRef)((_additionalOptions$in = additionalOptions.initRetry) !== null && _additionalOptions$in !== void 0 ? _additionalOptions$in : function () {});
   var autocompleteItems = 'textarea' === type ? _actionsData.textareaAutocomplete : _actionsData.textAutocomplete;
   var showSuggestions = !prompt;
   var handleSubmit = function handleSubmit(event) {
@@ -14119,12 +14290,14 @@ var FormText = function FormText(_ref) {
     }
   }, /*#__PURE__*/_react.default.createElement(_promptLibraryLink.default, {
     libraryLink: "https://go.elementor.com/ai-prompt-library-text/"
-  })), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+  })), /*#__PURE__*/_react.default.createElement(_voicePromotionAlert.VoicePromotionAlert, {
+    introductionKey: "ai-context-text-promotion"
+  }), /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     direction: "row",
     alignItems: "center",
     sx: {
-      py: 1.5,
-      mt: 4
+      pb: 1.5,
+      mt: 2
     }
   }, /*#__PURE__*/_react.default.createElement(_ui.Stack, {
     direction: "row",
@@ -14428,23 +14601,17 @@ var getUiConfig = function getUiConfig() {
 };
 exports.getUiConfig = getUiConfig;
 var VARIATIONS_PROMPTS = [{
-  text: (0, _i18n.__)('Minimalist design with bold typography about', 'elementor')
+  text: (0, _i18n.__)('Change the content to be about [topic]', 'elementor')
 }, {
-  text: (0, _i18n.__)('Elegant style with serif fonts discussing', 'elementor')
+  text: (0, _i18n.__)('Generate lorem ipsum placeholder text for all paragraphs', 'elementor')
 }, {
-  text: (0, _i18n.__)('Retro vibe with muted colors and classic fonts about', 'elementor')
+  text: (0, _i18n.__)('Revise the content to focus on [topic] and then translate it into Spanish', 'elementor')
 }, {
-  text: (0, _i18n.__)('Futuristic design with neon accents about', 'elementor')
+  text: (0, _i18n.__)('Shift the focus of the content to [topic] in order to showcase our company\'s mission and values', 'elementor')
 }, {
-  text: (0, _i18n.__)('Professional look with clean lines for', 'elementor')
+  text: (0, _i18n.__)('Alter the content to provide helpful tips related to [topic]', 'elementor')
 }, {
-  text: (0, _i18n.__)('Earthy tones and organic shapes featuring', 'elementor')
-}, {
-  text: (0, _i18n.__)('Luxurious theme with rich colors discussing', 'elementor')
-}, {
-  text: (0, _i18n.__)('Tech-inspired style with modern fonts about', 'elementor')
-}, {
-  text: (0, _i18n.__)('Warm hues with comforting visuals about', 'elementor')
+  text: (0, _i18n.__)('Adjust the content to include FAQs and answers for common inquiries about [topic]', 'elementor')
 }];
 var PROMPT_PLACEHOLDER = (0, _i18n.__)("Press '/' for suggestions or describe the changes you want to apply (optional)...", 'elementor');
 var renderLayoutApp = function renderLayoutApp() {

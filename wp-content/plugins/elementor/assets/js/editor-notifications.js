@@ -1,4 +1,4 @@
-/*! elementor - v3.21.0 - 26-05-2024 */
+/*! elementor - v3.22.0 - 17-06-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -312,6 +312,12 @@ var editorV2 = function editorV2() {
           });
         },
         onClick: function onClick() {
+          elementor.editorEvents.dispatchEvent(elementor.editorEvents.config.names.topBar.whatsNew, {
+            location: elementor.editorEvents.config.locations.topBar,
+            secondaryLocation: elementor.editorEvents.config.secondaryLocations['whats-new'],
+            trigger: elementor.editorEvents.config.triggers.click,
+            element: elementor.editorEvents.config.elements.buttonIcon
+          });
           setIsRead(true);
           elementorNotifications.is_unread = false;
           (0, _editorOnButtonClicked.editorOnButtonClicked)('right');

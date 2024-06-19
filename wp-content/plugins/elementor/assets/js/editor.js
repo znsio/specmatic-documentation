@@ -1,4 +1,4 @@
-/*! elementor - v3.21.0 - 26-05-2024 */
+/*! elementor - v3.22.0 - 17-06-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -5189,9 +5189,16 @@ Object.defineProperty(exports, "Switch", ({
     return _switch.Switch;
   }
 }));
+Object.defineProperty(exports, "View", ({
+  enumerable: true,
+  get: function get() {
+    return _view.View;
+  }
+}));
 var _close = __webpack_require__(/*! ./close */ "../assets/dev/js/editor/components/documents/commands/close.js");
 var _open = __webpack_require__(/*! ./open */ "../assets/dev/js/editor/components/documents/commands/open.js");
 var _preview = __webpack_require__(/*! ./preview */ "../assets/dev/js/editor/components/documents/commands/preview.js");
+var _view = __webpack_require__(/*! ./view */ "../assets/dev/js/editor/components/documents/commands/view.js");
 var _switch = __webpack_require__(/*! ./switch */ "../assets/dev/js/editor/components/documents/commands/switch.js");
 
 /***/ }),
@@ -5734,6 +5741,71 @@ var Switch = /*#__PURE__*/function (_$e$modules$CommandBa) {
 }($e.modules.CommandBase);
 exports.Switch = Switch;
 var _default = Switch;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../assets/dev/js/editor/components/documents/commands/view.js":
+/*!*********************************************************************!*\
+  !*** ../assets/dev/js/editor/components/documents/commands/view.js ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = exports.View = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../node_modules/@babel/runtime/helpers/classCallCheck.js"));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var View = /*#__PURE__*/function (_$e$modules$CommandBa) {
+  (0, _inherits2.default)(View, _$e$modules$CommandBa);
+  var _super = _createSuper(View);
+  function View() {
+    (0, _classCallCheck2.default)(this, View);
+    return _super.apply(this, arguments);
+  }
+  (0, _createClass2.default)(View, [{
+    key: "validateArgs",
+    value: function validateArgs(args) {
+      this.requireArgument('id', args);
+    }
+  }, {
+    key: "apply",
+    value: function () {
+      var _apply = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(args) {
+        var id, document;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              id = args.id, document = elementor.documents.get(id); // Open immediately in order to avoid popup blockers.
+              open(document.config.urls.permalink, "wp-view-".concat(document.id));
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee);
+      }));
+      function apply(_x) {
+        return _apply.apply(this, arguments);
+      }
+      return apply;
+    }()
+  }]);
+  return View;
+}($e.modules.CommandBase);
+exports.View = View;
+var _default = View;
 exports["default"] = _default;
 
 /***/ }),
@@ -15768,6 +15840,17 @@ ControlRepeaterItemView = ControlBaseDataView.extend({
     this.currentEditableChild = rowView;
     this.updateActiveRow();
   },
+  toggleClasses: function toggleClasses() {
+    this.toggleMinRowsClass();
+    this.toggleMaxRowsClass();
+  },
+  toggleMaxRowsClass: function toggleMaxRowsClass() {
+    var maxItems = this.model.get('max_items');
+    if (!maxItems || !Number.isInteger(maxItems)) {
+      return;
+    }
+    this.$el.toggleClass('elementor-repeater-has-maximum-rows', maxItems <= this.collection.length);
+  },
   toggleMinRowsClass: function toggleMinRowsClass() {
     if (!this.model.get('prevent_empty')) {
       return;
@@ -15801,7 +15884,7 @@ ControlRepeaterItemView = ControlBaseDataView.extend({
     if (this.model.get('item_actions').sort) {
       this.ui.fieldContainer.sortable(this.getSortableParams());
     }
-    this.toggleMinRowsClass();
+    this.toggleClasses();
   },
   onSortStart: function onSortStart(event, ui) {
     ui.item.data('oldIndex', ui.item.index());
@@ -15836,6 +15919,7 @@ ControlRepeaterItemView = ControlBaseDataView.extend({
   onAddChild: function onAddChild() {
     this.updateChildIndexes();
     this.updateActiveRow();
+    this.toggleClasses();
   },
   /**
    * Update container to ensure that new child elements appear in container children.
@@ -15889,7 +15973,7 @@ ControlRepeaterItemView = ControlBaseDataView.extend({
     });
     var newChild = this.children.findByModel(newModel);
     this.editRow(newChild);
-    this.toggleMinRowsClass();
+    this.toggleClasses();
   },
   onChildviewClickRemove: function onChildviewClickRemove(childView) {
     if (childView === this.currentEditableChild) {
@@ -15902,7 +15986,7 @@ ControlRepeaterItemView = ControlBaseDataView.extend({
     });
     this.updateActiveRow();
     this.updateChildIndexes();
-    this.toggleMinRowsClass();
+    this.toggleClasses();
   },
   onChildviewClickDuplicate: function onChildviewClickDuplicate(childView) {
     $e.run('document/repeater/duplicate', {
@@ -15910,7 +15994,7 @@ ControlRepeaterItemView = ControlBaseDataView.extend({
       name: this.model.get('name'),
       index: childView._index
     });
-    this.toggleMinRowsClass();
+    this.toggleClasses();
   },
   onChildviewClickEdit: function onChildviewClickEdit(childView) {
     this.editRow(childView);
@@ -20329,6 +20413,14 @@ var Component = /*#__PURE__*/function (_ComponentBase) {
           return Object.values(pasteOptions).some(function (opt) {
             return !!opt;
           });
+        },
+        allowAddingWidgets: function allowAddingWidgets() {
+          var _elementor$config$doc;
+          return (_elementor$config$doc = elementor.config.document.panel.allow_adding_widgets) !== null && _elementor$config$doc !== void 0 ? _elementor$config$doc : true;
+        },
+        showNavigator: function showNavigator() {
+          var _elementor$config$doc2;
+          return (_elementor$config$doc2 = elementor.config.document.panel.show_navigator) !== null && _elementor$config$doc2 !== void 0 ? _elementor$config$doc2 : true;
         }
       };
     }
@@ -27392,12 +27484,15 @@ var Component = /*#__PURE__*/function (_ComponentBase) {
         duplicate: {
           keys: 'ctrl+d',
           dependency: function dependency() {
-            return shouldRun();
+            return shouldRun() && $e.components.get('document/elements').utils.allowAddingWidgets();
           }
         },
         paste: {
           keys: 'ctrl+v',
-          exclude: ['input']
+          exclude: ['input'],
+          dependency: function dependency() {
+            return $e.components.get('document/elements').utils.allowAddingWidgets();
+          }
         },
         'paste-style': {
           keys: 'ctrl+shift+v',
@@ -27466,6 +27561,7 @@ var _component4 = _interopRequireDefault(__webpack_require__(/*! ./data/globals/
 var _controlConditions = _interopRequireDefault(__webpack_require__(/*! ./utils/control-conditions */ "../assets/dev/js/editor/utils/control-conditions.js"));
 var _module5 = _interopRequireDefault(__webpack_require__(/*! elementor/modules/promotions/assets/js/editor/module */ "../modules/promotions/assets/js/editor/module.js"));
 var _module6 = _interopRequireDefault(__webpack_require__(/*! elementor/modules/editor-events/assets/js/editor/module */ "../modules/editor-events/assets/js/editor/module.js"));
+var _module7 = _interopRequireDefault(__webpack_require__(/*! elementor/modules/conversion-center/assets/js/editor/module */ "../modules/conversion-center/assets/js/editor/module.js"));
 var elementTypes = _interopRequireWildcard(__webpack_require__(/*! ./elements/types */ "../assets/dev/js/editor/elements/types/index.js"));
 var _elementBase = _interopRequireDefault(__webpack_require__(/*! ./elements/types/base/element-base */ "../assets/dev/js/editor/elements/types/base/element-base.js"));
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -27716,7 +27812,27 @@ var EditorBase = /*#__PURE__*/function (_Marionette$Applicati) {
           return false;
         }
         if (!this.widgetsCache[widgetType].commonMerged) {
+          var _this$widgetsCache$wi;
           jQuery.extend(this.widgetsCache[widgetType].controls, this.widgetsCache.common.controls);
+          this.widgetsCache[widgetType].controls = elementor.hooks.applyFilters('elements/widget/controls/common', this.widgetsCache[widgetType].controls, widgetType, this.widgetsCache[widgetType]);
+
+          // TODO: Move this code to own file.
+          if ((_this$widgetsCache$wi = this.widgetsCache[widgetType].controls) !== null && _this$widgetsCache$wi !== void 0 && _this$widgetsCache$wi._element_cache) {
+            var _this$widgetsCache$wi2;
+            var elementCacheDescription = __('The default cache status for this element:', 'elementor');
+            elementCacheDescription += ' <strong>';
+            if ((_this$widgetsCache$wi2 = this.widgetsCache[widgetType]) !== null && _this$widgetsCache$wi2 !== void 0 && _this$widgetsCache$wi2.is_dynamic_content) {
+              elementCacheDescription += __('Inactive', 'elementor');
+            } else {
+              elementCacheDescription += __('Active', 'elementor');
+            }
+            elementCacheDescription += '</strong><br />';
+            elementCacheDescription += __('Activating cache improves loading times by storing a static version of this element.', 'elementor');
+            elementCacheDescription += ' <a href="https://go.elementor.com/element-caching-help/" target="_blank">' + __('Learn more', 'elementor') + '</a>.';
+            this.widgetsCache[widgetType].controls._element_cache.description = elementCacheDescription;
+          }
+          // TODO: End of code to move.
+
           this.widgetsCache[widgetType].commonMerged = true;
         }
         return this.widgetsCache[widgetType];
@@ -27824,6 +27940,9 @@ var EditorBase = /*#__PURE__*/function (_Marionette$Applicati) {
       // Adds the Landing Page tab to the Template library modal when editing Landing Pages.
       if (elementorCommon.config.experimentalFeatures['landing-pages']) {
         this.modules.landingLibraryPageModule = new _module3.default();
+      }
+      if (elementorCommon.config.experimentalFeatures['conversion-center']) {
+        this.modules.linksPageLibraryModule = new _module7.default();
       }
       this.modules.elementsColorPicker = new _module4.default();
       this.modules.promotionModule = new _module5.default();
@@ -31288,7 +31407,7 @@ module.exports = Marionette.Behavior.extend({
     if (-1 === afterGroupIndex) {
       afterGroupIndex = contextMenuGroups.length;
     }
-    if ('preview' === this.getOption('context')) {
+    if ('preview' === this.getOption('context') && $e.components.get('document/elements').utils.allowAddingWidgets()) {
       contextMenuGroups.splice(afterGroupIndex, 0, {
         name: 'tools',
         actions: [{
@@ -32633,6 +32752,14 @@ var ContainerView = BaseElementView.extend({
     var isNestedClassName = this.model.get('isInner') ? 'e-child' : 'e-parent';
     return "".concat(BaseElementView.prototype.className.apply(this), " e-con ").concat(isNestedClassName);
   },
+  filterSettings: function filterSettings(newItem) {
+    var parentContainer = this;
+    if (parentContainer.isBoxedWidth()) {
+      newItem.settings.content_width = 'full';
+    } else if (0 !== parentContainer.getNestingLevel()) {
+      newItem.settings.content_width = 'full';
+    }
+  },
   childViewOptions: function childViewOptions() {
     return {
       emptyViewOwner: this
@@ -32888,18 +33015,20 @@ var ContainerView = BaseElementView.extend({
   getEditButtons: function getEditButtons() {
     var elementData = elementor.getElementData(this.model),
       editTools = {};
-    editTools.add = {
-      /* Translators: %s: Element Name. */
-      title: sprintf(__('Add %s', 'elementor'), elementData.title),
-      icon: 'plus'
-    };
-    editTools.edit = {
-      /* Translators: %s: Element Name. */
-      title: sprintf(__('Edit %s', 'elementor'), elementData.title),
-      icon: 'handle'
-    };
+    if ($e.components.get('document/elements').utils.allowAddingWidgets()) {
+      editTools.add = {
+        /* Translators: %s: Element Name. */
+        title: sprintf(__('Add %s', 'elementor'), elementData.title),
+        icon: 'plus'
+      };
+      editTools.edit = {
+        /* Translators: %s: Element Name. */
+        title: sprintf(__('Edit %s', 'elementor'), elementData.title),
+        icon: 'handle'
+      };
+    }
     if (!this.getContainer().isLocked()) {
-      if (elementor.getPreferences('edit_buttons')) {
+      if (elementor.getPreferences('edit_buttons') && $e.components.get('document/elements').utils.allowAddingWidgets()) {
         editTools.duplicate = {
           /* Translators: %s: Element Name. */
           title: sprintf(__('Duplicate %s', 'elementor'), elementData.title),
@@ -34199,7 +34328,7 @@ var Component = /*#__PURE__*/function (_ComponentBase) {
         toggle: {
           keys: 'ctrl+i',
           dependency: function dependency() {
-            return elementor.getPreviewContainer().isEditable();
+            return elementor.getPreviewContainer().isEditable() && $e.components.get('document/elements').utils.allowAddingWidgets();
           }
         }
       };
@@ -36867,6 +36996,7 @@ Object.defineProperty(exports, "__esModule", ({
 exports["default"] = void 0;
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../node_modules/@babel/runtime/helpers/classCallCheck.js"));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
+var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../node_modules/@babel/runtime/helpers/get.js"));
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
@@ -36907,6 +37037,17 @@ var Component = /*#__PURE__*/function (_ComponentBase) {
     value: function renderTab(tab) {
       var args = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
       this.manager.setPage('elements', null, args).showView(tab);
+    }
+  }, {
+    key: "activateTab",
+    value: function activateTab(tab) {
+      (0, _get2.default)((0, _getPrototypeOf2.default)(Component.prototype), "activateTab", this).call(this, tab);
+      elementor.editorEvents.dispatchEvent(elementor.editorEvents.config.names.v1[tab], {
+        location: elementor.editorEvents.config.locations.widgetPanel,
+        secondaryLocation: elementor.editorEvents.config.secondaryLocations[tab],
+        trigger: elementor.editorEvents.config.triggers.click,
+        element: elementor.editorEvents.config.elements.accordionSection
+      });
     }
   }]);
   return Component;
@@ -37104,6 +37245,9 @@ PanelElementsLayoutView = Marionette.LayoutView.extend({
     }
   },
   showView: function showView(viewName) {
+    if (!$e.components.get('document/elements').utils.allowAddingWidgets()) {
+      return;
+    }
     var viewDetails = this.regionViews[viewName],
       options = viewDetails.options || {};
     viewDetails.region.show(new viewDetails.view(options));
@@ -41883,6 +42027,9 @@ module.exports = Marionette.CompositeView.extend({
     if (options.onBeforeAdd) {
       options.onBeforeAdd();
     }
+    if (this.filterSettings) {
+      this.filterSettings(newItem);
+    }
     var newModel = this.addChildModel(newItem, {
         at: options.at
       }),
@@ -42459,13 +42606,13 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var BaseSectionsContainerView = __webpack_require__(/*! elementor-views/base-sections-container */ "../assets/dev/js/editor/views/base-sections-container.js");
 var Preview = BaseSectionsContainerView.extend({
-  config: {
-    allowEdit: true
-  },
   initialize: function initialize() {
     this.$childViewContainer = jQuery('<div>', {
       class: 'elementor-section-wrap'
     });
+    this.config = {
+      allowEdit: true
+    };
     BaseSectionsContainerView.prototype.initialize.apply(this, arguments);
   },
   setConfig: function setConfig(config) {
@@ -46567,14 +46714,6 @@ var Manager = /*#__PURE__*/function (_elementorModules$edi) {
         title: __('Site Settings', 'elementor'),
         type: 'page',
         callback: function callback() {
-          elementor.editorEvents.dispatchEvent({
-            action: elementor.editorEvents.config.actions.click,
-            type: elementor.editorEvents.config.types.button,
-            section: elementor.editorEvents.config.sections.topbar,
-            element_name: elementor.editorEvents.config.elementNames.siteSettings,
-            outcome: null,
-            entity: null
-          });
           $e.run('panel/global/open', {
             route: $e.routes.getHistory('panel').reverse()[0].route
           });
@@ -47284,6 +47423,356 @@ exports["default"] = _default;
 
 /***/ }),
 
+/***/ "../modules/conversion-center/assets/js/editor/component.js":
+/*!******************************************************************!*\
+  !*** ../modules/conversion-center/assets/js/editor/component.js ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../node_modules/@babel/runtime/helpers/classCallCheck.js"));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+var hooks = _interopRequireWildcard(__webpack_require__(/*! ./hooks/ */ "../modules/conversion-center/assets/js/editor/hooks/index.js"));
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var LinksPageComponent = /*#__PURE__*/function (_$e$modules$Component) {
+  (0, _inherits2.default)(LinksPageComponent, _$e$modules$Component);
+  var _super = _createSuper(LinksPageComponent);
+  function LinksPageComponent() {
+    (0, _classCallCheck2.default)(this, LinksPageComponent);
+    return _super.apply(this, arguments);
+  }
+  (0, _createClass2.default)(LinksPageComponent, [{
+    key: "getNamespace",
+    value: function getNamespace() {
+      return 'document/links-page';
+    }
+  }, {
+    key: "defaultHooks",
+    value: function defaultHooks() {
+      return this.importHooks(hooks);
+    }
+  }]);
+  return LinksPageComponent;
+}($e.modules.ComponentBase);
+exports["default"] = LinksPageComponent;
+
+/***/ }),
+
+/***/ "../modules/conversion-center/assets/js/editor/hooks/index.js":
+/*!********************************************************************!*\
+  !*** ../modules/conversion-center/assets/js/editor/hooks/index.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+Object.defineProperty(exports, "LinksPageAddLibraryTab", ({
+  enumerable: true,
+  get: function get() {
+    return _addLinksPagesTab.LinksPageAddLibraryTab;
+  }
+}));
+Object.defineProperty(exports, "LinksPageRemoveLibraryTab", ({
+  enumerable: true,
+  get: function get() {
+    return _removeLinksPagesTab.LinksPageRemoveLibraryTab;
+  }
+}));
+Object.defineProperty(exports, "OpenLibraryAfterDelete", ({
+  enumerable: true,
+  get: function get() {
+    return _openLibraryAfterDelete.OpenLibraryAfterDelete;
+  }
+}));
+var _addLinksPagesTab = __webpack_require__(/*! ./ui/editor/documents/open/add-links-pages-tab */ "../modules/conversion-center/assets/js/editor/hooks/ui/editor/documents/open/add-links-pages-tab.js");
+var _removeLinksPagesTab = __webpack_require__(/*! ./ui/editor/documents/close/remove-links-pages-tab */ "../modules/conversion-center/assets/js/editor/hooks/ui/editor/documents/close/remove-links-pages-tab.js");
+var _openLibraryAfterDelete = __webpack_require__(/*! ./ui/editor/delete/open-library-after-delete */ "../modules/conversion-center/assets/js/editor/hooks/ui/editor/delete/open-library-after-delete.js");
+
+/***/ }),
+
+/***/ "../modules/conversion-center/assets/js/editor/hooks/ui/editor/delete/open-library-after-delete.js":
+/*!*********************************************************************************************************!*\
+  !*** ../modules/conversion-center/assets/js/editor/hooks/ui/editor/delete/open-library-after-delete.js ***!
+  \*********************************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = exports.OpenLibraryAfterDelete = void 0;
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../node_modules/@babel/runtime/helpers/classCallCheck.js"));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+var _after = _interopRequireDefault(__webpack_require__(/*! elementor-api/modules/hooks/ui/after */ "../modules/web-cli/assets/js/modules/hooks/ui/after.js"));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var OpenLibraryAfterDelete = /*#__PURE__*/function (_After) {
+  (0, _inherits2.default)(OpenLibraryAfterDelete, _After);
+  var _super = _createSuper(OpenLibraryAfterDelete);
+  function OpenLibraryAfterDelete() {
+    (0, _classCallCheck2.default)(this, OpenLibraryAfterDelete);
+    return _super.apply(this, arguments);
+  }
+  (0, _createClass2.default)(OpenLibraryAfterDelete, [{
+    key: "getCommand",
+    value: function getCommand() {
+      return 'document/elements/delete';
+    }
+  }, {
+    key: "getId",
+    value: function getId() {
+      return 'open-library-after-delete';
+    }
+  }, {
+    key: "getConditions",
+    value: function getConditions(args) {
+      var document = args.container.document;
+      return 'links-page' === document.config.type;
+    }
+  }, {
+    key: "apply",
+    value: function apply() {
+      $e.run('library/open');
+    }
+  }]);
+  return OpenLibraryAfterDelete;
+}(_after.default);
+exports.OpenLibraryAfterDelete = OpenLibraryAfterDelete;
+var _default = OpenLibraryAfterDelete;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/conversion-center/assets/js/editor/hooks/ui/editor/documents/close/remove-links-pages-tab.js":
+/*!***************************************************************************************************************!*\
+  !*** ../modules/conversion-center/assets/js/editor/hooks/ui/editor/documents/close/remove-links-pages-tab.js ***!
+  \***************************************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = exports.LinksPageRemoveLibraryTab = void 0;
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../node_modules/@babel/runtime/helpers/classCallCheck.js"));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var LinksPageRemoveLibraryTab = /*#__PURE__*/function (_$e$modules$hookUI$Af) {
+  (0, _inherits2.default)(LinksPageRemoveLibraryTab, _$e$modules$hookUI$Af);
+  var _super = _createSuper(LinksPageRemoveLibraryTab);
+  function LinksPageRemoveLibraryTab() {
+    (0, _classCallCheck2.default)(this, LinksPageRemoveLibraryTab);
+    return _super.apply(this, arguments);
+  }
+  (0, _createClass2.default)(LinksPageRemoveLibraryTab, [{
+    key: "getCommand",
+    value: function getCommand() {
+      return 'editor/documents/unload';
+    }
+  }, {
+    key: "getId",
+    value: function getId() {
+      return 'elementor-links-pages-remove-library-tab';
+    }
+  }, {
+    key: "getConditions",
+    value: function getConditions(args) {
+      var document = args.document;
+      return 'links-page' === document.config.type;
+    }
+  }, {
+    key: "apply",
+    value: function apply() {
+      $e.components.get('library').removeTab('templates/links-pages');
+      $e.components.get('library').addTab('templates/pages');
+      $e.components.get('library').addTab('templates/blocks');
+    }
+  }]);
+  return LinksPageRemoveLibraryTab;
+}($e.modules.hookUI.After);
+exports.LinksPageRemoveLibraryTab = LinksPageRemoveLibraryTab;
+var _default = LinksPageRemoveLibraryTab;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/conversion-center/assets/js/editor/hooks/ui/editor/documents/open/add-links-pages-tab.js":
+/*!***********************************************************************************************************!*\
+  !*** ../modules/conversion-center/assets/js/editor/hooks/ui/editor/documents/open/add-links-pages-tab.js ***!
+  \***********************************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = exports.LinksPageAddLibraryTab = void 0;
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../node_modules/@babel/runtime/helpers/classCallCheck.js"));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var LinksPageAddLibraryTab = /*#__PURE__*/function (_$e$modules$hookUI$Af) {
+  (0, _inherits2.default)(LinksPageAddLibraryTab, _$e$modules$hookUI$Af);
+  var _super = _createSuper(LinksPageAddLibraryTab);
+  function LinksPageAddLibraryTab() {
+    (0, _classCallCheck2.default)(this, LinksPageAddLibraryTab);
+    return _super.apply(this, arguments);
+  }
+  (0, _createClass2.default)(LinksPageAddLibraryTab, [{
+    key: "getCommand",
+    value: function getCommand() {
+      return 'editor/documents/open';
+    }
+  }, {
+    key: "getId",
+    value: function getId() {
+      return 'elementor-links-pages-add-library-tab';
+    }
+  }, {
+    key: "getConditions",
+    value: function getConditions(args) {
+      var document = elementor.documents.get(args.id);
+      return 'links-page' === document.config.type;
+    }
+  }, {
+    key: "apply",
+    value: function apply() {
+      $e.components.get('library').addTab('templates/links-pages', {
+        title: __('Links Pages', 'elementor'),
+        filter: {
+          source: 'remote',
+          type: 'block',
+          subtype: 'Quote'
+        }
+      }, 2);
+      $e.components.get('library').removeTab('templates/blocks');
+      $e.components.get('library').removeTab('templates/pages');
+    }
+  }]);
+  return LinksPageAddLibraryTab;
+}($e.modules.hookUI.After);
+exports.LinksPageAddLibraryTab = LinksPageAddLibraryTab;
+var _default = LinksPageAddLibraryTab;
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "../modules/conversion-center/assets/js/editor/module.js":
+/*!***************************************************************!*\
+  !*** ../modules/conversion-center/assets/js/editor/module.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../node_modules/@babel/runtime/helpers/classCallCheck.js"));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+var _component = _interopRequireDefault(__webpack_require__(/*! ./component */ "../modules/conversion-center/assets/js/editor/component.js"));
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2.default)(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2.default)(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2.default)(this, result); }; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+var LinksPageLibraryModule = /*#__PURE__*/function (_elementorModules$edi) {
+  (0, _inherits2.default)(LinksPageLibraryModule, _elementorModules$edi);
+  var _super = _createSuper(LinksPageLibraryModule);
+  function LinksPageLibraryModule() {
+    (0, _classCallCheck2.default)(this, LinksPageLibraryModule);
+    return _super.apply(this, arguments);
+  }
+  (0, _createClass2.default)(LinksPageLibraryModule, [{
+    key: "onElementorLoaded",
+    value: function onElementorLoaded() {
+      this.component = $e.components.register(new _component.default({
+        manager: this
+      }));
+    }
+  }, {
+    key: "onElementorInit",
+    value: function onElementorInit() {
+      var _this = this;
+      elementor.hooks.addFilter('elements/base/behaviors', function (behaviors) {
+        if (_this.isLinksDocument()) {
+          var groups = behaviors.contextMenu.groups;
+          behaviors.contextMenu.groups = groups.map(_this.filterOutUnsupportedActions()).filter(function (group) {
+            return group.actions.length;
+          });
+        }
+        return behaviors;
+      }, 1000);
+    }
+  }, {
+    key: "filterOutUnsupportedActions",
+    value: function filterOutUnsupportedActions() {
+      return function (group) {
+        var enabledCommands = ['edit', 'delete', 'resetStyle', 'save'];
+        var name = group.name,
+          actions = group.actions;
+        return {
+          name: name,
+          actions: actions.filter(function (action) {
+            return enabledCommands.includes(action.name);
+          })
+        };
+      };
+    }
+  }, {
+    key: "isLinksDocument",
+    value: function isLinksDocument() {
+      return 'links-page' === elementor.config.document.type;
+    }
+  }]);
+  return LinksPageLibraryModule;
+}(elementorModules.editor.utils.Module);
+var _default = LinksPageLibraryModule;
+exports["default"] = _default;
+
+/***/ }),
+
 /***/ "../modules/editor-events/assets/js/editor/event.js":
 /*!**********************************************************!*\
   !*** ../modules/editor-events/assets/js/editor/event.js ***!
@@ -47344,17 +47833,81 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var eventsConfig = {
-  actions: {
-    click: 'click'
+  triggers: {
+    click: 'Click',
+    accordionClick: 'Accordion Click',
+    toggleClick: 'Toggle Click',
+    dropdownClick: 'Click Dropdown'
   },
-  sections: {
-    topbar: 'topbar'
+  locations: {
+    widgetPanel: 'Widget Panel',
+    topBar: 'Top Bar'
   },
-  elementNames: {
-    siteSettings: 'site_settings'
+  secondaryLocations: {
+    layout: 'Layout Section',
+    basic: 'Basic Section',
+    'pro-elements': 'Pro Section',
+    general: 'General Section',
+    'theme-elements': 'Site Section',
+    'theme-elements-single': 'Single Section',
+    'woocommerce-elements': 'WooCommerce Section',
+    wordpress: 'WordPress Section',
+    categories: 'Widgets Tab',
+    global: 'Globals Tab',
+    'whats-new': 'What’s New',
+    'document-settings': 'Document Settings icon',
+    'preview-page': 'Preview Page',
+    'publish-button': 'Publish Button',
+    'widget-panel': 'Widget Panel Icon',
+    finder: 'Finder',
+    help: 'Help',
+    elementorLogoDropdown: 'top_bar_elementor_logo_dropdown',
+    elementorLogo: 'Elementor Logo',
+    notes: 'Notes',
+    siteSettings: 'Site Settings',
+    structure: 'Structure',
+    documentNameDropdown: 'Document Name dropdown',
+    responsiveControls: 'Responsive controls'
   },
-  types: {
-    button: 'button'
+  elements: {
+    accordionSection: 'Accordion section',
+    buttonIcon: 'Button Icon',
+    mainCta: 'Main CTA',
+    link: 'Link',
+    dropdown: 'Dropdown'
+  },
+  names: {
+    v1: {
+      layout: 'v1_widgets_tab_layout_section',
+      basic: 'v1_widgets_tab_basic_section',
+      'pro-elements': 'v1_widgets_tab_pro_section',
+      general: 'v1_widgets_tab_general_section',
+      'theme-elements': 'v1_widgets_tab_site_section',
+      'theme-elements-single': 'v1_widgets_tab_single_section',
+      'woocommerce-elements': 'v1_widgets_tab_woocommerce_section',
+      wordpress: 'v1_widgets_tab_wordpress_section',
+      categories: 'v1_widgets_tab',
+      global: 'v1_globals_tab'
+    },
+    topBar: {
+      whatsNew: 'top_bar_whats_new',
+      documentSettings: 'top_bar_document_settings_icon',
+      previewPage: 'top_bar_preview_page',
+      publishButton: 'top_bar_publish_button',
+      widgetPanel: 'top_bar_widget_panel_icon',
+      finder: 'top_bar_finder',
+      help: 'top_bar_help',
+      history: 'top_bar_elementor_logo_dropdown_history',
+      userPreferences: 'top_bar_elementor_logo_dropdown_user_preferences',
+      keyboardShortcuts: 'top_bar_elementor_logo_dropdown_keyboard_shortcuts',
+      exitToWordpress: 'top_bar_elementor_logo_dropdown_exit_to_wordpress',
+      themeBuilder: 'top_bar_elementor_logo_dropdown_theme_builder',
+      notes: 'top_bar_notes',
+      siteSettings: 'top_bar_site_setting',
+      structure: 'top_bar_structure',
+      documentNameDropdown: 'top_bar_document_name_dropdown',
+      responsiveControls: 'top_bar_responsive_controls'
+    }
   }
 };
 var _default = eventsConfig;

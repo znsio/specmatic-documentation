@@ -1,4 +1,4 @@
-/*! elementor - v3.21.0 - 26-05-2024 */
+/*! elementor - v3.22.0 - 17-06-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -1734,7 +1734,7 @@ var _default = /*#__PURE__*/function (_$e$modules$Component) {
     }
 
     /**
-     * Update the User Preferences to enable/disable the Style Guide Preview.
+     * Update the User Preferences to show the global settings.
      * Triggered on switcher change at Global Colors / Global Typography panels.
      *
      * @param {Array} options

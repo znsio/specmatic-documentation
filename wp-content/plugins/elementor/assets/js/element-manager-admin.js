@@ -1,4 +1,4 @@
-/*! elementor - v3.21.0 - 26-05-2024 */
+/*! elementor - v3.22.0 - 17-06-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -340,6 +340,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   Component: () => (/* reexport safe */ _react__WEBPACK_IMPORTED_MODULE_1__.Component),
 /* harmony export */   Fragment: () => (/* reexport safe */ _react__WEBPACK_IMPORTED_MODULE_1__.Fragment),
 /* harmony export */   Platform: () => (/* reexport safe */ _platform__WEBPACK_IMPORTED_MODULE_4__["default"]),
+/* harmony export */   PureComponent: () => (/* reexport safe */ _react__WEBPACK_IMPORTED_MODULE_1__.PureComponent),
 /* harmony export */   RawHTML: () => (/* reexport safe */ _raw_html__WEBPACK_IMPORTED_MODULE_6__["default"]),
 /* harmony export */   StrictMode: () => (/* reexport safe */ _react__WEBPACK_IMPORTED_MODULE_1__.StrictMode),
 /* harmony export */   Suspense: () => (/* reexport safe */ _react__WEBPACK_IMPORTED_MODULE_1__.Suspense),
@@ -429,7 +430,7 @@ const Platform = {
  *
  * This is the same concept as the React Native implementation.
  *
- * @see https://facebook.github.io/react-native/docs/platform-specific-code#platform-module
+ * @see https://reactnative.dev/docs/platform-specific-code#platform-module
  *
  * Here is an example of how to use the select method:
  * @example
@@ -612,6 +613,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   Children: () => (/* reexport safe */ react__WEBPACK_IMPORTED_MODULE_0__.Children),
 /* harmony export */   Component: () => (/* reexport safe */ react__WEBPACK_IMPORTED_MODULE_0__.Component),
 /* harmony export */   Fragment: () => (/* reexport safe */ react__WEBPACK_IMPORTED_MODULE_0__.Fragment),
+/* harmony export */   PureComponent: () => (/* reexport safe */ react__WEBPACK_IMPORTED_MODULE_0__.PureComponent),
 /* harmony export */   StrictMode: () => (/* reexport safe */ react__WEBPACK_IMPORTED_MODULE_0__.StrictMode),
 /* harmony export */   Suspense: () => (/* reexport safe */ react__WEBPACK_IMPORTED_MODULE_0__.Suspense),
 /* harmony export */   cloneElement: () => (/* reexport safe */ react__WEBPACK_IMPORTED_MODULE_0__.cloneElement),
@@ -850,6 +852,11 @@ __webpack_require__.r(__webpack_exports__);
 
 /**
  * @see https://reactjs.org/docs/react-api.html#reactsuspense
+ */
+
+
+/**
+ * @see https://reactjs.org/docs/react-api.html#reactpurecomponent
  */
 
 
@@ -1303,8 +1310,8 @@ function renderNativeComponent(type, props, context, legacyContext = {}) {
  * @return {string} Serialized element
  */
 function renderComponent(Component, props, context, legacyContext = {}) {
-  const instance = new /** @type {import('react').ComponentClass} */
-  Component(props, legacyContext);
+  const instance = new ( /** @type {import('react').ComponentClass} */
+  Component)(props, legacyContext);
   if (typeof
   // Ignore reason: Current prettier reformats parens and mangles type assertion
   // prettier-ignore

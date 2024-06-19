@@ -1,4 +1,4 @@
-/*! elementor - v3.21.0 - 26-05-2024 */
+/*! elementor - v3.22.0 - 17-06-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -800,6 +800,7 @@ var AiLayoutBehavior = /*#__PURE__*/function (_Marionette$Behavior) {
     key: "onAiButtonClick",
     value: function onAiButtonClick(e) {
       e.stopPropagation();
+      window.elementorAiCurrentContext = this.getOption('context');
       (0, _editorIntegration.renderLayoutApp)({
         parentContainer: elementor.getPreviewContainer(),
         mode: _config.MODE_LAYOUT,
@@ -860,7 +861,7 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.uploadImage = exports.toggleFavoriteHistoryItem = exports.setStatusFeedback = exports.setGetStarted = exports.getUserInformation = exports.getTextToImageGeneration = exports.getRemoteConfig = exports.getLayoutPromptEnhanced = exports.getImageToImageUpscale = exports.getImageToImageReplaceBackground = exports.getImageToImageRemoveText = exports.getImageToImageRemoveBackground = exports.getImageToImageOutPainting = exports.getImageToImageMaskGeneration = exports.getImageToImageGeneration = exports.getImagePromptEnhanced = exports.getHistory = exports.getEditText = exports.getCustomCode = exports.getCustomCSS = exports.getCompletionText = exports.generateLayout = exports.deleteHistoryItem = void 0;
+exports.uploadImage = exports.toggleFavoriteHistoryItem = exports.setStatusFeedback = exports.setGetStarted = exports.getUserInformation = exports.getTextToImageGeneration = exports.getRemoteConfig = exports.getLayoutPromptEnhanced = exports.getImageToImageUpscale = exports.getImageToImageReplaceBackground = exports.getImageToImageRemoveText = exports.getImageToImageRemoveBackground = exports.getImageToImageOutPainting = exports.getImageToImageMaskGeneration = exports.getImageToImageGeneration = exports.getImagePromptEnhanced = exports.getHistory = exports.getExcerpt = exports.getEditText = exports.getCustomCode = exports.getCustomCSS = exports.getCompletionText = exports.generateLayout = exports.deleteHistoryItem = void 0;
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -882,8 +883,8 @@ var request = function request(endpoint) {
     }
   });
 };
-var getUserInformation = function getUserInformation() {
-  return request('ai_get_user_information');
+var getUserInformation = function getUserInformation(immediately) {
+  return request('ai_get_user_information', undefined, immediately);
 };
 exports.getUserInformation = getUserInformation;
 var getRemoteConfig = function getRemoteConfig() {
@@ -896,6 +897,12 @@ var getCompletionText = function getCompletionText(payload) {
   });
 };
 exports.getCompletionText = getCompletionText;
+var getExcerpt = function getExcerpt(payload) {
+  return request('ai_get_excerpt', {
+    payload: payload
+  });
+};
+exports.getExcerpt = getExcerpt;
 var getEditText = function getEditText(payload) {
   return request('ai_get_edit_text', {
     payload: payload
@@ -1503,7 +1510,7 @@ var PromptErrorMessage = function PromptErrorMessage(_ref) {
   }, action));
 };
 PromptErrorMessage.propTypes = {
-  error: _propTypes.default.string,
+  error: _propTypes.default.oneOfType([_propTypes.default.object, _propTypes.default.string]),
   onRetry: _propTypes.default.func,
   actionPosition: _propTypes.default.oneOf(['default', 'bottom'])
 };
@@ -2260,9 +2267,11 @@ var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/r
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
 var _react = __webpack_require__(/*! react */ "react");
 var _api = __webpack_require__(/*! ../api */ "../modules/ai/assets/js/editor/api/index.js");
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js"));
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var useUserInfo = function useUserInfo() {
+  var immediately = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
   var _useState = (0, _react.useState)(false),
     _useState2 = (0, _slicedToArray2.default)(_useState, 2),
     isLoaded = _useState2[0],
@@ -2294,7 +2303,7 @@ var useUserInfo = function useUserInfo() {
           case 0:
             setIsLoading(true);
             _context.next = 3;
-            return (0, _api.getUserInformation)();
+            return (0, _api.getUserInformation)(immediately);
           case 3:
             userInfoResult = _context.sent;
             setUserInfo(function (prevState) {
@@ -2327,6 +2336,9 @@ var useUserInfo = function useUserInfo() {
     usagePercentage: Math.round(usagePercentage),
     fetchData: fetchData
   };
+};
+useUserInfo.propTypes = {
+  immediately: _propTypes.default.bool
 };
 var _default = useUserInfo;
 exports["default"] = _default;
@@ -4429,27 +4441,31 @@ var _excluded = ["tooltip"];
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 var PROMPT_SUGGESTIONS = Object.freeze([{
-  text: (0, _i18n.__)('Services section with list layout, icons, and service descriptions for [topic]', 'elementor')
+  text: (0, _i18n.__)('Hero section on [topic] with heading, text, buttons on the right, and an image on the left', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('Accordion-style FAQ block with clickable questions about [topic]', 'elementor')
+  text: (0, _i18n.__)('About Us section on [topic] with heading, text, and big image below', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('Hero section with image, heading, subheading, and CTA button about [topic]', 'elementor')
+  text: (0, _i18n.__)('Team section with four image boxes showcasing team members', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('Full-width call-to-action with background image and overlay text about [topic]', 'elementor')
+  text: (0, _i18n.__)('FAQ section with a toggle widget showcasing FAQs about [topic]', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('Carousel testimonial block with user images, names, and feedback about [topic]', 'elementor')
+  text: (0, _i18n.__)('Gallery section with a carousel displaying three images at once', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('Features block showcasing feature title and brief description about [topic]', 'elementor')
+  text: (0, _i18n.__)('Contact section with a form for [topic]', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('Multi-column minimalistic About Us section with icons for [topic]', 'elementor')
+  text: (0, _i18n.__)('Client section featuring companies\' logos', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('Section with contact form and social media icons for [topic]', 'elementor')
+  text: (0, _i18n.__)('Testimonial section with testimonials, each featuring a star rating and an image', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('Statistics display in a 3-column layout with numbers and icons for [topic]', 'elementor')
+  text: (0, _i18n.__)('Service section about [topic], showcasing four services with buttons', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('Pricing table section with highlighted option for [topic]', 'elementor')
+  text: (0, _i18n.__)('Stats section with counters displaying data about [topic]', 'elementor.com')
 }, {
-  text: (0, _i18n.__)('About Us section combining company history and values for [topic]', 'elementor')
+  text: (0, _i18n.__)('Quote section with colored background, featuring a centered quote', 'elementor.com')
+}, {
+  text: (0, _i18n.__)('Pricing section for [topic] with a pricing list', 'elementor.com')
+}, {
+  text: (0, _i18n.__)('Subscribe section featuring a simple email form, inviting users to stay informed on [topic]', 'elementor.com')
 }]);
 var IconButtonWithTooltip = function IconButtonWithTooltip(_ref) {
   var tooltip = _ref.tooltip,
@@ -6124,23 +6140,17 @@ var getUiConfig = function getUiConfig() {
 };
 exports.getUiConfig = getUiConfig;
 var VARIATIONS_PROMPTS = [{
-  text: (0, _i18n.__)('Minimalist design with bold typography about', 'elementor')
+  text: (0, _i18n.__)('Change the content to be about [topic]', 'elementor')
 }, {
-  text: (0, _i18n.__)('Elegant style with serif fonts discussing', 'elementor')
+  text: (0, _i18n.__)('Generate lorem ipsum placeholder text for all paragraphs', 'elementor')
 }, {
-  text: (0, _i18n.__)('Retro vibe with muted colors and classic fonts about', 'elementor')
+  text: (0, _i18n.__)('Revise the content to focus on [topic] and then translate it into Spanish', 'elementor')
 }, {
-  text: (0, _i18n.__)('Futuristic design with neon accents about', 'elementor')
+  text: (0, _i18n.__)('Shift the focus of the content to [topic] in order to showcase our company\'s mission and values', 'elementor')
 }, {
-  text: (0, _i18n.__)('Professional look with clean lines for', 'elementor')
+  text: (0, _i18n.__)('Alter the content to provide helpful tips related to [topic]', 'elementor')
 }, {
-  text: (0, _i18n.__)('Earthy tones and organic shapes featuring', 'elementor')
-}, {
-  text: (0, _i18n.__)('Luxurious theme with rich colors discussing', 'elementor')
-}, {
-  text: (0, _i18n.__)('Tech-inspired style with modern fonts about', 'elementor')
-}, {
-  text: (0, _i18n.__)('Warm hues with comforting visuals about', 'elementor')
+  text: (0, _i18n.__)('Adjust the content to include FAQs and answers for common inquiries about [topic]', 'elementor')
 }];
 var PROMPT_PLACEHOLDER = (0, _i18n.__)("Press '/' for suggestions or describe the changes you want to apply (optional)...", 'elementor');
 var renderLayoutApp = function renderLayoutApp() {
@@ -13095,7 +13105,10 @@ var Module = /*#__PURE__*/function (_elementorModules$edi) {
     key: "registerAiLayoutBehavior",
     value: function registerAiLayoutBehavior(behaviors) {
       behaviors.ai = {
-        behaviorClass: _aiLayoutBehavior.default
+        behaviorClass: _aiLayoutBehavior.default,
+        context: {
+          documentType: window.elementor.documents.getCurrent().config.type
+        }
       };
       return behaviors;
     }
