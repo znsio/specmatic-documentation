@@ -9,10 +9,6 @@ __( 'Add New', 'elementor' );
 __( 'We couldn’t display your pages.', 'elementor' );
 __( 'It’s probably a temporary issue.', 'elementor' );
 __( 'If the problem persists,', 'elementor' );
-__( 'Homepage', 'elementor' );
-__( 'copy', 'elementor' );
-__( 'New Page', 'elementor' );
-__( 'Name is required', 'elementor' );
 // translators: %s: Post type (e.g. Page, Post, etc.)
 __( 'View %s', 'elementor' );
 __( 'Set as homepage', 'elementor' );
@@ -24,3 +20,7 @@ __( 'Delete "%s"?', 'elementor' );
 __( 'The page and its content will be deleted forever and we won’t be able to recover them.', 'elementor' );
 __( 'Cancel', 'elementor' );
 __( 'Delete', 'elementor' );
+__( 'Homepage', 'elementor' );
+__( 'copy', 'elementor' );
+__( 'New Page', 'elementor' );
+__( 'Name is required', 'elementor' );

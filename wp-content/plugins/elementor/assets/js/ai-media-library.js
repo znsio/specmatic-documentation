@@ -1,4 +1,4 @@
-/*! elementor - v3.22.0 - 17-06-2024 */
+/*! elementor - v3.22.0 - 26-06-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -16867,8 +16867,8 @@ var AIMediaEditAppButtonWrapper = function AIMediaEditAppButtonWrapper() {
     setIsOpen(true);
   };
   var handleClose = function handleClose() {
-    var _wp$media$frame, _wp$media$frame$conte, _wp$media$frame$conte2;
-    (_wp$media$frame = wp.media.frame) === null || _wp$media$frame === void 0 ? void 0 : (_wp$media$frame$conte = _wp$media$frame.content) === null || _wp$media$frame$conte === void 0 ? void 0 : (_wp$media$frame$conte2 = _wp$media$frame$conte.get().collection) === null || _wp$media$frame$conte2 === void 0 ? void 0 : _wp$media$frame$conte2._requery(true); // Refresh the media library
+    var _wp$media$frame, _wp$media$frame$contr, _wp$media$frame$contr2, _wp$media$frame$contr3;
+    (_wp$media$frame = wp.media.frame) === null || _wp$media$frame === void 0 ? void 0 : (_wp$media$frame$contr = _wp$media$frame.controller) === null || _wp$media$frame$contr === void 0 ? void 0 : (_wp$media$frame$contr2 = _wp$media$frame$contr.content) === null || _wp$media$frame$contr2 === void 0 ? void 0 : (_wp$media$frame$contr3 = _wp$media$frame$contr2.get().collection) === null || _wp$media$frame$contr3 === void 0 ? void 0 : _wp$media$frame$contr3._requery(true); // Refresh the media library
     setIsOpen(false);
   };
   return /*#__PURE__*/_react.default.createElement("div", {

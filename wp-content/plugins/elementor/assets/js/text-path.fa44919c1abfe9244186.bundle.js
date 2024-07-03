@@ -1,4 +1,4 @@
-/*! elementor - v3.22.0 - 17-06-2024 */
+/*! elementor - v3.22.0 - 26-06-2024 */
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["text-path"],{
 
 /***/ "../modules/shapes/assets/js/frontend/handlers/text-path.js":

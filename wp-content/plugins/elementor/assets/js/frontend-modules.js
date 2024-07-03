@@ -1,4 +1,4 @@
-/*! elementor - v3.22.0 - 17-06-2024 */
+/*! elementor - v3.22.0 - 26-06-2024 */
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["frontend-modules"],{
 
 /***/ "../assets/dev/js/editor/utils/is-instanceof.js":
@@ -471,15 +471,18 @@ class CarouselHandlerBase extends _baseSwiper.default {
     if (!this.elements.$swiperContainer.length || 2 > this.elements.$slides.length) {
       return;
     }
+    await this.initSwiper();
+    const elementSettings = this.getElementSettings();
+    if ('yes' === elementSettings.pause_on_hover) {
+      this.togglePauseOnHover(true);
+    }
+  }
+  async initSwiper() {
     const Swiper = elementorFrontend.utils.swiper;
     this.swiper = await new Swiper(this.elements.$swiperContainer, this.getSwiperSettings());
 
     // Expose the swiper instance in the frontend
     this.elements.$swiperContainer.data('swiper', this.swiper);
-    const elementSettings = this.getElementSettings();
-    if ('yes' === elementSettings.pause_on_hover) {
-      this.togglePauseOnHover(true);
-    }
   }
   bindEvents() {
     this.elements.$swiperArrows.on('keydown', this.onDirectionArrowKeydown.bind(this));
@@ -584,8 +587,8 @@ class CarouselHandlerBase extends _baseSwiper.default {
     $widget.attr('aria-label', elementorFrontend.config.i18n.a11yCarouselWrapperAriaLabel);
   }
   a11ySetPaginationTabindex() {
-    const bulletClass = this.swiper?.params.pagination.bulletClass,
-      activeBulletClass = this.swiper?.params.pagination.bulletActiveClass;
+    const bulletClass = this.swiper?.params?.pagination.bulletClass,
+      activeBulletClass = this.swiper?.params?.pagination.bulletActiveClass;
     this.getPaginationBullets().forEach(bullet => {
       if (!bullet.classList?.contains(activeBulletClass)) {
         bullet.removeAttribute('tabindex');

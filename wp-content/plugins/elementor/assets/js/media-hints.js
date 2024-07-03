@@ -1,4 +1,4 @@
-/*! elementor - v3.22.0 - 17-06-2024 */
+/*! elementor - v3.22.0 - 26-06-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -167,8 +167,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
     },
     events: _objectSpread(_objectSpread({}, wp.media.view.Attachment.Details.prototype.events), {}, {
       'click .elementor-control-notice-dismiss': 'dismiss',
-      'click .e-hint__container .e-btn-1': 'onHintAction',
-      'click .e-hint__container a': 'onHintAction'
+      'click .e-hint__container a': 'onHintAnchorClick',
+      'click .e-hint__container button.e-btn-1': 'onHintAction'
     }),
     shouldDisplayHint: function shouldDisplayHint(view) {
       var _elementorAdminHints2;
@@ -207,6 +207,9 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
       if (actionURL) {
         window.open(actionURL, '_blank');
       }
+      this.dismiss(event);
+    },
+    onHintAnchorClick: function onHintAnchorClick(event) {
       this.dismiss(event);
     },
     dismiss: function dismiss(event) {
