@@ -9,8 +9,8 @@
 
 <channel>
 	<title>Joel Rosario &#8211; Specmatic</title>
-	<atom:link href="https://specmatic.in/author/joel/feed/" rel="self" type="application/rss+xml" />
-	<link>https://specmatic.in/</link>
+	<atom:link href="https://specmatic.io/author/joel/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
 	<lastBuildDate>Fri, 03 May 2024 00:57:45 +0000</lastBuildDate>
 	<language>en-US</language>
@@ -18,18 +18,18 @@
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.5.4</generator>
+	<generator>https://wordpress.org/?v=6.5.5</generator>
 
 <image>
-	<url>https://specmatic.in/wp-content/uploads/2022/09/Favicon.png</url>
+	<url>https://specmatic.io/wp-content/uploads/2022/09/Favicon.png</url>
 	<title>Joel Rosario &#8211; Specmatic</title>
-	<link>https://specmatic.in/</link>
+	<link>https://specmatic.io/</link>
 	<width>32</width>
 	<height>32</height>
 </image> 
 	<item>
 		<title>TMForum ODA CTK API specification conformance testing with Specmatic</title>
-		<link>https://specmatic.in/updates/tmforum-oda-ctk-api-specification-conformance-testing-with-specmatic/</link>
+		<link>https://specmatic.io/updates/tmforum-oda-ctk-api-specification-conformance-testing-with-specmatic/</link>
 		
 		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
 		<pubDate>Thu, 19 Oct 2023 07:18:00 +0000</pubDate>
@@ -38,7 +38,7 @@
 		<category><![CDATA[Contract Testing]]></category>
 		<category><![CDATA[Demonstration]]></category>
 		<category><![CDATA[OpenAPI]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=3236</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=3236</guid>
 
 					<description><![CDATA[We recently discovered some major issues with the TMForum Conformance Test Kit (CTK) v5.0.0 and will demonstrate how using Specmatic can address these problems.]]></description>
 		
@@ -47,7 +47,7 @@
 			</item>
 		<item>
 		<title>Kafka Mocking with AsyncAPI using Specmatic</title>
-		<link>https://specmatic.in/updates/kafka-mocking-with-asyncapi-using-specmatic/</link>
+		<link>https://specmatic.io/updates/kafka-mocking-with-asyncapi-using-specmatic/</link>
 		
 		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
 		<pubDate>Tue, 18 Jul 2023 04:40:27 +0000</pubDate>
@@ -58,7 +58,7 @@
 		<category><![CDATA[Contract Testing]]></category>
 		<category><![CDATA[Kafka]]></category>
 		<category><![CDATA[OpenAPI]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=1665</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=1665</guid>
 
 					<description><![CDATA[The Specmatic Kafka mock is wire compatible and entirely within the control of the test, the test can run locally and in CI and deliver quick feedback early in the cycle. So the application itself runs exactly as it would with a real Kafka.]]></description>
 		
@@ -67,7 +67,7 @@
 			</item>
 		<item>
 		<title>Redis Stubbing with Specmatic Contract Testing</title>
-		<link>https://specmatic.in/updates/redis-stubbing-with-specmatic-contract-testing/</link>
+		<link>https://specmatic.io/updates/redis-stubbing-with-specmatic-contract-testing/</link>
 		
 		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
 		<pubDate>Tue, 11 Jul 2023 03:17:59 +0000</pubDate>
@@ -75,7 +75,7 @@
 		<category><![CDATA[Updates]]></category>
 		<category><![CDATA[Redis]]></category>
 		<category><![CDATA[Stubbing]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=1625</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=1625</guid>
 
 					<description><![CDATA[Instead of using an actual instance of Redis, we'll stub it out and have the contract test set expectations so that the Redis stub knows what data to return for any query sent to it by the application. Now, when we run the contract tests and the service object does a look up in Redis, it's actually hitting the Redis stub.]]></description>
 		

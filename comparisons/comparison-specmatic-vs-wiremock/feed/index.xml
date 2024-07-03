@@ -8,14 +8,14 @@
 <channel>
 	<title>
 	Comments on: Comparison: Specmatic vs WireMock	</title>
-	<atom:link href="https://specmatic.in/comparisons/comparison-specmatic-vs-wiremock/feed/" rel="self" type="application/rss+xml" />
-	<link>https://specmatic.in/comparisons/comparison-specmatic-vs-wiremock/</link>
+	<atom:link href="https://specmatic.io/comparisons/comparison-specmatic-vs-wiremock/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.io/comparisons/comparison-specmatic-vs-wiremock/</link>
 	<description>Contract Driven Development</description>
 	<lastBuildDate>Wed, 21 Feb 2024 08:45:41 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.5.4</generator>
+	<generator>https://wordpress.org/?v=6.5.5</generator>
 </channel>
 </rss>

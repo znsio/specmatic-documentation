@@ -9,8 +9,8 @@
 
 <channel>
 	<title>Kafka &#8211; Specmatic</title>
-	<atom:link href="https://specmatic.in/tag/kafka/feed/" rel="self" type="application/rss+xml" />
-	<link>https://specmatic.in/</link>
+	<atom:link href="https://specmatic.io/tag/kafka/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
 	<lastBuildDate>Fri, 03 May 2024 00:57:45 +0000</lastBuildDate>
 	<language>en-US</language>
@@ -18,18 +18,18 @@
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.5.4</generator>
+	<generator>https://wordpress.org/?v=6.5.5</generator>
 
 <image>
-	<url>https://specmatic.in/wp-content/uploads/2022/09/Favicon.png</url>
+	<url>https://specmatic.io/wp-content/uploads/2022/09/Favicon.png</url>
 	<title>Kafka &#8211; Specmatic</title>
-	<link>https://specmatic.in/</link>
+	<link>https://specmatic.io/</link>
 	<width>32</width>
 	<height>32</height>
 </image> 
 	<item>
 		<title>Introduction to Contract Driven Development with Specmatic</title>
-		<link>https://specmatic.in/updates/introduction-to-contract-driven-development-with-specmatic/</link>
+		<link>https://specmatic.io/updates/introduction-to-contract-driven-development-with-specmatic/</link>
 		
 		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
 		<pubDate>Wed, 06 Dec 2023 22:52:34 +0000</pubDate>
@@ -42,7 +42,7 @@
 		<category><![CDATA[Kafka]]></category>
 		<category><![CDATA[OpenAPI]]></category>
 		<category><![CDATA[Specmatic]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=3776</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=3776</guid>
 
 					<description><![CDATA[Transcript Hi, welcome to this demo of contract-driven development where I&#8217;m going to use Specmatic, an open-source tool to turn your API specification into executable contracts. We have an app which sends a request to a BFF, a backend for frontend, which in turn sends a request to a domain service. Notice you could have [&#8230;]]]></description>
 		
@@ -51,7 +51,7 @@
 			</item>
 		<item>
 		<title>Kafka Mocking with AsyncAPI using Specmatic</title>
-		<link>https://specmatic.in/updates/kafka-mocking-with-asyncapi-using-specmatic/</link>
+		<link>https://specmatic.io/updates/kafka-mocking-with-asyncapi-using-specmatic/</link>
 		
 		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
 		<pubDate>Tue, 18 Jul 2023 04:40:27 +0000</pubDate>
@@ -62,7 +62,7 @@
 		<category><![CDATA[Contract Testing]]></category>
 		<category><![CDATA[Kafka]]></category>
 		<category><![CDATA[OpenAPI]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=1665</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=1665</guid>
 
 					<description><![CDATA[The Specmatic Kafka mock is wire compatible and entirely within the control of the test, the test can run locally and in CI and deliver quick feedback early in the cycle. So the application itself runs exactly as it would with a real Kafka.]]></description>
 		

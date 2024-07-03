@@ -9,8 +9,8 @@
 
 <channel>
 	<title>Demonstration &#8211; Specmatic</title>
-	<atom:link href="https://specmatic.in/category/demonstration/feed/" rel="self" type="application/rss+xml" />
-	<link>https://specmatic.in/</link>
+	<atom:link href="https://specmatic.io/category/demonstration/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
 	<lastBuildDate>Thu, 18 Apr 2024 00:49:05 +0000</lastBuildDate>
 	<language>en-US</language>
@@ -18,18 +18,18 @@
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.5.4</generator>
+	<generator>https://wordpress.org/?v=6.5.5</generator>
 
 <image>
-	<url>https://specmatic.in/wp-content/uploads/2022/09/Favicon.png</url>
+	<url>https://specmatic.io/wp-content/uploads/2022/09/Favicon.png</url>
 	<title>Demonstration &#8211; Specmatic</title>
-	<link>https://specmatic.in/</link>
+	<link>https://specmatic.io/</link>
 	<width>32</width>
 	<height>32</height>
 </image> 
 	<item>
 		<title>Contract Testing Google Pub/Sub: Using AsyncAPI specs as Executable Contracts</title>
-		<link>https://specmatic.in/updates/contract-testing-google-pub-sub-using-asyncapi-as-executable-contracts/</link>
+		<link>https://specmatic.io/updates/contract-testing-google-pub-sub-using-asyncapi-as-executable-contracts/</link>
 		
 		<dc:creator><![CDATA[Yogesh Nikam]]></dc:creator>
 		<pubDate>Wed, 17 Apr 2024 05:13:57 +0000</pubDate>
@@ -39,7 +39,7 @@
 		<category><![CDATA[AsyncAPI]]></category>
 		<category><![CDATA[Contract Driven Development]]></category>
 		<category><![CDATA[Contract Testing]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=4576</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=4576</guid>
 
 					<description><![CDATA[Shift-Left the identification of integration issues in applications built with Event Driven Architecture (EDA) by leveraging AsyncAPI specs as Executable Contracts Introduction The surge in popularity of microservices has revolutionized the way we think about software architecture. However, as systems grow and inter-service communication increases, the risk of integration issues can also rise. One such [&#8230;]]]></description>
 		
@@ -48,7 +48,7 @@
 			</item>
 		<item>
 		<title>Contract vs. Approval Testing: Identifying Bugs in RESTfulBooker&#8217;s API with Specmatic and TextTest</title>
-		<link>https://specmatic.in/comparisons/contract-vs-approval-testing-identifying-bugs-in-restfulbookers-api-with-texttest-and-specmatic/</link>
+		<link>https://specmatic.io/comparisons/contract-vs-approval-testing-identifying-bugs-in-restfulbookers-api-with-texttest-and-specmatic/</link>
 		
 		<dc:creator><![CDATA[John]]></dc:creator>
 		<pubDate>Wed, 13 Mar 2024 04:17:32 +0000</pubDate>
@@ -56,7 +56,7 @@
 		<category><![CDATA[Demonstration]]></category>
 		<category><![CDATA[In the Media]]></category>
 		<category><![CDATA[Updates]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=4470</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=4470</guid>
 
 					<description><![CDATA[Testing APIs: Specmatic vs TextTest Emily Bache wanted to compare TextTest with Specmatic and has published a video about her experience: The BEST way to find BUGS in an API &#124; Contract vs Approval Testing She observes, “Specmatic works best when the spec is defined independently in an ongoing discussion about expectations between the service [&#8230;]]]></description>
 		

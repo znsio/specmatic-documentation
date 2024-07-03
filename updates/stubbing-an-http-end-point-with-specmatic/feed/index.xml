@@ -8,14 +8,14 @@
 <channel>
 	<title>
 	Comments on: Stubbing an HTTP end-point with Specmatic	</title>
-	<atom:link href="https://specmatic.in/updates/stubbing-an-http-end-point-with-specmatic/feed/" rel="self" type="application/rss+xml" />
-	<link>https://specmatic.in/updates/stubbing-an-http-end-point-with-specmatic/</link>
+	<atom:link href="https://specmatic.io/updates/stubbing-an-http-end-point-with-specmatic/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.io/updates/stubbing-an-http-end-point-with-specmatic/</link>
 	<description>Contract Driven Development</description>
 	<lastBuildDate>Wed, 29 Nov 2023 04:17:59 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.5.4</generator>
+	<generator>https://wordpress.org/?v=6.5.5</generator>
 </channel>
 </rss>

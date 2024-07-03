@@ -8,14 +8,14 @@
 <channel>
 	<title>
 	Comments on: &#8220;Easy Microservice Testing&#8221; &#8211; Specmatic featured on Continuous Delivery channel	</title>
-	<atom:link href="https://specmatic.in/updates/specmatic-featured-on-dave-farleys-continuous-delivery-channel/feed/" rel="self" type="application/rss+xml" />
-	<link>https://specmatic.in/updates/specmatic-featured-on-dave-farleys-continuous-delivery-channel/</link>
+	<atom:link href="https://specmatic.io/updates/specmatic-featured-on-dave-farleys-continuous-delivery-channel/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.io/updates/specmatic-featured-on-dave-farleys-continuous-delivery-channel/</link>
 	<description>Contract Driven Development</description>
 	<lastBuildDate>Mon, 21 Aug 2023 04:26:32 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.5.4</generator>
+	<generator>https://wordpress.org/?v=6.5.5</generator>
 </channel>
 </rss>

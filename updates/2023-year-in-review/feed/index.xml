@@ -8,14 +8,14 @@
 <channel>
 	<title>
 	Comments on: 2023 year in review	</title>
-	<atom:link href="https://specmatic.in/updates/2023-year-in-review/feed/" rel="self" type="application/rss+xml" />
-	<link>https://specmatic.in/updates/2023-year-in-review/</link>
+	<atom:link href="https://specmatic.io/updates/2023-year-in-review/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.io/updates/2023-year-in-review/</link>
 	<description>Contract Driven Development</description>
 	<lastBuildDate>Fri, 15 Dec 2023 03:12:23 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.5.4</generator>
+	<generator>https://wordpress.org/?v=6.5.5</generator>
 </channel>
 </rss>

@@ -9,8 +9,8 @@
 
 <channel>
 	<title>Contract Testing &#8211; Specmatic</title>
-	<atom:link href="https://specmatic.in/tag/contract-testing/feed/" rel="self" type="application/rss+xml" />
-	<link>https://specmatic.in/</link>
+	<atom:link href="https://specmatic.io/tag/contract-testing/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
 	<lastBuildDate>Fri, 03 May 2024 00:58:49 +0000</lastBuildDate>
 	<language>en-US</language>
@@ -18,18 +18,18 @@
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.5.4</generator>
+	<generator>https://wordpress.org/?v=6.5.5</generator>
 
 <image>
-	<url>https://specmatic.in/wp-content/uploads/2022/09/Favicon.png</url>
+	<url>https://specmatic.io/wp-content/uploads/2022/09/Favicon.png</url>
 	<title>Contract Testing &#8211; Specmatic</title>
-	<link>https://specmatic.in/</link>
+	<link>https://specmatic.io/</link>
 	<width>32</width>
 	<height>32</height>
 </image> 
 	<item>
 		<title>Contract Testing Google Pub/Sub: Using AsyncAPI specs as Executable Contracts</title>
-		<link>https://specmatic.in/updates/contract-testing-google-pub-sub-using-asyncapi-as-executable-contracts/</link>
+		<link>https://specmatic.io/updates/contract-testing-google-pub-sub-using-asyncapi-as-executable-contracts/</link>
 		
 		<dc:creator><![CDATA[Yogesh Nikam]]></dc:creator>
 		<pubDate>Wed, 17 Apr 2024 05:13:57 +0000</pubDate>
@@ -39,7 +39,7 @@
 		<category><![CDATA[AsyncAPI]]></category>
 		<category><![CDATA[Contract Driven Development]]></category>
 		<category><![CDATA[Contract Testing]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=4576</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=4576</guid>
 
 					<description><![CDATA[Shift-Left the identification of integration issues in applications built with Event Driven Architecture (EDA) by leveraging AsyncAPI specs as Executable Contracts Introduction The surge in popularity of microservices has revolutionized the way we think about software architecture. However, as systems grow and inter-service communication increases, the risk of integration issues can also rise. One such [&#8230;]]]></description>
 		
@@ -48,7 +48,7 @@
 			</item>
 		<item>
 		<title>Introduction to Contract Driven Development with Specmatic</title>
-		<link>https://specmatic.in/updates/introduction-to-contract-driven-development-with-specmatic/</link>
+		<link>https://specmatic.io/updates/introduction-to-contract-driven-development-with-specmatic/</link>
 		
 		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
 		<pubDate>Wed, 06 Dec 2023 22:52:34 +0000</pubDate>
@@ -61,7 +61,7 @@
 		<category><![CDATA[Kafka]]></category>
 		<category><![CDATA[OpenAPI]]></category>
 		<category><![CDATA[Specmatic]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=3776</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=3776</guid>
 
 					<description><![CDATA[Transcript Hi, welcome to this demo of contract-driven development where I&#8217;m going to use Specmatic, an open-source tool to turn your API specification into executable contracts. We have an app which sends a request to a BFF, a backend for frontend, which in turn sends a request to a domain service. Notice you could have [&#8230;]]]></description>
 		
@@ -70,7 +70,7 @@
 			</item>
 		<item>
 		<title>Stubbing an HTTP end-point with Specmatic</title>
-		<link>https://specmatic.in/updates/stubbing-an-http-end-point-with-specmatic/</link>
+		<link>https://specmatic.io/updates/stubbing-an-http-end-point-with-specmatic/</link>
 		
 		<dc:creator><![CDATA[John]]></dc:creator>
 		<pubDate>Wed, 29 Nov 2023 04:17:59 +0000</pubDate>
@@ -79,7 +79,7 @@
 		<category><![CDATA[Contract Testing]]></category>
 		<category><![CDATA[Specmatic]]></category>
 		<category><![CDATA[Stubbing]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=3640</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=3640</guid>
 
 					<description><![CDATA[Markus Oberlehner gives a brief overview on the topic of Contract Testing with Specmatic and his experience using it for stubbing an HTTP end-point.]]></description>
 		
@@ -88,7 +88,7 @@
 			</item>
 		<item>
 		<title>TMForum ODA CTK API specification conformance testing with Specmatic</title>
-		<link>https://specmatic.in/updates/tmforum-oda-ctk-api-specification-conformance-testing-with-specmatic/</link>
+		<link>https://specmatic.io/updates/tmforum-oda-ctk-api-specification-conformance-testing-with-specmatic/</link>
 		
 		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
 		<pubDate>Thu, 19 Oct 2023 07:18:00 +0000</pubDate>
@@ -97,7 +97,7 @@
 		<category><![CDATA[Contract Testing]]></category>
 		<category><![CDATA[Demonstration]]></category>
 		<category><![CDATA[OpenAPI]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=3236</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=3236</guid>
 
 					<description><![CDATA[We recently discovered some major issues with the TMForum Conformance Test Kit (CTK) v5.0.0 and will demonstrate how using Specmatic can address these problems.]]></description>
 		
@@ -106,7 +106,7 @@
 			</item>
 		<item>
 		<title>Break the Chains of Database Dependencies: Leveraging Specmatic for JDBC Stubbing</title>
-		<link>https://specmatic.in/updates/jdbc-stubbing-with-specmatic-contract-testing/</link>
+		<link>https://specmatic.io/updates/jdbc-stubbing-with-specmatic-contract-testing/</link>
 		
 		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
 		<pubDate>Mon, 14 Aug 2023 10:23:30 +0000</pubDate>
@@ -116,7 +116,7 @@
 		<category><![CDATA[Contract Testing]]></category>
 		<category><![CDATA[JDBC]]></category>
 		<category><![CDATA[Stubbing]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=1742</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=1742</guid>
 
 					<description><![CDATA[With Specmatic JDBC stub, you can easily test APIs without the need for a complex database setup. By switching out the real database with a Specmatic JDBC stub, we can set expectations for the stub to respond to specific queries. These expectations can be recorded based on actual interactions. Once the expectations are set, we no longer need the database for our tests!]]></description>
 		
@@ -125,7 +125,7 @@
 			</item>
 		<item>
 		<title>JMS Mocking with AsyncAPI using Specmatic</title>
-		<link>https://specmatic.in/updates/jms-mocking-with-asyncapi-using-specmatic/</link>
+		<link>https://specmatic.io/updates/jms-mocking-with-asyncapi-using-specmatic/</link>
 		
 		<dc:creator><![CDATA[Jaydeep Kulkarni]]></dc:creator>
 		<pubDate>Tue, 25 Jul 2023 06:05:31 +0000</pubDate>
@@ -135,7 +135,7 @@
 		<category><![CDATA[Contract Driven Development]]></category>
 		<category><![CDATA[Contract Testing]]></category>
 		<category><![CDATA[Demonstration]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=1702</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=1702</guid>
 
 					<description><![CDATA[The JMS mock is wire compatible and can be controlled entirely from within the test. This means you can run the test locally or also as part of your continuous integration build to provide quick feedback early in the cycle.]]></description>
 		
@@ -144,7 +144,7 @@
 			</item>
 		<item>
 		<title>Kafka Mocking with AsyncAPI using Specmatic</title>
-		<link>https://specmatic.in/updates/kafka-mocking-with-asyncapi-using-specmatic/</link>
+		<link>https://specmatic.io/updates/kafka-mocking-with-asyncapi-using-specmatic/</link>
 		
 		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
 		<pubDate>Tue, 18 Jul 2023 04:40:27 +0000</pubDate>
@@ -155,7 +155,7 @@
 		<category><![CDATA[Contract Testing]]></category>
 		<category><![CDATA[Kafka]]></category>
 		<category><![CDATA[OpenAPI]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=1665</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=1665</guid>
 
 					<description><![CDATA[The Specmatic Kafka mock is wire compatible and entirely within the control of the test, the test can run locally and in CI and deliver quick feedback early in the cycle. So the application itself runs exactly as it would with a real Kafka.]]></description>
 		
@@ -164,7 +164,7 @@
 			</item>
 		<item>
 		<title>&#8220;Easy Microservice Testing&#8221; &#8211; Specmatic featured on Continuous Delivery channel</title>
-		<link>https://specmatic.in/updates/specmatic-featured-on-dave-farleys-continuous-delivery-channel/</link>
+		<link>https://specmatic.io/updates/specmatic-featured-on-dave-farleys-continuous-delivery-channel/</link>
 		
 		<dc:creator><![CDATA[John]]></dc:creator>
 		<pubDate>Thu, 06 Jul 2023 03:29:00 +0000</pubDate>
@@ -173,7 +173,7 @@
 		<category><![CDATA[Continuous Delivery]]></category>
 		<category><![CDATA[Contract Testing]]></category>
 		<category><![CDATA[microservices]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=1934</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=1934</guid>
 
 					<description><![CDATA[Dave Farley is a respected author and widely recognised proponent of Continuous Delivery. In this video on his Continuous Delivery YouTube channel he discusses why Contract Testing is important for microservices.]]></description>
 		
@@ -182,7 +182,7 @@
 			</item>
 		<item>
 		<title>Comparison: Specmatic vs Spring Cloud Contract</title>
-		<link>https://specmatic.in/comparisons/comparison-specmatic-vs-spring-cloud-contract/</link>
+		<link>https://specmatic.io/comparisons/comparison-specmatic-vs-spring-cloud-contract/</link>
 		
 		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
 		<pubDate>Sat, 03 Dec 2022 07:26:49 +0000</pubDate>
@@ -197,7 +197,7 @@
 		<category><![CDATA[Provider Driven Contract]]></category>
 		<category><![CDATA[Specmatic]]></category>
 		<category><![CDATA[Spring Cloud Contract]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=881</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=881</guid>
 
 					<description><![CDATA[With Spring Cloud Contract we can start by authoring the API contract in one of the supported DSLs, based on which the provider / producer is verified and in the process stubs are generated for consumers. This makes it possible to leverage it as both a "consumer driven" or "provider driven" contract testing tool. There are also some interesting points about how we share contracts and stubs (through artifact managers, source control, etc.) with Spring Cloud Contract. Let us look at the detailed comparison between Specmatic and Spring Cloud Contract. Please do leave a comment if there are other areas of comparison on which you would like to see additional details.]]></description>
 		
@@ -206,7 +206,7 @@
 			</item>
 		<item>
 		<title>Comparison: Specmatic vs WireMock</title>
-		<link>https://specmatic.in/comparisons/comparison-specmatic-vs-wiremock/</link>
+		<link>https://specmatic.io/comparisons/comparison-specmatic-vs-wiremock/</link>
 		
 		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
 		<pubDate>Sat, 26 Nov 2022 08:34:32 +0000</pubDate>
@@ -218,7 +218,7 @@
 		<category><![CDATA[OpenAPI]]></category>
 		<category><![CDATA[Specmatic]]></category>
 		<category><![CDATA[wiremock]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=820</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=820</guid>
 
 					<description><![CDATA[API mocking is only effective if the mocks are truly representative of the provider / services they are emulating. Deviations between mocks and providers can lead to integration issues much later in the development cycle. In order to avoid such issues it is important to keep in mind that selecting an API mocking tool is not an isolated decision. It has to be in line with your overall microservices development, testing and deployment goals.]]></description>
 		

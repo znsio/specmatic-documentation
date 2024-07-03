@@ -9,8 +9,8 @@
 
 <channel>
 	<title>Specmatic &#8211; Specmatic</title>
-	<atom:link href="https://specmatic.in/tag/specmatic/feed/" rel="self" type="application/rss+xml" />
-	<link>https://specmatic.in/</link>
+	<atom:link href="https://specmatic.io/tag/specmatic/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
 	<lastBuildDate>Wed, 13 Mar 2024 21:34:20 +0000</lastBuildDate>
 	<language>en-US</language>
@@ -18,18 +18,18 @@
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.5.4</generator>
+	<generator>https://wordpress.org/?v=6.5.5</generator>
 
 <image>
-	<url>https://specmatic.in/wp-content/uploads/2022/09/Favicon.png</url>
+	<url>https://specmatic.io/wp-content/uploads/2022/09/Favicon.png</url>
 	<title>Specmatic &#8211; Specmatic</title>
-	<link>https://specmatic.in/</link>
+	<link>https://specmatic.io/</link>
 	<width>32</width>
 	<height>32</height>
 </image> 
 	<item>
 		<title>Introduction to Contract Driven Development with Specmatic</title>
-		<link>https://specmatic.in/updates/introduction-to-contract-driven-development-with-specmatic/</link>
+		<link>https://specmatic.io/updates/introduction-to-contract-driven-development-with-specmatic/</link>
 		
 		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
 		<pubDate>Wed, 06 Dec 2023 22:52:34 +0000</pubDate>
@@ -42,7 +42,7 @@
 		<category><![CDATA[Kafka]]></category>
 		<category><![CDATA[OpenAPI]]></category>
 		<category><![CDATA[Specmatic]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=3776</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=3776</guid>
 
 					<description><![CDATA[Transcript Hi, welcome to this demo of contract-driven development where I&#8217;m going to use Specmatic, an open-source tool to turn your API specification into executable contracts. We have an app which sends a request to a BFF, a backend for frontend, which in turn sends a request to a domain service. Notice you could have [&#8230;]]]></description>
 		
@@ -51,7 +51,7 @@
 			</item>
 		<item>
 		<title>Stubbing an HTTP end-point with Specmatic</title>
-		<link>https://specmatic.in/updates/stubbing-an-http-end-point-with-specmatic/</link>
+		<link>https://specmatic.io/updates/stubbing-an-http-end-point-with-specmatic/</link>
 		
 		<dc:creator><![CDATA[John]]></dc:creator>
 		<pubDate>Wed, 29 Nov 2023 04:17:59 +0000</pubDate>
@@ -60,7 +60,7 @@
 		<category><![CDATA[Contract Testing]]></category>
 		<category><![CDATA[Specmatic]]></category>
 		<category><![CDATA[Stubbing]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=3640</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=3640</guid>
 
 					<description><![CDATA[Markus Oberlehner gives a brief overview on the topic of Contract Testing with Specmatic and his experience using it for stubbing an HTTP end-point.]]></description>
 		
@@ -69,7 +69,7 @@
 			</item>
 		<item>
 		<title>Comparison: Specmatic vs Spring Cloud Contract</title>
-		<link>https://specmatic.in/comparisons/comparison-specmatic-vs-spring-cloud-contract/</link>
+		<link>https://specmatic.io/comparisons/comparison-specmatic-vs-spring-cloud-contract/</link>
 		
 		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
 		<pubDate>Sat, 03 Dec 2022 07:26:49 +0000</pubDate>
@@ -84,7 +84,7 @@
 		<category><![CDATA[Provider Driven Contract]]></category>
 		<category><![CDATA[Specmatic]]></category>
 		<category><![CDATA[Spring Cloud Contract]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=881</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=881</guid>
 
 					<description><![CDATA[With Spring Cloud Contract we can start by authoring the API contract in one of the supported DSLs, based on which the provider / producer is verified and in the process stubs are generated for consumers. This makes it possible to leverage it as both a "consumer driven" or "provider driven" contract testing tool. There are also some interesting points about how we share contracts and stubs (through artifact managers, source control, etc.) with Spring Cloud Contract. Let us look at the detailed comparison between Specmatic and Spring Cloud Contract. Please do leave a comment if there are other areas of comparison on which you would like to see additional details.]]></description>
 		
@@ -93,7 +93,7 @@
 			</item>
 		<item>
 		<title>Comparison: Specmatic vs WireMock</title>
-		<link>https://specmatic.in/comparisons/comparison-specmatic-vs-wiremock/</link>
+		<link>https://specmatic.io/comparisons/comparison-specmatic-vs-wiremock/</link>
 		
 		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
 		<pubDate>Sat, 26 Nov 2022 08:34:32 +0000</pubDate>
@@ -105,7 +105,7 @@
 		<category><![CDATA[OpenAPI]]></category>
 		<category><![CDATA[Specmatic]]></category>
 		<category><![CDATA[wiremock]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=820</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=820</guid>
 
 					<description><![CDATA[API mocking is only effective if the mocks are truly representative of the provider / services they are emulating. Deviations between mocks and providers can lead to integration issues much later in the development cycle. In order to avoid such issues it is important to keep in mind that selecting an API mocking tool is not an isolated decision. It has to be in line with your overall microservices development, testing and deployment goals.]]></description>
 		
@@ -114,7 +114,7 @@
 			</item>
 		<item>
 		<title>Comparison: Specmatic vs Pact.io and Pactflow.io</title>
-		<link>https://specmatic.in/comparisons/specmatic-vs-pact-io-and-pactflow-io/</link>
+		<link>https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/</link>
 		
 		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
 		<pubDate>Tue, 08 Nov 2022 04:25:35 +0000</pubDate>
@@ -132,7 +132,7 @@
 		<category><![CDATA[pact]]></category>
 		<category><![CDATA[Pactflow]]></category>
 		<category><![CDATA[Specmatic]]></category>
-		<guid isPermaLink="false">https://specmatic.in/?p=585</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=585</guid>
 
 					<description><![CDATA[Specmatic and Contract Driven Development differ significantly from Pact. We built Specmatic out of our own necessity where Pact did not fit the bill for us. We have tried to cover as many areas of comparison as possible, however we would love to hear if you have any other criteria on which you would like to see additional details.]]></description>
 		

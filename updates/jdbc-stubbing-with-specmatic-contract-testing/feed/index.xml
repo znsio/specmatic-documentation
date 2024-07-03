@@ -8,14 +8,14 @@
 <channel>
 	<title>
 	Comments on: Break the Chains of Database Dependencies: Leveraging Specmatic for JDBC Stubbing	</title>
-	<atom:link href="https://specmatic.in/updates/jdbc-stubbing-with-specmatic-contract-testing/feed/" rel="self" type="application/rss+xml" />
-	<link>https://specmatic.in/updates/jdbc-stubbing-with-specmatic-contract-testing/</link>
+	<atom:link href="https://specmatic.io/updates/jdbc-stubbing-with-specmatic-contract-testing/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.io/updates/jdbc-stubbing-with-specmatic-contract-testing/</link>
 	<description>Contract Driven Development</description>
 	<lastBuildDate>Fri, 03 May 2024 00:58:49 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.5.4</generator>
+	<generator>https://wordpress.org/?v=6.5.5</generator>
 </channel>
 </rss>

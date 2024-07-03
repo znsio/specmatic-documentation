@@ -8,14 +8,14 @@
 <channel>
 	<title>
 	Comments on: Introduction to Contract Driven Development with Specmatic	</title>
-	<atom:link href="https://specmatic.in/updates/introduction-to-contract-driven-development-with-specmatic/feed/" rel="self" type="application/rss+xml" />
-	<link>https://specmatic.in/updates/introduction-to-contract-driven-development-with-specmatic/</link>
+	<atom:link href="https://specmatic.io/updates/introduction-to-contract-driven-development-with-specmatic/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.io/updates/introduction-to-contract-driven-development-with-specmatic/</link>
 	<description>Contract Driven Development</description>
 	<lastBuildDate>Wed, 13 Mar 2024 21:34:20 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.5.4</generator>
+	<generator>https://wordpress.org/?v=6.5.5</generator>
 </channel>
 </rss>
