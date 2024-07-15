@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="https://gmpg.org/xfn/11">
+<title>Avoiding APIpocalypse; API Resiliency Testing FTW! - Specmatic</title>
+<link rel="preconnect" href="//digitalvoice.involve.me">
+<link rel="preconnect" href="//cdn.ivlv.me">
+<link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="//use.fontawesome.com">
+<link rel="preconnect" href="//use.fontawesome.com" crossorigin>
+<link rel="preconnect" href="//www.linkedin.com">
+<link rel="dns-prefetch" href="//digitalvoice.involve.me">
+<link rel="dns-prefetch" href="//cdn.ivlv.me">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="dns-prefetch" href="//www.linkedin.com">
+<link rel="preload" href="https://specmatic.io/wp-content/astra-local-fonts/plus-jakarta-sans/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_Tkn9TR_V.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="dc.title" content="Avoiding APIpocalypse; API Resiliency Testing FTW! - Specmatic">
+<meta name="dc.relation" content="https://specmatic.io/appearance/avoiding-apipocalypse-api-resiliency-testing-ftw/">
+<meta name="dc.source" content="https://specmatic.io/">
+<meta name="dc.language" content="en_US">
+<meta name="thumbnail" content="https://specmatic.io/wp-content/uploads/2024/07/SeleniumConf2024-Naresh-Jain-1-150x150.jpg">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<link rel="canonical" href="https://specmatic.io/appearance/avoiding-apipocalypse-api-resiliency-testing-ftw/">
+<meta property="og:url" content="https://specmatic.io/appearance/avoiding-apipocalypse-api-resiliency-testing-ftw/">
+<meta property="og:site_name" content="Specmatic">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="article:author" content="https://www.facebook.com/specmatic.cdd">
+<meta property="article:publisher" content="https://www.facebook.com/specmatic.cdd">
+<meta property="og:title" content="Avoiding APIpocalypse; API Resiliency Testing FTW! - Specmatic">
+<meta property="og:image" content="https://specmatic.io/wp-content/uploads/2024/07/SeleniumConf2024-Naresh-Jain-1.jpg">
+<meta property="og:image:secure_url" content="https://specmatic.io/wp-content/uploads/2024/07/SeleniumConf2024-Naresh-Jain-1.jpg">
+<meta property="og:image:width" content="1920">
+<meta property="og:image:height" content="1075">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@specmatic">
+<meta name="twitter:creator" content="@specmatic">
+<meta name="twitter:title" content="Avoiding APIpocalypse; API Resiliency Testing FTW! - Specmatic">
+<meta name="twitter:image" content="https://specmatic.io/wp-content/uploads/2024/06/Selenium-Conf-2024-Naresh-SQ.jpg">
+<link rel="dns-prefetch" href="//use.fontawesome.com">
+<link rel="alternate" type="application/rss+xml" title="Specmatic &raquo; Feed" href="https://specmatic.io/feed/">
+<link rel="alternate" type="application/rss+xml" title="Specmatic &raquo; Comments Feed" href="https://specmatic.io/comments/feed/">
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/plugins/wp-google-search/wgs2-1668477651.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/plugins/wp-google-search/wgs2-1668477651.min.css" media="all"></noscript>
+<link rel="preload" as="style" data-id="astra-theme-css-css" href="https://specmatic.io/wp-content/themes/astra/assets/css/minified/main.min.css" media="all">
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/themes/astra/assets/css/minified/main.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/themes/astra/assets/css/minified/main.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra/astra-theme-dynamic-css-post-4990-1721010830.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra/astra-theme-dynamic-css-post-4990-1721010830.min.css" media="all"></noscript>
+<link rel="preload" as="style" data-id="wp-block-library-css" href="https://specmatic.io/wp-includes/css/dist/block-library/style.min.css" media="all">
+<link rel="stylesheet"  href="https://specmatic.io/wp-includes/css/dist/block-library/style.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-includes/css/dist/block-library/style.min.css" media="all"></noscript>
+<style >.wp-block-kevinbatdorf-code-block-pro{direction:ltr!important;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;-webkit-text-size-adjust:100%!important;box-sizing:border-box!important;position:relative!important}.wp-block-kevinbatdorf-code-block-pro *{box-sizing:border-box!important}.wp-block-kevinbatdorf-code-block-pro pre,.wp-block-kevinbatdorf-code-block-pro pre *{font-size:inherit!important;line-height:inherit!important}.wp-block-kevinbatdorf-code-block-pro:not(.code-block-pro-editor) pre{background-image:none!important;border:0!important;border-radius:0!important;border-style:none!important;border-width:0!important;color:inherit!important;font-family:inherit!important;margin:0!important;overflow:auto!important;overflow-wrap:normal!important;padding:16px 0 16px 16px!important;text-align:left!important;white-space:pre!important;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)!important}.wp-block-kevinbatdorf-code-block-pro.padding-disabled:not(.code-block-pro-editor) pre{padding:0!important}.wp-block-kevinbatdorf-code-block-pro.padding-bottom-disabled pre{padding-bottom:0!important}.wp-block-kevinbatdorf-code-block-pro:not(.code-block-pro-editor) pre code{background:none!important;background-color:transparent!important;border:0!important;border-radius:0!important;border-style:none!important;border-width:0!important;color:inherit!important;display:block!important;font-family:inherit!important;margin:0!important;overflow-wrap:normal!important;padding:0!important;text-align:left!important;white-space:pre!important;width:100%!important;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)!important}.wp-block-kevinbatdorf-code-block-pro:not(.code-block-pro-editor) pre code .line{display:inline-block!important;min-width:var(--cbp-block-width,100%)!important;vertical-align:top!important}.wp-block-kevinbatdorf-code-block-pro.cbp-has-line-numbers:not(.code-block-pro-editor) pre code .line{padding-left:calc(12px + var(--cbp-line-number-width, auto))!important}.wp-block-kevinbatdorf-code-block-pro.cbp-has-line-numbers:not(.code-block-pro-editor) pre code{counter-increment:step calc(var(--cbp-line-number-start, 1) - 1)!important;counter-reset:step!important}.wp-block-kevinbatdorf-code-block-pro pre code .line{position:relative!important}.wp-block-kevinbatdorf-code-block-pro:not(.code-block-pro-editor) pre code .line:before{content:""!important;display:inline-block!important}.wp-block-kevinbatdorf-code-block-pro.cbp-has-line-numbers:not(.code-block-pro-editor) pre code .line:not(.cbp-line-number-disabled):before{color:var(--cbp-line-number-color,#999)!important;content:counter(step)!important;counter-increment:step!important;left:0!important;opacity:.5!important;position:absolute!important;text-align:right!important;transition-duration:.5s!important;transition-property:opacity!important;transition-timing-function:cubic-bezier(.4,0,.2,1)!important;-webkit-user-select:none!important;-moz-user-select:none!important;user-select:none!important;width:var(--cbp-line-number-width,auto)!important}.wp-block-kevinbatdorf-code-block-pro.cbp-highlight-hover .line{min-height:var(--cbp-block-height,100%)!important}.wp-block-kevinbatdorf-code-block-pro .line.cbp-line-highlight .cbp-line-highlighter,.wp-block-kevinbatdorf-code-block-pro .line.cbp-no-blur:hover .cbp-line-highlighter,.wp-block-kevinbatdorf-code-block-pro.cbp-highlight-hover:not(.cbp-blur-enabled:not(.cbp-unblur-on-hover)) .line:hover .cbp-line-highlighter{background:var(--cbp-line-highlight-color,rgb(14 165 233/.2))!important;left:-16px!important;min-height:var(--cbp-block-height,100%)!important;min-width:calc(var(--cbp-block-width, 100%) + 16px)!important;pointer-events:none!important;position:absolute!important;top:0!important;width:100%!important}[data-code-block-pro-font-family="Code-Pro-Comic-Mono.ttf"].wp-block-kevinbatdorf-code-block-pro .line.cbp-line-highlight .cbp-line-highlighter,[data-code-block-pro-font-family="Code-Pro-Comic-Mono.ttf"].wp-block-kevinbatdorf-code-block-pro .line.cbp-no-blur:hover .cbp-line-highlighter,[data-code-block-pro-font-family="Code-Pro-Comic-Mono.ttf"].wp-block-kevinbatdorf-code-block-pro.cbp-highlight-hover:not(.cbp-blur-enabled:not(.cbp-unblur-on-hover)) .line:hover .cbp-line-highlighter{top:-.125rem!important}[data-code-block-pro-font-family=Code-Pro-Fira-Code].wp-block-kevinbatdorf-code-block-pro .line.cbp-line-highlight .cbp-line-highlighter,[data-code-block-pro-font-family=Code-Pro-Fira-Code].wp-block-kevinbatdorf-code-block-pro .line.cbp-no-blur:hover .cbp-line-highlighter,[data-code-block-pro-font-family=Code-Pro-Fira-Code].wp-block-kevinbatdorf-code-block-pro.cbp-highlight-hover:not(.cbp-blur-enabled:not(.cbp-unblur-on-hover)) .line:hover .cbp-line-highlighter{top:-1.5px!important}[data-code-block-pro-font-family="Code-Pro-Deja-Vu-Mono.ttf"].wp-block-kevinbatdorf-code-block-pro .line.cbp-line-highlight .cbp-line-highlighter,[data-code-block-pro-font-family="Code-Pro-Deja-Vu-Mono.ttf"].wp-block-kevinbatdorf-code-block-pro .line.cbp-no-blur:hover .cbp-line-highlighter,[data-code-block-pro-font-family="Code-Pro-Deja-Vu-Mono.ttf"].wp-block-kevinbatdorf-code-block-pro.cbp-highlight-hover:not(.cbp-blur-enabled:not(.cbp-unblur-on-hover)) .line:hover .cbp-line-highlighter,[data-code-block-pro-font-family=Code-Pro-Cozette].wp-block-kevinbatdorf-code-block-pro .line.cbp-line-highlight .cbp-line-highlighter,[data-code-block-pro-font-family=Code-Pro-Cozette].wp-block-kevinbatdorf-code-block-pro .line.cbp-no-blur:hover .cbp-line-highlighter,[data-code-block-pro-font-family=Code-Pro-Cozette].wp-block-kevinbatdorf-code-block-pro.cbp-highlight-hover:not(.cbp-blur-enabled:not(.cbp-unblur-on-hover)) .line:hover .cbp-line-highlighter{top:-1px!important}.wp-block-kevinbatdorf-code-block-pro:not(.code-block-pro-editor).padding-disabled pre .line.cbp-line-highlight:after{left:0!important;width:100%!important}.wp-block-kevinbatdorf-code-block-pro.cbp-blur-enabled pre .line:not(.cbp-no-blur){filter:blur(1px)!important;opacity:.4!important;pointer-events:none!important;transition-duration:.2s!important;transition-property:all!important;transition-timing-function:cubic-bezier(.4,0,.2,1)!important}.wp-block-kevinbatdorf-code-block-pro.cbp-blur-enabled.cbp-unblur-on-hover:hover pre .line:not(.cbp-no-blur){opacity:1!important;pointer-events:auto!important;--tw-blur:blur(0);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)!important}.wp-block-kevinbatdorf-code-block-pro:not(.code-block-pro-editor) pre *{font-family:inherit!important}.cbp-see-more-simple-btn-hover{transition-property:none!important}.cbp-see-more-simple-btn-hover:hover{box-shadow:inset 0 0 100px 100px hsla(0,0%,100%,.1)!important}.code-block-pro-copy-button{border:0!important;border-style:none!important;border-width:0!important;cursor:pointer!important;left:auto!important;line-height:1!important;opacity:.1!important;padding:6px!important;position:absolute!important;right:0!important;top:0!important;transition-duration:.2s!important;transition-property:opacity!important;transition-timing-function:cubic-bezier(.4,0,.2,1)!important;z-index:10!important}.code-block-pro-copy-button:focus{opacity:.4!important}.code-block-pro-copy-button:not([data-has-text-button]){background:none!important;background-color:transparent!important}.wp-block-kevinbatdorf-code-block-pro.padding-disabled .code-block-pro-copy-button{padding:0!important}.wp-block-kevinbatdorf-code-block-pro:hover .code-block-pro-copy-button{opacity:.5!important}.wp-block-kevinbatdorf-code-block-pro .code-block-pro-copy-button:hover{opacity:.9!important}.code-block-pro-copy-button[data-has-text-button],.wp-block-kevinbatdorf-code-block-pro:hover .code-block-pro-copy-button[data-has-text-button]{opacity:1!important}.wp-block-kevinbatdorf-code-block-pro .code-block-pro-copy-button[data-has-text-button]:hover{opacity:.8!important}.code-block-pro-copy-button[data-has-text-button]{border-radius:.75rem!important;display:block!important;margin-right:.75rem!important;margin-top:.7rem!important;padding:.125rem .375rem!important}.code-block-pro-copy-button[data-inside-header-type=headlightsMuted],.code-block-pro-copy-button[data-inside-header-type^=headlights]{margin-top:.85rem!important}.code-block-pro-copy-button[data-inside-header-type=headlightsMutedAlt]{margin-top:.65rem!important}.code-block-pro-copy-button[data-inside-header-type=simpleString]{margin-top:.645rem!important}.code-block-pro-copy-button[data-inside-header-type=pillString]{margin-top:1rem!important}.code-block-pro-copy-button[data-inside-header-type=pillString] .cbp-btn-text{position:relative!important;top:1px!important}.cbp-btn-text{font-size:.75rem!important;line-height:1rem!important}.code-block-pro-copy-button .without-check{display:block!important}.code-block-pro-copy-button .with-check{display:none!important}.code-block-pro-copy-button.cbp-copying{opacity:1!important}.code-block-pro-copy-button.cbp-copying .without-check{display:none!important}.code-block-pro-copy-button.cbp-copying .with-check{display:block!important}.cbp-footer-link:hover{text-decoration-line:underline!important}@media print{.wp-block-kevinbatdorf-code-block-pro pre{max-height:none!important}.wp-block-kevinbatdorf-code-block-pro:not(#x) .line:before{background-color:transparent!important;color:inherit!important}.wp-block-kevinbatdorf-code-block-pro:not(#x) .cbp-line-highlighter,.wp-block-kevinbatdorf-code-block-pro:not(#x)>span{display:none!important}}</style>
+<style >span.wp-block-wpseopress-local-business-field{margin-right:8px}</style>
+<style >body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--ast-global-color-0: var(--ast-global-color-0);--wp--preset--color--ast-global-color-1: var(--ast-global-color-1);--wp--preset--color--ast-global-color-2: var(--ast-global-color-2);--wp--preset--color--ast-global-color-3: var(--ast-global-color-3);--wp--preset--color--ast-global-color-4: var(--ast-global-color-4);--wp--preset--color--ast-global-color-5: var(--ast-global-color-5);--wp--preset--color--ast-global-color-6: var(--ast-global-color-6);--wp--preset--color--ast-global-color-7: var(--ast-global-color-7);--wp--preset--color--ast-global-color-8: var(--ast-global-color-8);--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}body { margin: 0;--wp--style--global--content-size: var(--wp--custom--ast-content-width-size);--wp--style--global--wide-size: var(--wp--custom--ast-wide-width-size); }.wp-site-blocks > .alignleft { float: left; margin-right: 2em; }.wp-site-blocks > .alignright { float: right; margin-left: 2em; }.wp-site-blocks > .aligncenter { justify-content: center; margin-left: auto; margin-right: auto; }:where(.wp-site-blocks) > * { margin-block-start: 24px; margin-block-end: 0; }:where(.wp-site-blocks) > :first-child:first-child { margin-block-start: 0; }:where(.wp-site-blocks) > :last-child:last-child { margin-block-end: 0; }body { --wp--style--block-gap: 24px; }:where(body .is-layout-flow)  > :first-child:first-child{margin-block-start: 0;}:where(body .is-layout-flow)  > :last-child:last-child{margin-block-end: 0;}:where(body .is-layout-flow)  > *{margin-block-start: 24px;margin-block-end: 0;}:where(body .is-layout-constrained)  > :first-child:first-child{margin-block-start: 0;}:where(body .is-layout-constrained)  > :last-child:last-child{margin-block-end: 0;}:where(body .is-layout-constrained)  > *{margin-block-start: 24px;margin-block-end: 0;}:where(body .is-layout-flex) {gap: 24px;}:where(body .is-layout-grid) {gap: 24px;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}body .is-layout-grid{display: grid;}body .is-layout-grid > *{margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}a:where(:not(.wp-element-button)){text-decoration: none;}.wp-element-button, .wp-block-button__link{background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;line-height: inherit;padding: calc(0.667em + 2px) calc(1.333em + 2px);text-decoration: none;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-ast-global-color-0-color{color: var(--wp--preset--color--ast-global-color-0) !important;}.has-ast-global-color-1-color{color: var(--wp--preset--color--ast-global-color-1) !important;}.has-ast-global-color-2-color{color: var(--wp--preset--color--ast-global-color-2) !important;}.has-ast-global-color-3-color{color: var(--wp--preset--color--ast-global-color-3) !important;}.has-ast-global-color-4-color{color: var(--wp--preset--color--ast-global-color-4) !important;}.has-ast-global-color-5-color{color: var(--wp--preset--color--ast-global-color-5) !important;}.has-ast-global-color-6-color{color: var(--wp--preset--color--ast-global-color-6) !important;}.has-ast-global-color-7-color{color: var(--wp--preset--color--ast-global-color-7) !important;}.has-ast-global-color-8-color{color: var(--wp--preset--color--ast-global-color-8) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-ast-global-color-0-background-color{background-color: var(--wp--preset--color--ast-global-color-0) !important;}.has-ast-global-color-1-background-color{background-color: var(--wp--preset--color--ast-global-color-1) !important;}.has-ast-global-color-2-background-color{background-color: var(--wp--preset--color--ast-global-color-2) !important;}.has-ast-global-color-3-background-color{background-color: var(--wp--preset--color--ast-global-color-3) !important;}.has-ast-global-color-4-background-color{background-color: var(--wp--preset--color--ast-global-color-4) !important;}.has-ast-global-color-5-background-color{background-color: var(--wp--preset--color--ast-global-color-5) !important;}.has-ast-global-color-6-background-color{background-color: var(--wp--preset--color--ast-global-color-6) !important;}.has-ast-global-color-7-background-color{background-color: var(--wp--preset--color--ast-global-color-7) !important;}.has-ast-global-color-8-background-color{background-color: var(--wp--preset--color--ast-global-color-8) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-ast-global-color-0-border-color{border-color: var(--wp--preset--color--ast-global-color-0) !important;}.has-ast-global-color-1-border-color{border-color: var(--wp--preset--color--ast-global-color-1) !important;}.has-ast-global-color-2-border-color{border-color: var(--wp--preset--color--ast-global-color-2) !important;}.has-ast-global-color-3-border-color{border-color: var(--wp--preset--color--ast-global-color-3) !important;}.has-ast-global-color-4-border-color{border-color: var(--wp--preset--color--ast-global-color-4) !important;}.has-ast-global-color-5-border-color{border-color: var(--wp--preset--color--ast-global-color-5) !important;}.has-ast-global-color-6-border-color{border-color: var(--wp--preset--color--ast-global-color-6) !important;}.has-ast-global-color-7-border-color{border-color: var(--wp--preset--color--ast-global-color-7) !important;}.has-ast-global-color-8-border-color{border-color: var(--wp--preset--color--ast-global-color-8) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}</style>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/ultimate-addons-for-gutenberg/assets/css/spectra-block-positioning.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/ultimate-addons-for-gutenberg/assets/css/spectra-block-positioning.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/5000/uag-css-4990-1721010828.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/5000/uag-css-4990-1721010828.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-66947a02b85b41-51480899-1721006594.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-66947a02b85b41-51480899-1721006594.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-dynamic-css-post-4990-1721010830.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-dynamic-css-post-4990-1721010830.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css" media="all"></noscript>
+<link rel="preload" as="style" data-id="elementor-frontend-css" href="https://specmatic.io/wp-content/plugins/elementor/assets/css/frontend-lite.min.css" media="all">
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/css/frontend-lite.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/css/frontend-lite.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css" media="all"></noscript>
+<link rel="preload" as="style" data-id="elementor-post-5-css" href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-5-1719804900.min.css" media="all">
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-5-1719804900.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-5-1719804900.min.css" media="all"></noscript>
+<link rel="preload" as="style" data-id="elementor-pro-css" href="https://specmatic.io/wp-content/plugins/elementor-pro/assets/css/frontend-lite.min.css" media="all">
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor-pro/assets/css/frontend-lite.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor-pro/assets/css/frontend-lite.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/ultimate-elementor/assets/min-css/uael-frontend.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/ultimate-elementor/assets/min-css/uael-frontend.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/all.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/all.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/v4-shims.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/v4-shims.min.css" media="all"></noscript>
+<link rel="preload" as="style" data-id="wpdt-elementor-widget-font-css" href="https://specmatic.io/wp-content/swis/cache/css/plugins/wpdatatables/integrations/page_builders/elementor/css/style-1692586520.min.css" media="all">
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/plugins/wpdatatables/integrations/page_builders/elementor/css/style-1692586520.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/plugins/wpdatatables/integrations/page_builders/elementor/css/style-1692586520.min.css" media="all"></noscript>
+<link rel="preload" as="style" data-id="elementor-post-1304-css" href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-1304-1719805142.min.css" media="all">
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-1304-1719805142.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-1304-1719805142.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;" integrity="sha384-SOnAn/m2fVJCwnbEYgD4xzrPtvsXdElhOVvR8ND1YjB5nhGNwwf7nBQlhfAwHAZC" crossorigin="anonymous">
+<noscript><link rel="stylesheet"  href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" media="all" integrity="sha384-SOnAn/m2fVJCwnbEYgD4xzrPtvsXdElhOVvR8ND1YjB5nhGNwwf7nBQlhfAwHAZC" crossorigin="anonymous"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/themes/astra-child/style-1668396837.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/themes/astra-child/style-1668396837.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/micro-themes/active-styles-1721006506.min.css?mts=3233#038;ver=6.5.5" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/micro-themes/active-styles-1721006506.min.css?mts=3233#038;ver=6.5.5" media="all"></noscript>
+<link rel="stylesheet"  href="https://use.fontawesome.com/releases/v6.2.0/css/v4-shims.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;" integrity="sha384-MAgG0MNwzSXBbmOw4KK9yjMrRaUNSCk3WoZPkzVC1rmhXzerY4gqk/BLNYtdOFCO" crossorigin="anonymous">
+<noscript><link rel="stylesheet"  href="https://use.fontawesome.com/releases/v6.2.0/css/v4-shims.css" media="all" integrity="sha384-MAgG0MNwzSXBbmOw4KK9yjMrRaUNSCk3WoZPkzVC1rmhXzerY4gqk/BLNYtdOFCO" crossorigin="anonymous"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min.css" media="all"></noscript>
+<script src="https://specmatic.io/wp-includes/js/jquery/jquery.min.js" ></script>
+<script src="https://specmatic.io/wp-includes/js/jquery/jquery-migrate.min.js" ></script>
+<!--[if IE]>
+<script src="https://specmatic.io/wp-content/themes/astra/assets/js/minified/flexibility.min.js" ></script>
+<script >
+flexibility(document.documentElement);
+</script>
+<![endif]-->
+<script  data-swis-src="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/js/v4-shims.min.js" data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-no-minify="1"></script>
+<link rel="alternate" type="application/json+oembed" href="https://specmatic.io/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps%3A%2F%2Fspecmatic.io%2Fappearance%2Favoiding-apipocalypse-api-resiliency-testing-ftw%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://specmatic.io/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps%3A%2F%2Fspecmatic.io%2Fappearance%2Favoiding-apipocalypse-api-resiliency-testing-ftw%2F#038;format=xml">
+<meta name="ssp-config-path" content="/wp-content/uploads/simply-static/configs/">
+<style >@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_Tkn9TR_Q.ttf) format('truetype')}</style>
+
+<noscript><style>.lazyload[data-src]{display:none !important;}</style></noscript>
+<style>.lazyload{background-image:none !important;}.lazyload:before{background-image:none !important;}</style>
+<style>.wp-block-gallery.is-cropped .blocks-gallery-item picture{height:100%;width:100%;}</style>
+<link rel="stylesheet" href="https://specmatic.io/wp-content/uploads/elementor/custom-icons/icomoon/style.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet" href="https://specmatic.io/wp-content/uploads/elementor/custom-icons/icomoon/style.css" media="all"></noscript>
+<link rel="icon" href="https://specmatic.io/wp-content/uploads/2022/09/Favicon.png" sizes="32x32">
+<link rel="icon" href="https://specmatic.io/wp-content/uploads/2022/09/Favicon.png" sizes="192x192">
+<link rel="apple-touch-icon" href="https://specmatic.io/wp-content/uploads/2022/09/Favicon.png">
+<meta name="msapplication-TileImage" content="https://specmatic.io/wp-content/uploads/2022/09/Favicon.png">
+<style >.underline{background:url(https://specmatic.io/wp-content/uploads/2022/09/underline.png);background-repeat:no-repeat;background-position:bottom center;background-size:100% 10px}.shift-left{background:url(https://specmatic.io/wp-content/uploads/2022/09/shift-left.png);background-repeat:no-repeat;background-position:bottom center;background-size:100% 10px}.fa-sharp.fa-solid.fa-code-branch{margin-left:15px;font-size:20px;color:#FFB30F}.icon-github:before{content:"\eab0"}.day{background-color:#FFB30F;border-radius:4px;padding:5px 15px 5px 15px;color:#47006F;margin-right:20px;margin-left:5px;font-size:16px}@media (max-width:768px){.day{margin-left:1px;line-height:1.8em}.day::after{content:"\a";white-space:pre}.elementor-accordion .elementor-tab-title{padding-left:20px!important}}</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DZJQMQZ82G"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+window.addEventListener('load', function () {
+    var links = document.querySelectorAll('a');
+    for (let i = 0; i < links.length; i++) {
+        links[i].addEventListener('click', function(e) {
+            var n = this.href.includes('specmatic.dvox.biz');
+            if (n == false) {
+                gtag('event', 'click', {'event_category': 'external links','event_label' : this.href});
+            }
+        });
+        }
+    });
+    
+ gtag('config', 'G-DZJQMQZ82G' , {});</script>
+</head>
+<body itemtype="https://schema.org/Blog" itemscope="itemscope" class="appearance-template-default single single-appearance postid-4990 wp-custom-logo mtp-4990 mtp-appearance-avoiding-apipocalypse-api-resiliency-testing-ftw ast-desktop ast-page-builder-template ast-no-sidebar astra-4.7.2 group-blog ast-blog-single-style-1 ast-custom-post-type ast-single-post ast-inherit-site-logo-transparent ast-hfb-header elementor-page-1304 ast-normal-title-enabled elementor-default elementor-kit-5 astra-addon-4.7.2">
+<a class="skip-link screen-reader-text" href="#content" role="link" title="Skip to content">
+Skip to content</a>
+<div class="hfeed site" id="page">
+<header class="site-header header-main-layout-1 ast-primary-menu-enabled ast-hide-custom-menu-mobile ast-builder-menu-toggle-icon ast-mobile-header-inline" id="masthead" itemtype="https://schema.org/WPHeader" itemscope="itemscope" itemid="#masthead">
+<div id="ast-desktop-header" data-toggle-type="off-canvas">
+<div class="ast-main-header-wrap main-header-bar-wrap ">
+<div class="ast-primary-header-bar ast-primary-header main-header-bar site-header-focus-item" data-section="section-primary-header-builder">
+<div class="site-primary-header-wrap ast-builder-grid-row-container site-header-focus-item ast-container" data-section="section-primary-header-builder">
+<div class="ast-builder-grid-row ast-builder-grid-row-has-sides ast-builder-grid-row-no-center">
+<div class="site-header-primary-section-left site-header-section ast-flex site-header-section-left">
+<div class="ast-builder-layout-element ast-flex site-header-focus-item" data-section="title_tagline">
+<div class="site-branding ast-site-identity" itemtype="https://schema.org/Organization" itemscope="itemscope">
+<span class="site-logo-img"><a href="https://specmatic.io/" class="custom-logo-link" rel="home"><picture><source sizes="(max-width: 216px) 100vw, 216px" type="image/webp" data-srcset="https://specmatic.io/wp-content/uploads/2022/09/specmatic-216x51.png.webp 216w, https://specmatic.io/wp-content/uploads/2022/09/specmatic.png.webp 296w"><img width="216" height="51" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANgAAAAzAQAAAADd2PsBAAAAAnRSTlMAAHaTzTgAAAATSURBVHjaYxgFo2AUjIJRMGgAAAWUAAEbKr5LAAAAAElFTkSuQmCC" class="custom-logo lazyload" alt="The spectamatic logo featuring the Default Kit." decoding="async" data-eio="p" data-src="https://specmatic.io/wp-content/uploads/2022/09/specmatic-216x51.png" data-srcset="https://specmatic.io/wp-content/uploads/2022/09/specmatic-216x51.png 216w, https://specmatic.io/wp-content/uploads/2022/09/specmatic.png 296w" data-sizes="auto" data-eio-rwidth="216" data-eio-rheight="51"><noscript><img width="216" height="51" src="https://specmatic.io/wp-content/uploads/2022/09/specmatic-216x51.png" class="custom-logo" alt="The spectamatic logo featuring the Default Kit." decoding="async" srcset="https://specmatic.io/wp-content/uploads/2022/09/specmatic-216x51.png 216w, https://specmatic.io/wp-content/uploads/2022/09/specmatic.png 296w" sizes="(max-width: 216px) 100vw, 216px" data-eio="l"></noscript></picture></a></span> </div>
+
+</div>
+</div>
+<div class="site-header-primary-section-right site-header-section ast-flex ast-grid-right-section">
+<div class="ast-builder-menu-1 ast-builder-menu ast-flex ast-builder-menu-1-focus-item ast-builder-layout-element site-header-focus-item" data-section="section-hb-menu-1">
+<div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="site-navigation ast-flex-grow-1 navigation-accessibility site-header-focus-item" id="primary-site-navigation-desktop" aria-label="Site Navigation: Main Menu" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="main-navigation ast-inline-flex"><ul id="ast-hf-menu-1" class="main-header-menu ast-menu-shadow ast-nav-menu ast-flex  submenu-with-border ast-menu-hover-style-underline  stack-on-mobile">
+<li id="menu-item-29" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-29">
+<a aria-expanded="false" href="https://specmatic.io/#features" class="menu-link">Features<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></button>
+<ul class="sub-menu">
+<li id="menu-item-3645" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3645"><a href="https://insights.specmatic.in/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Insights</a></li>
+<li id="menu-item-3898" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3898"><a href="https://specmatic.io/#extension" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>VSCode extension</a></li>
+<li id="menu-item-1111" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1111">
+<a aria-expanded="false" href="https://specmatic.io/category/comparisons/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Comparisons<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></button>
+<ul class="sub-menu">
+<li id="menu-item-600" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-600"><a href="https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Specmatic vs Pact.io and Pactflow.io</a></li>
+<li id="menu-item-900" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-900"><a href="https://specmatic.io/comparisons/comparison-specmatic-vs-spring-cloud-contract/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Comparison: Specmatic vs Spring Cloud Contract</a></li>
+<li id="menu-item-839" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-839"><a href="https://specmatic.io/comparisons/comparison-specmatic-vs-wiremock/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Specmatic vs WireMock</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li id="menu-item-4011" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4011"><a href="https://specmatic.io/pricing/" class="menu-link">Pricing</a></li>
+<li id="menu-item-1112" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1112">
+<a aria-expanded="false" href="https://specmatic.io/category/updates/" class="menu-link">Updates<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></button>
+<ul class="sub-menu">
+<li id="menu-item-1661" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1661"><a href="https://specmatic.io/category/features/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Feature Spotlight</a></li>
+<li id="menu-item-1353" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1353"><a href="https://specmatic.io/appearances/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Appearances</a></li>
+<li id="menu-item-1944" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1944"><a href="https://specmatic.io/category/updates/media/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>In the Media</a></li>
+</ul>
+</li>
+<li id="menu-item-3043" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3043">
+<a aria-expanded="false" href="#" class="menu-link">Resources<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></button>
+<ul class="sub-menu">
+<li id="menu-item-32" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-32"><a target="_blank" rel="noopener" href="https://specmatic.in/documentation.html" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Documentation</a></li>
+<li id="menu-item-4289" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4289"><a href="https://specmatic.io/documentation/sample_projects.html" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Sample Projects</a></li>
+<li id="menu-item-990" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-990"><a href="https://specmatic.io/articles/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Articles</a></li>
+<li id="menu-item-2956" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2956"><a href="https://specmatic.io/2-week-signup/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Quick Start Consult</a></li>
+<li id="menu-item-4414" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4414"><a href="https://specmatic.io/2-day-cdd-workshop/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>2-day CDD workshop</a></li>
+</ul>
+</li>
+<li id="menu-item-2107" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2107"><a href="https://specmatic.io/roadmap/" class="menu-link">Roadmap</a></li>
+<li id="menu-item-33" class="menu_github menu-item menu-item-type-custom menu-item-object-custom menu-item-33"><a target="_blank" rel="noopener" href="https://github.com/znsio/specmatic" class="menu-link"><span class="icon-github"></span></a></li>
+<li id="menu-item-2200" class="menu_github menu-item menu-item-type-custom menu-item-object-custom menu-item-2200"><a href="https://specmatic.io/contact-us/" class="menu-link"><span class="icon-mail4"></span></a></li>
+</ul></div></nav></div></div> </div>
+<div class="ast-builder-layout-element ast-flex site-header-focus-item ast-header-button-1" data-section="section-hb-button-1">
+<div class="ast-builder-button-wrap ast-builder-button-size-sm">
+<a class="ast-custom-button-link" href="https://www.linkedin.com/jobs/view/3929525141/" target="_blank"><div class="ast-custom-button">We&#039;re hiring!</div></a><a class="menu-link" href="https://www.linkedin.com/jobs/view/3929525141/" target="_blank">We&#039;re hiring!</a>
+</div> </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> 
+<div id="ast-mobile-header" class="ast-mobile-header-wrap " data-type="off-canvas">
+<div class="ast-main-header-wrap main-header-bar-wrap">
+<div class="ast-primary-header-bar ast-primary-header main-header-bar site-primary-header-wrap site-header-focus-item ast-builder-grid-row-layout-default ast-builder-grid-row-tablet-layout-default ast-builder-grid-row-mobile-layout-default" data-section="section-primary-header-builder">
+<div class="ast-builder-grid-row ast-builder-grid-row-has-sides ast-builder-grid-row-no-center">
+<div class="site-header-primary-section-left site-header-section ast-flex site-header-section-left">
+<div class="ast-builder-layout-element ast-flex site-header-focus-item" data-section="title_tagline">
+<div class="site-branding ast-site-identity" itemtype="https://schema.org/Organization" itemscope="itemscope">
+<span class="site-logo-img"><a href="https://specmatic.io/" class="custom-logo-link" rel="home"><picture><source sizes="(max-width: 216px) 100vw, 216px" type="image/webp" data-srcset="https://specmatic.io/wp-content/uploads/2022/09/specmatic-216x51.png.webp 216w, https://specmatic.io/wp-content/uploads/2022/09/specmatic.png.webp 296w"><img width="216" height="51" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANgAAAAzAQAAAADd2PsBAAAAAnRSTlMAAHaTzTgAAAATSURBVHjaYxgFo2AUjIJRMGgAAAWUAAEbKr5LAAAAAElFTkSuQmCC" class="custom-logo lazyload" alt="The spectamatic logo featuring the Default Kit." decoding="async" data-eio="p" data-src="https://specmatic.io/wp-content/uploads/2022/09/specmatic-216x51.png" data-srcset="https://specmatic.io/wp-content/uploads/2022/09/specmatic-216x51.png 216w, https://specmatic.io/wp-content/uploads/2022/09/specmatic.png 296w" data-sizes="auto" data-eio-rwidth="216" data-eio-rheight="51"><noscript><img width="216" height="51" src="https://specmatic.io/wp-content/uploads/2022/09/specmatic-216x51.png" class="custom-logo" alt="The spectamatic logo featuring the Default Kit." decoding="async" srcset="https://specmatic.io/wp-content/uploads/2022/09/specmatic-216x51.png 216w, https://specmatic.io/wp-content/uploads/2022/09/specmatic.png 296w" sizes="(max-width: 216px) 100vw, 216px" data-eio="l"></noscript></picture></a></span> </div>
+
+</div>
+</div>
+<div class="site-header-primary-section-right site-header-section ast-flex ast-grid-right-section">
+<div class="ast-builder-layout-element ast-flex site-header-focus-item" data-section="section-header-mobile-trigger">
+<div class="ast-button-wrap">
+<button type="button" class="menu-toggle main-header-menu-toggle ast-mobile-menu-trigger-minimal" aria-expanded="false">
+<span class="screen-reader-text">Main Menu</span>
+<span class="mobile-menu-toggle-icon">
+<span class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg class="ast-mobile-svg ast-menu2-svg" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="28" viewbox="0 0 24 28"><path d="M24 21v2c0 0.547-0.453 1-1 1h-22c-0.547 0-1-0.453-1-1v-2c0-0.547 0.453-1 1-1h22c0.547 0 1 0.453 1 1zM24 13v2c0 0.547-0.453 1-1 1h-22c-0.547 0-1-0.453-1-1v-2c0-0.547 0.453-1 1-1h22c0.547 0 1 0.453 1 1zM24 5v2c0 0.547-0.453 1-1 1h-22c-0.547 0-1-0.453-1-1v-2c0-0.547 0.453-1 1-1h22c0.547 0 1 0.453 1 1z"></path></svg></span><span class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg class="ast-mobile-svg ast-close-svg" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"><path d="M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z"></path></svg></span> </span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<div id="content" class="site-content">
+<div class="ast-container">
+<div id="primary" class="content-area primary">
+<main id="main" class="site-main">
+<div data-elementor-type="single-post" data-elementor-id="1304" class="elementor elementor-1304 elementor-location-single post-4990 appearance type-appearance status-publish has-post-thumbnail hentry category-conference tag-api-testing tag-resiliency-testing tag-specmatic ast-article-single" data-elementor-post-type="elementor_library">
+<section class="elementor-section elementor-top-section elementor-element elementor-element-5fbcf7db elementor-reverse-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="5fbcf7db" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+<div class="elementor-container elementor-column-gap-default">
+<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-71b364af" data-id="71b364af" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-753a1a82 elementor-widget elementor-widget-theme-post-title elementor-page-title elementor-widget-heading" data-id="753a1a82" data-element_type="widget" data-widget_type="theme-post-title.default">
+<div class="elementor-widget-container">
+<style>/*! elementor - v3.22.0 - 26-06-2024 */
+.elementor-heading-title{padding:0;margin:0;line-height:1}.elementor-widget-heading .elementor-heading-title[class*=elementor-size-]>a{color:inherit;font-size:inherit;line-height:inherit}.elementor-widget-heading .elementor-heading-title.elementor-size-small{font-size:15px}.elementor-widget-heading .elementor-heading-title.elementor-size-medium{font-size:19px}.elementor-widget-heading .elementor-heading-title.elementor-size-large{font-size:29px}.elementor-widget-heading .elementor-heading-title.elementor-size-xl{font-size:39px}.elementor-widget-heading .elementor-heading-title.elementor-size-xxl{font-size:59px}</style>
+<h1 class="elementor-heading-title elementor-size-default">Avoiding APIpocalypse; API Resiliency Testing FTW!</h1> </div>
+</div>
+<section class="elementor-section elementor-inner-section elementor-element elementor-element-f8de1c5 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="f8de1c5" data-element_type="section">
+<div class="elementor-container elementor-column-gap-default">
+<div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-817cb88" data-id="817cb88" data-element_type="column">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-e62e563 elementor-widget elementor-widget-shortcode" data-id="e62e563" data-element_type="widget" data-widget_type="shortcode.default">
+<div class="elementor-widget-container">
+<div class="elementor-shortcode">
+<strong>Presenter:</strong> Naresh Jain
+<br>
+<strong>Event:</strong> <a href="https://confengine.com/conferences/selenium-conf-2024/proposal/19983/avoiding-apipocalypse-api-resiliency-testing-ftw" target="_blank"><span style="text-decoration: underline;"> Selenium Conf 2024</span></a> <br>
+<strong>Location:</strong> Online
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-29221134 elementor-widget elementor-widget-post-info" data-id="29221134" data-element_type="widget" data-widget_type="post-info.default">
+<div class="elementor-widget-container">
+<link rel="stylesheet" href="https://specmatic.io/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css">
+<link rel="stylesheet" href="https://specmatic.io/wp-content/plugins/elementor-pro/assets/css/widget-theme-elements.min.css"> <ul class="elementor-inline-items elementor-icon-list-items elementor-post-info">
+<li class="elementor-icon-list-item elementor-repeater-item-a475e37 elementor-inline-item">
+<span class="elementor-icon-list-icon">
+<i aria-hidden="true" class="fas fa-calendar-alt"></i> </span>
+<span class="elementor-icon-list-text elementor-post-info__item elementor-post-info__item--type-custom">
+21 Jun 2024 </span>
+</li>
+<li class="elementor-icon-list-item elementor-repeater-item-00c02e4 elementor-inline-item" itemprop="about">
+<span class="elementor-icon-list-icon">
+<i aria-hidden="true" class="fas fa-tags"></i> </span>
+<span class="elementor-icon-list-text elementor-post-info__item elementor-post-info__item--type-terms">
+<span class="elementor-post-info__terms-list">
+<a href="https://specmatic.io/tag/api-testing/" class="elementor-post-info__terms-list-item">API testing</a>, <a href="https://specmatic.io/tag/resiliency-testing/" class="elementor-post-info__terms-list-item">Resiliency testing</a>, <a href="https://specmatic.io/tag/specmatic/" class="elementor-post-info__terms-list-item">Specmatic</a> </span>
+</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="elementor-element elementor-element-0b6e6c3 elementor-widget elementor-widget-heading" data-id="0b6e6c3" data-element_type="widget" data-widget_type="heading.default">
+<div class="elementor-widget-container">
+<h2 class="elementor-heading-title elementor-size-default">Presentation summary</h2> </div>
+</div>
+<div class="elementor-element elementor-element-34f9080 elementor-widget elementor-widget-text-editor" data-id="34f9080" data-element_type="widget" data-widget_type="text-editor.default">
+<div class="elementor-widget-container">
+<style>/*! elementor - v3.22.0 - 26-06-2024 */
+.elementor-widget-text-editor.elementor-drop-cap-view-stacked .elementor-drop-cap{background-color:#69727d;color:#fff}.elementor-widget-text-editor.elementor-drop-cap-view-framed .elementor-drop-cap{color:#69727d;border:3px solid;background-color:transparent}.elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap{margin-top:8px}.elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap-letter{width:1em;height:1em}.elementor-widget-text-editor .elementor-drop-cap{float:left;text-align:center;line-height:1;font-size:50px}.elementor-widget-text-editor .elementor-drop-cap-letter{display:inline-block}</style> <p>As we build more complex distributed Applications, the resilience of APIs can be the linchpin of application reliability and user satisfaction. This talk will delve into practical tools and techniques used to enhance the resilience of APIs. We will explore how we utilise API specifications for simulating various input data, network conditions and failure modes to test how well the API handles unexpected situations.</p>
+<p>&nbsp;</p>
+<p>Our session will begin with an overview of API resilience—why it matters, and what it means to build robust APIs that gracefully handles flaky dependencies in real-world operations. We&#8217;ll discuss the role of contract testing in achieving resilience and how to turn API specifications into executable contracts that can be continuously validated.</p>
+<p>&nbsp;</p>
+<p>Following the introduction, we will dive into hands-on strategies for implementing these techniques into your day-to-day development and testing workflow. This includes setting up practices to run resilience tests, such as testing endpoints for handling latency, errors, and abrupt disconnections. We&#8217;ll provide examples of how to configure tools to simulate these conditions, interpret test results, and iteratively improve API designs.</p>
+<p>&nbsp;</p>
+<p>Additionally, the session will also cover how to integrate with CI/CD pipelines and practices to foster better collaboration between Architect, Developers, QA engineers, and DevOps stakeholders through shared understanding and executable documentation.</p>
+<p>&nbsp;</p>
+<p>To wrap up, we will discuss best practices for scaling API testing strategies across larger projects and teams, ensuring that resilience testing becomes a cornerstone of your API strategy rather than an afterthought.</p>
+<p>&nbsp;</p>
+<p>This talk is designed for Architect, Tech Lead, Software developers, QA Engineers, and DevOps Engineers, who are keen on enhancing API resilience. Attendees will leave with actionable insights and tools to implement robust API testing strategies that can withstand the pressures of real-world usage. Join us to learn how you can transform your API testing approach and help build systems that last.</p>
+</div>
+</div>
+<div class="elementor-element elementor-element-e27b0b3 elementor-widget elementor-widget-video" data-id="e27b0b3" data-element_type="widget" data-settings="{&quot;youtube_url&quot;:&quot;https:\/\/www.youtube.com\/watch?v=xtjFZT6nvUs&quot;,&quot;video_type&quot;:&quot;youtube&quot;,&quot;controls&quot;:&quot;yes&quot;}" data-widget_type="video.default">
+<div class="elementor-widget-container">
+<style>/*! elementor - v3.22.0 - 26-06-2024 */
+.elementor-widget-video .elementor-widget-container{overflow:hidden;transform:translateZ(0)}.elementor-widget-video .elementor-wrapper{aspect-ratio:var(--video-aspect-ratio)}.elementor-widget-video .elementor-wrapper iframe,.elementor-widget-video .elementor-wrapper video{height:100%;width:100%;display:flex;border:none;background-color:#000}@supports not (aspect-ratio:1/1){.elementor-widget-video .elementor-wrapper{position:relative;overflow:hidden;height:0;padding-bottom:calc(100% / var(--video-aspect-ratio))}.elementor-widget-video .elementor-wrapper iframe,.elementor-widget-video .elementor-wrapper video{position:absolute;top:0;right:0;bottom:0;left:0}}.elementor-widget-video .elementor-open-inline .elementor-custom-embed-image-overlay{position:absolute;top:0;right:0;bottom:0;left:0;background-size:cover;background-position:50%}.elementor-widget-video .elementor-custom-embed-image-overlay{cursor:pointer;text-align:center}.elementor-widget-video .elementor-custom-embed-image-overlay:hover .elementor-custom-embed-play i{opacity:1}.elementor-widget-video .elementor-custom-embed-image-overlay img{display:block;width:100%;aspect-ratio:var(--video-aspect-ratio);-o-object-fit:cover;object-fit:cover;-o-object-position:center center;object-position:center center}@supports not (aspect-ratio:1/1){.elementor-widget-video .elementor-custom-embed-image-overlay{position:relative;overflow:hidden;height:0;padding-bottom:calc(100% / var(--video-aspect-ratio))}.elementor-widget-video .elementor-custom-embed-image-overlay img{position:absolute;top:0;right:0;bottom:0;left:0}}.elementor-widget-video .e-hosted-video .elementor-video{-o-object-fit:cover;object-fit:cover}.e-con-inner>.elementor-widget-video,.e-con>.elementor-widget-video{width:var(--container-widget-width);--flex-grow:var(--container-widget-flex-grow)}</style> <div class="elementor-wrapper elementor-open-inline">
+<div class="elementor-video"></div> </div>
+</div>
+</div>
+<section class="elementor-section elementor-inner-section elementor-element elementor-element-7d48e25 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7d48e25" data-element_type="section">
+<div class="elementor-container elementor-column-gap-default">
+<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-9184f83" data-id="9184f83" data-element_type="column">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-91f50bf elementor-widget-tablet__width-initial elementor-widget elementor-widget-heading" data-id="91f50bf" data-element_type="widget" data-widget_type="heading.default">
+<div class="elementor-widget-container">
+<h3 class="elementor-heading-title elementor-size-default">Share</h3> </div>
+</div>
+</div>
+</div>
+<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-33b5b9e" data-id="33b5b9e" data-element_type="column">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-b2f0b01 uael-share-buttons--view-icon elementor-share-buttons--align-left elementor-widget-tablet__width-initial uael-stylex-inline elementor-grid-0 elementor-widget elementor-widget-uael-social-share" data-id="b2f0b01" data-element_type="widget" data-settings="{&quot;alignment&quot;:&quot;left&quot;,&quot;column_gap_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:7,&quot;sizes&quot;:[]},&quot;row_gap&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;row_gap_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:7,&quot;sizes&quot;:[]},&quot;button_size&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:1.1,&quot;sizes&quot;:[]},&quot;button_size_mobile&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0.85,&quot;sizes&quot;:[]},&quot;icon_size&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:24,&quot;sizes&quot;:[]},&quot;icon_size_mobile&quot;:{&quot;unit&quot;:&quot;em&quot;,&quot;size&quot;:2.9,&quot;sizes&quot;:[]},&quot;columns&quot;:&quot;0&quot;,&quot;column_gap&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;column_gap_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:10,&quot;sizes&quot;:[]},&quot;row_gap_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:0,&quot;sizes&quot;:[]},&quot;button_size_tablet&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;button_height&quot;:{&quot;unit&quot;:&quot;em&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;button_height_tablet&quot;:{&quot;unit&quot;:&quot;em&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;button_height_mobile&quot;:{&quot;unit&quot;:&quot;em&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]},&quot;icon_size_tablet&quot;:{&quot;unit&quot;:&quot;em&quot;,&quot;size&quot;:&quot;&quot;,&quot;sizes&quot;:[]}}" data-widget_type="uael-social-share.default">
+<div class="elementor-widget-container">
+<div class="uael-style-inline uael-container uael-floating-align-" data-pin_data_url data-share_url_type="current_page" data-share_url>
+<div class="elementor-grid uael-floating-align-">
+<div class="elementor-grid-item">
+<a class="uael-share-btn-facebook">
+<div class="uael-share-btn elementor-animation- uaelbtn-shape-rounded uaelbtn--skin-flat">
+<span class="uael-share-btn__icon">
+<i class="fab fa-facebook" aria-hidden="true"></i>
+<span class="elementor-screen-only">Share on facebook</span>
+</span>
+</div>
+</a>
+</div>
+<div class="elementor-grid-item">
+<a class="uael-share-btn-twitter">
+<div class="uael-share-btn elementor-animation- uaelbtn-shape-rounded uaelbtn--skin-flat">
+<span class="uael-share-btn__icon">
+<i class="fab fa-x-twitter" aria-hidden="true"></i>
+<span class="elementor-screen-only">Share on twitter</span>
+</span>
+</div>
+</a>
+</div>
+<div class="elementor-grid-item">
+<a class="uael-share-btn-linkedin">
+<div class="uael-share-btn elementor-animation- uaelbtn-shape-rounded uaelbtn--skin-flat">
+<span class="uael-share-btn__icon">
+<i class="fab fa-linkedin" aria-hidden="true"></i>
+<span class="elementor-screen-only">Share on linkedin</span>
+</span>
+</div>
+</a>
+</div>
+<div class="elementor-grid-item">
+<a class="uael-share-btn-reddit">
+<div class="uael-share-btn elementor-animation- uaelbtn-shape-rounded uaelbtn--skin-flat">
+<span class="uael-share-btn__icon">
+<i class="fab fa-reddit" aria-hidden="true"></i>
+<span class="elementor-screen-only">Share on reddit</span>
+</span>
+</div>
+</a>
+</div>
+<div class="elementor-grid-item">
+<a class="uael-share-btn-email">
+<div class="uael-share-btn elementor-animation- uaelbtn-shape-rounded uaelbtn--skin-flat">
+<span class="uael-share-btn__icon">
+<i class="fas fa-envelope" aria-hidden="true"></i>
+<span class="elementor-screen-only">Share on email</span>
+</span>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-8cc3402" data-id="8cc3402" data-element_type="column">
+<div class="elementor-widget-wrap elementor-element-populated">
+<div class="elementor-element elementor-element-6b7c7655 elementor-widget elementor-widget-facebook-button" data-id="6b7c7655" data-element_type="widget" data-widget_type="facebook-button.default">
+<div class="elementor-widget-container">
+<style>/*! elementor-pro - v3.22.0 - 24-06-2024 */
+.elementor-facebook-widget.fb_iframe_widget,.elementor-facebook-widget.fb_iframe_widget span{width:100%!important}.elementor-facebook-widget.fb_iframe_widget iframe{position:relative;width:100%!important}.elementor-facebook-widget.fb-like{height:1px}.elementor-widget-facebook-comments iframe{width:100%!important}</style> <div data-layout="standard" data-colorscheme="light" data-size="large" data-show-faces="false" class="elementor-facebook-widget fb-like" data-href="https://specmatic.io?p=4990" data-share="false" data-action="like"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="elementor-element elementor-element-9a1b815 elementor-widget-divider--view-line elementor-widget elementor-widget-divider" data-id="9a1b815" data-element_type="widget" data-widget_type="divider.default">
+<div class="elementor-widget-container">
+<style>/*! elementor - v3.22.0 - 26-06-2024 */
+.elementor-widget-divider{--divider-border-style:none;--divider-border-width:1px;--divider-color:#0c0d0e;--divider-icon-size:20px;--divider-element-spacing:10px;--divider-pattern-height:24px;--divider-pattern-size:20px;--divider-pattern-url:none;--divider-pattern-repeat:repeat-x}.elementor-widget-divider .elementor-divider{display:flex}.elementor-widget-divider .elementor-divider__text{font-size:15px;line-height:1;max-width:95%}.elementor-widget-divider .elementor-divider__element{margin:0 var(--divider-element-spacing);flex-shrink:0}.elementor-widget-divider .elementor-icon{font-size:var(--divider-icon-size)}.elementor-widget-divider .elementor-divider-separator{display:flex;margin:0;direction:ltr}.elementor-widget-divider--view-line_icon .elementor-divider-separator,.elementor-widget-divider--view-line_text .elementor-divider-separator{align-items:center}.elementor-widget-divider--view-line_icon .elementor-divider-separator:after,.elementor-widget-divider--view-line_icon .elementor-divider-separator:before,.elementor-widget-divider--view-line_text .elementor-divider-separator:after,.elementor-widget-divider--view-line_text .elementor-divider-separator:before{display:block;content:"";border-block-end:0;flex-grow:1;border-block-start:var(--divider-border-width) var(--divider-border-style) var(--divider-color)}.elementor-widget-divider--element-align-left .elementor-divider .elementor-divider-separator>.elementor-divider__svg:first-of-type{flex-grow:0;flex-shrink:100}.elementor-widget-divider--element-align-left .elementor-divider-separator:before{content:none}.elementor-widget-divider--element-align-left .elementor-divider__element{margin-left:0}.elementor-widget-divider--element-align-right .elementor-divider .elementor-divider-separator>.elementor-divider__svg:last-of-type{flex-grow:0;flex-shrink:100}.elementor-widget-divider--element-align-right .elementor-divider-separator:after{content:none}.elementor-widget-divider--element-align-right .elementor-divider__element{margin-right:0}.elementor-widget-divider--element-align-start .elementor-divider .elementor-divider-separator>.elementor-divider__svg:first-of-type{flex-grow:0;flex-shrink:100}.elementor-widget-divider--element-align-start .elementor-divider-separator:before{content:none}.elementor-widget-divider--element-align-start .elementor-divider__element{margin-inline-start:0}.elementor-widget-divider--element-align-end .elementor-divider .elementor-divider-separator>.elementor-divider__svg:last-of-type{flex-grow:0;flex-shrink:100}.elementor-widget-divider--element-align-end .elementor-divider-separator:after{content:none}.elementor-widget-divider--element-align-end .elementor-divider__element{margin-inline-end:0}.elementor-widget-divider:not(.elementor-widget-divider--view-line_text):not(.elementor-widget-divider--view-line_icon) .elementor-divider-separator{border-block-start:var(--divider-border-width) var(--divider-border-style) var(--divider-color)}.elementor-widget-divider--separator-type-pattern{--divider-border-style:none}.elementor-widget-divider--separator-type-pattern.elementor-widget-divider--view-line .elementor-divider-separator,.elementor-widget-divider--separator-type-pattern:not(.elementor-widget-divider--view-line) .elementor-divider-separator:after,.elementor-widget-divider--separator-type-pattern:not(.elementor-widget-divider--view-line) .elementor-divider-separator:before,.elementor-widget-divider--separator-type-pattern:not([class*=elementor-widget-divider--view]) .elementor-divider-separator{width:100%;min-height:var(--divider-pattern-height);-webkit-mask-size:var(--divider-pattern-size) 100%;mask-size:var(--divider-pattern-size) 100%;-webkit-mask-repeat:var(--divider-pattern-repeat);mask-repeat:var(--divider-pattern-repeat);background-color:var(--divider-color);-webkit-mask-image:var(--divider-pattern-url);mask-image:var(--divider-pattern-url)}.elementor-widget-divider--no-spacing{--divider-pattern-size:auto}.elementor-widget-divider--bg-round{--divider-pattern-repeat:round}.rtl .elementor-widget-divider .elementor-divider__text{direction:rtl}.e-con-inner>.elementor-widget-divider,.e-con>.elementor-widget-divider{width:var(--container-widget-width,100%);--flex-grow:var(--container-widget-flex-grow)}</style> <div class="elementor-divider">
+<span class="elementor-divider-separator">
+</span>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-718cc02 elementor-widget elementor-widget-html" data-id="718cc02" data-element_type="widget" data-widget_type="html.default">
+<div class="elementor-widget-container">
+<div class="commentbox"></div>
+<script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
+<script>commentBox('5678298390593536-proj')</script>
+</div>
+</div>
+<div class="elementor-element elementor-element-4e58aa7 elementor-widget-divider--view-line elementor-widget elementor-widget-divider" data-id="4e58aa7" data-element_type="widget" data-widget_type="divider.default">
+<div class="elementor-widget-container">
+<div class="elementor-divider">
+<span class="elementor-divider-separator">
+</span>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-022a92c elementor-post-navigation-borders-yes elementor-widget elementor-widget-post-navigation" data-id="022a92c" data-element_type="widget" data-widget_type="post-navigation.default">
+<div class="elementor-widget-container">
+<div class="elementor-post-navigation">
+<div class="elementor-post-navigation__prev elementor-post-navigation__link">
+<a href="https://specmatic.io/appearance/the-next-frontier-unveiling-tm-forums-async-api-for-a-new-era-of-event-driven-architectures/" rel="prev"><span class="post-navigation__arrow-wrapper post-navigation__arrow-prev"><i class="fa fa-angle-left" aria-hidden="true"></i><span class="elementor-screen-only">Prev</span></span><span class="elementor-post-navigation__link__prev"><span class="post-navigation__prev--label">Previous</span><span class="post-navigation__prev--title">Hackathon &#8211; The Next Frontier: Unveiling TM Forum’s Async API for a New Era of Event-Driven Architectures</span></span></a> </div>
+<div class="elementor-post-navigation__separator-wrapper">
+<div class="elementor-post-navigation__separator"></div>
+</div>
+<div class="elementor-post-navigation__next elementor-post-navigation__link">
+<a href="https://specmatic.io/appearance/unshackling-your-system-under-test-shift-left-testing-through-dependency-isolation/" rel="next"><span class="elementor-post-navigation__link__next"><span class="post-navigation__next--label">Next</span><span class="post-navigation__next--title">Unshackling Your System Under Test: Shift-Left Testing Through Dependency Isolation</span></span><span class="post-navigation__arrow-wrapper post-navigation__arrow-next"><i class="fa fa-angle-right" aria-hidden="true"></i><span class="elementor-screen-only">Next</span></span></a> </div>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-abe53a2 elementor-widget-divider--view-line elementor-widget elementor-widget-divider" data-id="abe53a2" data-element_type="widget" data-widget_type="divider.default">
+<div class="elementor-widget-container">
+<div class="elementor-divider">
+<span class="elementor-divider-separator">
+</span>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-aa9387f elementor-widget elementor-widget-heading" data-id="aa9387f" data-element_type="widget" data-widget_type="heading.default">
+<div class="elementor-widget-container">
+<h3 class="elementor-heading-title elementor-size-default">Transcript</h3> </div>
+</div>
+<div class="elementor-element elementor-element-b5324b4 elementor-widget elementor-widget-text-editor" data-id="b5324b4" data-element_type="widget" data-widget_type="text-editor.default">
+<div class="elementor-widget-container">
+<p>Hey guys. Welcome everyone. We have Naresh Jain with us for the today&#8217;s topic that is avoiding the API callups or an API resilience testing. Over to you Naresh.</p>
+<p>Naresh Jain:<br>
+Thanks Shallabh for the wonderful introduction. Thanks everyone for joining in. So cool in terms of, you know, I would like to keep this interactive and make sure that you&#8217;re able to get the most out of this session. So please do, you know, keep your chat windows open. I&#8217;m going to keep asking you for questions and hoping that you can put comments in the chat window and that&#8217;s how we will be able to interact. Also, I think you would be able to show hands when I ask questions and that would give me feedback if everyone&#8217;s following along with me. So cool. Fancy background generated by chat GPT that&#8217;s kind of become a must have for every conference talk these days.</p>
+<p>Naresh Jain:<br>
+So that&#8217;s what I have to do. But this talk is really about my experience of building really resilient APIs that work at really large scale. And so this is kind of some of the background around how to make that happen in your own organization. So with that, I&#8217;m going to quickly jump in. I&#8217;m going to take a quick example here to just explain the architecture of an application, and then we will have a little bit of a questions in terms of how we will make these things resilient. Okay, so I&#8217;m going to take again something that all of you must be very familiar. You have an app, the app makes a request to a backend for front end. This backend for front end may depend on one or more actual domain services.</p>
+<p>Naresh Jain:<br>
+So it makes a request to the domain service, it gets a response back from the domain service, it does some business logic, and then it basically posts a message on a Kafka topic so that an analytic service could pick up and do its thing and then get back the response to the application. Right? Like this is a very simple application, but there are a lot of things that actually can go wrong in this simple application. So I want you to think about from a resiliency point of view, let&#8217;s say I am thinking about this BFF layer over here. Let me quickly highlight that. So let&#8217;s say I have this BFF layer and I want to make sure that this BFF layer is very resilient. Subsequently, we will also make sure that this domain service is also very resilient. And finally, we also want to make sure that this Kafka guy is also very resilient. So these are all the pieces that technically could have some kind of a fault or some kind of a problem, and that could make the overall experience for the user, uh, who&#8217;s using the app, not so pleasant.</p>
+<p>Naresh Jain:<br>
+Right. So we, uh, our, our job here, uh, you know, as quality engineers, is to make sure that the experience here on the app is seamless, which means the, uh, these various moving parts that we depend on are actually very resilient. Right. So in your chat windows, if you can quickly, uh, you know, put, what are the kinds of things that can actually go wrong? Of course, here, I&#8217;m just highlighting that these have API specifications and async API specifications as well. But what are the kinds of things, from a resiliency point of view, that you think can go wrong in this case, if you can just pop open your chat windows and put in there, it&#8217;ll be helpful. I see network latency. Network latency between these services could cause a problem. Certainly server could go down with server, there are many servers here, and any one of them could go down, and we don&#8217;t really seem to have a redundancy in place, at least in this simplistic diagram that I&#8217;ve shown you.</p>
+<p>Naresh Jain:<br>
+So that&#8217;s certainly a good possibility. The response time and network latency, both of those could be certainly an issue. Kafka could choke the topics on Kafka. We could overwhelm Kafka and it may not be able to process, and then that might get choked too many requests at a time. So you could have a runaway success, and your app could be maybe downloaded by billions of people and they all try and hit this thing, and then there might be too many requests. That is basically causing a problem. There could be disk, the disk usage. When you&#8217;re trying to write logs or database or things like that, you may have disk issues.</p>
+<p>Naresh Jain:<br>
+So very good. I mean, there are several such problems that, as you guys have highlighted, that can occur, that can cause problem from a resiliency point of view, for your services. So what kinds of testing would you now perform to make sure that your application is actually resilient? So a lot of you talked about the kinds of problems that can occur to, but now what kind of testing would you do to ensure that your service is resilient? Can you go ahead and put that in chat? Okay, so I see chaos testing. I see load testing. Very good. What else do you anticipate? What happened? If only Kafka down, then how do we resolve it? Yeah, I mean, but what kinds of testing would you do? I see NehA is saying contract testing, Jeetu is saying chaos and resiliency testing. Okay, so load testing, couple of chaos testing, contract testing, any other kinds of things, like something even more simpler that I think is important to make sure that we test. Okay, maybe let me jump ahead and get to it.</p>
+<p>Naresh Jain:<br>
+So here&#8217;s, in my opinion, not an exhaustive list, but a kind of more pragmatic list that you would use on a day to day basis when you&#8217;re testing resiliency of your services. The first and the very simple one that I think a lot of us already practice is the negative functional testing, where you&#8217;re doing boundary value testing, where you&#8217;re doing equivalence partitioning, we&#8217;re doing invalid data types, schema, invalid validations, where you&#8217;re testing for format validations, underflow overflow kind of conditions and stuff like that. These are all in the realm of functional testing, but more negative functional testing. So this is like bread and butter in my opinion. We would do this very often. The little bit more than sophistication on top of that could be service dependency testing. And I think NehA already pointed out contract testing. But backward compatibility testing is also very important from a resiliency point of view.</p>
+<p>Naresh Jain:<br>
+If a new version of your app or BFF API was released and that made a backward breaking change, then basically the apps will face an issue. So that also will make your service non resilient or non available. And a lot of people talked about chaos engineering and chaos testing in general. So under chaos engineering, you have several different kinds of testing. The first one is fault injection testing. So you may inject or induce a fault by bringing down a service. To see how resilient the services, you may want to do failover testing, which is basically you bring down, you know, if you have multiple pods, you bring down one of them and see if the traffic fails over to the other pods without causing a outage. Right.</p>
+<p>Naresh Jain:<br>
+You may also want to test for like for example, recovery from a database. So you might want to, you know, try and restore from, you know, your database backup and see if that recovery testing is working fine. You may want to do partial failures in your network, and you may want to see if it&#8217;s still responding within the given SLA. From a response time perspective, you may do a lot of chaos engineering and related chaos testing in this context. Let&#8217;s move a little bit more. Some people already talked about performance testing in performance testing. Also, we have several different types of performance performance testing, starting with load testing, then stress testing, soak testing. You know, things perform well for a few hours, and then maybe a few hours later or a few days later, suddenly things start becoming slow and there may be memory leaking, memory leak issues.</p>
+<p>Naresh Jain:<br>
+There may be file descriptor running out of file descriptor or disk or other kinds of things that may cause these kinds of issues. So soak testing becomes again very important from that perspective. Latency testing, concurrency testing. You know, what happens if the exact same user is logged in from two devices and is trying to make a request, which one gets honored? How does it work? So those kinds of concurrency testing and just bombarding the service with a lot of requests as well, but that is already covered under load testing. Of course, security testing is very important, from SQL injection to cross site scripting to unauthorized access to session expiry, whether the sessions are expiring correctly. You may then have a host of penetration testing or pen tests that you might do. You may want to do DDoS attacks to make sure your firewalls and other kinds of things are resilient and they are holding up things. And of course people may do vulnerability scans to try and find known vulnerabilities that they can exploit and so forth.</p>
+<p>Naresh Jain:<br>
+So again, that&#8217;s important from a testing point of view. And finally, of course, in spite of all of this testing, you may still want to make sure that you test your observability model monitoring and alerting itself, that it does give you the alert at the right time, whether the right data is being visible on the dashboards, and whether you&#8217;re able to do deep tracing and other kinds of observability related practices. So all of these things, in my opinion, again, not an exhaustive list, but something that we use on a very regular basis at work, is what I would categorize under resiliency testing. Of course, this session unfortunately is only 45 minutes long, and I won&#8217;t be, be able to cover each and every topic in detail. But my hope is to cover the things on the left side and show you some actual demos of how we would go about doing things from a functional testing, negative functional testing, the dependency pieces, contract testing specifically, and then a little bit of fault injection related testing. So we will cover the ones on the left, the ones on the right. I think we might need a separate session, but I just wanted, from a completeness point of view, one or two, call these things out. Okay.</p>
+<p>Naresh Jain:<br>
+So jumping in, right, like the first thing that I want to kind of tackle today is both the negative functional API testing and service dependency testing. And here I want to introduce you to the concept of contracts, API contracts and how you could actually leverage API contracts to be able to do to tick off these two boxes for you, right? But often people say hey, what is a contract? There is a lot of confusion in terms of what does an actual contract mean? So I&#8217;m going to take a quick minute and just kind of set the stage. So make sure that we&#8217;re all on the same page when it comes to what is a contract, right? So let&#8217;s imagine I want to evaluate this expression, right, 30.1 into 43.74 plus 22 divided by seven. So if you think about it, I might first make a request for 30.1 into. So I would evaluate the multiplication, then I would evaluate the division, and then I would take the results from both, and then I would add the true and that would give me the final answer, right? Like, so this is a very simple interaction. I can now represent this more like an API call that all of us can relate to. So this is, you know, I&#8217;m posting a message to slash calculator with a left hand side, a right hand side and an operator, and essentially doing the same for the three multiplication, division and addition. I&#8217;m hoping this is something everyone can relate to, right? So now from an API testing point of view, something that all of you are familiar with, from an API testing point of view, what are the kinds of tests one would consider doing on this, right? So I might send, you know, 30.1 and 43.74 multiply and I would expect a 200 response back with this kind of a result, right? That is what I would validate or assert in my test.</p>
+<p>Naresh Jain:<br>
+Then of course I would also store the result because I want to add this later. I might also want to do negative numbers and see if negative numbers are being handled correctly or not. I should get back a negative result in this case. I might want to do a little bit of now we&#8217;re getting into data type validation and boundary conditions and things like that where I might want to send ABC and see what happens. Of course you should be getting 400 bad requests with saying invalid. Left hand side value, the response type, the HTTP response type, or rather HTTP status and the error message are all important to be validated in your tests. You may also want to play around with the operator itself. The operators are fixed and they are of specific type.</p>
+<p>Naresh Jain:<br>
+But if you try and send something that&#8217;s completely invalid again, you should get a 400 response back with a valid reason for it. So these are all, I&#8217;m hoping kinds of things that one would perform. These are more on the functional negative, positive and negative side of things that one would kind of perform. In this case, of course you can chain these methods together and then do API workflow tests. But here, let&#8217;s just focus on the API test point of view. Now, coming back to the original question, what is the contract? I think someone mentioned that we can do contract testing. So what does a contract mean in this case? Right, there is a specific agreement between the consumer of the service and the provider of the service in terms of the data types, the schema, the API signatures, the possible response codes and so forth that has been agreed upon. That&#8217;s what is the API signature or the API contract, if you will.</p>
+<p>Naresh Jain:<br>
+There is one very popular specification format for capturing this. It&#8217;s called OpenaPi specification. The older name for this is Swagger. A lot of you might be familiar with swagger. Openapi has been around for a while as well. So Openapi is one way in which you can basically say, hey, this is my OpenAPI 3.0 version of the specification and I have a path called slash calculator. It has a post method and it can have possible 200 responses. It can have 400 responses.</p>
+<p>Naresh Jain:<br>
+And here is the request body that it can take, which is basically has a left hand side, a right hand side and an operator. So as you can see, all three are required. But you&#8217;ll also notice that the op, which is operation, is a type of enum which can be only these four possible values. Now this I would say is a pretty decent contract that basically would allow what the provider and the consumer have agreed upon to be captured pretty nicely in this document. Now once you have this, the advantage of this is that a lot of these tests that you&#8217;re looking at in terms of basically if I send two valid numbers in the left hand side and right hand side, and I pick one of the operations from the enum that is there, then I expect a 200 result back with positive, like with the positive number. Right. Similarly, I could generate these tests. I could also generate these tests.</p>
+<p>Naresh Jain:<br>
+So what ends up happening is now from a resiliency testing point of view, and from a contract testing point of view, a lot of this can be taken care for you without you having to write all of these things. So that much feedback is shifted left to the developers and they can get this feedback right away in their ide. Right? So that&#8217;s kind of quickly just explaining what a contract test can do. Now, how does this, doing this help you improve your resiliency? So there&#8217;s two parts to it. One is now you don&#8217;t really need to keep sitting and manually verifying or writing automated API tests for things like these. These automated tests can be generated right into the, in the developer&#8217;s ide and they could get this feedback in terms of basically ensuring that they&#8217;re sticking through the contract. Right. And if things outside the contract is presented to them, then the provider can gracefully handle them.</p>
+<p>Naresh Jain:<br>
+The provider can gracefully handle them on the API side and respond back with valid status codes and response messages. That reduces a number of things you have to worry from a resiliency point of view. Now you can take this even better and even further and try and do a lot of the boundary case conditions. You can do several other kinds of, including fault injection. And that&#8217;s kind of the next section. Once we understand this so far, what you will notice is in this specific example, what I explained to you. We&#8217;ve taken inspiration from a couple of different styles of testing, and I think it&#8217;s important to understand those different styles of testing that were at play. You will notice here that we try to intentionally introduce a, a variant of the request that was not a valid variant and we wanted to make sure that that came back with a 400 bad request.</p>
+<p>Naresh Jain:<br>
+Right. So that&#8217;s kind of a little bit of what mutation testing is all about. Right. Quick show of hand, if you&#8217;re familiar with mutation testing is something you practice at your work. Okay, I see two people. That&#8217;s great. Perfect. So that&#8217;s fine.</p>
+<p>Naresh Jain:<br>
+Don&#8217;t worry. I&#8217;m going to take a few minutes to explain what mutation testing is. I also have a sample example for you to kind of walk you through. But the idea is very simple. In fact, this is kind of a little bit, I think it&#8217;s worth like a little side tour here and talk about some of the genesis of this. Right? I don&#8217;t know if you guys remember back in the days when Agile was in its glory days and everyone was like, you know, agile and scrum everything. One of the things that became very caught like a wildfire and a lot of companies was basically having code coverage. Everything should have at least 70% code coverage in some organizations went even more crazier and they said 80% or 90%.</p>
+<p>Naresh Jain:<br>
+And what ended up happening is a lot of organizations, engineers under pressure to basically ship things. But the criteria was you had to have 80 or 90% code coverage. What they started, ended up doing is they just started writing tests without having assert statements or without kind of doing things. And that would give you the code coverage, which is what the management wanted, but really didn&#8217;t get much benefit because the assertions were not good, the quality of the tests were not great, and so forth. People just wrote them to tick a box and move forward, right? And then the leadership woke up after some time and they&#8217;re like, hey, we, you know, we&#8217;ve invested so much, we&#8217;re getting people to write all these unit tests, and we have like 80% coverage, but still the bug leakage is very high. You know, we&#8217;re still not able to catch these words going wrong, right? And that&#8217;s where I remember going to a few organizations and saying, well, how do you know the quality of your code and the quality of your tests is good? And they said, of course it is good because the coverage is very high. I was like, coverage just tells you intentionally or accidentally what got covered. It doesn&#8217;t tell you anything about the quality of the test.</p>
+<p>Naresh Jain:<br>
+And that&#8217;s kind of when mutation testing was introduced into a lot of organizations. So what mutation testing does is it takes your source code. It mutates your source code. It basically changes certain, like, for example, if there&#8217;s an and condition, it&#8217;ll make it, it&#8217;ll turn it or condition. It&#8217;ll, like, start try to mutate your code, right? And it&#8217;ll produce mutants of, of that particular code. And then it&#8217;ll take your test cases and run against the mutants. And it would expect that you should be able to kill all these mutants, you know, what does that mean? That basically means that the test should fail when you run against the mutant, which shows that the test is actually able to catch silly mistakes or able to catch problems in the code, right? And if the mutant survived, that basically means your tests are no good, right? Like, they&#8217;re not able to catch these mutants. These are intentionally introduced, you know, bugs or errors in the, in the code, and you would expect that your test should catch it.</p>
+<p>Naresh Jain:<br>
+And ideally you should, when you run this mutation test, if you&#8217;re written high quality code and high quality tests, then all mutations will not survive and everything will be caught. That&#8217;s what will give you confidence that mutation testing, that is what is, you know, hi. Let&#8217;s look at this example. Okay? I have a very simple class of us. Let me show you the tests. What I&#8217;m doing here, essentially, is I&#8217;m basically, you know, creating durations, and I&#8217;m verifying that. It&#8217;s giving me the closest matching duration for a given set of tests. What we will do here is we&#8217;ll quickly run these tests and we will see what happens.</p>
+<p>Naresh Jain:<br>
+It&#8217;s a very small piece of code. Has only about five tests. And at this point, you will see all five tests have passed. The code here is just trying to find you the closest matching duration for a given last seen time. In a lot of apps, you would see in WhatsApp, for example, you&#8217;ll see last seen 1 minute ago or 5 hours ago or five days ago. So it gives you like the closest matching last duration based on your last activity time. Right. That&#8217;s what this little program is doing.</p>
+<p>Naresh Jain:<br>
+So now let me basically run this guy, okay, and let&#8217;s see what happens. I&#8217;m basically running mutation testing. I&#8217;m using a tool called pit for mutation testing. And then I&#8217;m also getting jacoco to produce micro report. All right, so it&#8217;s done its magic. I hope you can see the screen. So here it says, well, I have 100% branch coverage. I have 100% line coverage.</p>
+<p>Naresh Jain:<br>
+So everything basically in this code is fully covered. So this should mean that essentially the code that I have written is very high quality, of course, and it&#8217;s covered, so there shouldn&#8217;t be any problem at all. And I should be able to ship this into production. Correct. I&#8217;ve got 100% line coverage. I&#8217;ve got 100% branch coverage. What could possibly go wrong? Well, let&#8217;s quickly look at, you know, what the mutation testing report says. You know, so mutation testing bit in this case generates a very similar report.</p>
+<p>Naresh Jain:<br>
+And you would see that it&#8217;s saying, well, sure, you have full coverage on, in terms of line coverage, 100%, but your mutation coverage is actually only 17. Right? So out of six mutants that we produced, your test is able to only catch one of the mutants, which means your quality of the test is pretty poor. Right. So let&#8217;s look at what actually went on here. Okay, I&#8217;m going to zoom in this a little bit. And here it gives you the list of mutations that it performed, and it highlights the one that survived in red, which is bad News, and the one that it killed in, you know, in green, which is good news. So you&#8217;d see that replace long substitution subtraction with addition. Right.</p>
+<p>Naresh Jain:<br>
+So there is a subtraction that it replaced with addition over here. And then it&#8217;s. It tried to see if, after making the change, ideally your test should have failed. Right. But in this case, my test did not fail. You know, it still continued to work. So what do you think went wrong? Okay, well, what went wrong is basically, let&#8217;s go look at the tests. You would see that, you know, by mistake, instead of saying assert equals, I&#8217;ve basically said assert not null.</p>
+<p>Naresh Jain:<br>
+So basically, whatever came back, just make sure that it&#8217;s not null, right? And I&#8217;m not really asserting it should be 1 minute ago, which is what it should have done, but I&#8217;ve just asserted it&#8217;s not null. And while this might look silly, I can tell you there&#8217;s so many places where you would see tests written this way. So let&#8217;s basically try and fix this. I&#8217;m just going to uncomment this out. And then let&#8217;s basically run all our tests. Let&#8217;s make this assert equals, and then I&#8217;m going to do the same thing. Just run this. Notice that it&#8217;s pretty fast.</p>
+<p>Naresh Jain:<br>
+It gives you the mutation, you know, coverage pretty quickly. And okay, branch coverage is of course still hundred. But now you&#8217;ll see the mutation score has also gone 100%, which means that all the different mutants that it produced, we were able to catch all those mutants and we were able to, our test was able to kill all those mutants. So this is one example that basically ensures that your code is very resilient. You&#8217;re intentionally introducing these mutants and trying to verify whether they break or not. So we are doing this more from a unit test point of view, but the concept applies across. The point of explaining this is to make sure that you understand the concept. That&#8217;s the first concept that we took inspiration from.</p>
+<p>Naresh Jain:<br>
+There is a second concept that I&#8217;m going to introduce that we can take inspiration from. I&#8217;m hoping everyone&#8217;s clear with mutation testing. So I&#8217;m going to move ahead. I might run short of time. So the second concept that is important to understand is essentially property based testing. In property based testing, what we do is we basically define the system as a set of properties that it adheres to and then generate lots and lots of different data to make sure that under all those conditions, those properties are still held true by the tests, by the system. What does that mean? This seems a little bit too much mouthful, right? So let&#8217;s try and look at an example and see if that kind of makes sense. So let&#8217;s look at here.</p>
+<p>Naresh Jain:<br>
+I&#8217;m going to try and increase the font a little bit. Maybe too much. Okay, so I have a simple sorting test, right? Maybe before that, let&#8217;s look at this test. This is a little bit more easier for people to groke. And so what I&#8217;m trying to do is I&#8217;m trying to reverse a list and I&#8217;m making, I want to make sure that my reverse method is actually, you know, doing what it&#8217;s supposed to do. So one way that a lot of you might be used to writing unit tests is something like this, right? So I would basically say, here&#8217;s a list, one, two, three. You know, this is the, my collection that I&#8217;m interested in testing and specifically the reverse method inside that. And then I would say reverse this and then assert that it contains exactly three to one and is equal to this order list.</p>
+<p>Naresh Jain:<br>
+Exactly three to one after reversing. This is typically how one would write unit tests for testing things like this, but this may not be sufficient. Then you might think, okay, what happens if the list contains only one? Or what happens if the list is empty? Or what happens if the list has hundreds of element, like, do I need to sit and manually test each of these combinations? That might be too much to write all of these. So what ends up happening is there is a property that you can say that when I reverse the list twice, I should get back the original rest. That&#8217;s now a property of reverse. Reversing something twice gives you back the original thing. So that&#8217;s what we are trying to do here is we are trying to say basically reverse. Reverse should be equal to the original list.</p>
+<p>Naresh Jain:<br>
+And the original list now could be an empty list, could be a single item list, could be a multi item list. And essentially if you run this test, then it would test for all these different combinations for you. I&#8217;m just going to quickly run this. This is really not showing you the power of property based testing yet, but this is just showing you how to think in terms of properties. This is a round trip test, we would say, where you&#8217;re basically adding something twice, you&#8217;re doing something twice to get back original thing. So it&#8217;s a round trip in that sense. And that&#8217;s one of the common ways in which people kind of generally do. Sorry, I ended up kicking a wrong one.</p>
+<p>Naresh Jain:<br>
+So you should see four tests and all four tests passing. This is fine, but I still had to write all these different combinations myself. So can I do something even better than this? So let&#8217;s go look at a slightly different property test, which will kind of make this even more interesting for you, is I have a property that, you know, I should be able to sort a list, and after I sort the list, you know, everything should be in a sorted order. So what I&#8217;m doing is I&#8217;m giving an unsorted list. I&#8217;m saying sort ascending and then I&#8217;m verifying it asserted. Now, in this case, when I run this test, it&#8217;s going to go ahead and test it with a several different combinations over here. And then it will tell me that with all those combinations, your sorting is working fine. But for some reason, let&#8217;s say I ended up making a mistake in my algorithm.</p>
+<p>Naresh Jain:<br>
+Let&#8217;s say I did something like this. That&#8217;s my main method that I&#8217;m sorting. Then what should happen? Of course, this one still passed because I&#8217;m not really checking for the zero condition. And you can see that this guy is warning me, right? But like, the mistake could be me actually putting here zero, which means they are equal. Okay, will this catch it? And certainly it did. What was the error message? So it says it tried 22 different combinations. It tried one of these combinations, and after sorting, you know, it got this result back versus it should have got minus 10 and one back. And it&#8217;s tried several different combinations for you.</p>
+<p>Naresh Jain:<br>
+And finally, it kind of distills down to one example that can demonstrate where things went wrong. So again, notice here, unlike in the previous case, I didn&#8217;t write all those different combinations myself. I simply defined this as a property. And this allowed me to simply go ahead and generate several different combinations for you. For me. So I&#8217;m just going to fix this back and make sure that I leave the test in a working state. But that&#8217;s an example of a property based testing where we basically defining a property. In this case, in the previous case, it was a round trip.</p>
+<p>Naresh Jain:<br>
+In this case, we are saying after ascending, this is how sorting should work. And this will then allow you basically generate a whole bunch of different examples and make sure under all kinds of conditions, your sorting is still working as expected. So this is like a second inspiration from testing and optimizing your testing point of view to make things more resilient. Now, how do these two make sense? So now let&#8217;s try and put all of these together, and then we should be able to quickly wrap up the session at the end of this. How much time do I have left? Shalab?</p>
+<p>Speaker A:<br>
+We have 14 minutes left.</p>
+<p>Naresh Jain:<br>
+14 minutes. Perfect.</p>
+<p>Speaker A:<br>
+Yes.</p>
+<p>Naresh Jain:<br>
+Awesome. Okay, so that is good. I am at the right time.</p>
+<p>Speaker A:<br>
+Yeah.</p>
+<p>Naresh Jain:<br>
+So now remember, we go back to this example, and I want to take some of these learnings that I showed you in terms of mutation testing, in terms of property based testing, and try and bring it back to a more real world examples where we are trying to test APIs and see how that can be leveraged. So let&#8217;s say my system under test is the BFF layer. This is what I&#8217;m interested in testing. These are my dependencies for the BFF. And I want to basically abstract the dependencies away, then the app itself is the test. But I don&#8217;t really want the app. I&#8217;m going to replace that with a, with a different thing that would basically test the BFF for me and it&#8217;ll stub out. I&#8217;m going to stub out the domain service and the Kafka piece so that I&#8217;m able to test under all different conditions and make sure that the BFF itself is resilient.</p>
+<p>Naresh Jain:<br>
+Right. So by doing this, I would be able to inject faults because that&#8217;s under my control now. And see if the BF works fine. I might be able to give it all kinds of boundary case inputs and make sure that it performs correctly. But something has to guide us in terms of how to give all these boundary case tests and so forth. And that&#8217;s where, you know, we leverage an OpenAPI specification and we derive properties out of it. Right. So in, in the previous case, you saw that, you know, you had to write the property by hand, which is fine.</p>
+<p>Naresh Jain:<br>
+But in this case, what we&#8217;re going to do is we&#8217;re going to take the open API specification or the Async API specification. We&#8217;re going to derive properties out of it at runtime and then generate tests on top of that to be able to test if your BFF is resilient or not. Okay, so let&#8217;s quickly jump into a live demo and see what happens. So I&#8217;m going to quickly go here to this example, and I&#8217;m going to run my contractor, and I&#8217;ve introduced an error intentionally here so that we can see what happens. Let me just show you the test that I have. Hopefully you can see this. This is the test that I have. So this is basically saying where the application is running, the host and Portland.</p>
+<p>Naresh Jain:<br>
+I am basically saying, where are my stubs for the dependencies that I have and where is Kafka running? So I would be able to basically, and of course, real Kafka broker is not running. We&#8217;ve stubbed that out. We have a in memory stubbed out version of the Kafka broker, and then we start our application and then we have basically a teardown. That&#8217;s it. But where are the tests? I have a setup and I have a teardown. I don&#8217;t see any tests here. Okay, that&#8217;s interesting. So let&#8217;s see what happened here.</p>
+<p>Naresh Jain:<br>
+Nothing should have run. Oh, because I&#8217;ve not written any tests. I expected nothing to run. But I see 90 tests have run here. You see 90 tests have run, 81 have passed and nine have failed. Where did all these tests come from? Let&#8217;s look at one of these tests which basically saying I&#8217;m testing a positive scenario on post slash products and I&#8217;m testing for a 201 success case. Okay, so what we will see here is our tests have made a post request to slash products and essentially it is sentence this payload as the input to the request and then it&#8217;s got a response back from the server saying 200, ok, and it&#8217;s given an id eight. And it&#8217;s basically said well if that&#8217;s the case then all of this looks good and I&#8217;m going to pass this test.</p>
+<p>Naresh Jain:<br>
+And then it&#8217;s got another test where it&#8217;s kind of doing something very similar. IPhone book one. If you notice in the previous case we were doing iPhone Gadget 100, in this case we are doing iPhone book inventory one. And again we got a result back and everything looks good. So this guy is saying, well, I&#8217;ll pass this test. So it&#8217;s generated a whole bunch of these request payloads and it&#8217;s verified the response payload and made sure that that is as per the properties that we have derived from the specification. Where is our specification? Let&#8217;s look at our specification. Let&#8217;s look at this in this.</p>
+<p>Naresh Jain:<br>
+So what you will see is this is my specification that I&#8217;ve opened, that is the BFF API specification. This is like I highlighted earlier, this is an open API specification. And essentially in this you would see there are three different parts, find available products, orders and slash products. Slash products has only one method, which is a post method and it can respond back with 201, 400 and 503. Okay, so this is really what, you know, this testing tool that we&#8217;re using here has gone and looked at and then it&#8217;s derived certain properties from it and basis that it&#8217;s generated a bunch of positive tests for us. But it didn&#8217;t just stop at a bunch of positive tests. You would also see that it&#8217;s generated a bunch of negative tests for us. So let&#8217;s look at one of the negative tests and see what happened here.</p>
+<p>Naresh Jain:<br>
+Right. So again, we&#8217;re looking at post slash products and it&#8217;s made a request and notice here this time and the name also suggests here that request body name string mutated to now. Okay, so it&#8217;s intentionally mutating the name to null, but name itself, as you will see here in the request body, is a mandatory field and it&#8217;s a non nullable field. Okay? So it cannot be null. But from what we had learned from mutation testing is I&#8217;m actually producing a mutant of not the source code in this case, but a mutant of my request. And I&#8217;m basically sending that request and I&#8217;m seeing whether there are validations that the developer has implemented correctly or not. The API developer, have they implemented the correct validations for this or not? And sure enough, when I send a null, the servers responded back with a 400 bad request and it&#8217;s given me in the format, I&#8217;m expecting the error message. And it&#8217;s basically given a parse error saying you cannot instantiate this, which is, which is fine.</p>
+<p>Naresh Jain:<br>
+I mean, maybe it&#8217;s a little too leaky abstraction at this point, which maybe could have summarized this a little better, but that&#8217;s fine. At least I&#8217;m happy that there is a validation in place. Right.</p>
+<p>Shallabh Dixitt:<br>
+So what I think is running out of time. It&#8217;s 46 we have. Okay, yeah, sorry to interrupt. And we have one question from Neha, who like to take it up in between one question.</p>
+<p>Naresh Jain:<br>
+Sure, sure. Yeah.</p>
+<p>Shallabh Dixitt:<br>
+Neha says that sometimes the backend for front end, when the passing incorrect response and the correct data saved in the redis, then also they are getting the correct response from the Kafka itself. So how this can be identified.</p>
+<p>Naresh Jain:<br>
+Yeah, so that&#8217;s a great question. When I&#8217;ll answer the second piece. First is essentially when a downstream dependency like Kafka or redis or whatever, right. Like that&#8217;s basically giving you back here because you are able to stub it up, you can have a control over what is going to give you. But if you&#8217;re using a real Kafka, then you don&#8217;t have control over it. And that&#8217;s generally the problem where you won&#8217;t be able to do all kinds of resiliency testing. But in this case you&#8217;re actually able to stub it out. And in your test you&#8217;d be able to set expectation that, like I showed you.</p>
+<p>Naresh Jain:<br>
+Let me quickly jump here. There is, if I go in my tests resources, you will see there&#8217;s a whole bunch of stubs that have actually got generated. And in one of these stubs you will see I&#8217;ve intentionally put a delay of 5 seconds. Now I&#8217;m controlling that the domain service when it responds back. Or in this case, if the Kafka were to not create a topic, and I&#8217;m still putting something on that topic or things like that, I&#8217;m intentionally introducing a delay over here and I&#8217;m making sure that my service, when it times out, is handling it gracefully. So that&#8217;s, hopefully that&#8217;s kind of the answer. Is that don&#8217;t rely on the actual database or the actual service or things like that because you don&#8217;t have control over that. Instead, you would be able to induce this and you&#8217;d be able to stub it out and then induce the fault and have a control over that.</p>
+<p>Naresh Jain:<br>
+And those can be controlled through your tests.</p>
+</div>
+</div>
+<div class="elementor-element elementor-element-3ea763e2 elementor-widget-divider--view-line elementor-widget elementor-widget-divider" data-id="3ea763e2" data-element_type="widget" data-widget_type="divider.default">
+<div class="elementor-widget-container">
+<div class="elementor-divider">
+<span class="elementor-divider-separator">
+</span>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-2b93fbba elementor-widget elementor-widget-heading" data-id="2b93fbba" data-element_type="widget" data-widget_type="heading.default">
+<div class="elementor-widget-container">
+<h4 class="elementor-heading-title elementor-size-default">More to explore</h4> </div>
+</div>
+<div class="elementor-element elementor-element-4afe6b5 elementor-post-navigation-borders-yes elementor-widget elementor-widget-post-navigation" data-id="4afe6b5" data-element_type="widget" data-widget_type="post-navigation.default">
+<div class="elementor-widget-container">
+<div class="elementor-post-navigation">
+<div class="elementor-post-navigation__prev elementor-post-navigation__link">
+<a href="https://specmatic.io/appearance/the-next-frontier-unveiling-tm-forums-async-api-for-a-new-era-of-event-driven-architectures/" rel="prev"><span class="post-navigation__arrow-wrapper post-navigation__arrow-prev"><i class="fa fa-angle-left" aria-hidden="true"></i><span class="elementor-screen-only">Prev</span></span><span class="elementor-post-navigation__link__prev"><span class="post-navigation__prev--label">Previous</span><span class="post-navigation__prev--title">Hackathon &#8211; The Next Frontier: Unveiling TM Forum’s Async API for a New Era of Event-Driven Architectures</span></span></a> </div>
+<div class="elementor-post-navigation__separator-wrapper">
+<div class="elementor-post-navigation__separator"></div>
+</div>
+<div class="elementor-post-navigation__next elementor-post-navigation__link">
+<a href="https://specmatic.io/appearance/unshackling-your-system-under-test-shift-left-testing-through-dependency-isolation/" rel="next"><span class="elementor-post-navigation__link__next"><span class="post-navigation__next--label">Next</span><span class="post-navigation__next--title">Unshackling Your System Under Test: Shift-Left Testing Through Dependency Isolation</span></span><span class="post-navigation__arrow-wrapper post-navigation__arrow-next"><i class="fa fa-angle-right" aria-hidden="true"></i><span class="elementor-screen-only">Next</span></span></a> </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</div> 
+</div>
+<div id="ast-mobile-popup-wrapper">
+<div id="ast-mobile-popup" class="ast-mobile-popup-drawer content-align-flex-start ast-mobile-popup-right">
+<div class="ast-mobile-popup-overlay"></div>
+<div class="ast-mobile-popup-inner">
+<div class="ast-mobile-popup-header">
+<button type="button" id="menu-toggle-close" class="menu-toggle-close" aria-label="Close menu" tabindex="0">
+<span class="ast-svg-iconset">
+<span class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg class="ast-mobile-svg ast-close-svg" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"><path d="M5.293 6.707l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l5.293-5.293 5.293 5.293c0.391 0.391 1.024 0.391 1.414 0s0.391-1.024 0-1.414l-5.293-5.293 5.293-5.293c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z"></path></svg></span> </span>
+</button>
+</div>
+<div class="ast-mobile-popup-content">
+<div class="ast-builder-menu-mobile ast-builder-menu ast-builder-menu-mobile-focus-item ast-builder-layout-element site-header-focus-item" data-section="section-header-mobile-menu">
+<div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="site-navigation ast-flex-grow-1 navigation-accessibility site-header-focus-item" id="ast-mobile-site-navigation" aria-label="Site Navigation: Mobile-Menu" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="main-navigation"><ul id="ast-hf-mobile-menu" class="main-header-menu ast-nav-menu ast-flex  submenu-with-border astra-menu-animation-fade  stack-on-mobile">
+<li id="menu-item-441" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-441">
+<a aria-expanded="false" href="https://specmatic.io/#features" class="menu-link">Features<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></button>
+<ul class="sub-menu">
+<li id="menu-item-3643" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3643"><a href="https://insights.specmatic.in/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Insights</a></li>
+<li id="menu-item-3899" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3899"><a href="https://specmatic.io/#extension" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>VSCode extension</a></li>
+</ul>
+</li>
+<li id="menu-item-4010" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4010"><a href="https://specmatic.io/pricing/" class="menu-link">Pricing</a></li>
+<li id="menu-item-1114" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1114">
+<a aria-expanded="false" href="https://specmatic.io/category/comparisons/" class="menu-link">Comparisons<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></button>
+<ul class="sub-menu">
+<li id="menu-item-601" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-601"><a href="https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Specmatic vs Pact.io and Pactflow.io</a></li>
+<li id="menu-item-899" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-899"><a href="https://specmatic.io/comparisons/comparison-specmatic-vs-spring-cloud-contract/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Specmatic vs Spring Cloud Contract</a></li>
+<li id="menu-item-840" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-840"><a href="https://specmatic.io/comparisons/comparison-specmatic-vs-wiremock/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Specmatic vs WireMock</a></li>
+</ul>
+</li>
+<li id="menu-item-1113" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1113">
+<a aria-expanded="false" href="https://specmatic.io/category/updates/" class="menu-link">Updates<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></button>
+<ul class="sub-menu">
+<li id="menu-item-1662" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1662"><a href="https://specmatic.io/category/features/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Feature Spotlight</a></li>
+<li id="menu-item-1351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1351"><a href="https://specmatic.io/appearances/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Appearances</a></li>
+<li id="menu-item-1943" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1943"><a href="https://specmatic.io/category/updates/media/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>In the Media</a></li>
+</ul>
+</li>
+<li id="menu-item-3044" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3044">
+<a aria-expanded="false" href="#" class="menu-link">Resources<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></button>
+<ul class="sub-menu">
+<li id="menu-item-443" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-443"><a target="_blank" rel="noopener" href="https://specmatic.in/documentation.html" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Documentation</a></li>
+<li id="menu-item-4290" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4290"><a href="https://specmatic.io/documentation/sample_projects.html" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Sample Projects</a></li>
+<li id="menu-item-994" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-994"><a href="https://specmatic.io/articles/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Articles</a></li>
+<li id="menu-item-2955" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2955"><a href="https://specmatic.io/2-week-signup/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Quick Start Consult</a></li>
+<li id="menu-item-4413" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4413"><a href="https://specmatic.io/2-day-cdd-workshop/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>2-day CDD workshop</a></li>
+</ul>
+</li>
+<li id="menu-item-2108" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2108"><a href="https://specmatic.io/roadmap/" class="menu-link">Roadmap</a></li>
+<li id="menu-item-444" class="menu_github menu-item menu-item-type-custom menu-item-object-custom menu-item-444"><a target="_blank" rel="noopener" href="https://github.com/znsio/specmatic" class="menu-link">Github <span class="icon-github" style="padding-left:10px;"></span></a></li>
+<li id="menu-item-477" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-477"><a href="https://specmatic.io/contact-us/" class="menu-link">Contact Us <span class="icon-mail4" style="font-size:22px; padding-left:10px;"></span></a></li>
+</ul></div></nav></div></div> </div>
+<div class="ast-builder-layout-element ast-flex site-header-focus-item ast-header-button-1" data-section="section-hb-button-1">
+<div class="ast-builder-button-wrap ast-builder-button-size-sm">
+<a class="ast-custom-button-link" href="https://www.linkedin.com/jobs/view/3929525141/" target="_blank"><div class="ast-custom-button">We&#039;re hiring!</div></a><a class="menu-link" href="https://www.linkedin.com/jobs/view/3929525141/" target="_blank">We&#039;re hiring!</a>
+</div> </div>
+</div>
+<div class="ast-desktop-popup-content">
+<div class="ast-builder-menu-mobile ast-builder-menu ast-builder-menu-mobile-focus-item ast-builder-layout-element site-header-focus-item" data-section="section-header-mobile-menu">
+<div class="ast-main-header-bar-alignment"><div class="main-header-bar-navigation"><nav class="site-navigation ast-flex-grow-1 navigation-accessibility site-header-focus-item" id="ast-desktop-site-navigation" aria-label="Site Navigation: Mobile-Menu" itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope"><div class="main-navigation"><ul id="ast-desktop-toggle-menu" class="main-header-menu ast-nav-menu ast-flex  submenu-with-border astra-menu-animation-fade  stack-on-mobile">
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-441">
+<a aria-expanded="false" href="https://specmatic.io/#features" class="menu-link">Features<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></button>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3643"><a href="https://insights.specmatic.in/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Insights</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3899"><a href="https://specmatic.io/#extension" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>VSCode extension</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4010"><a href="https://specmatic.io/pricing/" class="menu-link">Pricing</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1114">
+<a aria-expanded="false" href="https://specmatic.io/category/comparisons/" class="menu-link">Comparisons<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></button>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-601"><a href="https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Specmatic vs Pact.io and Pactflow.io</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-899"><a href="https://specmatic.io/comparisons/comparison-specmatic-vs-spring-cloud-contract/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Specmatic vs Spring Cloud Contract</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-840"><a href="https://specmatic.io/comparisons/comparison-specmatic-vs-wiremock/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Specmatic vs WireMock</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1113">
+<a aria-expanded="false" href="https://specmatic.io/category/updates/" class="menu-link">Updates<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></button>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1662"><a href="https://specmatic.io/category/features/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Feature Spotlight</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1351"><a href="https://specmatic.io/appearances/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Appearances</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1943"><a href="https://specmatic.io/category/updates/media/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>In the Media</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-3044">
+<a aria-expanded="false" href="#" class="menu-link">Resources<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></button>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-443"><a target="_blank" rel="noopener" href="https://specmatic.in/documentation.html" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Documentation</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4290"><a href="https://specmatic.io/documentation/sample_projects.html" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Sample Projects</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-994"><a href="https://specmatic.io/articles/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Articles</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2955"><a href="https://specmatic.io/2-week-signup/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Quick Start Consult</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4413"><a href="https://specmatic.io/2-day-cdd-workshop/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>2-day CDD workshop</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2108"><a href="https://specmatic.io/roadmap/" class="menu-link">Roadmap</a></li>
+<li class="menu_github menu-item menu-item-type-custom menu-item-object-custom menu-item-444"><a target="_blank" rel="noopener" href="https://github.com/znsio/specmatic" class="menu-link">Github <span class="icon-github" style="padding-left:10px;"></span></a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-477"><a href="https://specmatic.io/contact-us/" class="menu-link">Contact Us <span class="icon-mail4" style="font-size:22px; padding-left:10px;"></span></a></li>
+</ul></div></nav></div></div> </div>
+</div>
+</div>
+</div>
+</div>
+<footer class="site-footer" id="colophon" itemtype="https://schema.org/WPFooter" itemscope="itemscope" itemid="#colophon">
+<div class="site-above-footer-wrap ast-builder-grid-row-container site-footer-focus-item ast-builder-grid-row-5-equal ast-builder-grid-row-tablet-5-equal ast-builder-grid-row-mobile-full ast-footer-row-stack ast-footer-row-tablet-stack ast-footer-row-mobile-stack" data-section="section-above-footer-builder">
+<div class="ast-builder-grid-row-container-inner">
+<div class="ast-builder-footer-grid-columns site-above-footer-inner-wrap ast-builder-grid-row">
+<div class="site-footer-above-section-1 site-footer-section site-footer-section-1">
+<aside class="footer-widget-area widget-area site-footer-focus-item footer-widget-area-inner" data-section="sidebar-widgets-footer-widget-1" aria-label="Footer Widget 1">
+<section id="block-8" class="widget widget_block widget_media_image">
+<figure class="wp-block-image size-full is-resized"><picture><source type="image/webp" data-srcset="https://specmatic.io/wp-content/uploads/2022/09/White-Logo.png.webp"><img decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAAA9AQAAAACBrTEPAAAAAnRSTlMAAHaTzTgAAAAXSURBVHjaYxgFo2AUjIJRMApGwSiAAwAIGgABmiszcAAAAABJRU5ErkJggg==" alt class="wp-image-249 lazyload" width="167" height="40" data-eio="p" data-src="https://specmatic.io/wp-content/uploads/2022/09/White-Logo.png" data-eio-rwidth="259" data-eio-rheight="61"><noscript><img decoding="async" src="https://specmatic.io/wp-content/uploads/2022/09/White-Logo.png" alt="" class="wp-image-249" width="167" height="40" data-eio="l"></noscript></picture></figure>
+</section><section id="block-9" class="widget widget_block widget_text">
+<p class="footer-blurb has-ast-global-color-5-color has-text-color has-small-font-size">Specmatic is a platform and programming language agnostic tool that embodies Contract Driven Development.</p>
+</section><section id="block-16" class="widget widget_block widget_text">
+<p class="has-ast-global-color-4-color has-text-color has-medium-font-size"></p>
+</section> </aside>
+</div>
+<div class="site-footer-above-section-2 site-footer-section site-footer-section-2">
+<aside class="footer-widget-area widget-area site-footer-focus-item footer-widget-area-inner" data-section="sidebar-widgets-footer-widget-2" aria-label="Footer Widget 2">
+<section id="block-10" class="widget widget_block widget_text">
+<p class="footer-menu-heading has-ast-global-color-4-color has-text-color" style="font-size:18px">About</p>
+</section><section id="nav_menu-9" class="widget widget_nav_menu"><nav class="menu-about-container" aria-label="Menu"><ul id="menu-about" class="menu">
+<li id="menu-item-254" class="footer-menu-text menu-item menu-item-type-custom menu-item-object-custom menu-item-254"><a target="_blank" rel="noopener" href="https://specmatic.in/documentation.html#what-is-specmatic" class="menu-link">What is Specmatic?</a></li>
+<li id="menu-item-255" class="footer-menu-text menu-item menu-item-type-custom menu-item-object-custom menu-item-255"><a target="_blank" rel="noopener" href="https://github.com/znsio/specmatic/graphs/contributors" class="menu-link">Contributors</a></li>
+<li id="menu-item-1510" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1510"><a href="https://specmatic.io/appearances/" class="menu-link">Appearances</a></li>
+<li id="menu-item-1095" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1095"><a href="https://specmatic.io/articles/" class="menu-link">Articles</a></li>
+<li id="menu-item-841" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-841"><a href="https://specmatic.io/specmatic-updates/" class="menu-link">Updates</a></li>
+<li id="menu-item-2109" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2109"><a href="https://specmatic.io/roadmap/" class="menu-link">Roadmap</a></li>
+</ul></nav></section> </aside>
+</div>
+<div class="site-footer-above-section-3 site-footer-section site-footer-section-3">
+<aside class="footer-widget-area widget-area site-footer-focus-item footer-widget-area-inner" data-section="sidebar-widgets-footer-widget-3" aria-label="Footer Widget 3">
+<section id="block-17" class="widget widget_block widget_text">
+<p class="footer-menu-heading has-ast-global-color-4-color has-text-color" style="margin-bottom:0;font-size:18px">License &amp; Contributing</p>
+</section><section id="block-23" class="widget widget_block">
+<div class="wp-block-columns has-ast-global-color-4-color has-text-color has-link-color wp-elements-5758b90f12f8452201ff5894d0dbc553 is-layout-flex wp-container-core-columns-is-layout-2 wp-block-columns-is-layout-flex">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:100%">
+<div class="wp-block-columns has-ast-global-color-4-color has-text-color has-link-color wp-elements-9e403d42985a4c8729dd5e792bd896ed is-layout-flex wp-container-core-columns-is-layout-1 wp-block-columns-is-layout-flex">
+<div class="wp-block-column has-ast-global-color-5-color has-text-color has-small-font-size is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:100%"><div class="widget widget_nav_menu"><nav class="menu-license-and-contributing-container" aria-label="Menu"><ul id="menu-license-and-contributing" class="menu">
+<li id="menu-item-257" class="footer-menu-text menu-item menu-item-type-custom menu-item-object-custom menu-item-257"><a target="_blank" rel="noopener" href="https://github.com/znsio/specmatic/blob/main/CONTRIBUTING.md" class="menu-link">Contributing</a></li>
+<li id="menu-item-258" class="footer-menu-text menu-item menu-item-type-custom menu-item-object-custom menu-item-258"><a target="_blank" rel="noopener" href="https://github.com/znsio/specmatic/blob/main/CODE_OF_CONDUCT.md" class="menu-link">Code of Conduct</a></li>
+<li id="menu-item-259" class="footer-menu-text menu-item menu-item-type-custom menu-item-object-custom menu-item-259"><a target="_blank" rel="noopener" href="https://github.com/znsio/specmatic/blob/main/License.md" class="menu-link">License</a></li>
+<li id="menu-item-4789" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4789"><a href="https://specmatic.io/eula/" class="menu-link">EULA</a></li>
+<li id="menu-item-4870" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4870"><a href="https://specmatic.io/security-policy/" class="menu-link">Security Policy</a></li>
+</ul></nav></div></div>
+</div>
+</div>
+</div>
+</section> </aside>
+</div>
+<div class="site-footer-above-section-4 site-footer-section site-footer-section-4">
+<aside class="footer-widget-area widget-area site-footer-focus-item footer-widget-area-inner" data-section="sidebar-widgets-footer-widget-6">
+<section id="block-30" class="widget widget_block widget_text">
+<p class="has-ast-global-color-5-color has-text-color" style="font-size:18px"><strong>Supported API Specs</strong></p>
+</section><section id="block-39" class="widget widget_block widget_text">
+<p class="has-ast-global-color-5-color has-text-color has-small-font-size"><a href="https://specmatic.in/tag/openapi/" data-type="link" data-id="https://specmatic.in/tag/openapi/">OpenAPI</a><br><a href="https://specmatic.in/documentation/soap.html" data-type="link" data-id="https://specmatic.in/documentation/soap.html">WSDL</a><br><a href="https://specmatic.in/tag/asyncapi/" data-type="link" data-id="https://specmatic.in/tag/asyncapi/">AsyncAPI</a><br><a href="https://specmatic.io/tag/redis/" data-type="link" data-id="https://specmatic.io/tag/redis/">RESP</a><br><a href="https://github.com/znsio/specmatic/issues/635">gRPC</a><br>GraphQL</p>
+</section> </aside>
+</div>
+<div class="site-footer-above-section-5 site-footer-section site-footer-section-5">
+<aside class="footer-widget-area widget-area site-footer-focus-item footer-widget-area-inner" data-section="sidebar-widgets-footer-widget-5">
+<section id="block-14" class="widget widget_block widget_text">
+<p class="has-ast-global-color-4-color has-text-color" style="font-size:18px">Social</p>
+</section> </aside>
+<div class="ast-builder-layout-element ast-flex site-footer-focus-item" data-section="section-fb-social-icons-1">
+<div class="ast-footer-social-1-wrap ast-footer-social-wrap"><div class="footer-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-custom ast-social-stack-desktop ast-social-element-style-filled">
+<a href="https://github.com/znsio/specmatic" aria-label="GitHub" target="_blank" rel="noopener noreferrer" style="--color: #24292e; --background-color: transparent;" class="ast-builder-social-element ast-inline-flex ast-github footer-social-item"><span class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></span></a><a href="https://twitter.com/specmatic" aria-label="Twitter" target="_blank" rel="noopener noreferrer" style="--color: #7acdee; --background-color: transparent;" class="ast-builder-social-element ast-inline-flex ast-twitter footer-social-item"><span class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg></span></a><a href="https://www.linkedin.com/company/specmatic" aria-label="Linkedin" target="_blank" rel="noopener noreferrer" style="--color: #1c86c6; --background-color: transparent;" class="ast-builder-social-element ast-inline-flex ast-linkedin footer-social-item"><span class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg></span></a><a href="https://www.youtube.com/watch?v=3HPgpvd8MGg&#038;list=PL9Z-JgiTsOYRERcsy9o3y6nsi5yK3IB_w" aria-label="YouTube" target="_blank" rel="noopener noreferrer" style="--color: #e96651; --background-color: transparent;" class="ast-builder-social-element ast-inline-flex ast-youtube footer-social-item"><span class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg></span></a>
+</div></div> </div>
+</div>
+</div>
+</div>
+</div>
+<div class="site-primary-footer-wrap ast-builder-grid-row-container site-footer-focus-item ast-builder-grid-row-full ast-builder-grid-row-tablet-full ast-builder-grid-row-mobile-full ast-footer-row-stack ast-footer-row-tablet-stack ast-footer-row-mobile-stack" data-section="section-primary-footer-builder">
+<div class="ast-builder-grid-row-container-inner">
+<div class="ast-builder-footer-grid-columns site-primary-footer-inner-wrap ast-builder-grid-row">
+<div class="site-footer-primary-section-1 site-footer-section site-footer-section-1">
+<aside class="footer-widget-area widget-area site-footer-focus-item footer-widget-area-inner" data-section="sidebar-widgets-footer-widget-4" aria-label="Footer Widget 4">
+<section id="block-11" class="widget widget_block widget_text">
+<p class="has-ast-global-color-6-color has-text-color has-small-font-size"></p>
+</section><section id="block-21" class="widget widget_block widget_text">
+<p class="has-ast-global-color-6-color has-text-color has-small-font-size" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0">Specmatic enables teams to practice Contract-Driven Development by leveraging API Specifications (Eg: OpenAPI, WSDL, AsyncAPI, RESP) as Executable Contracts to reduce time-to-market by allowing teams to build, test and deploy their MicroServices and MicroFrontends independently and Shift-Left the identification of compatibility issues between Components / Services in complex interdependent systems such as those built with MicroServices architecture. In the process it reduces / removes the need for Integration Testing.</p>
+</section> </aside>
+</div>
+</div>
+</div>
+</div>
+<div class="site-below-footer-wrap ast-builder-grid-row-container site-footer-focus-item ast-builder-grid-row-full ast-builder-grid-row-tablet-full ast-builder-grid-row-mobile-full ast-footer-row-stack ast-footer-row-tablet-stack ast-footer-row-mobile-stack" data-section="section-below-footer-builder">
+<div class="ast-builder-grid-row-container-inner">
+<div class="ast-builder-footer-grid-columns site-below-footer-inner-wrap ast-builder-grid-row">
+<div class="site-footer-below-section-1 site-footer-section site-footer-section-1">
+<div class="ast-builder-layout-element ast-flex site-footer-focus-item ast-footer-copyright" data-section="section-footer-builder">
+<div class="ast-footer-copyright">
+<p>Copyright - &copy; Xnsio 2024 All rights reserved.</p>
+</div> </div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<span class="ssp-id" style="display:none">4990</span>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/regular.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/regular.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.min.css" media="all"></noscript>
+<style >.wp-elements-5758b90f12f8452201ff5894d0dbc553 a:where(:not(.wp-element-button)){color:var(--wp--preset--color--ast-global-color-4);}.wp-elements-9e403d42985a4c8729dd5e792bd896ed a:where(:not(.wp-element-button)){color:var(--wp--preset--color--ast-global-color-4);}.wp-container-core-columns-is-layout-1.wp-container-core-columns-is-layout-1{flex-wrap:nowrap;}.wp-container-core-columns-is-layout-2.wp-container-core-columns-is-layout-2{flex-wrap:nowrap;}</style>
+<script >var scriptParams = {"google_search_engine_id":"47aa3efd4dce24d92"};</script>
+<script src="https://specmatic.io/wp-content/swis/cache/js/plugins/wp-google-search/assets/js/google_cse_v2-1668477651.min.js" ></script>
+<script >var astra = {"break_point":"1120","isRtl":"","is_scroll_to_id":"","is_scroll_to_top":"","is_header_footer_builder_active":"1","responsive_cart_click":"flyout","revealEffectEnable":"","edit_post_url":"https:\/\/specmatic.io\/wp-admin\/post.php?post={{id}}&action=edit","ajax_url":"https:\/\/specmatic.io\/wp-admin\/admin-ajax.php","infinite_count":"2","infinite_total":"0","pagination":"number","infinite_scroll_event":"scroll","no_more_post_message":"No more posts to show.","grid_layout":"2","site_url":"https:\/\/specmatic.io","blogArchiveTitleLayout":"","blogArchiveTitleOn":"","show_comments":"Show Comments","masonryEnabled":"","blogMasonryBreakPoint":"1120"};</script>
+<script src="https://specmatic.io/wp-content/themes/astra/assets/js/minified/frontend.min.js" ></script>
+<script >var eio_lazy_vars = {"exactdn_domain":"","skip_autoscale":0,"threshold":0};</script>
+<script src="https://specmatic.io/wp-content/plugins/ewww-image-optimizer/includes/lazysizes.min.js"  async data-wp-strategy="async"></script>
+<script src="https://specmatic.io/wp-content/plugins/ultimate-addons-for-gutenberg/assets/js/spectra-block-positioning.min.js" ></script>
+<script src="https://specmatic.io/wp-includes/js/dist/vendor/wp-polyfill-inert.min.js" ></script>
+<script src="https://specmatic.io/wp-includes/js/dist/vendor/regenerator-runtime.min.js" ></script>
+<script src="https://specmatic.io/wp-includes/js/dist/vendor/wp-polyfill.min.js" ></script>
+<script src="https://specmatic.io/wp-includes/js/dist/dom-ready.min.js" ></script>
+<script >var starter_templates_zip_preview = {"AstColorPaletteVarPrefix":"--ast-global-color-","AstEleColorPaletteVarPrefix":["ast-global-color-0","ast-global-color-1","ast-global-color-2","ast-global-color-3","ast-global-color-4","ast-global-color-5","ast-global-color-6","ast-global-color-7","ast-global-color-8"]};</script>
+<script src="https://specmatic.io/wp-content/swis/cache/js/plugins/astra-pro-sites/inc/lib/onboarding/assets/dist/template-preview/main-1720992466.min.js" ></script>
+<script >
+var astraAddon = {"sticky_active":"","svgIconClose":"<span class=\"ast-icon icon-close\"><svg viewBox=\"0 0 512 512\" aria-hidden=\"true\" role=\"img\" version=\"1.1\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" width=\"18px\" height=\"18px\">\n                                <path d=\"M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z\" \/>\n                            <\/svg><\/span>","hf_account_show_menu_on":"hover","hf_account_action_type":"link","is_header_builder_active":"1"};
+</script>
+<script src="https://specmatic.io/wp-content/swis/cache/js/uploads/astra-addon/astra-addon-66947a02b8d616-90074697-1721006594.min.js" ></script>
+<script src="https://specmatic.io/wp-content/plugins/ultimate-elementor/assets/min-js/uael-social-share.min.js" ></script>
+<script src="https://specmatic.io/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js" ></script>
+<script src="https://specmatic.io/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js" ></script>
+<script src="https://specmatic.io/wp-content/plugins/elementor/assets/js/frontend-modules.min.js" ></script>
+<script src="https://specmatic.io/wp-includes/js/dist/hooks.min.js" ></script>
+<script src="https://specmatic.io/wp-includes/js/dist/i18n.min.js" ></script>
+<script >
+wp.i18n.setLocaleData( { 'text directionltr': [ 'ltr' ] } );
+</script>
+<script >var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/specmatic.io\/wp-admin\/admin-ajax.php","nonce":"2a72476576","urls":{"assets":"https:\/\/specmatic.io\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"https:\/\/specmatic.io\/wp-json\/"},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"},"x-twitter":{"title":"X"},"threads":{"title":"Threads"}},"facebook_sdk":{"lang":"en_US","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/specmatic.io\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};</script>
+<script src="https://specmatic.io/wp-content/plugins/elementor-pro/assets/js/frontend.min.js" ></script>
+<script  data-swis-src="https://specmatic.io/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js" data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-no-minify="1"></script>
+<script src="https://specmatic.io/wp-includes/js/jquery/ui/core.min.js" ></script>
+<script >var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselWrapperAriaLabel":"Carousel | Horizontal scrolling: Arrow Left & Right","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},"version":"3.22.3","is_static":false,"experimentalFeatures":{"e_optimized_assets_loading":true,"e_optimized_css_loading":true,"additional_custom_breakpoints":true,"container":true,"container_grid":true,"e_swiper_latest":true,"e_onboarding":true,"theme_builder_v2":true,"home_screen":true,"landing-pages":true,"display-conditions":true,"taxonomy-filter":true},"urls":{"assets":"https:\/\/specmatic.io\/wp-content\/plugins\/elementor\/assets\/"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":4990,"title":"Avoiding%20APIpocalypse%3B%20API%20Resiliency%20Testing%20FTW%21%20-%20Specmatic","excerpt":"","featuredImage":"https:\/\/specmatic.io\/wp-content\/uploads\/2024\/07\/SeleniumConf2024-Naresh-Jain-1-1024x573.jpg"}};</script>
+<script src="https://specmatic.io/wp-content/plugins/elementor/assets/js/frontend.min.js" ></script>
+<script src="https://specmatic.io/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js" ></script>
+<script>/(trident|msie)/i.test(navigator.userAgent)&&document.getElementById&&window.addEventListener&&window.addEventListener("hashchange",function(){var t,e=location.hash.substring(1);/^[A-z0-9_-]+$/.test(e)&&(t=document.getElementById(e))&&(/^(?:a|select|input|button|textarea)$/i.test(t.tagName)||(t.tabIndex=-1),t.focus())},!1);</script>
+<script data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-no-minify="1">const swisAutoLoadDuration = 10;const swisEventList=["keydown","mousemove","scroll","wheel","touchstart","touchend","touchmove"],swisAutoLoadTimeout=setTimeout(swisLoadScripts,1e3*swisAutoLoadDuration);function swisTriggerScriptLoad(){swisLoadScripts(),clearTimeout(swisAutoLoadTimeout),swisEventList.forEach(function(s){window.removeEventListener(s,swisTriggerScriptLoad,{passive:!0})})}function swisLoadScripts(){document.querySelectorAll("script[data-swis-src]").forEach(function(s){s.setAttribute("src",s.getAttribute("data-swis-src"))})}swisEventList.forEach(function(s){window.addEventListener(s,swisTriggerScriptLoad,{passive:!0})});</script>
+</body>
+</html>
