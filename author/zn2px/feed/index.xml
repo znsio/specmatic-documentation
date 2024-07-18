@@ -12,13 +12,13 @@
 	<atom:link href="https://specmatic.io/author/zn2px/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 13 Mar 2024 21:29:53 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 17 Jul 2024 22:35:31 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.5.5</generator>
+	<generator>https://wordpress.org/?v=6.6</generator>
 
 <image>
 	<url>https://specmatic.io/wp-content/uploads/2022/09/Favicon.png</url>
@@ -28,6 +28,22 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Empowering Frontend Engineers with Microservices Contract Testing &#8211; a conversation with Markus Oberlehner</title>
+		<link>https://specmatic.io/podcast/empowering-frontend-engineers-with-microservices-contract-testing-a-conversation-with-markus-oberlehner/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Wed, 17 Jul 2024 02:59:15 +0000</pubDate>
+				<category><![CDATA[Podcasts]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[API design]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5109</guid>
+
+					<description><![CDATA[]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Contract vs. Approval Testing: Identifying Bugs in RESTfulBooker&#8217;s API with Specmatic and TextTest</title>
 		<link>https://specmatic.io/comparisons/contract-vs-approval-testing-identifying-bugs-in-restfulbookers-api-with-texttest-and-specmatic/</link>
 		

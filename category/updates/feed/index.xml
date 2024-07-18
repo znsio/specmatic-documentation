@@ -12,13 +12,13 @@
 	<atom:link href="https://specmatic.io/category/updates/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Fri, 03 May 2024 00:58:49 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 17 Jul 2024 22:35:31 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.5.5</generator>
+	<generator>https://wordpress.org/?v=6.6</generator>
 
 <image>
 	<url>https://specmatic.io/wp-content/uploads/2022/09/Favicon.png</url>
@@ -28,6 +28,22 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Empowering Frontend Engineers with Microservices Contract Testing &#8211; a conversation with Markus Oberlehner</title>
+		<link>https://specmatic.io/podcast/empowering-frontend-engineers-with-microservices-contract-testing-a-conversation-with-markus-oberlehner/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Wed, 17 Jul 2024 02:59:15 +0000</pubDate>
+				<category><![CDATA[Podcasts]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[API design]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5109</guid>
+
+					<description><![CDATA[]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Contract Testing Google Pub/Sub: Using AsyncAPI specs as Executable Contracts</title>
 		<link>https://specmatic.io/updates/contract-testing-google-pub-sub-using-asyncapi-as-executable-contracts/</link>
 		
@@ -183,25 +199,6 @@
 		<guid isPermaLink="false">https://specmatic.io/?p=1742</guid>
 
 					<description><![CDATA[With Specmatic JDBC stub, you can easily test APIs without the need for a complex database setup. By switching out the real database with a Specmatic JDBC stub, we can set expectations for the stub to respond to specific queries. These expectations can be recorded based on actual interactions. Once the expectations are set, we no longer need the database for our tests!]]></description>
-		
-		
-		
-			</item>
-		<item>
-		<title>JMS Mocking with AsyncAPI using Specmatic</title>
-		<link>https://specmatic.io/updates/jms-mocking-with-asyncapi-using-specmatic/</link>
-		
-		<dc:creator><![CDATA[Jaydeep Kulkarni]]></dc:creator>
-		<pubDate>Tue, 25 Jul 2023 06:05:31 +0000</pubDate>
-				<category><![CDATA[Feature Spotlight]]></category>
-		<category><![CDATA[Updates]]></category>
-		<category><![CDATA[AsyncAPI]]></category>
-		<category><![CDATA[Contract Driven Development]]></category>
-		<category><![CDATA[Contract Testing]]></category>
-		<category><![CDATA[Demonstration]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=1702</guid>
-
-					<description><![CDATA[The JMS mock is wire compatible and can be controlled entirely from within the test. This means you can run the test locally or also as part of your continuous integration build to provide quick feedback early in the cycle.]]></description>
 		
 		
 		
