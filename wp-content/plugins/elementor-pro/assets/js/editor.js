@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.22.0 - 24-06-2024 */
+/*! elementor-pro - v3.23.0 - 15-07-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -9406,11 +9406,11 @@ $({ target: 'Array', proto: true, arity: 1, forced: FORCED }, {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if (chunkId === "mega-menu-editor") return "" + chunkId + ".bbef3f7412481cbce555.bundle.js";
+/******/ 			if (chunkId === "mega-menu-editor") return "" + chunkId + ".88e3947c99f378d080db.bundle.js";
 /******/ 			if (chunkId === "nested-carousel-editor") return "" + chunkId + ".2fdc278ce6bc9f6ec2e0.bundle.js";
 /******/ 			if (chunkId === "loop-filter-editor") return "" + chunkId + ".d1bae86a5ed21c0e9981.bundle.js";
 /******/ 			if (chunkId === "off-canvas-editor") return "" + chunkId + ".537e5e064206eea190cc.bundle.js";
-/******/ 			if (chunkId === "modules_query-control_assets_js_editor_template-query-control_js") return "4abfbfd970d6f7680bc7.bundle.js";
+/******/ 			if (chunkId === "modules_query-control_assets_js_editor_template-query-control_js") return "ef74929d267aeb27fc93.bundle.js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

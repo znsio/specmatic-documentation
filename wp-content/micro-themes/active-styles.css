@@ -554,8 +554,18 @@ html {
 }
 
 /** General 3 >> Link **/
+.elementor-widget-text-editor a {
+	
+}
 .mtp-4884 .elementor-widget-text-editor a {
 	color: rgb(255, 255, 255) !important;
+}
+
+/** General 3 >> Link _2 **/
+.has-ast-global-color-5-color a {
+	color: rgb(255, 255, 255) !important;
+	font-size: 14px !important;
+	font-weight: 300 !important;
 }
 
 

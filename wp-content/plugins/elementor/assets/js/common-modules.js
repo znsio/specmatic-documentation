@@ -1,4 +1,4 @@
-/*! elementor - v3.22.0 - 26-06-2024 */
+/*! elementor - v3.23.0 - 15-07-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -2899,6 +2899,18 @@ var _default = /*#__PURE__*/function (_Marionette$LayoutVie) {
     key: "onCloseModalClick",
     value: function onCloseModalClick() {
       this._parent._parent._parent.hideModal();
+      if (this.isFloatingButtonLibraryClose()) {
+        $e.internal('document/save/set-is-modified', {
+          status: false
+        });
+        window.location.href = elementor.config.admin_floating_button_admin_url;
+      }
+    }
+  }, {
+    key: "isFloatingButtonLibraryClose",
+    value: function isFloatingButtonLibraryClose() {
+      var _elementor$config, _elementor$config2, _elementor$config2$do;
+      return window.elementor && ((_elementor$config = elementor.config) === null || _elementor$config === void 0 ? void 0 : _elementor$config.admin_floating_button_admin_url) && 'floating-buttons' === ((_elementor$config2 = elementor.config) === null || _elementor$config2 === void 0 ? void 0 : (_elementor$config2$do = _elementor$config2.document) === null || _elementor$config2$do === void 0 ? void 0 : _elementor$config2$do.type) && (this.$el.closest('.dialog-lightbox-widget-content').find('.elementor-template-library-template-floating_button').length || this.$el.closest('.dialog-lightbox-widget-content').find('#elementor-template-library-preview').length);
     }
   }]);
   return _default;

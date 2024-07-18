@@ -1,4 +1,4 @@
-/*! elementor - v3.22.0 - 26-06-2024 */
+/*! elementor - v3.23.0 - 15-07-2024 */
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["frontend-modules"],{
 
 /***/ "../assets/dev/js/editor/utils/is-instanceof.js":
@@ -123,11 +123,14 @@ class NestedTitleKeyboardHandler extends _base.default {
     this.directionPrevious = 'previous';
     this.focusableElementSelector = 'audio, button, canvas, details, iframe, input, select, summary, textarea, video, [accesskey], [contenteditable], [href], [tabindex]:not([tabindex="-1"])';
   }
+  getWidgetNumber() {
+    return this.$element.find('> .elementor-widget-container > .e-n-tabs, > .e-n-tabs').attr('data-widget-number');
+  }
   getDefaultSettings() {
     return {
       selectors: {
-        itemTitle: '.e-n-tab-title',
-        itemContainer: '.e-n-tabs-content > .e-con'
+        itemTitle: `[id*="e-n-tab-title-${this.getWidgetNumber()}"]`,
+        itemContainer: `[id*="e-n-tab-content-${this.getWidgetNumber()}"]`
       },
       ariaAttributes: {
         titleStateAttribute: 'aria-selected',
@@ -195,8 +198,8 @@ class NestedTitleKeyboardHandler extends _base.default {
     this.elements.$focusableContainerElements.on(this.getContentElementEvents());
   }
   unbindEvents() {
-    this.elements.$itemTitles.off();
-    this.elements.$itemContainers.children().off();
+    this.elements.$itemTitles.off(this.getTitleEvents());
+    this.elements.$focusableContainerElements.children().off(this.getContentElementEvents());
   }
   getTitleEvents() {
     return {
@@ -1014,7 +1017,7 @@ var _baseSwiper = _interopRequireDefault(__webpack_require__(/*! ./handlers/base
 var _baseCarousel = _interopRequireDefault(__webpack_require__(/*! ./handlers/base-carousel */ "../assets/dev/js/frontend/handlers/base-carousel.js"));
 var _nestedTabs = _interopRequireDefault(__webpack_require__(/*! elementor/modules/nested-tabs/assets/js/frontend/handlers/nested-tabs */ "../modules/nested-tabs/assets/js/frontend/handlers/nested-tabs.js"));
 var _nestedAccordion = _interopRequireDefault(__webpack_require__(/*! elementor/modules/nested-accordion/assets/js/frontend/handlers/nested-accordion */ "../modules/nested-accordion/assets/js/frontend/handlers/nested-accordion.js"));
-var _contactButtons = _interopRequireDefault(__webpack_require__(/*! elementor/modules/conversion-center/assets/js/frontend/handlers/contact-buttons */ "../modules/conversion-center/assets/js/frontend/handlers/contact-buttons.js"));
+var _contactButtons = _interopRequireDefault(__webpack_require__(/*! elementor/modules/floating-buttons/assets/js/frontend/handlers/contact-buttons */ "../modules/floating-buttons/assets/js/frontend/handlers/contact-buttons.js"));
 var _nestedTitleKeyboardHandler = _interopRequireDefault(__webpack_require__(/*! ./handlers/accessibility/nested-title-keyboard-handler */ "../assets/dev/js/frontend/handlers/accessibility/nested-title-keyboard-handler.js"));
 _modules.default.frontend = {
   Document: _document.default,
@@ -1866,10 +1869,10 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ "../modules/conversion-center/assets/js/frontend/handlers/contact-buttons.js":
-/*!***********************************************************************************!*\
-  !*** ../modules/conversion-center/assets/js/frontend/handlers/contact-buttons.js ***!
-  \***********************************************************************************/
+/***/ "../modules/floating-buttons/assets/js/frontend/handlers/contact-buttons.js":
+/*!**********************************************************************************!*\
+  !*** ../modules/floating-buttons/assets/js/frontend/handlers/contact-buttons.js ***!
+  \**********************************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -1880,8 +1883,13 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 var _base = _interopRequireDefault(__webpack_require__(/*! elementor-frontend/handlers/base */ "../assets/dev/js/frontend/handlers/base.js"));
 class ContactButtonsHandler extends _base.default {
+  constructor() {
+    super(...arguments);
+    (0, _defineProperty2.default)(this, "clicks", []);
+  }
   getDefaultSettings() {
     return {
       selectors: {
@@ -1890,7 +1898,8 @@ class ContactButtonsHandler extends _base.default {
         contentWrapper: '.e-contact-buttons__content-wrapper',
         chatButton: '.e-contact-buttons__chat-button',
         closeButton: '.e-contact-buttons__close-button',
-        messageBubbleTime: '.e-contact-buttons__message-bubble-time'
+        messageBubbleTime: '.e-contact-buttons__message-bubble-time',
+        contactButtonCore: '.e-contact-buttons__send-button'
       },
       constants: {
         entranceAnimation: 'style_chat_box_entrance_animation',
@@ -1902,6 +1911,7 @@ class ContactButtonsHandler extends _base.default {
         reverse: 'reverse',
         hidden: 'hidden',
         hasAnimations: 'has-animations',
+        hasEntranceAnimation: 'has-entrance-animation',
         none: 'none'
       }
     };
@@ -1922,11 +1932,101 @@ class ContactButtonsHandler extends _base.default {
     return elementorFrontend.utils.controls.getResponsiveControlValue(this.getElementSettings(), controlName, '', currentDevice);
   }
   bindEvents() {
-    this.elements.closeButton.addEventListener('click', this.closeChatBox.bind(this));
-    this.elements.chatButton.addEventListener('click', this.onChatButtonClick.bind(this));
-    this.elements.content.addEventListener('animationend', this.removeAnimationClasses.bind(this));
+    if (this.elements.closeButton) {
+      this.elements.closeButton.addEventListener('click', this.closeChatBox.bind(this));
+    }
+    if (this.elements.chatButton) {
+      this.elements.chatButton.addEventListener('click', this.onChatButtonClick.bind(this));
+      this.elements.chatButton.addEventListener('animationend', this.removeChatButtonAnimationClasses.bind(this));
+    }
+    if (this.elements.content) {
+      this.elements.content.addEventListener('animationend', this.removeAnimationClasses.bind(this));
+    }
+    if (this.elements.contentWrapper) {
+      this.elements.contentWrapper.addEventListener('click', this.onChatButtonTrackClick.bind(this));
+      window.addEventListener('keyup', this.onDocumentKeyup.bind(this));
+    }
+    window.addEventListener('beforeunload', () => {
+      if (this.clicks.length > 0) {
+        this.sendClicks();
+      }
+    });
+  }
+  contentWrapperIsHidden(hide) {
+    if (!this.elements.contentWrapper) {
+      return false;
+    }
+    const {
+      hidden
+    } = this.getSettings('constants');
+
+    // Set current state
+    if (true === hide) {
+      this.elements.contentWrapper.classList.add(hidden);
+      this.elements.contentWrapper.setAttribute('aria-hidden', 'true');
+      return;
+    }
+    if (false === hide) {
+      this.elements.contentWrapper.classList.remove(hidden);
+      this.elements.contentWrapper.setAttribute('aria-hidden', 'false');
+      return;
+    }
+
+    // Get current state
+    return this.elements.contentWrapper.classList.contains(hidden);
+  }
+  onDocumentKeyup(event) {
+    // Bail if not ESC key
+    if (event.keyCode !== 27 || !this.elements.main) {
+      return;
+    }
+
+    /* eslint-disable @wordpress/no-global-active-element */
+    if (!this.contentWrapperIsHidden() && this.elements.main.contains(document.activeElement)) {
+      this.closeChatBox();
+    }
+    /* eslint-enable @wordpress/no-global-active-element */
+  }
+
+  onChatButtonTrackClick(event) {
+    const targetElement = event.target || event.srcElement;
+    const selectors = this.getSettings('selectors');
+    if (targetElement.matches(selectors.contactButtonCore) || targetElement.closest(selectors.contactButtonCore)) {
+      this.getDocumentIdAndTrack(targetElement, selectors);
+    }
+  }
+  getDocumentIdAndTrack(targetElement, selectors) {
+    let documentId = targetElement.closest(selectors.main).dataset.documentId;
+    if (!documentId) {
+      documentId = targetElement.closest(selectors.elementorWrapper).dataset.elementorId;
+    }
+    this.trackClick(documentId);
+  }
+  trackClick(documentId) {
+    if (!documentId) {
+      return;
+    }
+    this.clicks.push(documentId);
+    if (this.clicks.length >= 10) {
+      this.sendClicks();
+    }
+  }
+  sendClicks() {
+    const formData = new FormData();
+    formData.append('action', 'elementor_send_clicks');
+    formData.append('_nonce', elementorFrontendConfig?.nonces?.floatingButtonsClickTracking);
+    this.clicks.forEach(documentId => formData.append('clicks[]', documentId));
+    fetch(elementorFrontendConfig?.urls?.ajaxurl, {
+      method: 'POST',
+      body: formData
+    }).then(() => {
+      this.clicks = [];
+    });
   }
   removeAnimationClasses() {
+    if (!this.elements.content) {
+      return;
+    }
     const {
       reverse,
       entranceAnimation,
@@ -1940,11 +2040,15 @@ class ContactButtonsHandler extends _base.default {
     if (isExitAnimation) {
       this.elements.content.classList.remove(animated);
       this.elements.content.classList.remove(reverse);
-      this.elements.content.classList.remove(exitAnimationClass);
+      if (exitAnimationClass) {
+        this.elements.content.classList.remove(exitAnimationClass);
+      }
       this.elements.content.classList.remove(visible);
     } else {
       this.elements.content.classList.remove(animated);
-      this.elements.content.classList.remove(openAnimationClass);
+      if (openAnimationClass) {
+        this.elements.content.classList.remove(openAnimationClass);
+      }
       this.elements.content.classList.add(visible);
     }
   }
@@ -1956,12 +2060,16 @@ class ContactButtonsHandler extends _base.default {
       none
     } = this.getSettings('constants');
     const entranceAnimationControl = this.getResponsiveSetting(entranceAnimation);
-    if (none === entranceAnimationControl) {
+    if (!entranceAnimationControl || none === entranceAnimationControl) {
       return;
     }
-    this.elements.content.classList.add(animated);
-    this.elements.content.classList.add(entranceAnimationControl);
-    this.elements.contentWrapper.classList.remove(animatedWrapper);
+    if (this.elements.content) {
+      this.elements.content.classList.add(animated);
+      this.elements.content.classList.add(entranceAnimationControl);
+    }
+    if (this.elements.contentWrapper) {
+      this.elements.contentWrapper.classList.remove(animatedWrapper);
+    }
   }
   chatBoxExitAnimation() {
     const {
@@ -1972,77 +2080,137 @@ class ContactButtonsHandler extends _base.default {
       none
     } = this.getSettings('constants');
     const exitAnimationControl = this.getResponsiveSetting(exitAnimation);
-    if (none === exitAnimationControl) {
+    if (!exitAnimationControl || none === exitAnimationControl) {
       return;
     }
-    this.elements.content.classList.add(animated);
-    this.elements.content.classList.add(reverse);
-    this.elements.content.classList.add(exitAnimationControl);
-    this.elements.contentWrapper.classList.add(animatedWrapper);
+    if (this.elements.content) {
+      this.elements.content.classList.add(animated);
+      this.elements.content.classList.add(reverse);
+      this.elements.content.classList.add(exitAnimationControl);
+    }
+    if (this.elements.contentWrapper) {
+      this.elements.contentWrapper.classList.add(animatedWrapper);
+    }
   }
   openChatBox() {
     const {
       hasAnimations,
-      visible,
-      hidden
+      visible
     } = this.getSettings('constants');
-    if (this.elements.main.classList.contains(hasAnimations)) {
+    if (this.elements.main && this.elements.main.classList.contains(hasAnimations)) {
       this.chatBoxEntranceAnimation();
-    } else {
+    } else if (this.elements.content) {
       this.elements.content.classList.add(visible);
     }
-    this.elements.contentWrapper.classList.remove(hidden);
+    if (this.elements.contentWrapper) {
+      this.contentWrapperIsHidden(false);
+      if (!elementorFrontend.isEditMode()) {
+        this.elements.contentWrapper.setAttribute('tabindex', '0');
+        this.elements.contentWrapper.focus({
+          focusVisible: true
+        });
+      }
+    }
+    if (this.elements.chatButton) {
+      this.elements.chatButton.setAttribute('aria-expanded', 'true');
+    }
+    if (this.elements.closeButton) {
+      this.elements.closeButton.setAttribute('aria-expanded', 'true');
+    }
   }
   closeChatBox() {
     const {
       hasAnimations,
-      visible,
-      hidden
+      visible
     } = this.getSettings('constants');
-    if (this.elements.main.classList.contains(hasAnimations)) {
+    if (this.elements.main && this.elements.main.classList.contains(hasAnimations)) {
       this.chatBoxExitAnimation();
-    } else {
+    } else if (this.elements.content) {
       this.elements.content.classList.remove(visible);
     }
-    this.elements.contentWrapper.classList.add(hidden);
+    if (this.elements.contentWrapper) {
+      this.contentWrapperIsHidden(true);
+    }
+    if (this.elements.chatButton) {
+      this.elements.chatButton.setAttribute('aria-expanded', 'false');
+      this.elements.chatButton.focus({
+        focusVisible: true
+      });
+    }
+    if (this.elements.closeButton) {
+      this.elements.closeButton.setAttribute('aria-expanded', 'false');
+    }
   }
   onChatButtonClick() {
-    const {
-      hidden
-    } = this.getSettings('constants');
-    if (this.elements.contentWrapper.classList.contains(hidden)) {
+    if (this.elements.contentWrapper && this.contentWrapperIsHidden()) {
       this.openChatBox();
     } else {
       this.closeChatBox();
     }
   }
   initMessageBubbleTime() {
+    if (!this.elements.messageBubbleTime) {
+      return;
+    }
     const messageBubbleTimeFormat = this.elements.messageBubbleTime.dataset.timeFormat;
     const is12hFormat = '12h' === messageBubbleTimeFormat;
-    const time = new Intl.DateTimeFormat('default', {
+    this.elements.messageBubbleTime.innerHTML = new Intl.DateTimeFormat('default', {
       hour12: is12hFormat,
       hour: 'numeric',
       minute: 'numeric'
     }).format(new Date());
-    this.elements.messageBubbleTime.innerHTML = time;
+  }
+  removeChatButtonAnimationClasses() {
+    if (!this.elements.chatButton) {
+      return;
+    }
+    const {
+      chatButtonAnimation,
+      visible
+    } = this.getSettings('constants');
+    this.elements.chatButton.classList.remove(chatButtonAnimation);
+    this.elements.chatButton.classList.add(visible);
   }
   initChatButtonEntranceAnimation() {
     const {
       none,
-      chatButtonAnimation,
-      animated
+      chatButtonAnimation
     } = this.getSettings('constants');
     const entranceAnimationControl = this.getResponsiveSetting(chatButtonAnimation);
-    if (none === entranceAnimationControl) {
+    if (!entranceAnimationControl || none === entranceAnimationControl) {
       return;
     }
-    this.elements.chatButton.classList.add(animated);
     this.elements.chatButton.classList.add(entranceAnimationControl);
   }
+  initDefaultState() {
+    // Manage accessibility
+    if (this.elements.contentWrapper) {
+      const isHidden = this.contentWrapperIsHidden();
+      if (this.elements.chatButton) {
+        this.elements.chatButton.setAttribute('aria-expanded', !isHidden);
+      }
+      if (this.elements.closeButton) {
+        this.elements.closeButton.setAttribute('aria-expanded', !isHidden);
+      }
+    }
+    if (elementorFrontend.isEditMode() && 'floating-buttons' === elementor?.config?.document?.type) {
+      this.openChatBox();
+    }
+  }
   onInit() {
+    const {
+      hasEntranceAnimation
+    } = this.getSettings('constants');
     super.onInit(...arguments);
-    this.initMessageBubbleTime();
-    this.initChatButtonEntranceAnimation();
+    if (this.elements.messageBubbleTime) {
+      this.initMessageBubbleTime();
+    }
+    this.initDefaultState();
+    if (this.elements.chatButton) {
+      if (this.elements.chatButton.classList.contains(hasEntranceAnimation)) {
+        this.initChatButtonEntranceAnimation();
+      }
+    }
   }
 }
 exports["default"] = ContactButtonsHandler;
@@ -2158,7 +2326,7 @@ class NestedAccordion extends _base.default {
   }
   onInit() {
     super.onInit(...arguments);
-    if (elementorFrontend.isEditMode()) {
+    if (elementorFrontend.isEditMode() && !elementorCommon.config.experimentalFeatures.e_nested_atomic_repeaters) {
       this.interlaceContainers();
     }
     this.injectKeyboardHandler();
@@ -2340,18 +2508,13 @@ exports["default"] = void 0;
 var _base = _interopRequireDefault(__webpack_require__(/*! elementor-frontend/handlers/base */ "../assets/dev/js/frontend/handlers/base.js"));
 var _flexHorizontalScroll = __webpack_require__(/*! elementor-frontend-utils/flex-horizontal-scroll */ "../assets/dev/js/frontend/utils/flex-horizontal-scroll.js");
 class NestedTabs extends _base.default {
-  constructor() {
-    super(...arguments);
-    this.resizeListenerNestedTabs = null;
-  }
-
   /**
    * @param {string|number} tabIndex
    *
    * @return {string}
    */
   getTabTitleFilterSelector(tabIndex) {
-    return `[data-tab-index="${tabIndex}"]`;
+    return `[${this.getSettings('dataAttributes').tabIndex}="${tabIndex}"]`;
   }
 
   /**
@@ -2369,20 +2532,35 @@ class NestedTabs extends _base.default {
    * @return {string}
    */
   getTabIndex(tabTitleElement) {
-    return tabTitleElement.getAttribute('data-tab-index');
+    return tabTitleElement.getAttribute(this.getSettings('dataAttributes').tabIndex);
+  }
+  getActiveTabIndex() {
+    const settings = this.getSettings(),
+      activeTitleFilter = settings.ariaAttributes.activeTitleSelector,
+      tabIndexSelector = settings.dataAttributes.tabIndex,
+      $activeTitle = this.elements.$tabTitles.filter(activeTitleFilter);
+    return $activeTitle.attr(tabIndexSelector) || null;
+  }
+  getWidgetNumber() {
+    return this.$element.find('> .elementor-widget-container > .e-n-tabs, > .e-n-tabs').attr('data-widget-number');
   }
   getDefaultSettings() {
+    const widgetNumber = this.getWidgetNumber();
     return {
       selectors: {
-        widgetContainer: '.e-n-tabs',
-        tabTitle: '.e-n-tab-title',
-        tabTitleText: '.e-n-tab-title-text',
-        tabContent: '.e-n-tabs-content > .e-con',
-        headingContainer: '.e-n-tabs-heading',
-        activeTabContentContainers: '.e-con.e-active'
+        widgetContainer: `[data-widget-number="${widgetNumber}"]`,
+        tabTitle: `[aria-controls*="e-n-tab-content-${widgetNumber}"]`,
+        tabTitleIcon: `[id*="e-n-tab-title-${widgetNumber}"] > .e-n-tab-icon`,
+        tabTitleText: `[id*="e-n-tab-title-${widgetNumber}"] > .e-n-tab-title-text`,
+        tabContent: `[data-widget-number="${widgetNumber}"] > .e-n-tabs-content > .e-con`,
+        headingContainer: `[data-widget-number="${widgetNumber}"] > .e-n-tabs-heading`,
+        activeTabContentContainers: `[id*="e-n-tab-content-${widgetNumber}"].e-active`
       },
       classes: {
         active: 'e-active'
+      },
+      dataAttributes: {
+        tabIndex: 'data-tab-index'
       },
       ariaAttributes: {
         titleStateAttribute: 'aria-selected',
@@ -2398,7 +2576,7 @@ class NestedTabs extends _base.default {
   getDefaultElements() {
     const selectors = this.getSettings('selectors');
     return {
-      $wdigetContainer: this.findElement(selectors.widgetContainer),
+      $widgetContainer: this.findElement(selectors.widgetContainer),
       $tabTitles: this.findElement(selectors.tabTitle),
       $tabContents: this.findElement(selectors.tabContent),
       $headingContainer: this.findElement(selectors.headingContainer)
@@ -2424,7 +2602,7 @@ class NestedTabs extends _base.default {
 
     // Return back original toggle effects
     this.setSettings(originalToggleMethods);
-    this.elements.$wdigetContainer.addClass('e-activated');
+    this.elements.$widgetContainer.addClass('e-activated');
   }
   deactivateActiveTab(newTabIndex) {
     const settings = this.getSettings(),
@@ -2477,11 +2655,14 @@ class NestedTabs extends _base.default {
     elementorFrontend.elements.$window.trigger('elementor/bg-video/recalc');
   }
   isActiveTab(tabIndex) {
-    return 'true' === this.elements.$tabTitles.filter('[data-tab-index="' + tabIndex + '"]').attr(this.getSettings('ariaAttributes').titleStateAttribute);
+    const settings = this.getSettings(),
+      isActiveTabTitle = 'true' === this.elements.$tabTitles.filter(`[${settings.dataAttributes.tabIndex}="${tabIndex}"]`).attr(settings.ariaAttributes.titleStateAttribute),
+      isActiveTabContent = this.elements.$tabContents.filter(this.getTabContentFilterSelector(tabIndex)).hasClass(this.getActiveClass());
+    return isActiveTabTitle && isActiveTabContent;
   }
   onTabClick(event) {
     event.preventDefault();
-    this.changeActiveTab(event.currentTarget?.getAttribute('data-tab-index'), true);
+    this.changeActiveTab(event.currentTarget?.getAttribute(this.getSettings('dataAttributes').tabIndex), true);
   }
   getTabEvents() {
     return {
@@ -2500,14 +2681,7 @@ class NestedTabs extends _base.default {
   bindEvents() {
     this.elements.$tabTitles.on(this.getTabEvents());
     this.elements.$headingContainer.on(this.getHeadingEvents());
-    const settingsObject = {
-      element: this.elements.$headingContainer[0],
-      direction: this.getTabsDirection(),
-      justifyCSSVariable: '--n-tabs-heading-justify-content',
-      horizontalScrollStatus: this.getHorizontalScrollSetting()
-    };
-    this.resizeListenerNestedTabs = _flexHorizontalScroll.setHorizontalScrollAlignment.bind(this, settingsObject);
-    elementorFrontend.elements.$window.on('resize', this.resizeListenerNestedTabs);
+    elementorFrontend.elements.$window.on('resize', this.onResizeUpdateHorizontalScrolling.bind(this));
     elementorFrontend.elements.$window.on('resize', this.setTouchMode.bind(this));
     elementorFrontend.elements.$window.on('elementor/nested-tabs/activate', this.reInitSwipers);
     elementorFrontend.elements.$window.on('elementor/nested-elements/activate-by-keyboard', this.changeActiveTabByKeyboard.bind(this));
@@ -2517,8 +2691,11 @@ class NestedTabs extends _base.default {
     this.elements.$tabTitles.off();
     this.elements.$headingContainer.off();
     this.elements.$tabContents.children().off();
-    elementorFrontend.elements.$window.off('resize');
-    elementorFrontend.elements.$window.off('elementor/nested-tabs/activate');
+    elementorFrontend.elements.$window.off('resize', this.onResizeUpdateHorizontalScrolling.bind(this));
+    elementorFrontend.elements.$window.off('resize', this.setTouchMode.bind(this));
+    elementorFrontend.elements.$window.off('elementor/nested-tabs/activate', this.reInitSwipers);
+    elementorFrontend.elements.$window.off('elementor/nested-elements/activate-by-keyboard', this.changeActiveTabByKeyboard.bind(this));
+    elementorFrontend.elements.$window.off('elementor/nested-container/atomic-repeater', this.linkContainer.bind(this));
   }
 
   /**
@@ -2545,13 +2722,7 @@ class NestedTabs extends _base.default {
     if (this.getSettings('autoExpand')) {
       this.activateDefaultTab();
     }
-    const settingsObject = {
-      element: this.elements.$headingContainer[0],
-      direction: this.getTabsDirection(),
-      justifyCSSVariable: '--n-tabs-heading-justify-content',
-      horizontalScrollStatus: this.getHorizontalScrollSetting()
-    };
-    (0, _flexHorizontalScroll.setHorizontalScrollAlignment)(settingsObject);
+    (0, _flexHorizontalScroll.setHorizontalScrollAlignment)(this.getHorizontalScrollingSettings());
     this.setTouchMode();
     if ('nested-tabs.default' === this.getSettings('elementName')) {
       new elementorModules.frontend.handlers.NestedTitleKeyboardHandler(this.getKeyboardNavigationSettings());
@@ -2564,13 +2735,7 @@ class NestedTabs extends _base.default {
   }
   onElementChange(propertyName) {
     if (this.checkSliderPropsToWatch(propertyName)) {
-      const settingsObject = {
-        element: this.elements.$headingContainer[0],
-        direction: this.getTabsDirection(),
-        justifyCSSVariable: '--n-tabs-heading-justify-content',
-        horizontalScrollStatus: this.getHorizontalScrollSetting()
-      };
-      (0, _flexHorizontalScroll.setHorizontalScrollAlignment)(settingsObject);
+      (0, _flexHorizontalScroll.setHorizontalScrollAlignment)(this.getHorizontalScrollingSettings());
     }
   }
   checkSliderPropsToWatch(propertyName) {
@@ -2666,38 +2831,58 @@ class NestedTabs extends _base.default {
         container
       } = event.detail,
       id = container.model.get('id'),
-      currentId = this.$element.data('id');
+      currentId = this.$element.data('id'),
+      view = container.view.$el;
     if (id === currentId) {
       this.updateIndexValues();
-      this.updateListeners();
+      this.updateListeners(view);
       elementor.$preview[0].contentWindow.dispatchEvent(new CustomEvent('elementor/elements/link-data-bindings'));
     }
+    if (!this.getActiveTabIndex()) {
+      const targetIndex = event.detail.index + 1 || 1;
+      this.changeActiveTab(targetIndex);
+    }
   }
-  updateListeners() {
-    elementorFrontend.elementsHandler.runReadyTrigger(this.$element[0]);
+  updateListeners(view) {
+    this.elements.$tabContents = view.find(this.getSettings('selectors.tabContent'));
+    this.elements.$tabTitles = view.find(this.getSettings('selectors.tabTitle'));
+    this.elements.$tabTitles.on(this.getTabEvents());
   }
   updateIndexValues() {
     const {
+        $widgetContainer,
         $tabContents,
         $tabTitles
       } = this.getDefaultElements(),
       settings = this.getSettings(),
-      itemIdBase = $tabTitles[0].getAttribute('id').slice(0, -1),
-      containerIdBase = $tabContents[0].getAttribute('id').slice(0, -1);
+      dataTabIndex = settings.dataAttributes.tabIndex,
+      widgetNumber = $widgetContainer.data('widgetNumber');
     $tabTitles.each((index, element) => {
       const newIndex = index + 1,
-        updatedTabID = itemIdBase + newIndex,
-        updatedContainerID = containerIdBase + newIndex;
+        updatedTabID = `e-n-tab-title-${widgetNumber}${newIndex}`,
+        updatedContainerID = `e-n-tab-content-${widgetNumber}${newIndex}`;
       element.setAttribute('id', updatedTabID);
       element.setAttribute('style', `--n-tabs-title-order: ${newIndex}`);
-      element.setAttribute('data-tab-index', newIndex);
+      element.setAttribute(dataTabIndex, newIndex);
+      element.setAttribute('aria-controls', updatedContainerID);
+      element.querySelector(settings.selectors.tabTitleIcon)?.setAttribute('data-binding-index', newIndex);
       element.querySelector(settings.selectors.tabTitleText).setAttribute('data-binding-index', newIndex);
-      element.querySelector(settings.selectors.tabTitleText).setAttribute('aria-controls', updatedTabID);
       $tabContents[index].setAttribute('aria-labelledby', updatedTabID);
-      $tabContents[index].setAttribute('data-tab-index', updatedTabID);
+      $tabContents[index].setAttribute(dataTabIndex, newIndex);
       $tabContents[index].setAttribute('id', updatedContainerID);
       $tabContents[index].setAttribute('style', `--n-tabs-title-order: ${newIndex}`);
     });
+  }
+  onResizeUpdateHorizontalScrolling() {
+    (0, _flexHorizontalScroll.setHorizontalScrollAlignment)(this.getHorizontalScrollingSettings());
+  }
+  getHorizontalScrollingSettings() {
+    return {
+      element: this.elements.$headingContainer[0],
+      direction: this.getTabsDirection(),
+      justifyCSSVariable: '--n-tabs-heading-justify-content',
+      horizontalScrollStatus: this.getHorizontalScrollSetting()
+    };
   }
 }
 exports["default"] = NestedTabs;
@@ -4915,6 +5100,31 @@ exportWebAssemblyErrorCauseWrapper('RuntimeError', function (init) {
 
 /***/ }),
 
+/***/ "../node_modules/@babel/runtime/helpers/defineProperty.js":
+/*!****************************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/defineProperty.js ***!
+  \****************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var toPropertyKey = __webpack_require__(/*! ./toPropertyKey.js */ "../node_modules/@babel/runtime/helpers/toPropertyKey.js");
+function _defineProperty(obj, key, value) {
+  key = toPropertyKey(key);
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+module.exports = _defineProperty, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
 /***/ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js":
 /*!***********************************************************************!*\
   !*** ../node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
@@ -4927,6 +5137,62 @@ function _interopRequireDefault(obj) {
   };
 }
 module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ "../node_modules/@babel/runtime/helpers/toPrimitive.js":
+/*!*************************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/toPrimitive.js ***!
+  \*************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var _typeof = (__webpack_require__(/*! ./typeof.js */ "../node_modules/@babel/runtime/helpers/typeof.js")["default"]);
+function toPrimitive(t, r) {
+  if ("object" != _typeof(t) || !t) return t;
+  var e = t[Symbol.toPrimitive];
+  if (void 0 !== e) {
+    var i = e.call(t, r || "default");
+    if ("object" != _typeof(i)) return i;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return ("string" === r ? String : Number)(t);
+}
+module.exports = toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ "../node_modules/@babel/runtime/helpers/toPropertyKey.js":
+/*!***************************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/toPropertyKey.js ***!
+  \***************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var _typeof = (__webpack_require__(/*! ./typeof.js */ "../node_modules/@babel/runtime/helpers/typeof.js")["default"]);
+var toPrimitive = __webpack_require__(/*! ./toPrimitive.js */ "../node_modules/@babel/runtime/helpers/toPrimitive.js");
+function toPropertyKey(t) {
+  var i = toPrimitive(t, "string");
+  return "symbol" == _typeof(i) ? i : String(i);
+}
+module.exports = toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ "../node_modules/@babel/runtime/helpers/typeof.js":
+/*!********************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/typeof.js ***!
+  \********************************************************/
+/***/ ((module) => {
+
+function _typeof(o) {
+  "@babel/helpers - typeof";
+
+  return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+    return typeof o;
+  } : function (o) {
+    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(o);
+}
+module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ })
 

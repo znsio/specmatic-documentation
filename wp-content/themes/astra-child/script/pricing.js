@@ -35,6 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
     "open-api-spec": 0,
     "wdsl-spec": 0,
     "async-api-spec": 150,
+    "grpc-spec": 150,
+    "graphql-spec": 150,
     "resp-spec": 50,
     "jdbc-spec": 50,
   };

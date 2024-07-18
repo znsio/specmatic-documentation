@@ -1,4 +1,4 @@
-/*! elementor - v3.22.0 - 26-06-2024 */
+/*! elementor - v3.23.0 - 15-07-2024 */
 "use strict";
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["frontend"],{
 
@@ -104,8 +104,8 @@ module.exports = function ($) {
   if (elementorFrontendConfig.experimentalFeatures['nested-elements']) {
     this.elementsHandlers['nested-accordion.default'] = () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! elementor/modules/nested-accordion/assets/js/frontend/handlers/nested-accordion */ "../modules/nested-accordion/assets/js/frontend/handlers/nested-accordion.js"));
   }
-  if (elementorFrontendConfig.experimentalFeatures['conversion-center']) {
-    this.elementsHandlers['contact-buttons.default'] = () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! elementor/modules/conversion-center/assets/js/frontend/handlers/contact-buttons */ "../modules/conversion-center/assets/js/frontend/handlers/contact-buttons.js"));
+  if (elementorFrontendConfig.experimentalFeatures['floating-buttons']) {
+    this.elementsHandlers['contact-buttons.default'] = () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! elementor/modules/floating-buttons/assets/js/frontend/handlers/contact-buttons */ "../modules/floating-buttons/assets/js/frontend/handlers/contact-buttons.js"));
   }
   const addGlobalHandlers = () => elementorFrontend.hooks.addAction('frontend/element_ready/global', _global.default);
   const addElementsHandlers = () => {
@@ -1806,6 +1806,7 @@ class _default extends elementorModules.ViewModule {
     if (settingsMatch) {
       settings = JSON.parse(atob(settingsMatch[1]));
     }
+    settings.previousEvent = event;
     for (var _len = arguments.length, restArgs = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
       restArgs[_key - 1] = arguments[_key];
     }
@@ -1959,8 +1960,6 @@ class VimeoLoader extends _baseLoader.default {
     return Vimeo;
   }
   getAutoplayURL(videoURL) {
-    videoURL = super.getAutoplayURL(videoURL);
-
     // Vimeo requires the '#t=' param to be last in the URL.
     const timeMatch = videoURL.match(/#t=[^&]*/);
     return videoURL.replace(timeMatch[0], '') + timeMatch;
