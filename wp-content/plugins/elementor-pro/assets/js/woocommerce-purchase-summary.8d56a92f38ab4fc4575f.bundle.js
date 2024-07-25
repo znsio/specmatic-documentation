@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.23.0 - 15-07-2024 */
+/*! elementor-pro - v3.23.0 - 23-07-2024 */
 "use strict";
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["woocommerce-purchase-summary"],{
 

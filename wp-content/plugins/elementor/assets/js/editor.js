@@ -1,4 +1,4 @@
-/*! elementor - v3.23.0 - 15-07-2024 */
+/*! elementor - v3.23.0 - 23-07-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -14276,6 +14276,11 @@ ControlMediaItemView = ControlBaseDataView.extend({
     if (actionURL) {
       window.open(actionURL, '_blank');
     }
+    elementorCommon.ajax.addRequest('elementor_image_optimization_campaign', {
+      data: {
+        source: 'io-editor-gallery-install'
+      }
+    });
     this.hidePromotion();
   },
   dismissPromotion: function dismissPromotion(eventName) {
@@ -15156,6 +15161,12 @@ ControlMediaItemView = ControlMultipleBaseItemView.extend({
     if (!eventName) {
       eventName = this.getDismissPromotionEventName();
     }
+    elementorCommon.ajax.addRequest('elementor_image_optimization_campaign', {
+      data: {
+        source: 'io-editor-image-install'
+      }
+    });
+
     // Prevent opening the same promotion again in current editor session.
     elementor.config.user.dismissed_editor_notices.push(eventName);
   },
@@ -40094,11 +40105,14 @@ exports["default"] = Heartbeat;
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
 var _colorPicker = _interopRequireDefault(__webpack_require__(/*! ./color-picker */ "../assets/dev/js/editor/utils/color-picker.js"));
 var _helperBc = _interopRequireDefault(__webpack_require__(/*! elementor-editor/document/helper-bc */ "../assets/dev/js/editor/document/helper-bc.js"));
 var _containerHelper = _interopRequireDefault(__webpack_require__(/*! elementor-editor-utils/container-helper */ "../assets/dev/js/editor/utils/container-helper.js"));
-var _dompurify = _interopRequireDefault(__webpack_require__(/*! dompurify */ "../node_modules/dompurify/dist/purify.js"));
+var _dompurify = _interopRequireWildcard(__webpack_require__(/*! dompurify */ "../node_modules/dompurify/dist/purify.js"));
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 var allowedHTMLWrapperTags = ['article', 'aside', 'div', 'footer', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'main', 'nav', 'p', 'section', 'span'];
 module.exports = {
   container: _containerHelper.default,
@@ -40680,6 +40694,10 @@ module.exports = {
   },
   sanitize: function sanitize(value, options) {
     return _dompurify.default.sanitize(value, options);
+  },
+  sanitizeUrl: function sanitizeUrl(url) {
+    var isValidUrl = !!url ? (0, _dompurify.isValidAttribute)('a', 'href', url) : false;
+    return isValidUrl ? url : '';
   }
 };
 

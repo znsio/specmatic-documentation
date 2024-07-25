@@ -1,4 +1,4 @@
-/*! elementor - v3.23.0 - 15-07-2024 */
+/*! elementor - v3.23.0 - 23-07-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -2163,6 +2163,20 @@ var _module3 = _interopRequireDefault(__webpack_require__(/*! elementor/modules/
           $wrapperElm.slideUp(100, function () {
             $wrapperElm.remove();
           });
+        });
+      });
+      $('.e-notice--cta.e-notice--dismissible[data-notice_id="plugin_image_optimization"] a.e-button--cta').on('click', function () {
+        elementorCommon.ajax.addRequest('elementor_image_optimization_campaign', {
+          data: {
+            source: 'io-wp-media-library-install'
+          }
+        });
+      });
+      $('.e-a-apps .e-a-item[data-plugin="image-optimization/image-optimization.php"] a.e-btn').on('click', function () {
+        elementorCommon.ajax.addRequest('elementor_image_optimization_campaign', {
+          data: {
+            source: 'io-esetting-addons-install'
+          }
         });
       });
       $('#elementor-clear-cache-button').on('click', function (event) {
