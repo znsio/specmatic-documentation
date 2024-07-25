@@ -12,13 +12,13 @@
 	<atom:link href="https://specmatic.io/category/demonstration/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Thu, 18 Apr 2024 00:49:05 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 25 Jul 2024 00:48:28 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.6</generator>
+	<generator>https://wordpress.org/?v=6.6.1</generator>
 
 <image>
 	<url>https://specmatic.io/wp-content/uploads/2022/09/Favicon.png</url>
@@ -28,6 +28,22 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>API Resiliency and Contract Testing for GraphQL</title>
+		<link>https://specmatic.io/updates/api-resiliency-and-contract-testing-for-graphql/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Wed, 24 Jul 2024 20:10:00 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5198</guid>
+
+					<description><![CDATA[Transform your GraphQL API specs into executable contracts in seconds Now you can easily leverage your GraphQL APIs for contract testing, intelligent service virtualisation and backward compatibility testing, just like you would for your OpenAPI-based services. No more complex and brittle setups that involve an assortment of tools &#8211; Specmatic handles it all for you, [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Contract Testing Google Pub/Sub: Using AsyncAPI specs as Executable Contracts</title>
 		<link>https://specmatic.io/updates/contract-testing-google-pub-sub-using-asyncapi-as-executable-contracts/</link>
 		

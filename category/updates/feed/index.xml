@@ -12,13 +12,13 @@
 	<atom:link href="https://specmatic.io/category/updates/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 17 Jul 2024 22:35:31 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 25 Jul 2024 00:48:28 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.6</generator>
+	<generator>https://wordpress.org/?v=6.6.1</generator>
 
 <image>
 	<url>https://specmatic.io/wp-content/uploads/2022/09/Favicon.png</url>
@@ -28,6 +28,37 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Specmatic 2.0 is out! Now supports GraphQL and gRPC</title>
+		<link>https://specmatic.io/updates/specmatic-2-0-is-out-now-supports-graphql-and-grpc/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Thu, 25 Jul 2024 00:08:49 +0000</pubDate>
+				<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5193</guid>
+
+					<description><![CDATA[We&#8217;re thrilled to announce the release of Specmatic 2.0.x, a significant milestone release that is set to transform the way developers approach contract testing, intelligent service virtualization and backward compatibility testing. Now you can also transform your GraphQL and gRPC API specs into executable contracts in seconds. Specmatic 2.0 ushers in a new era of [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>API Resiliency and Contract Testing for GraphQL</title>
+		<link>https://specmatic.io/updates/api-resiliency-and-contract-testing-for-graphql/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Wed, 24 Jul 2024 20:10:00 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5198</guid>
+
+					<description><![CDATA[Transform your GraphQL API specs into executable contracts in seconds Now you can easily leverage your GraphQL APIs for contract testing, intelligent service virtualisation and backward compatibility testing, just like you would for your OpenAPI-based services. No more complex and brittle setups that involve an assortment of tools &#8211; Specmatic handles it all for you, [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Empowering Frontend Engineers with Microservices Contract Testing &#8211; a conversation with Markus Oberlehner</title>
 		<link>https://specmatic.io/podcast/empowering-frontend-engineers-with-microservices-contract-testing-a-conversation-with-markus-oberlehner/</link>
 		
@@ -162,43 +193,6 @@
 		<guid isPermaLink="false">https://specmatic.io/?p=3236</guid>
 
 					<description><![CDATA[We recently discovered some major issues with the TMForum Conformance Test Kit (CTK) v5.0.0 and will demonstrate how using Specmatic can address these problems.]]></description>
-		
-		
-		
-			</item>
-		<item>
-		<title>Early detection of mismatches between your API specs and implementation: Exploring Specmatic&#8217;s API Coverage Report</title>
-		<link>https://specmatic.io/updates/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/</link>
-		
-		<dc:creator><![CDATA[Jaydeep Kulkarni]]></dc:creator>
-		<pubDate>Tue, 29 Aug 2023 00:47:04 +0000</pubDate>
-				<category><![CDATA[Feature Spotlight]]></category>
-		<category><![CDATA[Updates]]></category>
-		<category><![CDATA[API Coverage Report]]></category>
-		<category><![CDATA[Contract Driven Development]]></category>
-		<category><![CDATA[OpenAPI]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=1966</guid>
-
-					<description><![CDATA[Specmatic’s API coverage report helps identify any mismatches between an OpenAPI specification and an application's endpoints early in the development lifecycle. The report lists all the endpoints, their coverage, and indicates if they are missing in the spec or not implemented in the application. You can define success criteria for the API coverage report and fix issues. ]]></description>
-		
-		
-		
-			</item>
-		<item>
-		<title>Break the Chains of Database Dependencies: Leveraging Specmatic for JDBC Stubbing</title>
-		<link>https://specmatic.io/updates/jdbc-stubbing-with-specmatic-contract-testing/</link>
-		
-		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
-		<pubDate>Mon, 14 Aug 2023 10:23:30 +0000</pubDate>
-				<category><![CDATA[Feature Spotlight]]></category>
-		<category><![CDATA[Updates]]></category>
-		<category><![CDATA[Contract Driven Development]]></category>
-		<category><![CDATA[Contract Testing]]></category>
-		<category><![CDATA[JDBC]]></category>
-		<category><![CDATA[Stubbing]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=1742</guid>
-
-					<description><![CDATA[With Specmatic JDBC stub, you can easily test APIs without the need for a complex database setup. By switching out the real database with a Specmatic JDBC stub, we can set expectations for the stub to respond to specific queries. These expectations can be recorded based on actual interactions. Once the expectations are set, we no longer need the database for our tests!]]></description>
 		
 		
 		
