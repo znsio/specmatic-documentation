@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.23.0 - 23-07-2024 */
+/*! elementor-pro - v3.23.0 - 29-07-2024 */
 "use strict";
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["menu-title-keyboard-handler"],{
 

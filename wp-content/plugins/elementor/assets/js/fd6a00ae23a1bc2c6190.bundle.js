@@ -1,4 +1,4 @@
-/*! elementor - v3.23.0 - 23-07-2024 */
+/*! elementor - v3.23.0 - 25-07-2024 */
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["vendors-node_modules_prop-types_index_js-node_modules_babel_runtime_helpers_slicedToArray_js"],{
 
 /***/ "../node_modules/object-assign/index.js":
