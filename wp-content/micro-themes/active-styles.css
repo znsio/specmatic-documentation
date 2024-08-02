@@ -1,4 +1,3 @@
-.wp-block {} /*  Ensures MT files load in FSE */
 /*  MICROTHEMER STYLES  */
 
 
@@ -59,6 +58,8 @@ aside > section:nth-of-type(1) > .has-ast-global-color-4-color {
 /** General >> Content ast container **/
 #content .ast-container {
 	background-color: rgb(255, 255, 255) !important;
+	min-width: 100% !important;
+	padding-top: 0 !important;
 }
 
 /** General >> Paragraph _3 **/
@@ -554,9 +555,6 @@ html {
 }
 
 /** General 3 >> Link **/
-.elementor-widget-text-editor a {
-	
-}
 .mtp-4884 .elementor-widget-text-editor a {
 	color: rgb(255, 255, 255) !important;
 }
@@ -566,6 +564,12 @@ html {
 	color: rgb(255, 255, 255) !important;
 	font-size: 14px !important;
 	font-weight: 300 !important;
+}
+
+/** General 3 >> Entry content **/
+.mtp-5268 .entry-content {
+	min-width: 100% !important;
+	margin-top: -60px !important;
 }
 
 
@@ -623,6 +627,11 @@ html {
 	/** General >> Site above footer inner wrap **/
 	#colophon .site-above-footer-inner-wrap {
 	max-width: 900px !important;
+}
+
+	/** General >> Content ast container **/
+	#content .ast-container {
+	margin-top: 0 !important;
 }
 
 	/** General 2 >> Has ast global color 6 color **/
