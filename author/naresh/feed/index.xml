@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/author/naresh/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 31 Jul 2024 06:28:19 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 31 Jul 2024 08:28:09 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,22 +28,6 @@
 	<height>32</height>
 </image> 
 	<item>
-		<title>Contract Testing using OpenAPI Specs as Executable Contracts</title>
-		<link>https://specmatic.io/features/contract-testing-using-openapi-specs-as-executable-contracts/</link>
-		
-		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
-		<pubDate>Wed, 31 Jul 2024 05:30:50 +0000</pubDate>
-				<category><![CDATA[Demonstration]]></category>
-		<category><![CDATA[Feature Spotlight]]></category>
-		<category><![CDATA[Updates]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=5260</guid>
-
-					<description><![CDATA[]]></description>
-		
-		
-		
-			</item>
-		<item>
 		<title>Introduction to Contract Driven Development with Specmatic</title>
 		<link>https://specmatic.io/updates/introduction-to-contract-driven-development-with-specmatic/</link>
 		
@@ -61,6 +45,22 @@
 		<guid isPermaLink="false">https://specmatic.io/?p=3776</guid>
 
 					<description><![CDATA[Transcript Hi, welcome to this demo of contract-driven development where I&#8217;m going to use Specmatic, an open-source tool to turn your API specification into executable contracts. We have an app which sends a request to a BFF, a backend for frontend, which in turn sends a request to a domain service. Notice you could have [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Contract Testing using OpenAPI Specs as Executable Contracts</title>
+		<link>https://specmatic.io/features/contract-testing-using-openapi-specs-as-executable-contracts/</link>
+		
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
+		<pubDate>Tue, 31 Oct 2023 05:30:00 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5260</guid>
+
+					<description><![CDATA[]]></description>
 		
 		
 		

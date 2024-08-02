@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/category/updates/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 31 Jul 2024 06:28:19 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 31 Jul 2024 05:21:06 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,22 +28,6 @@
 	<height>32</height>
 </image> 
 	<item>
-		<title>Contract Testing using OpenAPI Specs as Executable Contracts</title>
-		<link>https://specmatic.io/features/contract-testing-using-openapi-specs-as-executable-contracts/</link>
-		
-		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
-		<pubDate>Wed, 31 Jul 2024 05:30:50 +0000</pubDate>
-				<category><![CDATA[Demonstration]]></category>
-		<category><![CDATA[Feature Spotlight]]></category>
-		<category><![CDATA[Updates]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=5260</guid>
-
-					<description><![CDATA[]]></description>
-		
-		
-		
-			</item>
-		<item>
 		<title>Contract Testing using gRPC Specs as Executable Contracts</title>
 		<link>https://specmatic.io/features/contract-testing-using-grpc-specs-as-executable-contracts/</link>
 		
@@ -190,6 +174,24 @@
 		<guid isPermaLink="false">https://specmatic.io/?p=3776</guid>
 
 					<description><![CDATA[Transcript Hi, welcome to this demo of contract-driven development where I&#8217;m going to use Specmatic, an open-source tool to turn your API specification into executable contracts. We have an app which sends a request to a BFF, a backend for frontend, which in turn sends a request to a domain service. Notice you could have [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Stubbing an HTTP end-point with Specmatic</title>
+		<link>https://specmatic.io/updates/stubbing-an-http-end-point-with-specmatic/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Wed, 29 Nov 2023 04:17:59 +0000</pubDate>
+				<category><![CDATA[In the Media]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[Specmatic]]></category>
+		<category><![CDATA[Stubbing]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=3640</guid>
+
+					<description><![CDATA[Markus Oberlehner gives a brief overview on the topic of Contract Testing with Specmatic and his experience using it for stubbing an HTTP end-point.]]></description>
 		
 		
 		

@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 31 Jul 2024 06:28:19 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 02 Aug 2024 06:54:18 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,17 +28,16 @@
 	<height>32</height>
 </image> 
 	<item>
-		<title>Contract Testing using OpenAPI Specs as Executable Contracts</title>
-		<link>https://specmatic.io/features/contract-testing-using-openapi-specs-as-executable-contracts/</link>
+		<title>Contract Testing using AsyncAPI Specs as Executable Contracts</title>
+		<link>https://specmatic.io/features/contract-testing-using-asyncapi-specs-as-executable-contracts/</link>
 		
-		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
-		<pubDate>Wed, 31 Jul 2024 05:30:50 +0000</pubDate>
+		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
+		<pubDate>Fri, 02 Aug 2024 06:54:15 +0000</pubDate>
 				<category><![CDATA[Demonstration]]></category>
 		<category><![CDATA[Feature Spotlight]]></category>
-		<category><![CDATA[Updates]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=5260</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=5306</guid>
 
-					<description><![CDATA[]]></description>
+					<description><![CDATA[Sample projects with AsyncAPI Sample project with Kafka &#38; AsyncAPI: https://github.com/znsio/specmatic-order-bff-nodejs Sample project with JMS and AsyncAPI: https://github.com/znsio/specmatic-order-bff-jms Sample project with Google Pub/Sub and AsyncAPI: https://github.com/znsio/specmatic-google-pubsub-sample Available in&#160;Pro Plan&#160;and higher]]></description>
 		
 		
 		

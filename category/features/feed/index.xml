@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/category/features/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 31 Jul 2024 06:28:19 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 02 Aug 2024 06:54:18 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,17 +28,16 @@
 	<height>32</height>
 </image> 
 	<item>
-		<title>Contract Testing using OpenAPI Specs as Executable Contracts</title>
-		<link>https://specmatic.io/features/contract-testing-using-openapi-specs-as-executable-contracts/</link>
+		<title>Contract Testing using AsyncAPI Specs as Executable Contracts</title>
+		<link>https://specmatic.io/features/contract-testing-using-asyncapi-specs-as-executable-contracts/</link>
 		
-		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
-		<pubDate>Wed, 31 Jul 2024 05:30:50 +0000</pubDate>
+		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
+		<pubDate>Fri, 02 Aug 2024 06:54:15 +0000</pubDate>
 				<category><![CDATA[Demonstration]]></category>
 		<category><![CDATA[Feature Spotlight]]></category>
-		<category><![CDATA[Updates]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=5260</guid>
+		<guid isPermaLink="false">https://specmatic.io/?p=5306</guid>
 
-					<description><![CDATA[]]></description>
+					<description><![CDATA[Sample projects with AsyncAPI Sample project with Kafka &#38; AsyncAPI: https://github.com/znsio/specmatic-order-bff-nodejs Sample project with JMS and AsyncAPI: https://github.com/znsio/specmatic-order-bff-jms Sample project with Google Pub/Sub and AsyncAPI: https://github.com/znsio/specmatic-google-pubsub-sample Available in&#160;Pro Plan&#160;and higher]]></description>
 		
 		
 		
@@ -148,6 +147,22 @@
 		
 			</item>
 		<item>
+		<title>Contract Testing using OpenAPI Specs as Executable Contracts</title>
+		<link>https://specmatic.io/features/contract-testing-using-openapi-specs-as-executable-contracts/</link>
+		
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
+		<pubDate>Tue, 31 Oct 2023 05:30:00 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5260</guid>
+
+					<description><![CDATA[]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Early detection of mismatches between your API specs and implementation: Exploring Specmatic&#8217;s API Coverage Report</title>
 		<link>https://specmatic.io/features/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/</link>
 		
@@ -182,25 +197,6 @@
 		<guid isPermaLink="false">https://specmatic.io/?p=1742</guid>
 
 					<description><![CDATA[With Specmatic JDBC stub, you can easily test APIs without the need for a complex database setup. By switching out the real database with a Specmatic JDBC stub, we can set expectations for the stub to respond to specific queries. These expectations can be recorded based on actual interactions. Once the expectations are set, we no longer need the database for our tests!]]></description>
-		
-		
-		
-			</item>
-		<item>
-		<title>JMS Mocking with AsyncAPI using Specmatic</title>
-		<link>https://specmatic.io/features/jms-mocking-with-asyncapi-using-specmatic/</link>
-		
-		<dc:creator><![CDATA[Jaydeep Kulkarni]]></dc:creator>
-		<pubDate>Tue, 25 Jul 2023 06:05:31 +0000</pubDate>
-				<category><![CDATA[Demonstration]]></category>
-		<category><![CDATA[Feature Spotlight]]></category>
-		<category><![CDATA[Updates]]></category>
-		<category><![CDATA[AsyncAPI]]></category>
-		<category><![CDATA[Contract Driven Development]]></category>
-		<category><![CDATA[Contract Testing]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=1702</guid>
-
-					<description><![CDATA[The JMS mock is wire compatible and can be controlled entirely from within the test. This means you can run the test locally or also as part of your continuous integration build to provide quick feedback early in the cycle.]]></description>
 		
 		
 		
