@@ -12,9 +12,7 @@ Configuration
       - [Report Types](#report-types)
       - [API Coverage report](#api-coverage-report)
       - [Complete sample specmatic.json with all attributes](#complete-sample-specmaticjson-with-all-attributes)
-    - [Declare pipeline details](#declare-pipeline-details)
-    - [Declare environment configuration](#declare-environment-configuration)
-    - [Hooks](#hooks)
+      - [Hooks](#hooks)
 
 ### Getting started
 
@@ -51,7 +49,7 @@ sources:
 {% endtab %}
 {% endtabs %}
 
-Place this file in the root folder of your project (Here is an [example](https://github.com/znsio/specmatic-order-api-java)). Let us now go through each of the lines in this file.
+Place this file in the root folder of your project (Here is an [example](https://github.com/znsio/specmatic-order-api-java/blob/main/specmatic.yaml)). Let us now go through each of the lines in this file.
 * **provider** - At the moment we support all git based source control systems. Example: GitHub, Gitlab, Azure, etc.
 * **repository** - The git repository URL
 * **provides** - This is the list of API Specifications that need to be run as a test. Note that the path is relative to the source control repository root.
@@ -304,7 +302,7 @@ The Text formatter will print the report on to the console/terminal.
 
 #### Report Types
 #### API Coverage report
-This gives you a comprehensive analysis of any mismatch between your api specification and implementation. [Here](https://specmatic.in/updates/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/#gsc.tab=0) is an article with a detailed write-up about this feature.
+This gives you a comprehensive analysis of any mismatch between your api specification and implementation. [Here](https://specmatic.io/updates/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/#gsc.tab=0) is an article with a detailed write-up about this feature.
 
 #### Complete sample specmatic.json with all attributes
 
@@ -315,39 +313,16 @@ This gives you a comprehensive analysis of any mismatch between your api specifi
   "sources": [
     {
       "provider": "git",
-      "repository": "https://azure.com/XNSio/XNSIO/_git/petstore-contracts",
+      "repository": "https://github.com/znsio/specmatic-order-contracts.git",
       "branch": "main",
       "provides": [
-        "com/petstore/store.yaml"
+        "io/specmatic/examples/store/openapi/product_search_bff_v4.yaml"
       ],
       "consumes": [
-        "com/petstore/payment.yaml"
+        "io/specmatic/examples/store/openapi/api_order_v3.yaml"
       ]
     }
   ],
-
-  "auth": {
-    "bearer-file": "central_repo_auth_token.txt"
-  },
-
-  "pipeline": {
-    "provider": "azure",
-    "organization": "XNSio",
-    "project": "XNSIO",
-    "definitionId": 4
-  },
-
-  "environments": {
-    "staging": {
-      "baseurls": {
-        "auth.spec": "http://localhost:8080"
-      },
-      "variables": {
-        "username": "jackie",
-        "password": "PaSsWoRd"
-      }
-    }
-  },
 
   "hooks": {
     "hook_name": "command"
@@ -382,30 +357,12 @@ This gives you a comprehensive analysis of any mismatch between your api specifi
 ```yaml
 sources:
   - provider: git
-    repository: https://azure.com/XNSio/XNSIO/_git/petstore-contracts
+    repository: https://github.com/znsio/specmatic-order-contracts.git
     branch: main
     provides:
-      - com/petstore/store.yaml
+      - io/specmatic/examples/store/openapi/product_search_bff_v4.yaml
     consumes:
-      - com/petstore/payment.yaml
-
-auth:
-  bearer-file: central_repo_auth_token.txt
-
-pipeline:
-  provider: azure
-  organization: XNSio
-  project: XNSIO
-  definitionId: 4
-
-environments:
-  staging:
-    baseurls:
-      auth.spec: http://localhost:8080
-    variables:
-      username: jackie
-      password: PaSsWoRd
-
+      - io/specmatic/examples/store/openapi/api_order_v3.yaml
 hooks:
   hook_name: command
 
@@ -425,98 +382,6 @@ report:
 ```
 {% endtab %}
 {% endtabs %}
-
-### Declare pipeline details
-
-Contains details of the project pipeline.
-
-{% tabs pipeline %}
-{% tab pipeline specmatic.json %}
-```json
-{
-  "auth": {
-    "bearer-file": "./central_repo_auth_token.txt"
-  },
-
-  "pipeline": {
-    "provider": "azure", 
-    "organization": "XNSio",
-    "project": "XNSIO",
-    "definitionId": 4
-  }
-}
-```
-{% endtab %}
-{% tab pipeline specmatic.yaml %}
-```yaml
-auth:
-  bearer-file: ./central_repo_auth_token.txt
-
-pipeline:
-  provider: azure
-  organization: XNSio
-  project: XNSIO
-  definitionId: 4
-```
-{% endtab %}
-{% endtabs %}
-
-* `auth` section is needed for Azure pipelines
-* `pipeline` section is used by Specmatic install, to register a project's build pipeline to run when a contract changes.
-  * `provider` should remain `azure`, no need to change this
-  * Details such as `organization`, `project` and `definitionId` must be set up as per your project.
-
-Specmatic fetches contracts from git repositories in Azure using the value of the pipeline variable `System.AccessToken` for authentication. This is a predefined variable in Azure build pipelines.
-
-It looks for this value in the file specified by `bearer-file`. `central_repo_auth_token.txt` is our recommended name for the file. This file should be in your project root.
-
-You can set it up by placing this snippet in the `steps` section of your Azure pipeline:
-
-```yaml
-steps:
-  - script: echo $SYSTEM_ACCESSTOKEN > central_repo_auth_token.txt
-    env:
-      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-```
-
-You can read more about `System.AccessToken` [here](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml).
-
-### Declare environment configuration
-
-{% tabs environment %}
-{% tab environment specmatic.json %}
-```json
-  "environments": {
-    "staging": {
-      "baseurls": {
-        "auth.spec": "http://localhost:8080"
-      },
-      "variables": {
-        "username": "jackie",
-        "password": "PaSsWoRd"
-      }
-    }
-  }
-```
-{% endtab %}
-{% tab environment specmatic.yaml %}
-```yaml
-environments:
-  staging:
-    baseurls:
-      auth.spec: http://localhost:8080
-    variables:
-      username: jackie
-      password: PaSsWoRd
-```
-{% endtab %}
-{% endtabs %}
-
-The environments key in this example contains configuration for the `staging` environment. It can contain configuration for any number of environments.
-
-Each environment configuration can contain
-- `baseurls` - needed when running contracts as test as part of [authentication](documentation/../authentication.html)
-- `variables` - these values are plugged into the Examples rows of an auth contract for [authentication](documentation/../authentication.html), or even when running regular contract tests
 
 ### Hooks
 

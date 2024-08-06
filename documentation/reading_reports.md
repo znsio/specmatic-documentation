@@ -26,7 +26,7 @@ A report contain 3 components:
 Let's assume this contract is running as a stub:
 
 ```yaml
-#Filename: basic.spec
+#Filename: basic.yaml
 openapi: 3.0.1
 info:
   title: Basic contract
