@@ -24,136 +24,44 @@ Please refer to [Specmatic documentation](https://specmatic.in/documentation/) f
 Now we can run below command to spin a GraphQL stub. Please note the volume mapping to pass the specmatic.yaml to the GraphQL Docker image and also the port mappings.
 
 ```shell
-docker run -p 9092:9092 -p 2181:2181 -p 29092:29092 -v "$PWD/specmatic.yaml:/usr/src/app/specmatic.yaml" znsio/specmatic-kafka-trial
-```
-This should produce logs that shows that Specmatic Kafka server has started and listening on topics.
-
-```bash
-Setting up listeners
-Listening on topics: (product-queries)
+docker run -p 9000:9000 -v "$PWD/specmatic.yaml:/usr/src/app/specmatic.yaml" znsio/specmatic-graphql-trial virtualize --port=9000
 ```
 
-This command also starts an API server to interact with the mock server on the default port 29092.
-```bash
-Starting api server on port:29092
-```
+To test the stub is up and running, run the following command in the terminal
 
-The API server can be started on a port other than 29092 by passing the desired port via `--mock-server-api-port` CLI argument as follows.
 ```shell
-docker run -p 9092:9092 -p 2181:2181 -p 3000:3000 -v "$PWD/specmatic.yaml:/usr/src/app/specmatic.yaml" znsio/specmatic-kafka-trial --mock-server-api-port=3000
+curl -X POST -H
+"Content-Type: application/json" \
+-d '{"query": "{ user(id: \"1\") { id name email } }"}' \
+http://your-graphql-endpoint.com/graphql
 ```
 
-## Interacting with the API server
+# Running Contract Tests Against a GraphQL-Based Service
 
-The API server provides endpoints to interact with the kafka mock server, allowing you to perform the following actions:
-1. Set Expectations: Configure the Kafka mock server with specific expectations.
-2. Verify Expectations: Check if the expectations set for the Kafka mock server have been met.
+Create a service which implements the GraphQL endpoints as per the [products_bff.graphqls](https://github.com/znsio/specmatic-order-contracts/blob/main/io/specmatic/examples/store/graphql/products_bff.graphqls) specification.
 
-Here is the OpenAPI specification for these endpoints. Please refer to it for comprehensive information on how to utilize these endpoints.
-```yaml
-openapi: 3.0.0
-info:
-  title: Specmatic Kafka Mock Server API
-  version: 1.0.0
-servers:
-  - url: http://localhost:29092
-paths:
-  /_expectations:
-    post:
-      summary: This endpoint allows you to set expectations for the Kafka mock server.
-      requestBody:
-        description: A list of expectations
-        required: true
-        content:
-          application/json:
-            schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/Expectation'
-      responses:
-        '200':
-          description: Expectations saved successfully
-          content:
-            text/plain:
-              schema:
-                type: string
-  /_expectations/verification_status:
-    get:
-      summary: This endpoint checks if the expectations set for the Kafka mock server have been met.
-      responses:
-        '200':
-          description: Verification result
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VerificationResult'
-components:
-  schemas:
-    Expectation:
-      type: object
-      properties:
-        topic:
-          type: string
-        count:
-          type: integer
-        headers:
-          type: object
-          additionalProperties:
-            type: string
-        body:
-          type: string
-          nullable: true
-      required:
-        - topic
-        - count
-    VerificationResult:
-      type: object
-      properties:
-        success:
-          type: boolean
-        errors:
-          type: array
-          items:
-            type: string
-      required:
-        - success
-        - errors
-```
-
-# Running Contract Tests Against a Kafka-Based Request-Reply Service
-
-Create a service which implements the kafka messaging architecture as per the [order_service_async.yaml](https://github.com/znsio/specmatic-order-contracts/blob/main/io/specmatic/examples/store/asyncapi/order_service_async_v1.yaml) specification.
-
-This service will use a Kafka consumer to listen to the `place-order` topic, and upon receiving a message, it will publish one message each to the `process-order` and `notification` topics. This architecture pattern is known as the request-reply pattern.
-
-### Service Implementation
-1. Consumer: Listens to the place-order topic.
-2. Producer: Publish messages to process-order and notification topics.
+This service will use a GraphQL test to send requests to your service and upon receiving a reply the results will be printed to the console.
 
 ### Specmatic Configuration
 Create a specmatic.yaml configuration file to specify the contract for the service:
 ```yaml
 sources:
-- provider: "git"
-  repository: "https://github.com/znsio/specmatic-order-contracts.git"
-  provides:
-  - "io/specmatic/examples/store/asyncapi/order_service_async_v1.yaml"
+  - provider: git
+    repository: https://github.com/znsio/specmatic-order-contracts.git
+    test:
+      - io/specmatic/examples/store/openapi/graphql_consumer_api_v1.yaml
 ```
-This configuration informs Specmatic that the service provides the implementation as per the specification listed under the provides key. This setup allows Specmatic to run tests against the service using the provided spec.
+This configuration informs Specmatic that the service provides the implementation as per the specification listed under the test key. This setup allows Specmatic to run tests against the service using the provided spec.
 
 ### Testing the Service
 To test this service from the command line, follow the below steps.
-1. **Start Kafka Broker**: Launch a local instance of the Kafka broker on the desired host and port.
+1. **Start GraphQL providerr**: Launch a local instance of the GraphQL provider the desired host and port.
 2. **Run the Service**: Start your service locally.
-3. **Run Contract Tests**: Use the following command to run the contract tests against the service by replacing `kafka_broker_host` and `kafka_broker_port` with appropriate values:
+3. **Run Contract Tests**: Use the following command to run the contract tests against the service by replacing `host` and `port` with appropriate values:
 ```shell
-docker run --network="host" -v "$PWD/specmatic.yaml:/usr/src/app/specmatic.yaml" znsio/specmatic-kafka-trial test --host=<kafka_broker_host> --port=<kafka_broker_port>
+docker run -v "$PWD/specmatic.yaml:/usr/src/app/specmatic.yaml" znsio/specmatic-graphql-trial test --host=<host> --port=<port>
 ```
 
-To get information around all the CLI args of the `test` command, run the following command.
-```shell
-docker run znsio/specmatic-kafka-trial test --help
-```
 
-To get a hands-on experience, refer to [these](https://specmatic.io/documentation/sample_projects.html#kafka) sample projects.
+To get a hands-on experience, refer to [these](https://specmatic.io/documentation/sample_projects.html#graphql) sample projects.
 
