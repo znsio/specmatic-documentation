@@ -1,4 +1,4 @@
-/*! elementor - v3.23.0 - 25-07-2024 */
+/*! elementor - v3.23.0 - 05-08-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -51464,6 +51464,7 @@ var _generate = _interopRequireDefault(__webpack_require__(/*! ./generate */ "..
 var _element = __webpack_require__(/*! @wordpress/element */ "../node_modules/@wordpress/element/build-module/index.js");
 var _editButton = _interopRequireDefault(__webpack_require__(/*! ./edit-button */ "../modules/ai/assets/js/media-library/edit-button.js"));
 var _editLink = _interopRequireDefault(__webpack_require__(/*! ./edit-link */ "../modules/ai/assets/js/media-library/edit-link.js"));
+var _requestsIds = __webpack_require__(/*! ../editor/context/requests-ids */ "../modules/ai/assets/js/editor/context/requests-ids.js");
 var isMediaLibrary = function isMediaLibrary() {
   return window.location.href.includes('/upload.php');
 };
@@ -51490,6 +51491,7 @@ var addEventListener = function addEventListener(eventName, containerId, Compone
 };
 (function (_wp, _wp$media, _wp$media$view, _wp$media$view$Attach, _wp2, _wp2$media, _wp2$media$view, _wp2$media$view$Attac, _wp2$media$view$Attac2) {
   if (isMediaLibrary()) {
+    window.EDITOR_SESSION_ID = (0, _requestsIds.getUniqueId)('wp-media-lib-session');
     var mediaLibrary = document.querySelector('.page-title-action');
     if (mediaLibrary) {
       var container = document.createElement('div');
