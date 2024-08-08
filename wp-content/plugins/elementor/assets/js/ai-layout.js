@@ -1,4 +1,4 @@
-/*! elementor - v3.23.0 - 23-07-2024 */
+/*! elementor - v3.23.0 - 05-08-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -1687,7 +1687,7 @@ var UpgradeChip = function UpgradeChip(_ref3) {
     open: isPopoverOpen,
     anchorEl: anchorEl.current,
     sx: {
-      zIndex: '9999',
+      zIndex: '170001',
       maxWidth: 300
     },
     modifiers: [{

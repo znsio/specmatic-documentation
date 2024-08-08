@@ -1,4 +1,4 @@
-/*! elementor - v3.23.0 - 23-07-2024 */
+/*! elementor - v3.23.0 - 05-08-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -5490,7 +5490,7 @@ var UpgradeChip = function UpgradeChip(_ref3) {
     open: isPopoverOpen,
     anchorEl: anchorEl.current,
     sx: {
-      zIndex: '9999',
+      zIndex: '170001',
       maxWidth: 300
     },
     modifiers: [{
@@ -6819,7 +6819,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = exports.USAGE_PERCENTAGE_THRESHOLD = void 0;
 var _useIntroduction2 = _interopRequireDefault(__webpack_require__(/*! ./use-introduction */ "../modules/ai/assets/js/editor/hooks/use-introduction.js"));
-var USAGE_PERCENTAGE_THRESHOLD = 80;
+var USAGE_PERCENTAGE_THRESHOLD = 75;
 exports.USAGE_PERCENTAGE_THRESHOLD = USAGE_PERCENTAGE_THRESHOLD;
 var useUpgradeMessage = function useUpgradeMessage(_ref) {
   var usagePercentage = _ref.usagePercentage,
@@ -6830,7 +6830,7 @@ var useUpgradeMessage = function useUpgradeMessage(_ref) {
   var isFreeUser = !hasSubscription;
   var isBelowThreshold = usagePercentage < USAGE_PERCENTAGE_THRESHOLD;
   var isAboveThreshold = usagePercentage >= USAGE_PERCENTAGE_THRESHOLD;
-  var showBadge = isAboveThreshold || isFreeUser && isBannerViewed;
+  var showBadge = isAboveThreshold || isFreeUser;
   var showBanner = !isBannerViewed && isFreeUser && isBelowThreshold;
   return {
     showBadge: showBadge,
@@ -51859,12 +51859,14 @@ var _featuredImage = _interopRequireDefault(__webpack_require__(/*! ./featured-i
 var _textWithAi = __webpack_require__(/*! ./text-with-ai */ "../modules/ai/assets/js/gutenberg/text-with-ai.js");
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 var _editTextWithAi = __webpack_require__(/*! ./edit-text-with-ai */ "../modules/ai/assets/js/gutenberg/edit-text-with-ai.js");
+var _requestsIds = __webpack_require__(/*! ../editor/context/requests-ids */ "../modules/ai/assets/js/editor/context/requests-ids.js");
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 (function () {
   'use strict';
 
+  window.EDITOR_SESSION_ID = (0, _requestsIds.getUniqueId)('wp-gutenberg-session');
   // Wait for the Gutenberg editor to initialize
   wp.domReady(function () {
     // Define a function to add the custom link to the excerpt panel

@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/tag/demonstration/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Fri, 03 May 2024 00:58:12 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 30 Jul 2024 01:51:58 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -69,16 +69,16 @@
 			</item>
 		<item>
 		<title>JMS Mocking with AsyncAPI using Specmatic</title>
-		<link>https://specmatic.io/updates/jms-mocking-with-asyncapi-using-specmatic/</link>
+		<link>https://specmatic.io/features/jms-mocking-with-asyncapi-using-specmatic/</link>
 		
 		<dc:creator><![CDATA[Jaydeep Kulkarni]]></dc:creator>
 		<pubDate>Tue, 25 Jul 2023 06:05:31 +0000</pubDate>
-				<category><![CDATA[Feature Spotlight]]></category>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Feature Spotlight]]></category>
 		<category><![CDATA[Updates]]></category>
 		<category><![CDATA[AsyncAPI]]></category>
 		<category><![CDATA[Contract Driven Development]]></category>
 		<category><![CDATA[Contract Testing]]></category>
-		<category><![CDATA[Demonstration]]></category>
 		<guid isPermaLink="false">https://specmatic.io/?p=1702</guid>
 
 					<description><![CDATA[The JMS mock is wire compatible and can be controlled entirely from within the test. This means you can run the test locally or also as part of your continuous integration build to provide quick feedback early in the cycle.]]></description>

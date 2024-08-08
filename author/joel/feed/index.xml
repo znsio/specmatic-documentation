@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/author/joel/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Fri, 03 May 2024 00:57:45 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 31 Jul 2024 05:21:06 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,22 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>API Resiliency and Contract Testing for GraphQL</title>
+		<link>https://specmatic.io/features/api-resiliency-and-contract-testing-for-graphql/</link>
+		
+		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
+		<pubDate>Wed, 24 Jul 2024 20:10:00 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5198</guid>
+
+					<description><![CDATA[Transform your GraphQL API specs into executable contracts in seconds Now you can easily leverage your GraphQL APIs for contract testing, intelligent service virtualisation and backward compatibility testing, just like you would for your OpenAPI-based services. No more complex and brittle setups that involve an assortment of tools &#8211; Specmatic handles it all for you, [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>TMForum ODA CTK API specification conformance testing with Specmatic</title>
 		<link>https://specmatic.io/updates/tmforum-oda-ctk-api-specification-conformance-testing-with-specmatic/</link>
 		
@@ -47,11 +63,12 @@
 			</item>
 		<item>
 		<title>Kafka Mocking with AsyncAPI using Specmatic</title>
-		<link>https://specmatic.io/updates/kafka-mocking-with-asyncapi-using-specmatic/</link>
+		<link>https://specmatic.io/features/kafka-mocking-with-asyncapi-using-specmatic/</link>
 		
 		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
 		<pubDate>Tue, 18 Jul 2023 04:40:27 +0000</pubDate>
-				<category><![CDATA[Feature Spotlight]]></category>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Feature Spotlight]]></category>
 		<category><![CDATA[Updates]]></category>
 		<category><![CDATA[AsyncAPI]]></category>
 		<category><![CDATA[Contract Driven Development]]></category>
@@ -67,11 +84,12 @@
 			</item>
 		<item>
 		<title>Redis Stubbing with Specmatic Contract Testing</title>
-		<link>https://specmatic.io/updates/redis-stubbing-with-specmatic-contract-testing/</link>
+		<link>https://specmatic.io/features/redis-stubbing-with-specmatic-contract-testing/</link>
 		
 		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
 		<pubDate>Tue, 11 Jul 2023 03:17:59 +0000</pubDate>
-				<category><![CDATA[Feature Spotlight]]></category>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Feature Spotlight]]></category>
 		<category><![CDATA[Updates]]></category>
 		<category><![CDATA[Redis]]></category>
 		<category><![CDATA[Stubbing]]></category>
