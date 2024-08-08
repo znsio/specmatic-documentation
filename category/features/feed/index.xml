@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/category/features/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Fri, 02 Aug 2024 06:54:18 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 05 Aug 2024 06:16:11 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -157,7 +157,7 @@
 		<category><![CDATA[Updates]]></category>
 		<guid isPermaLink="false">https://specmatic.io/?p=5260</guid>
 
-					<description><![CDATA[]]></description>
+					<description><![CDATA[Demonstration video showing OpenAPI specifications being leveraged as executable contracts with Specmatic Sample projects with OpenAPI https://specmatic.io/documentation/sample_projects.html#openapi]]></description>
 		
 		
 		
