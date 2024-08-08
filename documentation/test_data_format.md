@@ -11,7 +11,7 @@ Test data for service virtualisation and testing can be externalised to JSON fil
 
 This page describes the format of these files. Both leverage the same format.
 
-The directories in which these files lie id described in the documentation on [service virtualisation](/documentation/service_virtualization_tutorial.html) and [contract tests](/documentation/contract_tests.html).
+The directories in which these files lie is described in the documentation on [service virtualisation](/documentation/service_virtualization_tutorial.html) and [contract tests](/documentation/contract_tests.html).
 
 ```json
 {

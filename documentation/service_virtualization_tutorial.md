@@ -183,7 +183,7 @@ The complete expectaion file format can be referred to [here](/documentation/tes
 
 ## Generate The SKU
 
-We don't care at the moment what the SKU is, but the one for Batteries is the same as the one for SOAP, and they should be different. Let's fix that.
+We don't care at the moment what the SKU is, but the one for Batteries is the same as the one for Soap, and they should be different. Let's fix that.
 
 * In soap.json, put the value "(string)" against "sku" instead of "abc123".
 * Do the same in batteries.json.

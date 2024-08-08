@@ -149,7 +149,7 @@ This command will read the Postman collection, and write the new specmatic file 
 
 If any of the APIs in the Postman collection require authentication, Specmatic will not be able to invoke them directly with the needed credentials.
 
-Instead, from within Postman, plug in in the required credentials, invoke the API, and save the request and response as an example.
+Instead, from within Postman, plug in the required credentials, invoke the API, and save the request and response as an example.
 
 Then export the collection, and import it into Specmatic.
 
