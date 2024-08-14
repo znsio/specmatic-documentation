@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/author/yogesh/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 31 Jul 2024 04:19:35 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 13 Aug 2024 03:55:22 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,25 +28,8 @@
 	<height>32</height>
 </image> 
 	<item>
-		<title>Contract Testing using gRPC Specs as Executable Contracts</title>
-		<link>https://specmatic.io/features/contract-testing-using-grpc-specs-as-executable-contracts/</link>
-		
-		<dc:creator><![CDATA[Yogesh Nikam]]></dc:creator>
-		<pubDate>Tue, 30 Jul 2024 01:42:57 +0000</pubDate>
-				<category><![CDATA[Feature Spotlight]]></category>
-		<category><![CDATA[Updates]]></category>
-		<category><![CDATA[Contract Driven Development]]></category>
-		<category><![CDATA[gRPC]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=5228</guid>
-
-					<description><![CDATA[Transform your gRPC API specs into executable contracts in seconds Now you can easily leverage your gRPC APIs for contract testing, intelligent service virtualisation and backward compatibility testing, just like you would for your OpenAPI-based services. No more complex and brittle setups that involve an assortment of tools – Specmatic handles it all for you, [&#8230;]]]></description>
-		
-		
-		
-			</item>
-		<item>
 		<title>Contract Testing Google Pub/Sub: Using AsyncAPI specs as Executable Contracts</title>
-		<link>https://specmatic.io/features/contract-testing-google-pub-sub-using-asyncapi-as-executable-contracts/</link>
+		<link>https://specmatic.io/demonstration/contract-testing-google-pub-sub-using-asyncapi-as-executable-contracts/</link>
 		
 		<dc:creator><![CDATA[Yogesh Nikam]]></dc:creator>
 		<pubDate>Wed, 17 Apr 2024 05:13:57 +0000</pubDate>
@@ -56,6 +39,7 @@
 		<category><![CDATA[AsyncAPI]]></category>
 		<category><![CDATA[Contract Driven Development]]></category>
 		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[Google Pub/Sub]]></category>
 		<guid isPermaLink="false">https://specmatic.io/?p=4576</guid>
 
 					<description><![CDATA[Shift-Left the identification of integration issues in applications built with Event Driven Architecture (EDA) by leveraging AsyncAPI specs as Executable Contracts Introduction The surge in popularity of microservices has revolutionized the way we think about software architecture. However, as systems grow and inter-service communication increases, the risk of integration issues can also rise. One such [&#8230;]]]></description>

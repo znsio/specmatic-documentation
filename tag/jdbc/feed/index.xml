@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/tag/jdbc/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Tue, 30 Jul 2024 01:51:09 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 13 Aug 2024 03:56:28 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -29,7 +29,7 @@
 </image> 
 	<item>
 		<title>Break the Chains of Database Dependencies: Leveraging Specmatic for JDBC Stubbing</title>
-		<link>https://specmatic.io/features/jdbc-stubbing-with-specmatic-contract-testing/</link>
+		<link>https://specmatic.io/demonstration/jdbc-stubbing-with-specmatic-contract-testing/</link>
 		
 		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
 		<pubDate>Mon, 14 Aug 2023 10:23:30 +0000</pubDate>
