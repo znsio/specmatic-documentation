@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/author/jaydeep/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Tue, 13 Aug 2024 23:35:55 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 21 Aug 2024 08:01:15 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -29,7 +29,7 @@
 </image> 
 	<item>
 		<title>Early detection of mismatches between your API specs and implementation: Exploring Specmatic&#8217;s API Coverage Report</title>
-		<link>https://specmatic.io/spotlight/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/</link>
+		<link>https://specmatic.io/demonstration/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/</link>
 		
 		<dc:creator><![CDATA[Jaydeep Kulkarni]]></dc:creator>
 		<pubDate>Tue, 29 Aug 2023 00:47:04 +0000</pubDate>
@@ -38,6 +38,7 @@
 		<category><![CDATA[Updates]]></category>
 		<category><![CDATA[API Coverage Report]]></category>
 		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[HTTP]]></category>
 		<category><![CDATA[OpenAPI]]></category>
 		<guid isPermaLink="false">https://specmatic.io/?p=1966</guid>
 
