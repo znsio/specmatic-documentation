@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Appearances &#8211; Specmatic</title>
+	<atom:link href="https://specmatic.io/presentations/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.io/</link>
+	<description>Contract Driven Development</description>
+	<lastBuildDate>Mon, 15 Jul 2024 02:19:27 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.5.5</generator>
+
+<image>
+	<url>https://specmatic.io/wp-content/uploads/2022/09/Favicon.png</url>
+	<title>Appearances &#8211; Specmatic</title>
+	<link>https://specmatic.io/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Unshackling Your System Under Test: Shift-Left Testing Through Dependency Isolation</title>
+		<link>https://specmatic.io/appearance/unshackling-your-system-under-test-shift-left-testing-through-dependency-isolation/</link>
+		
+		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
+		<pubDate>Mon, 15 Jul 2024 01:41:58 +0000</pubDate>
+				<category><![CDATA[Conference]]></category>
+		<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[API testing]]></category>
+		<category><![CDATA[Shift Left]]></category>
+		<category><![CDATA[Specmatic]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?post_type=appearance#038;p=4994</guid>
+
+					<description><![CDATA[]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Avoiding APIpocalypse; API Resiliency Testing FTW!</title>
+		<link>https://specmatic.io/appearance/avoiding-apipocalypse-api-resiliency-testing-ftw/</link>
+		
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
+		<pubDate>Mon, 15 Jul 2024 01:31:29 +0000</pubDate>
+				<category><![CDATA[Conference]]></category>
+		<category><![CDATA[API testing]]></category>
+		<category><![CDATA[Resiliency testing]]></category>
+		<category><![CDATA[Specmatic]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?post_type=appearance#038;p=4990</guid>
+
+					<description><![CDATA[]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Hackathon &#8211; The Next Frontier: Unveiling TM Forum’s Async API for a New Era of Event-Driven Architectures</title>
+		<link>https://specmatic.io/appearance/the-next-frontier-unveiling-tm-forums-async-api-for-a-new-era-of-event-driven-architectures/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Thu, 13 Jun 2024 01:39:29 +0000</pubDate>
+				<guid isPermaLink="false">https://specmatic.io/?post_type=appearance#038;p=4884</guid>
+
+					<description><![CDATA[]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Beyond Contract Testing &#8211; Contract Driven Development: 2 Day Masterclass</title>
+		<link>https://specmatic.io/appearance/beyond-contract-testing-contract-driven-development-2-day-masterclass/</link>
+		
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
+		<pubDate>Tue, 11 Jun 2024 08:40:00 +0000</pubDate>
+				<category><![CDATA[Workshop]]></category>
+		<category><![CDATA[Conference]]></category>
+		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[Upcoming]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?post_type=appearance#038;p=4441</guid>
+
+					<description><![CDATA[]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>GOTO Copenhagen: 10x DevEx: Shift-left API Governance = CycleTime/2</title>
+		<link>https://specmatic.io/appearance/goto-copenhagen-10x-devex-shift-left-api-governance-cycletime-2/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Tue, 11 Jun 2024 04:47:00 +0000</pubDate>
+				<category><![CDATA[Conference]]></category>
+		<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[Specmatic]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?post_type=appearance#038;p=4569</guid>
+
+					<description><![CDATA[]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>OpenAPI specs to executable contracts in seconds</title>
+		<link>https://specmatic.io/appearance/openapi-specs-to-executable-contracts-in-seconds/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Mon, 20 May 2024 02:36:23 +0000</pubDate>
+				<category><![CDATA[Conference]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?post_type=appearance#038;p=4692</guid>
+
+					<description><![CDATA[]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Contract-Driven Development &#8211; Turn your API Specification into Executable Contracts</title>
+		<link>https://specmatic.io/appearance/contract-driven-development-turn-your-api-specification-into-executable-contracts/</link>
+		
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
+		<pubDate>Sun, 03 Dec 2023 18:30:00 +0000</pubDate>
+				<category><![CDATA[Conference]]></category>
+		<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[Past]]></category>
+		<category><![CDATA[Specmatic]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?post_type=appearance#038;p=3633</guid>
+
+					<description><![CDATA[Being able to develop, test and easily deploy each of your microservice independently is a key indicator of a successful transition to a microservice style architecture. The challenge arises when a new microservice that interact with your existing system has to undergo comprehensive integration testing before deployment.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Kafka and JMS Mocking with AsyncAPI using Specmatic</title>
+		<link>https://specmatic.io/appearance/kafka-and-jms-mocking-with-asyncapi-using-specmatic/</link>
+		
+		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
+		<pubDate>Wed, 29 Nov 2023 10:00:00 +0000</pubDate>
+				<category><![CDATA[api mocking]]></category>
+		<category><![CDATA[AsyncAPI]]></category>
+		<category><![CDATA[Conference]]></category>
+		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[Kafka]]></category>
+		<category><![CDATA[Specmatic]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?post_type=appearance#038;p=3637</guid>
+
+					<description><![CDATA[]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Software Architecture Superstream: Microservices</title>
+		<link>https://specmatic.io/appearance/software-architecture-superstream-microservices/</link>
+		
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
+		<pubDate>Fri, 07 Apr 2023 05:54:00 +0000</pubDate>
+				<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[Live Stream]]></category>
+		<category><![CDATA[Past]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?post_type=appearance#038;p=1527</guid>
+
+					<description><![CDATA[]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Contract-Driven Development-Escape Microservices Integration &#038; Deployment Hell</title>
+		<link>https://specmatic.io/appearance/contract-driven-development-escape-microservices-integration-deployment-hell/</link>
+		
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
+		<pubDate>Sat, 18 Mar 2023 03:15:16 +0000</pubDate>
+				<category><![CDATA[Conference]]></category>
+		<category><![CDATA[Contract Driven Development]]></category>
+		<category><![CDATA[Past]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?post_type=appearance#038;p=1325</guid>
+
+					<description><![CDATA[]]></description>
+		
+		
+		
+			</item>
+	</channel>
+</rss>
