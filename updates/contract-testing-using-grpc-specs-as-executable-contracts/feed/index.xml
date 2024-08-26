@@ -7,11 +7,11 @@
 	>
 <channel>
 	<title>
-	Comments for Specmatic	</title>
-	<atom:link href="https://specmatic.io/comments/feed/" rel="self" type="application/rss+xml" />
-	<link>https://specmatic.io/</link>
+	Comments on: Contract Testing using gRPC Specs as Executable Contracts	</title>
+	<atom:link href="https://specmatic.io/updates/contract-testing-using-grpc-specs-as-executable-contracts/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.io/updates/contract-testing-using-grpc-specs-as-executable-contracts/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Mon, 26 Aug 2024 03:02:35 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 23 Aug 2024 07:13:38 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>

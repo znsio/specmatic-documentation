@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="https://gmpg.org/xfn/11">
-<title>Specmatic Roadmap - API Testing, Dynamic Stubbing &amp; Smart Mocks</title>
+<title>Contract Testing using gRPC Specs as Executable Contracts - Specmatic</title>
 <link rel="preconnect" href="//digitalvoice.involve.me">
 <link rel="preconnect" href="//cdn.ivlv.me">
 <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
@@ -16,32 +16,29 @@
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
 <link rel="dns-prefetch" href="//www.googletagmanager.com">
 <link rel="preload" href="https://specmatic.io/wp-content/astra-local-fonts/plus-jakarta-sans/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_Tkn9TR_V.woff2" as="font" type="font/woff2" crossorigin>
-<style >/*= Roadmap =================== */
-
-/** Roadmap >> Content ast container **/
-#content .ast-container {
-	background-color: rgb(255, 255, 255) !important;
-	padding-right: 0 !important;
-	padding-left: 0 !important;
-}</style>
-<style >@charset "UTF-8";#content .ast-container{padding-right:0!important;padding-left:0!important;background-color:#fff!important}body,h2,h3,html,li,p,ul{border:0;font-size:100%;font-style:inherit;font-weight:inherit;margin:0;outline:0;padding:0;vertical-align:baseline}main,nav{display:block}a{background-color:transparent;color:#4169e1;text-decoration:none;color:var(--ast-global-color-0)}a,a:visited{text-decoration:none}img{border:0;height:auto;max-width:100%;vertical-align:middle}svg:not(:root){overflow:hidden}button{font:inherit;overflow:visible;text-transform:none;-webkit-appearance:button}button::-moz-focus-inner{border:0;padding:0}.ast-container{max-width:100%;margin-left:auto;margin-right:auto;padding-left:20px;padding-right:20px}h2,h3{clear:both}html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;box-sizing:border-box;font-size:93.75%;overflow-x:hidden!important}*,:after,:before{box-sizing:inherit}body{color:#808285;background:#fff;font-style:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}ul{margin:0 0 1.5em 3em;list-style:disc;box-sizing:border-box}li>ul{margin-bottom:0;margin-left:1.5em}i{font-style:italic}button{font-weight:400;margin:0;vertical-align:baseline;border:1px solid;border-color:var(--ast-border-color);border-radius:2px;background:#e6e6e6}.screen-reader-text{word-wrap:normal!important;top:0!important}#page,body:not(.logged-in){position:relative}.entry-content h2,.entry-content h3{margin-bottom:20px}p{margin-bottom:1.75em}#primary{width:100%;margin:4em 0}.main-navigation{height:100%;-js-display:inline-flex;display:inline-flex}.main-navigation ul{list-style:none;margin:0;padding-left:0;position:relative}.main-header-menu .menu-link{text-decoration:none;padding:0 1em;display:inline-block}.main-header-menu .menu-item{position:relative}.main-header-menu .sub-menu{width:240px;background:#fff;left:-999em;position:absolute;top:100%;z-index:99999;visibility:hidden}.main-header-menu .sub-menu .menu-link{padding:.9em 1em;display:block;word-wrap:break-word}.main-header-menu .sub-menu .menu-item:not(.menu-item-has-children) .menu-link .icon-arrow:first-of-type{display:none}.submenu-with-border .sub-menu{border-width:1px;border-style:solid}.submenu-with-border .sub-menu .menu-link{border-width:0 0 1px;border-style:solid}.ast-desktop .submenu-with-border .sub-menu>.menu-item:last-child>.menu-link{border-bottom-width:0}.ast-button-wrap{display:inline-block}.ast-button-wrap button{box-shadow:none;border:none}.ast-button-wrap .menu-toggle{padding:0;width:2.2em;height:2.1em;font-size:1.5em;font-weight:400;border-radius:2px;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;vertical-align:middle;line-height:1.85714285714286}.header-main-layout-1 .ast-main-header-bar-alignment{margin-left:auto}.site-navigation{height:100%}.ast-icon.icon-arrow svg{height:.6em;width:.6em;position:relative;margin-left:10px}.ast-icon svg{fill:currentColor}.entry-content>:last-child{margin-bottom:0}.ast-builder-grid-row{display:grid;grid-template-columns:auto auto;align-items:center;grid-column-gap:20px;overflow-wrap:anywhere}.ast-builder-grid-row>.site-header-section{flex-wrap:nowrap}.ast-builder-layout-element{align-items:center}.site-header-section{height:100%;min-height:0;align-items:center}.site-header-section .ast-main-header-bar-alignment{height:100%}.site-header-section>*{padding:0 10px}.site-header-section>div:first-child{padding-left:0}.site-header-section>div:last-child{padding-right:0}.site-header-section .ast-builder-menu{align-items:center}.ast-grid-right-section{justify-content:flex-end}.ahfb-svg-iconset{-js-display:inline-flex;display:inline-flex;align-self:center}.ahfb-svg-iconset svg{width:17px;height:17px}.ast-builder-grid-row-container{display:grid;align-content:center}.main-header-bar .main-header-bar-navigation{height:100%}.ast-nav-menu .sub-menu{line-height:1.45}.ast-builder-menu .main-navigation{padding:0}.ast-builder-menu .main-navigation>ul{align-self:center}.menu-toggle .ast-close-svg{display:none}.ast-mobile-header-wrap .menu-toggle .mobile-menu-toggle-icon{-js-display:inline-flex;display:inline-flex;align-self:center}.ast-mobile-header-wrap .ast-button-wrap .menu-toggle.main-header-menu-toggle{-js-display:flex;display:flex;align-items:center;width:auto;height:auto}.menu-toggle .mobile-menu-toggle-icon{-js-display:inline-flex;display:inline-flex;align-self:center}.ast-button-wrap .menu-toggle.main-header-menu-toggle{width:auto;text-align:center;padding:.5em;align-items:center;-js-display:flex;display:flex}.site-header{z-index:99;position:relative}.main-header-bar-wrap{position:relative}.main-header-bar{background-color:#fff;border-bottom-color:var(--ast-border-color);border-bottom-style:solid;margin-left:auto;margin-right:auto;z-index:4;position:relative}.ast-desktop .main-header-menu.ast-menu-shadow .sub-menu{box-shadow:0 4px 10px -2px rgba(0,0,0,.1)}.site-branding{line-height:1;align-self:center}.ast-menu-toggle{display:none;background:0 0;color:inherit;border-style:dotted;border-color:transparent}.main-header-bar .main-header-bar-navigation .sub-menu{line-height:1.45}.main-header-bar .main-header-bar-navigation .menu-item-has-children>.menu-link:after{line-height:normal}.ast-site-identity{padding:1em 0}.ast-desktop .main-header-menu>.menu-item .sub-menu:before{position:absolute;content:'';top:0;left:0;width:100%;transform:translateY(-100%)}.page .entry-header{margin-bottom:1.5em}.ast-single-post .entry-header.ast-header-without-markup,.ast-single-post .entry-header.ast-no-title.ast-no-thumbnail{margin-bottom:0}.entry-header{margin-bottom:1em;word-wrap:break-word}.entry-content{word-wrap:break-word;counter-reset:footnotes}.entry-content p{margin-bottom:1.6em}.ast-flex{-js-display:flex;display:flex;flex-wrap:wrap}.ast-inline-flex{-js-display:inline-flex;display:inline-flex;align-items:center;flex-wrap:wrap;align-content:center}.ast-flex-grow-1{flex-grow:1}:root{--ast-container-default-xlg-padding:3em;--ast-container-default-lg-padding:3em;--ast-container-default-slg-padding:2em;--ast-container-default-md-padding:3em;--ast-container-default-sm-padding:3em;--ast-container-default-xs-padding:2.4em;--ast-container-default-xxs-padding:1.8em;--ast-code-block-background:#EEEEEE;--ast-comment-inputs-background:#FAFAFA;--ast-global-color-0:#3a005b;--ast-global-color-1:#3a3a3a;--ast-global-color-2:#3a3a3a;--ast-global-color-3:#4B4F58;--ast-global-color-4:#F5F5F5;--ast-global-color-5:#FFFFFF;--ast-global-color-6:#F2F5F7;--ast-global-color-7:#424242;--ast-global-color-8:#000000;--ast-border-color:var(--ast-global-color-6);--e-global-color-astglobalcolor0:#3a005b;--e-global-color-astglobalcolor1:#3a3a3a;--e-global-color-astglobalcolor2:#3a3a3a;--e-global-color-astglobalcolor3:#4B4F58;--e-global-color-astglobalcolor4:#F5F5F5;--e-global-color-astglobalcolor5:#FFFFFF;--e-global-color-astglobalcolor6:#F2F5F7;--e-global-color-astglobalcolor7:#424242;--e-global-color-astglobalcolor8:#000000;--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px;--page-title-display:block}.ast-custom-button,body,button{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;font-weight:inherit;font-size:1rem;line-height:1.6em}header .custom-logo-link img{max-width:185px}.entry-content h2,h2{font-size:2rem;font-weight:600;line-height:1.25em}.entry-content h3,h3{font-size:1.6666666666667rem;font-weight:600;line-height:1.2em}.entry-content h2,.entry-content h3,body,h2,h3{color:var(--ast-global-color-3)}.ast-single-post .entry-content a{text-decoration:underline}.ast-plain-container.ast-no-sidebar #primary{margin-top:0;margin-bottom:0}#page{display:block;display:flex;flex-direction:column;min-height:100vh}#page .site-content{flex-grow:1}.elementor-widget-heading h2.elementor-heading-title{line-height:1.25em}.ast-custom-button,.menu-toggle,button{border-style:solid;border-width:0;color:#fff;border-color:var(--ast-global-color-0);background-color:var(--ast-global-color-0);padding:15px 30px;font-family:inherit;font-weight:inherit;line-height:1em}@media (max-width:1120px){#ast-desktop-header{display:none}.ast-plain-container.ast-no-sidebar #primary{padding:0}#primary{padding:1.5em 0;margin:0}.ast-custom-button,.menu-toggle,button{padding:14px 28px}.entry-content h2,h2{font-size:25px}.entry-content h3,h3{font-size:20px}header .custom-logo-link img{max-width:216px}}@media (min-width:544px){.ast-container{max-width:100%}}@media (max-width:544px){.ast-custom-button,.menu-toggle,button{padding:12px 24px}.entry-content h2,h2{font-size:25px}.entry-content h3,h3{font-size:20px}header .custom-logo-link img{max-width:159px}html{font-size:85.5%}}@media (min-width:1121px){#ast-mobile-header{display:none}.ast-container{max-width:1240px}.site-content .ast-container{display:flex}}html body{--wp--custom--ast-default-block-top-padding:3em;--wp--custom--ast-default-block-right-padding:3em;--wp--custom--ast-default-block-bottom-padding:3em;--wp--custom--ast-default-block-left-padding:3em;--wp--custom--ast-container-width:1200px;--wp--custom--ast-content-width-size:1200px;--wp--custom--ast-wide-width-size:calc(1200px + var(--wp--custom--ast-default-block-left-padding) + var(--wp--custom--ast-default-block-right-padding))}@media (max-width:1120px){html{font-size:85.5%}.site-content .ast-container{flex-direction:column}html body{--wp--custom--ast-default-block-top-padding:3em;--wp--custom--ast-default-block-right-padding:2em;--wp--custom--ast-default-block-bottom-padding:3em;--wp--custom--ast-default-block-left-padding:2em}.ast-builder-menu-1 .menu-item-has-children>.menu-link:after{content:unset}.ast-builder-menu-1 .main-header-menu>.menu-item>.sub-menu{margin-top:0}}.entry-content h2,.entry-content h3,h2,h3{color:#3a005b}.ast-builder-layout-element[data-section=title_tagline]{display:flex}[data-section*=section-hb-button-] .menu-link{display:none}.ast-header-button-1 .ast-custom-button{color:var(--ast-global-color-0);background:var(--ast-global-color-5);border-color:var(--ast-global-color-0);border-width:2px;border-radius:10px;box-shadow:0 0 0 0 rgba(0,0,0,.1)}.ast-header-button-1[data-section*=section-hb-button-] .ast-builder-button-wrap .ast-custom-button{padding:10px 20px 12px}.ast-header-button-1[data-section=section-hb-button-1]{display:flex}.ast-builder-menu-1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;display:flex}.ast-builder-menu-1 .menu-item>.menu-link{font-size:1.0666666666667rem;color:#3a005b}.ast-builder-menu-1 .menu-item>.ast-menu-toggle{color:#3a005b}.ast-builder-menu-1 .sub-menu{border-width:0;border-color:var(--ast-global-color-0);border-style:solid}.ast-builder-menu-1 .main-header-menu>.menu-item>.sub-menu{margin-top:0}.ast-desktop .ast-builder-menu-1 .main-header-menu>.menu-item>.sub-menu:before{height:calc(0px + 5px)}.ast-desktop .ast-builder-menu-1 .menu-item .sub-menu .menu-link{border-style:none}.ast-desktop .ast-menu-hover-style-underline>.menu-item>.menu-link:before{content:"";position:absolute;width:100%;right:50%;height:1px;background-color:transparent;transform:scale(0,0) translate(-50%,0);bottom:0}.elementor-widget-heading .elementor-heading-title{margin:0}.elementor-page .ast-menu-toggle{color:unset!important;background:unset!important}.ast-desktop .ast-builder-menu-1 .menu-item .sub-menu{box-shadow:0 4px 10px -2px rgba(0,0,0,.1)}@media (min-width:1121px){.main-header-bar{border-bottom-width:1px}}.main-header-menu .menu-item{-js-display:flex;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;-moz-box-orient:vertical;-moz-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.main-header-menu>.menu-item>.menu-link{height:100%;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-js-display:flex;display:flex}.ast-plain-container{background-color:var(--ast-global-color-5);background-image:none}.ast-mobile-popup-drawer .ast-mobile-popup-overlay{background-color:rgba(0,0,0,.4);position:fixed;top:0;right:0;bottom:0;left:0;visibility:hidden;opacity:0}.ast-mobile-popup-drawer .ast-mobile-popup-header{-js-display:flex;display:flex;justify-content:flex-end;min-height:calc(1.2em + 24px)}.ast-mobile-popup-drawer .ast-mobile-popup-header .menu-toggle-close{background:0 0;border:0;font-size:24px;line-height:1;padding:.6em;color:inherit;-js-display:flex;display:flex;box-shadow:none}.ast-desktop-popup-content>*,.ast-mobile-popup-content>*{padding:0;height:auto}.ast-desktop-popup-content>:first-child,.ast-mobile-popup-content>:first-child{padding-top:10px}.ast-desktop-popup-content>.ast-builder-menu,.ast-mobile-popup-content>.ast-builder-menu{padding-top:0}.ast-desktop-popup-content>:last-child,.ast-mobile-popup-content>:last-child{padding-bottom:0}.ast-mobile-popup-drawer .main-header-bar-navigation .menu-item-has-children .sub-menu{display:none}.ast-mobile-popup-content .ast-builder-menu-mobile .main-header-menu,.ast-mobile-popup-content .ast-builder-menu-mobile .main-header-menu .sub-menu{background-color:transparent}.ast-mobile-popup-content .ast-icon svg{height:.85em;width:.95em;margin-top:15px}.ast-desktop .ast-desktop-popup-content .astra-menu-animation-fade>.menu-item>.sub-menu{opacity:1;visibility:visible}.ast-mobile-popup-drawer{position:fixed;top:0;bottom:0;left:-99999rem;right:99999rem;opacity:0}.ast-mobile-popup-drawer .ast-mobile-popup-inner{width:100%;transform:translateX(100%);max-width:90%;right:0;top:0;background:#fafafa;color:#3a3a3a;bottom:0;opacity:0;position:fixed;box-shadow:0 0 2rem 0 rgba(0,0,0,.1);-js-display:flex;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden}.ast-mobile-popup-drawer .main-header-bar-navigation .menu-item-has-children>.ast-menu-toggle{right:calc(20px - .907em)}.content-align-flex-start .ast-builder-layout-element{justify-content:flex-start}.content-align-flex-start .main-header-menu{text-align:left}.ast-mobile-header-wrap .ast-primary-header-bar,.ast-primary-header-bar .site-primary-header-wrap{min-height:80px}.ast-desktop .ast-primary-header-bar .main-header-menu>.menu-item{line-height:80px}@media (min-width:1121px){.ast-primary-header-bar{border-bottom-width:2px;border-bottom-color:var(--ast-global-color-0);border-bottom-style:solid}}.ast-primary-header-bar{background-color:var(--ast-global-color-5);background-image:none;display:block}[data-section=section-header-mobile-trigger] .ast-button-wrap .ast-mobile-menu-trigger-minimal{color:#3a005b;border:none;background:0 0}[data-section=section-header-mobile-trigger] .ast-button-wrap .mobile-menu-toggle-icon .ast-mobile-svg{width:33px;height:33px;fill:#3a005b}.ast-builder-menu-mobile .main-navigation .menu-item>.menu-link{font-weight:500}.ast-builder-menu-mobile .main-navigation{font-size:1.4666666666667rem;display:block}.ast-builder-menu-mobile .main-navigation .menu-item-has-children>.menu-link:after{content:unset}.ast-builder-menu-mobile .main-header-menu{margin-top:60px}.ast-hfb-header .ast-builder-menu-mobile .main-header-menu,.ast-hfb-header .ast-builder-menu-mobile .main-navigation .menu-item .menu-link,.ast-hfb-header .ast-builder-menu-mobile .main-navigation .menu-item .sub-menu .menu-link{border-style:none}.ast-builder-menu-mobile .main-navigation .menu-item.menu-item-has-children>.ast-menu-toggle{top:0}@media (max-width:1120px){.ast-plain-container{background-color:var(--ast-global-color-5);background-image:none}.ast-builder-menu-mobile .main-navigation{font-size:1.4666666666667rem}.ast-builder-menu-mobile .main-navigation .main-header-menu .menu-item>.menu-link,.ast-builder-menu-mobile .main-navigation .menu-item>.ast-menu-toggle{color:var(--ast-global-color-4)}.ast-builder-menu-mobile .main-navigation .menu-item.menu-item-has-children>.ast-menu-toggle{top:0}.ast-builder-menu-mobile .main-navigation .menu-item-has-children>.menu-link:after{content:unset}.ast-plain-container #primary{margin-top:1.5em;margin-bottom:1.5em}}@media (max-width:544px){html body{--wp--custom--ast-default-block-top-padding:3em;--wp--custom--ast-default-block-right-padding:1.5em;--wp--custom--ast-default-block-bottom-padding:3em;--wp--custom--ast-default-block-left-padding:1.5em}.ast-builder-menu-1 .main-header-menu>.menu-item>.sub-menu{margin-top:0}.ast-plain-container{background-color:var(--ast-global-color-5);background-image:none}.ast-builder-menu-mobile .main-navigation .main-header-menu .menu-item>.menu-link,.ast-builder-menu-mobile .main-navigation .menu-item>.ast-menu-toggle{color:var(--ast-global-color-5)}.ast-builder-menu-mobile .main-navigation .menu-item.menu-item-has-children>.ast-menu-toggle{top:0}.ast-builder-menu-mobile .main-header-menu{margin:0 20px}.ast-builder-menu-mobile .main-navigation .main-header-menu,.ast-builder-menu-mobile .main-navigation .main-header-menu .sub-menu{background-color:#3a005b;background-image:none}}.wp-block-image img{box-sizing:border-box;height:auto;max-width:100%;vertical-align:bottom}.screen-reader-text{clip:rect(1px,1px,1px,1px);word-wrap:normal!important;-webkit-clip-path:inset(50%);clip-path:inset(50%);position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);border:0}html :where(img[class*=wp-image-]){height:auto;max-width:100%}body{overflow-x:hidden;--wp--preset--color--black:#000000;--wp--preset--color--cyan-bluish-gray:#abb8c3;--wp--preset--color--white:#ffffff;--wp--preset--color--pale-pink:#f78da7;--wp--preset--color--vivid-red:#cf2e2e;--wp--preset--color--luminous-vivid-orange:#ff6900;--wp--preset--color--luminous-vivid-amber:#fcb900;--wp--preset--color--light-green-cyan:#7bdcb5;--wp--preset--color--vivid-green-cyan:#00d084;--wp--preset--color--pale-cyan-blue:#8ed1fc;--wp--preset--color--vivid-cyan-blue:#0693e3;--wp--preset--color--vivid-purple:#9b51e0;--wp--preset--color--ast-global-color-0:var(--ast-global-color-0);--wp--preset--color--ast-global-color-1:var(--ast-global-color-1);--wp--preset--color--ast-global-color-2:var(--ast-global-color-2);--wp--preset--color--ast-global-color-3:var(--ast-global-color-3);--wp--preset--color--ast-global-color-4:var(--ast-global-color-4);--wp--preset--color--ast-global-color-5:var(--ast-global-color-5);--wp--preset--color--ast-global-color-6:var(--ast-global-color-6);--wp--preset--color--ast-global-color-7:var(--ast-global-color-7);--wp--preset--color--ast-global-color-8:var(--ast-global-color-8);--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple:linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan:linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange:linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red:linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray:linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum:linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple:linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux:linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk:linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean:linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass:linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight:linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small:13px;--wp--preset--font-size--medium:20px;--wp--preset--font-size--large:36px;--wp--preset--font-size--x-large:42px;--wp--preset--spacing--20:0.44rem;--wp--preset--spacing--30:0.67rem;--wp--preset--spacing--40:1rem;--wp--preset--spacing--50:1.5rem;--wp--preset--spacing--60:2.25rem;--wp--preset--spacing--70:3.38rem;--wp--preset--spacing--80:5.06rem;--wp--preset--shadow--natural:6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep:12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp:6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined:6px 6px 0px -3px rgba(255, 255, 255, 1),6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp:6px 6px 0px rgba(0, 0, 0, 1);margin:0;--wp--style--global--content-size:var(--wp--custom--ast-content-width-size);--wp--style--global--wide-size:var(--wp--custom--ast-wide-width-size);--wp--style--block-gap:24px;padding:0}a:where(:not(.wp-element-button)){text-decoration:none}@media all and (max-width:768px){#content:before{content:""}}.ast-mobile-popup-content .ast-builder-layout-element:not(.ast-builder-menu):not(.ast-header-divider-element){padding:15px 20px}[data-section*=section-hb-button-] .ast-builder-button-size-sm .ast-custom-button{font-size:15px;padding:10px 40px}#content:before{content:"1120";position:absolute;overflow:hidden;opacity:0;visibility:hidden}@media (max-width:1120px){.ast-builder-menu-mobile .main-header-menu.ast-nav-menu .sub-menu .menu-item .menu-link{color:var(--ast-global-color-4)}}.fas{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:var(--fa-display,inline-block);text-rendering:auto}:host,:root{--fa-style-family-brands:"Font Awesome 6 Brands";--fa-font-brands:normal 400 1em/1 "Font Awesome 6 Brands";--fa-font-regular:normal 400 1em/1 "Font Awesome 6 Free";--fa-style-family-classic:"Font Awesome 6 Free";--fa-font-solid:normal 900 1em/1 "Font Awesome 6 Free"}@font-face{font-family:"Font Awesome 6 Free";font-style:normal;font-weight:400;font-display:block;src:url(https://use.fontawesome.com/releases/v6.2.0/webfonts/fa-regular-400.woff2) format("woff2"),url(https://use.fontawesome.com/releases/v6.2.0/webfonts/fa-regular-400.ttf) format("truetype")}@font-face{font-family:"Font Awesome 6 Free";font-style:normal;font-weight:900;font-display:block;src:url(https://use.fontawesome.com/releases/v6.2.0/webfonts/fa-solid-900.woff2) format("woff2"),url(https://use.fontawesome.com/releases/v6.2.0/webfonts/fa-solid-900.ttf) format("truetype")}@font-face{font-family:"Font Awesome 5 Free";font-display:block;font-weight:900;src:url(https://use.fontawesome.com/releases/v6.2.0/webfonts/fa-solid-900.woff2) format("woff2"),url(https://use.fontawesome.com/releases/v6.2.0/webfonts/fa-solid-900.ttf) format("truetype")}@font-face{font-family:"Font Awesome 5 Free";font-display:block;font-weight:400;src:url(https://use.fontawesome.com/releases/v6.2.0/webfonts/fa-regular-400.woff2) format("woff2"),url(https://use.fontawesome.com/releases/v6.2.0/webfonts/fa-regular-400.ttf) format("truetype")}.elementor *,.elementor :after,.elementor :before{box-sizing:border-box}.elementor a{box-shadow:none;text-decoration:none}.elementor-element{--flex-direction:initial;--flex-wrap:initial;--justify-content:initial;--align-items:initial;--align-content:initial;--gap:initial;--flex-basis:initial;--flex-grow:initial;--flex-shrink:initial;--order:initial;--align-self:initial;flex-basis:var(--flex-basis);flex-grow:var(--flex-grow);flex-shrink:var(--flex-shrink);order:var(--order);align-self:var(--align-self);--swiper-theme-color:#000;--swiper-navigation-size:44px;--swiper-pagination-bullet-size:6px;--swiper-pagination-bullet-horizontal-gap:6px;--widgets-spacing:20px 20px}.elementor-element:where(.e-con-full,.elementor-widget){flex-direction:var(--flex-direction);flex-wrap:var(--flex-wrap);justify-content:var(--justify-content);align-items:var(--align-items);align-content:var(--align-content);gap:var(--gap)}.elementor-widget{position:relative}.elementor-widget:not(:last-child){margin-bottom:20px;margin-block-end:20px}.e-con{--border-radius:0;--border-block-start-width:0px;--border-inline-end-width:0px;--border-block-end-width:0px;--border-inline-start-width:0px;--border-style:initial;--border-color:initial;--container-widget-width:100%;--container-widget-height:initial;--container-widget-flex-grow:0;--container-widget-align-self:initial;--content-width:min(100%,var(--container-max-width,1140px));--width:100%;--min-height:initial;--height:auto;--text-align:initial;--margin-block-start:0px;--margin-inline-end:0px;--margin-block-end:0px;--margin-inline-start:0px;--padding-block-start:var(--container-default-padding-block-start,10px);--padding-inline-end:var(--container-default-padding-inline-end,10px);--padding-block-end:var(--container-default-padding-block-end,10px);--padding-inline-start:var(--container-default-padding-inline-start,10px);--position:relative;--z-index:revert;--overflow:visible;--gap:var(--widgets-spacing,20px);--overlay-mix-blend-mode:initial;--overlay-opacity:1;--e-con-grid-template-columns:repeat(3,1fr);--e-con-grid-template-rows:repeat(2,1fr);position:var(--position);width:var(--width);min-width:0;min-height:var(--min-height);height:var(--height);border-radius:var(--border-radius);margin-block-start:var(--bc-margin-block-start,var(--margin-block-start));margin-inline-end:var(--bc-margin-inline-end,var(--margin-inline-end));margin-block-end:var(--bc-margin-block-end,var(--margin-block-end));margin-inline-start:var(--bc-margin-inline-start,var(--margin-inline-start));padding-inline-start:var(--bc-padding-inline-start,var(--padding-inline-start));padding-inline-end:var(--bc-padding-inline-end,var(--padding-inline-end));z-index:var(--z-index);overflow:var(--overflow);display:var(--display);--bc-margin-block-start:var(--margin-top);--bc-margin-block-end:var(--margin-bottom);--bc-margin-inline-start:var(--margin-left);--bc-margin-inline-end:var(--margin-right);--bc-padding-block-start:var(--padding-top);--bc-padding-block-end:var(--padding-bottom);--bc-padding-inline-start:var(--padding-left);--bc-padding-inline-end:var(--padding-right);--container-max-width:1300px}.e-con.e-flex{--flex-direction:column;--flex-basis:auto;--flex-grow:0;--flex-shrink:1;flex:var(--flex-grow) var(--flex-shrink) var(--flex-basis)}.e-con-full{text-align:var(--text-align);padding-block-start:var(--bc-padding-block-start,var(--padding-block-start));padding-block-end:var(--bc-padding-block-end,var(--padding-block-end))}.e-con-full.e-flex{flex-direction:var(--flex-direction)}:is(.elementor-section-wrap,[data-elementor-id])>.e-con{--margin-inline-end:auto;--margin-inline-start:auto;max-width:min(100%,var(--width))}.e-con .elementor-widget.elementor-widget{margin-block-end:0}.e-con:before{content:var(--background-overlay);display:block;position:absolute;mix-blend-mode:var(--overlay-mix-blend-mode);opacity:var(--overlay-opacity);border-radius:var(--border-radius);border-style:var(--border-style);border-color:var(--border-color);border-block-start-width:var(--border-block-start-width);border-inline-end-width:var(--border-inline-end-width);border-block-end-width:var(--border-block-end-width);border-inline-start-width:var(--border-inline-start-width);top:calc(0px - var(--border-block-start-width));left:calc(0px - var(--border-inline-start-width));width:max(100% + var(--border-inline-end-width) + var(--border-inline-start-width),100%);height:max(100% + var(--border-block-start-width) + var(--border-block-end-width),100%)}.e-con .elementor-widget{min-width:0}.e-con>.elementor-widget>.elementor-widget-container{height:100%}.elementor.elementor .e-con>.elementor-widget{max-width:100%}.elementor-kit-5{--e-global-color-15ba454:#3A005B;--e-global-color-3afb051:#FFB30F;--e-global-color-fc5c41a:#2E2E2E;--e-global-color-90610ea:#FFFFFF;--e-global-color-a74f27e:#FFE6E8;--e-global-color-16ef1d6:#8A00D8;--e-global-color-466d220:#580089;--e-global-color-78faad5:#7000AC;--e-global-color-21e8ff6:#C09743;--e-global-color-e085c4a:#6A737E;--e-global-color-1e91e1f:#676F7B;--e-global-color-9aa2e85:#F9FAFB;color:#202020;font-family:"Plus Jakarta Sans",Sans-serif;font-size:16px;font-weight:400;line-height:24px}.elementor-kit-5 a{color:var(--e-global-color-fc5c41a);font-family:"Plus Jakarta Sans",Sans-serif;font-size:16px;font-weight:600}.elementor-kit-5 h2{color:var(--e-global-color-fc5c41a);font-family:"Plus Jakarta Sans",Sans-serif;font-size:40px;font-weight:600;line-height:50px;letter-spacing:0}.elementor-kit-5 h3{color:var(--e-global-color-fc5c41a);font-size:23px;font-weight:600;line-height:28px}.elementor-kit-5 button{font-family:"Plus Jakarta Sans",Sans-serif;font-weight:500;color:var(--e-global-color-90610ea);background-color:var(--e-global-color-15ba454);border-radius:5px}@media (max-width:1024px){.elementor-kit-5{font-size:15px;line-height:20px}.elementor-kit-5 h2{font-size:30px;line-height:35px}.elementor-kit-5 h3{font-size:25px;line-height:30px}.e-con{--container-max-width:1024px}}@media (max-width:767px){.e-con.e-flex{--width:100%;--flex-wrap:wrap}.elementor-kit-5 a{font-size:15px}.elementor-kit-5 h2{font-size:27px}.elementor-kit-5 h3{font-size:20px;line-height:28px}.elementor-kit-5 button{font-size:15px}.e-con{--container-max-width:767px}}@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:400;font-display:auto;src:url(https://specmatic.io/wp-content/uploads/2022/09/plusjakartasans-variablefont_wght-webfont.woff2) format('woff2'),url(https://specmatic.io/wp-content/uploads/2022/09/plusjakartasans-variablefont_wght-webfont.woff) format('woff')}.uael-content{position:relative;margin:0 auto;width:100%}nav ul li.menu-item ul.sub-menu:before{content:"";display:block;position:absolute;width:100%}.uael-timeline--center .uael-timeline-left .uael-timeline-date-new,.uael-timeline--center .uael-timeline-right .uael-timeline-date-new,.uael-timeline-marker,.uael-timeline-right .uael-timeline-date-new,.uael-timeline-widget{-js-display:flex;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex}.uael-timeline-widget{position:relative;-webkit-box-align:start;-webkit-align-items:flex-start;-moz-box-align:start;-ms-flex-align:start;align-items:flex-start}.uael-timeline--center .uael-timeline-date-hide{display:none}.uael-timeline-heading{margin-bottom:10px}.inner-date-new p,.uael-date-inner .inner-date-new p{margin-bottom:0}.uael-timeline-main .timeline-icon-new{line-height:1em;display:inline-block;vertical-align:middle}.uael-timeline-shadow-yes .uael-day-new{-webkit-filter:drop-shadow(0 1px 4px rgba(0,0,0,.5));filter:drop-shadow(0 1px 4px rgba(0,0,0,.5))}.uael-timeline-field:not(:last-child){margin-bottom:20px}.uael-timeline--center .uael-timeline-widget.uael-timeline-right{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-webkit-flex-direction:row-reverse;-moz-box-orient:horizontal;-moz-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.uael-timeline--center .uael-timeline-date-new{display:block}.uael-timeline-marker{background-color:#eee;-webkit-border-radius:999px;border-radius:999px;position:relative;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-moz-box-pack:center;-ms-flex-pack:center;justify-content:center;z-index:1}.uael-timeline--center .uael-timeline-marker{-webkit-box-ordinal-group:2;-webkit-order:1;-moz-box-ordinal-group:2;-ms-flex-order:1;order:1;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;-webkit-box-flex:0;-webkit-flex-grow:0;-moz-box-flex:0;-ms-flex-positive:0;flex-grow:0}.uael-timeline--center .uael-day-new,.uael-timeline--center .uael-timeline-date-new{-webkit-box-flex:1;-webkit-flex-grow:1;-moz-box-flex:1;-ms-flex-positive:1;flex-grow:1;-webkit-flex-basis:50%;-ms-flex-preferred-size:50%;flex-basis:50%;max-width:100%;position:relative}.uael-timeline--center .uael-timeline-left .uael-day-new,.uael-timeline--center .uael-timeline-right .uael-day-new{-webkit-box-ordinal-group:3;-webkit-order:2;-moz-box-ordinal-group:3;-ms-flex-order:2;order:2}.uael-timeline--center .uael-timeline-right .uael-day-new{padding-left:0;padding-right:12px}.uael-timeline--center .uael-timeline-left .uael-day-new{padding-right:0;padding-left:12px}.uael-day-right .uael-events-inner-new{text-align:right}.uael-day-left .uael-events-inner-new{text-align:left}.uael-events-inner-new{padding:40px}.uael-timeline--center .uael-timeline-left .uael-timeline-date-new{-webkit-box-pack:end;-webkit-justify-content:flex-end;-moz-box-pack:end;-ms-flex-pack:end;justify-content:flex-end}.uael-timeline--center .uael-timeline-right .uael-timeline-date-new{-webkit-box-pack:start;-webkit-justify-content:flex-start;-moz-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.uael-timeline-left .uael-date-new{margin-right:10px}.uael-timeline-right .uael-date-new{margin-left:10px}.uael-timeline-arrow-center .uael-timeline-widget,.uael-timeline-right .uael-timeline-date-new{-ms-flex-align:center;-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;align-items:center}.uael-timeline--center .uael-timeline-left .uael-timeline-arrow,.uael-timeline--center .uael-timeline-right .uael-timeline-arrow{top:0;width:10px;height:40px;position:absolute}.uael-timeline--center .uael-timeline-right .uael-timeline-arrow{right:0}.uael-timeline--center .uael-timeline-left .uael-timeline-arrow{left:0}.uael-timeline--center .uael-timeline-left .uael-timeline-arrow:after,.uael-timeline--center .uael-timeline-right .uael-timeline-arrow:after,.uael-timeline-arrow-center .uael-timeline-left .uael-timeline-arrow,.uael-timeline-arrow-center .uael-timeline-right .uael-timeline-arrow{top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.uael-day-left .uael-timeline-arrow:after,.uael-day-right .uael-timeline-arrow:after,.uael-timeline--center .uael-day-right .uael-timeline-arrow:after{content:'';position:absolute;display:inline;width:0;height:0;border-top:12px solid transparent;border-bottom:12px solid transparent}.uael-day-left .uael-timeline-arrow:after{left:0}.uael-day-right .uael-timeline-arrow:after{right:0}.uael-timeline--center .uael-days{text-align:center}.uael-timeline--center .uael-day-right .uael-timeline-arrow:after{content:'';right:0;top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%);border-left:13px solid transparent}.uael-timeline--center .uael-day-left .uael-timeline-arrow:after{border-right:13px solid transparent}@media screen and (max-width:1024px){.uael-timeline--center.uael-timeline-responsive-tablet .uael-timeline-date-hide{display:block}.uael-timeline--center.uael-timeline-responsive-tablet .uael-day-left .uael-events-inner-new,.uael-timeline--center.uael-timeline-responsive-tablet .uael-day-right .uael-events-inner-new{text-align:left}.uael-timeline--center.uael-timeline-responsive-tablet .uael-day-new,.uael-timeline--center.uael-timeline-responsive-tablet .uael-timeline-marker{max-width:100%;position:relative}.uael-timeline--center.uael-timeline-responsive-tablet .uael-timeline-marker{-webkit-box-ordinal-group:1;-webkit-order:0;-moz-box-ordinal-group:1;-ms-flex-order:0;order:0;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;-webkit-box-flex:0;-webkit-flex-grow:0;-moz-box-flex:0;-ms-flex-positive:0;flex-grow:0}.uael-timeline--center.uael-timeline-responsive-tablet .uael-day-new{margin-left:16px;-webkit-box-flex:1;-webkit-flex-grow:1;-moz-box-flex:1;-ms-flex-positive:1;flex-grow:1;-webkit-box-ordinal-group:2;-webkit-order:1;-moz-box-ordinal-group:2;-ms-flex-order:1;order:1}.uael-timeline--center.uael-timeline-responsive-tablet .uael-timeline-left .uael-timeline-arrow,.uael-timeline--center.uael-timeline-responsive-tablet .uael-timeline-right .uael-timeline-arrow{width:10px;height:40px;position:absolute}.uael-timeline--center.uael-timeline-responsive-tablet .uael-timeline-right .uael-timeline-arrow{left:-10px}.uael-timeline--center.uael-timeline-responsive-tablet .uael-timeline-left .uael-timeline-arrow{left:-12px}.uael-timeline--center.uael-timeline-responsive-tablet .uael-timeline-left .uael-timeline-arrow:after,.uael-timeline--center.uael-timeline-responsive-tablet .uael-timeline-right .uael-timeline-arrow:after{top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}.uael-timeline--center.uael-timeline-responsive-tablet .uael-days{text-align:left}.uael-timeline--center.uael-timeline-responsive-tablet .uael-day-right .uael-timeline-arrow:after{content:'';position:absolute;display:inline;width:0;height:0;border-top:12px solid transparent;border-bottom:12px solid transparent}.uael-timeline--center.uael-timeline-responsive-tablet .uael-timeline-widget.uael-timeline-right{-webkit-box-orient:unset;-webkit-box-direction:unset;-webkit-flex-direction:unset;-moz-box-orient:unset;-moz-box-direction:unset;-ms-flex-direction:unset;flex-direction:unset}.uael-timeline--center.uael-timeline-responsive-tablet .uael-day-new,.uael-timeline--center.uael-timeline-responsive-tablet .uael-timeline-date-new{-webkit-box-flex:unset;-webkit-flex-grow:unset;-moz-box-flex:unset;-ms-flex-positive:unset;flex-grow:unset;-webkit-flex-basis:unset;-ms-flex-preferred-size:unset;flex-basis:unset;max-width:100%;width:100%;position:relative}.uael-timeline--center.uael-timeline-responsive-tablet .uael-timeline-right .uael-day-new{-webkit-box-ordinal-group:unset;-webkit-order:unset;-moz-box-ordinal-group:unset;-ms-flex-order:unset;order:unset;padding-left:0;padding-right:0}.uael-timeline--center.uael-timeline-responsive-tablet .uael-timeline-left .uael-day-new{-webkit-box-ordinal-group:unset;-webkit-order:unset;-moz-box-ordinal-group:unset;-ms-flex-order:unset;order:unset;padding-right:0;padding-left:0}.uael-timeline--center.uael-timeline-responsive-tablet .uael-timeline-date-new,.uael-timeline--center.uael-timeline-responsive-tablet .uael-timeline-left .uael-timeline-date-new,.uael-timeline--center.uael-timeline-responsive-tablet .uael-timeline-right .uael-timeline-date-new{display:none}.uael-timeline--center.uael-timeline-responsive-tablet .uael-day-left .uael-timeline-arrow:after,.uael-timeline--center.uael-timeline-responsive-tablet .uael-day-right .uael-timeline-arrow:after{border-left:none;border-right:13px solid transparent}}@media screen and (max-width:767px){.uael-timeline-left .uael-date-new{margin-right:10px}.uael-day-left .uael-events-inner-new{text-align:left}}@font-face{font-family:"Font Awesome 5 Free";font-style:normal;font-weight:400;font-display:block;src:url(https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-regular-400.eot);src:url(https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-regular-400.eot) format("embedded-opentype"),url(https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-regular-400.woff2) format("woff2"),url(https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-regular-400.woff) format("woff"),url(https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-regular-400.ttf) format("truetype"),url(https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-regular-400.svg) format("svg")}@font-face{font-family:"Font Awesome 5 Free";font-style:normal;font-weight:900;font-display:block;src:url(https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-solid-900.eot);src:url(https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-solid-900.eot) format("embedded-opentype"),url(https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-solid-900.woff2) format("woff2"),url(https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-solid-900.woff) format("woff"),url(https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-solid-900.ttf) format("truetype"),url(https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-solid-900.svg) format("svg")}.elementor-2003 .elementor-element.elementor-element-7b39349{--display:flex;--padding-block-start:0px;--padding-block-end:0px;--padding-inline-start:0px;--padding-inline-end:0px}.elementor-2003 .elementor-element.elementor-element-7b39349.e-con{--flex-grow:0;--flex-shrink:0}.elementor-2003 .elementor-element.elementor-element-02d7dc8{--display:flex;--min-height:350px;--gap:0px 0px;--padding-block-start:0px;--padding-block-end:0px;--padding-inline-start:0px;--padding-inline-end:0px}.elementor-2003 .elementor-element.elementor-element-02d7dc8:not(.elementor-motion-effects-element-type-background){background-image:url(https://specmatic.io/wp-content/uploads/2023/09/roadmap-banner.jpg);background-position:center center}.elementor-2003 .elementor-element.elementor-element-21a813a{text-align:center}.elementor-2003 .elementor-element.elementor-element-21a813a .elementor-heading-title{color:var(--e-global-color-90610ea)}.elementor-2003 .elementor-element.elementor-element-21a813a>.elementor-widget-container{margin:0;padding:150px 120px}.elementor-2003 .elementor-element.elementor-element-957dcb7>.elementor-widget-container{padding:50px 40px 0}.elementor-2003 .elementor-element.elementor-element-d6632c6.uael-timeline--center .uael-timeline-marker{margin-left:20px;margin-right:20px}.elementor-2003 .elementor-element.elementor-element-d6632c6 .uael-timeline-field:not(:last-child){margin-bottom:25px}.elementor-2003 .elementor-element.elementor-element-d6632c6 .uael-timeline-heading{margin-bottom:10px}.elementor-2003 .elementor-element.elementor-element-d6632c6 .uael-timeline-main .uael-content .uael-timeline-heading{color:var(--e-global-color-15ba454)}.elementor-2003 .elementor-element.elementor-element-d6632c6 .uael-events-inner-new{background-color:#fff}.elementor-2003 .elementor-element.elementor-element-d6632c6.uael-timeline--center .uael-day-right .uael-timeline-arrow:after{border-left-color:#fff}.elementor-2003 .elementor-element.elementor-element-d6632c6.uael-timeline--center .uael-day-left .uael-timeline-arrow:after{border-right-color:#fff}.elementor-2003 .elementor-element.elementor-element-d6632c6 .uael-timeline-shadow-yes .uael-day-new{-webkit-filter:drop-shadow(0 1px 10px #AAAAAA96)}.elementor-2003 .elementor-element.elementor-element-d6632c6 .uael-day-left .uael-events-inner-new,.elementor-2003 .elementor-element.elementor-element-d6632c6 .uael-day-right .uael-events-inner-new{border-radius:15px}.elementor-2003 .elementor-element.elementor-element-d6632c6 .uael-timeline-main .uael-day-left .uael-events-inner-new,.elementor-2003 .elementor-element.elementor-element-d6632c6 .uael-timeline-main .uael-day-right .uael-events-inner-new{padding:30px 25px}.elementor-2003 .elementor-element.elementor-element-d6632c6 .uael-timeline-main .inner-date-new{font-size:29px;font-weight:900;color:var(--e-global-color-15ba454)}.elementor-2003 .elementor-element.elementor-element-d6632c6 .uael-timeline-main .timeline-icon-new{font-size:20px}.elementor-2003 .elementor-element.elementor-element-d6632c6 .uael-timeline-marker{border-radius:0}.elementor-2003 .elementor-element.elementor-element-d6632c6 .uael-timeline-main .animate-border .timeline-icon-new{color:#b59ec3}.elementor-2003 .elementor-element.elementor-element-d6632c6 .uael-timeline-main .animate-border .uael-timeline-marker{background:#e7e7E700}.elementor-2003 .elementor-element.elementor-element-d6632c6>.elementor-widget-container{margin:0 40px;padding:50px 0 0}body.elementor-page-2003{padding:0}body.elementor-page-2003:not(.elementor-motion-effects-element-type-background){background-color:var(--e-global-color-15ba454)}@media (min-width:768px){.elementor-2003 .elementor-element.elementor-element-7b39349{--width:101.333%}}.mtp-2003 .uael-timeline-desc-content p{margin-bottom:0!important}.menu_github>a:nth-of-type(1)>span::before{font-size:22px!important}.mtp-10 .ditty-item__elements>:nth-child(2){grid-area:1/2/2/6!important}.mtp-10 .elementor-testimonial__content>:nth-child(2){grid-area:1/1/2/2!important}@media (max-width:1024px){.elementor-2003 .elementor-element.elementor-element-d6632c6.uael-timeline--center.uael-timeline-responsive-tablet .uael-timeline-marker{margin-right:2px;margin-left:0}.elementor-2003 .elementor-element.elementor-element-d6632c6.uael-timeline--center.uael-timeline-responsive-tablet .uael-day-left .uael-timeline-arrow:after,.elementor-2003 .elementor-element.elementor-element-d6632c6.uael-timeline--center.uael-timeline-responsive-tablet .uael-day-right .uael-timeline-arrow:after{border-right-color:#fff}.ast-social-element-style-filled>:nth-child(2){grid-area:1/2/2/3!important}.ast-social-element-style-filled>:nth-child(3){grid-area:2/1/3/2!important}.ast-social-element-style-filled>:nth-child(4){grid-area:2/2/3/3!important}}@media (max-width:767px){.elementor-2003 .elementor-element.elementor-element-02d7dc8{--min-height:250px}.elementor-2003 .elementor-element.elementor-element-02d7dc8:not(.elementor-motion-effects-element-type-background){background-position:top center}.elementor-2003 .elementor-element.elementor-element-21a813a>.elementor-widget-container{padding:100px 40px 0}.elementor-2003 .elementor-element.elementor-element-d6632c6.uael-timeline--center .uael-timeline-marker{margin-left:2px;margin-right:2px}.elementor-2003 .elementor-element.elementor-element-d6632c6 .uael-timeline-field:not(:last-child){margin-bottom:25px}.elementor-2003 .elementor-element.elementor-element-d6632c6 .uael-timeline-heading{margin-bottom:16px}.elementor-2003 .elementor-element.elementor-element-d6632c6 .uael-timeline-main .uael-day-left .uael-events-inner-new,.elementor-2003 .elementor-element.elementor-element-d6632c6 .uael-timeline-main .uael-day-right .uael-events-inner-new{padding:20px}.elementor-2003 .elementor-element.elementor-element-d6632c6 .uael-timeline-main .inner-date-new{font-size:25px;line-height:2.5em}#colophon .site-above-footer-inner-wrap>:nth-child(1){grid-area:1/1/2/6!important}#colophon .site-above-footer-inner-wrap>:nth-child(2){grid-area:2/1/3/6!important}#colophon .site-above-footer-inner-wrap>:nth-child(3){grid-area:3/1/4/6!important}#colophon .site-above-footer-inner-wrap>:nth-child(4){grid-area:4/1/5/6!important}#colophon .site-above-footer-inner-wrap>:nth-child(5){grid-area:5/1/6/6!important}.swiper-slide-active .elementor-container:nth-of-type(1)>:nth-child(3){grid-area:3/1/4/2!important}#colophon .ast-footer-social-1-wrap>:nth-child(1){grid-area:1/1/2/2!important}#ast-hf-mobile-menu .ast-menu-toggle{color:#fff!important}.ast-social-element-style-filled>:nth-child(3){grid-area:1/3/2/4!important}.ast-social-element-style-filled>:nth-child(4){grid-area:1/4/2/5!important}}@media (max-width:479.98px){#colophon .ast-footer-social-1-wrap>:nth-child(1){grid-area:1/1/2/2!important}.mtp-10 .ditty-item__elements>:nth-child(1){grid-area:1/1/2/6!important}.mtp-10 .ditty-item__elements>:nth-child(2){grid-area:2/1/3/6!important}}.fas{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:inline-block;font-style:normal;font-variant:normal;text-rendering:auto;line-height:1;font-family:"Font Awesome 5 Free";font-weight:900}.fa-circle:before{content:"\f111"}@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_Tkn9TR_Q.ttf) format('truetype')}.lazyload,.lazyload:before{background-image:none!important}@font-face{font-family:icomoon;src:url(https://specmatic.io/wp-content/uploads/elementor/custom-icons/icomoon/fonts/icomoon.eot?r58wq5);src:url(https://specmatic.io/wp-content/uploads/elementor/custom-icons/icomoon/fonts/icomoon.eot?r58wq5) format('embedded-opentype'),url(https://specmatic.io/wp-content/uploads/elementor/custom-icons/icomoon/fonts/icomoon.ttf?r58wq5) format('truetype'),url(https://specmatic.io/wp-content/uploads/elementor/custom-icons/icomoon/fonts/icomoon.woff?r58wq5) format('woff'),url(https://specmatic.io/wp-content/uploads/elementor/custom-icons/icomoon/fonts/icomoon.svg?r58wq5) format('svg');font-weight:400;font-style:normal;font-display:block}[class*=" icon-"],[class^=icon-]{font-family:icomoon!important;speak:never;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.icon-mail4:before{content:"\ea86"}.icon-github:before{content:"\eab0"}.elementor-heading-title{padding:0;margin:0;line-height:1}</style>
-<meta name="dc.title" content="Specmatic Roadmap - API Testing, Dynamic Stubbing &amp; Smart Mocks">
-<meta name="dc.description" content="Explore Specmatic&#039;s roadmap for 2023-2024 and discover exciting features like Smart Mocks, API Gateway support, and OpenAPI 3.1 enhancements. Share your ideas and feedback!">
-<meta name="dc.relation" content="https://specmatic.io/roadmap/">
+<meta name="dc.title" content="Contract Testing using gRPC Specs as Executable Contracts - Specmatic">
+<meta name="dc.description" content="https://www.youtube.com/watch?v=xD6G5PL8tOk Transform your gRPC API specs into executable contracts in seconds Now you can easily leverage your gRPC APIs for contract testing, intelligent service virtualisation and backward compatibility testing, just like you would for your OpenAPI-based services. No more complex and brittle setups that involve an assortment of tools –&hellip;">
+<meta name="dc.relation" content="https://specmatic.io/updates/contract-testing-using-grpc-specs-as-executable-contracts/">
 <meta name="dc.source" content="https://specmatic.io/">
 <meta name="dc.language" content="en_US">
-<meta name="description" content="Explore Specmatic&#039;s roadmap for 2023-2024 and discover exciting features like Smart Mocks, API Gateway support, and OpenAPI 3.1 enhancements. Share your ideas and feedback!">
-<meta name="thumbnail" content="https://specmatic.io/wp-content/uploads/2023/09/specmatic-roadmap-150x150.jpg">
+<meta name="description" content="https://www.youtube.com/watch?v=xD6G5PL8tOk Transform your gRPC API specs into executable contracts in seconds Now you can easily leverage your gRPC APIs for contract testing, intelligent service virtualisation and backward compatibility testing, just like you would for your OpenAPI-based services. No more complex and brittle setups that involve an assortment of tools –&hellip;">
+<meta property="article:published_time" content="2024-07-30T07:12:57+05:30">
+<meta property="article:modified_time" content="2024-08-23T12:43:38+05:30">
+<meta property="og:updated_time" content="2024-08-23T12:43:38+05:30">
+<meta name="thumbnail" content="https://specmatic.io/wp-content/uploads/2024/07/gRPC-support-thumb-1-150x150.jpg">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="https://specmatic.io/roadmap/">
-<meta property="og:url" content="https://specmatic.io/roadmap/">
+<link rel="canonical" href="https://specmatic.io/updates/contract-testing-using-grpc-specs-as-executable-contracts/">
+<meta property="og:url" content="https://specmatic.io/updates/contract-testing-using-grpc-specs-as-executable-contracts/">
 <meta property="og:site_name" content="Specmatic">
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
 <meta property="article:author" content="https://www.facebook.com/specmatic.cdd">
 <meta property="article:publisher" content="https://www.facebook.com/specmatic.cdd">
-<meta property="og:title" content="Specmatic Roadmap - API Testing, Dynamic Stubbing &amp; Smart Mocks">
-<meta property="og:description" content="Explore Specmatic&#039;s roadmap for 2023-2024 and discover exciting features like Smart Mocks, API Gateway support, and OpenAPI 3.1 enhancements. Share your ideas and feedback!">
+<meta property="article:section" content="Updates">
+<meta property="article:tag" content="Contract Driven Development">
+<meta property="article:tag" content="gRPC">
+<meta property="og:title" content="Contract Testing using gRPC Specs as Executable Contracts - Specmatic">
+<meta property="og:description" content="https://www.youtube.com/watch?v=xD6G5PL8tOk Transform your gRPC API specs into executable contracts in seconds Now you can easily leverage your gRPC APIs for contract testing, intelligent service virtualisation and backward compatibility testing, just like you would for your OpenAPI-based services. No more complex and brittle setups that involve an assortment of tools –&hellip;">
 <meta property="og:image" content="https://specmatic.io/wp-content/uploads/2022/09/Video-Cover-img.jpg">
 <meta property="og:image:secure_url" content="https://specmatic.io/wp-content/uploads/2022/09/Video-Cover-img.jpg">
 <meta property="og:image:width" content="1000">
@@ -50,68 +47,45 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@specmatic">
 <meta name="twitter:creator" content="@specmatic">
-<meta name="twitter:title" content="Specmatic Roadmap - API Testing, Dynamic Stubbing &amp; Smart Mocks">
-<meta name="twitter:description" content="Explore Specmatic&#039;s roadmap for 2023-2024 and discover exciting features like Smart Mocks, API Gateway support, and OpenAPI 3.1 enhancements. Share your ideas and feedback!">
-<meta name="twitter:image" content="https://specmatic.io/wp-content/uploads/2023/09/specmatic-roadmap-1024x678.jpg">
+<meta name="twitter:title" content="Contract Testing using gRPC Specs as Executable Contracts - Specmatic">
+<meta name="twitter:description" content="https://www.youtube.com/watch?v=xD6G5PL8tOk Transform your gRPC API specs into executable contracts in seconds Now you can easily leverage your gRPC APIs for contract testing, intelligent service virtualisation and backward compatibility testing, just like you would for your OpenAPI-based services. No more complex and brittle setups that involve an assortment of tools –&hellip;">
+<meta name="twitter:image" content="https://specmatic.io/wp-content/uploads/2024/07/gRPC-support-thumb-1-1024x576.jpg">
 <link rel="dns-prefetch" href="//use.fontawesome.com">
 <link rel="alternate" type="application/rss+xml" title="Specmatic &raquo; Feed" href="https://specmatic.io/feed/">
 <link rel="alternate" type="application/rss+xml" title="Specmatic &raquo; Comments Feed" href="https://specmatic.io/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Specmatic &raquo; Contract Testing using gRPC Specs as Executable Contracts Comments Feed" href="https://specmatic.io/updates/contract-testing-using-grpc-specs-as-executable-contracts/feed/">
 <link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/plugins/wp-google-search/wgs2-1668477651.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
 <noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/plugins/wp-google-search/wgs2-1668477651.min.css" media="all"></noscript>
 <link rel="preload" as="style" data-id="astra-theme-css-css" href="https://specmatic.io/wp-content/themes/astra/assets/css/minified/main.min.css" media="all">
 <link rel="stylesheet"  href="https://specmatic.io/wp-content/themes/astra/assets/css/minified/main.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
 <noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/themes/astra/assets/css/minified/main.min.css" media="all"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra/astra-theme-dynamic-css-post-2003-1724642150.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra/astra-theme-dynamic-css-post-2003-1724642150.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra/astra-theme-dynamic-css-post-5228-1724642197.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra/astra-theme-dynamic-css-post-5228-1724642197.min.css" media="all"></noscript>
+<link rel="preload" as="style" data-id="wp-block-library-css" href="https://specmatic.io/wp-includes/css/dist/block-library/style.min.css" media="all">
+<link rel="stylesheet"  href="https://specmatic.io/wp-includes/css/dist/block-library/style.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-includes/css/dist/block-library/style.min.css" media="all"></noscript>
 <style >.wp-block-kevinbatdorf-code-block-pro{direction:ltr!important;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;-webkit-text-size-adjust:100%!important;box-sizing:border-box!important;position:relative!important}.wp-block-kevinbatdorf-code-block-pro *{box-sizing:border-box!important}.wp-block-kevinbatdorf-code-block-pro pre,.wp-block-kevinbatdorf-code-block-pro pre *{font-size:inherit!important;line-height:inherit!important}.wp-block-kevinbatdorf-code-block-pro:not(.code-block-pro-editor) pre{background-image:none!important;border:0!important;border-radius:0!important;border-style:none!important;border-width:0!important;color:inherit!important;font-family:inherit!important;margin:0!important;overflow:auto!important;overflow-wrap:normal!important;padding:16px 0 16px 16px!important;text-align:left!important;white-space:pre!important;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)!important}.wp-block-kevinbatdorf-code-block-pro.padding-disabled:not(.code-block-pro-editor) pre{padding:0!important}.wp-block-kevinbatdorf-code-block-pro.padding-bottom-disabled pre{padding-bottom:0!important}.wp-block-kevinbatdorf-code-block-pro:not(.code-block-pro-editor) pre code{background:none!important;background-color:transparent!important;border:0!important;border-radius:0!important;border-style:none!important;border-width:0!important;color:inherit!important;display:block!important;font-family:inherit!important;margin:0!important;overflow-wrap:normal!important;padding:0!important;text-align:left!important;white-space:pre!important;width:100%!important;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)!important}.wp-block-kevinbatdorf-code-block-pro:not(.code-block-pro-editor) pre code .line{display:inline-block!important;min-width:var(--cbp-block-width,100%)!important;vertical-align:top!important}.wp-block-kevinbatdorf-code-block-pro.cbp-has-line-numbers:not(.code-block-pro-editor) pre code .line{padding-left:calc(12px + var(--cbp-line-number-width, auto))!important}.wp-block-kevinbatdorf-code-block-pro.cbp-has-line-numbers:not(.code-block-pro-editor) pre code{counter-increment:step calc(var(--cbp-line-number-start, 1) - 1)!important;counter-reset:step!important}.wp-block-kevinbatdorf-code-block-pro pre code .line{position:relative!important}.wp-block-kevinbatdorf-code-block-pro:not(.code-block-pro-editor) pre code .line:before{content:""!important;display:inline-block!important}.wp-block-kevinbatdorf-code-block-pro.cbp-has-line-numbers:not(.code-block-pro-editor) pre code .line:not(.cbp-line-number-disabled):before{color:var(--cbp-line-number-color,#999)!important;content:counter(step)!important;counter-increment:step!important;left:0!important;opacity:.5!important;position:absolute!important;text-align:right!important;transition-duration:.5s!important;transition-property:opacity!important;transition-timing-function:cubic-bezier(.4,0,.2,1)!important;-webkit-user-select:none!important;-moz-user-select:none!important;user-select:none!important;width:var(--cbp-line-number-width,auto)!important}.wp-block-kevinbatdorf-code-block-pro.cbp-highlight-hover .line{min-height:var(--cbp-block-height,100%)!important}.wp-block-kevinbatdorf-code-block-pro .line.cbp-line-highlight .cbp-line-highlighter,.wp-block-kevinbatdorf-code-block-pro .line.cbp-no-blur:hover .cbp-line-highlighter,.wp-block-kevinbatdorf-code-block-pro.cbp-highlight-hover:not(.cbp-blur-enabled:not(.cbp-unblur-on-hover)) .line:hover .cbp-line-highlighter{background:var(--cbp-line-highlight-color,rgb(14 165 233/.2))!important;left:-16px!important;min-height:var(--cbp-block-height,100%)!important;min-width:calc(var(--cbp-block-width, 100%) + 16px)!important;pointer-events:none!important;position:absolute!important;top:0!important;width:100%!important}[data-code-block-pro-font-family="Code-Pro-Comic-Mono.ttf"].wp-block-kevinbatdorf-code-block-pro .line.cbp-line-highlight .cbp-line-highlighter,[data-code-block-pro-font-family="Code-Pro-Comic-Mono.ttf"].wp-block-kevinbatdorf-code-block-pro .line.cbp-no-blur:hover .cbp-line-highlighter,[data-code-block-pro-font-family="Code-Pro-Comic-Mono.ttf"].wp-block-kevinbatdorf-code-block-pro.cbp-highlight-hover:not(.cbp-blur-enabled:not(.cbp-unblur-on-hover)) .line:hover .cbp-line-highlighter{top:-.125rem!important}[data-code-block-pro-font-family=Code-Pro-Fira-Code].wp-block-kevinbatdorf-code-block-pro .line.cbp-line-highlight .cbp-line-highlighter,[data-code-block-pro-font-family=Code-Pro-Fira-Code].wp-block-kevinbatdorf-code-block-pro .line.cbp-no-blur:hover .cbp-line-highlighter,[data-code-block-pro-font-family=Code-Pro-Fira-Code].wp-block-kevinbatdorf-code-block-pro.cbp-highlight-hover:not(.cbp-blur-enabled:not(.cbp-unblur-on-hover)) .line:hover .cbp-line-highlighter{top:-1.5px!important}[data-code-block-pro-font-family="Code-Pro-Deja-Vu-Mono.ttf"].wp-block-kevinbatdorf-code-block-pro .line.cbp-line-highlight .cbp-line-highlighter,[data-code-block-pro-font-family="Code-Pro-Deja-Vu-Mono.ttf"].wp-block-kevinbatdorf-code-block-pro .line.cbp-no-blur:hover .cbp-line-highlighter,[data-code-block-pro-font-family="Code-Pro-Deja-Vu-Mono.ttf"].wp-block-kevinbatdorf-code-block-pro.cbp-highlight-hover:not(.cbp-blur-enabled:not(.cbp-unblur-on-hover)) .line:hover .cbp-line-highlighter,[data-code-block-pro-font-family=Code-Pro-Cozette].wp-block-kevinbatdorf-code-block-pro .line.cbp-line-highlight .cbp-line-highlighter,[data-code-block-pro-font-family=Code-Pro-Cozette].wp-block-kevinbatdorf-code-block-pro .line.cbp-no-blur:hover .cbp-line-highlighter,[data-code-block-pro-font-family=Code-Pro-Cozette].wp-block-kevinbatdorf-code-block-pro.cbp-highlight-hover:not(.cbp-blur-enabled:not(.cbp-unblur-on-hover)) .line:hover .cbp-line-highlighter{top:-1px!important}.wp-block-kevinbatdorf-code-block-pro:not(.code-block-pro-editor).padding-disabled pre .line.cbp-line-highlight:after{left:0!important;width:100%!important}.wp-block-kevinbatdorf-code-block-pro.cbp-blur-enabled pre .line:not(.cbp-no-blur){filter:blur(1px)!important;opacity:.4!important;pointer-events:none!important;transition-duration:.2s!important;transition-property:all!important;transition-timing-function:cubic-bezier(.4,0,.2,1)!important}.wp-block-kevinbatdorf-code-block-pro.cbp-blur-enabled.cbp-unblur-on-hover:hover pre .line:not(.cbp-no-blur){opacity:1!important;pointer-events:auto!important;--tw-blur:blur(0);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)!important}.wp-block-kevinbatdorf-code-block-pro:not(.code-block-pro-editor) pre *{font-family:inherit!important}.cbp-see-more-simple-btn-hover{transition-property:none!important}.cbp-see-more-simple-btn-hover:hover{box-shadow:inset 0 0 100px 100px hsla(0,0%,100%,.1)!important}.code-block-pro-copy-button{border:0!important;border-style:none!important;border-width:0!important;cursor:pointer!important;left:auto!important;line-height:1!important;opacity:.1!important;padding:6px!important;position:absolute!important;right:0!important;top:0!important;transition-duration:.2s!important;transition-property:opacity!important;transition-timing-function:cubic-bezier(.4,0,.2,1)!important;z-index:10!important}.code-block-pro-copy-button:focus{opacity:.4!important}.code-block-pro-copy-button:not([data-has-text-button]){background:none!important;background-color:transparent!important}.wp-block-kevinbatdorf-code-block-pro.padding-disabled .code-block-pro-copy-button{padding:0!important}.wp-block-kevinbatdorf-code-block-pro:hover .code-block-pro-copy-button{opacity:.5!important}.wp-block-kevinbatdorf-code-block-pro .code-block-pro-copy-button:hover{opacity:.9!important}.code-block-pro-copy-button[data-has-text-button],.wp-block-kevinbatdorf-code-block-pro:hover .code-block-pro-copy-button[data-has-text-button]{opacity:1!important}.wp-block-kevinbatdorf-code-block-pro .code-block-pro-copy-button[data-has-text-button]:hover{opacity:.8!important}.code-block-pro-copy-button[data-has-text-button]{border-radius:.75rem!important;display:block!important;margin-right:.75rem!important;margin-top:.7rem!important;padding:.125rem .375rem!important}.code-block-pro-copy-button[data-inside-header-type=headlightsMuted],.code-block-pro-copy-button[data-inside-header-type^=headlights]{margin-top:.85rem!important}.code-block-pro-copy-button[data-inside-header-type=headlightsMutedAlt]{margin-top:.65rem!important}.code-block-pro-copy-button[data-inside-header-type=simpleString]{margin-top:.645rem!important}.code-block-pro-copy-button[data-inside-header-type=pillString]{margin-top:1rem!important}.code-block-pro-copy-button[data-inside-header-type=pillString] .cbp-btn-text{position:relative!important;top:1px!important}.cbp-btn-text{font-size:.75rem!important;line-height:1rem!important}.code-block-pro-copy-button .without-check{display:block!important}.code-block-pro-copy-button .with-check{display:none!important}.code-block-pro-copy-button.cbp-copying{opacity:1!important}.code-block-pro-copy-button.cbp-copying .without-check{display:none!important}.code-block-pro-copy-button.cbp-copying .with-check{display:block!important}.cbp-footer-link:hover{text-decoration-line:underline!important}@media print{.wp-block-kevinbatdorf-code-block-pro pre{max-height:none!important}.wp-block-kevinbatdorf-code-block-pro:not(#x) .line:before{background-color:transparent!important;color:inherit!important}.wp-block-kevinbatdorf-code-block-pro:not(#x) .cbp-line-highlighter,.wp-block-kevinbatdorf-code-block-pro:not(#x)>span{display:none!important}}</style>
 <style >span.wp-block-wpseopress-local-business-field{margin-right:8px}</style>
 <style >:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--ast-global-color-0: var(--ast-global-color-0);--wp--preset--color--ast-global-color-1: var(--ast-global-color-1);--wp--preset--color--ast-global-color-2: var(--ast-global-color-2);--wp--preset--color--ast-global-color-3: var(--ast-global-color-3);--wp--preset--color--ast-global-color-4: var(--ast-global-color-4);--wp--preset--color--ast-global-color-5: var(--ast-global-color-5);--wp--preset--color--ast-global-color-6: var(--ast-global-color-6);--wp--preset--color--ast-global-color-7: var(--ast-global-color-7);--wp--preset--color--ast-global-color-8: var(--ast-global-color-8);--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:root { --wp--style--global--content-size: var(--wp--custom--ast-content-width-size);--wp--style--global--wide-size: var(--wp--custom--ast-wide-width-size); }:where(body) { margin: 0; }.wp-site-blocks > .alignleft { float: left; margin-right: 2em; }.wp-site-blocks > .alignright { float: right; margin-left: 2em; }.wp-site-blocks > .aligncenter { justify-content: center; margin-left: auto; margin-right: auto; }:where(.wp-site-blocks) > * { margin-block-start: 24px; margin-block-end: 0; }:where(.wp-site-blocks) > :first-child { margin-block-start: 0; }:where(.wp-site-blocks) > :last-child { margin-block-end: 0; }:root { --wp--style--block-gap: 24px; }.is-layout-flow  > :first-child{margin-block-start: 0;}.is-layout-flow  > :last-child{margin-block-end: 0;}.is-layout-flow  > *{margin-block-start: 24px;margin-block-end: 0;}.is-layout-constrained  > :first-child{margin-block-start: 0;}.is-layout-constrained  > :last-child{margin-block-end: 0;}.is-layout-constrained  > *{margin-block-start: 24px;margin-block-end: 0;}.is-layout-flex {gap: 24px;}.is-layout-grid {gap: 24px;}.is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:root :where(body){padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}a:where(:not(.wp-element-button)){text-decoration: none;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;line-height: inherit;padding: calc(0.667em + 2px) calc(1.333em + 2px);text-decoration: none;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-ast-global-color-0-color{color: var(--wp--preset--color--ast-global-color-0) !important;}.has-ast-global-color-1-color{color: var(--wp--preset--color--ast-global-color-1) !important;}.has-ast-global-color-2-color{color: var(--wp--preset--color--ast-global-color-2) !important;}.has-ast-global-color-3-color{color: var(--wp--preset--color--ast-global-color-3) !important;}.has-ast-global-color-4-color{color: var(--wp--preset--color--ast-global-color-4) !important;}.has-ast-global-color-5-color{color: var(--wp--preset--color--ast-global-color-5) !important;}.has-ast-global-color-6-color{color: var(--wp--preset--color--ast-global-color-6) !important;}.has-ast-global-color-7-color{color: var(--wp--preset--color--ast-global-color-7) !important;}.has-ast-global-color-8-color{color: var(--wp--preset--color--ast-global-color-8) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-ast-global-color-0-background-color{background-color: var(--wp--preset--color--ast-global-color-0) !important;}.has-ast-global-color-1-background-color{background-color: var(--wp--preset--color--ast-global-color-1) !important;}.has-ast-global-color-2-background-color{background-color: var(--wp--preset--color--ast-global-color-2) !important;}.has-ast-global-color-3-background-color{background-color: var(--wp--preset--color--ast-global-color-3) !important;}.has-ast-global-color-4-background-color{background-color: var(--wp--preset--color--ast-global-color-4) !important;}.has-ast-global-color-5-background-color{background-color: var(--wp--preset--color--ast-global-color-5) !important;}.has-ast-global-color-6-background-color{background-color: var(--wp--preset--color--ast-global-color-6) !important;}.has-ast-global-color-7-background-color{background-color: var(--wp--preset--color--ast-global-color-7) !important;}.has-ast-global-color-8-background-color{background-color: var(--wp--preset--color--ast-global-color-8) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-ast-global-color-0-border-color{border-color: var(--wp--preset--color--ast-global-color-0) !important;}.has-ast-global-color-1-border-color{border-color: var(--wp--preset--color--ast-global-color-1) !important;}.has-ast-global-color-2-border-color{border-color: var(--wp--preset--color--ast-global-color-2) !important;}.has-ast-global-color-3-border-color{border-color: var(--wp--preset--color--ast-global-color-3) !important;}.has-ast-global-color-4-border-color{border-color: var(--wp--preset--color--ast-global-color-4) !important;}.has-ast-global-color-5-border-color{border-color: var(--wp--preset--color--ast-global-color-5) !important;}.has-ast-global-color-6-border-color{border-color: var(--wp--preset--color--ast-global-color-6) !important;}.has-ast-global-color-7-border-color{border-color: var(--wp--preset--color--ast-global-color-7) !important;}.has-ast-global-color-8-border-color{border-color: var(--wp--preset--color--ast-global-color-8) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
 :root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}</style>
 <link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/ultimate-addons-for-gutenberg/assets/css/spectra-block-positioning.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
 <noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/ultimate-addons-for-gutenberg/assets/css/spectra-block-positioning.min.css" media="all"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/2000/uag-css-2003-1724642150.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/2000/uag-css-2003-1724642150.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/5000/uag-css-5228-1724642197.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/5000/uag-css-5228-1724642197.min.css" media="all"></noscript>
 <link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-66cbf17c81e179-41110909-1724641660.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
 <noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-66cbf17c81e179-41110909-1724641660.min.css" media="all"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-dynamic-css-post-2003-1724642150.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-dynamic-css-post-2003-1724642150.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-dynamic-css-post-5228-1724642197.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-dynamic-css-post-5228-1724642197.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/1000/uag-css-592-1724642125.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/1000/uag-css-592-1724642125.min.css" media="all"></noscript>
 <link rel="stylesheet"  href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;" integrity="sha384-SOnAn/m2fVJCwnbEYgD4xzrPtvsXdElhOVvR8ND1YjB5nhGNwwf7nBQlhfAwHAZC" crossorigin="anonymous">
 <noscript><link rel="stylesheet"  href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" media="all" integrity="sha384-SOnAn/m2fVJCwnbEYgD4xzrPtvsXdElhOVvR8ND1YjB5nhGNwwf7nBQlhfAwHAZC" crossorigin="anonymous"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css" media="all"></noscript>
-<link rel="preload" as="style" data-id="elementor-frontend-css" href="https://specmatic.io/wp-content/plugins/elementor/assets/css/frontend-lite.min.css" media="all">
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/css/frontend-lite.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/css/frontend-lite.min.css" media="all"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css" media="all"></noscript>
-<link rel="preload" as="style" data-id="elementor-post-5-css" href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-5-1723001966.min.css" media="all">
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-5-1723001966.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-5-1723001966.min.css" media="all"></noscript>
-<link rel="preload" as="style" data-id="elementor-pro-css" href="https://specmatic.io/wp-content/plugins/elementor-pro/assets/css/frontend-lite.min.css" media="all">
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor-pro/assets/css/frontend-lite.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor-pro/assets/css/frontend-lite.min.css" media="all"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/ultimate-elementor/assets/min-css/uael-frontend.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/ultimate-elementor/assets/min-css/uael-frontend.min.css" media="all"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/all.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/all.min.css" media="all"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/v4-shims.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/v4-shims.min.css" media="all"></noscript>
-<link rel="preload" as="style" data-id="wpdt-elementor-widget-font-css" href="https://specmatic.io/wp-content/swis/cache/css/plugins/wpdatatables/integrations/page_builders/elementor/css/style-1692586520.min.css" media="all">
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/plugins/wpdatatables/integrations/page_builders/elementor/css/style-1692586520.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/plugins/wpdatatables/integrations/page_builders/elementor/css/style-1692586520.min.css" media="all"></noscript>
-<link rel="preload" as="style" data-id="elementor-post-2003-css" href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-2003-1723096772.min.css" media="all">
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-2003-1723096772.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-2003-1723096772.min.css" media="all"></noscript>
 <link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/themes/astra-child/style-1668396837.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
 <noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/themes/astra-child/style-1668396837.min.css" media="all"></noscript>
 <link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/micro-themes/active-styles-1723498133.min.css?mts=3346#038;ver=6.6.1" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
 <noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/micro-themes/active-styles-1723498133.min.css?mts=3346#038;ver=6.6.1" media="all"></noscript>
 <link rel="stylesheet"  href="https://use.fontawesome.com/releases/v6.2.0/css/v4-shims.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;" integrity="sha384-MAgG0MNwzSXBbmOw4KK9yjMrRaUNSCk3WoZPkzVC1rmhXzerY4gqk/BLNYtdOFCO" crossorigin="anonymous">
 <noscript><link rel="stylesheet"  href="https://use.fontawesome.com/releases/v6.2.0/css/v4-shims.css" media="all" integrity="sha384-MAgG0MNwzSXBbmOw4KK9yjMrRaUNSCk3WoZPkzVC1rmhXzerY4gqk/BLNYtdOFCO" crossorigin="anonymous"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min.css" media="all"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min.css" media="all"></noscript>
 <script src="https://specmatic.io/wp-includes/js/jquery/jquery.min.js" ></script>
 <script src="https://specmatic.io/wp-includes/js/jquery/jquery-migrate.min.js" ></script>
 <!--[if IE]>
@@ -120,11 +94,11 @@
 flexibility(document.documentElement);
 </script>
 <![endif]-->
-<script  data-swis-src="https://specmatic.io/wp-content/plugins/elementor/assets/lib/font-awesome/js/v4-shims.min.js" data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-no-minify="1"></script>
-<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://specmatic.io/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps%3A%2F%2Fspecmatic.io%2Froadmap%2F">
-<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://specmatic.io/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps%3A%2F%2Fspecmatic.io%2Froadmap%2F#038;format=xml">
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://specmatic.io/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps%3A%2F%2Fspecmatic.io%2Fupdates%2Fcontract-testing-using-grpc-specs-as-executable-contracts%2F">
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://specmatic.io/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhttps%3A%2F%2Fspecmatic.io%2Fupdates%2Fcontract-testing-using-grpc-specs-as-executable-contracts%2F#038;format=xml">
 <meta name="ssp-config-path" content="/wp-content/uploads/simply-static/configs/">
 <style >@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/plusjakartasans/v8/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_Tkn9TR_Q.ttf) format('truetype')}</style>
+
 
 <style>.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
 				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
@@ -147,6 +121,7 @@ flexibility(document.documentElement);
 <style>.wp-block-gallery.is-cropped .blocks-gallery-item picture{height:100%;width:100%;}</style>
 <link rel="stylesheet" href="https://specmatic.io/wp-content/uploads/elementor/custom-icons/icomoon/style.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
 <noscript><link rel="stylesheet" href="https://specmatic.io/wp-content/uploads/elementor/custom-icons/icomoon/style.css" media="all"></noscript>
+<style >@media (min-width: 1025px){body .uag-hide-desktop.uagb-google-map__wrap,body .uag-hide-desktop{display:none !important}}@media (min-width: 768px) and (max-width: 1024px){body .uag-hide-tab.uagb-google-map__wrap,body .uag-hide-tab{display:none !important}}@media (max-width: 767px){body .uag-hide-mob.uagb-google-map__wrap,body .uag-hide-mob{display:none !important}}</style>
 <link rel="icon" href="https://specmatic.io/wp-content/uploads/2022/09/Favicon.png" sizes="32x32">
 <link rel="icon" href="https://specmatic.io/wp-content/uploads/2022/09/Favicon.png" sizes="192x192">
 <link rel="apple-touch-icon" href="https://specmatic.io/wp-content/uploads/2022/09/Favicon.png">
@@ -168,7 +143,7 @@ window.addEventListener('load', function () {
     
  gtag('config', 'G-DZJQMQZ82G' , {});</script>
 </head>
-<body itemtype="https://schema.org/WebPage" itemscope="itemscope" class="page-template-default page page-id-2003 wp-custom-logo mtp-2003 mtp-page-roadmap ast-desktop ast-plain-container ast-no-sidebar astra-4.8.0 group-blog ast-single-post ast-inherit-site-logo-transparent ast-hfb-header elementor-default elementor-kit-5 elementor-page elementor-page-2003 astra-addon-4.8.0">
+<body itemtype="https://schema.org/Blog" itemscope="itemscope" class="post-template-default single single-post postid-5228 single-format-standard wp-custom-logo mtp-5228 mtp-post-contract-testing-using-grpc-specs-as-executable-contracts ast-desktop ast-separate-container ast-right-sidebar astra-4.8.0 group-blog ast-blog-single-style-1 ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-normal-title-enabled elementor-default elementor-kit-5 astra-addon-4.8.0">
 <a class="skip-link screen-reader-text" href="#content" role="link" title="Skip to content">
 Skip to content</a>
 <div class="hfeed site" id="page">
@@ -282,14 +257,14 @@ Skip to content</a>
 </ul>
 </li>
 <li id="menu-item-4011" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4011"><a href="https://specmatic.io/pricing/" class="menu-link">Pricing</a></li>
-<li id="menu-item-1112" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1112">
+<li id="menu-item-1112" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-1112">
 <a aria-expanded="false" href="https://specmatic.io/updates/" class="menu-link">Updates<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span></button>
 <ul class="sub-menu">
-<li id="menu-item-5252" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5252"><a href="https://specmatic.io/specmatic-updates/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-5252" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-5252"><a href="https://specmatic.io/specmatic-updates/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Announcements</a></li>
 <li id="menu-item-1353" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1353"><a href="https://specmatic.io/appearances/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
@@ -327,7 +302,7 @@ Skip to content</a>
 </svg></span>2-day CDD workshop</a></li>
 </ul>
 </li>
-<li id="menu-item-2107" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2003 current_page_item menu-item-2107"><a href="https://specmatic.io/roadmap/" aria-current="page" class="menu-link">Roadmap</a></li>
+<li id="menu-item-2107" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2107"><a href="https://specmatic.io/roadmap/" class="menu-link">Roadmap</a></li>
 <li id="menu-item-33" class="menu_github menu-item menu-item-type-custom menu-item-object-custom menu-item-33"><a target="_blank" rel="noopener" href="https://github.com/znsio/specmatic" class="menu-link"><span class="icon-github"></span></a></li>
 <li id="menu-item-2200" class="menu_github menu-item menu-item-type-custom menu-item-object-custom menu-item-2200"><a href="https://specmatic.io/contact-us/" class="menu-link"><span class="icon-mail4"></span></a></li>
 </ul></div></nav></div></div> </div>
@@ -372,391 +347,157 @@ Skip to content</a>
 <div class="ast-container">
 <div id="primary" class="content-area primary">
 <main id="main" class="site-main">
-<article class="post-2003 page type-page status-publish has-post-thumbnail ast-article-single" id="post-2003" itemtype="https://schema.org/CreativeWork" itemscope="itemscope">
-<header class="entry-header ast-no-title ast-header-without-markup">
-</header> 
-<div class="entry-content clear" itemprop="text">
-<div data-elementor-type="wp-page" data-elementor-id="2003" class="elementor elementor-2003" data-elementor-post-type="page">
-<div class="elementor-element elementor-element-7b39349 e-con-full e-flex e-con e-parent" data-id="7b39349" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-<div class="elementor-element elementor-element-02d7dc8 e-con-full e-flex e-con e-child" data-id="02d7dc8" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-<div class="elementor-element elementor-element-21a813a elementor-widget elementor-widget-heading" data-id="21a813a" data-element_type="widget" data-widget_type="heading.default">
-<div class="elementor-widget-container">
-<style>/*! elementor - v3.23.0 - 05-08-2024 */
-.elementor-heading-title{padding:0;margin:0;line-height:1}.elementor-widget-heading .elementor-heading-title[class*=elementor-size-]>a{color:inherit;font-size:inherit;line-height:inherit}.elementor-widget-heading .elementor-heading-title.elementor-size-small{font-size:15px}.elementor-widget-heading .elementor-heading-title.elementor-size-medium{font-size:19px}.elementor-widget-heading .elementor-heading-title.elementor-size-large{font-size:29px}.elementor-widget-heading .elementor-heading-title.elementor-size-xl{font-size:39px}.elementor-widget-heading .elementor-heading-title.elementor-size-xxl{font-size:59px}</style>
-<h2 class="elementor-heading-title elementor-size-default">Roadmap</h2> </div>
-</div>
-</div>
-<div class="elementor-element elementor-element-957dcb7 elementor-widget elementor-widget-text-editor" data-id="957dcb7" data-element_type="widget" data-widget_type="text-editor.default">
-<div class="elementor-widget-container">
-<style>/*! elementor - v3.23.0 - 05-08-2024 */
-.elementor-widget-text-editor.elementor-drop-cap-view-stacked .elementor-drop-cap{background-color:#69727d;color:#fff}.elementor-widget-text-editor.elementor-drop-cap-view-framed .elementor-drop-cap{color:#69727d;border:3px solid;background-color:transparent}.elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap{margin-top:8px}.elementor-widget-text-editor:not(.elementor-drop-cap-view-default) .elementor-drop-cap-letter{width:1em;height:1em}.elementor-widget-text-editor .elementor-drop-cap{float:left;text-align:center;line-height:1;font-size:50px}.elementor-widget-text-editor .elementor-drop-cap-letter{display:inline-block}</style> Specmatic has come a long way since its inception in 2019 and we have we exciting plans for the way ahead! Jump to <a href="#wip">work in progress.</a> </div>
-</div>
-<div class="elementor-element elementor-element-d6632c6 uael-timeline--center uael-timeline-responsive-tablet uael-timeline-arrow-center elementor-widget elementor-widget-uael-timeline" data-id="d6632c6" data-element_type="widget" data-widget_type="uael-timeline.default">
-<div class="elementor-widget-container">
-<div class="uael-timeline-wrapper uael-timeline-node">
-<div class="uael-timeline-shadow-yes uael-timeline-main">
-<div class="uael-days">
-<div class="elementor-repeater-item-84a9900 uael-timeline-field animate-border out-view">
-<div class="uael-timeline-widget uael-timeline-right">
-<div class="uael-timeline-marker">
-<span class="timeline-icon-new out-view-timeline-icon">
-<i aria-hidden="true" class="fas fa-circle"></i> </span>
-</div>
-<div class="uael-day-new uael-day-right">
-<div class="uael-events-new">
-<div class="uael-events-inner-new">
-<div class="uael-timeline-date-hide uael-date-inner">
-<div class="inner-date-new"><p>2019</p></div>
-</div>
-<div class="uael-content">
-<div class="uael-timeline-heading-text">
-<h3 class="uael-timeline-heading">Inception</h3> </div>
-<div class="uael-timeline-desc-content"><p>&#8211; Contract-first approach with Gherkin DSL</p></div> </div>
-<div class="uael-timeline-arrow"></div>
-</div>
-</div>
-</div>
-<div class="uael-timeline-date-new">
-<div class="uael-date-new">
-<div class="inner-date-new"><div>2019</div></div>
-</div>
-</div>
-</div>
-</div>
-<div class="elementor-repeater-item-22edd8a uael-timeline-field animate-border out-view">
-<div class="uael-timeline-widget uael-timeline-left">
-<div class="uael-timeline-marker">
-<span class="timeline-icon-new out-view-timeline-icon">
-<i aria-hidden="true" class="fas fa-circle"></i> </span>
-</div>
-<div class="uael-day-new uael-day-left">
-<div class="uael-events-new">
-<div class="uael-events-inner-new">
-<div class="uael-timeline-date-hide uael-date-inner">
-<div class="inner-date-new"><p>2020</p></div>
-</div>
-<div class="uael-content">
-<div class="uael-timeline-heading-text">
-<h3 class="uael-timeline-heading">Completed</h3> </div>
-<div class="uael-timeline-desc-content"><p>&#8211; Gherkin DSL for API Specification<br>&#8211; Dynamic Stubbing<br>&#8211; Postman collection to Gherkin DSL</p></div> </div>
-<div class="uael-timeline-arrow"></div>
-</div>
-</div>
-</div>
-<div class="uael-timeline-date-new">
-<div class="uael-date-new">
-<div class="inner-date-new"><div>2020</div></div>
-</div>
-</div>
-</div>
-</div>
-<div class="elementor-repeater-item-c5d7596 uael-timeline-field animate-border out-view">
-<div class="uael-timeline-widget uael-timeline-right">
-<div class="uael-timeline-marker">
-<span class="timeline-icon-new out-view-timeline-icon">
-<i aria-hidden="true" class="fas fa-circle"></i> </span>
-</div>
-<div class="uael-day-new uael-day-right">
-<div class="uael-events-new">
-<div class="uael-events-inner-new">
-<div class="uael-timeline-date-hide uael-date-inner">
-<div class="inner-date-new"><p>2021</p></div>
-</div>
-<div class="uael-content">
-<div class="uael-timeline-heading-text">
-<h3 class="uael-timeline-heading">Completed</h3> </div>
-<div class="uael-timeline-desc-content"><p>&#8211; Smart Mocks<br>&#8211; Java JUnit5 wrapper<br>&#8211; OpenAPI, Basic Auth &amp; Token Auth<br>&#8211; <span data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Backward Compatibility Testing&quot;}" data-sheets-userformat="{&quot;2&quot;:769,&quot;3&quot;:{&quot;1&quot;:0},&quot;11&quot;:4,&quot;12&quot;:0}">Backward Compatibility Testing</span><br>&#8211; SOAP / WSDL<br>&#8211; Postman Collection import<br>&#8211; Node wrapper v1<br>&#8211; Proxy Server</p></div> </div>
-<div class="uael-timeline-arrow"></div>
-</div>
-</div>
-</div>
-<div class="uael-timeline-date-new">
-<div class="uael-date-new">
-<div class="inner-date-new"><div>2021</div></div>
-</div>
-</div>
-</div>
-</div>
-<div class="elementor-repeater-item-2af75b1 uael-timeline-field animate-border out-view">
-<div class="uael-timeline-widget uael-timeline-left">
-<div class="uael-timeline-marker">
-<span class="timeline-icon-new out-view-timeline-icon">
-<i aria-hidden="true" class="fas fa-circle"></i> </span>
-</div>
-<div class="uael-day-new uael-day-left">
-<div class="uael-events-new">
-<div class="uael-events-inner-new">
-<div class="uael-timeline-date-hide uael-date-inner">
-<div class="inner-date-new"><p>2022</p></div>
-</div>
-<div class="uael-content">
-<div class="uael-timeline-heading-text">
-<h3 class="uael-timeline-heading">Completed</h3> </div>
-<div class="uael-timeline-desc-content"><p>&#8211; Generative Tests<br>&#8211; API Gateway Support<br>&#8211; Server Sent Event (SSE) stub &#8211; (Pro plan +)<br>&#8211; <a href="https://specmatic.io/updates/jms-mocking-with-asyncapi-using-specmatic/" target="_blank" rel="noopener">AsyncAPI &amp; JMS mock support </a> &#8211; (Pro plan +)</p></div> </div>
-<div class="uael-timeline-arrow"></div>
-</div>
-</div>
-</div>
-<div class="uael-timeline-date-new">
-<div class="uael-date-new">
-<div class="inner-date-new"><div>2022</div></div>
-</div>
-</div>
-</div>
-</div>
-<div class="elementor-repeater-item-77e260e uael-timeline-field animate-border out-view">
-<div class="uael-timeline-widget uael-timeline-right">
-<div class="uael-timeline-marker">
-<span class="timeline-icon-new out-view-timeline-icon">
-<i aria-hidden="true" class="fas fa-circle"></i> </span>
-</div>
-<div class="uael-day-new uael-day-right">
-<div class="uael-events-new">
-<div class="uael-events-inner-new">
-<div class="uael-timeline-date-hide uael-date-inner">
-<div class="inner-date-new"><p>Q1 - 2023</p></div>
-</div>
-<div class="uael-content">
-<div class="uael-timeline-heading-text">
-<h3 class="uael-timeline-heading">Completed</h3> </div>
-<div class="uael-timeline-desc-content"><p>&#8211; <a href="https://specmatic.io/updates/redis-stubbing-with-specmatic-contract-testing/" target="_blank" rel="noopener">Redis Stub</a> &#8211; (Pro plan +)<br>&#8211; <a href="https://www.npmjs.com/package/specmatic" target="_blank" rel="noopener">Node wrapper v2</a><br>&#8211; <a href="https://specmatic.in/documentation/specmatic_json.html#hooks" target="_blank" rel="noopener">Hooks for emulating payment gateways</a><br>&#8211; Maintenance updates</p></div> </div>
-<div class="uael-timeline-arrow"></div>
-</div>
-</div>
-</div>
-<div class="uael-timeline-date-new">
-<div class="uael-date-new">
-<div class="inner-date-new"><div>Q1 - 2023</div></div>
-</div>
-</div>
-</div>
-</div>
-<div class="elementor-repeater-item-38070f1 uael-timeline-field animate-border out-view">
-<div class="uael-timeline-widget uael-timeline-left">
-<div class="uael-timeline-marker">
-<span class="timeline-icon-new out-view-timeline-icon">
-<i aria-hidden="true" class="fas fa-circle"></i> </span>
-</div>
-<div class="uael-day-new uael-day-left">
-<div class="uael-events-new">
-<div class="uael-events-inner-new">
-<div class="uael-timeline-date-hide uael-date-inner">
-<div class="inner-date-new"><p>Q2 - 2023</p></div>
-</div>
-<div class="uael-content">
-<div class="uael-timeline-heading-text">
-<h3 class="uael-timeline-heading">Completed</h3> </div>
-<div class="uael-timeline-desc-content"><p>&#8211; <a href="https://specmatic.io/updates/jdbc-stubbing-with-specmatic-contract-testing/" target="_blank" rel="noopener">JDBC stub</a> &#8211; (Pro plan +)<br>&#8211; <a href="https://pypi.org/project/specmatic/" target="_blank" rel="noopener">Python wrapper</a><br>&#8211; <a href="https://specmatic.io/updates/kafka-mocking-with-asyncapi-using-specmatic/" target="_blank" rel="noopener">AsyncAPI Kafka support</a> &#8211; (Pro plan +)</p></div> </div>
-<div class="uael-timeline-arrow"></div>
-</div>
-</div>
-</div>
-<div class="uael-timeline-date-new">
-<div class="uael-date-new">
-<div class="inner-date-new"><div>Q2 - 2023</div></div>
-</div>
-</div>
-</div>
-</div>
-<div class="elementor-repeater-item-9e5dde6 uael-timeline-field animate-border out-view">
-<div class="uael-timeline-widget uael-timeline-right">
-<div class="uael-timeline-marker">
-<span class="timeline-icon-new out-view-timeline-icon">
-<i aria-hidden="true" class="fas fa-circle"></i> </span>
-</div>
-<div class="uael-day-new uael-day-right">
-<div class="uael-events-new">
-<div class="uael-events-inner-new">
-<div class="uael-timeline-date-hide uael-date-inner">
-<div class="inner-date-new"><p>Q3 - 2023</p></div>
-</div>
-<div class="uael-content">
-<div class="uael-timeline-heading-text">
-<h3 class="uael-timeline-heading">Completed</h3> </div>
-<div class="uael-timeline-desc-content"><p><span data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;SOAP / WSDL backward compatibillity&quot;}" data-sheets-userformat="{&quot;2&quot;:4737,&quot;3&quot;:{&quot;1&quot;:0},&quot;10&quot;:2,&quot;12&quot;:0,&quot;15&quot;:&quot;Arial&quot;}">&#8211; <a href="https://specmatic.in/documentation/authentication.html#oauth2" target="_blank" rel="noopener">OpenAPI OAuth</a> Security Scheme<br>&#8211; OpenAPI OpenID Security Scheme<br></span>&#8211; <a href="https://specmatic.io/updates/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/" target="_blank" rel="noopener">API Coverage Report</a></p></div> </div>
-<div class="uael-timeline-arrow"></div>
-</div>
-</div>
-</div>
-<div class="uael-timeline-date-new">
-<div class="uael-date-new">
-<div class="inner-date-new"><div>Q3 - 2023</div></div>
-</div>
-</div>
-</div>
-</div>
-<div class="elementor-repeater-item-4e47520 uael-timeline-field animate-border out-view">
-<div class="uael-timeline-widget uael-timeline-left">
-<div class="uael-timeline-marker">
-<span class="timeline-icon-new out-view-timeline-icon">
-<i aria-hidden="true" class="fas fa-circle"></i> </span>
-</div>
-<div class="uael-day-new uael-day-left">
-<div class="uael-events-new">
-<div class="uael-events-inner-new">
-<div class="uael-timeline-date-hide uael-date-inner">
-<div class="inner-date-new"><p>Q4 - 2023</p></div>
-</div>
-<div class="uael-content">
-<div class="uael-timeline-heading-text">
-<h3 class="uael-timeline-heading">Completed</h3> </div>
-<div class="uael-timeline-desc-content"><p>&#8211; AsyncAPI 2.6.x &#8211; Request Reply pattern support improvements<br>&#8211; <a href="https://specmatic.in/#extension">VSCode Extension with Generative AI capabilities</a> &#8211; beta<br>&#8211; <a href="https://insights.specmatic.in/" target="_blank" rel="noopener">Specmatic Insights</a> &#8211; CDD Analytics Dashboard launch<br>&#8211; AsyncAPI Test Interactive HTML report</p></div> </div>
-<div class="uael-timeline-arrow"></div>
-</div>
-</div>
-</div>
-<div class="uael-timeline-date-new">
-<div class="uael-date-new">
-<div class="inner-date-new"><div>Q4 - 2023</div></div>
-</div>
-</div>
-</div>
-</div>
-<div class="elementor-repeater-item-e6290c1 uael-timeline-field animate-border out-view">
-<div class="uael-timeline-widget uael-timeline-right">
-<div class="uael-timeline-marker">
-<span class="timeline-icon-new out-view-timeline-icon">
-<i aria-hidden="true" class="fas fa-circle"></i> </span>
-</div>
-<div class="uael-day-new uael-day-right">
-<div class="uael-events-new">
-<div class="uael-events-inner-new">
-<div class="uael-timeline-date-hide uael-date-inner">
-<div class="inner-date-new"><p>Q1 - 2024</p></div>
-</div>
-<div class="uael-content">
-<div class="uael-timeline-heading-text">
-<h3 class="uael-timeline-heading">Completed</h3> </div>
-<div class="uael-timeline-desc-content"><p>&#8211; <a href="https://hub.docker.com/r/znsio/specmatic">Specmatic Docker image</a><br>&#8211; OpenAPI Example as both test and stub<br>&#8211; AsyncAPI (general availability)<br>&#8211; Support for all OpenAPI security schemes<br>&#8211; Externalised test data for contract tests<br>&#8211; Google Pub Sub beta</p></div> </div>
-<div class="uael-timeline-arrow"></div>
-</div>
-</div>
-</div>
-<div class="uael-timeline-date-new">
-<div class="uael-date-new">
-<div class="inner-date-new"><div>Q1 - 2024</div></div>
-</div>
-</div>
-</div>
-</div>
-<div class="elementor-repeater-item-7cb51fb uael-timeline-field animate-border out-view">
-<div class="uael-timeline-widget uael-timeline-left">
-<div class="uael-timeline-marker">
-<span class="timeline-icon-new out-view-timeline-icon">
-<i aria-hidden="true" class="fas fa-circle"></i> </span>
-</div>
-<div class="uael-day-new uael-day-left">
-<div class="uael-events-new">
-<div class="uael-events-inner-new">
-<div class="uael-timeline-date-hide uael-date-inner">
-<div class="inner-date-new"><p>Q2 - 2024</p></div>
-</div>
-<div class="uael-content">
-<div class="uael-timeline-heading-text">
-<h3 class="uael-timeline-heading">Completed</h3> </div>
-<div class="uael-timeline-desc-content"><p>&#8211; GraphQL support<br>&#8211; <a href="https://specmatic.io/updates/contract-testing-google-pub-sub-using-asyncapi-as-executable-contracts/">Google Pub Sub</a> (general availability)<br>&#8211; <a href="https://github.com/znsio/specmatic/issues/635">gRPC support</a><br>&#8211; Improved / descriptive test names<br>&#8211; <a href="https://plugins.jetbrains.com/plugin/24548-specmatic">Jetbrains IDE plugin</a><br>&#8211; Specmatic config in YAML<br>&#8211; AsyncAPI HTML Report</p></div> </div>
-<div class="uael-timeline-arrow"></div>
-</div>
-</div>
-</div>
-<div class="uael-timeline-date-new">
-<div class="uael-date-new">
-<div class="inner-date-new"><div>Q2 - 2024</div></div>
-</div>
-</div>
-</div>
-</div>
-<div class="elementor-repeater-item-6435a70 uael-timeline-field animate-border out-view">
-<div class="uael-timeline-widget uael-timeline-right">
-<div class="uael-timeline-marker">
-<span class="timeline-icon-new out-view-timeline-icon">
-<i aria-hidden="true" class="fas fa-circle"></i> </span>
-</div>
-<div class="uael-day-new uael-day-right">
-<div class="uael-events-new">
-<div class="uael-events-inner-new">
-<div class="uael-timeline-date-hide uael-date-inner">
-<div class="inner-date-new"><p>Q3 - 2024</p></div>
-</div>
-<div class="uael-content">
-<div class="uael-timeline-heading-text">
-<h3 class="uael-timeline-heading">
-<a id="wip"></a>In progress</h3> </div>
-<div class="uael-timeline-desc-content"><p>&#8211; AsyncAPI 3.x support (beta)<br>&#8211; API Coverage Report for SOAP/WSDL<br><span data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;SOAP / WSDL backward compatibillity&quot;}" data-sheets-userformat="{&quot;2&quot;:4737,&quot;3&quot;:{&quot;1&quot;:0},&quot;10&quot;:2,&quot;12&quot;:0,&quot;15&quot;:&quot;Arial&quot;}">&#8211; Smart Mock Response Fuzzing</span><br>&#8211; <a href="https://github.com/znsio/specmatic/issues/628">OpenAPI 3.1 support</a><br>&#8211; OpenAPI links support</p></div> </div>
-<div class="uael-timeline-arrow"></div>
-</div>
-</div>
-</div>
-<div class="uael-timeline-date-new">
-<div class="uael-date-new">
-<div class="inner-date-new"><div>Q3 - 2024</div></div>
-</div>
-</div>
-</div>
-</div>
-<div class="elementor-repeater-item-fc89bef uael-timeline-field animate-border out-view">
-<div class="uael-timeline-widget uael-timeline-left">
-<div class="uael-timeline-marker">
-<span class="timeline-icon-new out-view-timeline-icon">
-<i aria-hidden="true" class="fas fa-circle"></i> </span>
-</div>
-<div class="uael-day-new uael-day-left">
-<div class="uael-events-new">
-<div class="uael-events-inner-new">
-<div class="uael-timeline-date-hide uael-date-inner">
-<div class="inner-date-new"><p>Q4 - 2024</p></div>
-</div>
-<div class="uael-content">
-<div class="uael-timeline-heading-text">
-<h3 class="uael-timeline-heading">Coming Up</h3> </div>
-<div class="uael-timeline-desc-content"><p>&#8211; AsyncAPI 3.x support (general availability)<br>&#8211; Mongo DB stubbing<br>&#8211; GoLang Wrapper<br>&#8211; C# .Net Wrapper</p></div> </div>
-<div class="uael-timeline-arrow"></div>
-</div>
-</div>
-</div>
-<div class="uael-timeline-date-new">
-<div class="uael-date-new">
-<div class="inner-date-new"><div>Q4 - 2024</div></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="uael-timeline__line">
-<div class="uael-timeline__line__inner"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="elementor-element elementor-element-37d37cb e-flex e-con-boxed e-con e-parent" data-id="37d37cb" data-element_type="container">
-<div class="e-con-inner">
-<div class="elementor-element elementor-element-f21669e elementor-widget elementor-widget-heading" data-id="f21669e" data-element_type="widget" data-widget_type="heading.default">
-<div class="elementor-widget-container">
-<h3 class="elementor-heading-title elementor-size-default">Got an idea you would like to share?</h3> </div>
-</div>
-<div class="elementor-element elementor-element-d236957 elementor-widget elementor-widget-text-editor" data-id="d236957" data-element_type="widget" data-widget_type="text-editor.default">
-<div class="elementor-widget-container">
-<p>We&#8217;d love to hear your feedback! Let us know what features you would like to see included in Specmatic and how you would see them working. </p> </div>
-</div>
-<div class="elementor-element elementor-element-8dab789 elementor-align-center elementor-widget elementor-widget-button" data-id="8dab789" data-element_type="widget" data-widget_type="button.default">
-<div class="elementor-widget-container">
-<div class="elementor-button-wrapper">
-<a class="elementor-button elementor-button-link elementor-size-sm" href="https://github.com/znsio/specmatic/discussions" target="_blank">
-<span class="elementor-button-content-wrapper">
-<span class="elementor-button-text">Comment on the roadmap</span>
+<article class="post-5228 post type-post status-publish format-standard has-post-thumbnail hentry category-updates tag-contract-driven-development tag-grpc ast-article-single" id="post-5228" itemtype="https://schema.org/CreativeWork" itemscope="itemscope">
+<div class="ast-post-format- single-layout-1 ast-no-date-box">
+<header class="entry-header ">
+<h1 class="entry-title" itemprop="headline">Contract Testing using gRPC Specs as Executable Contracts</h1>
+<div class="entry-meta">
+<span class="ast-terms-link"><a href="https://specmatic.io/updates/" class>Updates</a></span> / By <span class="posted-by vcard author" itemtype="https://schema.org/Person" itemscope="itemscope" itemprop="author"> <a title="View all posts by Yogesh Nikam" href="https://specmatic.io/author/yogesh/" rel="author" class="url fn n" itemprop="url">
+<span class="author-name" itemprop="name">
+Yogesh Nikam </span>
+</a>
 </span>
+</div> <div class="ast-post-social-sharing">
+<div class="ast-social-inner-wrap element-social-inner-wrap social-show-label-false ast-social-color-type-official">
+<a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fspecmatic.io%2Fupdates%2Fcontract-testing-using-grpc-specs-as-executable-contracts%2F" aria-label="Facebook" target="_blank" rel="noopener noreferrer" class="ast-inline-flex ast-social-icon-a">
+<div style="--color: #557dbc; --background-color:transparent;" class="ast-social-element ast-facebook-social-item">
+<span class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg width="448" height="448" viewbox="0 0 448 448" xmlns="http://www.w3.org/2000/svg"><path d="M23 45C23 33.9543 31.9543 25 43 25H405C416.046 25 425 33.9543 425 45V411C425 422.046 416.046 431 405 431H43C31.9543 431 23 422.046 23 411V45Z" fill="white"></path><path d="M185 431H263V448H185V431Z" fill="white"></path><path d="M400 0H48C35.2696 0 23.0606 5.05713 14.0589 14.0589C5.05713 23.0606 0 35.2696 0 48V400C0 412.73 5.05713 424.939 14.0589 433.941C23.0606 442.943 35.2696 448 48 448H185.25V295.69H122.25V224H185.25V169.36C185.25 107.21 222.25 72.88 278.92 72.88C306.06 72.88 334.44 77.72 334.44 77.72V138.72H303.17C272.36 138.72 262.75 157.84 262.75 177.45V224H331.53L320.53 295.69H262.75V448H400C412.73 448 424.939 442.943 433.941 433.941C442.943 424.939 448 412.73 448 400V48C448 35.2696 442.943 23.0606 433.941 14.0589C424.939 5.05713 412.73 0 400 0Z"></path></svg></span> </div>
+</a>
+<a href="https://twitter.com/share?url=https%3A%2F%2Fspecmatic.io%2Fupdates%2Fcontract-testing-using-grpc-specs-as-executable-contracts%2F&#038;text=Contract%20Testing%20using%20gRPC%20Specs%20as%20Executable%20Contracts&#038;hashtags=Updates" aria-label="Twitter" target="_blank" rel="noopener noreferrer" class="ast-inline-flex ast-social-icon-a">
+<div style="--color: #7acdee; --background-color:transparent;" class="ast-social-element ast-twitter-social-item">
+<span class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg></span> </div>
+</a>
+<a href="https://www.linkedin.com/shareArticle?mini=true&#038;url=https%3A%2F%2Fspecmatic.io%2Fupdates%2Fcontract-testing-using-grpc-specs-as-executable-contracts%2F&#038;title=Contract+Testing+using+gRPC+Specs+as+Executable+Contracts&#038;source=Specmatic" aria-label="Linkedin" target="_blank" rel="noopener noreferrer" class="ast-inline-flex ast-social-icon-a">
+<div style="--color: #1c86c6; --background-color:transparent;" class="ast-social-element ast-linkedin-social-item">
+<span class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg width="448" height="448" viewbox="0 0 448 448" xmlns="http://www.w3.org/2000/svg"><path d="M391.897 7H57.1027C30.5363 7 9 28.6862 9 55.4375V392.562C9 419.314 30.5363 441 57.1027 441H391.897C418.464 441 440 419.314 440 392.562V55.4375C440 28.6862 418.464 7 391.897 7Z" fill="white"></path><path d="M416 0H31.9C14.3 0 0 14.5 0 32.3V415.7C0 433.5 14.3 448 31.9 448H416C433.6 448 448 433.5 448 415.7V32.3C448 14.5 433.6 0 416 0ZM69 384V170.2H135.5V384H69ZM102.2 141C80.9 141 63.7 123.7 63.7 102.5C63.7 81.3 80.9 64 102.2 64C123.4 64 140.7 81.3 140.7 102.5C140.7 123.8 123.5 141 102.2 141ZM384.3 384H317.9V280C317.9 255.2 317.4 223.3 283.4 223.3C248.8 223.3 243.5 250.3 243.5 278.2V384H177.1V170.2H240.8V199.4H241.7C250.6 182.6 272.3 164.9 304.6 164.9C371.8 164.9 384.3 209.2 384.3 266.8V384Z"></path></svg></span> </div>
+</a>
+<a href="https://reddit.com/submit?url=https%3A%2F%2Fspecmatic.io%2Fupdates%2Fcontract-testing-using-grpc-specs-as-executable-contracts%2F&#038;title=Contract%20Testing%20using%20gRPC%20Specs%20as%20Executable%20Contracts" aria-label="Reddit" target="_blank" rel="noopener noreferrer" class="ast-inline-flex ast-social-icon-a">
+<div style="--color: #FC471E; --background-color:transparent;" class="ast-social-element ast-reddit-social-item">
+<span class="ahfb-svg-iconset ast-inline-flex svg-baseline"><svg width="448" height="512" viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M391.897 39H57.1027C30.5363 39 9 60.6862 9 87.4375V424.562C9 451.314 30.5363 473 57.1027 473H391.897C418.464 473 440 451.314 440 424.562V87.4375C440 60.6862 418.464 39 391.897 39Z" fill="white"></path><path d="M283.2 345.5C285.9 348.2 285.9 352.3 283.2 354.7C258.7 379.2 189.4 379.3 164.8 354.7C162.1 352.3 162.1 348.2 164.8 345.5C167.2 343.1 171.3 343.1 173.7 345.5C192.4 364.7 254.7 365.1 274.2 345.5C276.6 343.2 280.8 343.2 283.2 345.5ZM191.9 291.7C191.9 276.8 180 264.9 165.4 264.9C150.5 264.9 138.6 276.8 138.6 291.7C138.6 306.3 150.5 318.2 165.4 318.2C180 318.2 191.9 306.3 191.9 291.7ZM282.6 264.9C268 264.9 256.1 276.8 256.1 291.7C256.1 306.3 268 318.2 282.6 318.2C297.5 318.2 309.4 306.3 309.4 291.7C309.4 276.8 297.5 264.9 282.6 264.9ZM448 80V432C448 458.5 426.5 480 400 480H48C21.5 480 0 458.5 0 432V80C0 53.5 21.5 32 48 32H400C426.5 32 448 53.5 448 80ZM348.3 220.6C338.2 220.6 329.3 224.8 322.7 231.3C298.6 214.6 266.2 203.9 230.2 202.7L248.9 118.5L308.4 131.9C308.4 146.5 320.3 158.4 334.9 158.4C349.8 158.4 361.7 146.2 361.7 131.6C361.7 117 349.8 104.8 334.9 104.8C324.5 104.8 315.6 111 311.1 119.7L245.4 105.1C242.1 104.2 238.9 106.6 238 109.9L217.5 202.7C181.8 204.2 149.7 214.9 125.6 231.6C119.1 224.8 109.8 220.6 99.7 220.6C62.2 220.6 49.9 271 84.2 288.1C83 293.5 82.4 299.1 82.4 304.8C82.4 361.3 146.1 407.1 224.3 407.1C302.8 407.1 366.5 361.3 366.5 304.8C366.5 299.1 365.9 293.2 364.4 287.8C398 270.6 385.6 220.6 348.3 220.6Z"></path></svg></span> </div>
 </a>
 </div>
 </div>
+</header>
+<div class="entry-content clear" ast-blocks-layout="true" itemprop="text">
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<div class="ast-oembed-container " style="height: 100%;"><iframe title="From Protofile to Production: Contract Testing gRPC Services with Specmatic" width="1200" height="675" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-src="https://www.youtube.com/embed/xD6G5PL8tOk?feature=oembed" class="lazyload"></iframe></div>
+</div></figure>
+<h2 class="wp-block-heading">Transform your gRPC API specs into executable contracts in seconds</h2>
+<p>Now you can easily leverage your gRPC APIs for contract testing, intelligent service virtualisation and backward compatibility testing, just like you would for your OpenAPI-based services. No more complex and brittle setups that involve an assortment of tools – Specmatic handles it all for you, thereby making for a one stop solution that enables a seamless DevEx.&nbsp;</p>
+<figure class="wp-block-image size-large"><picture><source sizes="(max-width: 1024px) 100vw, 1024px" type="image/webp" data-srcset="https://specmatic.io/wp-content/uploads/2024/07/SpecmaticGRPCSupport-1024x576.gif.webp 1024w, https://specmatic.io/wp-content/uploads/2024/07/SpecmaticGRPCSupport-300x169.gif.webp 300w, https://specmatic.io/wp-content/uploads/2024/07/SpecmaticGRPCSupport-768x432.gif.webp 768w, https://specmatic.io/wp-content/uploads/2024/07/SpecmaticGRPCSupport-1536x864.gif.webp 1536w"><img fetchpriority="high" decoding="async" width="1024" height="576" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAJAAQAAAAA77il4AAAAAnRSTlMAAHaTzTgAAABeSURBVHja7cEBAQAAAIIg/69uSEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADvBiJPAAGzqU2aAAAAAElFTkSuQmCC" alt class="wp-image-5229 lazyload" data-eio="p" data-src="https://specmatic.io/wp-content/uploads/2024/07/SpecmaticGRPCSupport-1024x576.gif" data-srcset="https://specmatic.io/wp-content/uploads/2024/07/SpecmaticGRPCSupport-1024x576.gif 1024w, https://specmatic.io/wp-content/uploads/2024/07/SpecmaticGRPCSupport-300x169.gif 300w, https://specmatic.io/wp-content/uploads/2024/07/SpecmaticGRPCSupport-768x432.gif 768w, https://specmatic.io/wp-content/uploads/2024/07/SpecmaticGRPCSupport-1536x864.gif 1536w" data-sizes="auto" data-eio-rwidth="1024" data-eio-rheight="576"><noscript><img fetchpriority="high" decoding="async" width="1024" height="576" src="https://specmatic.io/wp-content/uploads/2024/07/SpecmaticGRPCSupport-1024x576.gif" alt="" class="wp-image-5229" srcset="https://specmatic.io/wp-content/uploads/2024/07/SpecmaticGRPCSupport-1024x576.gif 1024w, https://specmatic.io/wp-content/uploads/2024/07/SpecmaticGRPCSupport-300x169.gif 300w, https://specmatic.io/wp-content/uploads/2024/07/SpecmaticGRPCSupport-768x432.gif 768w, https://specmatic.io/wp-content/uploads/2024/07/SpecmaticGRPCSupport-1536x864.gif 1536w" sizes="(max-width: 1024px) 100vw, 1024px" data-eio="l"></noscript></picture></figure>
+<div style="height:70px" aria-hidden="true" class="wp-block-spacer"></div>
+<h2 class="wp-block-heading">Getting Started</h2>
+<p>For gRPC, the setup process is just as straightforward as it is for OpenAPI. All you need are your gRPC proto files, along with a simple Specmatic configuration, and you’re good to go!</p>
+<h2 class="wp-block-heading"><strong>Sample gRPC projects</strong></h2>
+<p><a href="https://github.com/znsio/specmatic-order-bff-grpc-kotlin" target="_blank" rel="noreferrer noopener">https://github.com/znsio/specmatic-order-bff-grpc-kotlin</a>&nbsp;<br><a href="https://github.com/znsio/specmatic-order-api-grpc-kotlin" target="_blank" rel="noreferrer noopener">https://github.com/znsio/specmatic-order-api-grpc-kotlin</a>&nbsp;<br><a href="https://github.com/znsio/specmatic-order-bff-grpc-go" target="_blank" rel="noreferrer noopener">https://github.com/znsio/specmatic-order-bff-grpc-go</a>&nbsp;</p>
+<p>Give a star to Specmatic &#8211; <a href="https://github.com/znsio/specmatic" target="_blank" rel="noreferrer noopener">https://github.com/znsio/specmatic</a>  </p>
+<p>Available in the <a href="https://specmatic.io/pricing/" data-type="page" data-id="3961">Pro plan</a> or higher</p>
+<div class="wp-block-buttons is-layout-flex wp-block-buttons-is-layout-flex">
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://specmatic.io/pricing/">Buy Now</a></div>
+</div>
+<div style="height:70px" aria-hidden="true" class="wp-block-spacer"></div>
 </div>
 </div>
+</article>
+<nav class="navigation post-navigation" role="navigation" aria-label="Post navigation">
+<span class="screen-reader-text">Post navigation</span>
+<div class="nav-links"><div class="nav-previous"><a title="Specmatic 2.0 is out! Now supports GraphQL and gRPC" href="https://specmatic.io/updates/specmatic-2-0-is-out-now-supports-graphql-and-grpc/" rel="prev"><span class="ast-left-arrow">&larr;</span> Previous Post</a></div></div>
+</nav><div class="ast-single-related-posts-container ast-container--fallback">
+<div class="ast-related-posts-title-section"> <h2 class="ast-related-posts-title"> Related Posts </h2> </div>
+<div class="ast-related-posts-wrapper"> <article class="ast-related-post post-585 post type-post status-publish format-standard has-post-thumbnail hentry category-comparisons category-updates tag-bdct tag-bi-directional-contract-testing tag-cdct tag-cdd tag-consumer-driven-contract-testing tag-contract-driven-development tag-contract-testing tag-integration-testing tag-openapi tag-pact tag-pactflow tag-specmatic">
+<div class="ast-related-posts-inner-section">
+<div class="ast-related-post-content">
+<header class="entry-header related-entry-header">
+<h3 class="ast-related-post-title entry-title">
+<a href="https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/" target="_self" rel="bookmark noopener noreferrer">Comparison: Specmatic vs Pact.io and Pactflow.io</a>
+</h3>
+<div class="entry-meta ast-related-cat-style--none ast-related-tag-style--none">
+<span class="ast-taxonomy-container cat-links default"><a href="https://specmatic.io/comparisons/" rel="category tag">Comparisons</a>, <a href="https://specmatic.io/updates/" rel="category tag">Updates</a></span> / <span class="posted-on"><span class="published" itemprop="datePublished"> November 8, 2022 </span></span>
+</div> </header>
+<div class="entry-content clear">
 </div>
 </div>
 </div>
 </article>
+<article class="ast-related-post post-820 post type-post status-publish format-standard has-post-thumbnail hentry category-comparisons category-updates tag-api-mocking tag-contract-driven-development tag-contract-testing tag-openapi tag-specmatic tag-wiremock">
+<div class="ast-related-posts-inner-section">
+<div class="ast-related-post-content">
+<header class="entry-header related-entry-header">
+<h3 class="ast-related-post-title entry-title">
+<a href="https://specmatic.io/comparisons/comparison-specmatic-vs-wiremock/" target="_self" rel="bookmark noopener noreferrer">Comparison: Specmatic vs WireMock</a>
+</h3>
+<div class="entry-meta ast-related-cat-style--none ast-related-tag-style--none">
+<span class="ast-taxonomy-container cat-links default"><a href="https://specmatic.io/comparisons/" rel="category tag">Comparisons</a>, <a href="https://specmatic.io/updates/" rel="category tag">Updates</a></span> / <span class="posted-on"><span class="published" itemprop="datePublished"> November 26, 2022 </span></span>
+</div> </header>
+<div class="entry-content clear">
+</div>
+</div>
+</div>
+</article>
+<article class="ast-related-post post-881 post type-post status-publish format-standard has-post-thumbnail hentry category-comparisons category-updates tag-consumer-driven-contract tag-contract-driven-development tag-contract-testing tag-integration-testing tag-microservices tag-openapi tag-provider-driven-contract tag-specmatic tag-spring-cloud-contract">
+<div class="ast-related-posts-inner-section">
+<div class="ast-related-post-content">
+<header class="entry-header related-entry-header">
+<h3 class="ast-related-post-title entry-title">
+<a href="https://specmatic.io/comparisons/comparison-specmatic-vs-spring-cloud-contract/" target="_self" rel="bookmark noopener noreferrer">Comparison: Specmatic vs Spring Cloud Contract</a>
+</h3>
+<div class="entry-meta ast-related-cat-style--none ast-related-tag-style--none">
+<span class="ast-taxonomy-container cat-links default"><a href="https://specmatic.io/comparisons/" rel="category tag">Comparisons</a>, <a href="https://specmatic.io/updates/" rel="category tag">Updates</a></span> / <span class="posted-on"><span class="published" itemprop="datePublished"> December 3, 2022 </span></span>
+</div> </header>
+<div class="entry-content clear">
+</div>
+</div>
+</div>
+</article>
+</div> </div> <div class="astra-advanced-hook-592 ">
+
+<div class="commentbox"></div>
+<script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
+<script>commentBox('5678298390593536-proj');</script>
+</div>
 </main>
+</div>
+<div class="widget-area secondary" id="secondary" itemtype="https://schema.org/WPSideBar" itemscope="itemscope">
+<div class="sidebar-main">
+<aside id="wgs_widget-3" class="widget widget_wgs_widget"><h2 class="widget-title">Search</h2>
+<div class="wgs_wrapper"><div class="gcse-search" data-resultsurl="https://specmatic.io/?page_id=634"></div></div></aside><aside id="block-3" class="widget widget_block"><div class="wp-block-group is-layout-flow wp-block-group-is-layout-flow">
+<h2 class="wp-block-heading">Recent Posts</h2>
+<ul class="wp-block-latest-posts__list wp-block-latest-posts">
+<li><a class="wp-block-latest-posts__post-title" href="https://specmatic.io/updates/contract-testing-using-grpc-specs-as-executable-contracts/">Contract Testing using gRPC Specs as Executable Contracts</a></li>
+<li><a class="wp-block-latest-posts__post-title" href="https://specmatic.io/updates/specmatic-2-0-is-out-now-supports-graphql-and-grpc/">Specmatic 2.0 is out! Now supports GraphQL and gRPC</a></li>
+<li><a class="wp-block-latest-posts__post-title" href="https://specmatic.io/demonstration/api-resiliency-and-contract-testing-for-graphql/">API Resiliency and Contract Testing for GraphQL</a></li>
+<li><a class="wp-block-latest-posts__post-title" href="https://specmatic.io/podcast/empowering-frontend-engineers-with-microservices-contract-testing-a-conversation-with-markus-oberlehner/">Empowering Frontend Engineers with Microservices Contract Testing &#8211; a conversation with Markus Oberlehner</a></li>
+<li><a class="wp-block-latest-posts__post-title" href="https://specmatic.io/demonstration/contract-testing-google-pub-sub-using-asyncapi-as-executable-contracts/">Contract Testing Google Pub/Sub: Using AsyncAPI specs as Executable Contracts</a></li>
+</ul>
+</div></aside><aside id="block-6" class="widget widget_block"><div class="wp-block-group is-layout-flow wp-block-group-is-layout-flow">
+<h2 class="wp-block-heading">Categories</h2>
+<ul class="wp-block-categories-list wp-block-categories"> <li class="cat-item cat-item-13">
+<a href="https://specmatic.io/comparisons/">Comparisons</a>
+</li>
+<li class="cat-item cat-item-72">
+<a href="https://specmatic.io/conference/">Conference</a>
+</li>
+<li class="cat-item cat-item-67">
+<a href="https://specmatic.io/demonstration/">Demonstration</a>
+</li>
+<li class="cat-item cat-item-58">
+<a href="https://specmatic.io/spotlight/">Feature Spotlight</a>
+</li>
+<li class="cat-item cat-item-37">
+<a href="https://specmatic.io/updates/media/">In the Media</a>
+</li>
+<li class="cat-item cat-item-77">
+<a href="https://specmatic.io/podcast/">Podcasts</a>
+</li>
+<li class="cat-item cat-item-14">
+<a href="https://specmatic.io/updates/">Updates</a>
+</li>
+<li class="cat-item cat-item-71">
+<a href="https://specmatic.io/workshop/">Workshop</a>
+</li>
+</ul>
+</div></aside>
+</div>
 </div>
 </div> 
 </div>
@@ -865,7 +606,7 @@ Skip to content</a>
 </svg></span>Specmatic vs WireMock</a></li>
 </ul>
 </li>
-<li id="menu-item-1113" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1113">
+<li id="menu-item-1113" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-1113">
 <a aria-expanded="false" href="https://specmatic.io/updates/" class="menu-link">Updates<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
@@ -910,7 +651,7 @@ Skip to content</a>
 </svg></span>2-day CDD workshop</a></li>
 </ul>
 </li>
-<li id="menu-item-2108" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2003 current_page_item menu-item-2108"><a href="https://specmatic.io/roadmap/" aria-current="page" class="menu-link">Roadmap</a></li>
+<li id="menu-item-2108" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2108"><a href="https://specmatic.io/roadmap/" class="menu-link">Roadmap</a></li>
 <li id="menu-item-444" class="menu_github menu-item menu-item-type-custom menu-item-object-custom menu-item-444"><a target="_blank" rel="noopener" href="https://github.com/znsio/specmatic" class="menu-link">Github <span class="icon-github" style="padding-left:10px;"></span></a></li>
 <li id="menu-item-477" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-477"><a href="https://specmatic.io/contact-us/" class="menu-link">Contact Us <span class="icon-mail4" style="font-size:22px; padding-left:10px;"></span></a></li>
 </ul></div></nav></div></div> </div>
@@ -1014,7 +755,7 @@ Skip to content</a>
 </svg></span>Specmatic vs WireMock</a></li>
 </ul>
 </li>
-<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1113">
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-1113">
 <a aria-expanded="false" href="https://specmatic.io/updates/" class="menu-link">Updates<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
@@ -1059,7 +800,7 @@ Skip to content</a>
 </svg></span>2-day CDD workshop</a></li>
 </ul>
 </li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2003 current_page_item menu-item-2108"><a href="https://specmatic.io/roadmap/" aria-current="page" class="menu-link">Roadmap</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2108"><a href="https://specmatic.io/roadmap/" class="menu-link">Roadmap</a></li>
 <li class="menu_github menu-item menu-item-type-custom menu-item-object-custom menu-item-444"><a target="_blank" rel="noopener" href="https://github.com/znsio/specmatic" class="menu-link">Github <span class="icon-github" style="padding-left:10px;"></span></a></li>
 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-477"><a href="https://specmatic.io/contact-us/" class="menu-link">Contact Us <span class="icon-mail4" style="font-size:22px; padding-left:10px;"></span></a></li>
 </ul></div></nav></div></div> </div>
@@ -1088,8 +829,8 @@ Skip to content</a>
 <li id="menu-item-255" class="footer-menu-text menu-item menu-item-type-custom menu-item-object-custom menu-item-255"><a target="_blank" rel="noopener" href="https://github.com/znsio/specmatic/graphs/contributors" class="menu-link">Contributors</a></li>
 <li id="menu-item-1510" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1510"><a href="https://specmatic.io/appearances/" class="menu-link">Appearances</a></li>
 <li id="menu-item-1095" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1095"><a href="https://specmatic.io/articles/" class="menu-link">Articles</a></li>
-<li id="menu-item-841" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-841"><a href="https://specmatic.io/specmatic-updates/" class="menu-link">Updates</a></li>
-<li id="menu-item-2109" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-2003 current_page_item menu-item-2109"><a href="https://specmatic.io/roadmap/" aria-current="page" class="menu-link">Roadmap</a></li>
+<li id="menu-item-841" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-841"><a href="https://specmatic.io/specmatic-updates/" class="menu-link">Updates</a></li>
+<li id="menu-item-2109" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2109"><a href="https://specmatic.io/roadmap/" class="menu-link">Roadmap</a></li>
 </ul></nav></section> </aside>
 </div>
 <div class="site-footer-above-section-3 site-footer-section site-footer-section-3">
@@ -1161,7 +902,7 @@ Skip to content</a>
 </div>
 </footer>
 </div>
-<span class="ssp-id" style="display:none">2003</span>
+<span class="ssp-id" style="display:none">5228</span>
 <script type="text/javascript">const lazyloadRunObserver = () => {
 					const lazyloadBackgrounds = document.querySelectorAll( `.e-con.e-parent:not(.e-lazyloaded)` );
 					const lazyloadBackgroundObserver = new IntersectionObserver( ( entries ) => {
@@ -1201,26 +942,7 @@ Skip to content</a>
 var astraAddon = {"sticky_active":"","svgIconClose":"<span class=\"ast-icon icon-close\"><svg viewBox=\"0 0 512 512\" aria-hidden=\"true\" role=\"img\" version=\"1.1\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" width=\"18px\" height=\"18px\">\n                                <path d=\"M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z\" \/>\n                            <\/svg><\/span>","hf_account_show_menu_on":"hover","hf_account_action_type":"link","is_header_builder_active":"1"};
 </script>
 <script src="https://specmatic.io/wp-content/swis/cache/js/uploads/astra-addon/astra-addon-66cbf17c82a864-99992365-1724641660.min.js" ></script>
-<script >var uael_script = {"ajax_url":"https:\/\/specmatic.io\/wp-admin\/admin-ajax.php"};
-var uael_post_loader_script = {"post_loader":"https:\/\/specmatic.io\/wp-content\/plugins\/ultimate-elementor\/assets\/img\/post-loader.gif"};</script>
-<script src="https://specmatic.io/wp-content/plugins/ultimate-elementor/assets/min-js/uael-frontend.min.js" ></script>
-<script src="https://specmatic.io/wp-content/plugins/ultimate-elementor/assets/lib/infinitescroll/jquery.infinitescroll.min.js" ></script>
-<script src="https://specmatic.io/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js" ></script>
-<script src="https://specmatic.io/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js" ></script>
-<script src="https://specmatic.io/wp-content/plugins/elementor/assets/js/frontend-modules.min.js" ></script>
-<script src="https://specmatic.io/wp-includes/js/dist/hooks.min.js" ></script>
-<script src="https://specmatic.io/wp-includes/js/dist/i18n.min.js" ></script>
-<script >
-wp.i18n.setLocaleData( { 'text directionltr': [ 'ltr' ] } );
-</script>
-<script >var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/specmatic.io\/wp-admin\/admin-ajax.php","nonce":"7eedcd1c15","urls":{"assets":"https:\/\/specmatic.io\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"https:\/\/specmatic.io\/wp-json\/"},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"},"x-twitter":{"title":"X"},"threads":{"title":"Threads"}},"facebook_sdk":{"lang":"en_US","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/specmatic.io\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};</script>
-<script src="https://specmatic.io/wp-content/plugins/elementor-pro/assets/js/frontend.min.js" ></script>
-<script  data-swis-src="https://specmatic.io/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js" data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-no-minify="1"></script>
-<script src="https://specmatic.io/wp-includes/js/jquery/ui/core.min.js" ></script>
-<script >var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselWrapperAriaLabel":"Carousel | Horizontal scrolling: Arrow Left & Right","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},"version":"3.23.4","is_static":false,"experimentalFeatures":{"e_optimized_css_loading":true,"additional_custom_breakpoints":true,"container":true,"container_grid":true,"e_swiper_latest":true,"e_nested_atomic_repeaters":true,"e_onboarding":true,"theme_builder_v2":true,"home_screen":true,"landing-pages":true,"e_lazyload":true,"display-conditions":true,"taxonomy-filter":true},"urls":{"assets":"https:\/\/specmatic.io\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/specmatic.io\/wp-admin\/admin-ajax.php"},"nonces":{"floatingButtonsClickTracking":"398931f857"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":2003,"title":"Specmatic%20Roadmap%20-%20API%20Testing%2C%20Dynamic%20Stubbing%20%26%20Smart%20Mocks","excerpt":"","featuredImage":"https:\/\/specmatic.io\/wp-content\/uploads\/2023\/09\/specmatic-roadmap-1024x678.jpg"}};</script>
-<script src="https://specmatic.io/wp-content/plugins/elementor/assets/js/frontend.min.js" ></script>
-<script src="https://specmatic.io/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js" ></script>
 <script>/(trident|msie)/i.test(navigator.userAgent)&&document.getElementById&&window.addEventListener&&window.addEventListener("hashchange",function(){var t,e=location.hash.substring(1);/^[A-z0-9_-]+$/.test(e)&&(t=document.getElementById(e))&&(/^(?:a|select|input|button|textarea)$/i.test(t.tagName)||(t.tabIndex=-1),t.focus())},!1);</script>
-<script data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-no-minify="1">const swisAutoLoadDuration = 10;const swisEventList=["keydown","mousemove","scroll","wheel","touchstart","touchend","touchmove"],swisAutoLoadTimeout=setTimeout(swisLoadScripts,1e3*swisAutoLoadDuration);function swisTriggerScriptLoad(){swisLoadScripts(),clearTimeout(swisAutoLoadTimeout),swisEventList.forEach(function(s){window.removeEventListener(s,swisTriggerScriptLoad,{passive:!0})})}function swisLoadScripts(){document.querySelectorAll("script[data-swis-src]").forEach(function(s){s.setAttribute("src",s.getAttribute("data-swis-src"))})}swisEventList.forEach(function(s){window.addEventListener(s,swisTriggerScriptLoad,{passive:!0})});</script><script data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-no-minify="1">function SWISRemoveCriticalCSS(){var e;document.querySelector('link[data-swis="loading"]')?setTimeout(SWISRemoveCriticalCSS,200):(e=document.getElementById("swis-critical-css"))&&"remove"in e&&e.remove()}window.addEventListener?window.addEventListener("load",SWISRemoveCriticalCSS):window.attachEvent&&window.attachEvent("onload",SWISRemoveCriticalCSS);</script>
+<script data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-no-minify="1">const swisAutoLoadDuration = 10;const swisEventList=["keydown","mousemove","scroll","wheel","touchstart","touchend","touchmove"],swisAutoLoadTimeout=setTimeout(swisLoadScripts,1e3*swisAutoLoadDuration);function swisTriggerScriptLoad(){swisLoadScripts(),clearTimeout(swisAutoLoadTimeout),swisEventList.forEach(function(s){window.removeEventListener(s,swisTriggerScriptLoad,{passive:!0})})}function swisLoadScripts(){document.querySelectorAll("script[data-swis-src]").forEach(function(s){s.setAttribute("src",s.getAttribute("data-swis-src"))})}swisEventList.forEach(function(s){window.addEventListener(s,swisTriggerScriptLoad,{passive:!0})});</script>
 </body>
 </html>
