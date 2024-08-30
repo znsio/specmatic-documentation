@@ -566,10 +566,25 @@ html {
 	font-weight: 300 !important;
 }
 
+/** General 3 >> Buy now **/
+.mtp-1665 #buy-now {
+	width: 100% !important;
+}
+
 /** General 3 >> Entry content **/
 .mtp-5268 .entry-content {
 	min-width: 100% !important;
 	margin-top: -60px !important;
+}
+
+/** General 3 >> Feature sidebar **/
+.mtp-1665 .elementor-element-735f522 {
+	height: 100% !important;
+}
+
+/** General 3 >> Elementor button **/
+.mtp-1665 .elementor-element-8bdd9a7 .elementor-button {
+	width: 100% !important;
 }
 
 

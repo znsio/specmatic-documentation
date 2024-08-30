@@ -23,8 +23,8 @@
 <meta name="dc.language" content="en_US">
 <meta name="description" content="https://www.youtube.com/watch?v=2J194dDeLQg Markus Oberlehner gives a brief overview on the topic of Contract Testing with Specmatic and his experience using it for stubbing an HTTP end-point.">
 <meta property="article:published_time" content="2023-11-29T09:47:59+05:30">
-<meta property="article:modified_time" content="2023-11-29T09:47:59+05:30">
-<meta property="og:updated_time" content="2023-11-29T09:47:59+05:30">
+<meta property="article:modified_time" content="2024-08-13T08:41:05+05:30">
+<meta property="og:updated_time" content="2024-08-13T08:41:05+05:30">
 <meta name="thumbnail" content="https://specmatic.io/wp-content/uploads/2023/11/Contract-Testing-with-Specmatic-Markus-150x150.jpg">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <link rel="canonical" href="https://specmatic.io/updates/stubbing-an-http-end-point-with-specmatic/">
@@ -36,6 +36,7 @@
 <meta property="article:publisher" content="https://www.facebook.com/specmatic.cdd">
 <meta property="article:section" content="In the Media">
 <meta property="article:tag" content="Contract Testing">
+<meta property="article:tag" content="HTTP">
 <meta property="article:tag" content="Specmatic">
 <meta property="article:tag" content="Stubbing">
 <meta property="og:title" content="Stubbing an HTTP end-point with Specmatic - Specmatic">
@@ -60,8 +61,8 @@
 <link rel="preload" as="style" data-id="astra-theme-css-css" href="https://specmatic.io/wp-content/themes/astra/assets/css/minified/main.min.css" media="all">
 <link rel="stylesheet"  href="https://specmatic.io/wp-content/themes/astra/assets/css/minified/main.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
 <noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/themes/astra/assets/css/minified/main.min.css" media="all"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra/astra-theme-dynamic-css-post-3640-1723098807.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra/astra-theme-dynamic-css-post-3640-1723098807.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra/astra-theme-dynamic-css-post-3640-1724662157.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra/astra-theme-dynamic-css-post-3640-1724662157.min.css" media="all"></noscript>
 <link rel="preload" as="style" data-id="wp-block-library-css" href="https://specmatic.io/wp-includes/css/dist/block-library/style.min.css" media="all">
 <link rel="stylesheet"  href="https://specmatic.io/wp-includes/css/dist/block-library/style.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
 <noscript><link rel="stylesheet"  href="https://specmatic.io/wp-includes/css/dist/block-library/style.min.css" media="all"></noscript>
@@ -71,20 +72,20 @@
 :root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}</style>
 <link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/ultimate-addons-for-gutenberg/assets/css/spectra-block-positioning.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
 <noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/ultimate-addons-for-gutenberg/assets/css/spectra-block-positioning.min.css" media="all"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/4000/uag-css-3640-1723098808.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/4000/uag-css-3640-1723098808.min.css" media="all"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-66b2ecd2052b56-65424448-1723002066.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-66b2ecd2052b56-65424448-1723002066.min.css" media="all"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-dynamic-css-post-3640-1723098808.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-dynamic-css-post-3640-1723098808.min.css" media="all"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/1000/uag-css-592-1723098736.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/1000/uag-css-592-1723098736.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/4000/uag-css-3640-1724662157.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/4000/uag-css-3640-1724662157.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-66cbf17c81e179-41110909-1724641660.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-66cbf17c81e179-41110909-1724641660.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-dynamic-css-post-3640-1724662157.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-dynamic-css-post-3640-1724662157.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/1000/uag-css-592-1724662084.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/1000/uag-css-592-1724662084.min.css" media="all"></noscript>
 <link rel="stylesheet"  href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;" integrity="sha384-SOnAn/m2fVJCwnbEYgD4xzrPtvsXdElhOVvR8ND1YjB5nhGNwwf7nBQlhfAwHAZC" crossorigin="anonymous">
 <noscript><link rel="stylesheet"  href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" media="all" integrity="sha384-SOnAn/m2fVJCwnbEYgD4xzrPtvsXdElhOVvR8ND1YjB5nhGNwwf7nBQlhfAwHAZC" crossorigin="anonymous"></noscript>
 <link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/themes/astra-child/style-1668396837.min.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
 <noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/themes/astra-child/style-1668396837.min.css" media="all"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/micro-themes/active-styles-1722572196.min.css?mts=3312#038;ver=6.6.1" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/micro-themes/active-styles-1722572196.min.css?mts=3312#038;ver=6.6.1" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/micro-themes/active-styles-1723498133.min.css?mts=3346#038;ver=6.6.1" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;">
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/micro-themes/active-styles-1723498133.min.css?mts=3346#038;ver=6.6.1" media="all"></noscript>
 <link rel="stylesheet"  href="https://use.fontawesome.com/releases/v6.2.0/css/v4-shims.css" media="print" data-swis="loading" onload="this.media=&quot;all&quot;;this.dataset.swis=&quot;loaded&quot;" integrity="sha384-MAgG0MNwzSXBbmOw4KK9yjMrRaUNSCk3WoZPkzVC1rmhXzerY4gqk/BLNYtdOFCO" crossorigin="anonymous">
 <noscript><link rel="stylesheet"  href="https://use.fontawesome.com/releases/v6.2.0/css/v4-shims.css" media="all" integrity="sha384-MAgG0MNwzSXBbmOw4KK9yjMrRaUNSCk3WoZPkzVC1rmhXzerY4gqk/BLNYtdOFCO" crossorigin="anonymous"></noscript>
 <script src="https://specmatic.io/wp-includes/js/jquery/jquery.min.js" ></script>
@@ -144,7 +145,7 @@ window.addEventListener('load', function () {
     
  gtag('config', 'G-DZJQMQZ82G' , {});</script>
 </head>
-<body itemtype="https://schema.org/Blog" itemscope="itemscope" class="post-template-default single single-post postid-3640 single-format-standard wp-custom-logo mtp-3640 mtp-post-stubbing-an-http-end-point-with-specmatic ast-desktop ast-separate-container ast-right-sidebar astra-4.7.3 group-blog ast-blog-single-style-1 ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-normal-title-enabled elementor-default elementor-kit-5 astra-addon-4.7.2">
+<body itemtype="https://schema.org/Blog" itemscope="itemscope" class="post-template-default single single-post postid-3640 single-format-standard wp-custom-logo mtp-3640 mtp-post-stubbing-an-http-end-point-with-specmatic ast-desktop ast-separate-container ast-right-sidebar astra-4.8.0 group-blog ast-blog-single-style-1 ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-normal-title-enabled elementor-default elementor-kit-5 astra-addon-4.8.0">
 <a class="skip-link screen-reader-text" href="#content" role="link" title="Skip to content">
 Skip to content</a>
 <div class="hfeed site" id="page">
@@ -172,7 +173,7 @@ Skip to content</a>
 </svg></span></button>
 <ul class="sub-menu">
 <li id="menu-item-5244" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5244">
-<a aria-expanded="false" href="https://specmatic.io/category/features" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<a aria-expanded="false" href="https://specmatic.io/category/spotlight" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Specifications<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
@@ -180,25 +181,25 @@ Skip to content</a>
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span></button>
 <ul class="sub-menu">
-<li id="menu-item-5245" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5245"><a href="https://specmatic.io/features/contract-testing-using-openapi-specs-as-executable-contracts/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-5553" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5553"><a href="https://specmatic.io/features/transform-your-openapi-specs-into-executable-contracts-in-seconds-with-specmatic/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>OpenAPI</a></li>
-<li id="menu-item-5246" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5246"><a href="https://specmatic.io/features/contract-testing-using-asyncapi-specs-as-executable-contracts/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-5551" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5551"><a href="https://specmatic.io/features/transform-your-asyncapi-specs-into-executable-contracts-in-seconds-with-specmatic/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>AsyncAPI</a></li>
-<li id="menu-item-5251" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5251"><a href="https://specmatic.io/documentation/soap.html" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-5549" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5549"><a href="https://specmatic.io/features/transform-your-wsdl-specifications-into-executable-contracts-in-seconds-with-specmatic/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>WSDL</a></li>
-<li id="menu-item-5239" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-5239"><a href="https://specmatic.io/features/api-resiliency-and-contract-testing-for-graphql/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-5552" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5552"><a href="https://specmatic.io/features/transform-your-graphql-specs-into-executable-contracts-in-seconds-with-specmatic/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>GraphQL</a></li>
-<li id="menu-item-5238" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-5238"><a href="https://specmatic.io/features/contract-testing-using-grpc-specs-as-executable-contracts/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-5550" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5550"><a href="https://specmatic.io/features/transform-your-grpc-proto-files-into-executable-contracts-in-seconds-with-specmatic/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>gRPC</a></li>
 </ul>
 </li>
 <li id="menu-item-5250" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5250">
-<a aria-expanded="false" href="#" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<a aria-expanded="false" href="https://specmatic.io/category/spotlight/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Protocols<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
@@ -206,23 +207,29 @@ Skip to content</a>
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span></button>
 <ul class="sub-menu">
-<li id="menu-item-5243" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-5243"><a href="https://specmatic.io/features/kafka-mocking-with-asyncapi-using-specmatic/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-5555" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5555"><a href="https://specmatic.io/features/kafka-contract-driven-development-leverage-asyncapi-specs-as-executable-contracts/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Kafka</a></li>
-<li id="menu-item-5242" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-5242"><a href="https://specmatic.io/features/jms-mocking-with-asyncapi-using-specmatic/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-5562" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5562"><a href="https://specmatic.io/features/jms-contract-driven-development-leverage-asyncapi-specs-as-executable-contracts/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>JMS</a></li>
-<li id="menu-item-5240" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-5240"><a href="https://specmatic.io/features/contract-testing-google-pub-sub-using-asyncapi-as-executable-contracts/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-5554" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5554"><a href="https://specmatic.io/features/google-pubsub-contract-driven-development-leverage-asyncapi-specs-as-executable-contracts/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Google Pub/Sub</a></li>
-<li id="menu-item-5241" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-5241"><a href="https://specmatic.io/features/jdbc-stubbing-with-specmatic-contract-testing/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-5557" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5557"><a href="https://specmatic.io/features/jdbc-contract-driven-development-leverage-asyncapi-specs-as-executable-contracts/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>JDBC</a></li>
-<li id="menu-item-5247" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-5247"><a href="https://specmatic.io/features/redis-stubbing-with-specmatic-contract-testing/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-5556" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5556"><a href="https://specmatic.io/features/api-resiliency-and-contract-testing-for-resp-redis/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>RESP (Redis)</a></li>
+<li id="menu-item-5662" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5662"><a href="https://specmatic.io/features/contract-driven-development-for-http-by-leveraging-your-openapi-specs-as-executable-contracts/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>HTTP (REST)</a></li>
 </ul>
 </li>
+<li id="menu-item-5665" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-5665"><a href="https://specmatic.io/demonstration/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>API Coverage Report</a></li>
 <li id="menu-item-3645" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3645"><a href="https://insights.specmatic.io/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Insights</a></li>
@@ -230,7 +237,7 @@ Skip to content</a>
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>IDE plugins</a></li>
 <li id="menu-item-1111" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1111">
-<a aria-expanded="false" href="https://specmatic.io/category/comparisons/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<a aria-expanded="false" href="https://specmatic.io/comparisons/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Comparisons<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
@@ -253,7 +260,7 @@ Skip to content</a>
 </li>
 <li id="menu-item-4011" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4011"><a href="https://specmatic.io/pricing/" class="menu-link">Pricing</a></li>
 <li id="menu-item-1112" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-1112">
-<a aria-expanded="false" href="https://specmatic.io/category/updates/" class="menu-link">Updates<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<a aria-expanded="false" href="https://specmatic.io/updates/" class="menu-link">Updates<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
@@ -265,7 +272,7 @@ Skip to content</a>
 <li id="menu-item-1353" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1353"><a href="https://specmatic.io/appearances/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Appearances</a></li>
-<li id="menu-item-1944" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1944"><a href="https://specmatic.io/category/updates/media/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-1944" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1944"><a href="https://specmatic.io/updates/media/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>In the Media</a></li>
 </ul>
@@ -283,7 +290,7 @@ Skip to content</a>
 <li id="menu-item-4289" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4289"><a href="https://specmatic.io/documentation/sample_projects.html" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Sample Projects</a></li>
-<li id="menu-item-5136" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5136"><a href="https://specmatic.io/category/podcast/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-5136" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5136"><a href="https://specmatic.io/podcast/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Podcasts</a></li>
 <li id="menu-item-990" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-990"><a href="https://specmatic.io/articles/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
@@ -342,12 +349,12 @@ Skip to content</a>
 <div class="ast-container">
 <div id="primary" class="content-area primary">
 <main id="main" class="site-main">
-<article class="post-3640 post type-post status-publish format-standard has-post-thumbnail hentry category-media category-updates tag-contract-testing tag-specmatic tag-stubbing ast-article-single" id="post-3640" itemtype="https://schema.org/CreativeWork" itemscope="itemscope">
+<article class="post-3640 post type-post status-publish format-standard has-post-thumbnail hentry category-media category-updates tag-contract-testing tag-http tag-specmatic tag-stubbing ast-article-single" id="post-3640" itemtype="https://schema.org/CreativeWork" itemscope="itemscope">
 <div class="ast-post-format- single-layout-1 ast-no-date-box">
 <header class="entry-header ">
 <h1 class="entry-title" itemprop="headline">Stubbing an HTTP end-point with Specmatic</h1>
 <div class="entry-meta">
-<span class="ast-terms-link"><a href="https://specmatic.io/category/updates/media/" class>In the Media</a>, <a href="https://specmatic.io/category/updates/" class>Updates</a></span> / By <span class="posted-by vcard author" itemtype="https://schema.org/Person" itemscope="itemscope" itemprop="author"> <a title="View all posts by John" href="https://specmatic.io/author/zn2px/" rel="author" class="url fn n" itemprop="url">
+<span class="ast-terms-link"><a href="https://specmatic.io/updates/media/" class>In the Media</a>, <a href="https://specmatic.io/updates/" class>Updates</a></span> / By <span class="posted-by vcard author" itemtype="https://schema.org/Person" itemscope="itemscope" itemprop="author"> <a title="View all posts by John" href="https://specmatic.io/author/zn2px/" rel="author" class="url fn n" itemprop="url">
 <span class="author-name" itemprop="name">
 John </span>
 </a>
@@ -385,7 +392,7 @@ John </span>
 <nav class="navigation post-navigation" role="navigation" aria-label="Post navigation">
 <span class="screen-reader-text">Post navigation</span>
 <div class="nav-links">
-<div class="nav-previous"><a title="Contract Testing using OpenAPI Specs as Executable Contracts" href="https://specmatic.io/features/contract-testing-using-openapi-specs-as-executable-contracts/" rel="prev"><span class="ast-left-arrow">&larr;</span> Previous Post</a></div>
+<div class="nav-previous"><a title="TMForum ODA CTK API specification conformance testing with Specmatic" href="https://specmatic.io/updates/tmforum-oda-ctk-api-specification-conformance-testing-with-specmatic/" rel="prev"><span class="ast-left-arrow">&larr;</span> Previous Post</a></div>
 <div class="nav-next"><a title="Introduction to Contract Driven Development with Specmatic" href="https://specmatic.io/updates/introduction-to-contract-driven-development-with-specmatic/" rel="next">Next Post <span class="ast-right-arrow">&rarr;</span></a></div>
 </div>
 </nav><div class="ast-single-related-posts-container ast-container--fallback">
@@ -398,7 +405,7 @@ John </span>
 <a href="https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/" target="_self" rel="bookmark noopener noreferrer">Comparison: Specmatic vs Pact.io and Pactflow.io</a>
 </h3>
 <div class="entry-meta ast-related-cat-style--none ast-related-tag-style--none">
-<span class="ast-taxonomy-container cat-links default"><a href="https://specmatic.io/category/comparisons/" rel="category tag">Comparisons</a>, <a href="https://specmatic.io/category/updates/" rel="category tag">Updates</a></span> / <span class="posted-on"><span class="published" itemprop="datePublished"> November 8, 2022 </span></span>
+<span class="ast-taxonomy-container cat-links default"><a href="https://specmatic.io/comparisons/" rel="category tag">Comparisons</a>, <a href="https://specmatic.io/updates/" rel="category tag">Updates</a></span> / <span class="posted-on"><span class="published" itemprop="datePublished"> November 8, 2022 </span></span>
 </div> </header>
 <div class="entry-content clear">
 </div>
@@ -413,7 +420,7 @@ John </span>
 <a href="https://specmatic.io/comparisons/comparison-specmatic-vs-wiremock/" target="_self" rel="bookmark noopener noreferrer">Comparison: Specmatic vs WireMock</a>
 </h3>
 <div class="entry-meta ast-related-cat-style--none ast-related-tag-style--none">
-<span class="ast-taxonomy-container cat-links default"><a href="https://specmatic.io/category/comparisons/" rel="category tag">Comparisons</a>, <a href="https://specmatic.io/category/updates/" rel="category tag">Updates</a></span> / <span class="posted-on"><span class="published" itemprop="datePublished"> November 26, 2022 </span></span>
+<span class="ast-taxonomy-container cat-links default"><a href="https://specmatic.io/comparisons/" rel="category tag">Comparisons</a>, <a href="https://specmatic.io/updates/" rel="category tag">Updates</a></span> / <span class="posted-on"><span class="published" itemprop="datePublished"> November 26, 2022 </span></span>
 </div> </header>
 <div class="entry-content clear">
 </div>
@@ -428,7 +435,7 @@ John </span>
 <a href="https://specmatic.io/comparisons/comparison-specmatic-vs-spring-cloud-contract/" target="_self" rel="bookmark noopener noreferrer">Comparison: Specmatic vs Spring Cloud Contract</a>
 </h3>
 <div class="entry-meta ast-related-cat-style--none ast-related-tag-style--none">
-<span class="ast-taxonomy-container cat-links default"><a href="https://specmatic.io/category/comparisons/" rel="category tag">Comparisons</a>, <a href="https://specmatic.io/category/updates/" rel="category tag">Updates</a></span> / <span class="posted-on"><span class="published" itemprop="datePublished"> December 3, 2022 </span></span>
+<span class="ast-taxonomy-container cat-links default"><a href="https://specmatic.io/comparisons/" rel="category tag">Comparisons</a>, <a href="https://specmatic.io/updates/" rel="category tag">Updates</a></span> / <span class="posted-on"><span class="published" itemprop="datePublished"> December 3, 2022 </span></span>
 </div> </header>
 <div class="entry-content clear">
 </div>
@@ -449,37 +456,37 @@ John </span>
 <div class="wgs_wrapper"><div class="gcse-search" data-resultsurl="https://specmatic.io/?page_id=634"></div></div></aside><aside id="block-3" class="widget widget_block"><div class="wp-block-group is-layout-flow wp-block-group-is-layout-flow">
 <h2 class="wp-block-heading">Recent Posts</h2>
 <ul class="wp-block-latest-posts__list wp-block-latest-posts">
-<li><a class="wp-block-latest-posts__post-title" href="https://specmatic.io/features/contract-testing-using-asyncapi-specs-as-executable-contracts/">Contract Testing using AsyncAPI Specs as Executable Contracts</a></li>
-<li><a class="wp-block-latest-posts__post-title" href="https://specmatic.io/features/contract-testing-using-grpc-specs-as-executable-contracts/">Contract Testing using gRPC Specs as Executable Contracts</a></li>
+<li><a class="wp-block-latest-posts__post-title" href="https://specmatic.io/updates/contract-testing-using-grpc-specs-as-executable-contracts/">Contract Testing using gRPC Specs as Executable Contracts</a></li>
 <li><a class="wp-block-latest-posts__post-title" href="https://specmatic.io/updates/specmatic-2-0-is-out-now-supports-graphql-and-grpc/">Specmatic 2.0 is out! Now supports GraphQL and gRPC</a></li>
-<li><a class="wp-block-latest-posts__post-title" href="https://specmatic.io/features/api-resiliency-and-contract-testing-for-graphql/">API Resiliency and Contract Testing for GraphQL</a></li>
+<li><a class="wp-block-latest-posts__post-title" href="https://specmatic.io/demonstration/api-resiliency-and-contract-testing-for-graphql/">API Resiliency and Contract Testing for GraphQL</a></li>
 <li><a class="wp-block-latest-posts__post-title" href="https://specmatic.io/podcast/empowering-frontend-engineers-with-microservices-contract-testing-a-conversation-with-markus-oberlehner/">Empowering Frontend Engineers with Microservices Contract Testing &#8211; a conversation with Markus Oberlehner</a></li>
+<li><a class="wp-block-latest-posts__post-title" href="https://specmatic.io/demonstration/contract-testing-google-pub-sub-using-asyncapi-as-executable-contracts/">Contract Testing Google Pub/Sub: Using AsyncAPI specs as Executable Contracts</a></li>
 </ul>
 </div></aside><aside id="block-6" class="widget widget_block"><div class="wp-block-group is-layout-flow wp-block-group-is-layout-flow">
 <h2 class="wp-block-heading">Categories</h2>
 <ul class="wp-block-categories-list wp-block-categories"> <li class="cat-item cat-item-13">
-<a href="https://specmatic.io/category/comparisons/">Comparisons</a>
+<a href="https://specmatic.io/comparisons/">Comparisons</a>
 </li>
 <li class="cat-item cat-item-72">
-<a href="https://specmatic.io/category/conference/">Conference</a>
+<a href="https://specmatic.io/conference/">Conference</a>
 </li>
 <li class="cat-item cat-item-67">
-<a href="https://specmatic.io/category/demonstration/">Demonstration</a>
+<a href="https://specmatic.io/demonstration/">Demonstration</a>
 </li>
 <li class="cat-item cat-item-58">
-<a href="https://specmatic.io/category/features/">Feature Spotlight</a>
+<a href="https://specmatic.io/spotlight/">Feature Spotlight</a>
 </li>
 <li class="cat-item cat-item-37">
-<a href="https://specmatic.io/category/updates/media/">In the Media</a>
+<a href="https://specmatic.io/updates/media/">In the Media</a>
 </li>
 <li class="cat-item cat-item-77">
-<a href="https://specmatic.io/category/podcast/">Podcasts</a>
+<a href="https://specmatic.io/podcast/">Podcasts</a>
 </li>
 <li class="cat-item cat-item-14">
-<a href="https://specmatic.io/category/updates/">Updates</a>
+<a href="https://specmatic.io/updates/">Updates</a>
 </li>
 <li class="cat-item cat-item-71">
-<a href="https://specmatic.io/category/workshop/">Workshop</a>
+<a href="https://specmatic.io/workshop/">Workshop</a>
 </li>
 </ul>
 </div></aside>
@@ -507,6 +514,64 @@ John </span>
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span></button>
 <ul class="sub-menu">
+<li id="menu-item-5573" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5573">
+<a aria-expanded="false" href="http://category/spotlight/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Specifications<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></button>
+<ul class="sub-menu">
+<li id="menu-item-5568" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5568"><a href="https://specmatic.io/features/transform-your-openapi-specs-into-executable-contracts-in-seconds-with-specmatic/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>OpenAPI</a></li>
+<li id="menu-item-5563" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5563"><a href="https://specmatic.io/features/transform-your-asyncapi-specs-into-executable-contracts-in-seconds-with-specmatic/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>AsyncAPI</a></li>
+<li id="menu-item-5564" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5564"><a href="https://specmatic.io/features/transform-your-graphql-specs-into-executable-contracts-in-seconds-with-specmatic/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>GraphQL</a></li>
+<li id="menu-item-5565" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5565"><a href="https://specmatic.io/features/transform-your-grpc-proto-files-into-executable-contracts-in-seconds-with-specmatic/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>gRPC</a></li>
+<li id="menu-item-5567" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5567"><a href="https://specmatic.io/features/transform-your-wsdl-specifications-into-executable-contracts-in-seconds-with-specmatic/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>WSDL</a></li>
+</ul>
+</li>
+<li id="menu-item-5574" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5574">
+<a aria-expanded="false" href="https://specmatic.io/category/spotlight/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Protocols<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></button>
+<ul class="sub-menu">
+<li id="menu-item-5572" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5572"><a href="https://specmatic.io/features/kafka-contract-driven-development-leverage-asyncapi-specs-as-executable-contracts/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Kafka</a></li>
+<li id="menu-item-5571" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5571"><a href="https://specmatic.io/features/jms-contract-driven-development-leverage-asyncapi-specs-as-executable-contracts/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>JMS</a></li>
+<li id="menu-item-5570" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5570"><a href="https://specmatic.io/features/jdbc-contract-driven-development-leverage-asyncapi-specs-as-executable-contracts/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>JDBC</a></li>
+<li id="menu-item-5569" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5569"><a href="https://specmatic.io/features/google-pubsub-contract-driven-development-leverage-asyncapi-specs-as-executable-contracts/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Google Pub/Sub</a></li>
+<li id="menu-item-5566" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5566"><a href="https://specmatic.io/features/api-resiliency-and-contract-testing-for-resp-redis/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>RESP (Redis)</a></li>
+<li id="menu-item-5663" class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5663"><a href="https://specmatic.io/features/contract-driven-development-for-http-by-leveraging-your-openapi-specs-as-executable-contracts/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>HTTP (REST)</a></li>
+</ul>
+</li>
+<li id="menu-item-5666" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-5666"><a href="https://specmatic.io/demonstration/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>API Coverage Report</a></li>
 <li id="menu-item-3643" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3643"><a href="https://insights.specmatic.in/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Insights</a></li>
@@ -517,7 +582,7 @@ John </span>
 </li>
 <li id="menu-item-4010" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4010"><a href="https://specmatic.io/pricing/" class="menu-link">Pricing</a></li>
 <li id="menu-item-1114" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1114">
-<a aria-expanded="false" href="https://specmatic.io/category/comparisons/" class="menu-link">Comparisons<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<a aria-expanded="false" href="https://specmatic.io/comparisons/" class="menu-link">Comparisons<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
@@ -535,19 +600,19 @@ John </span>
 </ul>
 </li>
 <li id="menu-item-1113" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-1113">
-<a aria-expanded="false" href="https://specmatic.io/category/updates/" class="menu-link">Updates<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<a aria-expanded="false" href="https://specmatic.io/updates/" class="menu-link">Updates<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span></button>
 <ul class="sub-menu">
-<li id="menu-item-1662" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1662"><a href="https://specmatic.io/category/features/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-1662" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1662"><a href="https://specmatic.io/spotlight/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Feature Spotlight</a></li>
 <li id="menu-item-1351" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1351"><a href="https://specmatic.io/appearances/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Appearances</a></li>
-<li id="menu-item-1943" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1943"><a href="https://specmatic.io/category/updates/media/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-1943" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1943"><a href="https://specmatic.io/updates/media/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>In the Media</a></li>
 </ul>
@@ -565,7 +630,7 @@ John </span>
 <li id="menu-item-4290" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4290"><a href="https://specmatic.io/documentation/sample_projects.html" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Sample Projects</a></li>
-<li id="menu-item-5134" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5134"><a href="https://specmatic.io/category/podcast/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li id="menu-item-5134" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5134"><a href="https://specmatic.io/podcast/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Podcasts</a></li>
 <li id="menu-item-994" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-994"><a href="https://specmatic.io/articles/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
@@ -598,6 +663,64 @@ John </span>
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span></button>
 <ul class="sub-menu">
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5573">
+<a aria-expanded="false" href="http://category/spotlight/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Specifications<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></button>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5568"><a href="https://specmatic.io/features/transform-your-openapi-specs-into-executable-contracts-in-seconds-with-specmatic/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>OpenAPI</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5563"><a href="https://specmatic.io/features/transform-your-asyncapi-specs-into-executable-contracts-in-seconds-with-specmatic/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>AsyncAPI</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5564"><a href="https://specmatic.io/features/transform-your-graphql-specs-into-executable-contracts-in-seconds-with-specmatic/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>GraphQL</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5565"><a href="https://specmatic.io/features/transform-your-grpc-proto-files-into-executable-contracts-in-seconds-with-specmatic/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>gRPC</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5567"><a href="https://specmatic.io/features/transform-your-wsdl-specifications-into-executable-contracts-in-seconds-with-specmatic/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>WSDL</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5574">
+<a aria-expanded="false" href="https://specmatic.io/category/spotlight/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Protocols<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span></button>
+<ul class="sub-menu">
+<li class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5572"><a href="https://specmatic.io/features/kafka-contract-driven-development-leverage-asyncapi-specs-as-executable-contracts/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Kafka</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5571"><a href="https://specmatic.io/features/jms-contract-driven-development-leverage-asyncapi-specs-as-executable-contracts/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>JMS</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5570"><a href="https://specmatic.io/features/jdbc-contract-driven-development-leverage-asyncapi-specs-as-executable-contracts/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>JDBC</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5569"><a href="https://specmatic.io/features/google-pubsub-contract-driven-development-leverage-asyncapi-specs-as-executable-contracts/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>Google Pub/Sub</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5566"><a href="https://specmatic.io/features/api-resiliency-and-contract-testing-for-resp-redis/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>RESP (Redis)</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-features menu-item-5663"><a href="https://specmatic.io/features/contract-driven-development-for-http-by-leveraging-your-openapi-specs-as-executable-contracts/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>HTTP (REST)</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-post menu-item-5666"><a href="https://specmatic.io/demonstration/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
+</svg></span>API Coverage Report</a></li>
 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3643"><a href="https://insights.specmatic.in/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Insights</a></li>
@@ -608,7 +731,7 @@ John </span>
 </li>
 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4010"><a href="https://specmatic.io/pricing/" class="menu-link">Pricing</a></li>
 <li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1114">
-<a aria-expanded="false" href="https://specmatic.io/category/comparisons/" class="menu-link">Comparisons<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<a aria-expanded="false" href="https://specmatic.io/comparisons/" class="menu-link">Comparisons<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
@@ -626,19 +749,19 @@ John </span>
 </ul>
 </li>
 <li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-1113">
-<a aria-expanded="false" href="https://specmatic.io/category/updates/" class="menu-link">Updates<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<a aria-expanded="false" href="https://specmatic.io/updates/" class="menu-link">Updates<span role="application" class="dropdown-menu-toggle ast-header-navigation-arrow" tabindex="0" aria-expanded="false" aria-label="Menu Toggle"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span></span></a><button class="ast-menu-toggle" aria-expanded="false"><span class="screen-reader-text">Menu Toggle</span><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span></button>
 <ul class="sub-menu">
-<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1662"><a href="https://specmatic.io/category/features/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1662"><a href="https://specmatic.io/spotlight/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Feature Spotlight</a></li>
 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1351"><a href="https://specmatic.io/appearances/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Appearances</a></li>
-<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1943"><a href="https://specmatic.io/category/updates/media/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-1943"><a href="https://specmatic.io/updates/media/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>In the Media</a></li>
 </ul>
@@ -656,7 +779,7 @@ John </span>
 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4290"><a href="https://specmatic.io/documentation/sample_projects.html" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Sample Projects</a></li>
-<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5134"><a href="https://specmatic.io/category/podcast/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5134"><a href="https://specmatic.io/podcast/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
 <path d="M57.5,38.193l12.5,12.5l12.5-12.5l-2.5-2.5l-10,10l-10-10L57.5,38.193z"></path>
 </svg></span>Podcasts</a></li>
 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-994"><a href="https://specmatic.io/articles/" class="menu-link"><span class="ast-icon icon-arrow"><svg class="ast-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="26px" height="16.043px" viewbox="57 35.171 26 16.043" enable-background="new 57 35.171 26 16.043" xml:space="preserve">
@@ -728,7 +851,7 @@ John </span>
 <section id="block-30" class="widget widget_block widget_text">
 <p class="has-ast-global-color-5-color has-text-color" style="font-size:18px"><strong>API Specs &amp; Protocols</strong></p>
 </section><section id="block-39" class="widget widget_block widget_text">
-<p class="has-ast-global-color-5-color has-text-color has-small-font-size"><a href="https://specmatic.io/tag/openapi/" data-type="link" data-id="https://specmatic.in/tag/openapi/">OpenAPI</a><br><a href="https://specmatic.io/documentation/soap.html" data-type="link" data-id="https://specmatic.in/documentation/soap.html">WSDL</a><br><a href="https://specmatic.io/tag/asyncapi/" data-type="link" data-id="https://specmatic.in/tag/asyncapi/">AsyncAPI</a><br><a href="https://specmatic.io/tag/redis/" data-type="link" data-id="https://specmatic.io/tag/redis/">RESP</a><br><a href="https://github.com/znsio/specmatic/issues/635">gRPC</a><br><a href="https://specmatic.io/updates/api-resiliency-and-contract-testing-for-graphql/">GraphQL</a><br><a href="https://specmatic.io/updates/jdbc-stubbing-with-specmatic-contract-testing">JDBC</a></p>
+<p class="has-ast-global-color-5-color has-text-color has-small-font-size"><a href="https://specmatic.io/features/transform-your-openapi-specs-into-executable-contracts-in-seconds-with-specmatic/" data-type="link" data-id="https://specmatic.in/tag/openapi/">OpenAPI</a><br><a href="https://specmatic.io/features/transform-your-wsdl-specifications-into-executable-contracts-in-seconds-with-specmatic/" data-type="link" data-id="https://specmatic.in/documentation/soap.html">WSDL</a><br><a href="https://specmatic.io/features/transform-your-asyncapi-specs-into-executable-contracts-in-seconds-with-specmatic/" data-type="link" data-id="https://specmatic.in/tag/asyncapi/">AsyncAPI</a><br><a href="https://specmatic.io/features/api-resiliency-and-contract-testing-for-resp-redis/" data-type="link" data-id="https://specmatic.io/tag/redis/">RESP (Redis)</a><br><a href="https://specmatic.io/features/transform-your-grpc-proto-files-into-executable-contracts-in-seconds-with-specmatic/">gRPC</a><br><a href="https://specmatic.io/features/transform-your-graphql-specs-into-executable-contracts-in-seconds-with-specmatic/">GraphQL</a><br><a href="https://specmatic.io/features/jdbc-contract-driven-development-leverage-asyncapi-specs-as-executable-contracts/">JDBC</a><br><a href="https://specmatic.io/features/contract-driven-development-for-http-by-leveraging-your-openapi-specs-as-executable-contracts/">HTTP (REST)</a></p>
 </section> </aside>
 </div>
 <div class="site-footer-above-section-5 site-footer-section site-footer-section-5">
@@ -752,7 +875,7 @@ John </span>
 <section id="block-11" class="widget widget_block widget_text">
 <p class="has-ast-global-color-6-color has-text-color has-small-font-size"></p>
 </section><section id="block-21" class="widget widget_block widget_text">
-<p class="has-ast-global-color-6-color has-text-color has-small-font-size" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0">Specmatic converts API Specs (OpenAPI/Swagger, AsyncAPI, GraphQL, gRPC, WSDL etc.) into Executable Contracts in seconds, supporting a range of protocols like Kafka, JMS, Google Pub/Sub, JDBC and RESP. This approach promotes Contract-Driven Development (CDD), transforming API specs into enforceable contracts. It automates API testing, supports service virtualization for mocking, ensures backward compatibility and API resilience, fosters collaboration via Git repositories, works locally and integrates with Continuous Integration systems to enhance API reliability and efficiency in microservices development.</p>
+<p class="has-ast-global-color-6-color has-text-color has-small-font-size" style="padding-top:0;padding-right:0;padding-bottom:0;padding-left:0">Specmatic converts API Specs (OpenAPI/Swagger, AsyncAPI, GraphQL, gRPC, WSDL etc.) into Executable Contracts in seconds, supporting a range of protocols like Kafka, JMS, Google Pub/Sub, JDBC, HTTP (REST) and RESP (Redis). This approach promotes Contract-Driven Development (CDD), transforming API specs into enforceable contracts. It automates API testing, supports service virtualization for mocking, ensures backward compatibility and API resilience, fosters collaboration via Git repositories, works locally and integrates with Continuous Integration systems to enhance API reliability and efficiency in microservices development.</p>
 </section> </aside>
 </div>
 </div>
@@ -811,7 +934,7 @@ John </span>
 <script >
 var astraAddon = {"sticky_active":"","svgIconClose":"<span class=\"ast-icon icon-close\"><svg viewBox=\"0 0 512 512\" aria-hidden=\"true\" role=\"img\" version=\"1.1\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" width=\"18px\" height=\"18px\">\n                                <path d=\"M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z\" \/>\n                            <\/svg><\/span>","hf_account_show_menu_on":"hover","hf_account_action_type":"link","is_header_builder_active":"1"};
 </script>
-<script src="https://specmatic.io/wp-content/swis/cache/js/uploads/astra-addon/astra-addon-66b2ecd205b614-41770751-1723002066.min.js" ></script>
+<script src="https://specmatic.io/wp-content/swis/cache/js/uploads/astra-addon/astra-addon-66cbf17c82a864-99992365-1724641660.min.js" ></script>
 <script>/(trident|msie)/i.test(navigator.userAgent)&&document.getElementById&&window.addEventListener&&window.addEventListener("hashchange",function(){var t,e=location.hash.substring(1);/^[A-z0-9_-]+$/.test(e)&&(t=document.getElementById(e))&&(/^(?:a|select|input|button|textarea)$/i.test(t.tagName)||(t.tabIndex=-1),t.focus())},!1);</script>
 <script data-cfasync="false" data-no-optimize="1" data-no-defer="1" data-no-minify="1">const swisAutoLoadDuration = 10;const swisEventList=["keydown","mousemove","scroll","wheel","touchstart","touchend","touchmove"],swisAutoLoadTimeout=setTimeout(swisLoadScripts,1e3*swisAutoLoadDuration);function swisTriggerScriptLoad(){swisLoadScripts(),clearTimeout(swisAutoLoadTimeout),swisEventList.forEach(function(s){window.removeEventListener(s,swisTriggerScriptLoad,{passive:!0})})}function swisLoadScripts(){document.querySelectorAll("script[data-swis-src]").forEach(function(s){s.setAttribute("src",s.getAttribute("data-swis-src"))})}swisEventList.forEach(function(s){window.addEventListener(s,swisTriggerScriptLoad,{passive:!0})});</script>
 </body>

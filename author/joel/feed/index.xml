@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/author/joel/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 31 Jul 2024 05:21:06 +0000</lastBuildDate>
+	<lastBuildDate>Tue, 13 Aug 2024 23:33:30 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -29,13 +29,14 @@
 </image> 
 	<item>
 		<title>API Resiliency and Contract Testing for GraphQL</title>
-		<link>https://specmatic.io/features/api-resiliency-and-contract-testing-for-graphql/</link>
+		<link>https://specmatic.io/demonstration/api-resiliency-and-contract-testing-for-graphql/</link>
 		
 		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
 		<pubDate>Wed, 24 Jul 2024 20:10:00 +0000</pubDate>
 				<category><![CDATA[Demonstration]]></category>
 		<category><![CDATA[Feature Spotlight]]></category>
 		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[GraphQL]]></category>
 		<guid isPermaLink="false">https://specmatic.io/?p=5198</guid>
 
 					<description><![CDATA[Transform your GraphQL API specs into executable contracts in seconds Now you can easily leverage your GraphQL APIs for contract testing, intelligent service virtualisation and backward compatibility testing, just like you would for your OpenAPI-based services. No more complex and brittle setups that involve an assortment of tools &#8211; Specmatic handles it all for you, [&#8230;]]]></description>
@@ -63,7 +64,7 @@
 			</item>
 		<item>
 		<title>Kafka Mocking with AsyncAPI using Specmatic</title>
-		<link>https://specmatic.io/features/kafka-mocking-with-asyncapi-using-specmatic/</link>
+		<link>https://specmatic.io/demonstration/kafka-mocking-with-asyncapi-using-specmatic/</link>
 		
 		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
 		<pubDate>Tue, 18 Jul 2023 04:40:27 +0000</pubDate>
@@ -71,10 +72,7 @@
 		<category><![CDATA[Feature Spotlight]]></category>
 		<category><![CDATA[Updates]]></category>
 		<category><![CDATA[AsyncAPI]]></category>
-		<category><![CDATA[Contract Driven Development]]></category>
-		<category><![CDATA[Contract Testing]]></category>
 		<category><![CDATA[Kafka]]></category>
-		<category><![CDATA[OpenAPI]]></category>
 		<guid isPermaLink="false">https://specmatic.io/?p=1665</guid>
 
 					<description><![CDATA[The Specmatic Kafka mock is wire compatible and entirely within the control of the test, the test can run locally and in CI and deliver quick feedback early in the cycle. So the application itself runs exactly as it would with a real Kafka.]]></description>
@@ -84,7 +82,7 @@
 			</item>
 		<item>
 		<title>Redis Stubbing with Specmatic Contract Testing</title>
-		<link>https://specmatic.io/features/redis-stubbing-with-specmatic-contract-testing/</link>
+		<link>https://specmatic.io/demonstration/redis-stubbing-with-specmatic-contract-testing/</link>
 		
 		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
 		<pubDate>Tue, 11 Jul 2023 03:17:59 +0000</pubDate>
