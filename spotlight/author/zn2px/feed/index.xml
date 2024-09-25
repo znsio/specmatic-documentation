@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>John &#8211; Specmatic</title>
+	<atom:link href="https://specmatic.io/author/zn2px/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.io/</link>
+	<description>Contract Driven Development</description>
+	<lastBuildDate>Wed, 25 Sep 2024 06:39:06 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.2</generator>
+
+<image>
+	<url>https://specmatic.io/wp-content/uploads/2022/09/Favicon.png</url>
+	<title>John &#8211; Specmatic</title>
+	<link>https://specmatic.io/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Specmatic Challenge &#8211; winners announced!</title>
+		<link>https://specmatic.io/updates/specmatic-challenge-winners-announced/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Wed, 25 Sep 2024 06:37:00 +0000</pubDate>
+				<category><![CDATA[Updates]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5810</guid>
+
+					<description><![CDATA[The Specmatic challenge is over and we are pleased to announce the winners! Congratulations to Mohd Zaid and Himanshu Singal for successfully completing the challenge and taking home the prizes! You too can experience the power of Contract Driven Development with Specmatic and transform your API specs into executable contracts in seconds. Why not give [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Specmatic 2.0 is out! Now supports GraphQL and gRPC</title>
+		<link>https://specmatic.io/updates/specmatic-2-0-is-out-now-supports-graphql-and-grpc/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Thu, 25 Jul 2024 00:08:49 +0000</pubDate>
+				<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5193</guid>
+
+					<description><![CDATA[We&#8217;re thrilled to announce the release of Specmatic 2.0.x, a significant milestone release that is set to transform the way developers approach contract testing, intelligent service virtualization and backward compatibility testing. Now you can also transform your GraphQL and gRPC API specs into executable contracts in seconds. Specmatic 2.0 ushers in a new era of [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Empowering Frontend Engineers with Microservices Contract Testing &#8211; a conversation with Markus Oberlehner</title>
+		<link>https://specmatic.io/podcast/empowering-frontend-engineers-with-microservices-contract-testing-a-conversation-with-markus-oberlehner/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Wed, 17 Jul 2024 02:59:15 +0000</pubDate>
+				<category><![CDATA[Podcasts]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[API design]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5109</guid>
+
+					<description><![CDATA[]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Contract vs. Approval Testing: Identifying Bugs in RESTfulBooker&#8217;s API with Specmatic and TextTest</title>
+		<link>https://specmatic.io/comparisons/contract-vs-approval-testing-identifying-bugs-in-restfulbookers-api-with-texttest-and-specmatic/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Wed, 13 Mar 2024 04:17:32 +0000</pubDate>
+				<category><![CDATA[Comparisons]]></category>
+		<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[In the Media]]></category>
+		<category><![CDATA[Updates]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=4470</guid>
+
+					<description><![CDATA[Testing APIs: Specmatic vs TextTest Emily Bache wanted to compare TextTest with Specmatic and has published a video about her experience: The BEST way to find BUGS in an API &#124; Contract vs Approval Testing She observes, “Specmatic works best when the spec is defined independently in an ongoing discussion about expectations between the service [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>2023 year in review</title>
+		<link>https://specmatic.io/updates/2023-year-in-review/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Thu, 14 Dec 2023 04:28:39 +0000</pubDate>
+				<category><![CDATA[Updates]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=3935</guid>
+
+					<description><![CDATA[The end of the year is nearly upon us and we have lots to celebrate! Specmatic just turned 4 and the release of version 1.0 of Specmatic this month, was an exciting milestone to achieve. We have rolled out many compelling new capabilities this year and there is much more to come! In this issue: [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Stubbing an HTTP end-point with Specmatic</title>
+		<link>https://specmatic.io/updates/stubbing-an-http-end-point-with-specmatic/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Wed, 29 Nov 2023 04:17:59 +0000</pubDate>
+				<category><![CDATA[In the Media]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[HTTP]]></category>
+		<category><![CDATA[Specmatic]]></category>
+		<category><![CDATA[Stubbing]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=3640</guid>
+
+					<description><![CDATA[Markus Oberlehner gives a brief overview on the topic of Contract Testing with Specmatic and his experience using it for stubbing an HTTP end-point.]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>&#8220;Easy Microservice Testing&#8221; &#8211; Specmatic featured on Continuous Delivery channel</title>
+		<link>https://specmatic.io/updates/specmatic-featured-on-dave-farleys-continuous-delivery-channel/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Thu, 06 Jul 2023 03:29:00 +0000</pubDate>
+				<category><![CDATA[In the Media]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[Continuous Delivery]]></category>
+		<category><![CDATA[Contract Testing]]></category>
+		<category><![CDATA[microservices]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=1934</guid>
+
+					<description><![CDATA[Dave Farley is a respected author and widely recognised proponent of Continuous Delivery. In this video on his Continuous Delivery YouTube channel he discusses why Contract Testing is important for microservices.]]></description>
+		
+		
+		
+			</item>
+	</channel>
+</rss>
