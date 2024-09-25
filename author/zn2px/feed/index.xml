@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/author/zn2px/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Tue, 13 Aug 2024 03:11:05 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 25 Sep 2024 06:39:06 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,20 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Specmatic Challenge &#8211; winners announced!</title>
+		<link>https://specmatic.io/updates/specmatic-challenge-winners-announced/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Wed, 25 Sep 2024 06:37:00 +0000</pubDate>
+				<category><![CDATA[Updates]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5810</guid>
+
+					<description><![CDATA[The Specmatic challenge is over and we are pleased to announce the winners! Congratulations to Mohd Zaid and Himanshu Singal for successfully completing the challenge and taking home the prizes! You too can experience the power of Contract Driven Development with Specmatic and transform your API specs into executable contracts in seconds. Why not give [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Specmatic 2.0 is out! Now supports GraphQL and gRPC</title>
 		<link>https://specmatic.io/updates/specmatic-2-0-is-out-now-supports-graphql-and-grpc/</link>
 		

@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Mon, 26 Aug 2024 08:35:58 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 25 Sep 2024 06:39:06 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,20 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Specmatic Challenge &#8211; winners announced!</title>
+		<link>https://specmatic.io/updates/specmatic-challenge-winners-announced/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Wed, 25 Sep 2024 06:37:00 +0000</pubDate>
+				<category><![CDATA[Updates]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5810</guid>
+
+					<description><![CDATA[The Specmatic challenge is over and we are pleased to announce the winners! Congratulations to Mohd Zaid and Himanshu Singal for successfully completing the challenge and taking home the prizes! You too can experience the power of Contract Driven Development with Specmatic and transform your API specs into executable contracts in seconds. Why not give [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Contract Testing using gRPC Specs as Executable Contracts</title>
 		<link>https://specmatic.io/updates/contract-testing-using-grpc-specs-as-executable-contracts/</link>
 		
@@ -175,25 +189,6 @@
 		<guid isPermaLink="false">https://specmatic.io/?p=3776</guid>
 
 					<description><![CDATA[Transcript Hi, welcome to this demo of contract-driven development where I&#8217;m going to use Specmatic, an open-source tool to turn your API specification into executable contracts. We have an app which sends a request to a BFF, a backend for frontend, which in turn sends a request to a domain service. Notice you could have [&#8230;]]]></description>
-		
-		
-		
-			</item>
-		<item>
-		<title>Stubbing an HTTP end-point with Specmatic</title>
-		<link>https://specmatic.io/updates/stubbing-an-http-end-point-with-specmatic/</link>
-		
-		<dc:creator><![CDATA[John]]></dc:creator>
-		<pubDate>Wed, 29 Nov 2023 04:17:59 +0000</pubDate>
-				<category><![CDATA[In the Media]]></category>
-		<category><![CDATA[Updates]]></category>
-		<category><![CDATA[Contract Testing]]></category>
-		<category><![CDATA[HTTP]]></category>
-		<category><![CDATA[Specmatic]]></category>
-		<category><![CDATA[Stubbing]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=3640</guid>
-
-					<description><![CDATA[Markus Oberlehner gives a brief overview on the topic of Contract Testing with Specmatic and his experience using it for stubbing an HTTP end-point.]]></description>
 		
 		
 		
