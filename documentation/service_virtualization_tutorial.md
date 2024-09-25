@@ -911,87 +911,222 @@ The same idea extends to the response.
 
 ## Inject Response Values From An External Dictionary
 
-It's possible to parameterize certain response values in the example, in order for them to be replaced by Specmatic at runtime with values from a dictionary.
+As we progress with service virtualization, we encounter scenarios where you need flexible, reusable response data. This is where external dictionaries come into play, allowing you to parameterize your examples and inject dynamic values at runtime. Let's explore this powerful feature step-by-step.
 
-Let's see how this works.
+### Understanding the Concept
 
-- Create a new example file in the `employees_examples` directory named `patch_employee.json` with the following contents:
+Before we dive in, let's clarify what we mean by "injecting values from an external dictionary":
 
-  ```json
-  {
-      "http-request": {
-          "method": "PATCH",
-          "path": "/employees",
-          "body": {
-              "employeeCode": "pqrxyz",
-              "name": "Jamie"
-          }
-      },
-      "http-response": {
-          "status": 200,
-          "body": {
-              "id": 10,
-              "employeeCode": "pqrxyz",
-              "name": "Jamie",
-              "department": "(string)",
-              "designation": "(string)"
-          }
-      }
-  }
-  ```
+1. You create placeholder values in your examples (both inline and external)
+2. You define a separate dictionary file with key-value pairs (named `dictionary.json`)
+3. At runtime, Specmatic replaces the placeholders with the corresponding values from the dictionary
 
-- Create a file named `dictionary.json` in the same directory as your `specmatic.yaml` with below contents. The format of this dictionary JSON is on the lines of a map (key value pair) where the keys as per your OpenAPI schema object keys (in this case "department" and "designation"):
-  ```json
-  {
-    "department": "Sales",
-    "designation" : "Associate"
-  }
-  ```
+This approach offers several advantages:
+- Keeps your examples clean and focused on structure
+- Allows easy updates to response data without modifying examples
+- Enables reuse of common values across multiple examples
 
-- Update your `specmatic.yaml` file to use the `dictionary.json` we created above:
+### Basic Example: Getting Started
 
-  ```yaml
-  sources:
-    - provider: filesystem
-      stub:
-        - employees.yaml
-  stub:
-    dictionary: ./dictionary.json
-  ```
+Let's begin with a simple example to grasp the fundamentals.
 
-- Start the stub and execute this curl command:
-
-  ```shell
-  curl -X PATCH -H 'Content-Type: application/json' -d '{"name": "Jamie", "employeeCode": "pqrxyz"}' http://localhost:9000/employees
-  ```
-
-- You'll get this response:
-
-  ```json
-  {
-      "id": 10,
-      "name": "Jamie",
-      "employeeCode": "pqrxyz",
-      "department": "Sales",
-      "designation": "Associate"
-  }
-  ```
-
-- Note: we did not provide "Sales" or "Associate" as the value of "department" or "designation" respectively. Those values came from the dictionary.
-
-### Nested structure lookup in dictionary
-
-The `dictionary.json` also supports a more sophisticated lookup when there are nested structures in the schema. Here is an example that disambiguates a name field that appears under `person` and another that appears under `past_companies` using a dot notation:
+**Step 1.** Create an example file `patch_employee.json` in your `employees_examples` directory:
 
 ```json
 {
-  "person.name": "Jackie",
-  "addresses[*].street": "Baker Street",
-  "past_companies[0].name": "Acme Inc"
+    "http-request": {
+        "method": "PATCH",
+        "path": "/employees",
+        "body": {
+            "employeeCode": "pqrxyz",
+            "name": "Jamie"
+        }
+    },
+    "http-response": {
+        "status": 200,
+        "body": {
+            "id": 10,
+            "employeeCode": "pqrxyz",
+            "name": "Jamie",
+            "department": "(string)",
+            "designation": "(string)"
+        }
+    }
 }
 ```
 
-How this works:
+Notice the `(string)` placeholders for `department` and `designation`. These will be replaced with values from our dictionary.
+
+**Step 2.** Create a `dictionary.json` file in the same directory as your `specmatic.yaml`:
+
+```json
+{
+  "department": "Sales",
+  "designation": "Associate"
+}
+```
+
+**Step 3.** Update your `specmatic.yaml` to use the dictionary:
+
+```yaml
+sources:
+  - provider: filesystem
+    stub:
+      - employees.yaml
+stub:
+  dictionary: ./dictionary.json
+```
+
+**Step 4.** Start the stub and send a request:
+
+```shell
+curl -X PATCH -H 'Content-Type: application/json' -d '{"name": "Jamie", "employeeCode": "pqrxyz"}' http://localhost:9000/employees
+```
+
+**Outcome :** You'll receive a response with the injected values:
+
+```json
+{
+    "id": 10,
+    "name": "Jamie",
+    "employeeCode": "pqrxyz",
+    "department": "Sales",
+    "designation": "Associate"
+}
+```
+
+Congratulations! You've successfully used an external dictionary to inject values into your response.
+
+### Advanced Usage: Nested Structures and Arrays
+
+As you become more comfortable with basic dictionary injection, let's explore how to handle more complex data structures.
+
+**Step 1.** First, let's define the OpenAPI specification for our advanced example:
+
+```yaml
+openapi: 3.0.0
+info:
+  title: Employee API
+  version: 1.0.0
+paths:
+  /employees/details:
+    get:
+      summary: Get detailed employee information
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  person:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                  addresses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        street:
+                          type: string
+                  past_companies:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                  skills:
+                    type: array
+                    items:
+                      type: string
+```
+
+**Step 2.**  Update your `dictionary.json` with nested and array values:
+
+```json
+{
+  "person.name": "Alex Johnson",
+  "addresses[*].street": "123 Corporate Drive",
+  "past_companies[0].name": "Tech Innovations Inc",
+  "past_companies[1].name": "Global Systems Ltd",
+  "skills": ["Project Management", "Data Analysis", "Strategic Planning"]
+}
+```
+
+**Step 3.**  Create a new example file `employee_details.json` that uses these nested and array placeholders:
+
+```json
+{
+    "http-request": {
+        "method": "GET",
+        "path": "/employees/details",
+        "query": {
+            "id": "12345"
+        }
+    },
+    "http-response": {
+        "status": 200,
+        "body": {
+            "person": {
+                "name": "(string)"
+            },
+            "addresses": [
+                { "street": "(string)" },
+                { "street": "(string)" }
+            ],
+            "past_companies": [
+                { "name": "(string)" },
+                { "name": "(string)" }
+            ],
+            "skills": "(array)"
+        }
+    }
+}
+```
+
+**Step 4.**  Start the stub and send a request:
+
+```shell
+curl -X GET 'http://localhost:9000/employees/details?id=12345'
+```
+
+**Step 5.**  You'll receive a response with complex injected values:
+
+```json
+{
+    "person": {
+        "name": "Alex Johnson"
+    },
+    "addresses": [
+        { "street": "123 Corporate Drive" },
+        { "street": "123 Corporate Drive" }
+    ],
+    "past_companies": [
+        { "name": "Tech Innovations Inc" },
+        { "name": "Global Systems Ltd" }
+    ],
+    "skills": ["Project Management", "Data Analysis", "Strategic Planning"]
+}
+```
+
+### Key Takeaways
+
+1. Dictionary injection allows for flexible, reusable response data
+2. You can use dot notation (e.g., `person.name`) for nested structures
+3. Array syntax (`[*]`, `[0]`, `[1]`, etc.) lets you populate arrays and specific indices
+4. The `(array)` placeholder injects an entire array from the dictionary
+
+### Quick reference - How this works:
 
 | -- | -- |
 | Syntax | Turns | Into |
@@ -1001,6 +1136,10 @@ How this works:
 | `"past_companies[0].name": "Acme Inc"` | `{ "past_companies": [ {"name": "(string)" }, {"name: "(string)" }]}` | same as above but only for the 0th element of `past_companies` |
 
 This syntax can be nested to any depth, e.g. `person.addresses[*].street: "Baker Street"`
+
+**Tip** : Consider creating multiple dictionaries for different scenarios or test cases
+
+The combination of Specmatic's example system and external dictionaries gives you extra control over your mock responses.
 
 ## Delay Simulation
 
