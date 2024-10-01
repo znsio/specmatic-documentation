@@ -1,4 +1,4 @@
-/*! elementor - v3.24.0 - 23-09-2024 */
+/*! elementor - v3.24.0 - 01-10-2024 */
 "use strict";
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["frontend"],{
 
@@ -1480,7 +1480,7 @@ AssetsLoader.assets = {
       parent: 'head'
     },
     'e-lightbox': {
-      src: `${assetsUrl}css/conditionals/lightbox${fileSuffix}.css?ver=${pluginVersion}`
+      src: elementorFrontendConfig?.responsive?.hasCustomBreakpoints ? `${elementorFrontendConfig.urls.uploadUrl}/elementor/css/custom-lightbox.min.css?ver=${pluginVersion}` : `${assetsUrl}css/conditionals/lightbox${fileSuffix}.css?ver=${pluginVersion}`
     },
     dialog: {
       src: `${assetsUrl}css/conditionals/dialog${fileSuffix}.css?ver=${pluginVersion}`,
