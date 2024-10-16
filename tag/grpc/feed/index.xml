@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/tag/grpc/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Mon, 26 Aug 2024 08:35:58 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 16 Oct 2024 03:00:59 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,22 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>gRPC Flaws​ &#8211; The Illusion of Safety &#038; Frustrating DevEx in Proto3&#8217;s Type-Safe Contracts​</title>
+		<link>https://specmatic.io/updates/grpc-flaws-the-illusion-of-safety-frustrating-devex-in-proto3s-type-safe-contracts/</link>
+		
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
+		<pubDate>Wed, 16 Oct 2024 02:42:34 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[gRPC]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5877</guid>
+
+					<description><![CDATA[Understanding the Shortcomings of gRPC and How Contract Testing Can Bridge the Gap&#160; In the ever-evolving world of API design, development, and testing, the pursuit of a seamless developer experience (DevEx) remains a constant. This article sheds light on some of the overlooked pitfalls of gRPC, a popular choice for its performance capabilities and type-safe [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Contract Testing using gRPC Specs as Executable Contracts</title>
 		<link>https://specmatic.io/updates/contract-testing-using-grpc-specs-as-executable-contracts/</link>
 		

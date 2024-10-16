@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/demonstration/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 21 Aug 2024 08:01:15 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 16 Oct 2024 03:02:20 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,38 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>gRPC Flaws​ &#8211; The Illusion of Safety &#038; Frustrating DevEx in Proto3&#8217;s Type-Safe Contracts​</title>
+		<link>https://specmatic.io/updates/grpc-flaws-the-illusion-of-safety-frustrating-devex-in-proto3s-type-safe-contracts/</link>
+		
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
+		<pubDate>Wed, 16 Oct 2024 02:42:34 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[gRPC]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5877</guid>
+
+					<description><![CDATA[Understanding the Shortcomings of gRPC and How Contract Testing Can Bridge the Gap&#160; In the ever-evolving world of API design, development, and testing, the pursuit of a seamless developer experience (DevEx) remains a constant. This article sheds light on some of the overlooked pitfalls of gRPC, a popular choice for its performance capabilities and type-safe [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>WireMock&#8217;s Dirty Secret: Ignoring API Specs &#038; Letting Invalid Examples Slip Through </title>
+		<link>https://specmatic.io/updates/wiremocks-dirty-secret-ignoring-api-specs-letting-invalid-examples-slip-through/</link>
+		
+		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
+		<pubDate>Wed, 16 Oct 2024 02:29:12 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[wiremock]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5871</guid>
+
+					<description><![CDATA[Overcoming the Challenges of Hand-Rolled Mocks with Contract-Driven Development  APIs and microservices have transformed the way software systems are built and maintained. However, developing a system that relies on multiple services—both internal and external—presents unique challenges, especially when some services are not fully available. In this critique of WireMock, we examine the critical importance of [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>API Resiliency and Contract Testing for GraphQL</title>
 		<link>https://specmatic.io/demonstration/api-resiliency-and-contract-testing-for-graphql/</link>
 		

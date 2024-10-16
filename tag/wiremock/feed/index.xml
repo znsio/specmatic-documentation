@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/tag/wiremock/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 21 Feb 2024 08:45:41 +0000</lastBuildDate>
+	<lastBuildDate>Wed, 16 Oct 2024 03:02:20 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,22 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>WireMock&#8217;s Dirty Secret: Ignoring API Specs &#038; Letting Invalid Examples Slip Through </title>
+		<link>https://specmatic.io/updates/wiremocks-dirty-secret-ignoring-api-specs-letting-invalid-examples-slip-through/</link>
+		
+		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
+		<pubDate>Wed, 16 Oct 2024 02:29:12 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[wiremock]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5871</guid>
+
+					<description><![CDATA[Overcoming the Challenges of Hand-Rolled Mocks with Contract-Driven Development  APIs and microservices have transformed the way software systems are built and maintained. However, developing a system that relies on multiple services—both internal and external—presents unique challenges, especially when some services are not fully available. In this critique of WireMock, we examine the critical importance of [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Comparison: Specmatic vs WireMock</title>
 		<link>https://specmatic.io/comparisons/comparison-specmatic-vs-wiremock/</link>
 		
