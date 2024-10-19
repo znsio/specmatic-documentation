@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/tag/openapi/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 21 Aug 2024 08:01:15 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 18 Oct 2024 04:29:21 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,56 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Build Apps from API specs using AI: Self-Correcting Contract-Driven Agentic Workflows with Specmatic</title>
+		<link>https://specmatic.io/updates/build-apps-from-api-specs-using-ai-self-correcting-contract-driven-agentic-workflows-with-specmatic/</link>
+		
+		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
+		<pubDate>Fri, 18 Oct 2024 04:20:19 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[OpenAPI]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5906</guid>
+
+					<description><![CDATA[Harnessing the Power of API Specifications for Robust Microservices&#160; Modern microservice architecture hinges on precise and dependable communication between services. This is where API specifications serve as the linchpin, establishing clear, executable contracts that dictate how services interact. With advancements in AI, we can now take these specifications and seamlessly transform them into running applications. [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>OpenAPI Example Simplified: Visualize and Generate Domain-Specific Test Data​</title>
+		<link>https://specmatic.io/updates/openapi-example-simplified-visualize-and-generate-domain-specific-test-data/</link>
+		
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
+		<pubDate>Fri, 18 Oct 2024 04:15:08 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[OpenAPI]]></category>
+		<category><![CDATA[Specmatic]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5902</guid>
+
+					<description><![CDATA[Streamlining API Development: An Interactive Guide to Example Generation and Validation using Specmatic&#160; A robust, streamlined approach to API development is crucial for maintaining efficiency, reliability, and scalability in your development pipeline. One powerful methodology that has emerged is Contract-Driven Development (CDD), allowing developers to fully realize the benefits of microservices architectures. This article demonstrates [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>OpenAPI&#8217;s Broken Tooling: Roundtrip Fidelity Failure with CodeGen and DocGen​</title>
+		<link>https://specmatic.io/updates/openapis-broken-tooling-roundtrip-fidelity-failure-with-codegen-and-docgen/</link>
+		
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
+		<pubDate>Fri, 18 Oct 2024 03:51:21 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[OpenAPI]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5895</guid>
+
+					<description><![CDATA[Exploring the Strengths and Weaknesses of Automated API Development&#160; Maintaining well-documented and reliable APIs is essential for any microservices development pipelines. At the heart of this process for OpenAPI specs are two important tools: CodeGen and DocGen. CodeGen, short for code generation, and DocGen, documentation generation, are designed to streamline the development cycle by automating [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Introduction to Contract Driven Development with Specmatic</title>
 		<link>https://specmatic.io/updates/introduction-to-contract-driven-development-with-specmatic/</link>
 		
@@ -135,6 +185,7 @@
 		<item>
 		<title>Comparison: Specmatic vs Pact.io and Pactflow.io</title>
 		<link>https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/</link>
+					<comments>https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/#comments</comments>
 		
 		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
 		<pubDate>Tue, 08 Nov 2022 04:25:35 +0000</pubDate>
@@ -156,6 +207,8 @@
 
 					<description><![CDATA[Specmatic and Contract Driven Development differ significantly from Pact. We built Specmatic out of our own necessity where Pact did not fit the bill for us. We have tried to cover as many areas of comparison as possible, however we would love to hear if you have any other criteria on which you would like to see additional details.]]></description>
 		
+					<wfw:commentRss>https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/feed/</wfw:commentRss>
+			<slash:comments>1</slash:comments>
 		
 		
 			</item>

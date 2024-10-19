@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/author/hari/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 16 Oct 2024 03:02:20 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 18 Oct 2024 04:29:21 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,22 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Pact&#8217;s Dependency Drag​: Why Consumer-Driven Contracts Don&#8217;t Support Parallel Development</title>
+		<link>https://specmatic.io/updates/pacts-dependency-drag-why-consumer-driven-contracts-dont-support-parallel-development/</link>
+		
+		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
+		<pubDate>Fri, 18 Oct 2024 04:05:22 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[pact]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5898</guid>
+
+					<description><![CDATA[Exploring the challenges and limitations of using Pact for contract testing in a microservices environment.&#160; In the domain of microservices, ensuring seamless communication between different services is paramount. This necessitates robust contract testing to ensure that APIs and their consumers are in sync. With an increasing number of organizations adopting microservices, tools like Pact—a consumer-driven [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>WireMock&#8217;s Dirty Secret: Ignoring API Specs &#038; Letting Invalid Examples Slip Through </title>
 		<link>https://specmatic.io/updates/wiremocks-dirty-secret-ignoring-api-specs-letting-invalid-examples-slip-through/</link>
 		
@@ -38,7 +54,7 @@
 		<category><![CDATA[wiremock]]></category>
 		<guid isPermaLink="false">https://specmatic.io/?p=5871</guid>
 
-					<description><![CDATA[Overcoming the Challenges of Hand-Rolled Mocks with Contract-Driven Development  APIs and microservices have transformed the way software systems are built and maintained. However, developing a system that relies on multiple services—both internal and external—presents unique challenges, especially when some services are not fully available. In this critique of WireMock, we examine the critical importance of [&#8230;]]]></description>
+					<description><![CDATA[Overcoming the Challenges of Hand-Rolled Mocks with Contract-Driven Development&#160; APIs and microservices have transformed the way software systems are built and maintained. However, developing a system that relies on multiple services—both internal and external—presents unique challenges, especially when some services are not fully available. In this critique of WireMock, we examine the critical importance of [&#8230;]]]></description>
 		
 		
 		
@@ -126,6 +142,7 @@
 		<item>
 		<title>Comparison: Specmatic vs Pact.io and Pactflow.io</title>
 		<link>https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/</link>
+					<comments>https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/#comments</comments>
 		
 		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
 		<pubDate>Tue, 08 Nov 2022 04:25:35 +0000</pubDate>
@@ -147,6 +164,8 @@
 
 					<description><![CDATA[Specmatic and Contract Driven Development differ significantly from Pact. We built Specmatic out of our own necessity where Pact did not fit the bill for us. We have tried to cover as many areas of comparison as possible, however we would love to hear if you have any other criteria on which you would like to see additional details.]]></description>
 		
+					<wfw:commentRss>https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/feed/</wfw:commentRss>
+			<slash:comments>1</slash:comments>
 		
 		
 			</item>

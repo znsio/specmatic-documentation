@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 16 Oct 2024 03:02:20 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 18 Oct 2024 04:24:09 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,72 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Build Apps from API specs using AI: Self-Correcting Contract-Driven Agentic Workflows with Specmatic</title>
+		<link>https://specmatic.io/updates/build-apps-from-api-specs-using-ai-self-correcting-contract-driven-agentic-workflows-with-specmatic/</link>
+		
+		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
+		<pubDate>Fri, 18 Oct 2024 04:20:19 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[OpenAPI]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5906</guid>
+
+					<description><![CDATA[Harnessing the Power of API Specifications for Robust Microservices&#160; Modern microservice architecture hinges on precise and dependable communication between services. This is where API specifications serve as the linchpin, establishing clear, executable contracts that dictate how services interact. With advancements in AI, we can now take these specifications and seamlessly transform them into running applications. [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>OpenAPI Example Simplified: Visualize and Generate Domain-Specific Test Data​</title>
+		<link>https://specmatic.io/updates/openapi-example-simplified-visualize-and-generate-domain-specific-test-data/</link>
+		
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
+		<pubDate>Fri, 18 Oct 2024 04:15:08 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[OpenAPI]]></category>
+		<category><![CDATA[Specmatic]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5902</guid>
+
+					<description><![CDATA[Streamlining API Development: An Interactive Guide to Example Generation and Validation using Specmatic&#160; A robust, streamlined approach to API development is crucial for maintaining efficiency, reliability, and scalability in your development pipeline. One powerful methodology that has emerged is Contract-Driven Development (CDD), allowing developers to fully realize the benefits of microservices architectures. This article demonstrates [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Pact&#8217;s Dependency Drag​: Why Consumer-Driven Contracts Don&#8217;t Support Parallel Development</title>
+		<link>https://specmatic.io/updates/pacts-dependency-drag-why-consumer-driven-contracts-dont-support-parallel-development/</link>
+		
+		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
+		<pubDate>Fri, 18 Oct 2024 04:05:22 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[pact]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5898</guid>
+
+					<description><![CDATA[Exploring the challenges and limitations of using Pact for contract testing in a microservices environment.&#160; In the domain of microservices, ensuring seamless communication between different services is paramount. This necessitates robust contract testing to ensure that APIs and their consumers are in sync. With an increasing number of organizations adopting microservices, tools like Pact—a consumer-driven [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>OpenAPI&#8217;s Broken Tooling: Roundtrip Fidelity Failure with CodeGen and DocGen​</title>
+		<link>https://specmatic.io/updates/openapis-broken-tooling-roundtrip-fidelity-failure-with-codegen-and-docgen/</link>
+		
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
+		<pubDate>Fri, 18 Oct 2024 03:51:21 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[OpenAPI]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5895</guid>
+
+					<description><![CDATA[Exploring the Strengths and Weaknesses of Automated API Development&#160; Maintaining well-documented and reliable APIs is essential for any microservices development pipelines. At the heart of this process for OpenAPI specs are two important tools: CodeGen and DocGen. CodeGen, short for code generation, and DocGen, documentation generation, are designed to streamline the development cycle by automating [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>gRPC Flaws​ &#8211; The Illusion of Safety &#038; Frustrating DevEx in Proto3&#8217;s Type-Safe Contracts​</title>
 		<link>https://specmatic.io/updates/grpc-flaws-the-illusion-of-safety-frustrating-devex-in-proto3s-type-safe-contracts/</link>
 		
@@ -54,7 +120,7 @@
 		<category><![CDATA[wiremock]]></category>
 		<guid isPermaLink="false">https://specmatic.io/?p=5871</guid>
 
-					<description><![CDATA[Overcoming the Challenges of Hand-Rolled Mocks with Contract-Driven Development  APIs and microservices have transformed the way software systems are built and maintained. However, developing a system that relies on multiple services—both internal and external—presents unique challenges, especially when some services are not fully available. In this critique of WireMock, we examine the critical importance of [&#8230;]]]></description>
+					<description><![CDATA[Overcoming the Challenges of Hand-Rolled Mocks with Contract-Driven Development&#160; APIs and microservices have transformed the way software systems are built and maintained. However, developing a system that relies on multiple services—both internal and external—presents unique challenges, especially when some services are not fully available. In this critique of WireMock, we examine the critical importance of [&#8230;]]]></description>
 		
 		
 		
@@ -117,74 +183,6 @@
 		<guid isPermaLink="false">https://specmatic.io/?p=5198</guid>
 
 					<description><![CDATA[Transform your GraphQL API specs into executable contracts in seconds Now you can easily leverage your GraphQL APIs for contract testing, intelligent service virtualisation and backward compatibility testing, just like you would for your OpenAPI-based services. No more complex and brittle setups that involve an assortment of tools &#8211; Specmatic handles it all for you, [&#8230;]]]></description>
-		
-		
-		
-			</item>
-		<item>
-		<title>Empowering Frontend Engineers with Microservices Contract Testing &#8211; a conversation with Markus Oberlehner</title>
-		<link>https://specmatic.io/podcast/empowering-frontend-engineers-with-microservices-contract-testing-a-conversation-with-markus-oberlehner/</link>
-		
-		<dc:creator><![CDATA[John]]></dc:creator>
-		<pubDate>Wed, 17 Jul 2024 02:59:15 +0000</pubDate>
-				<category><![CDATA[Podcasts]]></category>
-		<category><![CDATA[Updates]]></category>
-		<category><![CDATA[API design]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=5109</guid>
-
-					<description><![CDATA[]]></description>
-		
-		
-		
-			</item>
-		<item>
-		<title>Contract Testing Google Pub/Sub: Using AsyncAPI specs as Executable Contracts</title>
-		<link>https://specmatic.io/demonstration/contract-testing-google-pub-sub-using-asyncapi-as-executable-contracts/</link>
-		
-		<dc:creator><![CDATA[Yogesh Nikam]]></dc:creator>
-		<pubDate>Wed, 17 Apr 2024 05:13:57 +0000</pubDate>
-				<category><![CDATA[Demonstration]]></category>
-		<category><![CDATA[Feature Spotlight]]></category>
-		<category><![CDATA[Updates]]></category>
-		<category><![CDATA[AsyncAPI]]></category>
-		<category><![CDATA[Contract Driven Development]]></category>
-		<category><![CDATA[Contract Testing]]></category>
-		<category><![CDATA[Google Pub/Sub]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=4576</guid>
-
-					<description><![CDATA[Shift-Left the identification of integration issues in applications built with Event Driven Architecture (EDA) by leveraging AsyncAPI specs as Executable Contracts Introduction The surge in popularity of microservices has revolutionized the way we think about software architecture. However, as systems grow and inter-service communication increases, the risk of integration issues can also rise. One such [&#8230;]]]></description>
-		
-		
-		
-			</item>
-		<item>
-		<title>Contract vs. Approval Testing: Identifying Bugs in RESTfulBooker&#8217;s API with Specmatic and TextTest</title>
-		<link>https://specmatic.io/comparisons/contract-vs-approval-testing-identifying-bugs-in-restfulbookers-api-with-texttest-and-specmatic/</link>
-		
-		<dc:creator><![CDATA[John]]></dc:creator>
-		<pubDate>Wed, 13 Mar 2024 04:17:32 +0000</pubDate>
-				<category><![CDATA[Comparisons]]></category>
-		<category><![CDATA[Demonstration]]></category>
-		<category><![CDATA[In the Media]]></category>
-		<category><![CDATA[Updates]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=4470</guid>
-
-					<description><![CDATA[Testing APIs: Specmatic vs TextTest Emily Bache wanted to compare TextTest with Specmatic and has published a video about her experience: The BEST way to find BUGS in an API &#124; Contract vs Approval Testing She observes, “Specmatic works best when the spec is defined independently in an ongoing discussion about expectations between the service [&#8230;]]]></description>
-		
-		
-		
-			</item>
-		<item>
-		<title>Specmatic Docker Image now available</title>
-		<link>https://specmatic.io/updates/specmatic-docker-image/</link>
-		
-		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
-		<pubDate>Fri, 23 Feb 2024 03:12:41 +0000</pubDate>
-				<category><![CDATA[Feature Spotlight]]></category>
-		<category><![CDATA[Updates]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=4423</guid>
-
-					<description><![CDATA[Specmatic is now available as a Docker image! Turn your API specifications into executable contracts in seconds. Your favorite features such as contract tests, intelligent service virtualization, backward compatibility testing and more are all available through Specmatic Docker image. Getting started has never been easier. Get the Docker Image Now: https://hub.docker.com/r/znsio/specmatic Getting started in 5 [&#8230;]]]></description>
 		
 		
 		

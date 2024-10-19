@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/demonstration/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 16 Oct 2024 03:02:20 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 18 Oct 2024 04:24:09 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,72 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Build Apps from API specs using AI: Self-Correcting Contract-Driven Agentic Workflows with Specmatic</title>
+		<link>https://specmatic.io/updates/build-apps-from-api-specs-using-ai-self-correcting-contract-driven-agentic-workflows-with-specmatic/</link>
+		
+		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
+		<pubDate>Fri, 18 Oct 2024 04:20:19 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[OpenAPI]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5906</guid>
+
+					<description><![CDATA[Harnessing the Power of API Specifications for Robust Microservices&#160; Modern microservice architecture hinges on precise and dependable communication between services. This is where API specifications serve as the linchpin, establishing clear, executable contracts that dictate how services interact. With advancements in AI, we can now take these specifications and seamlessly transform them into running applications. [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>OpenAPI Example Simplified: Visualize and Generate Domain-Specific Test Data​</title>
+		<link>https://specmatic.io/updates/openapi-example-simplified-visualize-and-generate-domain-specific-test-data/</link>
+		
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
+		<pubDate>Fri, 18 Oct 2024 04:15:08 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[OpenAPI]]></category>
+		<category><![CDATA[Specmatic]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5902</guid>
+
+					<description><![CDATA[Streamlining API Development: An Interactive Guide to Example Generation and Validation using Specmatic&#160; A robust, streamlined approach to API development is crucial for maintaining efficiency, reliability, and scalability in your development pipeline. One powerful methodology that has emerged is Contract-Driven Development (CDD), allowing developers to fully realize the benefits of microservices architectures. This article demonstrates [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>Pact&#8217;s Dependency Drag​: Why Consumer-Driven Contracts Don&#8217;t Support Parallel Development</title>
+		<link>https://specmatic.io/updates/pacts-dependency-drag-why-consumer-driven-contracts-dont-support-parallel-development/</link>
+		
+		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
+		<pubDate>Fri, 18 Oct 2024 04:05:22 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[pact]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5898</guid>
+
+					<description><![CDATA[Exploring the challenges and limitations of using Pact for contract testing in a microservices environment.&#160; In the domain of microservices, ensuring seamless communication between different services is paramount. This necessitates robust contract testing to ensure that APIs and their consumers are in sync. With an increasing number of organizations adopting microservices, tools like Pact—a consumer-driven [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>OpenAPI&#8217;s Broken Tooling: Roundtrip Fidelity Failure with CodeGen and DocGen​</title>
+		<link>https://specmatic.io/updates/openapis-broken-tooling-roundtrip-fidelity-failure-with-codegen-and-docgen/</link>
+		
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
+		<pubDate>Fri, 18 Oct 2024 03:51:21 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[OpenAPI]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5895</guid>
+
+					<description><![CDATA[Exploring the Strengths and Weaknesses of Automated API Development&#160; Maintaining well-documented and reliable APIs is essential for any microservices development pipelines. At the heart of this process for OpenAPI specs are two important tools: CodeGen and DocGen. CodeGen, short for code generation, and DocGen, documentation generation, are designed to streamline the development cycle by automating [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>gRPC Flaws​ &#8211; The Illusion of Safety &#038; Frustrating DevEx in Proto3&#8217;s Type-Safe Contracts​</title>
 		<link>https://specmatic.io/updates/grpc-flaws-the-illusion-of-safety-frustrating-devex-in-proto3s-type-safe-contracts/</link>
 		
@@ -54,7 +120,7 @@
 		<category><![CDATA[wiremock]]></category>
 		<guid isPermaLink="false">https://specmatic.io/?p=5871</guid>
 
-					<description><![CDATA[Overcoming the Challenges of Hand-Rolled Mocks with Contract-Driven Development  APIs and microservices have transformed the way software systems are built and maintained. However, developing a system that relies on multiple services—both internal and external—presents unique challenges, especially when some services are not fully available. In this critique of WireMock, we examine the critical importance of [&#8230;]]]></description>
+					<description><![CDATA[Overcoming the Challenges of Hand-Rolled Mocks with Contract-Driven Development&#160; APIs and microservices have transformed the way software systems are built and maintained. However, developing a system that relies on multiple services—both internal and external—presents unique challenges, especially when some services are not fully available. In this critique of WireMock, we examine the critical importance of [&#8230;]]]></description>
 		
 		
 		
@@ -129,83 +195,6 @@
 		<guid isPermaLink="false">https://specmatic.io/?p=1966</guid>
 
 					<description><![CDATA[Specmatic’s API coverage report helps identify any mismatches between an OpenAPI specification and an application's endpoints early in the development lifecycle. The report lists all the endpoints, their coverage, and indicates if they are missing in the spec or not implemented in the application. You can define success criteria for the API coverage report and fix issues. ]]></description>
-		
-		
-		
-			</item>
-		<item>
-		<title>Break the Chains of Database Dependencies: Leveraging Specmatic for JDBC Stubbing</title>
-		<link>https://specmatic.io/demonstration/jdbc-stubbing-with-specmatic-contract-testing/</link>
-		
-		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
-		<pubDate>Mon, 14 Aug 2023 10:23:30 +0000</pubDate>
-				<category><![CDATA[Demonstration]]></category>
-		<category><![CDATA[Feature Spotlight]]></category>
-		<category><![CDATA[Updates]]></category>
-		<category><![CDATA[Contract Driven Development]]></category>
-		<category><![CDATA[Contract Testing]]></category>
-		<category><![CDATA[JDBC]]></category>
-		<category><![CDATA[Stubbing]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=1742</guid>
-
-					<description><![CDATA[With Specmatic JDBC stub, you can easily test APIs without the need for a complex database setup. By switching out the real database with a Specmatic JDBC stub, we can set expectations for the stub to respond to specific queries. These expectations can be recorded based on actual interactions. Once the expectations are set, we no longer need the database for our tests!]]></description>
-		
-		
-		
-			</item>
-		<item>
-		<title>JMS Mocking with AsyncAPI using Specmatic</title>
-		<link>https://specmatic.io/demonstration/jms-mocking-with-asyncapi-using-specmatic/</link>
-		
-		<dc:creator><![CDATA[Jaydeep Kulkarni]]></dc:creator>
-		<pubDate>Tue, 25 Jul 2023 06:05:31 +0000</pubDate>
-				<category><![CDATA[Demonstration]]></category>
-		<category><![CDATA[Feature Spotlight]]></category>
-		<category><![CDATA[Updates]]></category>
-		<category><![CDATA[AsyncAPI]]></category>
-		<category><![CDATA[Contract Driven Development]]></category>
-		<category><![CDATA[Contract Testing]]></category>
-		<category><![CDATA[Database Stubbing]]></category>
-		<category><![CDATA[JMS]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=1702</guid>
-
-					<description><![CDATA[The JMS mock is wire compatible and can be controlled entirely from within the test. This means you can run the test locally or also as part of your continuous integration build to provide quick feedback early in the cycle.]]></description>
-		
-		
-		
-			</item>
-		<item>
-		<title>Kafka Mocking with AsyncAPI using Specmatic</title>
-		<link>https://specmatic.io/demonstration/kafka-mocking-with-asyncapi-using-specmatic/</link>
-		
-		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
-		<pubDate>Tue, 18 Jul 2023 04:40:27 +0000</pubDate>
-				<category><![CDATA[Demonstration]]></category>
-		<category><![CDATA[Feature Spotlight]]></category>
-		<category><![CDATA[Updates]]></category>
-		<category><![CDATA[AsyncAPI]]></category>
-		<category><![CDATA[Kafka]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=1665</guid>
-
-					<description><![CDATA[The Specmatic Kafka mock is wire compatible and entirely within the control of the test, the test can run locally and in CI and deliver quick feedback early in the cycle. So the application itself runs exactly as it would with a real Kafka.]]></description>
-		
-		
-		
-			</item>
-		<item>
-		<title>Redis Stubbing with Specmatic Contract Testing</title>
-		<link>https://specmatic.io/demonstration/redis-stubbing-with-specmatic-contract-testing/</link>
-		
-		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
-		<pubDate>Tue, 11 Jul 2023 03:17:59 +0000</pubDate>
-				<category><![CDATA[Demonstration]]></category>
-		<category><![CDATA[Feature Spotlight]]></category>
-		<category><![CDATA[Updates]]></category>
-		<category><![CDATA[Redis]]></category>
-		<category><![CDATA[Stubbing]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=1625</guid>
-
-					<description><![CDATA[Instead of using an actual instance of Redis, we'll stub it out and have the contract test set expectations so that the Redis stub knows what data to return for any query sent to it by the application. Now, when we run the contract tests and the service object does a look up in Redis, it's actually hitting the Redis stub.]]></description>
 		
 		
 		

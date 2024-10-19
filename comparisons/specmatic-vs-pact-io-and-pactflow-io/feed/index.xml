@@ -11,11 +11,25 @@
 	<atom:link href="https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Fri, 15 Sep 2023 04:09:54 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 18 Oct 2024 04:29:21 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=6.6.2</generator>
-</channel>
+	<item>
+		<title>
+		By: Pact&#039;s Dependency Drag​: Why Consumer-Driven Contracts Don&#039;t Support Parallel Development		</title>
+		<link>https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/#comment-2</link>
+
+		<dc:creator><![CDATA[Pact&#039;s Dependency Drag​: Why Consumer-Driven Contracts Don&#039;t Support Parallel Development]]></dc:creator>
+		<pubDate>Fri, 18 Oct 2024 04:11:36 +0000</pubDate>
+		<guid isPermaLink="false">https://specmatic.io/?p=585#comment-2</guid>
+
+					<description><![CDATA[[&#8230;] See also: Comparison: Specmatic vs Pact.io and Pactflow.io [&#8230;]]]></description>
+			<content:encoded><![CDATA[<p>[&#8230;] See also: Comparison: Specmatic vs Pact.io and Pactflow.io [&#8230;]</p>
+]]></content:encoded>
+		
+			</item>
+	</channel>
 </rss>

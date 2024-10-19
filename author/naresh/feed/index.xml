@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/author/naresh/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 16 Oct 2024 03:00:59 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 18 Oct 2024 04:17:12 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,40 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>OpenAPI Example Simplified: Visualize and Generate Domain-Specific Test Data​</title>
+		<link>https://specmatic.io/updates/openapi-example-simplified-visualize-and-generate-domain-specific-test-data/</link>
+		
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
+		<pubDate>Fri, 18 Oct 2024 04:15:08 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[OpenAPI]]></category>
+		<category><![CDATA[Specmatic]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5902</guid>
+
+					<description><![CDATA[Streamlining API Development: An Interactive Guide to Example Generation and Validation using Specmatic&#160; A robust, streamlined approach to API development is crucial for maintaining efficiency, reliability, and scalability in your development pipeline. One powerful methodology that has emerged is Contract-Driven Development (CDD), allowing developers to fully realize the benefits of microservices architectures. This article demonstrates [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
+		<title>OpenAPI&#8217;s Broken Tooling: Roundtrip Fidelity Failure with CodeGen and DocGen​</title>
+		<link>https://specmatic.io/updates/openapis-broken-tooling-roundtrip-fidelity-failure-with-codegen-and-docgen/</link>
+		
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
+		<pubDate>Fri, 18 Oct 2024 03:51:21 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[OpenAPI]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5895</guid>
+
+					<description><![CDATA[Exploring the Strengths and Weaknesses of Automated API Development&#160; Maintaining well-documented and reliable APIs is essential for any microservices development pipelines. At the heart of this process for OpenAPI specs are two important tools: CodeGen and DocGen. CodeGen, short for code generation, and DocGen, documentation generation, are designed to streamline the development cycle by automating [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>gRPC Flaws​ &#8211; The Illusion of Safety &#038; Frustrating DevEx in Proto3&#8217;s Type-Safe Contracts​</title>
 		<link>https://specmatic.io/updates/grpc-flaws-the-illusion-of-safety-frustrating-devex-in-proto3s-type-safe-contracts/</link>
 		

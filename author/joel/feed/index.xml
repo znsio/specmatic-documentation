@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/author/joel/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Tue, 13 Aug 2024 23:33:30 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 18 Oct 2024 04:24:09 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,22 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Build Apps from API specs using AI: Self-Correcting Contract-Driven Agentic Workflows with Specmatic</title>
+		<link>https://specmatic.io/updates/build-apps-from-api-specs-using-ai-self-correcting-contract-driven-agentic-workflows-with-specmatic/</link>
+		
+		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
+		<pubDate>Fri, 18 Oct 2024 04:20:19 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[OpenAPI]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5906</guid>
+
+					<description><![CDATA[Harnessing the Power of API Specifications for Robust Microservices&#160; Modern microservice architecture hinges on precise and dependable communication between services. This is where API specifications serve as the linchpin, establishing clear, executable contracts that dictate how services interact. With advancements in AI, we can now take these specifications and seamlessly transform them into running applications. [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>API Resiliency and Contract Testing for GraphQL</title>
 		<link>https://specmatic.io/demonstration/api-resiliency-and-contract-testing-for-graphql/</link>
 		
