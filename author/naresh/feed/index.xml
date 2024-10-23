@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/author/naresh/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Fri, 18 Oct 2024 04:17:12 +0000</lastBuildDate>
+	<lastBuildDate>Sat, 19 Oct 2024 05:51:44 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,7 +28,7 @@
 	<height>32</height>
 </image> 
 	<item>
-		<title>OpenAPI Example Simplified: Visualize and Generate Domain-Specific Test Data​</title>
+		<title>OpenAPI Examples Simplified: Visualize and Generate Domain-Specific Test Data​</title>
 		<link>https://specmatic.io/updates/openapi-example-simplified-visualize-and-generate-domain-specific-test-data/</link>
 		
 		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
