@@ -1,4 +1,4 @@
-/*! elementor - v3.24.0 - 15-10-2024 */
+/*! elementor - v3.25.0 - 29-10-2024 */
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["modules_nested-tabs_assets_js_editor_module_js"],{
 
 /***/ "../modules/nested-tabs/assets/js/editor/module.js":

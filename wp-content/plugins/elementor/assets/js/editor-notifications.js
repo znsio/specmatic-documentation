@@ -1,4 +1,4 @@
-/*! elementor - v3.24.0 - 15-10-2024 */
+/*! elementor - v3.25.0 - 29-10-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -298,7 +298,7 @@ var editorV2 = function editorV2() {
   var utilitiesMenu = window.elementorV2.editorAppBar.utilitiesMenu;
   utilitiesMenu.registerLink({
     id: 'app-bar-menu-item-whats-new',
-    priority: 25,
+    priority: 10,
     useProps: function useProps() {
       var _useState = (0, _react.useState)(!elementorNotifications.is_unread),
         _useState2 = (0, _slicedToArray2.default)(_useState, 2),
