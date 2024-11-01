@@ -4,23 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 	 <link rel="profile" href="https://gmpg.org/xfn/11"> 
-	 <title>API Design First in Practise – An Experience Report - Specmatic</title>
+	 <title>Streamline Your API Development Process with an API Design First Strategy</title>
 <link rel="preconnect" href="//digitalvoice.involve.me">
 <link rel="preconnect" href="//cdn.ivlv.me">
 <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="//use.fontawesome.com">
-<link rel="preconnect" href="//use.fontawesome.com" crossorigin>
-<link rel="preconnect" href="//www.googletagmanager.com">
+<link rel="preconnect" href="//firebasestorage.googleapis.com">
+<link rel="preconnect" href="//unpkg.com">
 <link rel="dns-prefetch" href="//digitalvoice.involve.me">
 <link rel="dns-prefetch" href="//cdn.ivlv.me">
 <link rel="dns-prefetch" href="//fonts.gstatic.com">
-<link rel="dns-prefetch" href="//www.googletagmanager.com">
+<link rel="dns-prefetch" href="//firebasestorage.googleapis.com">
 
 <link rel="preload" href="https://specmatic.io/wp-content/astra-local-fonts/plus-jakarta-sans/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_Tkn9TR_V.woff2" as="font" type="font/woff2" crossorigin>
-<meta name="dc.title" content="API Design First in Practise – An Experience Report - Specmatic">
+<meta name="dc.title" content="Streamline Your API Development Process with an API Design First Strategy">
+<meta name="dc.description" content="Discover how the API Design First approach can enhance collaboration, efficiency, and quality in API development. Learn about executable contracts and service virtualization.">
 <meta name="dc.relation" content="https://specmatic.io/appearance/api-design-first-in-practise-an-experience-report/">
 <meta name="dc.source" content="https://specmatic.io/">
 <meta name="dc.language" content="en_US">
+<meta name="description" content="Discover how the API Design First approach can enhance collaboration, efficiency, and quality in API development. Learn about executable contracts and service virtualization.">
 <meta name="thumbnail" content="https://specmatic.io/wp-content/uploads/2024/09/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan-150x150.jpg">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <link rel="canonical" href="https://specmatic.io/appearance/api-design-first-in-practise-an-experience-report/">
@@ -30,17 +31,18 @@
 <meta property="og:type" content="article">
 <meta property="article:author" content="https://www.facebook.com/specmatic.cdd">
 <meta property="article:publisher" content="https://www.facebook.com/specmatic.cdd">
-<meta property="og:title" content="API Design First in Practise – An Experience Report - Specmatic">
-<meta property="og:image" content="https://specmatic.io/wp-content/uploads/2022/09/Video-Cover-img.jpg">
-<meta property="og:image:secure_url" content="https://specmatic.io/wp-content/uploads/2022/09/Video-Cover-img.jpg">
-<meta property="og:image:width" content="1000">
-<meta property="og:image:height" content="544">
-<meta property="og:image:alt" content="Specmatic - an introduction to contract-driven development">
+<meta property="og:title" content="Streamline Your API Development Process with an API Design First Strategy">
+<meta property="og:description" content="Discover how the API Design First approach can enhance collaboration, efficiency, and quality in API development. Learn about executable contracts and service virtualization.">
+<meta property="og:image" content="https://specmatic.io/wp-content/uploads/2024/09/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan.jpg">
+<meta property="og:image:secure_url" content="https://specmatic.io/wp-content/uploads/2024/09/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan.jpg">
+<meta property="og:image:width" content="1201">
+<meta property="og:image:height" content="628">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@specmatic">
 <meta name="twitter:creator" content="@specmatic">
-<meta name="twitter:title" content="API Design First in Practise – An Experience Report - Specmatic">
-<meta name="twitter:image" content="https://specmatic.io/wp-content/uploads/2024/09/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan-1024x535.jpg">
+<meta name="twitter:title" content="Streamline Your API Development Process with an API Design First Strategy">
+<meta name="twitter:description" content="Discover how the API Design First approach can enhance collaboration, efficiency, and quality in API development. Learn about executable contracts and service virtualization.">
+<meta name="twitter:image" content="https://specmatic.io/wp-content/uploads/2024/09/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan.jpg">
 <link rel="dns-prefetch" href="//use.fontawesome.com">
 <link rel="alternate" type="application/rss+xml" title="Specmatic &raquo; Feed" href="https://specmatic.io/feed/">
 <link rel="alternate" type="application/rss+xml" title="Specmatic &raquo; Comments Feed" href="https://specmatic.io/comments/feed/">
@@ -49,8 +51,8 @@
 <link rel="preload" as="style" data-id="astra-theme-css-css" href="https://specmatic.io/wp-content/themes/astra/assets/css/minified/main.min.css" media="all">
 <link rel="stylesheet"  href="https://specmatic.io/wp-content/themes/astra/assets/css/minified/main.min.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
 <noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/themes/astra/assets/css/minified/main.min.css" media="all"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra/astra-theme-dynamic-css-post-5785-1730277888.min.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra/astra-theme-dynamic-css-post-5785-1730277888.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra/astra-theme-dynamic-css-post-5785-1730434139.min.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra/astra-theme-dynamic-css-post-5785-1730434139.min.css" media="all"></noscript>
 <link rel="preload" as="style" data-id="wp-block-library-css" href="https://specmatic.io/wp-includes/css/dist/block-library/style.min.css" media="all">
 <link rel="stylesheet"  href="https://specmatic.io/wp-includes/css/dist/block-library/style.min.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
 <noscript><link rel="stylesheet"  href="https://specmatic.io/wp-includes/css/dist/block-library/style.min.css" media="all"></noscript>
@@ -60,12 +62,12 @@
 :root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}</style>
 <link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/ultimate-addons-for-gutenberg/assets/css/spectra-block-positioning.min.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
 <noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/ultimate-addons-for-gutenberg/assets/css/spectra-block-positioning.min.css" media="all"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/6000/uag-css-5785-1730277888.min.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/6000/uag-css-5785-1730277888.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/6000/uag-css-5785-1730434703.min.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/uag-plugin/assets/6000/uag-css-5785-1730434703.min.css" media="all"></noscript>
 <link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-670f2bae9beae0-78651232-1729047470.min.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
 <noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-670f2bae9beae0-78651232-1729047470.min.css" media="all"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-dynamic-css-post-5785-1730277888.min.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-dynamic-css-post-5785-1730277888.min.css" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-dynamic-css-post-5785-1730434139.min.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/astra-addon/astra-addon-dynamic-css-post-5785-1730434139.min.css" media="all"></noscript>
 <link rel="preload" as="style" data-id="elementor-frontend-css" href="https://specmatic.io/wp-content/plugins/elementor/assets/css/frontend.min.css" media="all">
 <link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/css/frontend.min.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
 <noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/css/frontend.min.css" media="all"></noscript>
@@ -111,9 +113,9 @@
 <link rel="preload" as="style" data-id="e-swiper-css" href="https://specmatic.io/wp-content/plugins/elementor/assets/css/conditionals/e-swiper.min.css" media="all">
 <link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/css/conditionals/e-swiper.min.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
 <noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/elementor/assets/css/conditionals/e-swiper.min.css" media="all"></noscript>
-<link rel="preload" as="style" data-id="elementor-post-5-css" href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-5-1730266642.min.css" media="all">
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-5-1730266642.min.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-5-1730266642.min.css" media="all"></noscript>
+<link rel="preload" as="style" data-id="elementor-post-5-css" href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-5-1730403677.min.css" media="all">
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-5-1730403677.min.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-5-1730403677.min.css" media="all"></noscript>
 <link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/ultimate-elementor/assets/min-css/uael-frontend.min.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
 <noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/plugins/ultimate-elementor/assets/min-css/uael-frontend.min.css" media="all"></noscript>
 <link rel="preload" as="style" data-id="uael-teammember-social-icons-css" href="https://specmatic.io/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css" media="all">
@@ -132,15 +134,15 @@
 <link rel="preload" as="style" data-id="wpdt-elementor-widget-font-css" href="https://specmatic.io/wp-content/swis/cache/css/plugins/wpdatatables/integrations/page_builders/elementor/css/style-1692586520.min.css" media="all">
 <link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/plugins/wpdatatables/integrations/page_builders/elementor/css/style-1692586520.min.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
 <noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/plugins/wpdatatables/integrations/page_builders/elementor/css/style-1692586520.min.css" media="all"></noscript>
-<link rel="preload" as="style" data-id="elementor-post-1304-css" href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-1304-1730277885.min.css" media="all">
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-1304-1730277885.min.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-1304-1730277885.min.css" media="all"></noscript>
+<link rel="preload" as="style" data-id="elementor-post-1304-css" href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-1304-1730412178.min.css" media="all">
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-1304-1730412178.min.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/uploads/elementor/css/post-1304-1730412178.min.css" media="all"></noscript>
 <link rel="stylesheet"  href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"' integrity="sha384-SOnAn/m2fVJCwnbEYgD4xzrPtvsXdElhOVvR8ND1YjB5nhGNwwf7nBQlhfAwHAZC" crossorigin="anonymous">
 <noscript><link rel="stylesheet"  href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" media="all" integrity="sha384-SOnAn/m2fVJCwnbEYgD4xzrPtvsXdElhOVvR8ND1YjB5nhGNwwf7nBQlhfAwHAZC" crossorigin="anonymous"></noscript>
 <link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/themes/astra-child/style-1668396837.min.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
 <noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/themes/astra-child/style-1668396837.min.css" media="all"></noscript>
-<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/micro-themes/active-styles-1730276887.min.css?mts=3390#038;ver=6.6.2" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
-<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/micro-themes/active-styles-1730276887.min.css?mts=3390#038;ver=6.6.2" media="all"></noscript>
+<link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/micro-themes/active-styles-1730417750.min.css?mts=3448#038;ver=6.6.2" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
+<noscript><link rel="stylesheet"  href="https://specmatic.io/wp-content/swis/cache/css/micro-themes/active-styles-1730417750.min.css?mts=3448#038;ver=6.6.2" media="all"></noscript>
 <script src="https://specmatic.io/wp-includes/js/jquery/jquery.min.js" ></script>
 <script src="https://specmatic.io/wp-includes/js/jquery/jquery-migrate.min.js" ></script>
 <!--[if IE]>
@@ -178,6 +180,8 @@ flexibility(document.documentElement);
 <link rel="stylesheet" href="https://specmatic.io/wp-content/uploads/elementor/custom-icons/icomoon/style.css" media="print" data-swis="loading" onload='this.media="all";this.dataset.swis="loaded"'>
 <noscript><link rel="stylesheet" href="https://specmatic.io/wp-content/uploads/elementor/custom-icons/icomoon/style.css" media="all"></noscript>
 
+
+<script src="https://unpkg.com/@botpoison/browser" async></script>
 <link rel="icon" href="https://specmatic.io/wp-content/uploads/2022/09/Favicon.png" sizes="32x32">
 <link rel="icon" href="https://specmatic.io/wp-content/uploads/2022/09/Favicon.png" sizes="192x192">
 <link rel="apple-touch-icon" href="https://specmatic.io/wp-content/uploads/2022/09/Favicon.png">
@@ -199,57 +203,6 @@ window.addEventListener('load', function () {
     });
     
  gtag('config', 'G-DZJQMQZ82G' , {});</script>
-<style >:root {
-					--wpforms-field-border-radius: 3px;
---wpforms-field-border-style: solid;
---wpforms-field-border-size: 1px;
---wpforms-field-background-color: #ffffff;
---wpforms-field-border-color: rgba( 0, 0, 0, 0.25 );
---wpforms-field-border-color-spare: rgba( 0, 0, 0, 0.25 );
---wpforms-field-text-color: rgba( 0, 0, 0, 0.7 );
---wpforms-field-menu-color: #ffffff;
---wpforms-label-color: rgba( 0, 0, 0, 0.85 );
---wpforms-label-sublabel-color: rgba( 0, 0, 0, 0.55 );
---wpforms-label-error-color: #d63637;
---wpforms-button-border-radius: 3px;
---wpforms-button-border-style: none;
---wpforms-button-border-size: 1px;
---wpforms-button-background-color: #066aab;
---wpforms-button-border-color: #066aab;
---wpforms-button-text-color: #ffffff;
---wpforms-page-break-color: #066aab;
---wpforms-background-image: none;
---wpforms-background-position: center center;
---wpforms-background-repeat: no-repeat;
---wpforms-background-size: cover;
---wpforms-background-width: 100px;
---wpforms-background-height: 100px;
---wpforms-background-color: rgba( 0, 0, 0, 0 );
---wpforms-background-url: none;
---wpforms-container-padding: 0px;
---wpforms-container-border-style: none;
---wpforms-container-border-width: 1px;
---wpforms-container-border-color: #000000;
---wpforms-container-border-radius: 3px;
---wpforms-field-size-input-height: 43px;
---wpforms-field-size-input-spacing: 15px;
---wpforms-field-size-font-size: 16px;
---wpforms-field-size-line-height: 19px;
---wpforms-field-size-padding-h: 14px;
---wpforms-field-size-checkbox-size: 16px;
---wpforms-field-size-sublabel-spacing: 5px;
---wpforms-field-size-icon-size: 1;
---wpforms-label-size-font-size: 16px;
---wpforms-label-size-line-height: 19px;
---wpforms-label-size-sublabel-font-size: 14px;
---wpforms-label-size-sublabel-line-height: 17px;
---wpforms-button-size-font-size: 17px;
---wpforms-button-size-height: 41px;
---wpforms-button-size-padding-h: 15px;
---wpforms-button-size-margin-top: 10px;
---wpforms-container-shadow-size-box-shadow: none;
-
-				}</style>
 </head>
 
 <body itemtype="https://schema.org/Blog" itemscope="itemscope" class="appearance-template-default single single-appearance postid-5785 wp-custom-logo mtp-5785 mtp-appearance-api-design-first-in-practise-an-experience-report ast-desktop ast-page-builder-template ast-no-sidebar astra-4.8.3 group-blog ast-blog-single-style-1 ast-custom-post-type ast-single-post ast-inherit-site-logo-transparent ast-hfb-header elementor-page-1304 ast-normal-title-enabled elementor-default elementor-kit-5 astra-addon-4.8.3">
@@ -465,14 +418,14 @@ window.addEventListener('load', function () {
 
 		
 					<main id="main" class="site-main">
-						<div data-elementor-type="single-post" data-elementor-id="1304" class="elementor elementor-1304 elementor-location-single post-5785 appearance type-appearance status-publish has-post-thumbnail hentry category-conference tag-conference ast-article-single" data-elementor-post-type="elementor_library">
+						<div data-elementor-type="single-post" data-elementor-id="1304" class="elementor elementor-1304 elementor-location-single post-5785 appearance type-appearance status-publish has-post-thumbnail hentry category-conference tag-api-design-first tag-conference ast-article-single" data-elementor-post-type="elementor_library">
 					<section class="elementor-section elementor-top-section elementor-element elementor-element-5fbcf7db elementor-reverse-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="5fbcf7db" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
 						<div class="elementor-container elementor-column-gap-default">
 					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-71b364af" data-id="71b364af" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
 			<div class="elementor-widget-wrap elementor-element-populated">
 						<div class="elementor-element elementor-element-753a1a82 elementor-widget elementor-widget-theme-post-title elementor-page-title elementor-widget-heading" data-id="753a1a82" data-element_type="widget" data-widget_type="theme-post-title.default">
 				<div class="elementor-widget-container">
-			<h1 class="elementor-heading-title elementor-size-default">API Design First in Practise – An Experience Report</h1>		</div>
+			<h1 class="elementor-heading-title elementor-size-default">API Design First: A Practical Approach to Effective API Development</h1>		</div>
 				</div>
 				<section class="elementor-section elementor-inner-section elementor-element elementor-element-f8de1c5 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="f8de1c5" data-element_type="section">
 						<div class="elementor-container elementor-column-gap-default">
@@ -502,7 +455,7 @@ window.addEventListener('load', function () {
 								<i aria-hidden="true" class="fas fa-tags"></i>							</span>
 									<span class="elementor-icon-list-text elementor-post-info__item elementor-post-info__item--type-terms">
 										<span class="elementor-post-info__terms-list">
-				<a href="https://specmatic.io/tag/conference/" class="elementor-post-info__terms-list-item">Conference</a>				</span>
+				<a href="https://specmatic.io/tag/api-design-first/" class="elementor-post-info__terms-list-item">API design first</a>, <a href="https://specmatic.io/tag/conference/" class="elementor-post-info__terms-list-item">Conference</a>				</span>
 					</span>
 								</li>
 				</ul>
@@ -531,11 +484,11 @@ window.addEventListener('load', function () {
 <p><button style="background: #ffffff;border-color: #5C2680;border-width: 2px;padding: 6px 30px"><a href="https://nordicapis.com/events/platform-summit-2024/#register" target="_blank" rel="noopener">Register Now</a></button></p>
 						</div>
 				</div>
-				<div class="elementor-element elementor-element-1992595 elementor-widget elementor-widget-image" data-id="1992595" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-element elementor-element-e27b0b3 elementor-widget elementor-widget-video" data-id="e27b0b3" data-element_type="widget" data-settings="{&quot;youtube_url&quot;:&quot;https:\/\/www.youtube.com\/embed\/mUjY4uqY-uQ&quot;,&quot;video_type&quot;:&quot;youtube&quot;,&quot;controls&quot;:&quot;yes&quot;}" data-widget_type="video.default">
 				<div class="elementor-widget-container">
-														<a href="https://nordicapis.com/sessions/api-design-first-in-practise-an-experience-report/">
-							<picture><source sizes="(max-width: 1024px) 100vw, 1024px" type="image/webp" data-srcset="https://specmatic.io/wp-content/uploads/2024/09/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan-1024x535.jpg.webp 1024w, https://specmatic.io/wp-content/uploads/2024/09/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan-300x157.jpg.webp 300w, https://specmatic.io/wp-content/uploads/2024/09/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan-768x402.jpg.webp 768w, https://specmatic.io/wp-content/uploads/2024/09/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan.jpg.webp 1201w"><img fetchpriority="high" width="1024" height="535" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAIXAQAAAAAqZRE3AAAAAnRSTlMAAHaTzTgAAABaSURBVHja7cExAQAAAMKg9U9tDB+gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgLMBDaYAAZ2kNAUAAAAASUVORK5CYII=" class="attachment-large size-large wp-image-5786 lazyload" alt="" data-eio="p" data-src="https://specmatic.io/wp-content/uploads/2024/09/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan-1024x535.jpg" decoding="async" data-srcset="https://specmatic.io/wp-content/uploads/2024/09/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan-1024x535.jpg 1024w, https://specmatic.io/wp-content/uploads/2024/09/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan-300x157.jpg 300w, https://specmatic.io/wp-content/uploads/2024/09/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan-768x402.jpg 768w, https://specmatic.io/wp-content/uploads/2024/09/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan.jpg 1201w" data-sizes="auto" data-eio-rwidth="1024" data-eio-rheight="535"></picture><noscript><img fetchpriority="high" width="1024" height="535" src="https://specmatic.io/wp-content/uploads/2024/09/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan-1024x535.jpg" class="attachment-large size-large wp-image-5786" alt="" srcset="https://specmatic.io/wp-content/uploads/2024/09/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan-1024x535.jpg 1024w, https://specmatic.io/wp-content/uploads/2024/09/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan-300x157.jpg 300w, https://specmatic.io/wp-content/uploads/2024/09/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan-768x402.jpg 768w, https://specmatic.io/wp-content/uploads/2024/09/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan.jpg 1201w" sizes="(max-width: 1024px) 100vw, 1024px" data-eio="l"></noscript>								</a>
-													</div>
+					<div class="elementor-wrapper elementor-open-inline">
+			<div class="elementor-video"></div>		</div>
+				</div>
 				</div>
 				<section class="elementor-section elementor-inner-section elementor-element elementor-element-7d48e25 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7d48e25" data-element_type="section">
 						<div class="elementor-container elementor-column-gap-default">
@@ -658,7 +611,7 @@ window.addEventListener('load', function () {
 					<div class="elementor-post-navigation__separator"></div>
 				</div>
 						<div class="elementor-post-navigation__next elementor-post-navigation__link">
-				<a href="https://specmatic.io/appearance/platform-summit-avoiding-apipocalypse-api-resiliency-testing-ftw/" rel="next"><span class="elementor-post-navigation__link__next"><span class="post-navigation__next--label">Next</span><span class="post-navigation__next--title">Platform Summit: Avoiding APIpocalypse; API Resiliency Testing FTW!</span></span><span class="post-navigation__arrow-wrapper post-navigation__arrow-next"><i class="fa fa-angle-right" aria-hidden="true"></i><span class="elementor-screen-only">Next</span></span></a>			</div>
+				<a href="https://specmatic.io/appearance/platform-summit-avoiding-apipocalypse-api-resiliency-testing-ftw/" rel="next"><span class="elementor-post-navigation__link__next"><span class="post-navigation__next--label">Next</span><span class="post-navigation__next--title">API Resiliency Testing: Ensuring Robustness in Modern Applications</span></span><span class="post-navigation__arrow-wrapper post-navigation__arrow-next"><i class="fa fa-angle-right" aria-hidden="true"></i><span class="elementor-screen-only">Next</span></span></a>			</div>
 		</div>
 				</div>
 				</div>
@@ -673,6 +626,156 @@ window.addEventListener('load', function () {
 				<div class="elementor-element elementor-element-aa9387f elementor-widget elementor-widget-heading" data-id="aa9387f" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
 			<h3 class="elementor-heading-title elementor-size-default">Transcript</h3>		</div>
+				</div>
+				<div class="elementor-element elementor-element-b5324b4 elementor-widget elementor-widget-text-editor" data-id="b5324b4" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>In microservices development, adopting an API Design First approach can significantly streamline the process of creating robust APIs. This talk explores the concept of executable contracts and how they facilitate collaboration among stakeholders, ultimately enhancing the quality and efficiency of API development.</p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#introduction-to-api-design-first">Introduction to API Design First</a></li>
+<li><a href="https://specmatic.io/appearance/api-design-first-in-practise-an-experience-report/-setting-up-service-virtualization">Live Demo: Setting Up Service Virtualization</a></li>
+<li><a href="#running-tests-against-the-provider">Running Tests Against the Provider</a></li>
+<li><a href="#identifying-backward-incompatible-changes">Identifying Backward Incompatible Changes</a></li>
+<li><a href="#integrating-linting-and-compatibility-checks">Integrating Linting and Compatibility Checks</a></li>
+<li><a href="#the-role-of-ci-in-api-development">The Role of CI in API Development</a></li>
+<li><a href="https://specmatic.io/appearance/api-design-first-in-practise-an-experience-report/-the-benefits-of-api-design-first">Conclusion: The Benefits of API Design First</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ul>
+<h2 id="introduction-to-api-design-first">Introduction to API Design First</h2>
+<p>API Design First is a methodology that emphasizes the importance of defining APIs before development begins. This approach encourages teams to create a clear and comprehensive API specification that serves as a blueprint for both consumers and providers. By doing so, it fosters collaboration, reduces misunderstandings, and ensures all stakeholders have a unified vision of the API&#8217;s functionality.</p>
+<p>With API Design First, teams can parallelize their efforts, allowing front-end and back-end developers to work independently. This not only speeds up the development process but also enhances the overall quality of the API by ensuring that it meets consumer expectations from the outset.</p>
+<h3>Understanding Executable Contracts</h3>
+<p>Executable contracts are a key component of the API Design First approach. They serve as a formal agreement between API consumers and providers, ensuring that both parties are aligned on the behavior and expectations of the API. Using a toll like Specmatic, these contracts can be automatically validated against the actual API implementation, providing a safety net that helps catch discrepancies early in the development process.</p>
+<p>By generating executable contracts from API specifications, teams can create stubs for consumers and tests for providers. This means that both sides can begin development work simultaneously without waiting for the other to complete their tasks. This parallel development is crucial in modern agile environments where time-to-market is a significant factor.</p>
+<p><img style="object-fit: cover" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Overview of API specifications and executable contracts" width="100%" data-src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F12a4c9ac-bd3b-44c2-abe1-cd467506db89.webp?alt=media&token=166a6b80-21f9-4d5d-ad29-70637816aff6" decoding="async" class="lazyload"><noscript><img style="object-fit: cover" src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F12a4c9ac-bd3b-44c2-abe1-cd467506db89.webp?alt=media&amp;token=166a6b80-21f9-4d5d-ad29-70637816aff6" alt="Overview of API specifications and executable contracts" width="100%" data-eio="l"></noscript></p>
+<h2 id="live-demo:-setting-up-service-virtualization">Live Demo: Setting Up Service Virtualization</h2>
+<p>Setting up service virtualization is a straightforward process that begins with an API specification. The first step involves using a tool like Specmatic to generate a stub server based on this specification. This allows teams to simulate the behavior of the API without requiring the actual implementation to be complete.</p>
+<p>Once the stub server is running, developers can interact with it as if it were the live API. This means that front-end developers can start building their applications even if the back-end is still in development. The stub can return predefined responses that mimic the expected behavior of the API, allowing for effective testing and integration.</p>
+<p><img style="object-fit: cover" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Demonstration of setting up a stub server" width="100%" data-src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F761a4732-f64a-4fdc-bde0-94014c64d860.webp?alt=media&token=64a4ab9f-083a-4a99-b248-f6e3343f8411" decoding="async" class="lazyload"><noscript><img style="object-fit: cover" src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F761a4732-f64a-4fdc-bde0-94014c64d860.webp?alt=media&amp;token=64a4ab9f-083a-4a99-b248-f6e3343f8411" alt="Demonstration of setting up a stub server" width="100%" data-eio="l"></noscript></p>
+<h3>Generating API Examples from Specifications</h3>
+<p>Generating API examples from specifications is a critical step in the API Design First process. These examples provide concrete data that developers can use to understand how to interact with the API effectively. They serve as both documentation and testing data, bridging the gap between the abstract specification and practical implementation.</p>
+<p>To generate these examples, developers can utilize a command that extracts the necessary information from the API specification. This process includes defining request parameters and expected responses, ensuring that the examples are representative of the actual API behavior.</p>
+<p><img style="object-fit: cover" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Generating API examples from specifications" width="100%" data-src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F28019ae0-7eb5-40ab-9ecb-4d0f5605a44b.webp?alt=media&token=b60f8686-529b-43bc-b375-0c67c0107055" decoding="async" class="lazyload"><noscript><img style="object-fit: cover" src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F28019ae0-7eb5-40ab-9ecb-4d0f5605a44b.webp?alt=media&amp;token=b60f8686-529b-43bc-b375-0c67c0107055" alt="Generating API examples from specifications" width="100%" data-eio="l"></noscript></p>
+<h4>Example Generation Steps</h4>
+<ol>
+<li>Start with a clear API specification.</li>
+<li>Use a command to generate interactive examples.</li>
+<li>Review and modify the examples as needed.</li>
+<li>Validate the examples against the specification to ensure accuracy.</li>
+</ol>
+<h3>Validating API Examples</h3>
+<p>Validation of API examples is essential to ensure that they align with the API specification. This process involves checking that the generated examples conform to the expected formats, types, and constraints defined in the API contract.</p>
+<p>During validation, if discrepancies are found, developers must modify the examples to correct any issues. This step is crucial, as it prevents consumers from encountering unexpected errors when they start integrating with the API.</p>
+<p><img style="object-fit: cover" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Validating API examples against specifications" width="100%" data-src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F777d506f-7e15-464c-aaf3-43cb0f41a4b4.webp?alt=media&token=b66d239f-5bb1-4293-8177-8896b1e2b70a" decoding="async" class="lazyload"><noscript><img style="object-fit: cover" src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F777d506f-7e15-464c-aaf3-43cb0f41a4b4.webp?alt=media&amp;token=b66d239f-5bb1-4293-8177-8896b1e2b70a" alt="Validating API examples against specifications" width="100%" data-eio="l"></noscript></p>
+<h3>Creating and Testing the Stub Server</h3>
+<p>Creating a stub server based on the API specification is a vital part of the API Design First methodology. Once the stub is set up, developers can test it to ensure it behaves as expected. This involves sending requests to the stub server and verifying that the responses match the predefined examples.</p>
+<p>Testing the stub server not only helps identify issues with the API design but also provides a platform for consumers to build their applications without waiting for the actual API implementation. This leads to faster development cycles and improved collaboration between teams.</p>
+<p><img style="object-fit: cover" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Creating and testing the stub server" width="100%" data-src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F8ae2b602-5154-4f24-b4e9-351fbbf35236.webp?alt=media&token=b6474815-6721-4285-a3f4-b1fe6620c9b7" decoding="async" class="lazyload"><noscript><img style="object-fit: cover" src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F8ae2b602-5154-4f24-b4e9-351fbbf35236.webp?alt=media&amp;token=b6474815-6721-4285-a3f4-b1fe6620c9b7" alt="Creating and testing the stub server" width="100%" data-eio="l"></noscript></p>
+<p>Once the stub server is operational, developers can easily run tests against it. They can verify that the responses returned by the stub match the expected outcomes defined in the API examples. This testing process is essential for ensuring that the API behaves consistently and meets the requirements set forth in the API specification.</p>
+<h4>Key Benefits of Testing the Stub Server</h4>
+<ul>
+<li>Ensures alignment between API design and implementation.</li>
+<li>Facilitates early detection of discrepancies.</li>
+<li>Allows for independent development by consumers.</li>
+<li>Enhances overall API quality and reliability.</li>
+</ul>
+<h2 id="running-tests-against-the-provider">Running Tests Against the Provider</h2>
+<p>Once the stub server is operational, it&#8217;s essential to validate the API against the provider. This is where running tests against the provider becomes crucial. By utilizing the API specification, developers can generate tests that ensure the implementation aligns with the defined contract.</p>
+<p>These tests can be automated, providing a seamless integration process. As developers push changes, automated tests can validate the API responses against the expected outcomes. This not only assures quality but also builds confidence in the API&#8217;s stability.</p>
+<p><img style="object-fit: cover" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Running tests against the API provider" width="100%" data-src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F920ea8b9-e7f9-43ec-b8e2-ddf7f30e756e.webp?alt=media&token=a5a66ff8-0ecb-4c23-8827-d87942d6d702" decoding="async" class="lazyload"><noscript><img style="object-fit: cover" src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F920ea8b9-e7f9-43ec-b8e2-ddf7f30e756e.webp?alt=media&amp;token=a5a66ff8-0ecb-4c23-8827-d87942d6d702" alt="Running tests against the API provider" width="100%" data-eio="l"></noscript></p>
+<h3>Importance of API Specifications</h3>
+<p>API specifications serve as the foundation for all API interactions. They define the structure, endpoints, and expected behaviors, creating a clear communication channel between consumers and providers. A well-defined specification minimizes ambiguity, ensuring that all stakeholders are on the same page.</p>
+<p>Moreover, having a definitive API specification enhances collaboration among teams. It enables parallel development, where front-end and back-end teams can work independently without stepping on each other&#8217;s toes. This not only accelerates the development process but also reduces the potential for errors and miscommunication.</p>
+<p><img style="object-fit: cover" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Importance of API specifications in development" width="100%" data-src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F675da1e3-5549-440e-9bb4-09587eb0d5b3.webp?alt=media&token=8c07acd1-b535-4da9-8fed-df4bda0b3492" decoding="async" class="lazyload"><noscript><img style="object-fit: cover" src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F675da1e3-5549-440e-9bb4-09587eb0d5b3.webp?alt=media&amp;token=8c07acd1-b535-4da9-8fed-df4bda0b3492" alt="Importance of API specifications in development" width="100%" data-eio="l"></noscript></p>
+<h3>Collaboration Among Stakeholders</h3>
+<p>Effective collaboration is at the heart of the API Design First approach. Stakeholders, including developers, architects, and security teams, must come together to discuss and agree on the API&#8217;s design. This collaboration can often take place over various platforms, from wikis to collaborative documentation tools.</p>
+<p>By fostering open communication, teams can address concerns early in the design phase. This proactive approach helps in identifying potential issues before they escalate, ensuring that the API meets the needs of all parties involved.</p>
+<p><img style="object-fit: cover" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Collaboration among API stakeholders" width="100%" data-src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F2fe8fa1d-b44f-451c-940a-77e211b526a4.webp?alt=media&token=5a945fcf-3efc-4fcf-8f95-7a73cf36e299" decoding="async" class="lazyload"><noscript><img style="object-fit: cover" src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F2fe8fa1d-b44f-451c-940a-77e211b526a4.webp?alt=media&amp;token=5a945fcf-3efc-4fcf-8f95-7a73cf36e299" alt="Collaboration among API stakeholders" width="100%" data-eio="l"></noscript></p>
+<h3>Storing API Specifications Effectively</h3>
+<p>Choosing the right storage solution for API specifications is critical. While some might consider keeping specifications with the provider, this can lead to accessibility issues for consumers. A central repository, such as a Git repository, provides a democratic approach where both consumers and providers can access and contribute to the specifications.</p>
+<p>Utilizing a version control system allows teams to manage changes effectively. It provides a clear history of modifications, making it easier to track the evolution of the API. Moreover, integrating linting and validation processes into the pull request workflow ensures that only compliant specifications are merged.</p>
+<p><img style="object-fit: cover" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Storing API specifications in a central repository" width="100%" data-src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2FlssI439kyyQQoE1alZq8%2Fb3595f22-54b6-47fb-afa4-f47606d147ab.webp?alt=media&token=3d9d47af-5810-4d0a-a432-2da77f9282b7" decoding="async" class="lazyload"><noscript><img style="object-fit: cover" src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2FlssI439kyyQQoE1alZq8%2Fb3595f22-54b6-47fb-afa4-f47606d147ab.webp?alt=media&amp;token=3d9d47af-5810-4d0a-a432-2da77f9282b7" alt="Storing API specifications in a central repository" width="100%" data-eio="l"></noscript></p>
+<h3>Backward Compatibility Testing</h3>
+<p>Backward compatibility is a crucial aspect of API development. When changes are made to an API, it&#8217;s vital to ensure that existing consumers are not adversely affected. By implementing backward compatibility testing, teams can identify breaking changes before they reach production.</p>
+<p>This testing process involves running the new version of the API specification against the existing implementation. If all tests pass, the change is deemed backward compatible. If any tests fail, developers can address the issues before proceeding, preventing potential disruptions for consumers.</p>
+<p><img style="object-fit: cover" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Backward compatibility testing process" width="100%" data-src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F3ba8e461-515c-4ebf-865b-a172f1e7e5b0.webp?alt=media&token=21d511a9-a149-4b0c-bb29-c773639d9bc3" decoding="async" class="lazyload"><noscript><img style="object-fit: cover" src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F3ba8e461-515c-4ebf-865b-a172f1e7e5b0.webp?alt=media&amp;token=21d511a9-a149-4b0c-bb29-c773639d9bc3" alt="Backward compatibility testing process" width="100%" data-eio="l"></noscript></p>
+<h3>Demo: Backward Compatibility with Proto Files</h3>
+<p>To illustrate backward compatibility testing, let’s consider a scenario using Proto files. Suppose we have two versions of a Proto file: V1 and V2. Initially, both files are identical, indicating full backward compatibility.</p>
+<p>Now, if we introduce a new mandatory field in V2, we can test whether this change breaks compatibility. Running the compatibility check will reveal that the addition of a mandatory field is indeed a backward incompatible change. This process allows teams to make informed decisions about versioning and API evolution.</p>
+<p><img style="object-fit: cover" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Demo of backward compatibility with Proto files" width="100%" data-src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F6e1d738d-4255-4b89-9721-29d163bec1e5.webp?alt=media&token=0befedff-098a-4522-a21f-0fe90523f87e" decoding="async" class="lazyload"><noscript><img style="object-fit: cover" src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F6e1d738d-4255-4b89-9721-29d163bec1e5.webp?alt=media&amp;token=0befedff-098a-4522-a21f-0fe90523f87e" alt="Demo of backward compatibility with Proto files" width="100%" data-eio="l"></noscript></p>
+<h2 id="identifying-backward-incompatible-changes">Identifying Backward Incompatible Changes</h2>
+<p>Identifying backward incompatible changes is critical in API development. When an API evolves, it&#8217;s essential to ensure existing consumers remain unaffected. This involves rigorously testing any proposed changes against the current version of the API.</p>
+<p>Backward incompatible changes can manifest as modifications to existing endpoints, changes in data types, or the addition of mandatory fields. A systematic approach to detect these changes early in the development cycle can save significant time and resources.</p>
+<p><img style="object-fit: cover" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Identifying backward incompatible changes" width="100%" data-src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F5454ccf3-b789-4878-abac-4ae18d7831e1.webp?alt=media&token=eb3cc71b-50d1-48ac-8fa5-c8108bbe35eb" decoding="async" class="lazyload"><noscript><img style="object-fit: cover" src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F5454ccf3-b789-4878-abac-4ae18d7831e1.webp?alt=media&amp;token=eb3cc71b-50d1-48ac-8fa5-c8108bbe35eb" alt="Identifying backward incompatible changes" width="100%" data-eio="l"></noscript></p>
+<h3>Strategies for Detection</h3>
+<ul>
+<li>
+<strong>Version Comparison:</strong> Regularly compare new API versions with existing ones to identify potential breaking changes.</li>
+<li>
+<strong>Automated Testing:</strong> Implement automated tests that run against both the new and old API specifications to catch discrepancies.</li>
+<li>
+<strong>Consumer Feedback:</strong> Engage with API consumers to gather insights on any issues they encounter due to changes.</li>
+</ul>
+<h3>Tools for Compatibility Testing</h3>
+<p>Several tools can assist in backward compatibility testing. These tools often automate the detection of breaking changes by validating new API specifications against the existing implementation.</p>
+<ul>
+<li>
+<strong>Contract Testing Tools:</strong> Utilize tools like Pact or Postman to validate contracts and ensure consistent behavior across versions.</li>
+<li>
+<strong>Schema Validation Tools:</strong> Use JSON Schema or Protobuf Validators to ensure that data structures remain compatible.</li>
+</ul>
+<h2 id="integrating-linting-and-compatibility-checks">Integrating Linting and Compatibility Checks</h2>
+<p>Integrating linting and compatibility checks into the API development workflow enhances the overall quality and reliability of the API. Linting tools ensure that the API specifications adhere to defined standards and best practices, while compatibility checks validate that changes do not introduce breaking changes.</p>
+<p><img style="object-fit: cover" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Integrating linting and compatibility checks" width="100%" data-src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2Ff4b6c79f-c664-4c97-b736-70a2b000fe9f.webp?alt=media&token=f2ecbfde-5e0a-487d-ba37-3b203d27be55" decoding="async" class="lazyload"><noscript><img style="object-fit: cover" src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2Ff4b6c79f-c664-4c97-b736-70a2b000fe9f.webp?alt=media&amp;token=f2ecbfde-5e0a-487d-ba37-3b203d27be55" alt="Integrating linting and compatibility checks" width="100%" data-eio="l"></noscript></p>
+<h3>Benefits of Linting</h3>
+<ul>
+<li>
+<strong>Consistency:</strong> Linting enforces a consistent coding style across API specifications, making them easier to read and maintain.</li>
+<li>
+<strong>Early Detection:</strong> By identifying issues early, linting reduces the likelihood of costly errors later in the development process.</li>
+<li>
+<strong>Documentation:</strong> Well-structured specifications serve as better documentation for both developers and consumers.</li>
+</ul>
+<h3>Implementing Compatibility Checks</h3>
+<p>Compatibility checks should be an integral part of the CI/CD pipeline. By automating these checks, teams can ensure that any changes made do not lead to backward incompatible changes.</p>
+<p>Using tools like Spectral for linting and Specmatic for compatibility checks can streamline this process. These checks should be run on pull requests to catch issues before they are merged into the main branch.</p>
+<p><img style="object-fit: cover" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Implementing compatibility checks in CI/CD" width="100%" data-src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2FlssI439kyyQQoE1alZq8%2F86ddcccf-8b7e-4680-ac7a-4be3d8d40361.webp?alt=media&token=d4cc5430-156b-4fbe-ae26-3f4943d7913e" decoding="async" class="lazyload"><noscript><img style="object-fit: cover" src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2FlssI439kyyQQoE1alZq8%2F86ddcccf-8b7e-4680-ac7a-4be3d8d40361.webp?alt=media&amp;token=d4cc5430-156b-4fbe-ae26-3f4943d7913e" alt="Implementing compatibility checks in CI/CD" width="100%" data-eio="l"></noscript></p>
+<h2 id="the-role-of-ci-in-api-development">The Role of CI in API Development</h2>
+<p>Continuous Integration (CI) plays a vital role in API development by automating the testing and validation of API changes. CI systems can run a suite of tests, including linting, compatibility checks, and contract validations, every time a change is made.</p>
+<p>This automation not only speeds up the development process but also ensures a higher level of quality control. Developers receive immediate feedback on their changes, allowing for quicker iterations and improvements.</p>
+<p><img style="object-fit: cover" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Role of CI in API development" width="100%" data-src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F185bc93d-c20b-4c4a-84dc-60dc696a04cb.webp?alt=media&token=5a32934f-b56d-40e0-a37c-4223389769f5" decoding="async" class="lazyload"><noscript><img style="object-fit: cover" src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fusers%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2Fblogs%2FlssI439kyyQQoE1alZq8%2Fscreenshots%2F185bc93d-c20b-4c4a-84dc-60dc696a04cb.webp?alt=media&amp;token=5a32934f-b56d-40e0-a37c-4223389769f5" alt="Role of CI in API development" width="100%" data-eio="l"></noscript></p>
+<h3>Setting Up CI for API Projects</h3>
+<ol>
+<li>Choose a CI tool that integrates well with your version control system.</li>
+<li>Define a build pipeline that includes linting, testing, and compatibility checks.</li>
+<li>Monitor the results of each build to identify and address issues promptly.</li>
+<li>Encourage team members to contribute to the CI setup by adding tests and improving workflows.</li>
+</ol>
+<h3>Best Practices for CI in API Development</h3>
+<ul>
+<li>
+<strong>Run Tests on Every Commit:</strong> Ensure that all tests, including compatibility checks, are triggered with every commit to catch issues early.</li>
+<li>
+<strong>Use Staging Environments:</strong> Implement staging environments to test APIs in conditions that mimic production.</li>
+<li>
+<strong>Document CI Processes:</strong> Maintain clear documentation on how CI is set up and how team members can contribute.</li>
+</ul>
+<h2 id="conclusion:-the-benefits-of-api-design-first">Conclusion: The Benefits of API Design First</h2>
+<p>The API Design First approach fundamentally transforms how teams develop APIs. By prioritizing specifications and contracts, teams can foster collaboration, reduce errors, and enhance overall API quality.</p>
+<p>With a focus on backward compatibility, linting, and CI integration, organizations can streamline their API development processes, leading to faster delivery times and improved consumer satisfaction.</p>
+<p><img style="object-fit: cover" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Benefits of API Design First" width="100%" data-src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2FlssI439kyyQQoE1alZq8%2F413f7de3-4305-4bc9-84f6-07ac415e7ad6.webp?alt=media&token=4dae3d9f-e52d-468b-9f2f-fc8751ee384f" decoding="async" class="lazyload"><noscript><img style="object-fit: cover" src="https://firebasestorage.googleapis.com/v0/b/videotoblog-35c6e.appspot.com/o/%2Fcf3b5FCuhQXXlP4sTS1cVI50CHD2%2FlssI439kyyQQoE1alZq8%2F413f7de3-4305-4bc9-84f6-07ac415e7ad6.webp?alt=media&amp;token=4dae3d9f-e52d-468b-9f2f-fc8751ee384f" alt="Benefits of API Design First" width="100%" data-eio="l"></noscript></p>
+<h2 id="faq">FAQ</h2>
+<h3>What is API Design First?</h3>
+<p>API Design First is a methodology that emphasizes defining APIs before development, ensuring all stakeholders have a clear understanding of the API&#8217;s functionality.</p>
+<h3>How do I ensure backward compatibility in my API?</h3>
+<p>Implement regular compatibility checks and automated tests to identify breaking changes early in the development process using a tool like Specmatic.</p>
+<h3>What tools can help with API linting and testing?</h3>
+<p>Tools like Spectral for linting and Specmatic for contract testing are effective in maintaining API quality and compatibility.</p>
+<h3>Why is CI important in API development?</h3>
+<p>CI automates the testing and validation process, providing immediate feedback to developers and ensuring a higher level of quality control.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+						</div>
 				</div>
 				<div class="elementor-element elementor-element-3ea763e2 elementor-widget-divider--view-line elementor-widget elementor-widget-divider" data-id="3ea763e2" data-element_type="widget" data-widget_type="divider.default">
 				<div class="elementor-widget-container">
@@ -695,7 +798,7 @@ window.addEventListener('load', function () {
 					<div class="elementor-post-navigation__separator"></div>
 				</div>
 						<div class="elementor-post-navigation__next elementor-post-navigation__link">
-				<a href="https://specmatic.io/appearance/platform-summit-avoiding-apipocalypse-api-resiliency-testing-ftw/" rel="next"><span class="elementor-post-navigation__link__next"><span class="post-navigation__next--label">Next</span><span class="post-navigation__next--title">Platform Summit: Avoiding APIpocalypse; API Resiliency Testing FTW!</span></span><span class="post-navigation__arrow-wrapper post-navigation__arrow-next"><i class="fa fa-angle-right" aria-hidden="true"></i><span class="elementor-screen-only">Next</span></span></a>			</div>
+				<a href="https://specmatic.io/appearance/platform-summit-avoiding-apipocalypse-api-resiliency-testing-ftw/" rel="next"><span class="elementor-post-navigation__link__next"><span class="post-navigation__next--label">Next</span><span class="post-navigation__next--title">API Resiliency Testing: Ensuring Robustness in Modern Applications</span></span><span class="post-navigation__arrow-wrapper post-navigation__arrow-next"><i class="fa fa-angle-right" aria-hidden="true"></i><span class="elementor-screen-only">Next</span></span></a>			</div>
 		</div>
 				</div>
 				</div>
@@ -1176,10 +1279,10 @@ var astraAddon = {"sticky_active":"","svgIconClose":"<span class=\"ast-icon icon
 <script >
 wp.i18n.setLocaleData( { 'text directionltr': [ 'ltr' ] } );
 </script>
-<script >var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/specmatic.io\/wp-admin\/admin-ajax.php","nonce":"6ae21ce00d","urls":{"assets":"https:\/\/specmatic.io\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"https:\/\/specmatic.io\/wp-json\/"},"settings":{"lazy_load_background_images":true},"popup":{"hasPopUps":true},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"},"x-twitter":{"title":"X"},"threads":{"title":"Threads"}},"facebook_sdk":{"lang":"en_US","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/specmatic.io\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};</script>
+<script >var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/specmatic.io\/wp-admin\/admin-ajax.php","nonce":"d7a48d574b","urls":{"assets":"https:\/\/specmatic.io\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"https:\/\/specmatic.io\/wp-json\/"},"settings":{"lazy_load_background_images":true},"popup":{"hasPopUps":true},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"},"x-twitter":{"title":"X"},"threads":{"title":"Threads"}},"facebook_sdk":{"lang":"en_US","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/specmatic.io\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};</script>
 <script src="https://specmatic.io/wp-content/plugins/elementor-pro/assets/js/frontend.min.js" ></script>
 <script src="https://specmatic.io/wp-includes/js/jquery/ui/core.min.js" ></script>
-<script >var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselWrapperAriaLabel":"Carousel | Horizontal scrolling: Arrow Left & Right","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"3.25.3","is_static":false,"experimentalFeatures":{"additional_custom_breakpoints":true,"container":true,"e_swiper_latest":true,"e_nested_atomic_repeaters":true,"e_optimized_control_loading":true,"e_onboarding":true,"e_css_smooth_scroll":true,"theme_builder_v2":true,"home_screen":true,"landing-pages":true,"nested-elements":true,"editor_v2":true,"link-in-bio":true,"floating-buttons":true},"urls":{"assets":"https:\/\/specmatic.io\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/specmatic.io\/wp-admin\/admin-ajax.php","uploadUrl":"https:\/\/specmatic.io\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"163b7236cd"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":5785,"title":"API%20Design%20First%20in%20Practise%20%E2%80%93%20An%20Experience%20Report%20-%20Specmatic","excerpt":"","featuredImage":"https:\/\/specmatic.io\/wp-content\/uploads\/2024\/09\/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan-1024x535.jpg"}};</script>
+<script >var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselWrapperAriaLabel":"Carousel | Horizontal scrolling: Arrow Left & Right","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"3.25.3","is_static":false,"experimentalFeatures":{"additional_custom_breakpoints":true,"container":true,"e_swiper_latest":true,"e_nested_atomic_repeaters":true,"e_optimized_control_loading":true,"e_onboarding":true,"e_css_smooth_scroll":true,"theme_builder_v2":true,"home_screen":true,"landing-pages":true,"nested-elements":true,"editor_v2":true,"link-in-bio":true,"floating-buttons":true},"urls":{"assets":"https:\/\/specmatic.io\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/specmatic.io\/wp-admin\/admin-ajax.php","uploadUrl":"https:\/\/specmatic.io\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"1c392ac05f"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":5785,"title":"Streamline%20Your%20API%20Development%20Process%20with%20an%20API%20Design%20First%20Strategy","excerpt":"","featuredImage":"https:\/\/specmatic.io\/wp-content\/uploads\/2024\/09\/Nordic-apis-Platform-Summit-Speaker-Hari-Krishnan-1024x535.jpg"}};</script>
 <script src="https://specmatic.io/wp-content/plugins/elementor/assets/js/frontend.min.js" ></script>
 <script src="https://specmatic.io/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js" ></script>
 			<script>/(trident|msie)/i.test(navigator.userAgent)&&document.getElementById&&window.addEventListener&&window.addEventListener("hashchange",function(){var t,e=location.hash.substring(1);/^[A-z0-9_-]+$/.test(e)&&(t=document.getElementById(e))&&(/^(?:a|select|input|button|textarea)$/i.test(t.tagName)||(t.tabIndex=-1),t.focus())},!1);</script>
