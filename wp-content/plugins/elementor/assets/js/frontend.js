@@ -1,4 +1,4 @@
-/*! elementor - v3.25.0 - 29-10-2024 */
+/*! elementor - v3.25.0 - 03-11-2024 */
 "use strict";
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["frontend"],{
 
@@ -1449,9 +1449,14 @@ class _default extends elementorModules.ViewModule {
     const validSelectorPattern = /^#[A-Za-z_][\w-]*$/;
     return validSelectorPattern.test(hash);
   }
+  isExcludedHash(hash) {
+    const emptyHash = '' === hash;
+    const urlActionHash = hash.startsWith('#elementor-action');
+    return emptyHash || urlActionHash;
+  }
   getAnchorTarget(element) {
     const hash = element?.hash;
-    if ('' === hash) {
+    if (this.isExcludedHash(hash)) {
       return null;
     } else if (!this.isValidSelector(hash)) {
       // eslint-disable-next-line no-console

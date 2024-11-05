@@ -175,6 +175,7 @@ tr > .gsc-input {
 
 /** General >> Paragraph **/
 .elementor-widget-text-editor p {
+	padding-bottom: 15px !important;
 	padding-left: 10px !important;
 	margin-bottom: 0 !important;
 	justify-items: center !important;
@@ -194,6 +195,7 @@ tr > .gsc-input {
 /** General >> Post navigation prev title **/
 .post-navigation__prev--title {
 	white-space: normal !important;
+	padding-right: 15px !important;
 }
 
 /** General >> width for small screens **/
@@ -621,6 +623,16 @@ html {
 	height: 47px !important;
 	border-color: rgb(213, 216, 220) !important;
 	border-radius: 6px 0 0 6px !important;
+}
+
+/** General 3 >> Heading 3 _2 **/
+.mtp-5789 .elementor-widget h3 {
+	padding-bottom: 10px !important;
+}
+
+/** General 3 >> Heading 2 **/
+.mtp-5789 .elementor-element h2 {
+	padding-bottom: 10px !important;
 }
 
 
