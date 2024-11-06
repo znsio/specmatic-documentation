@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>
+	Comments on: gRPC Flaws​ &#8211; The Illusion of Safety &#038; Frustrating DevEx in Proto3&#8217;s Type-Safe Contracts​	</title>
+	<atom:link href="https://specmatic.io/updates/grpc-flaws-the-illusion-of-safety-frustrating-devex-in-proto3s-type-safe-contracts/feed/" rel="self" type="application/rss+xml" />
+	<link>https://specmatic.io/updates/grpc-flaws-the-illusion-of-safety-frustrating-devex-in-proto3s-type-safe-contracts/</link>
+	<description>Contract Driven Development</description>
+	<lastBuildDate>Wed, 16 Oct 2024 10:02:19 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.2</generator>
+</channel>
+</rss>

@@ -1,4 +1,4 @@
-/*! elementor - v3.24.0 - 01-10-2024 */
+/*! elementor - v3.25.0 - 03-11-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -10794,7 +10794,6 @@ var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runt
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js"));
 var _i18n = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-var _useAttachUrlService2 = __webpack_require__(/*! ../../hooks/use-attach-url-service */ "../modules/ai/assets/js/editor/pages/form-layout/hooks/use-attach-url-service.js");
 var _alertDialog = __webpack_require__(/*! ../../../../components/alert-dialog */ "../modules/ai/assets/js/editor/components/alert-dialog.js");
 var _useTimeout3 = __webpack_require__(/*! ../../../../hooks/use-timeout */ "../modules/ai/assets/js/editor/hooks/use-timeout.js");
 var _attachments = __webpack_require__(/*! ../attachments */ "../modules/ai/assets/js/editor/pages/form-layout/components/attachments.js");
@@ -10804,39 +10803,44 @@ var _requestsIds = __webpack_require__(/*! ../../../../context/requests-ids */ "
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 var UrlDialog = function UrlDialog(props) {
-  var iframeRef = (0, _react.useRef)(null);
-  var _useAttachUrlService = (0, _useAttachUrlService2.useAttachUrlService)({
-      targetUrl: props.url
-    }),
-    iframeSource = _useAttachUrlService.iframeSource;
-  var iframeOrigin = iframeSource ? new URL(iframeSource).origin : '';
   var _useTimeout = (0, _useTimeout3.useTimeout)(10000),
     _useTimeout2 = (0, _slicedToArray2.default)(_useTimeout, 2),
     isTimeout = _useTimeout2[0],
     turnOffTimeout = _useTimeout2[1];
   var _useUserInfo = (0, _useUserInfo2.default)(),
-    isConnected = _useUserInfo.isConnected,
-    hasSubscription = _useUserInfo.hasSubscription,
-    credits = _useUserInfo.credits,
     isLoading = _useUserInfo.isLoading,
     initialUsagePercentage = _useUserInfo.usagePercentage;
-  var _useRemoteConfig = (0, _remoteConfig.useRemoteConfig)(),
-    isLoaded = _useRemoteConfig.isLoaded,
-    isError = _useRemoteConfig.isError,
-    remoteConfig = _useRemoteConfig.remoteConfig;
   var _useRequestIds = (0, _requestsIds.useRequestIds)(),
-    updateUsagePercentage = _useRequestIds.updateUsagePercentage,
-    usagePercentage = _useRequestIds.usagePercentage;
+    updateUsagePercentage = _useRequestIds.updateUsagePercentage;
   var _useState = (0, _react.useState)(false),
     _useState2 = (0, _slicedToArray2.default)(_useState, 2),
     isInitUsageDone = _useState2[0],
     setIsInitUsageDone = _useState2[1];
+  var _useRemoteConfig = (0, _remoteConfig.useRemoteConfig)(),
+    remoteConfig = _useRemoteConfig.remoteConfig;
+  var builderUrl = remoteConfig[_remoteConfig.CONFIG_KEYS.WEB_BASED_BUILDER_URL];
+  var urlObject = builderUrl ? new URL(builderUrl) : {};
+  var iframeOrigin = urlObject.origin;
+  var isOpen = (0, _react.useRef)(false);
   (0, _react.useEffect)(function () {
     if (!isInitUsageDone && !isLoading && (initialUsagePercentage || 0 === initialUsagePercentage)) {
       updateUsagePercentage(initialUsagePercentage);
       setIsInitUsageDone(true);
     }
   }, [isLoading, initialUsagePercentage, isInitUsageDone, updateUsagePercentage]);
+  (0, _react.useEffect)(function () {
+    if (!isOpen.current) {
+      try {
+        window.$e.run('ai-integration/open-choose-element', {
+          url: props.url
+        });
+        isOpen.current = true;
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error);
+      }
+    }
+  }, [isOpen.current]);
   (0, _react.useEffect)(function () {
     var onMessage = function onMessage(event) {
       if (event.origin !== iframeOrigin) {
@@ -10848,10 +10852,12 @@ var UrlDialog = function UrlDialog(props) {
         url = _event$data.url;
       switch (type) {
         case 'element-selector/close':
+          isOpen.current = false;
           props.onClose();
           break;
         case 'element-selector/loaded':
           turnOffTimeout();
+          isOpen.current = true;
           break;
         case 'element-selector/attach':
           props.onAttach([{
@@ -10868,79 +10874,19 @@ var UrlDialog = function UrlDialog(props) {
     return function () {
       window.removeEventListener('message', onMessage);
     };
-  }, [iframeOrigin, iframeSource, props, turnOffTimeout]);
-  if (!iframeSource) {
-    return /*#__PURE__*/_react.default.createElement(_alertDialog.AlertDialog, {
-      message: (0, _i18n.__)('The app is not available. Please try again later.', 'elementor'),
-      onClose: props.onClose
-    });
-  }
-  if (!isLoaded || isError) {
-    return null;
-  }
-  return /*#__PURE__*/_react.default.createElement(_ui.Dialog, {
+  }, [iframeOrigin, props, turnOffTimeout]);
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !isOpen.current && !isTimeout && /*#__PURE__*/_react.default.createElement(_ui.Dialog, {
     open: true,
-    fullScreen: true,
-    hideBackdrop: true,
-    maxWidth: "md",
+    maxWidth: "lg"
+  }, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
     sx: {
-      '& .MuiPaper-root': {
-        backgroundColor: 'transparent'
-      }
+      textAlign: 'center',
+      padding: 3
     }
-  }, /*#__PURE__*/_react.default.createElement(_ui.DialogContent, {
-    sx: {
-      padding: 0
-    }
-  }, isTimeout && /*#__PURE__*/_react.default.createElement(_alertDialog.AlertDialog, {
-    message: (0, _i18n.__)('The app is not responding. Please try again later.', 'elementor'),
+  }, (0, _i18n.__)('Loading...', 'elementor'))), isTimeout && /*#__PURE__*/_react.default.createElement(_alertDialog.AlertDialog, {
+    message: (0, _i18n.__)('The app is not responding. Please try again later. (#408)', 'elementor'),
     onClose: props.onClose
-  }), !isTimeout && /*#__PURE__*/_react.default.createElement("iframe", {
-    ref: iframeRef,
-    title: (0, _i18n.__)('URL as a reference', 'elementor'),
-    src: iframeSource,
-    onLoad: function onLoad() {
-      var _window$elementorAppC = window.elementorAppConfig['kit-library'],
-        accessLevel = _window$elementorAppC.access_level,
-        accessTier = _window$elementorAppC.access_tier,
-        isPro = _window$elementorAppC.is_pro;
-      iframeRef.current.contentWindow.postMessage({
-        type: 'referrer/info',
-        info: {
-          page: {
-            url: window.location.href
-          },
-          authToken: remoteConfig[_remoteConfig.CONFIG_KEYS.AUTH_TOKEN] || '',
-          products: {
-            core: {
-              version: window.elementor.config.version
-            },
-            pro: {
-              isPro: isPro,
-              accessLevel: accessLevel,
-              accessTier: accessTier
-            },
-            ai: {
-              isConnected: isConnected,
-              hasSubscription: hasSubscription,
-              credits: credits,
-              usagePercentage: usagePercentage
-            }
-          },
-          user: {
-            isAdmin: window.elementor.config.user.is_administrator
-          }
-        }
-      }, iframeOrigin);
-    },
-    style: {
-      border: 'none',
-      overflow: 'scroll',
-      width: '100%',
-      height: '100%',
-      backgroundColor: 'rgba(255,255,255,0.6)'
-    }
-  })));
+  }));
 };
 exports.UrlDialog = UrlDialog;
 UrlDialog.propTypes = {
@@ -12062,59 +12008,6 @@ RemoteConfigProvider.propTypes = {
   children: _propTypes.default.node.isRequired,
   onError: _propTypes.default.func.isRequired
 };
-
-/***/ }),
-
-/***/ "../modules/ai/assets/js/editor/pages/form-layout/hooks/use-attach-url-service.js":
-/*!****************************************************************************************!*\
-  !*** ../modules/ai/assets/js/editor/pages/form-layout/hooks/use-attach-url-service.js ***!
-  \****************************************************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.useAttachUrlService = void 0;
-var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
-var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _react = __webpack_require__(/*! react */ "react");
-var _remoteConfig = __webpack_require__(/*! ../context/remote-config */ "../modules/ai/assets/js/editor/pages/form-layout/context/remote-config.js");
-var useAttachUrlService = function useAttachUrlService(args) {
-  var _window$elementorComm, _window$elementorComm2;
-  var _useState = (0, _react.useState)(args.targetUrl),
-    _useState2 = (0, _slicedToArray2.default)(_useState, 2),
-    currentUrl = _useState2[0],
-    setCurrentUrl = _useState2[1];
-  var theme = (0, _ui.useTheme)();
-  var _useRemoteConfig = (0, _remoteConfig.useRemoteConfig)(),
-    isLoaded = _useRemoteConfig.isLoaded,
-    isError = _useRemoteConfig.isError,
-    remoteConfig = _useRemoteConfig.remoteConfig;
-  if (!isLoaded || isError || !remoteConfig[_remoteConfig.CONFIG_KEYS.WEB_BASED_BUILDER_URL]) {
-    return {
-      iframeSource: '',
-      currentUrl: currentUrl,
-      setCurrentUrl: setCurrentUrl
-    };
-  }
-  var urlObject = new URL(remoteConfig[_remoteConfig.CONFIG_KEYS.WEB_BASED_BUILDER_URL]);
-  urlObject.searchParams.append('colorScheme', theme.palette.mode);
-  urlObject.searchParams.append('isRTL', 'rtl' === theme.direction ? 'true' : 'false');
-  urlObject.searchParams.append('version', (_window$elementorComm = window.elementorCommon) === null || _window$elementorComm === void 0 ? void 0 : (_window$elementorComm2 = _window$elementorComm.config) === null || _window$elementorComm2 === void 0 ? void 0 : _window$elementorComm2.version);
-  if (currentUrl) {
-    urlObject.searchParams.append('url', currentUrl);
-  }
-  return {
-    iframeSource: urlObject.toString(),
-    currentUrl: currentUrl,
-    setCurrentUrl: setCurrentUrl
-  };
-};
-exports.useAttachUrlService = useAttachUrlService;
 
 /***/ }),
 

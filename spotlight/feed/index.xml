@@ -12,7 +12,7 @@
 	<atom:link href="https://specmatic.io/spotlight/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
 	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 21 Aug 2024 08:01:15 +0000</lastBuildDate>
+	<lastBuildDate>Sat, 19 Oct 2024 05:51:44 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
@@ -28,6 +28,24 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>OpenAPI Examples Simplified: Visualize and Generate Domain-Specific Test Data​</title>
+		<link>https://specmatic.io/updates/openapi-example-simplified-visualize-and-generate-domain-specific-test-data/</link>
+		
+		<dc:creator><![CDATA[Naresh Jain]]></dc:creator>
+		<pubDate>Fri, 18 Oct 2024 04:15:08 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Feature Spotlight]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[OpenAPI]]></category>
+		<category><![CDATA[Specmatic]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5902</guid>
+
+					<description><![CDATA[Streamlining API Development: An Interactive Guide to Example Generation and Validation using Specmatic&#160; A robust, streamlined approach to API development is crucial for maintaining efficiency, reliability, and scalability in your development pipeline. One powerful methodology that has emerged is Contract-Driven Development (CDD), allowing developers to fully realize the benefits of microservices architectures. This article demonstrates [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Specmatic 2.0 is out! Now supports GraphQL and gRPC</title>
 		<link>https://specmatic.io/updates/specmatic-2-0-is-out-now-supports-graphql-and-grpc/</link>
 		
@@ -191,24 +209,6 @@
 		<guid isPermaLink="false">https://specmatic.io/?p=1665</guid>
 
 					<description><![CDATA[The Specmatic Kafka mock is wire compatible and entirely within the control of the test, the test can run locally and in CI and deliver quick feedback early in the cycle. So the application itself runs exactly as it would with a real Kafka.]]></description>
-		
-		
-		
-			</item>
-		<item>
-		<title>Redis Stubbing with Specmatic Contract Testing</title>
-		<link>https://specmatic.io/demonstration/redis-stubbing-with-specmatic-contract-testing/</link>
-		
-		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
-		<pubDate>Tue, 11 Jul 2023 03:17:59 +0000</pubDate>
-				<category><![CDATA[Demonstration]]></category>
-		<category><![CDATA[Feature Spotlight]]></category>
-		<category><![CDATA[Updates]]></category>
-		<category><![CDATA[Redis]]></category>
-		<category><![CDATA[Stubbing]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=1625</guid>
-
-					<description><![CDATA[Instead of using an actual instance of Redis, we'll stub it out and have the contract test set expectations so that the Redis stub knows what data to return for any query sent to it by the application. Now, when we run the contract tests and the service object does a look up in Redis, it's actually hitting the Redis stub.]]></description>
 		
 		
 		

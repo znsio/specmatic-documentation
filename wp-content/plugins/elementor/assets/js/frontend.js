@@ -1,4 +1,4 @@
-/*! elementor - v3.24.0 - 01-10-2024 */
+/*! elementor - v3.25.0 - 03-11-2024 */
 "use strict";
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["frontend"],{
 
@@ -102,11 +102,11 @@ module.exports = function ($) {
     this.elementsHandlers['nested-tabs.default'] = () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! elementor/modules/nested-tabs/assets/js/frontend/handlers/nested-tabs */ "../modules/nested-tabs/assets/js/frontend/handlers/nested-tabs.js"));
   }
   if (elementorFrontendConfig.experimentalFeatures['nested-elements']) {
-    this.elementsHandlers['nested-accordion.default'] = () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! elementor/modules/nested-accordion/assets/js/frontend/handlers/nested-accordion */ "../modules/nested-accordion/assets/js/frontend/handlers/nested-accordion.js"));
+    this.elementsHandlers['nested-accordion.default'] = () => __webpack_require__.e(/*! import() | nested-accordion */ "nested-accordion").then(__webpack_require__.bind(__webpack_require__, /*! elementor/modules/nested-accordion/assets/js/frontend/handlers/nested-accordion */ "../modules/nested-accordion/assets/js/frontend/handlers/nested-accordion.js"));
   }
   if (elementorFrontendConfig.experimentalFeatures.container) {
-    this.elementsHandlers['contact-buttons.default'] = () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! elementor/modules/floating-buttons/assets/js/floating-buttons/frontend/handlers/contact-buttons */ "../modules/floating-buttons/assets/js/floating-buttons/frontend/handlers/contact-buttons.js"));
-    this.elementsHandlers['floating-bars-var-1.default'] = () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! elementor/modules/floating-buttons/assets/js/floating-bars/frontend/handlers/floating-bars */ "../modules/floating-buttons/assets/js/floating-bars/frontend/handlers/floating-bars.js"));
+    this.elementsHandlers['contact-buttons.default'] = () => __webpack_require__.e(/*! import() | contact-buttons */ "contact-buttons").then(__webpack_require__.bind(__webpack_require__, /*! elementor/modules/floating-buttons/assets/js/floating-buttons/frontend/handlers/contact-buttons */ "../modules/floating-buttons/assets/js/floating-buttons/frontend/handlers/contact-buttons.js"));
+    this.elementsHandlers['floating-bars-var-1.default'] = () => __webpack_require__.e(/*! import() | floating-bars */ "floating-bars").then(__webpack_require__.bind(__webpack_require__, /*! elementor/modules/floating-buttons/assets/js/floating-bars/frontend/handlers/floating-bars */ "../modules/floating-buttons/assets/js/floating-bars/frontend/handlers/floating-bars.js"));
   }
   const addGlobalHandlers = () => elementorFrontend.hooks.addAction('frontend/element_ready/global', _global.default);
   const addElementsHandlers = () => {
@@ -270,12 +270,14 @@ var _breakpoints = _interopRequireDefault(__webpack_require__(/*! elementor-util
 var _events = _interopRequireDefault(__webpack_require__(/*! elementor-utils/events */ "../assets/dev/js/utils/events.js"));
 var _frontend = _interopRequireDefault(__webpack_require__(/*! elementor/modules/shapes/assets/js/frontend/frontend */ "../modules/shapes/assets/js/frontend/frontend.js"));
 var _controls = _interopRequireDefault(__webpack_require__(/*! ./utils/controls */ "../assets/dev/js/frontend/utils/controls.js"));
+var _anchorScrollMargin = _interopRequireDefault(__webpack_require__(/*! ./utils/anchor-scroll-margin */ "../assets/dev/js/frontend/utils/anchor-scroll-margin.js"));
 var _utils = __webpack_require__(/*! elementor-frontend/utils/utils */ "../assets/dev/js/frontend/utils/utils.js");
 /* global elementorFrontendConfig */
 
 const EventManager = __webpack_require__(/*! elementor-utils/hooks */ "../assets/dev/js/utils/hooks.js"),
   ElementsHandler = __webpack_require__(/*! elementor-frontend/elements-handlers-manager */ "../assets/dev/js/frontend/elements-handlers-manager.js"),
-  AnchorsModule = __webpack_require__(/*! elementor-frontend/utils/anchors */ "../assets/dev/js/frontend/utils/anchors.js");
+  AnchorsModule = __webpack_require__(/*! elementor-frontend/utils/anchors */ "../assets/dev/js/frontend/utils/anchors.js"); // // TODO: Remove anchors.js file in v3.27.0 [ED-15717].
+
 class Frontend extends elementorModules.ViewModule {
   constructor() {
     super(...arguments);
@@ -424,7 +426,6 @@ class Frontend extends elementorModules.ViewModule {
       youtube: new _youtubeLoader.default(),
       vimeo: new _vimeoLoader.default(),
       baseVideoLoader: new _baseLoader.default(),
-      anchors: new AnchorsModule(),
       get lightbox() {
         return _lightboxManager.default.getLightbox();
       },
@@ -436,6 +437,13 @@ class Frontend extends elementorModules.ViewModule {
       events: _events.default,
       controls: new _controls.default()
     };
+
+    // TODO: Remove experiment in v3.27.0 [ED-15717].
+    if (this.config.experimentalFeatures.e_css_smooth_scroll) {
+      this.utils.anchor_scroll_margin = new _anchorScrollMargin.default();
+    } else {
+      this.utils.anchors = new AnchorsModule();
+    }
 
     // TODO: BC since 2.4.0
     this.modules = {
@@ -1315,6 +1323,153 @@ class StretchedSection extends elementorModules.frontend.handlers.StretchedEleme
   }
 }
 exports["default"] = StretchedSection;
+
+/***/ }),
+
+/***/ "../assets/dev/js/frontend/utils/anchor-scroll-margin.js":
+/*!***************************************************************!*\
+  !*** ../assets/dev/js/frontend/utils/anchor-scroll-margin.js ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+class _default extends elementorModules.ViewModule {
+  getDefaultSettings() {
+    return {
+      selectors: {
+        links: '.elementor-element a[href*="#"]',
+        stickyElements: '.elementor-element.elementor-sticky'
+      }
+    };
+  }
+  onInit() {
+    this.observeStickyElements(() => {
+      this.initializeStickyAndAnchorTracking();
+    });
+  }
+  observeStickyElements(callback) {
+    const observer = new MutationObserver(mutationsList => {
+      for (const mutation of mutationsList) {
+        if ('childList' === mutation.type || 'attributes' === mutation.type && mutation.target.classList.contains('elementor-sticky')) {
+          callback();
+        }
+      }
+    });
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['class', 'style']
+    });
+  }
+  initializeStickyAndAnchorTracking() {
+    const anchorLinks = this.getAllAnchorLinks();
+    const stickyElements = this.getAllStickyElements();
+    const trackedElements = [];
+    if (!stickyElements.length > 0 && !anchorLinks.length > 0) {
+      return;
+    }
+    this.trackStickyElements(stickyElements, trackedElements);
+    this.trackAnchorLinks(anchorLinks, trackedElements);
+    this.organizeStickyAndAnchors(trackedElements);
+  }
+  trackAnchorLinks(anchorLinks, trackedElements) {
+    anchorLinks.forEach(element => {
+      const target = this.getAnchorTarget(element);
+      const scrollPosition = this.getScrollPosition(target);
+      trackedElements.push({
+        element: target,
+        type: 'anchor',
+        scrollPosition
+      });
+    });
+  }
+  trackStickyElements(stickyElements, trackedElements) {
+    stickyElements.forEach(element => {
+      const settings = this.getElementSettings(element);
+      if (!settings || !settings.sticky_anchor_link_offset) {
+        return;
+      }
+      const {
+        sticky_anchor_link_offset: scrollMarginTop
+      } = settings;
+      if (0 === scrollMarginTop) {
+        return;
+      }
+      const scrollPosition = this.getScrollPosition(element);
+      trackedElements.push({
+        scrollMarginTop,
+        type: 'sticky',
+        scrollPosition
+      });
+    });
+  }
+  organizeStickyAndAnchors(elements) {
+    const stickyList = this.filterAndSortElementsByType(elements, 'sticky');
+    const anchorList = this.filterAndSortElementsByType(elements, 'anchor');
+    stickyList.forEach((sticky, index) => {
+      this.defineCurrentStickyRange(sticky, index, stickyList, anchorList);
+    });
+  }
+  defineCurrentStickyRange(sticky, index, stickyList, anchorList) {
+    const nextStickyScrollPosition = index + 1 < stickyList.length ? stickyList[index + 1].scrollPosition : Infinity;
+    sticky.anchor = anchorList.filter(anchor => {
+      const withinRange = anchor.scrollPosition > sticky.scrollPosition && anchor.scrollPosition < nextStickyScrollPosition;
+      if (withinRange) {
+        anchor.element.style.scrollMarginTop = `${sticky.scrollMarginTop}px`;
+      }
+      return withinRange;
+    });
+  }
+  getScrollPosition(element) {
+    let offsetTop = 0;
+    while (element) {
+      offsetTop += element.offsetTop;
+      element = element.offsetParent;
+    }
+    return offsetTop;
+  }
+  getAllStickyElements() {
+    const allStickyElements = document.querySelectorAll(this.getSettings('selectors.stickyElements'));
+    return Array.from(allStickyElements).filter((anchor, index, self) => index === self.findIndex(t => t.getAttribute('data-id') === anchor.getAttribute('data-id')));
+  }
+  getAllAnchorLinks() {
+    const allAnchors = document.querySelectorAll(this.getSettings('selectors.links'));
+    return Array.from(allAnchors).filter((anchor, index, self) => index === self.findIndex(t => t.getAttribute('href') === anchor.getAttribute('href')));
+  }
+  filterAndSortElementsByType(elements, type) {
+    return elements.filter(item => type === item.type).sort((a, b) => a.scrollPosition - b.scrollPosition);
+  }
+  isValidSelector(hash) {
+    const validSelectorPattern = /^#[A-Za-z_][\w-]*$/;
+    return validSelectorPattern.test(hash);
+  }
+  isExcludedHash(hash) {
+    const emptyHash = '' === hash;
+    const urlActionHash = hash.startsWith('#elementor-action');
+    return emptyHash || urlActionHash;
+  }
+  getAnchorTarget(element) {
+    const hash = element?.hash;
+    if (this.isExcludedHash(hash)) {
+      return null;
+    } else if (!this.isValidSelector(hash)) {
+      // eslint-disable-next-line no-console
+      console.warn(`Invalid selector: '${hash}'`);
+      return null;
+    }
+    return document.querySelector(hash);
+  }
+  getElementSettings(element) {
+    return JSON.parse(element.getAttribute('data-settings'));
+  }
+}
+exports["default"] = _default;
 
 /***/ }),
 

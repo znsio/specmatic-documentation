@@ -2,25 +2,25 @@
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
    <url>
       <loc>https://specmatic.io/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1.0</priority>
    </url>
    <url>
       <loc>https://specmatic.io/security-policy/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/eula/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/spotlight/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -44,193 +44,193 @@
    </url>
    <url>
       <loc>https://specmatic.io/feed/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/features/transform-your-openapi-specs-into-executable-contracts-in-seconds-with-specmatic/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/features/transform-your-asyncapi-specs-into-executable-contracts-in-seconds-with-specmatic/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/features/transform-your-wsdl-specifications-into-executable-contracts-in-seconds-with-specmatic/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/features/transform-your-graphql-specs-into-executable-contracts-in-seconds-with-specmatic/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/features/transform-your-grpc-proto-files-into-executable-contracts-in-seconds-with-specmatic/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/category/spotlight/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/features/kafka-contract-driven-development-leverage-asyncapi-specs-as-executable-contracts/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/features/jms-contract-driven-development-leverage-asyncapi-specs-as-executable-contracts/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/features/google-pubsub-contract-driven-development-leverage-asyncapi-specs-as-executable-contracts/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/features/jdbc-contract-driven-development-leverage-asyncapi-specs-as-executable-contracts/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/features/api-resiliency-and-contract-testing-for-resp-redis/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/features/contract-driven-development-for-http-by-leveraging-your-openapi-specs-as-executable-contracts/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/demonstration/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/comparisons/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/comparisons/comparison-specmatic-vs-spring-cloud-contract/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/comparisons/comparison-specmatic-vs-wiremock/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/pricing/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/updates/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/specmatic-updates/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/appearances/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/updates/media/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/documentation.html</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/documentation/sample_projects.html</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/podcast/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/articles/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/2-week-signup/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/2-day-cdd-workshop/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/roadmap/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/contact-us/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/jobs-at-specmatic/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -422,7 +422,7 @@
    </url>
    <url>
       <loc>https://specmatic.io/demonstration/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -602,7 +602,7 @@
    </url>
    <url>
       <loc>https://specmatic.io/updates/specmatic-challenge-winners-announced/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -692,13 +692,13 @@
    </url>
    <url>
       <loc>https://specmatic.io/conference/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
    <url>
       <loc>https://specmatic.io/workshop/</loc>
-      <lastmod>2024-09-25</lastmod>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>
@@ -1215,6 +1215,42 @@
    <url>
       <loc>https://specmatic.io/presentation/contract-driven-development-escape-microservices-integration-deployment-hell/</loc>
       <lastmod>2024-09-25</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.io/updates/openapis-broken-tooling-roundtrip-fidelity-failure-with-codegen-and-docgen/</loc>
+      <lastmod>2024-10-19</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.io/updates/wiremocks-dirty-secret-ignoring-api-specs-letting-invalid-examples-slip-through/</loc>
+      <lastmod>2024-10-19</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.io/updates/grpc-flaws-the-illusion-of-safety-frustrating-devex-in-proto3s-type-safe-contracts/</loc>
+      <lastmod>2024-10-19</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.io/updates/build-apps-from-api-specs-using-ai-self-correcting-contract-driven-agentic-workflows-with-specmatic/</loc>
+      <lastmod>2024-10-19</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.io/updates/openapi-example-simplified-visualize-and-generate-domain-specific-test-data/</loc>
+      <lastmod>2024-10-19</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://specmatic.io/updates/pacts-dependency-drag-why-consumer-driven-contracts-dont-support-parallel-development/</loc>
+      <lastmod>2024-10-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.5</priority>
    </url>

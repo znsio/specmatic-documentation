@@ -1,4 +1,4 @@
-/*! elementor - v3.24.0 - 01-10-2024 */
+/*! elementor - v3.25.0 - 03-11-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -9581,7 +9581,8 @@ var _default = /*#__PURE__*/function (_BaseManager) {
       ui_theme: _this.onUIThemeChanged,
       panel_width: _this.onPanelWidthChanged,
       edit_buttons: _this.onEditButtonsChanged,
-      show_hidden_elements: _this.onShowHiddenElementsChange
+      show_hidden_elements: _this.onShowHiddenElementsChange,
+      show_launchpad_checklist: _this.toggleChecklistIconVisibility
     };
     return _this;
   }
@@ -9591,6 +9592,13 @@ var _default = /*#__PURE__*/function (_BaseManager) {
       return {
         darkModeLinkID: 'elementor-editor-dark-mode-css'
       };
+    }
+  }, {
+    key: "toggleChecklistIconVisibility",
+    value: function toggleChecklistIconVisibility(switcherValue) {
+      var shouldShow = 'yes' === switcherValue;
+      this.addMixpanelTrackingChecklist(shouldShow);
+      $e.run('checklist/toggle-icon', shouldShow);
     }
   }, {
     key: "onUIThemeChanged",
@@ -9630,6 +9638,25 @@ var _default = /*#__PURE__*/function (_BaseManager) {
     key: "onShowHiddenElementsChange",
     value: function onShowHiddenElementsChange() {
       elementorFrontend.elements.$body.toggleClass('e-preview--show-hidden-elements');
+    }
+  }, {
+    key: "addMixpanelTrackingChecklist",
+    value: function addMixpanelTrackingChecklist(shouldShow) {
+      var name = shouldShow ? 'checklistShow' : 'checklistHide';
+      var postId = elementor.getPreviewContainer().document.config.id;
+      var postTitle = elementor.getPreviewContainer().model.attributes.settings.attributes.post_title;
+      var postTypeTitle = elementor.getPreviewContainer().document.config.post_type_title;
+      var documentType = elementor.getPreviewContainer().document.config.type;
+      return elementor.editorEvents.dispatchEvent(elementor.editorEvents.config.names.elementorEditor.userPreferences[name], {
+        location: elementor.editorEvents.config.locations.elementorEditor,
+        secondaryLocation: elementor.editorEvents.config.secondaryLocations.userPreferences,
+        trigger: elementor.editorEvents.config.triggers.toggleClick,
+        element: elementor.editorEvents.config.elements.toggle,
+        postId: postId,
+        postTitle: postTitle,
+        postTypeTitle: postTypeTitle,
+        documentType: documentType
+      });
     }
   }]);
   return _default;
@@ -33040,6 +33067,9 @@ var ContainerView = BaseElementView.extend({
     return "".concat(BaseElementView.prototype.className.apply(this), " e-con ").concat(isNestedClassName);
   },
   filterSettings: function filterSettings(newItem) {
+    if ('container' !== (newItem === null || newItem === void 0 ? void 0 : newItem.elType)) {
+      return;
+    }
     var parentContainer = this;
     if (parentContainer.isBoxedWidth()) {
       newItem.settings.content_width = 'full';
@@ -34686,9 +34716,9 @@ var _default = /*#__PURE__*/function (_Marionette$ItemView) {
       return 'elementor-empty-view';
     }
   }, {
-    key: "onRendr",
-    value: function onRendr() {
-      this.$el.css('padding-inline-start', this.getOption('indent'));
+    key: "onRender",
+    value: function onRender() {
+      this.$el.css('padding-inline-start', this.getOption('indent') + 'px');
     }
   }]);
   return _default;
@@ -37459,7 +37489,7 @@ PanelElementsLayoutView = Marionette.LayoutView.extend({
         editable: false
       });
     });
-    if (elementorCommon.config.experimentalFeatures.container_grid) {
+    if (elementorCommon.config.experimentalFeatures.container) {
       jQuery.each(elementor.config.elementsPresets, function (index, widget) {
         var originalWidget = elementor.widgetsCache[widget.replacements.custom.originalWidget],
           replacements = widget.replacements,
@@ -42275,13 +42305,12 @@ var AddSectionBase = /*#__PURE__*/function (_Marionette$ItemView) {
   }, {
     key: "getSelectTypePreset",
     value: function getSelectTypePreset() {
-      return AddSectionBase.IS_CONTAINER_GRID_ACTIVE ? 'select-type' : 'select-container-preset';
+      return AddSectionBase.IS_CONTAINER_ACTIVE ? 'select-type' : 'select-container-preset';
     }
   }]);
   return AddSectionBase;
 }(Marionette.ItemView);
 (0, _defineProperty2.default)(AddSectionBase, "IS_CONTAINER_ACTIVE", !!elementorCommon.config.experimentalFeatures.container);
-(0, _defineProperty2.default)(AddSectionBase, "IS_CONTAINER_GRID_ACTIVE", !!elementorCommon.config.experimentalFeatures.container_grid);
 // Views.
 (0, _defineProperty2.default)(AddSectionBase, "VIEW_CHOOSE_ACTION", 'choose-action');
 (0, _defineProperty2.default)(AddSectionBase, "VIEW_CONTAINER_FLEX_PRESET", 'select-container-preset');
@@ -48007,7 +48036,8 @@ var eventsConfig = {
   },
   locations: {
     widgetPanel: 'Widget Panel',
-    topBar: 'Top Bar'
+    topBar: 'Top Bar',
+    elementorEditor: 'Elementor Editor'
   },
   secondaryLocations: {
     layout: 'Layout Section',
@@ -48033,14 +48063,20 @@ var eventsConfig = {
     siteSettings: 'Site Settings',
     structure: 'Structure',
     documentNameDropdown: 'Document Name dropdown',
-    responsiveControls: 'Responsive controls'
+    responsiveControls: 'Responsive controls',
+    launchpad: 'launchpad',
+    checklistHeader: 'Checklist Header',
+    checklistSteps: 'Checklist Steps',
+    userPreferences: 'User Preferences'
   },
   elements: {
     accordionSection: 'Accordion section',
     buttonIcon: 'Button Icon',
     mainCta: 'Main CTA',
+    button: 'Button',
     link: 'Link',
-    dropdown: 'Dropdown'
+    dropdown: 'Dropdown',
+    toggle: 'Toggle'
   },
   names: {
     v1: {
@@ -48072,7 +48108,17 @@ var eventsConfig = {
       siteSettings: 'top_bar_site_setting',
       structure: 'top_bar_structure',
       documentNameDropdown: 'top_bar_document_name_dropdown',
-      responsiveControls: 'top_bar_responsive_controls'
+      responsiveControls: 'top_bar_responsive_controls',
+      launchpadOn: 'top_bar_checklist_icon_show',
+      launchpadOff: 'top_bar_checklist_icon_hide'
+    },
+    // ChecklistSteps event names are generated dynamically, based on stepId and action type taken: title, action, done, undone, upgrade
+    elementorEditor: {
+      checklistHeaderClose: 'checklist_header_close_icon',
+      userPreferences: {
+        checklistShow: 'checklist_userpreferences_toggle_show',
+        checklistHide: 'checklist_userpreferences_toggle_hide'
+      }
     }
   }
 };
@@ -55232,7 +55278,7 @@ exports["default"] = _default;
   \************************************************/
 /***/ (function(module) {
 
-/*! @license DOMPurify 3.1.6 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.1.6/LICENSE */
+/*! @license DOMPurify 3.1.3 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.1.3/LICENSE */
 
 (function (global, factory) {
    true ? module.exports = factory() :
@@ -55287,6 +55333,7 @@ exports["default"] = _default;
   const objectHasOwnProperty = unapply(Object.prototype.hasOwnProperty);
   const regExpTest = unapply(RegExp.prototype.test);
   const typeErrorCreate = unconstruct(TypeError);
+  const numberIsNaN = unapply(Number.isNaN);
 
   /**
    * Creates a new function that calls the given function with a specified thisArg and arguments.
@@ -55435,7 +55482,7 @@ exports["default"] = _default;
   const mathMlDisallowed = freeze(['maction', 'maligngroup', 'malignmark', 'mlongdiv', 'mscarries', 'mscarry', 'msgroup', 'mstack', 'msline', 'msrow', 'semantics', 'annotation', 'annotation-xml', 'mprescripts', 'none']);
   const text = freeze(['#text']);
 
-  const html = freeze(['accept', 'action', 'align', 'alt', 'autocapitalize', 'autocomplete', 'autopictureinpicture', 'autoplay', 'background', 'bgcolor', 'border', 'capture', 'cellpadding', 'cellspacing', 'checked', 'cite', 'class', 'clear', 'color', 'cols', 'colspan', 'controls', 'controlslist', 'coords', 'crossorigin', 'datetime', 'decoding', 'default', 'dir', 'disabled', 'disablepictureinpicture', 'disableremoteplayback', 'download', 'draggable', 'enctype', 'enterkeyhint', 'face', 'for', 'headers', 'height', 'hidden', 'high', 'href', 'hreflang', 'id', 'inputmode', 'integrity', 'ismap', 'kind', 'label', 'lang', 'list', 'loading', 'loop', 'low', 'max', 'maxlength', 'media', 'method', 'min', 'minlength', 'multiple', 'muted', 'name', 'nonce', 'noshade', 'novalidate', 'nowrap', 'open', 'optimum', 'pattern', 'placeholder', 'playsinline', 'popover', 'popovertarget', 'popovertargetaction', 'poster', 'preload', 'pubdate', 'radiogroup', 'readonly', 'rel', 'required', 'rev', 'reversed', 'role', 'rows', 'rowspan', 'spellcheck', 'scope', 'selected', 'shape', 'size', 'sizes', 'span', 'srclang', 'start', 'src', 'srcset', 'step', 'style', 'summary', 'tabindex', 'title', 'translate', 'type', 'usemap', 'valign', 'value', 'width', 'wrap', 'xmlns', 'slot']);
+  const html = freeze(['accept', 'action', 'align', 'alt', 'autocapitalize', 'autocomplete', 'autopictureinpicture', 'autoplay', 'background', 'bgcolor', 'border', 'capture', 'cellpadding', 'cellspacing', 'checked', 'cite', 'class', 'clear', 'color', 'cols', 'colspan', 'controls', 'controlslist', 'coords', 'crossorigin', 'datetime', 'decoding', 'default', 'dir', 'disabled', 'disablepictureinpicture', 'disableremoteplayback', 'download', 'draggable', 'enctype', 'enterkeyhint', 'face', 'for', 'headers', 'height', 'hidden', 'high', 'href', 'hreflang', 'id', 'inputmode', 'integrity', 'ismap', 'kind', 'label', 'lang', 'list', 'loading', 'loop', 'low', 'max', 'maxlength', 'media', 'method', 'min', 'minlength', 'multiple', 'muted', 'name', 'nonce', 'noshade', 'novalidate', 'nowrap', 'open', 'optimum', 'pattern', 'placeholder', 'playsinline', 'poster', 'preload', 'pubdate', 'radiogroup', 'readonly', 'rel', 'required', 'rev', 'reversed', 'role', 'rows', 'rowspan', 'spellcheck', 'scope', 'selected', 'shape', 'size', 'sizes', 'span', 'srclang', 'start', 'src', 'srcset', 'step', 'style', 'summary', 'tabindex', 'title', 'translate', 'type', 'usemap', 'valign', 'value', 'width', 'wrap', 'xmlns', 'slot']);
   const svg = freeze(['accent-height', 'accumulate', 'additive', 'alignment-baseline', 'ascent', 'attributename', 'attributetype', 'azimuth', 'basefrequency', 'baseline-shift', 'begin', 'bias', 'by', 'class', 'clip', 'clippathunits', 'clip-path', 'clip-rule', 'color', 'color-interpolation', 'color-interpolation-filters', 'color-profile', 'color-rendering', 'cx', 'cy', 'd', 'dx', 'dy', 'diffuseconstant', 'direction', 'display', 'divisor', 'dur', 'edgemode', 'elevation', 'end', 'fill', 'fill-opacity', 'fill-rule', 'filter', 'filterunits', 'flood-color', 'flood-opacity', 'font-family', 'font-size', 'font-size-adjust', 'font-stretch', 'font-style', 'font-variant', 'font-weight', 'fx', 'fy', 'g1', 'g2', 'glyph-name', 'glyphref', 'gradientunits', 'gradienttransform', 'height', 'href', 'id', 'image-rendering', 'in', 'in2', 'k', 'k1', 'k2', 'k3', 'k4', 'kerning', 'keypoints', 'keysplines', 'keytimes', 'lang', 'lengthadjust', 'letter-spacing', 'kernelmatrix', 'kernelunitlength', 'lighting-color', 'local', 'marker-end', 'marker-mid', 'marker-start', 'markerheight', 'markerunits', 'markerwidth', 'maskcontentunits', 'maskunits', 'max', 'mask', 'media', 'method', 'mode', 'min', 'name', 'numoctaves', 'offset', 'operator', 'opacity', 'order', 'orient', 'orientation', 'origin', 'overflow', 'paint-order', 'path', 'pathlength', 'patterncontentunits', 'patterntransform', 'patternunits', 'points', 'preservealpha', 'preserveaspectratio', 'primitiveunits', 'r', 'rx', 'ry', 'radius', 'refx', 'refy', 'repeatcount', 'repeatdur', 'restart', 'result', 'rotate', 'scale', 'seed', 'shape-rendering', 'specularconstant', 'specularexponent', 'spreadmethod', 'startoffset', 'stddeviation', 'stitchtiles', 'stop-color', 'stop-opacity', 'stroke-dasharray', 'stroke-dashoffset', 'stroke-linecap', 'stroke-linejoin', 'stroke-miterlimit', 'stroke-opacity', 'stroke', 'stroke-width', 'style', 'surfacescale', 'systemlanguage', 'tabindex', 'targetx', 'targety', 'transform', 'transform-origin', 'text-anchor', 'text-decoration', 'text-rendering', 'textlength', 'type', 'u1', 'u2', 'unicode', 'values', 'viewbox', 'visibility', 'version', 'vert-adv-y', 'vert-origin-x', 'vert-origin-y', 'width', 'word-spacing', 'wrap', 'writing-mode', 'xchannelselector', 'ychannelselector', 'x', 'x1', 'x2', 'xmlns', 'y', 'y1', 'y2', 'z', 'zoomandpan']);
   const mathMl = freeze(['accent', 'accentunder', 'align', 'bevelled', 'close', 'columnsalign', 'columnlines', 'columnspan', 'denomalign', 'depth', 'dir', 'display', 'displaystyle', 'encoding', 'fence', 'frame', 'height', 'href', 'id', 'largeop', 'length', 'linethickness', 'lspace', 'lquote', 'mathbackground', 'mathcolor', 'mathsize', 'mathvariant', 'maxsize', 'minsize', 'movablelimits', 'notation', 'numalign', 'open', 'rowalign', 'rowlines', 'rowspacing', 'rowspan', 'rspace', 'rquote', 'scriptlevel', 'scriptminsize', 'scriptsizemultiplier', 'selection', 'separator', 'separators', 'stretchy', 'subscriptshift', 'supscriptshift', 'symmetric', 'voffset', 'width', 'xmlns']);
   const xml = freeze(['xlink:href', 'xml:id', 'xlink:title', 'xml:space', 'xmlns:xlink']);
@@ -55448,9 +55495,11 @@ exports["default"] = _default;
   const ARIA_ATTR = seal(/^aria-[\-\w]+$/); // eslint-disable-line no-useless-escape
   const IS_ALLOWED_URI = seal(/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i // eslint-disable-line no-useless-escape
   );
+
   const IS_SCRIPT_OR_DATA = seal(/^(?:\w+script|data):/i);
   const ATTR_WHITESPACE = seal(/[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205F\u3000]/g // eslint-disable-line no-control-regex
   );
+
   const DOCTYPE_NAME = seal(/^html$/i);
   const CUSTOM_ELEMENT = seal(/^[a-z][.\w]*(-[.\w]+)+$/i);
 
@@ -55485,6 +55534,7 @@ exports["default"] = _default;
     documentFragment: 11,
     notation: 12 // Deprecated
   };
+
   const getGlobal = function getGlobal() {
     return typeof window === 'undefined' ? null : window;
   };
@@ -55536,7 +55586,7 @@ exports["default"] = _default;
      * Version label, exposed for easier checks
      * if DOMPurify is up to date or not
      */
-    DOMPurify.version = '3.1.6';
+    DOMPurify.version = '3.1.3';
 
     /**
      * Array of elements that DOMPurify removed during sanitation.
@@ -55567,7 +55617,6 @@ exports["default"] = _default;
     } = window;
     const ElementPrototype = Element.prototype;
     const cloneNode = lookupGetter(ElementPrototype, 'cloneNode');
-    const remove = lookupGetter(ElementPrototype, 'remove');
     const getNextSibling = lookupGetter(ElementPrototype, 'nextSibling');
     const getChildNodes = lookupGetter(ElementPrototype, 'childNodes');
     const getParentNode = lookupGetter(ElementPrototype, 'parentNode');
@@ -55769,6 +55818,9 @@ exports["default"] = _default;
 
     /* Keep a reference to config to pass to hooks */
     let CONFIG = null;
+
+    /* Specify the maximum element nesting depth to prevent mXSS */
+    const MAX_NESTING_DEPTH = 255;
 
     /* Ideally, do not touch anything below this line */
     /* ______________________________________________ */
@@ -56068,9 +56120,9 @@ exports["default"] = _default;
       });
       try {
         // eslint-disable-next-line unicorn/prefer-dom-node-remove
-        getParentNode(node).removeChild(node);
+        node.parentNode.removeChild(node);
       } catch (_) {
-        remove(node);
+        node.remove();
       }
     };
 
@@ -56180,7 +56232,11 @@ exports["default"] = _default;
      * @return {Boolean} true if clobbered, false if safe
      */
     const _isClobbered = function _isClobbered(elm) {
-      return elm instanceof HTMLFormElement && (typeof elm.nodeName !== 'string' || typeof elm.textContent !== 'string' || typeof elm.removeChild !== 'function' || !(elm.attributes instanceof NamedNodeMap) || typeof elm.removeAttribute !== 'function' || typeof elm.setAttribute !== 'function' || typeof elm.namespaceURI !== 'string' || typeof elm.insertBefore !== 'function' || typeof elm.hasChildNodes !== 'function');
+      return elm instanceof HTMLFormElement && (
+      // eslint-disable-next-line unicorn/no-typeof-undefined
+      typeof elm.__depth !== 'undefined' && typeof elm.__depth !== 'number' ||
+      // eslint-disable-next-line unicorn/no-typeof-undefined
+      typeof elm.__removalCount !== 'undefined' && typeof elm.__removalCount !== 'number' || typeof elm.nodeName !== 'string' || typeof elm.textContent !== 'string' || typeof elm.removeChild !== 'function' || !(elm.attributes instanceof NamedNodeMap) || typeof elm.removeAttribute !== 'function' || typeof elm.setAttribute !== 'function' || typeof elm.namespaceURI !== 'string' || typeof elm.insertBefore !== 'function' || typeof elm.hasChildNodes !== 'function');
     };
 
     /**
@@ -56247,7 +56303,7 @@ exports["default"] = _default;
         return true;
       }
 
-      /* Remove any occurrence of processing instructions */
+      /* Remove any ocurrence of processing instructions */
       if (currentNode.nodeType === NODE_TYPE.progressingInstruction) {
         _forceRemove(currentNode);
         return true;
@@ -56331,7 +56387,7 @@ exports["default"] = _default;
     // eslint-disable-next-line complexity
     const _isValidAttribute = function _isValidAttribute(lcTag, lcName, value) {
       /* Make sure attribute cannot clobber */
-      if (SANITIZE_DOM && (lcName === 'id' || lcName === 'name') && (value in document || value in formElement)) {
+      if (SANITIZE_DOM && (lcName === 'id' || lcName === 'name') && (value in document || value in formElement || value === '__depth' || value === '__removalCount')) {
         return false;
       }
 
@@ -56416,13 +56472,6 @@ exports["default"] = _default;
         hookEvent.forceKeepAttr = undefined; // Allows developers to see this is a property they can set
         _executeHook('uponSanitizeAttribute', currentNode, hookEvent);
         value = hookEvent.attrValue;
-
-        /* Work around a security issue with comments inside attributes */
-        if (SAFE_FOR_XML && regExpTest(/((--!?|])>)|<\/(style|title)/i, value)) {
-          _removeAttribute(name, currentNode);
-          continue;
-        }
-
         /* Did the hooks approve of the attribute? */
         if (hookEvent.forceKeepAttr) {
           continue;
@@ -56438,6 +56487,12 @@ exports["default"] = _default;
 
         /* Work around a security issue in jQuery 3.0 */
         if (!ALLOW_SELF_CLOSE_IN_ATTR && regExpTest(/\/>/i, value)) {
+          _removeAttribute(name, currentNode);
+          continue;
+        }
+
+        /* Work around a security issue with comments inside attributes */
+        if (SAFE_FOR_XML && regExpTest(/((--!?|])>)|<\/(style|title)/i, value)) {
           _removeAttribute(name, currentNode);
           continue;
         }
@@ -56523,9 +56578,32 @@ exports["default"] = _default;
         if (_sanitizeElements(shadowNode)) {
           continue;
         }
+        const parentNode = getParentNode(shadowNode);
+
+        /* Set the nesting depth of an element */
+        if (shadowNode.nodeType === NODE_TYPE.element) {
+          if (parentNode && parentNode.__depth) {
+            /*
+              We want the depth of the node in the original tree, which can
+              change when it's removed from its parent.
+            */
+            shadowNode.__depth = (shadowNode.__removalCount || 0) + parentNode.__depth + 1;
+          } else {
+            shadowNode.__depth = 1;
+          }
+        }
+
+        /*
+         * Remove an element if nested too deeply to avoid mXSS
+         * or if the __depth might have been tampered with
+         */
+        if (shadowNode.__depth >= MAX_NESTING_DEPTH || shadowNode.__depth < 0 || numberIsNaN(shadowNode.__depth)) {
+          _forceRemove(shadowNode);
+        }
 
         /* Deep shadow DOM detected */
         if (shadowNode.content instanceof DocumentFragment) {
+          shadowNode.content.__depth = shadowNode.__depth;
           _sanitizeShadowDOM(shadowNode.content);
         }
 
@@ -56641,9 +56719,32 @@ exports["default"] = _default;
         if (_sanitizeElements(currentNode)) {
           continue;
         }
+        const parentNode = getParentNode(currentNode);
+
+        /* Set the nesting depth of an element */
+        if (currentNode.nodeType === NODE_TYPE.element) {
+          if (parentNode && parentNode.__depth) {
+            /*
+              We want the depth of the node in the original tree, which can
+              change when it's removed from its parent.
+            */
+            currentNode.__depth = (currentNode.__removalCount || 0) + parentNode.__depth + 1;
+          } else {
+            currentNode.__depth = 1;
+          }
+        }
+
+        /*
+         * Remove an element if nested too deeply to avoid mXSS
+         * or if the __depth might have been tampered with
+         */
+        if (currentNode.__depth >= MAX_NESTING_DEPTH || currentNode.__depth < 0 || numberIsNaN(currentNode.__depth)) {
+          _forceRemove(currentNode);
+        }
 
         /* Shadow DOM detected, sanitize it */
         if (currentNode.content instanceof DocumentFragment) {
+          currentNode.content.__depth = currentNode.__depth;
           _sanitizeShadowDOM(currentNode.content);
         }
 
