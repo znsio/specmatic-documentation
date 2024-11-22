@@ -10,12 +10,12 @@
 	Comments on: WireMock&#8217;s Dirty Secret: Ignoring API Specs &#038; Letting Invalid Examples Slip Through 	</title>
 	<atom:link href="https://specmatic.io/updates/wiremocks-dirty-secret-ignoring-api-specs-letting-invalid-examples-slip-through/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/updates/wiremocks-dirty-secret-ignoring-api-specs-letting-invalid-examples-slip-through/</link>
-	<description>Contract Driven Development</description>
+	<description>Contract Driven Development simplified</description>
 	<lastBuildDate>Fri, 18 Oct 2024 03:45:52 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.6.2</generator>
+	<generator>https://wordpress.org/?v=6.7.1</generator>
 </channel>
 </rss>

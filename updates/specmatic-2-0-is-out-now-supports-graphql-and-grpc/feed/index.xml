@@ -10,12 +10,12 @@
 	Comments on: Specmatic 2.0 is out! Now supports GraphQL and gRPC	</title>
 	<atom:link href="https://specmatic.io/updates/specmatic-2-0-is-out-now-supports-graphql-and-grpc/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/updates/specmatic-2-0-is-out-now-supports-graphql-and-grpc/</link>
-	<description>Contract Driven Development</description>
+	<description>Contract Driven Development simplified</description>
 	<lastBuildDate>Thu, 25 Jul 2024 00:42:28 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.6.2</generator>
+	<generator>https://wordpress.org/?v=6.7.1</generator>
 </channel>
 </rss>

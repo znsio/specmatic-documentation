@@ -11,14 +11,14 @@
 	<title>Specmatic</title>
 	<atom:link href="https://specmatic.io/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
-	<description>Contract Driven Development</description>
-	<lastBuildDate>Sat, 19 Oct 2024 05:51:44 +0000</lastBuildDate>
+	<description>Contract Driven Development simplified</description>
+	<lastBuildDate>Mon, 11 Nov 2024 02:50:50 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.6.2</generator>
+	<generator>https://wordpress.org/?v=6.7.1</generator>
 
 <image>
 	<url>https://specmatic.io/wp-content/uploads/2022/09/Favicon.png</url>
@@ -28,6 +28,21 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Update: See how Specmatic is transforming API testing &#038; development</title>
+		<link>https://specmatic.io/updates/update-see-how-specmatic-is-transforming-api-testing-development/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Mon, 11 Nov 2024 02:33:23 +0000</pubDate>
+				<category><![CDATA[Conference]]></category>
+		<category><![CDATA[Updates]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=6136</guid>
+
+					<description><![CDATA[We&#8217;ve been hard at work, rolling out exciting new features and sharing the power of Specmatic and Contract Driven Development around the globe! Let&#8217;s explore the latest developments in how Specmatic is transforming API testing &#38; development. Elevate Your Impact &#8211; with Specmatic&#160; Point, Click, Generate, Validate &#38; Test: Your OpenAPI Examples Just Got Smarter&#160; [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Build Apps from API specs using AI: Self-Correcting Contract-Driven Agentic Workflows with Specmatic</title>
 		<link>https://specmatic.io/updates/build-apps-from-api-specs-using-ai-self-correcting-contract-driven-agentic-workflows-with-specmatic/</link>
 		
@@ -166,23 +181,6 @@
 		<guid isPermaLink="false">https://specmatic.io/?p=5193</guid>
 
 					<description><![CDATA[We&#8217;re thrilled to announce the release of Specmatic 2.0.x, a significant milestone release that is set to transform the way developers approach contract testing, intelligent service virtualization and backward compatibility testing. Now you can also transform your GraphQL and gRPC API specs into executable contracts in seconds. Specmatic 2.0 ushers in a new era of [&#8230;]]]></description>
-		
-		
-		
-			</item>
-		<item>
-		<title>API Resiliency and Contract Testing for GraphQL</title>
-		<link>https://specmatic.io/demonstration/api-resiliency-and-contract-testing-for-graphql/</link>
-		
-		<dc:creator><![CDATA[Joel Rosario]]></dc:creator>
-		<pubDate>Wed, 24 Jul 2024 20:10:00 +0000</pubDate>
-				<category><![CDATA[Demonstration]]></category>
-		<category><![CDATA[Feature Spotlight]]></category>
-		<category><![CDATA[Updates]]></category>
-		<category><![CDATA[GraphQL]]></category>
-		<guid isPermaLink="false">https://specmatic.io/?p=5198</guid>
-
-					<description><![CDATA[Transform your GraphQL API specs into executable contracts in seconds Now you can easily leverage your GraphQL APIs for contract testing, intelligent service virtualisation and backward compatibility testing, just like you would for your OpenAPI-based services. No more complex and brittle setups that involve an assortment of tools &#8211; Specmatic handles it all for you, [&#8230;]]]></description>
 		
 		
 		

@@ -10,12 +10,12 @@
 	Comments on: Comparison: Specmatic vs WireMock	</title>
 	<atom:link href="https://specmatic.io/comparisons/comparison-specmatic-vs-wiremock/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/comparisons/comparison-specmatic-vs-wiremock/</link>
-	<description>Contract Driven Development</description>
+	<description>Contract Driven Development simplified</description>
 	<lastBuildDate>Fri, 18 Oct 2024 04:27:08 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.6.2</generator>
+	<generator>https://wordpress.org/?v=6.7.1</generator>
 </channel>
 </rss>

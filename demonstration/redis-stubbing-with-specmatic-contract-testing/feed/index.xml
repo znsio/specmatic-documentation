@@ -10,12 +10,12 @@
 	Comments on: Redis Stubbing with Specmatic Contract Testing	</title>
 	<atom:link href="https://specmatic.io/demonstration/redis-stubbing-with-specmatic-contract-testing/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/demonstration/redis-stubbing-with-specmatic-contract-testing/</link>
-	<description>Contract Driven Development</description>
+	<description>Contract Driven Development simplified</description>
 	<lastBuildDate>Tue, 13 Aug 2024 23:33:30 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.6.2</generator>
+	<generator>https://wordpress.org/?v=6.7.1</generator>
 </channel>
 </rss>
