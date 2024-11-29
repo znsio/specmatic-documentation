@@ -652,7 +652,7 @@ The command can parse the contract file and write it to standard out. Specmatic 
 ## Overview
 The SPECMATIC_PRETTY_PRINT serves as a configuration flag to determine whether JSON strings should be logged in a "pretty-printed" (readable, formatted with line breaks and indentation) or "single-line" (compact and minified) format.
 
-The functionality of boolean flag SPECMATIC_PRETTY_PRINT is to control how JSON data is logged.
+The functionality of boolean flag SPECMATIC_PRETTY_PRINT is to control how JSON data is logged in both stub as well as test.
 
 - **`true`**: Logs JSON in a pretty-printed, readable format.
 - **`false`**: Logs JSON as a single-line, compact format.
