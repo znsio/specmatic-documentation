@@ -17,6 +17,7 @@ Configuration
     - [Declare pipeline details](#declare-pipeline-details)
     - [Declare environment configuration](#declare-environment-configuration)
     - [Hooks](#hooks)
+    - [Specmatic Pretty Print Configuration](#specmatic-pretty-print-configuration)
 
 ### Getting started
 
@@ -646,3 +647,42 @@ In the above snippet, `stub_load_contract` is the hook name. `python load.py` is
 
 The command can parse the contract file and write it to standard out. Specmatic will read it as the new contract. `stub_load_contract` and `test_load_contract` are the supported hook names.
 
+# Specmatic Pretty Print Configuration
+
+## Overview
+The SPECMATIC_PRETTY_PRINT serves as a configuration flag to determine whether JSON strings should be logged in a "pretty-printed" (readable, formatted with line breaks and indentation) or "single-line" (compact and minified) format.
+
+The functionality of boolean flag SPECMATIC_PRETTY_PRINT is to control how JSON data is logged.
+
+- **`true`**: Logs JSON in a pretty-printed, readable format.
+- **`false`**: Logs JSON as a single-line, compact format.
+
+## Examples Based on SPECMATIC_PRETTY_PRINT
+
+### With `SPECMATIC_PRETTY_PRINT = true`:
+```json
+{
+    "name": "John Doe",
+    "age": 30,
+    "address": {
+        "street": "123 Elm St",
+        "city": "Metropolis"
+    }
+}
+```
+
+### With `SPECMATIC_PRETTY_PRINT = false`:
+```json
+{"name":"John Doe","age":30,"address":{"street":"123 Elm St","city":"Metropolis"}}
+```
+
+By default, the value is assumed to be true if not explicitly set.
+
+#### Configuration
+
+Set SPECMATIC_PRETTY_PRINT in your environment:
+
+Using Environment Variable:
+```bash
+export SPECMATIC_PRETTY_PRINT=true
+```
