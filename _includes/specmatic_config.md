@@ -13,6 +13,7 @@ Configuration
       - [Formatters](#formatters)
       - [Report Types](#report-types)
       - [API Coverage report](#api-coverage-report)
+      - [Flags](#flags)
       - [Complete sample specmatic.json with all attributes](#complete-sample-specmaticjson-with-all-attributes)
     - [Declare pipeline details](#declare-pipeline-details)
     - [Declare environment configuration](#declare-environment-configuration)
@@ -406,6 +407,27 @@ The Text formatter will print the report on to the console/terminal.
 #### API Coverage report
 This gives you a comprehensive analysis of any mismatch between your api specification and implementation. [Here](https://specmatic.in/updates/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/#gsc.tab=0) is an article with a detailed write-up about this feature.
 
+#### Flags
+Specmatic provides several configurable flags to customize test generation behavior.
+
+1. **enableResiliencyTests**: 
+Enables the generation of both positive and negative tests based on the OpenAPI specification 
+using property testing and mutation testing techniques. 
+These tests are designed to evaluate the resiliency of APIs against a variety of scenarios.
+
+2. **enableOnlyPositiveTests**:
+When set in conjunction with enableResiliencyTests, this flag restricts the execution to only 
+positive tests.
+
+3. **enableResponseValueValidation**:
+Activates the validation of actual response values in addition to their schema. 
+Use this flag to enforce value validation within response payloads.
+
+4. **enableExtensibleSchema**: 
+Disables strict schema validation for request and response objects,
+permitting additional, unrecognized fields without causing validation errors.
+
+
 #### Complete sample specmatic.json with all attributes
 
 {% tabs complete %}
@@ -429,6 +451,11 @@ This gives you a comprehensive analysis of any mismatch between your api specifi
   "auth": {
     "bearer-file": "central_repo_auth_token.txt"
   },
+
+  "enableResiliencyTests": true
+  "enableOnlyPositiveTests": false
+  "enableResponseValueValidation": true
+  "enableExtensibleSchema": false
 
   "pipeline": {
     "provider": "azure",
