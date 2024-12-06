@@ -1,4 +1,4 @@
-/*! elementor - v3.25.0 - 20-11-2024 */
+/*! elementor - v3.25.0 - 24-11-2024 */
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["contact-buttons"],{
 
 /***/ "../modules/floating-buttons/assets/js/floating-buttons/frontend/handlers/contact-buttons.js":

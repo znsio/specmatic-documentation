@@ -1,4 +1,4 @@
-/*! elementor - v3.25.0 - 20-11-2024 */
+/*! elementor - v3.25.0 - 24-11-2024 */
 "use strict";
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["frontend"],{
 
@@ -1973,6 +1973,7 @@ class _default extends elementorModules.ViewModule {
     this.actions[name] = callback;
   }
   runAction(url) {
+    url = decodeURI(url);
     url = decodeURIComponent(url);
     const actionMatch = url.match(/action=(.+?)&/);
     if (!actionMatch) {
