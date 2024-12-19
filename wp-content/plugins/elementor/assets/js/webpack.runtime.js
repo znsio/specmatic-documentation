@@ -1,4 +1,4 @@
-/*! elementor - v3.25.0 - 24-11-2024 */
+/*! elementor - v3.26.0 - 16-12-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({});
@@ -123,23 +123,23 @@
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if (chunkId === "nested-title-keyboard-handler") return "" + chunkId + ".92a73d7a8a75bcb8cd67.bundle.js";
-/******/ 			if (chunkId === "lightbox") return "" + chunkId + ".2c9ae19597fcd2a76c3a.bundle.js";
-/******/ 			if (chunkId === "text-path") return "" + chunkId + ".a20877e832db83423958.bundle.js";
-/******/ 			if (chunkId === "accordion") return "" + chunkId + ".c16b88b2e8a0c50189bc.bundle.js";
-/******/ 			if (chunkId === "alert") return "" + chunkId + ".c3c6a3fdf4745bd26b7f.bundle.js";
-/******/ 			if (chunkId === "counter") return "" + chunkId + ".3f74a246dff765f39aea.bundle.js";
-/******/ 			if (chunkId === "progress") return "" + chunkId + ".6d15c16f0f5c4792940f.bundle.js";
-/******/ 			if (chunkId === "tabs") return "tabs.520bc2ed4560c561029e.bundle.js";
-/******/ 			if (chunkId === "toggle") return "" + chunkId + ".d79746a764407a0828ee.bundle.js";
-/******/ 			if (chunkId === "video") return "" + chunkId + ".817bd6a65a1542503aac.bundle.js";
-/******/ 			if (chunkId === "image-carousel") return "" + chunkId + ".9399f19d95d7300cbc2e.bundle.js";
-/******/ 			if (chunkId === "text-editor") return "" + chunkId + ".2f2f7e0ea1e16387a004.bundle.js";
-/******/ 			if (chunkId === "wp-audio") return "" + chunkId + ".b8efdc046bc9df72a075.bundle.js";
-/******/ 			if (chunkId === "nested-accordion") return "" + chunkId + ".82e5c4e9017e457a5f2e.bundle.js";
-/******/ 			if (chunkId === "contact-buttons") return "" + chunkId + ".a5e2cc7274ba4c94eb66.bundle.js";
-/******/ 			if (chunkId === "floating-bars") return "" + chunkId + ".1ebb83f158244b35bda6.bundle.js";
-/******/ 			if (chunkId === "container") return "" + chunkId + ".a7f0a15dfa05df34e1f7.bundle.js";
+/******/ 			if (chunkId === "nested-title-keyboard-handler") return "" + chunkId + ".451fba615fad42703872.bundle.js";
+/******/ 			if (chunkId === "lightbox") return "" + chunkId + ".796e05223323a487677f.bundle.js";
+/******/ 			if (chunkId === "text-path") return "" + chunkId + ".12d8f0d07bb4893759c1.bundle.js";
+/******/ 			if (chunkId === "accordion") return "" + chunkId + ".386ef72c00b640a5a565.bundle.js";
+/******/ 			if (chunkId === "alert") return "" + chunkId + ".0f08bb619b34118d5723.bundle.js";
+/******/ 			if (chunkId === "counter") return "" + chunkId + ".4376b4ff7a0ac7960ece.bundle.js";
+/******/ 			if (chunkId === "progress") return "" + chunkId + ".fa9d02f64d572ab7c406.bundle.js";
+/******/ 			if (chunkId === "tabs") return "tabs.6d6269a8d596a1bc73e3.bundle.js";
+/******/ 			if (chunkId === "toggle") return "" + chunkId + ".3520395de60310d5fb8d.bundle.js";
+/******/ 			if (chunkId === "video") return "" + chunkId + ".602349dafcafaba0fcb2.bundle.js";
+/******/ 			if (chunkId === "image-carousel") return "" + chunkId + ".6b6cc9be9f264358e60f.bundle.js";
+/******/ 			if (chunkId === "text-editor") return "" + chunkId + ".4c1f4c7a6496bcbd4fbc.bundle.js";
+/******/ 			if (chunkId === "wp-audio") return "" + chunkId + ".e66fbeb6bb602dcbc731.bundle.js";
+/******/ 			if (chunkId === "nested-accordion") return "" + chunkId + ".b15477b3c5d0de743d83.bundle.js";
+/******/ 			if (chunkId === "contact-buttons") return "" + chunkId + ".c953d1cdf362b19a9f7d.bundle.js";
+/******/ 			if (chunkId === "floating-bars") return "" + chunkId + ".d7a4725c8d2b0c4da40a.bundle.js";
+/******/ 			if (chunkId === "container") return "" + chunkId + ".7bbfb10dea9b7c487356.bundle.js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
@@ -225,13 +225,13 @@
 /******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
 /******/ 		var document = __webpack_require__.g.document;
 /******/ 		if (!scriptUrl && document) {
-/******/ 			if (document.currentScript)
+/******/ 			if (document.currentScript && document.currentScript.tagName.toUpperCase() === 'SCRIPT')
 /******/ 				scriptUrl = document.currentScript.src;
 /******/ 			if (!scriptUrl) {
 /******/ 				var scripts = document.getElementsByTagName("script");
 /******/ 				if(scripts.length) {
 /******/ 					var i = scripts.length - 1;
-/******/ 					while (i > -1 && !scriptUrl) scriptUrl = scripts[i--].src;
+/******/ 					while (i > -1 && (!scriptUrl || !/^http(s?):/.test(scriptUrl))) scriptUrl = scripts[i--].src;
 /******/ 				}
 /******/ 			}
 /******/ 		}
