@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.25.0 - 20-11-2024 */
+/*! elementor-pro - v3.26.0 - 17-12-2024 */
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["vendors-node_modules_dompurify_dist_purify_js"],{
 
 /***/ "../node_modules/dompurify/dist/purify.js":

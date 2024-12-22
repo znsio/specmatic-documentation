@@ -1,4 +1,4 @@
-/*! elementor - v3.26.0 - 16-12-2024 */
+/*! elementor - v3.26.0 - 19-12-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -2774,6 +2774,12 @@ var PromptErrorMessage = function PromptErrorMessage(_ref) {
       image_resolution_maximum_exceeded: {
         text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('The image resolution exceeds the maximum allowed size.', 'elementor')),
         description: (0, _i18n.__)('Please upload a file with dimensions less than 2048x2048 pixels.', 'elementor')
+      },
+      external_service_unavailable: {
+        text: /*#__PURE__*/_react.default.createElement(_ui.AlertTitle, null, (0, _i18n.__)('Temporary external service issue', 'elementor')),
+        description: (0, _i18n.__)('It seems that one of our partner services is temporarily unavailable. Please try again in a few minutes.', 'elementor'),
+        buttonText: (0, _i18n.__)('Try Again', 'elementor'),
+        buttonAction: onRetry
       }
     };
     return messages[errMsg] || messages.default;

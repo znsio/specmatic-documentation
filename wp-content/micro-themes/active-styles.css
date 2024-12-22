@@ -568,6 +568,12 @@ html {
 	font-weight: 300 !important;
 }
 
+/** General 3 >> Div **/
+.mtp-6395 .uael-post-grid__inner > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div {
+	border-bottom-right-radius: 8px !important;
+	border-bottom-left-radius: 8px !important;
+}
+
 /** General 3 >> Buy now **/
 .mtp-1665 #buy-now {
 	width: 100% !important;
@@ -645,6 +651,11 @@ html {
 .mtp-4569 .elementor-widget-container h3 {
 	padding-top: 10px !important;
 	padding-bottom: 10px !important;
+}
+
+/** General 3 >> Attachment medium large **/
+.mtp-6395 .attachment-medium_large {
+	border-radius: 8px 8px 0 0 !important;
 }
 
 
