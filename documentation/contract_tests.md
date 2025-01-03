@@ -1493,6 +1493,256 @@ Test hooks provide a powerful way to bridge the gap between client specification
 
 ---
 
+
+## OpenAPI Links Support
+
+### What are Links?
+
+Links in OpenAPI 3.0 is a powerful mechanism that allows you to define relationships between different API operations. Enabling more intelligent and connected API testing workflows. For more detais please refer [official OpenAPI Links documentation](https://spec.openapis.org/oas/v3.1.0.html#link-object)
+
+### The Problem Links Solve
+
+Imagine you're testing an products application. You create a new product, and then you want to:
+- Retrieve the product's details
+- Update the product's information
+- Delete the product
+
+Traditionally, you'd need to manually track and pass IDs between these operations. Links automate this process, making your API testing more intuitive and less error-prone.
+
+### How Links Work in Specmatic
+
+#### Current Support: operationId Linking
+
+Specmatic currently supports links using `operationId`. Here's how it works:
+
+```yaml
+paths:
+  /products:
+    post:
+      operationId: createProduct
+      responses:
+        '201':
+          links:
+            getProduct:
+              operationId: getProductById
+              parameters:
+                path.id: "$response.body#/id"
+```
+
+In this example:
+1. After creating a product, Specmatic automatically knows to use the returned ID
+2. It can seamlessly call the `getProductById` operation
+3. No manual ID tracking required!
+
+#### Real-World Example
+
+Consider our Product API with four key operations:
+
+- Create a Product
+- Get a Product by ID
+- Update a Product
+- Delete a Product
+
+Following is how the links section would look like for this
+
+```yaml
+  links:
+    getProduct:
+      operationId: getProductById
+      parameters:
+        path.id: "$response.body#/id"
+    updateProduct:
+      operationId: updateProductById
+      parameters:
+        path.id: "$response.body#/id"
+    deleteProduct:
+      operationId: deleteProductById
+      parameters:
+        path.id: "$response.body#/id"
+```
+
+**Specification Breakdown** - Let's have a look at the complete specification, with links section added to `POST /products -> 201`
+
+```yaml
+openapi: 3.0.0
+info:
+  title: Product API
+  version: '1.0'
+  description: Simple API to demonstrate product operations
+paths:
+  /products:
+    post:
+      summary: Create a new product
+      operationId: createProduct
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - price
+              properties:
+                name:
+                  type: string
+                  description: Name of the product
+                price:
+                  type: integer
+                  description: Price of the product
+      responses:
+        '201':
+          description: Product created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - id
+                  - name
+                  - price
+                properties:
+                  id:
+                    type: string
+                    description: Unique identifier for the product
+                  name:
+                    type: string
+                  price:
+                    type: integer
+          links:
+            getProduct:
+              operationId: getProductById
+              parameters:
+                path.id: "$response.body#/id"
+            updateProduct:
+              operationId: updateProductById
+              parameters:
+                path.id: "$response.body#/id"
+            deleteProduct:
+              operationId: deleteProductById
+              parameters:
+                path.id: "$response.body#/id"
+      
+  /products/{id}:
+    get:
+      summary: Get a product by ID
+      operationId: getProductById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the product to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Product found successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - id
+                  - name
+                  - price
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  price:
+                    type: integer
+    put:
+      summary: Update a product by ID
+      operationId: updateProductById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the product to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - price
+              properties:
+                name:
+                  type: string
+                price:
+                  type: integer
+      responses:
+        '200':
+          description: Product updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - id
+                  - name
+                  - price
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  price:
+                    type: integer
+    delete:
+      summary: Delete a product by ID
+      operationId: deleteProductById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the product to delete
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Product deleted successfully
+```
+
+#### How Links Work in This Example:
+
+- Call createProduct with a new product's details, new product's *ID* will be returned as response.
+- Use the *ID* from previous response and GET the product details.
+- Update the product with new information, using the *ID*
+- Delete the product by using the ID from previous steps.
+
+
+### Implementing Links in Your Spec
+
+#### Implementing Links in Your Spec
+1. Define clear `operationId` for each operation
+2. Use runtime expressions to extract link parameters
+3. Let Specmatic handle the rest!
+
+#### Best Practices
+- Use descriptive `operationId` names
+- Ensure consistent parameter naming
+- Keep link logic simple and intuitive
+
+### Limitations (Current Version)
+- Supports only `operationId`-based links
+- Runtime expressions limited to basic scenarios
+- No external API link support yet
+
+### Future Directions
+- Support for more complex runtime expressions
+- External API link resolution
+- Dynamic link generation
+
+### Learn More
+- [OpenAPI Specification](https://swagger.io/specification/)
+- [Specmatic Documentation](https://specmatic.io)
+
 ### Advanced Features
 
 #### Generative Tests
