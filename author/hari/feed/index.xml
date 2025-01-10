@@ -38,7 +38,7 @@
 		<category><![CDATA[pact]]></category>
 		<guid isPermaLink="false">https://specmatic.io/?p=5898</guid>
 
-					<description><![CDATA[Exploring the challenges and limitations of using Pact for contract testing in a microservices environment.&#160; In the domain of microservices, ensuring seamless communication between different services is paramount. This necessitates robust contract testing to ensure that APIs and their consumers are in sync. With an increasing number of organizations adopting microservices, tools like Pact—a consumer-driven [&#8230;]]]></description>
+					<description><![CDATA[Exploring the challenges and limitations of using Pact for contract testing in a microservices environment.  In the domain of microservices, ensuring seamless communication between different services is paramount. This necessitates robust contract testing to ensure that APIs and their consumers are in sync. With an increasing number of organizations adopting microservices, tools like Pact—a consumer-driven [&#8230;]]]></description>
 		
 		
 		
@@ -54,7 +54,7 @@
 		<category><![CDATA[wiremock]]></category>
 		<guid isPermaLink="false">https://specmatic.io/?p=5871</guid>
 
-					<description><![CDATA[Overcoming the Challenges of Hand-Rolled Mocks with Contract-Driven Development&#160; APIs and microservices have transformed the way software systems are built and maintained. However, developing a system that relies on multiple services—both internal and external—presents unique challenges, especially when some services are not fully available. In this critique of WireMock, we examine the critical importance of [&#8230;]]]></description>
+					<description><![CDATA[Overcoming the Challenges of Hand-Rolled Mocks with Contract-Driven Development  APIs and microservices have transformed the way software systems are built and maintained. However, developing a system that relies on multiple services—both internal and external—presents unique challenges, especially when some services are not fully available. In this critique of WireMock, we examine the critical importance of [&#8230;]]]></description>
 		
 		
 		
