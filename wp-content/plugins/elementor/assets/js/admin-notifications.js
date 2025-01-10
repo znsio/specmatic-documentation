@@ -1,4 +1,4 @@
-/*! elementor - v3.25.0 - 24-11-2024 */
+/*! elementor - v3.26.0 - 22-12-2024 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -81,10 +81,9 @@ var request = function request(endpoint) {
     });
   });
 };
-var getNotifications = function getNotifications() {
+var getNotifications = exports.getNotifications = function getNotifications() {
   return request('notifications_get');
 };
-exports.getNotifications = getNotifications;
 
 /***/ }),
 
@@ -108,9 +107,9 @@ var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "../node_modules/@babel/runtime/helpers/slicedToArray.js"));
 var _whatsNew = __webpack_require__(/*! ./whats-new */ "../modules/notifications/assets/js/components/whats-new.js");
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-var BarButtonNotification = function BarButtonNotification(props) {
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+var BarButtonNotification = exports.BarButtonNotification = function BarButtonNotification(props) {
   var defaultIsRead = props.defaultIsRead;
   var _useState = (0, _react.useState)(false),
     _useState2 = (0, _slicedToArray2.default)(_useState, 2),
@@ -149,7 +148,6 @@ var BarButtonNotification = function BarButtonNotification(props) {
     setIsRead: setIsRead
   }));
 };
-exports.BarButtonNotification = BarButtonNotification;
 BarButtonNotification.propTypes = {
   defaultIsRead: PropTypes.bool,
   children: PropTypes.any.isRequired
@@ -177,7 +175,7 @@ var _query = __webpack_require__(/*! @elementor/query */ "../node_modules/@eleme
 var _api = __webpack_require__(/*! ../api */ "../modules/notifications/assets/js/api/index.js");
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var _whatsNewItem = __webpack_require__(/*! ./whats-new-item */ "../modules/notifications/assets/js/components/whats-new-item.js");
-var WhatsNewDrawerContent = function WhatsNewDrawerContent(_ref) {
+var WhatsNewDrawerContent = exports.WhatsNewDrawerContent = function WhatsNewDrawerContent(_ref) {
   var setIsOpen = _ref.setIsOpen;
   var _useQuery = (0, _query.useQuery)({
       queryKey: ['e-notifications'],
@@ -204,7 +202,6 @@ var WhatsNewDrawerContent = function WhatsNewDrawerContent(_ref) {
     });
   });
 };
-exports.WhatsNewDrawerContent = WhatsNewDrawerContent;
 WhatsNewDrawerContent.propTypes = {
   setIsOpen: PropTypes.func.isRequired
 };
@@ -229,7 +226,7 @@ exports.WhatsNewItemChips = void 0;
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var WhatsNewItemChips = function WhatsNewItemChips(_ref) {
+var WhatsNewItemChips = exports.WhatsNewItemChips = function WhatsNewItemChips(_ref) {
   var chipPlan = _ref.chipPlan,
     chipTags = _ref.chipTags,
     itemIndex = _ref.itemIndex;
@@ -266,7 +263,6 @@ var WhatsNewItemChips = function WhatsNewItemChips(_ref) {
     }, chip));
   }));
 };
-exports.WhatsNewItemChips = WhatsNewItemChips;
 WhatsNewItemChips.propTypes = {
   chipPlan: PropTypes.string,
   chipTags: PropTypes.array,
@@ -293,7 +289,7 @@ exports.WhatsNewItemThumbnail = void 0;
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var _wrapperWithLink = __webpack_require__(/*! ./wrapper-with-link */ "../modules/notifications/assets/js/components/wrapper-with-link.js");
-var WhatsNewItemThumbnail = function WhatsNewItemThumbnail(_ref) {
+var WhatsNewItemThumbnail = exports.WhatsNewItemThumbnail = function WhatsNewItemThumbnail(_ref) {
   var imageSrc = _ref.imageSrc,
     title = _ref.title,
     link = _ref.link;
@@ -311,7 +307,6 @@ var WhatsNewItemThumbnail = function WhatsNewItemThumbnail(_ref) {
     }
   })));
 };
-exports.WhatsNewItemThumbnail = WhatsNewItemThumbnail;
 WhatsNewItemThumbnail.propTypes = {
   imageSrc: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
@@ -337,7 +332,7 @@ Object.defineProperty(exports, "__esModule", ({
 exports.WhatsNewItemTopicLine = void 0;
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var WhatsNewItemTopicLine = function WhatsNewItemTopicLine(_ref) {
+var WhatsNewItemTopicLine = exports.WhatsNewItemTopicLine = function WhatsNewItemTopicLine(_ref) {
   var topic = _ref.topic,
     date = _ref.date;
   return /*#__PURE__*/_react.default.createElement(_ui.Stack, {
@@ -353,7 +348,6 @@ var WhatsNewItemTopicLine = function WhatsNewItemTopicLine(_ref) {
     }
   }, topic && /*#__PURE__*/_react.default.createElement(_ui.Box, null, topic), date && /*#__PURE__*/_react.default.createElement(_ui.Box, null, date));
 };
-exports.WhatsNewItemTopicLine = WhatsNewItemTopicLine;
 WhatsNewItemTopicLine.propTypes = {
   topic: PropTypes.string,
   date: PropTypes.string
@@ -382,7 +376,7 @@ var _whatsNewItemTopicLine = __webpack_require__(/*! ./whats-new-item-topic-line
 var _wrapperWithLink = __webpack_require__(/*! ./wrapper-with-link */ "../modules/notifications/assets/js/components/wrapper-with-link.js");
 var _whatsNewItemThumbnail = __webpack_require__(/*! ./whats-new-item-thumbnail */ "../modules/notifications/assets/js/components/whats-new-item-thumbnail.js");
 var _whatsNewItemChips = __webpack_require__(/*! ./whats-new-item-chips */ "../modules/notifications/assets/js/components/whats-new-item-chips.js");
-var WhatsNewItem = function WhatsNewItem(_ref) {
+var WhatsNewItem = exports.WhatsNewItem = function WhatsNewItem(_ref) {
   var item = _ref.item,
     itemIndex = _ref.itemIndex,
     itemsLength = _ref.itemsLength,
@@ -441,7 +435,6 @@ var WhatsNewItem = function WhatsNewItem(_ref) {
     }
   }));
 };
-exports.WhatsNewItem = WhatsNewItem;
 WhatsNewItem.propTypes = {
   item: PropTypes.object.isRequired,
   itemIndex: PropTypes.number.isRequired,
@@ -470,7 +463,7 @@ var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var _i18n = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 var _xIcon = __webpack_require__(/*! ../icons/x-icon */ "../modules/notifications/assets/js/icons/x-icon.js");
-var WhatsNewTopBar = function WhatsNewTopBar(props) {
+var WhatsNewTopBar = exports.WhatsNewTopBar = function WhatsNewTopBar(props) {
   var setIsOpen = props.setIsOpen;
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_ui.AppBar, {
     elevation: 0,
@@ -493,7 +486,6 @@ var WhatsNewTopBar = function WhatsNewTopBar(props) {
     }
   }, /*#__PURE__*/_react.default.createElement(_xIcon.XIcon, null)))), /*#__PURE__*/_react.default.createElement(_ui.Divider, null));
 };
-exports.WhatsNewTopBar = WhatsNewTopBar;
 WhatsNewTopBar.propTypes = {
   setIsOpen: PropTypes.func.isRequired
 };
@@ -520,8 +512,8 @@ var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var _query = __webpack_require__(/*! @elementor/query */ "../node_modules/@elementor/query/dist/index.js");
 var _whatsNewTopBar = __webpack_require__(/*! ./whats-new-top-bar */ "../modules/notifications/assets/js/components/whats-new-top-bar.js");
 var _whatsNewDrawerContent = __webpack_require__(/*! ./whats-new-drawer-content */ "../modules/notifications/assets/js/components/whats-new-drawer-content.js");
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 var queryClient = new _query.QueryClient({
   defaultOptions: {
     queries: {
@@ -531,8 +523,7 @@ var queryClient = new _query.QueryClient({
     }
   }
 });
-
-var WhatsNew = function WhatsNew(props) {
+var WhatsNew = exports.WhatsNew = function WhatsNew(props) {
   var _window$elementor, _window$elementor$get;
   var isOpen = props.isOpen,
     setIsOpen = props.setIsOpen,
@@ -550,7 +541,7 @@ var WhatsNew = function WhatsNew(props) {
   }, /*#__PURE__*/_react.default.createElement(_ui.DirectionProvider, {
     rtl: elementorCommon.config.isRTL
   }, /*#__PURE__*/_react.default.createElement(_ui.ThemeProvider, {
-    colorScheme: ((_window$elementor = window.elementor) === null || _window$elementor === void 0 ? void 0 : (_window$elementor$get = _window$elementor.getPreferences) === null || _window$elementor$get === void 0 ? void 0 : _window$elementor$get.call(_window$elementor, 'ui_theme')) || 'auto'
+    colorScheme: ((_window$elementor = window.elementor) === null || _window$elementor === void 0 || (_window$elementor$get = _window$elementor.getPreferences) === null || _window$elementor$get === void 0 ? void 0 : _window$elementor$get.call(_window$elementor, 'ui_theme')) || 'auto'
   }, /*#__PURE__*/_react.default.createElement(_ui.Drawer, {
     anchor: anchorPosition,
     open: isOpen,
@@ -579,7 +570,6 @@ var WhatsNew = function WhatsNew(props) {
     setIsOpen: setIsOpen
   }))))))));
 };
-exports.WhatsNew = WhatsNew;
 WhatsNew.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   setIsOpen: PropTypes.func.isRequired,
@@ -606,7 +596,7 @@ Object.defineProperty(exports, "__esModule", ({
 exports.WrapperWithLink = void 0;
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var WrapperWithLink = function WrapperWithLink(props) {
+var WrapperWithLink = exports.WrapperWithLink = function WrapperWithLink(props) {
   var link = props.link,
     children = props.children;
   if (!link) {
@@ -624,7 +614,6 @@ var WrapperWithLink = function WrapperWithLink(props) {
     }
   }, children);
 };
-exports.WrapperWithLink = WrapperWithLink;
 WrapperWithLink.propTypes = {
   link: PropTypes.string,
   children: PropTypes.any.isRequired
@@ -650,9 +639,9 @@ exports.XIcon = void 0;
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
 var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-var XIcon = (0, _react.forwardRef)(function (props, ref) {
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+var XIcon = exports.XIcon = (0, _react.forwardRef)(function (props, ref) {
   return /*#__PURE__*/_react.default.createElement(_ui.SvgIcon, (0, _extends2.default)({
     viewBox: "0 0 24 24"
   }, props, {
@@ -667,7 +656,6 @@ var XIcon = (0, _react.forwardRef)(function (props, ref) {
     d: "M5.46967 5.46967C5.76256 5.17678 6.23744 5.17678 6.53033 5.46967L18.5303 17.4697C18.8232 17.7626 18.8232 18.2374 18.5303 18.5303C18.2374 18.8232 17.7626 18.8232 17.4697 18.5303L5.46967 6.53033C5.17678 6.23744 5.17678 5.76256 5.46967 5.46967Z"
   }));
 });
-exports.XIcon = XIcon;
 
 /***/ }),
 
@@ -3173,10 +3161,10 @@ module.exports = wp.i18n;
   \******************************************************************/
 /***/ ((module) => {
 
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
-  return arr2;
+function _arrayLikeToArray(r, a) {
+  (null == a || a > r.length) && (a = r.length);
+  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+  return n;
 }
 module.exports = _arrayLikeToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
@@ -3188,8 +3176,8 @@ module.exports = _arrayLikeToArray, module.exports.__esModule = true, module.exp
   \****************************************************************/
 /***/ ((module) => {
 
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
+function _arrayWithHoles(r) {
+  if (Array.isArray(r)) return r;
 }
 module.exports = _arrayWithHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
@@ -3202,18 +3190,13 @@ module.exports = _arrayWithHoles, module.exports.__esModule = true, module.expor
 /***/ ((module) => {
 
 function _extends() {
-  module.exports = _extends = Object.assign ? Object.assign.bind() : function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
+  return module.exports = _extends = Object.assign ? Object.assign.bind() : function (n) {
+    for (var e = 1; e < arguments.length; e++) {
+      var t = arguments[e];
+      for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]);
     }
-    return target;
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
-  return _extends.apply(this, arguments);
+    return n;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports, _extends.apply(null, arguments);
 }
 module.exports = _extends, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
@@ -3225,9 +3208,9 @@ module.exports = _extends, module.exports.__esModule = true, module.exports["def
   \***********************************************************************/
 /***/ ((module) => {
 
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    "default": obj
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
   };
 }
 module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
@@ -3294,8 +3277,8 @@ var arrayWithHoles = __webpack_require__(/*! ./arrayWithHoles.js */ "../node_mod
 var iterableToArrayLimit = __webpack_require__(/*! ./iterableToArrayLimit.js */ "../node_modules/@babel/runtime/helpers/iterableToArrayLimit.js");
 var unsupportedIterableToArray = __webpack_require__(/*! ./unsupportedIterableToArray.js */ "../node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js");
 var nonIterableRest = __webpack_require__(/*! ./nonIterableRest.js */ "../node_modules/@babel/runtime/helpers/nonIterableRest.js");
-function _slicedToArray(arr, i) {
-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
+function _slicedToArray(r, e) {
+  return arrayWithHoles(r) || iterableToArrayLimit(r, e) || unsupportedIterableToArray(r, e) || nonIterableRest();
 }
 module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
@@ -3310,11 +3293,11 @@ module.exports = _slicedToArray, module.exports.__esModule = true, module.export
 function _typeof(o) {
   "@babel/helpers - typeof";
 
-  return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+  return module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
     return typeof o;
   } : function (o) {
     return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(o);
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports, _typeof(o);
 }
 module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
@@ -3327,13 +3310,12 @@ module.exports = _typeof, module.exports.__esModule = true, module.exports["defa
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var arrayLikeToArray = __webpack_require__(/*! ./arrayLikeToArray.js */ "../node_modules/@babel/runtime/helpers/arrayLikeToArray.js");
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+function _unsupportedIterableToArray(r, a) {
+  if (r) {
+    if ("string" == typeof r) return arrayLikeToArray(r, a);
+    var t = {}.toString.call(r).slice(8, -1);
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? arrayLikeToArray(r, a) : void 0;
+  }
 }
 module.exports = _unsupportedIterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
