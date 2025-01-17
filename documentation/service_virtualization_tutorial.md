@@ -16,6 +16,7 @@ Service Virtualization
   - [Externalizing Example Data](#externalizing-example-data)
       - [Handling No Response Body APIs](#handling-no-response-body-apis)
   - [Intelligent Service Virtualisation - Example cannot go out of sync](#intelligent-service-virtualisation---example-cannot-go-out-of-sync)
+  - [Stateful Moacking (virtual service)](#stateful-moacking-virtual-service)
   - [Strict Mode](#strict-mode)
   - [Data Type-Based Examples](#data-type-based-examples)
   - [Plain Text Request Bodies - Examples With Regular Expressions](#plain-text-request-bodies---examples-with-regular-expressions)
@@ -426,6 +427,171 @@ Create a file named `out-of-sync.json` with the following contents:
 
 - As you can see the response contains a generated value for the id, rather than "abc123", which was in the invalid example.
 - Since the invalid example was rejected by Specmatic stub, the response is a value generated based on the response in the specification.
+
+## Stateful Moacking (virtual service)
+
+### Overview
+
+While Specmatic's stub service provides stateless API mocking capabilities, modern applications often require more sophisticated testing scenarios. The virtual-service feature was introduced to address this need, providing stateful behavior that mirrors real-world API interactions.
+
+Key differences from stub service:
+- Maintains state across requests
+- Enables testing of complex workflows
+- Supports scenarios requiring data persistence
+- Allows validation of state-dependent business logic
+
+This makes virtual-service particularly valuable for:
+- Testing multi-step API workflows
+- Validating state transitions
+- Simulating real-world API behaviors
+- Development without external service dependencies
+
+### How It Works
+
+The virtual service reads your contract specifications from the `specmatic.yaml` configuration file and creates a running service that:
+- Implements all defined API endpoints
+- Maintains state across requests
+- Supports operations as defined in your specifications
+- Can be pre-loaded with example data
+
+```mermaid
+flowchart LR
+    subgraph Configuration
+        A[specmatic.yaml] --> B[Contract Specifications]
+        C[Example JSONs] --> D[Initial State]
+    end
+    
+    subgraph "Virtual Service"
+        E[API Endpoints] --> F[State Management]
+        F --> G[Operations]
+    end
+    
+    B --> E
+    D --> F
+    
+    subgraph "Client Interactions"
+        H[HTTP Requests] --> E
+        G --> I[Stateful Responses]
+    end
+
+    style Configuration fill:#f5f5f5,stroke:#333,stroke-width:2px
+
+```
+
+### Getting Started
+
+#### Configuration
+
+Create a `specmatic.yaml` file in your project root:
+
+```yaml
+sources:
+  - provider: filesystem
+    stub:
+      - products_spec.yaml
+    test:
+      - products_spec.yaml
+```
+
+#### Basic Usage
+
+Start the virtual service with default settings (localhost:9000):
+
+```bash
+specmatic virtual-service
+```
+
+#### Command Line Options
+
+```bash
+Usage: specmatic virtual-service [-hV] [--host=<host>] [--port=<port>] 
+                                [--examples=<exampleDirs>]...
+
+Start a stateful virtual service with contract
+```
+
+| Option | Description |
+|--------|-------------|
+| `-h, --help` | Show help message and exit |
+| `--host=<host>` | Host for the virtual service (default: localhost) |
+| `--port=<port>` | Port for the virtual service (default: 9000) |
+| `--examples=<exampleDirs>` | Directories containing JSON examples for initial state |
+| `-v, --version` | Print version information and exit |
+
+### Working with State
+
+#### Default Behavior
+
+The virtual service maintains state automatically based on your API specifications. For example:
+
+1. When you create a resource using a defined endpoint, it's stored in the service's state
+2. Subsequent requests will interact with the stored state according to your API specifications
+3. All operations defined in your contract specifications are supported with appropriate state management
+
+#### Pre-loading State
+
+You can initialize the service with pre-defined data:
+
+1. Generate example files using Specmatic:
+   ```bash
+   specmatic examples spec_file_name.yaml
+   ```
+   This command automatically creates a directory named `spec_file_name_examples` containing all generated examples.
+
+2. Start the service with pre-loaded examples:
+   ```bash
+   specmatic virtual-service --examples="spec_file_name_examples"
+   ```
+
+### Common Use Cases
+
+#### Local Development
+
+```bash
+# Start service on a specific port
+specmatic virtual-service --port=8080
+```
+
+This allows developers to work against a realistic API implementation without depending on external services.
+
+#### Integration Testing
+
+```bash
+# Start with pre-loaded test data
+specmatic virtual-service --examples="spec_file_name_examples"
+```
+
+Perfect for integration tests that require consistent initial state.
+
+#### API Design Validation
+
+The virtual service helps validate API design decisions early by providing a working implementation that maintains state according to your specifications.
+
+### Troubleshooting
+
+#### Common Issues
+
+1. **Port Already in Use**
+   ```bash
+   # Solution: Use a different port
+   specmatic virtual-service --port=9001
+   ```
+
+2. **Example Files Not Loading**
+   - Verify JSON format is valid
+   - Check file permissions
+   - Ensure path to examples directory is correct
+
+#### Logs
+
+The virtual service outputs detailed logs that can help diagnose issues. Pay attention to startup logs for configuration problems and request logs for runtime issues.
+
+### See Also
+
+- [Generating Examples Documentation](documentation/service_virtualization_tutorial.html#externalizing-example-data)
+- [Contract Testing with Specmatic](documentation/contract_tests.html)
+
+___
 
 ## Strict Mode
 
