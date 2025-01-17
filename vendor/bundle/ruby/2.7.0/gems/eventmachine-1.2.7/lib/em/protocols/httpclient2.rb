@@ -529,7 +529,7 @@ module EventMachine
     # 3) Read a chunked or multipart response;
     # 4) Read till the server closes the connection.
     #
-    # Our reponse to the client can be either to wait till all the content
+    # Our response to the client can be either to wait till all the content
     # has been read and then to signal caller's deferrable, or else to signal
     # it when we finish the processing the headers and then expect the caller
     # to have given us a block to call as the content comes in. And of course
