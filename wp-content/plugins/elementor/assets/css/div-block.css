@@ -1,0 +1,10 @@
+/*! elementor - v3.27.0 - 03-02-2025 */
+.e-div-block {
+  --e-div-block-default-padding-block-start: 10px;
+  --e-div-block-default-padding-block-end: 10px;
+  --e-div-block-default-display: block;
+  display: var(--e-div-block-default-display);
+  padding-block-start: var(--e-div-block-default-padding-block-start);
+  padding-block-end: var(--e-div-block-default-padding-block-end);
+}
+/*# sourceMappingURL=div-block.css.map */

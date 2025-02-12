@@ -1,6 +1,6 @@
-/*! elementor - v3.26.0 - 22-12-2024 */
+/*! elementor - v3.27.0 - 03-02-2025 */
 "use strict";
-(self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["frontend"],{
+(self["webpackChunkelementorFrontend"] = self["webpackChunkelementorFrontend"] || []).push([["frontend"],{
 
 /***/ "../assets/dev/js/frontend/documents-manager.js":
 /*!******************************************************!*\
@@ -73,6 +73,8 @@ exports["default"] = _default;
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 __webpack_require__(/*! core-js/modules/es.array.push.js */ "../node_modules/core-js/modules/es.array.push.js");
+__webpack_require__(/*! core-js/modules/esnext.iterator.constructor.js */ "../node_modules/core-js/modules/esnext.iterator.constructor.js");
+__webpack_require__(/*! core-js/modules/esnext.iterator.for-each.js */ "../node_modules/core-js/modules/esnext.iterator.for-each.js");
 var _global = _interopRequireDefault(__webpack_require__(/*! ./handlers/global */ "../assets/dev/js/frontend/handlers/global.js"));
 var _background = _interopRequireDefault(__webpack_require__(/*! ./handlers/background */ "../assets/dev/js/frontend/handlers/background.js"));
 var _container = _interopRequireDefault(__webpack_require__(/*! ./handlers/container/container */ "../assets/dev/js/frontend/handlers/container/container.js"));
@@ -256,6 +258,9 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
+__webpack_require__(/*! core-js/modules/esnext.iterator.constructor.js */ "../node_modules/core-js/modules/esnext.iterator.constructor.js");
+__webpack_require__(/*! core-js/modules/esnext.iterator.find.js */ "../node_modules/core-js/modules/esnext.iterator.find.js");
+__webpack_require__(/*! core-js/modules/esnext.iterator.for-each.js */ "../node_modules/core-js/modules/esnext.iterator.for-each.js");
 __webpack_require__(/*! ../public-path */ "../assets/dev/js/public-path.js");
 var _documentsManager = _interopRequireDefault(__webpack_require__(/*! ./documents-manager */ "../assets/dev/js/frontend/documents-manager.js"));
 var _storage = _interopRequireDefault(__webpack_require__(/*! elementor-common/utils/storage */ "../core/common/assets/js/utils/storage.js"));
@@ -276,9 +281,7 @@ var _utils = __webpack_require__(/*! elementor-frontend/utils/utils */ "../asset
 /* global elementorFrontendConfig */
 
 const EventManager = __webpack_require__(/*! elementor-utils/hooks */ "../assets/dev/js/utils/hooks.js"),
-  ElementsHandler = __webpack_require__(/*! elementor-frontend/elements-handlers-manager */ "../assets/dev/js/frontend/elements-handlers-manager.js"),
-  AnchorsModule = __webpack_require__(/*! elementor-frontend/utils/anchors */ "../assets/dev/js/frontend/utils/anchors.js"); // // TODO: Remove anchors.js file in v3.27.0 [ED-15717].
-
+  ElementsHandler = __webpack_require__(/*! elementor-frontend/elements-handlers-manager */ "../assets/dev/js/frontend/elements-handlers-manager.js");
 class Frontend extends elementorModules.ViewModule {
   constructor() {
     super(...arguments);
@@ -436,15 +439,9 @@ class Frontend extends elementorModules.ViewModule {
       assetsLoader: new _assetsLoader.default(),
       escapeHTML: _utils.escapeHTML,
       events: _events.default,
-      controls: new _controls.default()
+      controls: new _controls.default(),
+      anchor_scroll_margin: new _anchorScrollMargin.default()
     };
-
-    // TODO: Remove experiment in v3.27.0 [ED-15717].
-    if (this.config.experimentalFeatures.e_css_smooth_scroll) {
-      this.utils.anchor_scroll_margin = new _anchorScrollMargin.default();
-    } else {
-      this.utils.anchors = new AnchorsModule();
-    }
 
     // TODO: BC since 2.4.0
     this.modules = {
@@ -586,7 +583,7 @@ if (!elementorFrontend.isEditMode()) {
 /*!******************************************************************!*\
   !*** ../assets/dev/js/frontend/handlers/background-slideshow.js ***!
   \******************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 
@@ -594,6 +591,8 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
+__webpack_require__(/*! core-js/modules/esnext.iterator.constructor.js */ "../node_modules/core-js/modules/esnext.iterator.constructor.js");
+__webpack_require__(/*! core-js/modules/esnext.iterator.for-each.js */ "../node_modules/core-js/modules/esnext.iterator.for-each.js");
 class BackgroundSlideshow extends elementorModules.frontend.handlers.SwiperBase {
   getDefaultSettings() {
     return {
@@ -763,7 +762,7 @@ exports["default"] = BackgroundSlideshow;
 /*!**************************************************************!*\
   !*** ../assets/dev/js/frontend/handlers/background-video.js ***!
   \**************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 
@@ -771,6 +770,8 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
+__webpack_require__(/*! core-js/modules/esnext.iterator.constructor.js */ "../node_modules/core-js/modules/esnext.iterator.constructor.js");
+__webpack_require__(/*! core-js/modules/esnext.iterator.find.js */ "../node_modules/core-js/modules/esnext.iterator.find.js");
 class BackgroundVideo extends elementorModules.frontend.handlers.Base {
   getDefaultSettings() {
     return {
@@ -936,7 +937,8 @@ class BackgroundVideo extends elementorModules.frontend.handlers.Base {
       playerVars: {
         controls: 0,
         rel: 0,
-        playsinline: 1
+        playsinline: 1,
+        cc_load_policy: 0
       }
     };
 
@@ -1142,7 +1144,7 @@ exports["default"] = _default;
 /*!**********************************************************************!*\
   !*** ../assets/dev/js/frontend/handlers/section/handles-position.js ***!
   \**********************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 
@@ -1150,6 +1152,8 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
+__webpack_require__(/*! core-js/modules/esnext.iterator.constructor.js */ "../node_modules/core-js/modules/esnext.iterator.constructor.js");
+__webpack_require__(/*! core-js/modules/esnext.iterator.find.js */ "../node_modules/core-js/modules/esnext.iterator.find.js");
 class HandlesPosition extends elementorModules.frontend.handlers.Base {
   isActive() {
     return elementorFrontend.isEditMode();
@@ -1210,7 +1214,7 @@ exports["default"] = HandlesPosition;
 /*!************************************************************!*\
   !*** ../assets/dev/js/frontend/handlers/section/shapes.js ***!
   \************************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 
@@ -1218,6 +1222,8 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
+__webpack_require__(/*! core-js/modules/esnext.iterator.constructor.js */ "../node_modules/core-js/modules/esnext.iterator.constructor.js");
+__webpack_require__(/*! core-js/modules/esnext.iterator.find.js */ "../node_modules/core-js/modules/esnext.iterator.find.js");
 class Shapes extends elementorModules.frontend.handlers.Base {
   getDefaultSettings() {
     return {
@@ -1337,6 +1343,9 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 __webpack_require__(/*! core-js/modules/es.array.push.js */ "../node_modules/core-js/modules/es.array.push.js");
+__webpack_require__(/*! core-js/modules/esnext.iterator.constructor.js */ "../node_modules/core-js/modules/esnext.iterator.constructor.js");
+__webpack_require__(/*! core-js/modules/esnext.iterator.filter.js */ "../node_modules/core-js/modules/esnext.iterator.filter.js");
+__webpack_require__(/*! core-js/modules/esnext.iterator.for-each.js */ "../node_modules/core-js/modules/esnext.iterator.for-each.js");
 class _default extends elementorModules.ViewModule {
   getDefaultSettings() {
     return {
@@ -1463,90 +1472,6 @@ exports["default"] = _default;
 
 /***/ }),
 
-/***/ "../assets/dev/js/frontend/utils/anchors.js":
-/*!**************************************************!*\
-  !*** ../assets/dev/js/frontend/utils/anchors.js ***!
-  \**************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-
-
-var _utils = __webpack_require__(/*! ./utils */ "../assets/dev/js/frontend/utils/utils.js");
-module.exports = elementorModules.ViewModule.extend({
-  getDefaultSettings() {
-    return {
-      scrollDuration: 500,
-      selectors: {
-        links: 'a[href*="#"]',
-        targets: '.elementor-element, .elementor-menu-anchor',
-        scrollable: (0, _utils.isScrollSnapActive)() ? 'body' : 'html, body'
-      }
-    };
-  },
-  getDefaultElements() {
-    var $ = jQuery,
-      selectors = this.getSettings('selectors');
-    return {
-      $scrollable: $(selectors.scrollable)
-    };
-  },
-  bindEvents() {
-    elementorFrontend.elements.$document.on('click', this.getSettings('selectors.links'), this.handleAnchorLinks);
-  },
-  handleAnchorLinks(event) {
-    var clickedLink = event.currentTarget,
-      isSamePathname = location.pathname === clickedLink.pathname,
-      isSameHostname = location.hostname === clickedLink.hostname,
-      $anchor;
-    if (!isSameHostname || !isSamePathname || clickedLink.hash.length < 2) {
-      return;
-    }
-    try {
-      $anchor = jQuery(clickedLink.hash).filter(this.getSettings('selectors.targets'));
-    } catch (e) {
-      return;
-    }
-    if (!$anchor.length) {
-      return;
-    }
-    var scrollTop = $anchor.offset().top,
-      $wpAdminBar = elementorFrontend.elements.$wpAdminBar,
-      $activeStickies = jQuery('.elementor-section.elementor-sticky--active:visible'),
-      maxStickyHeight = 0;
-    if ($wpAdminBar.length > 0) {
-      scrollTop -= $wpAdminBar.height();
-    }
-
-    // Offset height of tallest sticky
-    if ($activeStickies.length > 0) {
-      maxStickyHeight = Math.max.apply(null, $activeStickies.map(function () {
-        return jQuery(this).outerHeight();
-      }).get());
-      scrollTop -= maxStickyHeight;
-    }
-    event.preventDefault();
-    scrollTop = elementorFrontend.hooks.applyFilters('frontend/handlers/menu_anchor/scroll_top_distance', scrollTop);
-
-    // On scroll animation start: remove scroll-snap.
-    if ((0, _utils.isScrollSnapActive)()) {
-      elementorFrontend.elements.$body.css('scroll-snap-type', 'none');
-    }
-    this.elements.$scrollable.animate({
-      scrollTop
-    }, this.getSettings('scrollDuration'), 'linear', () => {
-      // On scroll animation complete: add scroll-snap back.
-      if ((0, _utils.isScrollSnapActive)()) {
-        elementorFrontend.elements.$body.css('scroll-snap-type', '');
-      }
-    });
-  },
-  onInit() {
-    elementorModules.ViewModule.prototype.onInit.apply(this, arguments);
-  }
-});
-
-/***/ }),
-
 /***/ "../assets/dev/js/frontend/utils/assets-loader.js":
 /*!********************************************************!*\
   !*** ../assets/dev/js/frontend/utils/assets-loader.js ***!
@@ -1611,6 +1536,7 @@ AssetsLoader.assets = {
     'share-link': {
       src: `${assetsUrl}lib/share-link/share-link${fileSuffix}.js?ver=${pluginVersion}`
     },
+    // TODO: Remove 'swiper' in v3.29.0 [ED-16272].
     swiper: {
       src: `${assetsUrl}lib/swiper/v8/swiper${fileSuffix}.js?ver=8.4.5`
     }
@@ -1738,6 +1664,8 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
+__webpack_require__(/*! core-js/modules/esnext.iterator.constructor.js */ "../node_modules/core-js/modules/esnext.iterator.constructor.js");
+__webpack_require__(/*! core-js/modules/esnext.iterator.find.js */ "../node_modules/core-js/modules/esnext.iterator.find.js");
 class LightboxManager extends elementorModules.ViewModule {
   static getLightbox() {
     const lightboxPromise = new Promise(resolveLightbox => {
@@ -1836,7 +1764,7 @@ exports["default"] = LightboxManager;
 /*!*************************************************!*\
   !*** ../assets/dev/js/frontend/utils/swiper.js ***!
   \*************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 
@@ -1844,7 +1772,9 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
-class Swiper {
+__webpack_require__(/*! core-js/modules/esnext.iterator.constructor.js */ "../node_modules/core-js/modules/esnext.iterator.constructor.js");
+__webpack_require__(/*! core-js/modules/esnext.iterator.for-each.js */ "../node_modules/core-js/modules/esnext.iterator.for-each.js");
+class SwiperHandler {
   constructor(container, config) {
     this.config = config;
     if (this.config.breakpoints) {
@@ -1859,7 +1789,15 @@ class Swiper {
     container.closest('.elementor-widget-wrap')?.classList.add('e-swiper-container');
     container.closest('.elementor-widget')?.classList.add('e-widget-swiper');
     return new Promise(resolve => {
-      elementorFrontend.utils.assetsLoader.load('script', 'swiper').then(() => resolve(this.createSwiperInstance(container, this.config)));
+      // TODO: Remove in v3.29.0 [ED-16272].
+      if ('undefined' === typeof Swiper) {
+        elementorFrontend.utils.assetsLoader.load('script', 'swiper').then(() => resolve(this.createSwiperInstance(container, this.config)));
+        return;
+      }
+      if ('function' === typeof Swiper && 'undefined' === typeof window.Swiper) {
+        window.Swiper = Swiper;
+      }
+      resolve(this.createSwiperInstance(container, this.config));
     });
   }
   createSwiperInstance(container, config) {
@@ -1912,7 +1850,7 @@ class Swiper {
     return config;
   }
 }
-exports["default"] = Swiper;
+exports["default"] = SwiperHandler;
 
 /***/ }),
 
@@ -2158,7 +2096,7 @@ class YoutubeLoader extends _baseLoader.default {
     return 'https://www.youtube.com/iframe_api';
   }
   getURLRegex() {
-    return /^(?:https?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?vi?=|(?:embed|v|vi|user)\/))([^?&"'>]+)/;
+    return /^(?:https?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?vi?=|(?:embed|v|vi|user|shorts)\/))([^?&"'>]+)/;
   }
   isApiLoaded() {
     return window.YT && YT.loaded;
@@ -2197,6 +2135,9 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 __webpack_require__(/*! core-js/modules/es.array.push.js */ "../node_modules/core-js/modules/es.array.push.js");
+__webpack_require__(/*! core-js/modules/esnext.iterator.constructor.js */ "../node_modules/core-js/modules/esnext.iterator.constructor.js");
+__webpack_require__(/*! core-js/modules/esnext.iterator.for-each.js */ "../node_modules/core-js/modules/esnext.iterator.for-each.js");
+__webpack_require__(/*! core-js/modules/esnext.iterator.map.js */ "../node_modules/core-js/modules/esnext.iterator.map.js");
 /**
  * Breakpoints
  *
@@ -2731,7 +2672,7 @@ var _default = exports["default"] = environment;
 /*!*************************************************!*\
   !*** ../core/common/assets/js/utils/storage.js ***!
   \*************************************************/
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 
 
@@ -2739,6 +2680,8 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 exports["default"] = void 0;
+__webpack_require__(/*! core-js/modules/esnext.iterator.constructor.js */ "../node_modules/core-js/modules/esnext.iterator.constructor.js");
+__webpack_require__(/*! core-js/modules/esnext.iterator.for-each.js */ "../node_modules/core-js/modules/esnext.iterator.for-each.js");
 class _default extends elementorModules.Module {
   get(key, options) {
     options = options || {};
@@ -2836,73 +2779,14 @@ exports["default"] = _default;
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
-var isCallable = __webpack_require__(/*! ../internals/is-callable */ "../node_modules/core-js/internals/is-callable.js");
+var isPossiblePrototype = __webpack_require__(/*! ../internals/is-possible-prototype */ "../node_modules/core-js/internals/is-possible-prototype.js");
 
 var $String = String;
 var $TypeError = TypeError;
 
 module.exports = function (argument) {
-  if (typeof argument == 'object' || isCallable(argument)) return argument;
-  throw $TypeError("Can't set " + $String(argument) + ' as a prototype');
-};
-
-
-/***/ }),
-
-/***/ "../node_modules/core-js/internals/an-instance.js":
-/*!********************************************************!*\
-  !*** ../node_modules/core-js/internals/an-instance.js ***!
-  \********************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-
-var isPrototypeOf = __webpack_require__(/*! ../internals/object-is-prototype-of */ "../node_modules/core-js/internals/object-is-prototype-of.js");
-
-var $TypeError = TypeError;
-
-module.exports = function (it, Prototype) {
-  if (isPrototypeOf(Prototype, it)) return it;
-  throw $TypeError('Incorrect invocation');
-};
-
-
-/***/ }),
-
-/***/ "../node_modules/core-js/internals/classof.js":
-/*!****************************************************!*\
-  !*** ../node_modules/core-js/internals/classof.js ***!
-  \****************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-
-var TO_STRING_TAG_SUPPORT = __webpack_require__(/*! ../internals/to-string-tag-support */ "../node_modules/core-js/internals/to-string-tag-support.js");
-var isCallable = __webpack_require__(/*! ../internals/is-callable */ "../node_modules/core-js/internals/is-callable.js");
-var classofRaw = __webpack_require__(/*! ../internals/classof-raw */ "../node_modules/core-js/internals/classof-raw.js");
-var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "../node_modules/core-js/internals/well-known-symbol.js");
-
-var TO_STRING_TAG = wellKnownSymbol('toStringTag');
-var $Object = Object;
-
-// ES3 wrong here
-var CORRECT_ARGUMENTS = classofRaw(function () { return arguments; }()) == 'Arguments';
-
-// fallback for IE11 Script Access Denied error
-var tryGet = function (it, key) {
-  try {
-    return it[key];
-  } catch (error) { /* empty */ }
-};
-
-// getting tag from ES6+ `Object.prototype.toString`
-module.exports = TO_STRING_TAG_SUPPORT ? classofRaw : function (it) {
-  var O, tag, result;
-  return it === undefined ? 'Undefined' : it === null ? 'Null'
-    // @@toStringTag case
-    : typeof (tag = tryGet(O = $Object(it), TO_STRING_TAG)) == 'string' ? tag
-    // builtinTag case
-    : CORRECT_ARGUMENTS ? classofRaw(O)
-    // ES3 arguments fallback
-    : (result = classofRaw(O)) == 'Object' && isCallable(O.callee) ? 'Arguments' : result;
+  if (isPossiblePrototype(argument)) return argument;
+  throw new $TypeError("Can't set " + $String(argument) + ' as a prototype');
 };
 
 
@@ -2958,8 +2842,8 @@ var uncurryThis = __webpack_require__(/*! ../internals/function-uncurry-this */ 
 var $Error = Error;
 var replace = uncurryThis(''.replace);
 
-var TEST = (function (arg) { return String($Error(arg).stack); })('zxcasd');
-// eslint-disable-next-line redos/no-vulnerable -- safe
+var TEST = (function (arg) { return String(new $Error(arg).stack); })('zxcasd');
+// eslint-disable-next-line redos/no-vulnerable, sonarjs/slow-regex -- safe
 var V8_OR_CHAKRA_STACK_ENTRY = /\n\s*at [^:]*:[^\n]*/;
 var IS_V8_OR_CHAKRA_STACK = V8_OR_CHAKRA_STACK_ENTRY.test(TEST);
 
@@ -3021,6 +2905,56 @@ module.exports = function ($this, dummy, Wrapper) {
 
 /***/ }),
 
+/***/ "../node_modules/core-js/internals/is-possible-prototype.js":
+/*!******************************************************************!*\
+  !*** ../node_modules/core-js/internals/is-possible-prototype.js ***!
+  \******************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+
+var isObject = __webpack_require__(/*! ../internals/is-object */ "../node_modules/core-js/internals/is-object.js");
+
+module.exports = function (argument) {
+  return isObject(argument) || argument === null;
+};
+
+
+/***/ }),
+
+/***/ "../node_modules/core-js/internals/iterator-map.js":
+/*!*********************************************************!*\
+  !*** ../node_modules/core-js/internals/iterator-map.js ***!
+  \*********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+
+var call = __webpack_require__(/*! ../internals/function-call */ "../node_modules/core-js/internals/function-call.js");
+var aCallable = __webpack_require__(/*! ../internals/a-callable */ "../node_modules/core-js/internals/a-callable.js");
+var anObject = __webpack_require__(/*! ../internals/an-object */ "../node_modules/core-js/internals/an-object.js");
+var getIteratorDirect = __webpack_require__(/*! ../internals/get-iterator-direct */ "../node_modules/core-js/internals/get-iterator-direct.js");
+var createIteratorProxy = __webpack_require__(/*! ../internals/iterator-create-proxy */ "../node_modules/core-js/internals/iterator-create-proxy.js");
+var callWithSafeIterationClosing = __webpack_require__(/*! ../internals/call-with-safe-iteration-closing */ "../node_modules/core-js/internals/call-with-safe-iteration-closing.js");
+
+var IteratorProxy = createIteratorProxy(function () {
+  var iterator = this.iterator;
+  var result = anObject(call(this.next, iterator));
+  var done = this.done = !!result.done;
+  if (!done) return callWithSafeIterationClosing(iterator, this.mapper, [result.value, this.counter++], true);
+});
+
+// `Iterator.prototype.map` method
+// https://github.com/tc39/proposal-iterator-helpers
+module.exports = function map(mapper) {
+  anObject(this);
+  aCallable(mapper);
+  return new IteratorProxy(getIteratorDirect(this), {
+    mapper: mapper
+  });
+};
+
+
+/***/ }),
+
 /***/ "../node_modules/core-js/internals/normalize-string-argument.js":
 /*!**********************************************************************!*\
   !*** ../node_modules/core-js/internals/normalize-string-argument.js ***!
@@ -3046,7 +2980,8 @@ module.exports = function (argument, $default) {
 
 /* eslint-disable no-proto -- safe */
 var uncurryThisAccessor = __webpack_require__(/*! ../internals/function-uncurry-this-accessor */ "../node_modules/core-js/internals/function-uncurry-this-accessor.js");
-var anObject = __webpack_require__(/*! ../internals/an-object */ "../node_modules/core-js/internals/an-object.js");
+var isObject = __webpack_require__(/*! ../internals/is-object */ "../node_modules/core-js/internals/is-object.js");
+var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "../node_modules/core-js/internals/require-object-coercible.js");
 var aPossiblePrototype = __webpack_require__(/*! ../internals/a-possible-prototype */ "../node_modules/core-js/internals/a-possible-prototype.js");
 
 // `Object.setPrototypeOf` method
@@ -3063,32 +2998,14 @@ module.exports = Object.setPrototypeOf || ('__proto__' in {} ? function () {
     CORRECT_SETTER = test instanceof Array;
   } catch (error) { /* empty */ }
   return function setPrototypeOf(O, proto) {
-    anObject(O);
+    requireObjectCoercible(O);
     aPossiblePrototype(proto);
+    if (!isObject(O)) return O;
     if (CORRECT_SETTER) setter(O, proto);
     else O.__proto__ = proto;
     return O;
   };
 }() : undefined);
-
-
-/***/ }),
-
-/***/ "../node_modules/core-js/internals/to-string-tag-support.js":
-/*!******************************************************************!*\
-  !*** ../node_modules/core-js/internals/to-string-tag-support.js ***!
-  \******************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-
-var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "../node_modules/core-js/internals/well-known-symbol.js");
-
-var TO_STRING_TAG = wellKnownSymbol('toStringTag');
-var test = {};
-
-test[TO_STRING_TAG] = 'z';
-
-module.exports = String(test) === '[object z]';
 
 
 /***/ }),
@@ -3105,9 +3022,42 @@ var classof = __webpack_require__(/*! ../internals/classof */ "../node_modules/c
 var $String = String;
 
 module.exports = function (argument) {
-  if (classof(argument) === 'Symbol') throw TypeError('Cannot convert a Symbol value to a string');
+  if (classof(argument) === 'Symbol') throw new TypeError('Cannot convert a Symbol value to a string');
   return $String(argument);
 };
+
+
+/***/ }),
+
+/***/ "../node_modules/core-js/modules/es.iterator.map.js":
+/*!**********************************************************!*\
+  !*** ../node_modules/core-js/modules/es.iterator.map.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+
+var $ = __webpack_require__(/*! ../internals/export */ "../node_modules/core-js/internals/export.js");
+var map = __webpack_require__(/*! ../internals/iterator-map */ "../node_modules/core-js/internals/iterator-map.js");
+var IS_PURE = __webpack_require__(/*! ../internals/is-pure */ "../node_modules/core-js/internals/is-pure.js");
+
+// `Iterator.prototype.map` method
+// https://tc39.es/ecma262/#sec-iterator.prototype.map
+$({ target: 'Iterator', proto: true, real: true, forced: IS_PURE }, {
+  map: map
+});
+
+
+/***/ }),
+
+/***/ "../node_modules/core-js/modules/esnext.iterator.map.js":
+/*!**************************************************************!*\
+  !*** ../node_modules/core-js/modules/esnext.iterator.map.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+
+// TODO: Remove from `core-js@4`
+__webpack_require__(/*! ../modules/es.iterator.map */ "../node_modules/core-js/modules/es.iterator.map.js");
 
 
 /***/ }),
@@ -3120,7 +3070,7 @@ module.exports = function (argument) {
 
 
 var $ = __webpack_require__(/*! ../internals/export */ "../node_modules/core-js/internals/export.js");
-var global = __webpack_require__(/*! ../internals/global */ "../node_modules/core-js/internals/global.js");
+var globalThis = __webpack_require__(/*! ../internals/global-this */ "../node_modules/core-js/internals/global-this.js");
 var getBuiltIn = __webpack_require__(/*! ../internals/get-built-in */ "../node_modules/core-js/internals/get-built-in.js");
 var createPropertyDescriptor = __webpack_require__(/*! ../internals/create-property-descriptor */ "../node_modules/core-js/internals/create-property-descriptor.js");
 var defineProperty = (__webpack_require__(/*! ../internals/object-define-property */ "../node_modules/core-js/internals/object-define-property.js").f);
@@ -3143,7 +3093,7 @@ var $DOMException = function DOMException() {
   var message = normalizeStringArgument(argumentsLength < 1 ? undefined : arguments[0]);
   var name = normalizeStringArgument(argumentsLength < 2 ? undefined : arguments[1], 'Error');
   var that = new NativeDOMException(message, name);
-  var error = Error(message);
+  var error = new Error(message);
   error.name = DOM_EXCEPTION;
   defineProperty(that, 'stack', createPropertyDescriptor(1, clearErrorStack(error.stack, 1)));
   inheritIfRequired(that, this, $DOMException);
@@ -3152,11 +3102,11 @@ var $DOMException = function DOMException() {
 
 var DOMExceptionPrototype = $DOMException.prototype = NativeDOMException.prototype;
 
-var ERROR_HAS_STACK = 'stack' in Error(DOM_EXCEPTION);
+var ERROR_HAS_STACK = 'stack' in new Error(DOM_EXCEPTION);
 var DOM_EXCEPTION_HAS_STACK = 'stack' in new NativeDOMException(1, 2);
 
 // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
-var descriptor = NativeDOMException && DESCRIPTORS && Object.getOwnPropertyDescriptor(global, DOM_EXCEPTION);
+var descriptor = NativeDOMException && DESCRIPTORS && Object.getOwnPropertyDescriptor(globalThis, DOM_EXCEPTION);
 
 // Bun ~ 0.1.1 DOMException have incorrect descriptor and we can't redefine it
 // https://github.com/Jarred-Sumner/bun/issues/399

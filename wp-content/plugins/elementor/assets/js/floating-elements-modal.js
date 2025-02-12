@@ -1,4 +1,4 @@
-/*! elementor - v3.26.0 - 22-12-2024 */
+/*! elementor - v3.27.0 - 03-02-2025 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -27,7 +27,7 @@ var _view = _interopRequireDefault(__webpack_require__(/*! elementor-admin/float
 var _layout = _interopRequireDefault(__webpack_require__(/*! elementor-common/views/modal/layout */ "../core/common/assets/js/views/modal/layout.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var _default = exports["default"] = /*#__PURE__*/function (_ModalLayout) {
   function _default() {
     (0, _classCallCheck2.default)(this, _default);
@@ -158,6 +158,7 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$LayoutVie
   }, {
     key: "onCloseModalClick",
     value: function onCloseModalClick() {
+      var _elementor$config$doc, _elementor$config;
       this._parent._parent._parent.hideModal();
       if (this.isFloatingButtonLibraryClose()) {
         $e.internal('document/save/set-is-modified', {
@@ -165,12 +166,15 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$LayoutVie
         });
         window.location.href = elementor.config.admin_floating_button_admin_url;
       }
+      var type = (_elementor$config$doc = (_elementor$config = elementor.config) === null || _elementor$config === void 0 || (_elementor$config = _elementor$config.document) === null || _elementor$config === void 0 ? void 0 : _elementor$config.type) !== null && _elementor$config$doc !== void 0 ? _elementor$config$doc : 'default';
+      var customEvent = new CustomEvent("core/modal/close/".concat(type));
+      window.dispatchEvent(customEvent);
     }
   }, {
     key: "isFloatingButtonLibraryClose",
     value: function isFloatingButtonLibraryClose() {
-      var _elementor$config, _elementor$config2;
-      return window.elementor && ((_elementor$config = elementor.config) === null || _elementor$config === void 0 ? void 0 : _elementor$config.admin_floating_button_admin_url) && 'floating-buttons' === ((_elementor$config2 = elementor.config) === null || _elementor$config2 === void 0 || (_elementor$config2 = _elementor$config2.document) === null || _elementor$config2 === void 0 ? void 0 : _elementor$config2.type) && (this.$el.closest('.dialog-lightbox-widget-content').find('.elementor-template-library-template-floating_button').length || this.$el.closest('.dialog-lightbox-widget-content').find('#elementor-template-library-preview').length || this.$el.closest('.dialog-lightbox-widget-content').find('#elementor-template-library-templates-empty').length);
+      var _elementor$config2, _elementor$config3;
+      return window.elementor && ((_elementor$config2 = elementor.config) === null || _elementor$config2 === void 0 ? void 0 : _elementor$config2.admin_floating_button_admin_url) && 'floating-buttons' === ((_elementor$config3 = elementor.config) === null || _elementor$config3 === void 0 || (_elementor$config3 = _elementor$config3.document) === null || _elementor$config3 === void 0 ? void 0 : _elementor$config3.type) && (this.$el.closest('.dialog-lightbox-widget-content').find('.elementor-template-library-template-floating_button').length || this.$el.closest('.dialog-lightbox-widget-content').find('#elementor-template-library-preview').length || this.$el.closest('.dialog-lightbox-widget-content').find('#elementor-template-library-templates-empty').length);
     }
   }]);
 }(Marionette.LayoutView);
@@ -690,7 +694,7 @@ module.exports = _typeof, module.exports.__esModule = true, module.exports["defa
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (() => {
 "use strict";
 /*!*************************************************************************!*\
