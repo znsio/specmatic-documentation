@@ -364,14 +364,26 @@ So instead:
 
 * Create a file named specmatic.json OR specmatic.yaml OR specmatic.yml which contains the Specmatic configuration.
 
-{% tabs config %}
-{% tab config specmatic.json %}
+{% tabs config_contractTests %}
+{% tab config_contractTests specmatic.yaml %}
+```yaml
+version: 2
+contracts:
+  - git:
+      url: https://github.com/your-username-or-org/your-repo.git
+    provides:
+      - path/to/employees.yaml
+```
+{% endtab %}
+{% tab config_contractTests specmatic.json %}
 ```json
 {
-  "sources": [
+  "version": 2,
+  "contracts": [
     {
-      "provider": "git",
-      "repository": "https://github.com/your-username-or-org/your-repo.git",
+      "git": {
+        "url": "https://github.com/your-username-or-org/your-repo.git"
+      },
       "provides": [
         "path/to/employees.yaml"
       ]
@@ -380,19 +392,10 @@ So instead:
 }
 ```
 {% endtab %}
-{% tab config specmatic.yaml %}
-```yaml
-sources:
-  - provider: git
-    repository: https://github.com/your-username-or-org/your-repo.git
-    provides:
-      - path/to/employees.yaml
-```
-{% endtab %}
 {% endtabs %}
 
 * Create a git repository and push the employees.yaml contract into it.
-* Update the value of "repository" to the url of the git repo. This should be a url that could be used by git checkout.
+* Update the value of "url" inside "git" field to the url of the git repo. This should be a url that could be used by git checkout.
 * Update the contract path in "provides" to the relative path of employees.yaml within the git repository.
 
 Specmatic will use the git command to checkout the git repository provided in the Specmatic configuration file. So make sure that the `git` command works on your laptop.
@@ -417,34 +420,34 @@ Since Specmatic uses the Specmatic configuration file in the current working dir
 Since Specmatic uses git under-the-hood, any authentication requirements of your git server will be handled by the underlying git command.
 
 Note:
-1. The value of "repository" is the git repository in which the contracts are declared. It can be any git repo, not just github.
+1. The value of "url" in "git" field is the git repository in which the contracts are declared. It can be any git repo, not just github.
 2. The value of "provides" is a list of contract paths, relative to the repository root, which should be run as contract tests.
 3. You may declare multiple contracts in the "provides" list.
-4. "sources" holds a list. You may declare multiple sources if required. However we recommend using a single contract repository to be shared across your organisation, or ecosystem within the organisation (if your org is large).
+4. "contracts" holds a list. You may declare multiple contracts if required. However we recommend using a single contract repository to be shared across your organisation, or ecosystem within the organisation (if your org is large).
 
-If you need to experiment with files on the local filesystem, here's how you can declare specifications locally, in the Specmatic configuration file:
+If you need to experiment with files on the local filesystem, here's how you can declare specifications locally (no need to specify the `filesystem` field if the config is in the same directory as the relative path of `provides` and if this isn't the case then specify `filesystem` with `directory` field), in the Specmatic configuration file:
 
-{% tabs config %}
-{% tab config specmatic.json %}
+{% tabs config_contractTests %}
+{% tab config_contractTests specmatic.yaml %}
+```yaml
+version: 2
+contracts:
+    provides:
+      - path/to/employees.yaml
+```
+{% endtab %}
+{% tab config_contractTests specmatic.json %}
 ```json
 {
-  "sources": [
+  "version": 2,
+  "contracts": [
     {
-      "provider": "filesystem",
       "provides": [
         "path/to/employees.yaml"
       ]
     }
   ]
 }
-```
-{% endtab %}
-{% tab config specmatic.yaml %}
-```yaml
-sources:
-  - provider: filesystem
-    provides:
-      - path/to/employees.yaml
 ```
 {% endtab %}
 {% endtabs %}
@@ -556,13 +559,23 @@ If you are using a mono-repo, in which all the projects in the ecosystem are in 
 
 The Specmatic configuration may look like this:
 
-{% tabs sources %}
-{% tab sources specmatic.json %}
+{% tabs contracts %}
+{% tab contracts specmatic.yaml %}
+```yaml
+version: 2
+contracts:
+  - git:
+    provides:
+      - contracts/path/to/employees.yaml
+```
+{% endtab %}
+{% tab contracts specmatic.json %}
 ```json
 {
-  "sources": [
+  "version": 2,
+  "contracts": [
     {
-      "provider": "git",
+      "git":,
       "provides": [
         "contracts/path/to/employees.yaml"
       ]
@@ -571,17 +584,9 @@ The Specmatic configuration may look like this:
 }
 ```
 {% endtab %}
-{% tab sources specmatic.yaml %}
-```yaml
-sources:
-  - provider: git
-    provides:
-      - contracts/path/to/employees.yaml
-```
-{% endtab %}
 {% endtabs %}
 
-Note that "repository" is missing. Specamtic will look for the contract in the git repository containing the Specmatic configuration file. It's presumed that the Specmatic configuration file would be in a git repository, as the project would have to be pushed into some git repository.
+Note that "url" within "git" field is missing. Specamtic will look for the contract in the git repository containing the Specmatic configuration file. It's presumed that the Specmatic configuration file would be in a git repository, as the project would have to be pushed into some git repository.
 
 ### Authentication In CI For HTTPS Git Source
 
@@ -591,35 +596,41 @@ Instead, Specmatic can do the checkout using OAuth2 authentication, which is als
 
 Add a key named "auth" to the Specmatic configuration, as seen in the example below.
 
-{% tabs config %}
-{% tab config specmatic.json %}
+{% tabs config_contractTests %}
+{% tab config_contractTests specmatic.yaml %}
+```yaml
+version: 2
+
+contracts:
+  - git:
+      url: https://github.com/your-username-or-org/your-repo.git
+    provides:
+      - path/to/employees.yaml
+
+auth:
+  bearer-file: central_repo_auth_token.txt
+```
+{% endtab %}
+{% tab config_contractTests specmatic.json %}
 ```json
 {
-  "auth": {
-    "bearer-file": "central_repo_auth_token.txt"
-  },
-  "sources": [
+  "version": 2,
+  
+  "contracts": [
     {
-      "provider": "git",
-      "repository": "https://github.com/your-username-or-org/your-repo.git",
+      "git": {
+        "url": "https://github.com/your-username-or-org/your-repo.git"
+      },
       "provides": [
         "path/to/employees.yaml"
       ]
     }
-  ]
-}
-```
-{% endtab %}
-{% tab config specmatic.yaml %}
-```yaml
-auth:
-  bearer-file: central_repo_auth_token.txt
+  ],
 
-sources:
-  - provider: git
-    repository: https://github.com/your-username-or-org/your-repo.git
-    provides:
-      - path/to/employees.yaml
+  "auth": {
+    "bearer-file": "central_repo_auth_token.txt"
+  }
+}
 ```
 {% endtab %}
 {% endtabs %}
@@ -640,35 +651,41 @@ steps:
 
 You could also use an environment variable to pass the token.
 
-{% tabs config %}
-{% tab config specmatic.json %}
+{% tabs config_contractTests %}
+{% tab config_contractTests specmatic.yaml %}
+```yaml
+version: 2
+
+contracts:
+  - git:
+      url: https://github.com/your-username-or-org/your-repo.git
+    provides:
+      - path/to/employees.yaml
+
+auth:
+  bearer-environment-variable: BEARER
+```
+{% endtab %}
+{% tab config_contractTests specmatic.json %}
 ```json
 {
-  "auth": {
-    "bearer-environment-variable": "BEARER"
-  },
-  "sources": [
+  "version": 2,
+
+  "contracts": [
     {
-      "provider": "git",
-      "repository": "https://github.com/your-username-or-org/your-repo.git",
+      "git": {
+        "url": "https://github.com/your-username-or-org/your-repo.git"
+      },
       "provides": [
         "path/to/employees.yaml"
       ]
     }
-  ]
-}
-```
-{% endtab %}
-{% tab config specmatic.yaml %}
-```yaml
-auth:
-  bearer-environment-variable: BEARER
+  ],
 
-sources:
-  - provider: git
-    repository: https://github.com/your-username-or-org/your-repo.git
-    provides:
-      - path/to/employees.yaml
+  "auth": {
+    "bearer-environment-variable": "BEARER"
+  },
+}
 ```
 {% endtab %}
 {% endtabs %}
@@ -1372,23 +1389,25 @@ paths:
 <br>
 Step 1: **Create specmatic.yaml configuration file:**
 
-{% tabs config %}
-{% tab config specmatic.yaml %}
+{% tabs config_contractTests %}
+{% tab config_contractTests specmatic.yaml %}
 ```yaml
-sources:
-  - provider: git
+version: 2
+contracts:
+  - git:
     test:
       - products_client.yaml
 hooks:
   test_load_contract: python3 modify_test_headers.py
 ```
 {% endtab %}
-{% tab config specmatic.json %}
+{% tab config_contractTests specmatic.json %}
 ```json
 {
-  "sources": [
+  "version": 2,
+  "contracts": [
     {
-      "provider": "git",
+      "git":,
       "test": [
         "products_client.yaml"
       ]
@@ -1498,8 +1517,9 @@ Following is an example using Java that can be compiled into a standalone JAR fi
 The test hook configuration in Specmatic will look as follows: : 
 
 ```yaml
-sources:
-  - provider: git
+version: 2
+contracts:
+  - git:
     test:
       - products_client.yaml
 hooks:
