@@ -432,7 +432,7 @@ If you need to experiment with files on the local filesystem, here's how you can
 ```yaml
 version: 2
 contracts:
-    provides:
+    - provides:
       - path/to/employees.yaml
 ```
 {% endtab %}
@@ -1395,7 +1395,7 @@ Step 1: **Create specmatic.yaml configuration file:**
 version: 2
 contracts:
   - git:
-    test:
+    provides:
       - products_client.yaml
 hooks:
   test_load_contract: python3 modify_test_headers.py
@@ -1408,7 +1408,7 @@ hooks:
   "contracts": [
     {
       "git":,
-      "test": [
+      "provides": [
         "products_client.yaml"
       ]
     }
