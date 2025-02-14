@@ -117,9 +117,9 @@ Service Virtualization
 - In the same directory, create a file named `specmatic.yaml` with the following contents:
 
   ```yaml
-  sources:
-    - provider: filesystem
-      stub:
+  version: 2
+  contracts:
+    - consumes:
         - employees.yaml
   ```
 
@@ -622,12 +622,12 @@ paths:
 }
 ```
 
-- Add `phonebook.yaml` to the `stub` list in `specmatic.yaml`, like so:
+- Add `phonebook.yaml` to the `consumes` list in `specmatic.yaml`, like so:
 
   ```yaml
-  sources:
-    - provider: filesystem
-      stub:
+  version: 2
+  contracts:
+    - consumes:
         - employees.yaml
         - phonebook.yaml
   ```
@@ -1030,9 +1030,9 @@ Let's see how this works.
 - Update your `specmatic.yaml` file to use the `dictionary.json` we created above:
 
   ```yaml
-  sources:
-    - provider: filesystem
-      stub:
+  version: 2
+  contracts:
+    - consumes:
         - employee_details.yaml
   stub:
     dictionary: ./dictionary.json
@@ -1239,14 +1239,28 @@ All other requests, other than the specific request (product id 11) where a dela
 A Global delay can be applied to all requests handled by service virtualization. By configuring the `delayInMilliseconds` parameter in Specmatic Config, 
 you can simulate response times with the specified delay in milliseconds.
 
-{% tabs stubs %}
-{% tab stubs specmatic.json %}
+{% tabs stubs_serviceVirtualisation %}
+{% tab stubs_serviceVirtualisation specmatic.yaml %}
+```yaml
+version: 2
+contracts:
+  - git:
+      url: https://github.com/znsio/specmatic-order-contracts.git
+    consumes:
+      - io/specmatic/examples/store/openapi/api_order_v3.yaml
+stub:
+  delayInMilliseconds: 3000
+```
+{% endtab %}
+{% tab stubs_serviceVirtualisation specmatic.json %}
 ```json
 {
-  "sources": [
+  "version": 2,
+  "contracts": [
     {
-      "provider": "git",
-      "repository": "https://github.com/znsio/specmatic-order-contracts.git",
+      "git": {
+        "url": "https://github.com/znsio/specmatic-order-contracts.git"
+      },
       "consumes": [
         "io/specmatic/examples/store/openapi/api_order_v3.yaml"
       ]
@@ -1256,17 +1270,6 @@ you can simulate response times with the specified delay in milliseconds.
     "delayInMilliseconds": 3000
   }
 }
-```
-{% endtab %}
-{% tab stubs specmatic.yaml %}
-```yaml
-sources:
-  - provider: git
-    repository: https://github.com/znsio/specmatic-order-contracts.git
-    consumes:
-      - io/specmatic/examples/store/openapi/api_order_v3.yaml
-stub:
-  delayInMilliseconds: 3000
 ```
 {% endtab %}
 {% endtabs %}
@@ -1651,25 +1654,19 @@ The Product API specification as-is will not accept the frontend expectation wit
 
 ### Implementation Steps
 
-1. **Create specmatic.json configuration file:**
+- **Create specmatic.yaml configuration file:**
 
-```json
-{
-  "sources": [
-    {
-      "provider": "git",
-      "stub": [
-        "products.yaml"
-      ]
-    }
-  ],
-  "hooks": {
-    "stub_load_contract": "python3 modify_stub_header.py"
-  }
-}
+```yaml
+version: 2
+contracts:
+  - git:
+    consumes:
+      - products.yaml
+hooks:
+  stub_load_contract: python3 modify_stub_header.py
 ```
 
-2. **Create the hook script (modify_stub_header.py):**
+- **Create the hook script (modify_stub_header.py):**
 
 ```python
 import os
@@ -1814,9 +1811,7 @@ project-root/
 ```yaml
 version: 2
 contracts:
-  - filesystem:
-      directory: "."
-    consumes:
+  - consumes:
       - imported_product/imported_product.yaml
       - port: 9001
         specs:
