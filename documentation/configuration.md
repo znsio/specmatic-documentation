@@ -175,6 +175,45 @@ contracts:
 {% endtab %}
 {% endtabs %}
 
+#### Stub Start Timeout
+
+The `startTimeoutInMilliseconds` setting in Specmatic ensures that a stub service, whether started via the _stub command_  or programmatically using _createStub_ exits if it doesn't start within the defined time.
+
+{% tabs stubTimeout %}
+{% tab stubTimeout specmatic.json %}
+```json
+{
+  "contracts": [
+    {
+      "git": {
+        "url": "https://github.com/znsio/specmatic-order-contracts.git"
+      },
+      "consumes": [
+        "io/specmatic/examples/store/openapi/api_order_v3.yaml"
+      ]
+    }
+  ],
+  "stub": {
+    "startTimeoutInMilliseconds": 10000
+  }
+}
+```
+{% endtab %}
+{% tab stubs specmatic.yaml %}
+```yaml
+contracts:
+  - git:
+      url: https://github.com/znsio/specmatic-order-contracts.git
+    consumes:
+      - io/specmatic/examples/store/openapi/api_order_v3.yaml
+stub:
+  startTimeoutInMilliseconds: 10000
+```
+{% endtab %}
+{% endtabs %}
+
+
+
 Please note that now we are now listing the ```api_order_v3.yaml``` is listed as a stub dependency. You can run the ```specmatic stub``` command and the Specmatic will clone the API specifications and run it as a stub. Here is an [example](https://github.com/znsio/specmatic-order-bff-java/blob/main/specmatic.yaml).
 
 A single application may need to list the API Specifications it is implementing under the provides attribute and the API Specifications of its dependencies under the consumes attribute.
