@@ -45,8 +45,6 @@ Contract Tests
     - [Putting it all together](#putting-it-all-together)
     - [Additional Tips](#additional-tips)
     - [API Coverage](#api-coverage)
-      - [1. Enable the Actuator Mapping Endpoint](#1-enable-the-actuator-mapping-endpoint)
-      - [2. Use Swagger UI](#2-use-swagger-ui)
       - [Enable the Actuator Mapping Endpoint](#enable-the-actuator-mapping-endpoint)
       - [Use Swagger UI](#use-swagger-ui)
   - [Overlays](#overlays)
@@ -76,9 +74,9 @@ Contract Tests
     - [Generative Tests](#generative-tests)
     - [Limiting the Count of Tests](#limiting-the-count-of-tests)
     - [Dictionary](#dictionary)
-      - [Creating Specification](#creating-specification)
-      - [Creating Dictionary](#creating-dictionary)
-      - [Running Tests](#running-tests)
+      - [Create the Specification](#create-the-specification)
+      - [Create a Dictionary](#create-a-dictionary)
+      - [Run the tests Tests](#run-the-tests-tests)
       - [Generative Tests](#generative-tests-1)
     - [Sample Project](#sample-project)
 
@@ -1866,7 +1864,8 @@ docker run -v "$(pwd)/employees.yaml:/employees.yaml" -v "$(pwd)/employees_dicti
 {% endtab %}
 {% endtabs %}
 
-We can now examine the request sent to the service by reviewing the logs.
+We can now examine the request sent to the service by reviewing the logs. Notice that we are using the **values from the dictionary** to generate the **request for the contract test**.
+
 ```shell
 POST /employees
 Accept-Charset: UTF-8
@@ -1878,7 +1877,6 @@ Content-Type: application/json
   "employeeCode": "12345"
 }
 ```
-Notice that the values from the dictionary are utilized in the requests.
 
 #### Generative Tests
 
