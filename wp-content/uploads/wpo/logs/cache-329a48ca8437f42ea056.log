@@ -583,3 +583,42 @@
 [2025-03-10 13:35:43 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
 [2025-03-10 13:35:43 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/tmforums-asyncapis-for-a-new-era-of-event-driven-architechture/ has been purged, triggered by action: save_post 
 [2025-03-10 13:35:43 : INFO] - Cache for archive page associated with post_type: appearance and Title: "TMForum&#8217;s AsyncAPIs for a New Era of Event-Driven Architechture" has been purged, triggered by action: save_post 
+[2025-03-10 14:19:14 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 14:19:18 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 14:19:20 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 14:19:22 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 14:22:54 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 14:22:55 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 14:22:57 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 14:22:58 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 14:27:48 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 14:27:48 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 14:27:48 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/project-api-forge-streamlining-dev-first-api-lifecycle-management/ has been purged, triggered by action: save_post 
+[2025-03-10 14:27:48 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Project API Forge: Streamlining Dev-First API Lifecycle Management" has been purged, triggered by action: save_post 
+[2025-03-10 14:35:45 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 14:35:45 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 14:35:45 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/project-api-forge-streamlining-dev-first-api-lifecycle-management/ has been purged, triggered by action: save_post 
+[2025-03-10 14:35:45 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Project API Forge: Streamlining Dev-First API Lifecycle Management" has been purged, triggered by action: save_post 
+[2025-03-10 15:15:18 : INFO] - Cache for URL: https://specmatic.dvox.biz/?elementor_library=elementor-single-post-1304 has been purged, triggered by action: save_post 
+[2025-03-10 15:15:18 : INFO] - Cache for URL: https://specmatic.dvox.biz/?elementor_library=elementor-single-post-1304 has been purged, triggered by action: save_post 
+[2025-03-10 15:15:20 : INFO] - Cache for URL: https://specmatic.dvox.biz/?elementor_library=elementor-single-post-1304 has been purged, triggered by action: save_post 
+[2025-03-10 15:17:00 : INFO] - Cache for URL: https://specmatic.dvox.biz/?elementor_library=elementor-single-post-1304 has been purged, triggered by action: save_post 
+[2025-03-10 15:17:00 : INFO] - Cache for URL: https://specmatic.dvox.biz/?elementor_library=elementor-single-post-1304 has been purged, triggered by action: save_post 
+[2025-03-10 15:17:00 : INFO] - Cache for URL: https://specmatic.dvox.biz/?elementor_library=elementor-single-post-1304 has been purged, triggered by action: save_post 
+[2025-03-10 15:18:45 : INFO] - Cache for URL: https://specmatic.dvox.biz/?elementor_library=elementor-single-post-1304 has been purged, triggered by action: save_post 
+[2025-03-10 15:18:45 : INFO] - Cache for URL: https://specmatic.dvox.biz/?elementor_library=elementor-single-post-1304 has been purged, triggered by action: save_post 
+[2025-03-10 15:18:46 : INFO] - Cache for URL: https://specmatic.dvox.biz/?elementor_library=elementor-single-post-1304 has been purged, triggered by action: save_post 
+[2025-03-10 15:26:00 : INFO] - Cache for URL: https://specmatic.dvox.biz/?elementor_library=elementor-single-post-1304 has been purged, triggered by action: save_post 
+[2025-03-10 15:26:00 : INFO] - Cache for URL: https://specmatic.dvox.biz/?elementor_library=elementor-single-post-1304 has been purged, triggered by action: save_post 
+[2025-03-10 15:26:00 : INFO] - Cache for URL: https://specmatic.dvox.biz/?elementor_library=elementor-single-post-1304 has been purged, triggered by action: save_post 
+[2025-03-10 15:30:22 : INFO] - Cache for URL: https://specmatic.dvox.biz/?elementor_library=elementor-single-post-1304 has been purged, triggered by action: save_post 
+[2025-03-10 15:30:22 : INFO] - Cache for URL: https://specmatic.dvox.biz/?elementor_library=elementor-single-post-1304 has been purged, triggered by action: save_post 
+[2025-03-10 15:30:22 : INFO] - Cache for URL: https://specmatic.dvox.biz/?elementor_library=elementor-single-post-1304 has been purged, triggered by action: save_post 
+[2025-03-10 17:26:18 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 17:26:19 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 17:26:20 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 17:26:21 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 17:56:53 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 17:56:57 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 17:56:58 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 17:57:00 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
