@@ -395,3 +395,123 @@
 [2025-02-13 10:32:17 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
 [2025-02-13 10:32:18 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
 [2025-02-13 10:32:20 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 04:08:52 : INFO] - Cache for URL: https://specmatic.dvox.biz/?p=6695 has been purged, triggered by action: save_post 
+[2025-03-10 04:08:52 : INFO] - Cache for blog post has been purged due to updates to post with Title: "Auto Draft" and URL: https://specmatic.dvox.biz/?p=6695, triggered by action: save_post 
+[2025-03-10 04:08:52 : INFO] - Cache for previous post (with URL: https://specmatic.dvox.biz/updates/update-see-how-specmatic-is-transforming-api-testing-development/) adjacent to post with id: 6695 has been purged, triggered by action: save_post 
+[2025-03-10 04:08:52 : INFO] - Cache for all archives page associated with post_type: post and Title: "Auto Draft" have been purged, triggered by action: save_post 
+[2025-03-10 04:27:50 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 04:27:51 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 04:27:53 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 04:27:54 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 06:42:23 : INFO] - Cache for URL: https://specmatic.dvox.biz/?p=6701 has been purged, triggered by action: save_post 
+[2025-03-10 06:42:23 : INFO] - Cache for blog post has been purged due to updates to post with Title: "Auto Draft" and URL: https://specmatic.dvox.biz/?p=6701, triggered by action: save_post 
+[2025-03-10 06:42:23 : INFO] - Cache for previous post (with URL: https://specmatic.dvox.biz/updates/update-see-how-specmatic-is-transforming-api-testing-development/) adjacent to post with id: 6701 has been purged, triggered by action: save_post 
+[2025-03-10 06:42:23 : INFO] - Cache for all archives page associated with post_type: post and Title: "Auto Draft" have been purged, triggered by action: save_post 
+[2025-03-10 06:46:14 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 06:46:15 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 06:46:16 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 06:46:17 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 06:47:37 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 06:47:38 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 06:47:39 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 06:47:41 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 06:57:58 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 06:57:59 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 06:58:01 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 06:58:03 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 06:58:38 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 06:58:39 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 06:58:40 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 06:58:42 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 07:00:45 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 07:00:46 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 07:00:47 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 07:00:48 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 07:01:25 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 07:01:26 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 07:01:27 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 07:01:28 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 07:04:01 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 07:04:02 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 07:04:03 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 07:04:04 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 07:30:56 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 07:30:58 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 07:30:59 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 07:31:00 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 07:41:02 : INFO] - Cache for URL: https://specmatic.dvox.biz/?post_type=appearance&p=6739 has been purged, triggered by action: save_post 
+[2025-03-10 07:41:02 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Auto Draft" has been purged, triggered by action: save_post 
+[2025-03-10 09:10:12 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 09:10:12 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/6739/ has been purged, triggered by action: save_post 
+[2025-03-10 09:10:12 : INFO] - Cache for archive page associated with post_type: appearance and Title: "" has been purged, triggered by action: save_post 
+[2025-03-10 09:20:32 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 09:20:32 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 09:20:32 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/project-api-forge-streamlining-dev-first-api-lifecycle-management/ has been purged, triggered by action: save_post 
+[2025-03-10 09:20:32 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Project API Forge: Streamlining Dev-First API Lifecycle Management" has been purged, triggered by action: save_post 
+[2025-03-10 09:22:32 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 09:22:32 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 09:22:34 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 09:22:35 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 09:22:51 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 09:22:52 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 09:22:53 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 09:22:54 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 09:24:27 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 09:24:27 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/6739/ has been purged, triggered by action: save_post 
+[2025-03-10 09:24:27 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Contract-Driven Development for Event-Driven Architecture" has been purged, triggered by action: save_post 
+[2025-03-10 09:25:19 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 09:25:19 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/contract-driven-development-for-event-driven-architecture/ has been purged, triggered by action: save_post 
+[2025-03-10 09:25:19 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Contract-Driven Development for Event-Driven Architecture" has been purged, triggered by action: save_post 
+[2025-03-10 09:26:43 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 09:26:44 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 09:26:46 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 09:26:47 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 09:29:16 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 09:29:17 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 09:29:18 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 09:29:19 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 10:01:26 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 10:01:26 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/contract-driven-development-for-event-driven-architecture/ has been purged, triggered by action: save_post 
+[2025-03-10 10:01:26 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Contract-Driven Development for Event-Driven Architecture" has been purged, triggered by action: save_post 
+[2025-03-10 10:03:15 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 10:03:15 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 10:03:15 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/project-api-forge-streamlining-dev-first-api-lifecycle-management/ has been purged, triggered by action: save_post 
+[2025-03-10 10:03:15 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Project API Forge: Streamlining Dev-First API Lifecycle Management" has been purged, triggered by action: save_post 
+[2025-03-10 10:03:48 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 10:03:48 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 10:03:48 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/project-api-forge-streamlining-dev-first-api-lifecycle-management/ has been purged, triggered by action: save_post 
+[2025-03-10 10:03:48 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Project API Forge: Streamlining Dev-First API Lifecycle Management" has been purged, triggered by action: save_post 
+[2025-03-10 10:05:06 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 10:05:06 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 10:05:06 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/project-api-forge-streamlining-dev-first-api-lifecycle-management/ has been purged, triggered by action: save_post 
+[2025-03-10 10:05:06 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Project API Forge: Streamlining Dev-First API Lifecycle Management" has been purged, triggered by action: save_post 
+[2025-03-10 10:05:19 : INFO] - Cache for URL: https://specmatic.dvox.biz/?post_type=appearance&p=6762 has been purged, triggered by action: save_post 
+[2025-03-10 10:05:19 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Auto Draft" has been purged, triggered by action: save_post 
+[2025-03-10 10:14:11 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 10:14:11 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/testing-api-resiliency-using-kotlin-leveraging-functional-programming-at-scale/ has been purged, triggered by action: save_post 
+[2025-03-10 10:14:11 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Testing API Resiliency using Kotlin: Leveraging Functional Programming at Scale" has been purged, triggered by action: save_post 
+[2025-03-10 10:21:07 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 10:21:10 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 10:21:17 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 10:21:22 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 10:21:22 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/contract-driven-development-for-event-driven-architecture/ has been purged, triggered by action: save_post 
+[2025-03-10 10:21:22 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Contract-Driven Development for Event-Driven Architecture" has been purged, triggered by action: save_post 
+[2025-03-10 10:21:25 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-03-10 10:21:29 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 10:21:30 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/testing-api-resiliency-using-kotlin-leveraging-functional-programming-at-scale/ has been purged, triggered by action: save_post 
+[2025-03-10 10:21:30 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Testing API Resiliency using Kotlin: Leveraging Functional Programming at Scale" has been purged, triggered by action: save_post 
+[2025-03-10 10:22:53 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 10:22:53 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/testing-api-resiliency-using-kotlin-leveraging-functional-programming-at-scale/ has been purged, triggered by action: save_post 
+[2025-03-10 10:22:53 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Testing API Resiliency using Kotlin: Leveraging Functional Programming at Scale" has been purged, triggered by action: save_post 
+[2025-03-10 10:26:12 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 10:26:12 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 10:26:12 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/contract-driven-development-for-event-driven-architectures/ has been purged, triggered by action: save_post 
+[2025-03-10 10:26:12 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Contract-Driven Development for Event-Driven Architectures" has been purged, triggered by action: save_post 
+[2025-03-10 10:27:37 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 10:27:37 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 10:27:37 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/contract-driven-development-for-event-driven-architectures/ has been purged, triggered by action: save_post 
+[2025-03-10 10:27:37 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Contract-Driven Development for Event-Driven Architectures" has been purged, triggered by action: save_post 
+[2025-03-10 10:28:42 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 10:28:42 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-03-10 10:28:42 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/contract-driven-development-for-event-driven-architectures/ has been purged, triggered by action: save_post 
+[2025-03-10 10:28:42 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Contract-Driven Development for Event-Driven Architectures" has been purged, triggered by action: save_post 
