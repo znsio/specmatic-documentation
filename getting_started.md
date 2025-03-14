@@ -9,9 +9,15 @@ Getting started
 - [Getting started](#getting-started)
     - [Setup](#setup)
     - [Example Application - PetStore](#example-application---petstore)
-    - [API Specification](#petstore-api-specification)
+    - [PetStore API Specification](#petstore-api-specification)
     - [Provider Side - Contract as a Test](#provider-side---contract-as-a-test)
-    - [Consumer Side - Contract As A Stub / Smart Mock](#consumer-side---contract-as-a-stub--intelligent-service-virtualisation)
+      - [Understanding the output](#understanding-the-output)
+      - [Where did Specmatic get the test data to generate the HTTP request](#where-did-specmatic-get-the-test-data-to-generate-the-http-request)
+      - [How does this all work?](#how-does-this-all-work)
+      - [What happens when OpenAPI goes out of sync with the application or vice versa?](#what-happens-when-openapi-goes-out-of-sync-with-the-application-or-vice-versa)
+    - [Consumer Side - Contract As A Stub / Intelligent Service Virtualisation](#consumer-side---contract-as-a-stub--intelligent-service-virtualisation)
+      - [Intelligent Service Virtualisation](#intelligent-service-virtualisation)
+      - [Externalising stub responses](#externalising-stub-responses)
 
 ### Setup
 
@@ -96,6 +102,11 @@ curl https://my-json-server.typicode.com/znsio/specmatic-documentation/pets/1
 
 Now lets use Specmatic to run the above **API specification as a contract test** against the Provider / API to see if it is adhering the OpenAPI Specification.
 {% tabs test %}
+{% tab test docker %}
+```shell
+ docker run -v "/local-directory/service.yaml:/service.yaml" znsio/specmatic test "/service.yaml" --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
+```
+{% endtab %}
 {% tab test java %}
 ```shell
 specmatic test service.yaml --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
@@ -104,11 +115,6 @@ specmatic test service.yaml --testBaseURL=https://my-json-server.typicode.com/zn
 {% tab test npm %}
 ```shell
 npx specmatic test service.yaml --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
-```
-{% endtab %}
-{% tab test docker %}
-```shell
- docker run -v "/local-directory/service.yaml:/service.yaml" znsio/specmatic test "/service.yaml" --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
 ```
 {% endtab %}
 {% endtabs %}
@@ -194,6 +200,11 @@ Remove the examples section such that the `petid` param look as shown below.
 And try running the specmatic test command again.
 
 {% tabs test3 %}
+{% tab test3 docker %}
+```shell
+ docker run -v "/local-directory/service.yaml:/service.yaml" znsio/specmatic test "/service.yaml" --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
+```
+{% endtab %}
 {% tab test3 java %}
 ```shell
 specmatic test service.yaml --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
@@ -202,11 +213,6 @@ specmatic test service.yaml --testBaseURL=https://my-json-server.typicode.com/zn
 {% tab test3 npm %}
 ```shell
 npx specmatic test service.yaml --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
-```
-{% endtab %}
-{% tab test3 docker %}
-```shell
- docker run -v "/local-directory/service.yaml:/service.yaml" znsio/specmatic test "/service.yaml" --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
 ```
 {% endtab %}
 {% endtabs %}
@@ -259,6 +265,11 @@ Now lets try something more interesting and change the datatype of the "status" 
 
 Let us run the specmatic test command again.
 {% tabs test2 %}
+{% tab test2 docker %}
+```shell
+ docker run -v "/local-directory/service.yaml:/service.yaml" znsio/specmatic test "/service.yaml" --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
+```
+{% endtab %}
 {% tab test2 java %}
 ```shell
 specmatic test service.yaml --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
@@ -267,11 +278,6 @@ specmatic test service.yaml --testBaseURL=https://my-json-server.typicode.com/zn
 {% tab test2 npm %}
 ```shell
 npx specmatic test service.yaml --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
-```
-{% endtab %}
-{% tab test2 docker %}
-```shell
- docker run -v "/local-directory/service.yaml:/service.yaml" znsio/specmatic test "/service.yaml" --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
 ```
 {% endtab %}
 {% endtabs %}
@@ -309,6 +315,11 @@ Before we begin, please make sure that your `service.yaml` file is restored to i
 
 To spin up a stub server with the service.yaml we authored earlier, run below command.
 {% tabs stub %}
+{% tab stub docker %}
+```shell
+docker run -v "/local-directory/service.yaml:/service.yaml" -p 9000:9000 znsio/specmatic stub "/service.yaml"
+```
+{% endtab %}
 {% tab stub java %}
 ```shell
 specmatic stub service.yaml
@@ -317,11 +328,6 @@ specmatic stub service.yaml
 {% tab stub npm %}
 ```shell
 npx specmatic stub service.yaml
-```
-{% endtab %}
-{% tab stub docker %}
-```shell
-docker run -v "/local-directory/service.yaml:/service.yaml" -p 9000:9000 znsio/specmatic stub "/service.yaml"
 ```
 {% endtab %}
 {% endtabs %}
@@ -341,6 +347,15 @@ Stub server is running on http://0.0.0.0:9000. Ctrl + C to stop.
 **Tip:** You can switch the port number by adding ```--port <port of your choice>``` in the command.
 
 {% tabs stub-custom-port %}
+{% tab stub-custom-port docker %}
+```shell
+# Note that --port 9002 at the end of the command is crucial. It ensures that the stub 
+# server inside the Docker container is listening on the same port (9002) that's being
+# mapped to port 9000 on your machine. If these ports don't match, you won't be able to
+# access the stub server from your machine.
+docker run -v "/local-directory/service.yaml:/service.yaml" -p 9000:9002 znsio/specmatic stub "/service.yaml" --port 9002
+```
+{% endtab %}
 {% tab stub-custom-port java %}
 ```shell
 specmatic stub service.yaml --port 9002
@@ -349,15 +364,6 @@ specmatic stub service.yaml --port 9002
 {% tab stub-custom-port npm %}
 ```shell
 npx specmatic stub service.yaml --port 9002
-```
-{% endtab %}
-{% tab stub-custom-port docker %}
-```shell
-# Note that --port 9002 at the end of the command is crucial. It ensures that the stub 
-# server inside the Docker container is listening on the same port (9002) that's being
-# mapped to port 9000 on your machine. If these ports don't match, you won't be able to
-# access the stub server from your machine.
-docker run -v "/local-directory/service.yaml:/service.yaml" -p 9000:9002 znsio/specmatic stub "/service.yaml" --port 9002
 ```
 {% endtab %}
 {% endtabs %}
@@ -398,7 +404,7 @@ With this we have effectively achived three goals in one go.
 * The same examples are used in contract tests to create the HTTP request
 * And these examples also serve as stub data when we run Specmatic stub command
 
-#### **Intelligent Service Virtualisation**
+#### Intelligent Service Virtualisation
 
 Let us try a few experiments. Remove the `status` field in the `200_OKAY` response example in `service.yaml` (the very last line in that file) and run the stub command again.
 
@@ -433,7 +439,7 @@ API Specification Summary: service.yaml
 
 Specmatic rejects the expectation / canned response since it is not in line with the OpenAPI Specification.
 
-#### **Externalising stub responses**
+#### Externalising stub responses
 
 Please restore `service.yaml` to its [original state](/getting_started.html#api-specification)(by adding back the `status` field in the `SCOOBY_200_OK` example) before proceeding with this section.
 
@@ -462,6 +468,14 @@ If you would like to add more stub responses, however you do not wish to bloat y
 
 Now let us run the stub command again.
 {% tabs stub2 %}
+{% tab stub2 docker %}
+```shell
+# Please note docker command here has to volume map the directory containing service.yaml 
+# to a directory within the container so that both service.yaml and folder service_examples along 
+# with togo.json are available to Specmatic docker container
+docker run -v "/local-directory/:/specs" -p 9000:9000 znsio/specmatic stub "/specs/service.yaml"
+```
+{% endtab %}
 {% tab stub2 java %}
 ```shell
 specmatic stub service.yaml
@@ -470,14 +484,6 @@ specmatic stub service.yaml
 {% tab stub2 npm %}
 ```shell
 npx specmatic stub service.yaml
-```
-{% endtab %}
-{% tab stub2 docker %}
-```shell
-# Please note docker command here has to volume map the directory containing service.yaml 
-# to a directory within the container so that both service.yaml and folder service_examples along 
-# with togo.json are available to Specmatic docker container
-docker run -v "/local-directory/:/specs" -p 9000:9000 znsio/specmatic stub "/specs/service.yaml"
 ```
 {% endtab %}
 {% endtabs %}
@@ -516,6 +522,14 @@ You should now be able to see the data pertaining to the `togo.json` file that y
 Specmatic validates this externalised stub JSON file `togo.json` against the `service.yaml`. Let us try this by removing the `status` field within http-response body in `togo.json` and run the stub command again. 
 
 {% tabs stub3 %}
+{% tab stub3 docker %}
+```shell
+# Please note docker command here has to volume map the directory containing service.yaml 
+# to a directory within the container so that both service.yaml and folder service_examples along 
+# with togo.json are available to Specmatic docker container
+docker run -v "/local-directory/:/specs" -p 9000:9000 znsio/specmatic stub "/specs/service.yaml"
+```
+{% endtab %}
 {% tab stub3 java %}
 ```shell
 specmatic stub service.yaml
@@ -524,14 +538,6 @@ specmatic stub service.yaml
 {% tab stub3 npm %}
 ```shell
 npx specmatic stub service.yaml
-```
-{% endtab %}
-{% tab stub3 docker %}
-```shell
-# Please note docker command here has to volume map the directory containing service.yaml 
-# to a directory within the container so that both service.yaml and folder service_examples along 
-# with togo.json are available to Specmatic docker container
-docker run -v "/local-directory/:/specs" -p 9000:9000 znsio/specmatic stub "/specs/service.yaml"
 ```
 {% endtab %}
 {% endtabs %}
