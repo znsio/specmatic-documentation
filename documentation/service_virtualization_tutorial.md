@@ -1165,6 +1165,8 @@ components:
                 type: string
 ```
 
+A value for `street` can be supplied in the dictionary as follows:
+
 ```json
 {
   "Employee.addresses[*].street": "Baker Street"
