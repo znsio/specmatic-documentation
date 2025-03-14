@@ -16,16 +16,8 @@ Getting started
       - [How does this all work?](#how-does-this-all-work)
       - [What happens when OpenAPI goes out of sync with the application or vice versa?](#what-happens-when-openapi-goes-out-of-sync-with-the-application-or-vice-versa)
     - [Consumer Side - Contract As A Stub / Intelligent Service Virtualisation](#consumer-side---contract-as-a-stub--intelligent-service-virtualisation)
-      - [MacOS / Linux](#macos--linux)
-      - [Windows](#windows)
-      - [MacOS / Linux](#macos--linux-1)
-      - [Windows](#windows-1)
       - [Intelligent Service Virtualisation](#intelligent-service-virtualisation)
       - [Externalising stub responses](#externalising-stub-responses)
-      - [MacOS / Linux](#macos--linux-2)
-      - [Windows](#windows-2)
-      - [MacOS / Linux](#macos--linux-3)
-      - [Windows](#windows-3)
 
 ### Setup
 
@@ -109,18 +101,24 @@ curl https://my-json-server.typicode.com/znsio/specmatic-documentation/pets/1
 ```
 
 Now lets use Specmatic to run the above **API specification as a contract test** against the Provider / API to see if it is adhering the OpenAPI Specification.
-{% tabs test %}
-{% tab test docker %}
+{% tabs run-test %}
+{% tab run-test docker %}
+**MacOS / Linux**
 ```shell
- docker run -v "/local-directory/service.yaml:/service.yaml" znsio/specmatic test "/service.yaml" --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
+docker run -v "$(pwd)/service.yaml:/service.yaml" znsio/specmatic test "/service.yaml" --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
+```
+
+**Windows**
+```shell
+docker run -v "%cd%/service.yaml:/service.yaml" znsio/specmatic test "/service.yaml" --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
 ```
 {% endtab %}
-{% tab test java %}
+{% tab run-test java %}
 ```shell
 specmatic test service.yaml --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
 ```
 {% endtab %}
-{% tab test npm %}
+{% tab run-test npm %}
 ```shell
 npx specmatic test service.yaml --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
 ```
@@ -211,8 +209,12 @@ And try running the specmatic test command again.
 {% tabs test3 %}
 {% tab test3 docker %}
 ```shell
- docker run -v "/local-directory/service.yaml:/service.yaml" znsio/specmatic test "/service.yaml" --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
+docker run -v "$(pwd)/service.yaml:/service.yaml" znsio/specmatic test "/service.yaml" --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
 ```
+
+**Windows**
+```shell
+docker run -v "%cd%/service.yaml:/service.yaml" znsio/specmatic test "/service.yaml" --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation```
 {% endtab %}
 {% tab test3 java %}
 ```shell
@@ -339,12 +341,12 @@ To spin up a stub server with the service.yaml we authored earlier, run the comm
 {% tabs start-stub %}
 
 {% tab start-stub docker %}
-#### MacOS / Linux
+**MacOS / Linux**
 ```shell
 docker run -v "$(pwd)/:/specs" -p 9000:9000 znsio/specmatic stub "/specs/service.yaml"
 ```
 
-#### Windows
+**Windows**
 ```shell
 docker run -v "%cd%/:/specs" -p 9000:9000 znsio/specmatic stub "/specs/service.yaml"
 ```
@@ -383,12 +385,12 @@ Press Ctrl + C to stop.
 
 {% tabs stub-custom-port %}
 {% tab stub-custom-port docker %}
-#### MacOS / Linux
+**MacOS / Linux**
 ```shell
 docker run -v "$(pwd)/:/specs" -p 9000:9002 znsio/specmatic stub "/specs/service.yaml" --port 9002
 ```
 
-#### Windows
+**Windows**
 ```shell
 docker run -v "%cd%/:/specs" -p 9000:9002 znsio/specmatic stub "/specs/service.yaml" --port 9002
 ```
@@ -509,12 +511,12 @@ If you would like to add more stub responses, however you do not wish to bloat y
 Now let us run the stub command again.
 {% tabs stub2 %}
 {% tab stub2 docker %}
-#### MacOS / Linux
+**MacOS / Linux**
 ```shell
 docker run -v "$(pwd)/:/specs" -p 9000:9000 znsio/specmatic stub "/specs/service.yaml"
 ```
 
-#### Windows
+**Windows**
 ```shell
 docker run -v "%cd%/:/specs" -p 9000:9000 znsio/specmatic stub "/specs/service.yaml"
 ```
@@ -566,12 +568,12 @@ Specmatic validates this externalised stub JSON file `togo.json` against the `se
 
 {% tabs stub3 %}
 {% tab stub3 docker %}
-#### MacOS / Linux
+**MacOS / Linux**
 ```shell
 docker run -v "$(pwd)/:/specs" -p 9000:9000 znsio/specmatic stub "/specs/service.yaml"
 ```
 
-#### Windows
+**Windows**
 ```shell
 docker run -v "%cd%/:/specs" -p 9000:9000 znsio/specmatic stub "/specs/service.yaml"
 ```
