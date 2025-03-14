@@ -255,12 +255,24 @@ Once you restore the OpenAPI file to its [original state](/getting_started.html#
 
 #### What happens when OpenAPI goes out of sync with the application or vice versa?
 
-Now lets try something more interesting and change the datatype of the "status" field of response in OpenAPI file to "number" and save it.
+Now lets try something more interesting. Bring back the parameter example that we removed in the previous section. Then change the datatype of the `status` field of response in OpenAPI file to `boolean` and save it.
 
 ```yaml
   properties:
     status:
-      type: "number"
+      type: "boolean"
+```
+
+Also modify the `status` field in the `SCOOBY_200_OK` example just below it, like so:
+
+```yaml
+  examples:
+    SCOOBY_200_OK:
+      value:
+        id: 1
+        name: Scooby
+        type: Golden Retriever
+        status: true # change the value from "Adopted" to true
 ```
 
 Let us run the specmatic test command again.
@@ -290,7 +302,7 @@ Unsuccessful Scenarios:
   
           >> RESPONSE.BODY.status
           
-             Contract expected number but response contained "Adopted"
+             Contract expected boolean but response contained "Adopted"
 
 Tests run: 1, Successes: 0, Failures: 1, Errors: 0
 ```
