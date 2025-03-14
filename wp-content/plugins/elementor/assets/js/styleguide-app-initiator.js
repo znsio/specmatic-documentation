@@ -1,4 +1,4 @@
-/*! elementor - v3.26.0 - 22-12-2024 */
+/*! elementor - v3.27.0 - 18-02-2025 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -602,8 +602,8 @@ try {
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
 /******/ 			if (chunkId === "vendors-node_modules_prop-types_index_js-node_modules_babel_runtime_helpers_slicedToArray_js") return "056b8f3bbbcabf026cd1.bundle.js";
-/******/ 			if (chunkId === "vendors-node_modules_styled-components_dist_styled-components_browser_esm_js-node_modules_bab-0097ba") return "fe1f62efe8b83270a88c.bundle.js";
-/******/ 			if (chunkId === "modules_styleguide_assets_js_frontend_app_js") return "f75dc05bac1a6892309b.bundle.js";
+/******/ 			if (chunkId === "vendors-node_modules_styled-components_dist_styled-components_browser_esm_js-node_modules_bab-0097ba") return "947434f8f98ed29acc17.bundle.js";
+/******/ 			if (chunkId === "styleguide-app") return "" + chunkId + ".a6e297c616479b98c03d.bundle.js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
@@ -803,7 +803,7 @@ try {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (() => {
 "use strict";
 /*!*******************************************************************!*\
@@ -836,7 +836,7 @@ var _react2 = _interopRequireDefault(__webpack_require__(/*! elementor-utils/rea
         while (1) switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_prop-types_index_js-node_modules_babel_runtime_helpers_slicedToArray_js"), __webpack_require__.e("vendors-node_modules_styled-components_dist_styled-components_browser_esm_js-node_modules_bab-0097ba"), __webpack_require__.e("modules_styleguide_assets_js_frontend_app_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ./frontend/app */ "../modules/styleguide/assets/js/frontend/app.js"));
+            return Promise.all(/*! import() | styleguide-app */[__webpack_require__.e("vendors-node_modules_prop-types_index_js-node_modules_babel_runtime_helpers_slicedToArray_js"), __webpack_require__.e("vendors-node_modules_styled-components_dist_styled-components_browser_esm_js-node_modules_bab-0097ba"), __webpack_require__.e("styleguide-app")]).then(__webpack_require__.bind(__webpack_require__, /*! ./frontend/app */ "../modules/styleguide/assets/js/frontend/app.js"));
           case 2:
             _yield$import = _context.sent;
             App = _yield$import.default;

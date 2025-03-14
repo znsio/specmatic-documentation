@@ -3,8 +3,9 @@ layout: default
 title: Configuration
 parent: Documentation
 nav_order: 14
-has_children: true
 ---
+
+<span style="color:gray;">Update Date:  14/02/2025</span>
 
 Configuration
 =============
@@ -27,6 +28,9 @@ Configuration
     - [Declare pipeline details](#declare-pipeline-details)
     - [Declare environment configuration](#declare-environment-configuration)
     - [Hooks](#hooks)
+
+
+Note: Version 2 is the latest as of 14/02/2025. If you are looking for an older version of the configs, refer to [older configuration versions](/documentation/older_configuration_versions.html) page.
 
 ### Getting started
 
@@ -62,10 +66,26 @@ When you run the `config upgrade` command without specifying `input` or `output`
 
 By default, Specmatic searches for the directory ending with `_examples` to pickup externalized examples. However, if needed, you can specify a list of directories containing externalized examples under `examples` key in specmatic configuration. Specmatic will retrieve the examples from these directories for use in both contract testing and service virtualization.
 
-{% tabs stubs %}
-{% tab stubs specmatic.json %}
+{% tabs stubs_configuration %}
+{% tab stubs_configuration specmatic.yaml %}
+```yaml
+version: 2
+contracts:
+  - git:
+      url: https://github.com/znsio/specmatic-order-contracts.git
+    provides:
+      - io/specmatic/examples/store/openapi/product_search_bff_v4.yaml
+    consumes:
+      - io/specmatic/examples/store/openapi/api_order_v3.yaml
+examples:
+  - order_service/examples
+  - product_service/examples
+```
+{% endtab %}
+{% tab stubs_configuration specmatic.json %}
 ```json
 {
+  "version": 2,
   "contracts": [
     {
       "git": {
@@ -86,20 +106,6 @@ By default, Specmatic searches for the directory ending with `_examples` to pick
 }
 ```
 {% endtab %}
-{% tab stubs specmatic.yaml %}
-```yaml
-contracts:
-  - git:
-      url: https://github.com/znsio/specmatic-order-contracts.git
-    provides:
-      - io/specmatic/examples/store/openapi/product_search_bff_v4.yaml
-    consumes:
-      - io/specmatic/examples/store/openapi/api_order_v3.yaml
-examples:
-  - order_service/examples
-  - product_service/examples
-```
-{% endtab %}
 {% endtabs %}
 
 **Note**: if the `_examples` directory is present, it will still be included alongside any additional directories specified under the `examples` key.
@@ -110,10 +116,23 @@ The HTTP timeout duration for requests made during contract testing can be confi
 This parameter sets the maximum time Specmatic will wait for a response to each HTTP request before marking it as a failure.
 The default timeout is `6000 milliseconds`.
 
-{% tabs stubs %}
-{% tab stubs specmatic.json %}
+{% tabs test_configuration %}
+{% tab test_configuration specmatic.yaml %}
+```yaml
+version: 2
+contracts:
+  - git:
+      url: https://github.com/znsio/specmatic-order-contracts.git
+    consumes:
+      - io/specmatic/examples/store/openapi/api_order_v3.yaml
+test:
+  timeoutInMilliseconds: 3000
+```
+{% endtab %}
+{% tab test_configuration specmatic.json %}
 ```json
 {
+  "version": 2,
   "contracts": [
     {
       "git": {
@@ -130,27 +149,27 @@ The default timeout is `6000 milliseconds`.
 }
 ```
 {% endtab %}
-{% tab stubs specmatic.yaml %}
-```yaml
-contracts:
-  - git:
-      url: https://github.com/znsio/specmatic-order-contracts.git
-    consumes:
-      - io/specmatic/examples/store/openapi/api_order_v3.yaml
-test:
-  timeoutInMilliseconds: 3000
-```
-{% endtab %}
 {% endtabs %}
 
 #### Configuring Stubs
 
 The same configuration file can be leveraged to define stubs also.
 
-{% tabs stubs %}
-{% tab stubs specmatic.json %}
+{% tabs contracts_configuration %}
+{% tab contracts_configuration specmatic.yaml %}
+```yaml
+version: 2
+contracts:
+  - git:
+      url: https://github.com/znsio/specmatic-order-contracts.git
+    consumes:
+      - io/specmatic/examples/store/openapi/api_order_v3.yaml
+```
+{% endtab %}
+{% tab contracts_configuration specmatic.json %}
 ```json
 {
+  "version": 2,
   "contracts": [
     {
       "git": {
@@ -162,15 +181,6 @@ The same configuration file can be leveraged to define stubs also.
     }
   ]
 }
-```
-{% endtab %}
-{% tab stubs specmatic.yaml %}
-```yaml
-contracts:
-  - git:
-      url: https://github.com/znsio/specmatic-order-contracts.git
-    consumes:
-      - io/specmatic/examples/store/openapi/api_order_v3.yaml
 ```
 {% endtab %}
 {% endtabs %}
@@ -218,10 +228,24 @@ Please note that now we are now listing the ```api_order_v3.yaml``` is listed as
 
 A single application may need to list the API Specifications it is implementing under the provides attribute and the API Specifications of its dependencies under the consumes attribute.
 
-{% tabs dependencies %}
-{% tab dependencies specmatic.json %}
+{% tabs dependencies_configuration %}
+{% tab dependencies_configuration specmatic.yaml %}
+```yaml
+version: 2
+contracts:
+  - git:
+      url: <Git URL>
+    consumes:
+      - com/example/api_order_v1.yaml
+      - com/example/api_user_v1.yaml
+    provides:
+      - com/example/api_auth_v1.yaml
+```
+{% endtab %}
+{% tab dependencies_configuration specmatic.json %}
 ```json
 {
+  "version": 2,
   "contracts": [
     {
       "git": {
@@ -239,18 +263,6 @@ A single application may need to list the API Specifications it is implementing 
 }
 ```
 {% endtab %}
-{% tab dependencies specmatic.yaml %}
-```yaml
-contracts:
-  - git:
-      url: <Git URL>
-    consumes:
-      - com/example/api_order_v1.yaml
-      - com/example/api_user_v1.yaml
-    provides:
-      - com/example/api_auth_v1.yaml
-```
-{% endtab %}
 {% endtabs %}
 
 #### Service Virtualization Delay
@@ -262,10 +274,24 @@ you can simulate response times with the specified delay in milliseconds, as men
 
 If you just need to use specifications from your local file system, specify `filesystem` field within contracts (if not specified, `directory` will default to current directory), as shown below.
 
-{% tabs local %}
-{% tab local specmatic.json %}
+{% tabs local_configuration %}
+{% tab local_configuration specmatic.yaml %}
+```yaml
+version: 2
+contracts:
+  - filesystem:
+      directory: <Path to directory where all the specmatic should look for specifications>
+    consumes:
+      - api_order_v1.yaml
+      - api_user_v1.yaml
+    provides:
+      - api_auth_v1.yaml
+```
+{% endtab %}
+{% tab local_configuration specmatic.json %}
 ```json
 {
+  "version": 2,
   "contracts": [
     {
       "filesystem": {
@@ -283,18 +309,6 @@ If you just need to use specifications from your local file system, specify `fil
 }
 ```
 {% endtab %}
-{% tab local specmatic.yaml %}
-```yaml
-contracts:
-  - filesystem:
-      directory: <Path to directory where all the specmatic should look for specifications>
-    consumes:
-      - api_order_v1.yaml
-      - api_user_v1.yaml
-    provides:
-      - api_auth_v1.yaml
-```
-{% endtab %}
 {% endtabs %}
 
 Note that the `consumes` and `provides` specifications are relative paths. This means that they must be in the same directory as the current directory.
@@ -306,10 +320,27 @@ You can also provide absolute paths in case they are somewhere else on the files
 If you want to run stubs on different ports for different specifications, you can specify the port number in the `port` field under `consumes` key and assign the list of `specs` to it.
 
 
-{% tabs local %}
-{% tab local specmatic.json %}
+{% tabs local_configuration %}
+{% tab local_configuration specmatic.yaml %}
+```yaml
+version: 2
+contracts:
+  - filesystem:
+      directory: <Path to directory where all the specmatic should look for specifications>
+    consumes:
+      - specs:
+          - api_order_v1.yaml
+          - api_user_v1.yaml
+        port: 9000
+      - specs:
+          - api_auth_v1.yaml
+        port: 9001
+```
+{% endtab %}
+{% tab local_configuration specmatic.json %}
 ```json
 {
+  "version": 2,
   "contracts": [
     {
       "filesystem": {
@@ -335,21 +366,6 @@ If you want to run stubs on different ports for different specifications, you ca
 }
 ```
 {% endtab %}
-{% tab local specmatic.yaml %}
-```yaml
-contracts:
-  - filesystem:
-      directory: <Path to directory where all the specmatic should look for specifications>
-    consumes:
-      - specs:
-          - api_order_v1.yaml
-          - api_user_v1.yaml
-        port: 9000
-      - specs:
-          - api_auth_v1.yaml
-        port: 9001
-```
-{% endtab %}
 {% endtabs %}
 
 As per the above configuration, the specs `api_order_v1.yaml` and `api_user_v1.yaml` will run on port 9000 and the spec `api_auth_v1.yaml` will run on port 9001.
@@ -363,9 +379,28 @@ Usually source control requires authentication. Below are the ways in which you 
 #### Report Configuration
 Specmatic can generate reports based on the below configuration:
 
-{% tabs report %}
-{% tab report specmatic.json %}
+{% tabs report_configuration %}
+{% tab report_configuration specmatic.yaml %}
+```yaml
+version: 2
+report:
+  formatters:
+    - type: text
+      layout: table
+  types:
+    APICoverage:
+      OpenAPI:
+        successCriteria:
+          minThresholdPercentage: 100
+          maxMissedEndpointsInSpec: 0
+          enforce: true
+        excludedEndpoints:
+          - /health
+```
+{% endtab %}
+{% tab report_configuration specmatic.json %}
 ```json
+"version": 2,
 "report": {
     "formatters": [
       {
@@ -390,8 +425,51 @@ Specmatic can generate reports based on the below configuration:
   }
 ```
 {% endtab %}
-{% tab report specmatic.yaml %}
+{% endtabs %}
+ 
+#### Formatters
+Defaults to 'Text' if none specified.  
+The Text formatter will print the report on to the console/terminal.
+
+#### Report Types
+#### API Coverage report
+This gives you a comprehensive analysis of any mismatch between your api specification and implementation. [Here](https://specmatic.in/updates/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/#gsc.tab=0) is an article with a detailed write-up about this feature.
+
+#### Complete sample specmatic.json with all attributes
+
+{% tabs complete_configuration %}
+{% tab complete_configuration specmatic.yaml %}
 ```yaml
+version: 2
+contracts:
+  - git:
+      url: https://azure.com/XNSio/XNSIO/_git/petstore-contracts
+      branch: main
+    provides:
+      - com/petstore/store.yaml
+    consumes:
+      - com/petstore/payment.yaml
+
+auth:
+  bearer-file: central_repo_auth_token.txt
+
+pipeline:
+  provider: azure
+  organization: XNSio
+  project: XNSIO
+  definitionId: 4
+
+environments:
+  staging:
+    baseurls:
+      auth.spec: http://localhost:8080
+    variables:
+      username: jackie
+      password: PaSsWoRd
+
+hooks:
+  hook_name: command
+
 report:
   formatters:
     - type: text
@@ -407,22 +485,10 @@ report:
           - /health
 ```
 {% endtab %}
-{% endtabs %}
- 
-#### Formatters
-Defaults to 'Text' if none specified.  
-The Text formatter will print the report on to the console/terminal.
-
-#### Report Types
-#### API Coverage report
-This gives you a comprehensive analysis of any mismatch between your api specification and implementation. [Here](https://specmatic.in/updates/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/#gsc.tab=0) is an article with a detailed write-up about this feature.
-
-#### Complete sample specmatic.json with all attributes
-
-{% tabs complete %}
-{% tab complete specmatic.json %}
+{% tab complete_configuration specmatic.json %}
 ```json
 {
+  "version": 2,
   "contracts": [
     {
       "git": {
@@ -490,62 +556,30 @@ This gives you a comprehensive analysis of any mismatch between your api specifi
 }
 ```
 {% endtab %}
-{% tab complete specmatic.yaml %}
-```yaml
-contracts:
-  - git:
-      url: https://azure.com/XNSio/XNSIO/_git/petstore-contracts
-      branch: main
-    provides:
-      - com/petstore/store.yaml
-    consumes:
-      - com/petstore/payment.yaml
-
-auth:
-  bearer-file: central_repo_auth_token.txt
-
-pipeline:
-  provider: azure
-  organization: XNSio
-  project: XNSIO
-  definitionId: 4
-
-environments:
-  staging:
-    baseurls:
-      auth.spec: http://localhost:8080
-    variables:
-      username: jackie
-      password: PaSsWoRd
-
-hooks:
-  hook_name: command
-
-report:
-  formatters:
-    - type: text
-      layout: table
-  types:
-    APICoverage:
-      OpenAPI:
-        successCriteria:
-          minThresholdPercentage: 100
-          maxMissedEndpointsInSpec: 0
-          enforce: true
-        excludedEndpoints:
-          - /health
-```
-{% endtab %}
 {% endtabs %}
 
 ### Declare pipeline details
 
 Contains details of the project pipeline.
 
-{% tabs pipeline %}
-{% tab pipeline specmatic.json %}
+{% tabs pipeline_configuration %}
+{% tab pipeline_configuration specmatic.yaml %}
+```yaml
+version: 2
+auth:
+  bearer-file: ./central_repo_auth_token.txt
+
+pipeline:
+  provider: azure
+  organization: XNSio
+  project: XNSIO
+  definitionId: 4
+```
+{% endtab %}
+{% tab pipeline_configuration specmatic.json %}
 ```json
 {
+  "version": 2,
   "auth": {
     "bearer-file": "./central_repo_auth_token.txt"
   },
@@ -557,18 +591,6 @@ Contains details of the project pipeline.
     "definitionId": 4
   }
 }
-```
-{% endtab %}
-{% tab pipeline specmatic.yaml %}
-```yaml
-auth:
-  bearer-file: ./central_repo_auth_token.txt
-
-pipeline:
-  provider: azure
-  organization: XNSio
-  project: XNSIO
-  definitionId: 4
 ```
 {% endtab %}
 {% endtabs %}
@@ -595,9 +617,22 @@ You can read more about `System.AccessToken` [here](https://docs.microsoft.com/e
 
 ### Declare environment configuration
 
-{% tabs environment %}
-{% tab environment specmatic.json %}
+{% tabs environment_configuration %}
+{% tab environment_configuration specmatic.yaml %}
+```yaml
+version: 2
+environments:
+  staging:
+    baseurls:
+      auth.spec: http://localhost:8080
+    variables:
+      username: jackie
+      password: PaSsWoRd
+```
+{% endtab %}
+{% tab environment_configuration specmatic.json %}
 ```json
+  "version": 2,
   "environments": {
     "staging": {
       "baseurls": {
@@ -609,17 +644,6 @@ You can read more about `System.AccessToken` [here](https://docs.microsoft.com/e
       }
     }
   }
-```
-{% endtab %}
-{% tab environment specmatic.yaml %}
-```yaml
-environments:
-  staging:
-    baseurls:
-      auth.spec: http://localhost:8080
-    variables:
-      username: jackie
-      password: PaSsWoRd
 ```
 {% endtab %}
 {% endtabs %}
@@ -636,20 +660,22 @@ Each environment configuration can contain
 
 A hook is simply a command that can run on the Terminal or Command Prompt.
 
-{% tabs hooks %}
-{% tab hooks specmatic.json %}
+{% tabs hooks_configuration %}
+{% tab hooks_configuration specmatic.yaml %}
+```yaml
+version: 2
+hooks:
+  stub_load_contract: python load.py
+```
+{% endtab %}
+{% tab hooks_configuration specmatic.json %}
 ```json
 {
+  "version": 2,
   "hooks": {
     "stub_load_contract": "python load.py"
   }
 }
-```
-{% endtab %}
-{% tab hooks specmatic.yaml %}
-```yaml
-hooks:
-  stub_load_contract: python load.py
 ```
 {% endtab %}
 {% endtabs %}

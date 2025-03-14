@@ -35,7 +35,7 @@ Backward Compatibility
 
 
 # Why Backward Compatibility Matters
-Backward compatibility ensures that updates to your API specifications don't accidently break compatibility. and prevents rework. Perform automated backward compatibility checks to ensure we are not accidentally breaking compatibility.
+Backward compatibility ensures that updates to your API specifications don't accidentally break compatibility. and prevents rework. Perform automated backward compatibility checks to ensure we are not accidentally breaking compatibility.
 
 Specmatic offers this powerful feature to check for backward compatibility between different versions of your API specifications.
 
@@ -86,6 +86,7 @@ specmatic backward-compatibility-check [options]
 
 - `--target-path`: Focus your analysis on specific file or folder. Default is all files and folder.
 - `--base-branch`: Select your comparison base. This defaults to head of the current branch.
+- `--repo-dir`: Specify the directory where the repository is located. Default is the current directory.
 
 ## Common Use Cases
 
@@ -161,6 +162,11 @@ specmatic backward-compatibility-check --target-path ./api/products.yaml
 specmatic backward-compatibility-check --base-branch origin/feature_v2
 ```
 
+### 6. Analyzing a specific directory
+
+```shell
+specmatic backward-compatibility-check --repo-dir /path/to/repo
+```
 
 ## Practical Examples (Try it yourself) 
 
@@ -684,7 +690,7 @@ This command exits with exit code 1 if the change is backward incompatible.
 ## Troubleshooting
 
 1. **Command Not Recognized**: 
-   - Verify Specimatic is properly configured for your current directory (either Docker or Node package or Python module or Jar file)
+   - Verify Specmatic is properly configured for your current directory (either Docker or Node package or Python module or Jar file)
    - Ensure you are using the latest version of Specmatic.
 
 2. **Unexpected Outcomes**: 

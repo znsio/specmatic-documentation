@@ -1,4 +1,4 @@
-/*! elementor - v3.26.0 - 22-12-2024 */
+/*! elementor - v3.27.0 - 18-02-2025 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -119,7 +119,7 @@ module.exports = _typeof, module.exports.__esModule = true, module.exports["defa
 /******/ 	}
 /******/ 	
 /************************************************************************/
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (() => {
 "use strict";
 /*!*********************************************!*\
