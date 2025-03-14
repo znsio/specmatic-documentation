@@ -208,13 +208,15 @@ And try running the specmatic test command again.
 
 {% tabs test3 %}
 {% tab test3 docker %}
+**MacOS / Linux**
 ```shell
 docker run -v "$(pwd)/service.yaml:/service.yaml" znsio/specmatic test "/service.yaml" --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
 ```
 
 **Windows**
 ```shell
-docker run -v "%cd%/service.yaml:/service.yaml" znsio/specmatic test "/service.yaml" --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation```
+docker run -v "%cd%/service.yaml:/service.yaml" znsio/specmatic test "/service.yaml" --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
+```
 {% endtab %}
 {% tab test3 java %}
 ```shell
@@ -289,8 +291,14 @@ Also modify the `status` field in the `SCOOBY_200_OK` example just below it, lik
 Let us run the specmatic test command again.
 {% tabs test2 %}
 {% tab test2 docker %}
+**MacOS / Windows**
 ```shell
- docker run -v "/local-directory/service.yaml:/service.yaml" znsio/specmatic test "/service.yaml" --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
+docker run -v "$(pwd)/service.yaml:/service.yaml" znsio/specmatic test "/service.yaml" --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
+```
+
+**Windows**
+```shell
+ docker run -v "%cd%/service.yaml:/service.yaml" znsio/specmatic test "/service.yaml" --testBaseURL=https://my-json-server.typicode.com/znsio/specmatic-documentation
 ```
 {% endtab %}
 {% tab test2 java %}
