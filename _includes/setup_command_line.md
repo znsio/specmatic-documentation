@@ -7,13 +7,7 @@ The Specmatic standalone executable is accessible through various prominent dist
 {% tabs install %}
 {% tab install docker %}
 
-Docker Pull Command for specmatic docker image
-
-``` bash
-docker pull znsio/specmatic
-```
-
-Run specmatic by
+You can run Specmatic using the following command:
 
 ``` bash
 docker run znsio/specmatic
