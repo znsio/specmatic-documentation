@@ -16,8 +16,16 @@ Getting started
       - [How does this all work?](#how-does-this-all-work)
       - [What happens when OpenAPI goes out of sync with the application or vice versa?](#what-happens-when-openapi-goes-out-of-sync-with-the-application-or-vice-versa)
     - [Consumer Side - Contract As A Stub / Intelligent Service Virtualisation](#consumer-side---contract-as-a-stub--intelligent-service-virtualisation)
+      - [MacOS / Linux](#macos--linux)
+      - [Windows](#windows)
+      - [MacOS / Linux](#macos--linux-1)
+      - [Windows](#windows-1)
       - [Intelligent Service Virtualisation](#intelligent-service-virtualisation)
       - [Externalising stub responses](#externalising-stub-responses)
+      - [MacOS / Linux](#macos--linux-2)
+      - [Windows](#windows-2)
+      - [MacOS / Linux](#macos--linux-3)
+      - [Windows](#windows-3)
 
 ### Setup
 
@@ -154,7 +162,6 @@ API Specification Summary: service.yaml
 |---------------------------------------------------------------------|
 
 
-
 Generating HTML report...
 Successfully generated HTML report in ./build/reports/specmatic/html
 Saving Open API Coverage Report json to ./build/reports/specmatic ...
@@ -235,7 +242,7 @@ Tests run: 1, Successes: 0, Failures: 1, Errors: 0
 ```
 
 This is because we removed the named example `SCOOBY_200_OK`, Specmatic generated a random petId based on the datatype of the petId path parameter. And since test data does not exist for this petId in the sample application, we get a 404.
-```shell
+```text
 --------------------
   Request to https://my-json-server.typicode.com/znsio/specmatic-documentation at 2024-2-11 5:44:5.791
     GET /znsio/specmatic-documentation/pets/318
@@ -296,7 +303,7 @@ npx specmatic test service.yaml --testBaseURL=https://my-json-server.typicode.co
 {% endtab %}
 {% endtabs %}
 This time around the test fails because the response from our sample app is not in line with the OpenAPI Specification.
-```shell
+```text
 Unsuccessful Scenarios:
   " Scenario: GET /pets/(petid:number) -> 200 | EX:SCOOBY_200_OK FAILED"
         Reason: Testing scenario "Should be able to get a pet by petId. Response: Should be able to get a pet by petId"
@@ -327,19 +334,29 @@ We have so far established that Specmatic will keep OpenAPI spec and the API imp
 
 Before we begin, please make sure that your `service.yaml` file is restored to its [original state](/getting_started.html#api-specification).
 
-To spin up a stub server with the service.yaml we authored earlier, run below command.
-{% tabs stub %}
-{% tab stub docker %}
+To spin up a stub server with the service.yaml we authored earlier, run the command below.
+
+{% tabs start-stub %}
+
+{% tab start-stub docker %}
+#### MacOS / Linux
 ```shell
-docker run -v "/local-directory/service.yaml:/service.yaml" -p 9000:9000 znsio/specmatic stub "/service.yaml"
+docker run -v "$(pwd)/:/specs" -p 9000:9000 znsio/specmatic stub "/specs/service.yaml"
+```
+
+#### Windows
+```shell
+docker run -v "%cd%/:/specs" -p 9000:9000 znsio/specmatic stub "/specs/service.yaml"
 ```
 {% endtab %}
-{% tab stub java %}
+
+{% tab start-stub java %}
 ```shell
 specmatic stub service.yaml
 ```
 {% endtab %}
-{% tab stub npm %}
+
+{% tab start-stub npm %}
 ```shell
 npx specmatic stub service.yaml
 ```
@@ -348,27 +365,36 @@ npx specmatic stub service.yaml
 
 This should start your stub server on port 9000 by default as below.
 
-```shell
-Loading service.yaml
-API Specification Summary: service.yaml
+```text
+Loading the spec file: /service.yaml
+
+API Specification Summary: /service.yaml
   OpenAPI Version: 3.0.1
   API Paths: 1, API Operations: 1
 
+Stub server is running on the following URLs:
+- http://localhost:9000 serving endpoints from specs:
+    1. /service.yaml
 
-Stub server is running on http://0.0.0.0:9000. Ctrl + C to stop.
+Press Ctrl + C to stop.
 ```
 
 **Tip:** You can switch the port number by adding ```--port <port of your choice>``` in the command.
 
 {% tabs stub-custom-port %}
 {% tab stub-custom-port docker %}
+#### MacOS / Linux
 ```shell
-# Note that --port 9002 at the end of the command is crucial. It ensures that the stub 
-# server inside the Docker container is listening on the same port (9002) that's being
-# mapped to port 9000 on your machine. If these ports don't match, you won't be able to
-# access the stub server from your machine.
-docker run -v "/local-directory/service.yaml:/service.yaml" -p 9000:9002 znsio/specmatic stub "/service.yaml" --port 9002
+docker run -v "$(pwd)/:/specs" -p 9000:9002 znsio/specmatic stub "/specs/service.yaml" --port 9002
 ```
+
+#### Windows
+```shell
+docker run -v "%cd%/:/specs" -p 9000:9002 znsio/specmatic stub "/specs/service.yaml" --port 9002
+```
+
+Note that the `-p 9000:9002` tells Docker to map the port `9000` **outside** the container to port `9002` **inside** the container, So the Specmatic stub (running **inside** the container) has to be started on port `9002`, and this is done by passing the parameter `--port 9002` to Specmatic.
+
 {% endtab %}
 {% tab stub-custom-port java %}
 ```shell
@@ -390,7 +416,7 @@ curl http://localhost:9000/pets/123
 
 You should now be able to see the response that matches the schema defined in your OpenAPI spec.
 
-```shell
+```json
 {
     "id": 864,
     "name": "VRIQA",
@@ -402,7 +428,7 @@ You should now be able to see the response that matches the schema defined in yo
 The response contains auto-generated values that adhere to the data type defined in the contract. In above output petid "864" is generated by specmatic and will vary with every execution.
 
 However for petId 1, it will always return below values.
-```shell
+```json
 {
     "id": 1,
     "name": "Scooby",
@@ -434,7 +460,7 @@ examples:
 
 The stub server will auto reload your `service.yaml` file as soon as you save it. And you should see an output as shown below.
 
-```bash
+```text
 Loading service.yaml
 API Specification Summary: service.yaml
   OpenAPI Version: 3.0.1
@@ -483,11 +509,14 @@ If you would like to add more stub responses, however you do not wish to bloat y
 Now let us run the stub command again.
 {% tabs stub2 %}
 {% tab stub2 docker %}
+#### MacOS / Linux
 ```shell
-# Please note docker command here has to volume map the directory containing service.yaml 
-# to a directory within the container so that both service.yaml and folder service_examples along 
-# with togo.json are available to Specmatic docker container
-docker run -v "/local-directory/:/specs" -p 9000:9000 znsio/specmatic stub "/specs/service.yaml"
+docker run -v "$(pwd)/:/specs" -p 9000:9000 znsio/specmatic stub "/specs/service.yaml"
+```
+
+#### Windows
+```shell
+docker run -v "%cd%/:/specs" -p 9000:9000 znsio/specmatic stub "/specs/service.yaml"
 ```
 {% endtab %}
 {% tab stub2 java %}
@@ -503,7 +532,7 @@ npx specmatic stub service.yaml
 {% endtabs %}
 
 This time you should see Specmatic load your canned response file also.
-```shell
+```text
 Loading service.yaml
 API Specification Summary: service.yaml
   OpenAPI Version: 3.0.1
@@ -524,7 +553,7 @@ curl http://localhost:9000/pets/2
 
 You should now be able to see the data pertaining to the `togo.json` file that you added.
 
-```shell
+```json
 {
     "id": 2,
     "name": "Togo",
@@ -537,11 +566,14 @@ Specmatic validates this externalised stub JSON file `togo.json` against the `se
 
 {% tabs stub3 %}
 {% tab stub3 docker %}
+#### MacOS / Linux
 ```shell
-# Please note docker command here has to volume map the directory containing service.yaml 
-# to a directory within the container so that both service.yaml and folder service_examples along 
-# with togo.json are available to Specmatic docker container
-docker run -v "/local-directory/:/specs" -p 9000:9000 znsio/specmatic stub "/specs/service.yaml"
+docker run -v "$(pwd)/:/specs" -p 9000:9000 znsio/specmatic stub "/specs/service.yaml"
+```
+
+#### Windows
+```shell
+docker run -v "%cd%/:/specs" -p 9000:9000 znsio/specmatic stub "/specs/service.yaml"
 ```
 {% endtab %}
 {% tab stub3 java %}
@@ -556,14 +588,21 @@ npx specmatic stub service.yaml
 {% endtab %}
 {% endtabs %}
 
-You should see an output like below.
+You should see output as follows.
 
-```shell
-Loading stub expectations from /Users/harikrishnan/projects/agilefaqs/ContractTesting/ExamplesAsTestAndStub/service_examples
-  Reading the following stub files:
-    /Users/harikrishnan/projects/agilefaqs/ContractTesting/ExamplesAsTestAndStub/service_examples/togo.json
-  /Users/harikrishnan/projects/agilefaqs/ContractTesting/ExamplesAsTestAndStub/service_examples/togo.json didn't match service.yaml
-    Error from contract service.yaml
+```text
+API Specification Summary: /specs/service.yaml
+  OpenAPI Version: 3.0.1
+  API Paths: 1, API Operations: 1
+
+
+
+ Example files in './../../../specs/service_examples'
+  - /specs/service_examples/example.json
+
+  >> Error loading stub expectation file '/specs/service_examples/example.json':
+   /specs/service_examples/example.json didn't match /specs/service.yaml
+    Error from contract /specs/service.yaml
   
       In scenario "Should be able to get a pet by petId. Response: Should be able to get a pet by petId"
       API: GET /pets/(petid:number) -> 200
@@ -572,7 +611,12 @@ Loading stub expectations from /Users/harikrishnan/projects/agilefaqs/ContractTe
   
            Key named status in the contract was not found in the stub
 
-Stub server is running on http://0.0.0.0:9000. Ctrl + C to stop.
+
+Stub server is running on the following URLs:
+- http://localhost:9000 serving endpoints from specs:
+    1. /specs/service.yaml
+
+Press Ctrl + C to stop.
 ```
 
 Specmatic again rejects the expectation / canned response since it is not in line with the OpenAPI Specification.
