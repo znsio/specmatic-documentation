@@ -16,6 +16,7 @@ Configuration
       - [Externalized Examples Directories](#externalized-examples-directories)
       - [Contract Test Timeout](#contract-test-timeout)
       - [Configuring Stubs](#configuring-stubs)
+      - [Stub Start Timeout](#stub-start-timeout)
       - [Service Virtualization Delay](#service-virtualization-delay)
       - [Use specifications on local file system](#use-specifications-on-local-file-system)
       - [Run stub on different ports for different specifications](#run-stub-on-different-ports-for-different-specifications)
