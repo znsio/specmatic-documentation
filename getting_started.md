@@ -119,22 +119,21 @@ npx specmatic test service.yaml --testBaseURL=https://my-json-server.typicode.co
 {% endtab %}
 {% endtabs %}
 
-Your output will look as shown in below (a few lines have been deleted in the interest of brevity).
+Your output will appear as shown below (a few lines have been deleted in the interest of brevity).
 ```
 API Specification Summary: service.yaml
   OpenAPI Version: 3.0.1
   API Paths: 1, API Operations: 1
 
-Executing 1 tests
-
 --------------------
-  Request to https://my-json-server.typicode.com/znsio/specmatic-documentation at 2024-2-12 1:54:58.570
+  Request to https://my-json-server.typicode.com/znsio/specmatic-documentation at 2025-3-14 5:16:35.598
     GET /znsio/specmatic-documentation/pets/1
     
 
-  Response at 2024-2-12 1:54:58.572
+  Response at 2025-3-14 5:16:35.599
     200 OK
     Content-Type: application/json; charset=utf-8
+    
     {
         "id": 1,
         "name": "Scooby",
@@ -142,25 +141,28 @@ Executing 1 tests
         "status": "Adopted"
     }
 
-
-Tests run: 1/1 (100%)
-
  Scenario: GET /pets/(petid:number) -> 200 | EX:SCOOBY_200_OK has SUCCEEDED
 
-Could not load report configuration, coverage will be calculated but no coverage threshold will be enforced
-|----------------------------------------------------------------------|
-| API COVERAGE SUMMARY                                                 |
-|----------------------------------------------------------------------|
-| coverage | path          | method | response | # exercised | remarks |
-|----------|---------------|--------|----------|-------------|---------|
-|     100% | /pets/{petid} | GET    |      200 |           1 | covered |
-|----------------------------------------------------------------------|
-| 100% API Coverage reported from 1 path                               |
-|----------------------------------------------------------------------|
+|---------------------------------------------------------------------|
+| SPECMATIC API COVERAGE SUMMARY                                      |
+|---------------------------------------------------------------------|
+| coverage | path          | method | response | #exercised | result  |
+|----------|---------------|--------|----------|------------|---------|
+| 100%     | /pets/{petid} | GET    | 200      | 1          | covered |
+|---------------------------------------------------------------------|
+| 100% API Coverage reported from 1 Paths                             |
+|---------------------------------------------------------------------|
 
 
+
+Generating HTML report...
+Successfully generated HTML report in ./build/reports/specmatic/html
 Saving Open API Coverage Report json to ./build/reports/specmatic ...
+
+
 Tests run: 1, Successes: 1, Failures: 0, Errors: 0
+
+Executed at 2025-03-14T17:16:35.943405
 ```
 
 #### Understanding the output
