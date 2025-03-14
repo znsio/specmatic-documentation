@@ -576,7 +576,6 @@ Add a key named "auth" to the Specmatic configuration, as seen in the example be
 {% tab config_contractTests specmatic.yaml %}
 ```yaml
 version: 2
-
 contracts:
   - git:
       url: https://github.com/your-username-or-org/your-repo.git
@@ -591,7 +590,6 @@ auth:
 ```json
 {
   "version": 2,
-  
   "contracts": [
     {
       "git": {
@@ -631,7 +629,6 @@ You could also use an environment variable to pass the token.
 {% tab config_contractTests specmatic.yaml %}
 ```yaml
 version: 2
-
 contracts:
   - git:
       url: https://github.com/your-username-or-org/your-repo.git
@@ -646,7 +643,6 @@ auth:
 ```json
 {
   "version": 2,
-
   "contracts": [
     {
       "git": {
@@ -1302,13 +1298,6 @@ Content-Type: application/json
 
 ### Further Reading
 For a complete list of modifications possible with overlays, refer to the [OpenAPI Overlay Specification](https://spec.openapis.org/overlay/v1.0.0.html).
-
-### Conclusion
-Overlays provide a clean way to simulate middleware behavior in your contract tests. By keeping base specifications clean and using overlays to simulate gateway behavior, you can:
-- Maintain clean base contracts
-- Accurately test gateway transformations
-- Ensure your services handle modified requests correctly
-- Easily manage different overlay configurations across environments using either command-line arguments or environment variables
 
 ---
 
