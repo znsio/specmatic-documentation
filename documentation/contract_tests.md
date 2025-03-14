@@ -20,7 +20,6 @@ Contract Tests
     - [Handling multipart form-data and file uploads](#handling-multipart-form-data-and-file-uploads)
     - [The Java Helper For Java Projects](#the-java-helper-for-java-projects)
     - [Handling Application authentication](#handling-application-authentication)
-    - [Contracts In A Mono-Repo](#contracts-in-a-mono-repo)
     - [Authentication In CI For HTTPS Git Source](#authentication-in-ci-for-https-git-source)
     - [Authentication In CI For SSH Git Source](#authentication-in-ci-for-ssh-git-source)
     - [Examples For WSDL Contracts](#examples-for-wsdl-contracts)
@@ -50,7 +49,6 @@ Contract Tests
       - [Step 1: Setting Up Files](#step-1-setting-up-files)
       - [Step 2: Specifying Overlay Files](#step-2-specifying-overlay-files)
       - [Step 3: Understanding the Results](#step-3-understanding-the-results)
-    - [Pro Tips 🚀](#pro-tips-)
     - [Further Reading](#further-reading)
     - [Conclusion](#conclusion)
   - [Hooks](#hooks)
@@ -432,8 +430,8 @@ If you need to experiment with files on the local filesystem, here's how you can
 ```yaml
 version: 2
 contracts:
-    - provides:
-      - path/to/employees.yaml
+  - provides:
+    - path/to/employees.yaml
 ```
 {% endtab %}
 {% tab config_contractTests specmatic.json %}
@@ -552,41 +550,6 @@ Since it is a JUnit5 test, you can run it in all the ways you are used to. If yo
 ### Handling Application authentication
 
 If the OpenAPI contract defines API authentication using security schemas, these information will be used by Specmatic when running contract tests. Read more about it on the page on [authentication](authentication.html).
-
-### Contracts In A Mono-Repo
-
-If you are using a mono-repo, in which all the projects in the ecosystem are in the same repository, the contracts used by these projects may also be kept in the same repository.
-
-The Specmatic configuration may look like this:
-
-{% tabs contracts %}
-{% tab contracts specmatic.yaml %}
-```yaml
-version: 2
-contracts:
-  - git:
-    provides:
-      - contracts/path/to/employees.yaml
-```
-{% endtab %}
-{% tab contracts specmatic.json %}
-```json
-{
-  "version": 2,
-  "contracts": [
-    {
-      "git":,
-      "provides": [
-        "contracts/path/to/employees.yaml"
-      ]
-    }
-  ]
-}
-```
-{% endtab %}
-{% endtabs %}
-
-Note that "url" within "git" field is missing. Specamtic will look for the contract in the git repository containing the Specmatic configuration file. It's presumed that the Specmatic configuration file would be in a git repository, as the project would have to be pushed into some git repository.
 
 ### Authentication In CI For HTTPS Git Source
 
@@ -1251,6 +1214,7 @@ You can specify overlay files in three ways:
 ```shell
   specmatic test --port 9000 --overlay-file gateway_overlay.yaml
 ```
+
 3. **Environment Variable Approach**
 
 ```shell
@@ -1282,21 +1246,6 @@ Content-Type: application/json
   "designation": "Senior Engineer"
 }
 ```
-
-### Pro Tips 🚀
-11. **Version Control**: It's highly recommended to check in your overlay files alongside your base specifications in your central contract repository.
-
-2. **Environment Variables**: When working with CI/CD pipelines, using `OVERLAY_FILE_PATH` can make your configuration more flexible and easier to manage across different environments.
-
-3. **Naming Convention**: 
-   - For automatic detection in test mode, use the `<specname>_overlay.yaml` pattern
-   - For manual configuration, use clear naming that indicates purpose:
-     ```
-     employees.yaml              # Base specification
-     employees_overlay.yaml      # For automatic detection
-     employees.gateway.yaml      # Gateway overlay (manual configuration)
-     employees.monitoring.yaml   # Monitoring overlay (manual configuration)
-     ```
 
 ### Further Reading
 For a complete list of modifications possible with overlays, refer to the [OpenAPI Overlay Specification](https://spec.openapis.org/overlay/v1.0.0.html).
@@ -1394,8 +1343,7 @@ Step 1: **Create specmatic.yaml configuration file:**
 ```yaml
 version: 2
 contracts:
-  - git:
-    provides:
+  - provides:
       - products_client.yaml
 hooks:
   test_load_contract: python3 modify_test_headers.py
@@ -1407,7 +1355,6 @@ hooks:
   "version": 2,
   "contracts": [
     {
-      "git":,
       "provides": [
         "products_client.yaml"
       ]
@@ -1519,8 +1466,7 @@ The test hook configuration in Specmatic will look as follows: :
 ```yaml
 version: 2
 contracts:
-  - git:
-    test:
+  - test:
       - products_client.yaml
 hooks:
   test_load_contract: java -jar specmatic-hooks-sample.jar
