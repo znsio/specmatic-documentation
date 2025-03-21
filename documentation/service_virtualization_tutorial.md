@@ -14,8 +14,7 @@ Service Virtualization
       - [Example Usage](#example-usage)
       - [Key Points:](#key-points)
   - [Externalizing Example Data](#externalizing-example-data)
-      - [Handling No Response Body APIs](#handling-no-response-body-apis)
-  - [Intelligent Service Virtualisation - Example cannot go out of sync](#intelligent-service-virtualisation---example-cannot-go-out-of-sync)
+      - [Handling No Response Body APIs](#handling-no-response-body-apis) [Intelligent Service Virtualisation - Example cannot go out of sync](#intelligent-service-virtualisation---example-cannot-go-out-of-sync)
   - [Strict Mode](#strict-mode)
   - [Data Type-Based Examples](#data-type-based-examples)
   - [Plain Text Request Bodies - Examples With Regular Expressions](#plain-text-request-bodies---examples-with-regular-expressions)
@@ -58,8 +57,8 @@ Service Virtualization
     - [Examples](#examples)
     - [Example Requests](#example-requests)
     - [Benefits](#benefits)
+  - [Explicit Examples Association in Specmatic Stubs](#explicit-examples-association-in-specmatic-stubs)
   - [Sample Java Project](#sample-java-project)
-
 
 ## Pre-requisites
 
@@ -1983,6 +1982,70 @@ curl -X POST http://localhost:9001/exported/products \
 - **Flexibility:** Allows hosting multiple versions or separate APIs without conflict.
 
 This setup enables serving and testing multiple specifications efficiently using Specmatic. 
+
+### Explicit Examples Association in Specmatic Stubs
+
+Specmatic implicitly associates example directories with their respective specifications when they follow the `<spec_name>_examples` naming convention and reside in the same directory as the specification file. However, with explicit example association, these directories can be placed elsewhere while still maintaining the correct mapping.
+
+#### Updated Directory Structure
+
+We will use same files from the [previous section](#running-specmatic-stubs-on-different-base-urls) but with a different directory structure.
+Instead of keeping examples next to their respective specifications, we now place them in a separate `examples` directory:
+
+```
+project-root/
+│── specmatic.yaml
+│── specs/
+│   ├── imported_product/
+│   │   ├── imported_product.yaml
+│   ├── exported_product/
+│       ├── exported_product.yaml
+│── examples/
+│   ├── imported_product/
+│   │   ├── imported_product_examples/
+│   │       ├── post_imported_product.json
+│   ├── exported_product/
+│       ├── exported_product_examples/
+│           ├── post_exported_product.json
+```
+
+#### Updated Specmatic Configuration
+
+To enable explicit example association, we modify `specmatic.yaml` to specify a root directory for specifications and then run the stub server with an `--examples` flag:
+
+```yaml
+version: 2
+contracts:
+  - filesystem:
+      directory: specs
+      consumes:  
+        - imported_product/imported_product.yaml
+        - baseUrl: http://localhost:9001/exported
+          specs:
+            - exported_product/exported_product.yaml
+```
+
+Stub server command:
+
+```sh
+specmatic stub --examples=examples
+```
+
+### How Specmatic Associates Examples
+
+- Specmatic first checks the `specs` directory for API specifications.
+- It then verifies whether a corresponding example directory exists within the `examples` directory.
+- The relative paths within `specs` and `examples` must match for association to occur.
+  - Example: If `specs/imported_product/imported_product.yaml` exists, Specmatic looks for examples in `examples/imported_product/imported_product_examples/`.
+- If a match is found, the examples are loaded; otherwise, they are ignored.
+
+### Benefits of Explicit Example Association
+
+- **Flexible Organization:** Keeps specifications and examples in separate directories, improving maintainability.
+- **Better Collaboration:** Enables storing examples separately, making it easier for different teams to contribute.
+- **Consistent Behavior:** The same API stubbing and request handling logic apply, regardless of where examples are stored.
+
+Ensure that the example are loaded properly by checking the logs when starting the stub server and making curl requests as shown in the [previous section](#running-specmatic-stubs-on-different-base-urls).
 
 ## Sample Java Project
 
