@@ -38,13 +38,15 @@ OR
 
 Using docker:
 ```shell
-docker run -p 9000:9000 -v "$PWD/specification:/usr/src/app/specification" znsio/specmatic proxy --target=https://my-json-server.typicode.com/znsio/specmatic-documentation specification
+docker run -p 9000:9000 -v "$PWD/specification:/specification" znsio/specmatic proxy --target=https://my-json-server.typicode.com/znsio/specmatic-documentation /specification
 ```
 
 You will get following confirmation message: <br>
 `Proxy server is running on http://localhost:9000. Ctrl + C to stop.`
 
-💡 **Note**: Make sure the `specification` directory doesn't exist before starting, as this is where Specmatic will generate the specifications.
+🐳 Docker Usage Tip: When running the Proxy command with Docker, ensure the target URL matches your Docker network mode. For example, use host.docker.internal to refer to a server running on the host machine (Windows and Mac).
+
+💡 Specification Directory Reminder: Ensure the specification directory does not exist before starting. Specmatic will generate specifications here.
 
 ### Step 2: Verify Proxy Health (Optional)
 You can confirm the proxy server is running properly by checking its health status:
