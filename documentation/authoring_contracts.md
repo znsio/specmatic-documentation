@@ -41,8 +41,7 @@ Using docker:
 docker run -p 9000:9000 -v "$PWD/specification:/specification" znsio/specmatic proxy --target=https://my-json-server.typicode.com/znsio/specmatic-documentation /specification
 ```
 
-You will get following confirmation message: <br>
-`Proxy server is running on http://localhost:9000. Ctrl + C to stop.`
+You will get following confirmation message: <br> `Proxy server is running on http://localhost:9000. Ctrl + C to stop.`
 
 🐳 Docker Usage Tip: When running the Proxy command with Docker, ensure the target URL matches your Docker network mode. For example, use host.docker.internal to refer to a server running on the host machine (Windows and Mac).
 
@@ -88,9 +87,9 @@ By using the `/_specmatic/proxy/dump` endpoint, you can efficiently generate and
 
 🎉 **Success!** You should see output like this:
 ```bash
-Writing contract to ./specification/proxy_generated.yaml
-Writing stub data to ./specification/stub0.json
-Writing stub data to ./specification/stub1.json
+Writing stub data to pets_1_GET_200_1.json
+Writing stub data to pets_100_GET_200_2.json
+Writing specification to proxy_generated.yaml
 ```
 
 ### Generated Contract Example
@@ -139,7 +138,7 @@ specification/
     └── pets_100_GET_200_1.json                     
 ```
 
-Example stub content (pets_1_GET_200_2.json):
+Example stub content might look like the following (pets_1_GET_200_2.json):
 ```json
 {
     "http-request": {
