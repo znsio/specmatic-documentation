@@ -295,13 +295,7 @@ The complete test data format can be referred to [here](/documentation/test_data
 Instead of creating the above example JSONs by hand, you can also generate the example JSONs using the `examples` command:
 
 ```bash
-java -jar specmatic.jar examples employees.yaml
-```
-
-Alternatively, we can also run the same command with the Docker image:
-
-```bash
-docker run znsio/specmatic examples employees.yaml
+docker run -v "$(pwd)/employees.yaml:/usr/src/app/employees.yaml" -v "$(pwd)/employees_examples:/usr/src/app/employees_examples" znsio/specmatic-openapi examples generate employees.yaml
 ```
 
 In the above case, example JSON files will be written into the directory named `employees_examples`. You can then update the files to suit your needs and use them.
