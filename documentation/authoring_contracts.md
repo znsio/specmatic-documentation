@@ -29,9 +29,18 @@ Specmatic acts as a transparent proxy between the client (Postman, your applicat
 ### Step 1: Start the Proxy Server
 Let's begin by setting up Specmatic as a proxy between your client and the API:
 
+Using CLI:
 ```shell
 specmatic proxy --target https://my-json-server.typicode.com/znsio/specmatic-documentation ./specification
 ```
+
+OR
+
+Using docker:
+```shell
+docker run -p 9000:9000 -v "$PWD/specification:/usr/src/app/specification" znsio/specmatic proxy --target=https://my-json-server.typicode.com/znsio/specmatic-documentation specification
+```
+
 You will get following confirmation message: <br>
 `Proxy server is running on http://localhost:9000. Ctrl + C to stop.`
 
@@ -122,12 +131,13 @@ paths:
 ### Final Directory Structure
 ```
 specification/
-├── proxy_generated.yaml    # Main specification file
-├── stub0.json              # Example response for /pets/1
-└── stub1.json              # Example response for /pets/100
+├── proxy_generated.yaml               # Main specification file
+└── proxy_generated_examples/          # Folder containing examples 
+    ├── pets_1_GET_200_2.json                     
+    └── pets_100_GET_200_1.json                     
 ```
 
-Example stub content (stub0.json):
+Example stub content (pets_1_GET_200_2.json):
 ```json
 {
     "http-request": {
