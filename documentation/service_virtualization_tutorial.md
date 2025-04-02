@@ -254,24 +254,10 @@ It may not always be possible to add examples inline in the OpenAPI specificatio
 
 Let's see how this is done.
 
-- Run the `examples` command:
-{% tabs test %}
-{% tab test java %}
+- Run the `examples` command:<br/><br/>
 ```shell
-java -jar specmatic.jar examples employees.yaml
+docker run -v "$(pwd)/employees.yaml:/usr/src/app/employees.yaml" -v "$(pwd)/employees_examples:/usr/src/app/employees_examples" znsio/specmatic-openapi examples generate employees.yaml
 ```
-{% endtab %}
-{% tab test npm %}
-```shell
-npx specmatic examples employees.yaml
-```
-{% endtab %}
-{% tab test docker %}
-```shell
-docker run -v "${PWD}/employees.yaml:/usr/src/app/employees.yaml" -v "${PWD}/employees_examples:/usr/src/app/employees_examples" znsio/specmatic examples employees.yaml
-```
-{% endtab %}
-{% endtabs %}
 
 - It generates a request-response mapping JSON file in the `employees_examples` directory containing an example of the API in the spec.
   - The directory name follows the format `<spec file name without extension>_examples`.
