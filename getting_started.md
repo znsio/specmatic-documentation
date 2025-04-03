@@ -175,7 +175,7 @@ Executed at 2025-03-14T17:16:35.943405
 * Specmatic parsed your API specification and printed a brief `API Specification Summary`
 * Then it generated and started `Executing 1 tests` because our API specification contains only one endpoint with a single GET operation
 * Specmatic then logged the `HTTP Request` that it generated and the `HTTP response` it received from the API implementation
-* And finally it prints out the test results along with an API Coverage Report (Read our detailed post on [API Converage Report](https://specmatic.in/updates/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/#gsc.tab=0) to know more.)
+* And finally it prints out the test results along with an API Coverage Report (Read our detailed post on [API Coverage Report](https://specmatic.in/updates/detect-mismatches-between-your-api-specifications-and-implementation-specmatic-api-coverage-report/#gsc.tab=0) to know more.)
 
 #### Where did Specmatic get the test data to generate the HTTP request
 
@@ -252,7 +252,7 @@ This is because we removed the named example `SCOOBY_200_OK`, Specmatic generate
     GET /znsio/specmatic-documentation/pets/318
 ```
 
-Once you restore the OpenAPI file to its [original state](/getting_started.html#api-specification) (add back the example petId value) the tests should start passing again.
+Once you restore the OpenAPI file to its [original state](/getting_started.html#petstore-api-specification) (add back the example petId value) the tests should start passing again.
 
 #### How does this all work?
 
@@ -342,7 +342,7 @@ We have so far established that Specmatic will keep OpenAPI spec and the API imp
           | --- getPetById ---> |
           | <-- {Pet JSON} ---- |
 
-Before we begin, please make sure that your `service.yaml` file is restored to its [original state](/getting_started.html#api-specification).
+Before we begin, please make sure that your `service.yaml` file is restored to its [original state](/getting_started.html#petstore-api-specification).
 
 To spin up a stub server with the service.yaml we authored earlier, run the command below.
 
@@ -431,7 +431,7 @@ You should now be able to see the response that matches the schema defined in yo
     "id": 864,
     "name": "VRIQA",
     "type": "KPNDQ",
-    "status": 990
+    "status": "QQSFF"
 }
 ```
 
@@ -491,7 +491,7 @@ Specmatic rejects the expectation / canned response since it is not in line with
 
 #### Externalising stub responses
 
-Please restore `service.yaml` to its [original state](/getting_started.html#api-specification)(by adding back the `status` field in the `SCOOBY_200_OK` example) before proceeding with this section.
+Please restore `service.yaml` to its [original state](/getting_started.html#petstore-api-specification)(by adding back the `status` field in the `SCOOBY_200_OK` example) before proceeding with this section.
 
 If you would like to add more stub responses, however you do not wish to bloat your specification with a lot of examples, we can also externalise the stub / canned responses to json files also.
 * Create a folder named `service_examples` in the same folder as your `service.yaml` file (`_examples` suffix is a naming convention that tell Specmatic to look for canned responses in that directory)
