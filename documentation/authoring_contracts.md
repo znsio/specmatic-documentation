@@ -127,6 +127,24 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/1_ResponseBody"
+components:
+  schemas:
+    "1_ResponseBody":
+      required:
+      - completed
+      - id
+      - todo
+      - userId
+      properties:
+        id:
+          type: number
+        todo:
+          type: string
+        completed:
+          type: boolean
+        userId:
+          type: number
+
 ```
 
 ### Final Directory Structure
