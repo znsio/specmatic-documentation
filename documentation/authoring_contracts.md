@@ -31,14 +31,14 @@ Let's begin by setting up Specmatic as a proxy between your client and the API:
 
 Using CLI:
 ```shell
-specmatic proxy --target https://my-json-server.typicode.com/znsio/specmatic-documentation ./specification
+specmatic proxy --target https://dummyjson.com ./specification
 ```
 
 OR
 
 Using docker:
 ```shell
-docker run -p 9000:9000 -v "$PWD/specification:/specification" znsio/specmatic proxy --target=https://my-json-server.typicode.com/znsio/specmatic-documentation /specification
+docker run -p 9000:9000 -v "$PWD/specification:/specification" znsio/specmatic proxy --target=https://dummyjson.com /specification
 ```
 
 You will get following confirmation message: <br> `Proxy server is running on http://localhost:9000. Ctrl + C to stop.`
@@ -65,12 +65,12 @@ Let's send a couple of requests through the proxy to help Specmatic identify pat
 
 ##### Request 1: Get pet with ID 1
 ```bash
-curl -X GET http://localhost:9000/pets/1
+curl -X GET http://localhost:9000/todos/1
 ```
 
 ##### Request 2: Get pet with ID 100
 ```bash
-curl -X GET http://localhost:9000/pets/100
+curl -X GET http://localhost:9000/todos/100
 ```
 
 ### Step 4: Generate the Contract and Examples
@@ -87,8 +87,8 @@ By using the `/_specmatic/proxy/dump` endpoint, you can efficiently generate and
 
 🎉 **Success!** You should see output like this:
 ```bash
-Writing stub data to pets_1_GET_200_1.json
-Writing stub data to pets_100_GET_200_2.json
+Writing stub data to todos_1_GET_200_1.json
+Writing stub data to todos_100_GET_200_2.json
 Writing specification to proxy_generated.yaml
 ```
 
@@ -96,37 +96,32 @@ Writing specification to proxy_generated.yaml
 Here's what your generated specification might look like:
 
 ```yaml
-openapi: 3.0.3
+openapi: 3.0.1
 info:
-  title: Pet API
-  version: 1.0.0
+  title: New feature
+  version: "1"
 paths:
-  /pets/{id}:
+  /todos/{id}:
     get:
-      summary: Get pet by ID
+      summary: GET /todos/1
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      - name: Accept
+        in: header
+        required: true
+        schema:
+          type: string
       responses:
-        '200':
-          description: Successful response
+        "200":
+          description: GET /todos/1
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  name:
-                    type: string
-                  status:
-                    type: string
-                required:
-                  - id
-                  - name
+                $ref: "#/components/schemas/1_ResponseBody"
 ```
 
 ### Final Directory Structure
@@ -134,15 +129,15 @@ paths:
 specification/
 ├── proxy_generated.yaml               # Main specification file
 └── proxy_generated_examples/          # Folder containing examples 
-    ├── pets_1_GET_200_2.json                     
-    └── pets_100_GET_200_1.json                     
+    ├── todos_1_GET_200_1.json                     
+    └── todos_100_GET_200_2.json                     
 ```
 
-Example stub content might look like the following (pets_1_GET_200_2.json):
+Example stub content might look like the following (todos_1_GET_200_1.json):
 ```json
 {
     "http-request": {
-        "path": "/pets/1",
+        "path": "/todos/1",
         "method": "GET",
         "headers": {
             "Accept": "*/*"
@@ -152,10 +147,11 @@ Example stub content might look like the following (pets_1_GET_200_2.json):
         "status": 200,
         "body": {
             "id": 1,
-            "name": "Scooby",
-            "type": "Golden Retriever",
-            "status": "Adopted"
-        }
+            "todo": "Do something nice for someone you care about",
+            "completed": false,
+            "userId": 152
+        },
+        "status-text": "OK"
     }
 }
 ```
