@@ -92,6 +92,8 @@ Writing stub data to todos_100_GET_200_2.json
 Writing specification to proxy_generated.yaml
 ```
 
+**Note:** The HTTP server sometimes sends back additional data such as additional headers which may or may not be useful depending on the use-case. So you can remove those additional keys from the specification and stub data recorded by the proxy.
+
 ### Generated Contract Example
 Here's what your generated specification might look like:
 
@@ -110,11 +112,6 @@ paths:
         required: true
         schema:
           type: number
-      - name: Accept
-        in: header
-        required: true
-        schema:
-          type: string
       responses:
         "200":
           description: GET /todos/1
@@ -138,10 +135,7 @@ Example stub content might look like the following (todos_1_GET_200_1.json):
 {
     "http-request": {
         "path": "/todos/1",
-        "method": "GET",
-        "headers": {
-            "Accept": "*/*"
-        }
+        "method": "GET"
     },
     "http-response": {
         "status": 200,
