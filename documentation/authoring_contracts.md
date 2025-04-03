@@ -7,14 +7,22 @@ nav_order: 11
 Generating API Specifications
 =============================
 
-- [3 Ways to Generate API Specifications (🚀 Minutes, not Hours)](#generating-api-specifications)
-  - [From an existing application using **Proxy Mode**](#from-an-existing-application-using-proxy-mode)
-    - [Start the proxy](#step-1-start-the-proxy-server)
-    - [Generate contracts](#step-4-generate-the-contract-and-examples)
-  - [From request and response **Examples**](#from-a-sample-request-and-response)
+- [Generating API Specifications](#generating-api-specifications)
+  - [From an existing application using Proxy Mode](#from-an-existing-application-using-proxy-mode)
+    - [Step 1: Start the Proxy Server](#step-1-start-the-proxy-server)
+    - [Step 2: Verify Proxy Health (Optional)](#step-2-verify-proxy-health-optional)
+    - [Step 3: Send Test Requests](#step-3-send-test-requests)
+        - [Request 1: Get pet with ID 1](#request-1-get-pet-with-id-1)
+        - [Request 2: Get pet with ID 100](#request-2-get-pet-with-id-100)
+    - [Step 4: Generate the Contract and Examples](#step-4-generate-the-contract-and-examples)
+    - [Generated Contract Example](#generated-contract-example)
+    - [Final Directory Structure](#final-directory-structure)
+  - [What You've Accomplished](#what-youve-accomplished)
+  - [Next Steps](#next-steps)
+  - [From a sample request and response](#from-a-sample-request-and-response)
     - [Create the sample file](#create-the-sample-file)
     - [Convert the sample into a contract](#convert-the-sample-into-a-contract)
-  - [Importing a **Postman collection**](#importing-a-postman-collection)
+  - [Importing a Postman collection](#importing-a-postman-collection)
     - [Export the collection](#export-the-collection)
     - [Generate the contract](#generate-the-contract)
     - [Authenticated APIs in Postman](#authenticated-apis-in-postman)
@@ -150,6 +158,8 @@ Example stub content might look like the following (todos_1_GET_200_1.json):
 }
 ```
 
+💡 **Note**: The more traffic routed through the proxy, the better it becomes at accurately defining data types for the specification.
+
 ## What You've Accomplished
 ✔️ Set up a Specmatic proxy server  
 ✔️ Verified the proxy's health status  
@@ -161,8 +171,6 @@ Example stub content might look like the following (todos_1_GET_200_1.json):
 - Try adding more complex requests with different HTTP methods (POST, PUT, etc.)
 - Customize the generated specifications
 - Use the generated specification for API testing or documentation
-
-💡 **Note**: The more traffic routed through the proxy, the better it becomes at accurately defining data types for the specification.
 
 Need help troubleshooting or have questions? Reach out to us [Specmatic support](https://specmatic.io/contact-us/).
 
