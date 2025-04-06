@@ -1,4 +1,4 @@
-/*! elementor - v3.27.0 - 18-02-2025 */
+/*! elementor - v3.28.0 - 01-04-2025 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -160,15 +160,15 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$LayoutVie
     value: function onCloseModalClick() {
       var _elementor$config$doc, _elementor$config;
       this._parent._parent._parent.hideModal();
+      var type = (_elementor$config$doc = (_elementor$config = elementor.config) === null || _elementor$config === void 0 || (_elementor$config = _elementor$config.document) === null || _elementor$config === void 0 ? void 0 : _elementor$config.type) !== null && _elementor$config$doc !== void 0 ? _elementor$config$doc : 'default';
+      var customEvent = new CustomEvent("core/modal/close/".concat(type));
+      window.dispatchEvent(customEvent);
       if (this.isFloatingButtonLibraryClose()) {
         $e.internal('document/save/set-is-modified', {
           status: false
         });
         window.location.href = elementor.config.admin_floating_button_admin_url;
       }
-      var type = (_elementor$config$doc = (_elementor$config = elementor.config) === null || _elementor$config === void 0 || (_elementor$config = _elementor$config.document) === null || _elementor$config === void 0 ? void 0 : _elementor$config.type) !== null && _elementor$config$doc !== void 0 ? _elementor$config$doc : 'default';
-      var customEvent = new CustomEvent("core/modal/close/".concat(type));
-      window.dispatchEvent(customEvent);
     }
   }, {
     key: "isFloatingButtonLibraryClose",

@@ -622,3 +622,14 @@
 [2025-03-10 17:56:57 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
 [2025-03-10 17:56:58 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
 [2025-03-10 17:57:00 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-04 04:50:55 : INFO] - Cache for URL: https://specmatic.dvox.biz/?p=6803 has been purged, triggered by action: save_post 
+[2025-04-04 04:50:55 : INFO] - Cache for blog post has been purged due to updates to post with Title: "Auto Draft" and URL: https://specmatic.dvox.biz/?p=6803, triggered by action: save_post 
+[2025-04-04 04:50:55 : INFO] - Cache for previous post (with URL: https://specmatic.dvox.biz/updates/update-see-how-specmatic-is-transforming-api-testing-development/) adjacent to post with id: 6803 has been purged, triggered by action: save_post 
+[2025-04-04 04:50:55 : INFO] - Cache for all archives page associated with post_type: post and Title: "Auto Draft" have been purged, triggered by action: save_post 
+[2025-04-04 04:50:57 : INFO] - Cache for URL: https://specmatic.dvox.biz/?p=6804 has been purged, triggered by action: save_post 
+[2025-04-04 04:50:57 : INFO] - Cache for blog post has been purged due to updates to post with Title: "Auto Draft" and URL: https://specmatic.dvox.biz/?p=6804, triggered by action: save_post 
+[2025-04-04 04:50:57 : INFO] - Cache for previous post (with URL: https://specmatic.dvox.biz/updates/update-see-how-specmatic-is-transforming-api-testing-development/) adjacent to post with id: 6804 has been purged, triggered by action: save_post 
+[2025-04-04 04:50:57 : INFO] - Cache for all archives page associated with post_type: post and Title: "Auto Draft" have been purged, triggered by action: save_post 
+[2025-04-04 10:42:56 : INFO] - Cache for URL: https://specmatic.dvox.biz/eula/ has been purged, triggered by action: save_post 
+[2025-04-04 10:42:56 : INFO] - Cache for URL: https://specmatic.dvox.biz/eula/ has been purged, triggered by action: save_post 
+[2025-04-04 10:42:57 : INFO] - Cache for URL: https://specmatic.dvox.biz/eula/ has been purged, triggered by action: save_post 

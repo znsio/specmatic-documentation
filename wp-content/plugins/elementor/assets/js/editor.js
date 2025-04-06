@@ -1,4 +1,4 @@
-/*! elementor - v3.27.0 - 18-02-2025 */
+/*! elementor - v3.28.0 - 01-04-2025 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -8712,12 +8712,12 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-var Drop = exports.Drop = /*#__PURE__*/function (_$e$modules$CommandBa) {
+var Drop = exports.Drop = /*#__PURE__*/function (_$e$modules$editor$Co) {
   function Drop() {
     (0, _classCallCheck2.default)(this, Drop);
     return _callSuper(this, Drop, arguments);
   }
-  (0, _inherits2.default)(Drop, _$e$modules$CommandBa);
+  (0, _inherits2.default)(Drop, _$e$modules$editor$Co);
   return (0, _createClass2.default)(Drop, [{
     key: "validateArgs",
     value: function validateArgs() {
@@ -8743,7 +8743,7 @@ var Drop = exports.Drop = /*#__PURE__*/function (_$e$modules$CommandBa) {
       return result;
     }
   }]);
-}($e.modules.CommandBase);
+}($e.modules.editor.CommandContainerBase);
 
 /***/ }),
 
@@ -9938,6 +9938,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _readOnlyError2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/readOnlyError */ "../node_modules/@babel/runtime/helpers/readOnlyError.js"));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../node_modules/@babel/runtime/helpers/classCallCheck.js"));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
@@ -9980,7 +9981,7 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentModalBase)
   }, {
     key: "defaultTabs",
     value: function defaultTabs() {
-      return {
+      var tabs = {
         'templates/blocks': {
           title: __('Blocks', 'elementor'),
           getFilter: function getFilter() {
@@ -10000,17 +10001,22 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentModalBase)
         },
         'templates/my-templates': {
           title: __('My Templates', 'elementor'),
-          filter: {
-            source: 'local'
+          getFilter: function getFilter() {
+            var _elementor$templates$;
+            return {
+              source: (_elementor$templates$ = elementor.templates.getSourceSelection()) !== null && _elementor$templates$ !== void 0 ? _elementor$templates$ : 'local'
+            };
           }
         }
       };
+      return tabs;
     }
   }, {
     key: "defaultRoutes",
     value: function defaultRoutes() {
-      var _this = this;
-      return {
+      var _this = this,
+        _elementorCommon$conf;
+      var defaultRoutes = {
         import: function _import() {
           _this.manager.layout.showImportView();
         },
@@ -10029,6 +10035,12 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentModalBase)
           _this.manager.layout.showConnectView(args);
         }
       };
+      if ((_elementorCommon$conf = elementorCommon.config.experimentalFeatures) !== null && _elementorCommon$conf !== void 0 && _elementorCommon$conf['cloud-library']) {
+        defaultRoutes['view-folder'] = function (args) {
+          _this.manager.layout.showFolderView(args);
+        };
+      }
+      return defaultRoutes;
     }
   }, {
     key: "defaultCommands",
@@ -10059,8 +10071,8 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentModalBase)
   }, {
     key: "renderTab",
     value: function renderTab(tab) {
-      var currentTab = this.tabs[tab],
-        filter = currentTab.getFilter ? currentTab.getFilter() : currentTab.filter;
+      var currentTab = this.tabs[tab];
+      var filter = currentTab.getFilter ? currentTab.getFilter() : currentTab.filter;
       this.manager.setScreen(filter);
     }
   }, {
@@ -10230,20 +10242,27 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentModalBase)
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js"));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 var _component = _interopRequireDefault(__webpack_require__(/*! ./component */ "../assets/dev/js/editor/components/template-library/component.js"));
-var TemplateLibraryCollection = __webpack_require__(/*! elementor-templates/collections/templates */ "../assets/dev/js/editor/components/template-library/collections/templates.js"),
-  TemplateLibraryManager;
-TemplateLibraryManager = function TemplateLibraryManager() {
+var _localStorage = _interopRequireDefault(__webpack_require__(/*! elementor-api/core/data/storages/local-storage */ "../modules/web-cli/assets/js/core/data/storages/local-storage.js"));
+var TemplateLibraryCollection = __webpack_require__(/*! elementor-templates/collections/templates */ "../assets/dev/js/editor/components/template-library/collections/templates.js");
+var TemplateLibraryManager = function TemplateLibraryManager() {
+  var _this = this;
   this.modalConfig = {};
   var self = this,
-    templateTypes = {};
+    templateTypes = {},
+    storage = new _localStorage.default(),
+    storageSelectionKey = 'my_templates_source';
   var deleteDialog,
     errorDialog,
     templatesCollection,
     config = {},
-    filterTerms = {};
+    filterTerms = {},
+    isLoading = false,
+    total = 0;
   var registerDefaultTemplateTypes = function registerDefaultTemplateTypes() {
     var data = {
       saveDialog: {
@@ -10302,6 +10321,15 @@ TemplateLibraryManager = function TemplateLibraryManager() {
       favorite: {}
     };
   };
+  this.isLoading = function () {
+    return isLoading;
+  };
+  this.canLoadMore = function () {
+    if (!templatesCollection) {
+      return false;
+    }
+    return templatesCollection.length < total;
+  };
   this.init = function () {
     registerDefaultTemplateTypes();
     registerDefaultFilterTerms();
@@ -10311,6 +10339,12 @@ TemplateLibraryManager = function TemplateLibraryManager() {
     elementor.addBackgroundClickListener('libraryToggleMore', {
       element: '.elementor-template-library-template-more'
     });
+  };
+  this.getSourceSelection = function () {
+    return storage.getItem(storageSelectionKey);
+  };
+  this.setSourceSelection = function (value) {
+    return storage.setItem(storageSelectionKey, value);
   };
   this.getTemplateTypes = function (type) {
     if (type) {
@@ -10343,6 +10377,207 @@ TemplateLibraryManager = function TemplateLibraryManager() {
       });
     };
     dialog.show();
+  };
+  this.renameTemplate = function (templateModel, options) {
+    var originalTitle = templateModel.get('title');
+    var dialog = _this.getRenameDialog(templateModel);
+    return new Promise(function (resolve) {
+      dialog.onConfirm = function () {
+        if (options.onConfirm) {
+          options.onConfirm();
+        }
+        elementorCommon.ajax.addRequest('rename_template', {
+          data: {
+            source: templateModel.get('source'),
+            id: templateModel.get('template_id'),
+            title: templateModel.get('title')
+          },
+          success: function success(response) {
+            resolve(response);
+          },
+          error: function error(_error) {
+            _this.showErrorDialog(_error);
+            templateModel.set('title', originalTitle);
+            resolve();
+          }
+        });
+      };
+      dialog.show();
+    });
+  };
+  this.getRenameDialog = function (templateModel) {
+    var headerMessage = sprintf(
+    // Translators: %1$s: Folder name, %2$s: Number of templates.
+    __('Rename "%1$s".', 'elementor'), templateModel.get('title'));
+    var originalTitle = templateModel.get('title');
+    var $inputArea = jQuery('<input>', {
+      id: 'elementor-rename-template-dialog__input',
+      type: 'text',
+      value: templateModel.get('title')
+    }).attr('autocomplete', 'off').on('change', function (event) {
+      event.preventDefault();
+      templateModel.set('title', event.target.value);
+    });
+    return elementorCommon.dialogsManager.createWidget('confirm', {
+      id: 'elementor-template-library-rename-dialog',
+      headerMessage: headerMessage,
+      message: $inputArea,
+      strings: {
+        confirm: __('Rename', 'elementor')
+      },
+      hide: {
+        ignore: '#elementor-template-library-modal'
+      },
+      onCancel: function onCancel() {
+        templateModel.set('title', originalTitle);
+      },
+      onShow: function onShow() {
+        $inputArea.trigger('focus');
+      }
+    });
+  };
+  this.getFolderTemplates = function (templateId) {
+    return new Promise(function (resolve) {
+      isLoading = true;
+      var ajaxOptions = {
+        data: {
+          source: 'cloud',
+          template_id: templateId
+        },
+        success: function success(data) {
+          _this.setFilter('parent', templateId);
+          templatesCollection = new TemplateLibraryCollection(data.templates);
+          elementor.templates.layout.hideLoadingView();
+          self.layout.updateViewCollection(templatesCollection.models);
+          self.layout.modalContent.currentView.ui.addNewFolder.remove();
+          isLoading = false;
+          resolve();
+        },
+        error: function error(_error2) {
+          isLoading = false;
+          _this.showErrorDialog(_error2);
+        }
+      };
+      elementorCommon.ajax.addRequest('get_item_children', ajaxOptions);
+    });
+  };
+  this.createFolder = function (folderData, options) {
+    var _this2 = this;
+    if (null !== this.getFilter('parent')) {
+      this.showErrorDialog(__('You can not create a folder inside another folder.', 'elementor'));
+      return;
+    }
+    var dialog = this.getCreateFolderDialog(folderData);
+    return new Promise(function (resolve) {
+      dialog.onConfirm = /*#__PURE__*/(0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return elementorCommon.ajax.addRequest('create_folder', {
+                data: {
+                  source: folderData.source,
+                  title: folderData.title
+                },
+                success: function success(response) {
+                  resolve(response);
+                  options === null || options === void 0 || options.onSuccess();
+                },
+                error: function error(_error3) {
+                  _this2.showErrorDialog(_error3);
+                  resolve();
+                }
+              });
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee);
+      }));
+      dialog.show();
+    });
+  };
+  this.getCreateFolderDialog = function (folderData) {
+    var paragraph = document.createElement('p');
+    paragraph.className = 'elementor-create-folder-template-dialog__p';
+    paragraph.textContent = __('Save assets to reuse any site in your account.', 'elementor');
+    var inputArea = document.createElement('input');
+    inputArea.className = 'elementor-create-folder-template-dialog__input';
+    inputArea.type = 'text';
+    inputArea.value = '';
+    inputArea.placeholder = __('Folder Name', 'elementor');
+    inputArea.autocomplete = 'off';
+    inputArea.addEventListener('change', function (event) {
+      event.preventDefault();
+      folderData.title = event.target.value;
+    });
+    var fragment = document.createDocumentFragment();
+    fragment.appendChild(paragraph);
+    fragment.appendChild(inputArea);
+    return elementorCommon.dialogsManager.createWidget('confirm', {
+      id: 'elementor-template-library-create-new-folder-dialog',
+      headerMessage: __('Create New Folder', 'elementor'),
+      message: fragment,
+      strings: {
+        confirm: __('Create', 'elementor')
+      },
+      Hide: {
+        ignore: '#elementor-template-library-modal'
+      },
+      onShow: function onShow() {
+        inputArea.focus();
+      }
+    });
+  };
+  this.deleteFolder = function (templateModel, options) {
+    var _this3 = this;
+    var ajaxOptions = {
+      data: {
+        source: 'cloud',
+        template_id: templateModel.get('template_id')
+      },
+      success: function success(data) {
+        return _this3.handleGetFolderDataSuccess(templateModel, options, data);
+      }
+    };
+    elementorCommon.ajax.addRequest('get_item_children', ajaxOptions);
+  };
+  this.handleGetFolderDataSuccess = function (templateModel, options, data) {
+    var _this4 = this;
+    var dialog = this.getDeleteFolderDialog(templateModel, data);
+    dialog.onConfirm = function () {
+      var _options$onConfirm;
+      (_options$onConfirm = options.onConfirm) === null || _options$onConfirm === void 0 || _options$onConfirm.call(options);
+      _this4.sendDeleteRequest(templateModel, options);
+    };
+    dialog.show();
+  };
+  this.getDeleteFolderDialog = function (templateModel, data) {
+    return elementorCommon.dialogsManager.createWidget('confirm', {
+      id: 'elementor-template-library-delete-dialog',
+      headerMessage: __('Delete Folder', 'elementor'),
+      message: sprintf(
+      // Translators: %1$s: Folder name, %2$s: Number of templates.
+      __('Are you sure you want to delete "%1$s" folder with all %2$d templates?', 'elementor'), templateModel.get('title'), data.total),
+      strings: {
+        confirm: __('Delete', 'elementor')
+      }
+    });
+  };
+  this.sendDeleteRequest = function (templateModel, options) {
+    elementorCommon.ajax.addRequest('delete_template', {
+      data: {
+        source: templateModel.get('source'),
+        template_id: templateModel.get('template_id')
+      },
+      success: function success(response) {
+        var _options$onSuccess;
+        templatesCollection.remove(templateModel, {
+          silent: true
+        });
+        (_options$onSuccess = options.onSuccess) === null || _options$onSuccess === void 0 || _options$onSuccess.call(options, response);
+      }
+    });
   };
 
   /**
@@ -10477,9 +10712,15 @@ TemplateLibraryManager = function TemplateLibraryManager() {
     self.setFilter('source', args.source, true);
     self.setFilter('type', args.type, true);
     self.setFilter('subtype', args.subtype, true);
+    if (this.shouldShowCloudConnectView(args.source)) {
+      self.layout.showCloudConnectView();
+      return;
+    }
     self.showTemplates();
   };
   this.loadTemplates = function (onUpdate) {
+    isLoading = true;
+    total = 0;
     self.layout.showLoadingView();
     var query = {
         source: this.getFilter('source')
@@ -10487,11 +10728,18 @@ TemplateLibraryManager = function TemplateLibraryManager() {
       options = {};
 
     // TODO: Remove - it when all the data commands is ready, manage the cache!.
-    if ('local' === query.source) {
+    if ('local' === query.source || 'cloud' === query.source) {
       options.refresh = true;
     }
+    this.setFilter('parent', null, query);
     $e.data.get('library/templates', query, options).then(function (result) {
-      templatesCollection = new TemplateLibraryCollection(result.data.templates);
+      var _result$data;
+      var templates = 'cloud' === query.source ? result.data.templates.templates : result.data.templates;
+      templatesCollection = new TemplateLibraryCollection(templates);
+      if ((_result$data = result.data) !== null && _result$data !== void 0 && (_result$data = _result$data.templates) !== null && _result$data !== void 0 && _result$data.total) {
+        var _result$data2;
+        total = (_result$data2 = result.data) === null || _result$data2 === void 0 || (_result$data2 = _result$data2.templates) === null || _result$data2 === void 0 ? void 0 : _result$data2.total;
+      }
       if (result.data.config) {
         config = result.data.config;
       }
@@ -10499,7 +10747,64 @@ TemplateLibraryManager = function TemplateLibraryManager() {
       if (onUpdate) {
         onUpdate();
       }
+    }).finally(function () {
+      isLoading = false;
     });
+  };
+  this.searchTemplates = function (data) {
+    return new Promise(function (resolve) {
+      _this.setFilter('parent', null);
+      isLoading = true;
+      var ajaxOptions = {
+        data: data,
+        success: function success(result) {
+          isLoading = false;
+          templatesCollection = new TemplateLibraryCollection(result.templates);
+          total = result.total;
+          self.layout.updateViewCollection(templatesCollection.models);
+          _this.setFilter('text', data.search);
+          resolve(result);
+        },
+        error: function error(_error4) {
+          isLoading = false;
+          _this.showErrorDialog(_error4);
+          resolve();
+        }
+      };
+      elementorCommon.ajax.addRequest('search_templates', ajaxOptions);
+    });
+  };
+  this.loadMore = function () {
+    var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      onUpdate = _ref2.onUpdate,
+      _ref2$search = _ref2.search,
+      search = _ref2$search === void 0 ? '' : _ref2$search;
+    isLoading = true;
+    var source = _this.getFilter('source');
+    var parentId = _this.getFilter('parent');
+    var ajaxOptions = {
+      data: {
+        source: source,
+        offset: templatesCollection.length,
+        search: search,
+        parentId: parentId
+      },
+      success: function success(result) {
+        var collection = new TemplateLibraryCollection(result.templates);
+        templatesCollection.add(collection.models, {
+          merge: true
+        });
+        self.layout.addTemplates(collection.models);
+        if (onUpdate) {
+          onUpdate();
+        }
+        isLoading = false;
+      },
+      error: function error() {
+        isLoading = false;
+      }
+    };
+    elementorCommon.ajax.addRequest('load_more_templates', ajaxOptions);
   };
   this.showTemplates = function () {
     // The tabs should exist in DOM on loading.
@@ -10538,6 +10843,24 @@ TemplateLibraryManager = function TemplateLibraryManager() {
       errorMessage = __('Please try again.', 'elementor');
     }
     self.getErrorDialog().setMessage(errorMessage).show();
+  };
+  this.onSelectSourceFilterChange = function (event) {
+    var select = event.currentTarget,
+      filterName = select.dataset.elementorFilter,
+      templatesSource = select.value;
+    self.setSourceSelection(templatesSource);
+    self.setFilter(filterName, templatesSource, true);
+    if (this.shouldShowCloudConnectView(templatesSource)) {
+      self.layout.showCloudConnectView();
+      return;
+    }
+    self.loadTemplates(function () {
+      var templatesToShow = self.filterTemplates();
+      self.layout.showTemplatesView(new TemplateLibraryCollection(templatesToShow));
+    });
+  };
+  this.shouldShowCloudConnectView = function (source) {
+    return 'cloud' === source && !elementor.config.library_connect.is_connected;
   };
 };
 module.exports = new TemplateLibraryManager();
@@ -10580,6 +10903,9 @@ module.exports = Backbone.Model.extend({
 /* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
 
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
 var TemplateLibraryHeaderActionsView = __webpack_require__(/*! elementor-templates/views/parts/header-parts/actions */ "../assets/dev/js/editor/components/template-library/views/parts/header-parts/actions.js"),
   TemplateLibraryHeaderMenuView = __webpack_require__(/*! elementor-templates/views/parts/header-parts/menu */ "../assets/dev/js/editor/components/template-library/views/parts/header-parts/menu.js"),
   TemplateLibraryHeaderPreviewView = __webpack_require__(/*! elementor-templates/views/parts/header-parts/preview */ "../assets/dev/js/editor/components/template-library/views/parts/header-parts/preview.js"),
@@ -10588,6 +10914,7 @@ var TemplateLibraryHeaderActionsView = __webpack_require__(/*! elementor-templat
   TemplateLibrarySaveTemplateView = __webpack_require__(/*! elementor-templates/views/parts/save-template */ "../assets/dev/js/editor/components/template-library/views/parts/save-template.js"),
   TemplateLibraryImportView = __webpack_require__(/*! elementor-templates/views/parts/import */ "../assets/dev/js/editor/components/template-library/views/parts/import.js"),
   TemplateLibraryConnectView = __webpack_require__(/*! elementor-templates/views/parts/connect */ "../assets/dev/js/editor/components/template-library/views/parts/connect.js"),
+  TemplateLibraryCloudConnectView = __webpack_require__(/*! elementor-templates/views/parts/connect-cloud */ "../assets/dev/js/editor/components/template-library/views/parts/connect-cloud.js"),
   TemplateLibraryPreviewView = __webpack_require__(/*! elementor-templates/views/parts/preview */ "../assets/dev/js/editor/components/template-library/views/parts/preview.js");
 module.exports = elementorModules.common.views.modal.Layout.extend({
   getModalOptions: function getModalOptions() {
@@ -10598,7 +10925,8 @@ module.exports = elementorModules.common.views.modal.Layout.extend({
       hide: {
         onOutsideClick: allowClosingModal,
         onBackgroundClick: allowClosingModal,
-        onEscKeyPress: allowClosingModal
+        onEscKeyPress: allowClosingModal,
+        ignore: '.dialog-widget-content'
       }
     };
   },
@@ -10648,6 +10976,14 @@ module.exports = elementorModules.common.views.modal.Layout.extend({
       collection: templatesCollection
     }));
   },
+  updateViewCollection: function updateViewCollection(models) {
+    this.modalContent.currentView.collection.reset(models);
+  },
+  addTemplates: function addTemplates(models) {
+    this.modalContent.currentView.collection.add(models, {
+      merge: true
+    });
+  },
   showImportView: function showImportView() {
     var headerView = this.getHeaderView();
     headerView.menuArea.reset();
@@ -10657,6 +10993,9 @@ module.exports = elementorModules.common.views.modal.Layout.extend({
   showConnectView: function showConnectView(args) {
     this.getHeaderView().menuArea.reset();
     this.modalContent.show(new TemplateLibraryConnectView(args));
+  },
+  showCloudConnectView: function showCloudConnectView() {
+    this.modalContent.show(new TemplateLibraryCloudConnectView());
   },
   showSaveTemplateView: function showSaveTemplateView(elementModel) {
     this.getHeaderView().menuArea.reset();
@@ -10674,6 +11013,75 @@ module.exports = elementorModules.common.views.modal.Layout.extend({
       model: templateModel
     }));
     headerView.logoArea.show(new TemplateLibraryHeaderBackView());
+  },
+  showFolderView: function showFolderView(elementModel) {
+    return (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
+      var templateId;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            elementor.templates.layout.showLoadingView();
+            templateId = elementModel.model.get('template_id');
+            _context.next = 5;
+            return elementor.templates.getFolderTemplates(templateId);
+          case 5:
+            _context.prev = 5;
+            elementor.templates.layout.hideLoadingView();
+            return _context.finish(5);
+          case 8:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[0,, 5, 8]]);
+    }))();
+  }
+});
+
+/***/ }),
+
+/***/ "../assets/dev/js/editor/components/template-library/views/parts/connect-cloud.js":
+/*!****************************************************************************************!*\
+  !*** ../assets/dev/js/editor/components/template-library/views/parts/connect-cloud.js ***!
+  \****************************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+module.exports = Marionette.ItemView.extend({
+  template: '#tmpl-elementor-template-library-connect-cloud',
+  id: 'elementor-template-library-connect-cloud',
+  ui: {
+    connect: '#elementor-template-library-connect__button',
+    selectSourceFilter: '.elementor-template-library-filter-select-source'
+  },
+  events: {
+    'change @ui.selectSourceFilter': 'onSelectSourceFilterChange'
+  },
+  onRender: function onRender() {
+    var _elementor$templates$;
+    this.ui.connect.elementorConnect({
+      success: function success() {
+        elementor.config.library_connect.is_connected = true;
+        $e.run('library/close');
+        elementor.notifications.showToast({
+          message: __('Connected successfully.', 'elementor')
+        });
+      },
+      error: function error() {
+        elementor.config.library_connect.is_connected = false;
+      }
+    });
+    (_elementor$templates$ = elementor.templates.layout.getHeaderView()) === null || _elementor$templates$ === void 0 || (_elementor$templates$ = _elementor$templates$.tools) === null || _elementor$templates$ === void 0 || (_elementor$templates$ = _elementor$templates$.$el[0]) === null || _elementor$templates$ === void 0 || (_elementor$templates$ = _elementor$templates$.classList) === null || _elementor$templates$ === void 0 || _elementor$templates$.add('elementor-hidden');
+  },
+  onSelectSourceFilterChange: function onSelectSourceFilterChange(event) {
+    elementor.templates.onSelectSourceFilterChange(event);
+  },
+  onDestroy: function onDestroy() {
+    var _elementor$templates$2;
+    (_elementor$templates$2 = elementor.templates.layout.getHeaderView()) === null || _elementor$templates$2 === void 0 || (_elementor$templates$2 = _elementor$templates$2.tools) === null || _elementor$templates$2 === void 0 || (_elementor$templates$2 = _elementor$templates$2.$el[0]) === null || _elementor$templates$2 === void 0 || (_elementor$templates$2 = _elementor$templates$2.classList) === null || _elementor$templates$2 === void 0 || _elementor$templates$2.remove('elementor-hidden');
   }
 });
 
@@ -10991,18 +11399,22 @@ module.exports = TemplateLibraryPreviewView;
 /*!****************************************************************************************!*\
   !*** ../assets/dev/js/editor/components/template-library/views/parts/save-template.js ***!
   \****************************************************************************************/
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
 
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _select = _interopRequireDefault(__webpack_require__(/*! elementor-editor-utils/select2.js */ "../assets/dev/js/editor/utils/select2.js"));
 var TemplateLibrarySaveTemplateView;
 TemplateLibrarySaveTemplateView = Marionette.ItemView.extend({
   id: 'elementor-template-library-save-template',
   template: '#tmpl-elementor-template-library-save-template',
   ui: {
     form: '#elementor-template-library-save-template-form',
-    submitButton: '#elementor-template-library-save-template-submit'
+    submitButton: '#elementor-template-library-save-template-submit',
+    selectDropdown: '#elementor-template-library-save-template-source'
   },
   events: {
     'submit @ui.form': 'onFormSubmit'
@@ -11033,6 +11445,43 @@ TemplateLibrarySaveTemplateView = Marionette.ItemView.extend({
     formData.content = this.model ? [this.model.toJSON(JSONParams)] : elementor.elements.toJSON(JSONParams);
     this.ui.submitButton.addClass('elementor-button-state');
     elementor.templates.saveTemplate(saveType, formData);
+  },
+  onRender: function onRender() {
+    var _elementorCommon$conf;
+    if ((_elementorCommon$conf = elementorCommon.config.experimentalFeatures) !== null && _elementorCommon$conf !== void 0 && _elementorCommon$conf['cloud-library']) {
+      this.activateSelect2();
+    }
+  },
+  activateSelect2: function activateSelect2() {
+    if (!this.select2Instance && this.$(this.ui.selectDropdown).length) {
+      var $dropdown = this.$(this.ui.selectDropdown),
+        select2Options = {
+          placeholder: __('Where do you want to save your template?', 'elementor'),
+          dropdownParent: this.$el,
+          closeOnSelect: false,
+          templateResult: this.templateResult.bind(this),
+          templateSelection: this.formatSelected.bind(this)
+        };
+      this.select2Instance = new _select.default({
+        $element: $dropdown,
+        options: select2Options
+      });
+      this.handlePlaceHolder($dropdown);
+    }
+  },
+  // https://github.com/select2/select2/issues/3292
+  handlePlaceHolder: function handlePlaceHolder($dropdown) {
+    var $searchField = $dropdown.siblings('.select2').find('.select2-search__field');
+    if ($searchField.length && 0 === $searchField.width()) {
+      $searchField.css('width', '100%');
+    }
+  },
+  templateResult: function templateResult(option) {
+    var className = !option.id || 'local' === option.id || 'cloud' === option.id ? 'main-item' : 'sub-item';
+    return jQuery("<span class=\"".concat(className, "\">").concat(option.text, "</span>"));
+  },
+  formatSelected: function formatSelected(option) {
+    return option.text;
   }
 });
 module.exports = TemplateLibrarySaveTemplateView;
@@ -11055,20 +11504,34 @@ TemplateLibraryTemplatesEmptyView = Marionette.ItemView.extend({
   template: '#tmpl-elementor-template-library-templates-empty',
   ui: {
     title: '.elementor-template-library-blank-title',
-    message: '.elementor-template-library-blank-message'
+    message: '.elementor-template-library-blank-message',
+    image: '.elementor-template-library-no-results',
+    button: '.elementor-template-library-cloud-empty__button'
   },
   modesStrings: {
     empty: {
       title: __('Haven’t Saved Templates Yet?', 'elementor'),
-      message: __('This is where your templates should be. Design it. Save it. Reuse it.', 'elementor')
+      message: __('This is where your templates should be. Design it. Save it. Reuse it.', 'elementor'),
+      image: "".concat(elementorCommon.config.urls.assets, "images/no-search-results.svg"),
+      button: ''
     },
     noResults: {
       title: __('No Results Found', 'elementor'),
-      message: __('Please make sure your search is spelled correctly or try a different words.', 'elementor')
+      message: __('Please make sure your search is spelled correctly or try a different words.', 'elementor'),
+      image: "".concat(elementorCommon.config.urls.assets, "images/no-search-results.svg"),
+      button: ''
     },
     noFavorites: {
       title: __('No Favorite Templates', 'elementor'),
-      message: __('You can mark any pre-designed template as a favorite.', 'elementor')
+      message: __('You can mark any pre-designed template as a favorite.', 'elementor'),
+      image: "".concat(elementorCommon.config.urls.assets, "images/no-search-results.svg"),
+      button: ''
+    },
+    cloudEmpty: {
+      title: __('Haven’t saved templates to cloud library yet?', 'elementor'),
+      message: __('This is where your templates should be. Design it. Save it. Reuse it.', 'elementor'),
+      image: "".concat(elementorCommon.config.urls.assets, "images/no-search-results-cloud.svg"),
+      button: '<a class="elementor-button e-primary" href="" target="_blank">call to action</a>'
     }
   },
   getCurrentMode: function getCurrentMode() {
@@ -11078,12 +11541,17 @@ TemplateLibraryTemplatesEmptyView = Marionette.ItemView.extend({
     if (elementor.templates.getFilter('favorite')) {
       return 'noFavorites';
     }
+    if ('cloud' === elementor.templates.getFilter('source')) {
+      return 'cloudEmpty';
+    }
     return 'empty';
   },
   onRender: function onRender() {
     var modeStrings = this.modesStrings[this.getCurrentMode()];
     this.ui.title.html(modeStrings.title);
     this.ui.message.html(modeStrings.message);
+    this.ui.button.html(modeStrings.button);
+    this.ui.image.attr('src', modeStrings.image);
   }
 });
 module.exports = TemplateLibraryTemplatesEmptyView;
@@ -11101,11 +11569,13 @@ module.exports = TemplateLibraryTemplatesEmptyView;
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
 var _select = _interopRequireDefault(__webpack_require__(/*! elementor-editor-utils/select2.js */ "../assets/dev/js/editor/utils/select2.js"));
-var TemplateLibraryTemplateLocalView = __webpack_require__(/*! elementor-templates/views/template/local */ "../assets/dev/js/editor/components/template-library/views/template/local.js"),
-  TemplateLibraryTemplateRemoteView = __webpack_require__(/*! elementor-templates/views/template/remote */ "../assets/dev/js/editor/components/template-library/views/template/remote.js"),
-  TemplateLibraryCollectionView;
-TemplateLibraryCollectionView = Marionette.CompositeView.extend({
+var TemplateLibraryTemplateLocalView = __webpack_require__(/*! elementor-templates/views/template/local */ "../assets/dev/js/editor/components/template-library/views/template/local.js");
+var TemplateLibraryTemplateRemoteView = __webpack_require__(/*! elementor-templates/views/template/remote */ "../assets/dev/js/editor/components/template-library/views/template/remote.js");
+var TemplateLibraryTemplateCloudView = __webpack_require__(/*! elementor-templates/views/template/cloud */ "../assets/dev/js/editor/components/template-library/views/template/cloud.js");
+var TemplateLibraryCollectionView = Marionette.CompositeView.extend({
   template: '#tmpl-elementor-template-library-templates',
   id: 'elementor-template-library-templates',
   childViewContainer: '#elementor-template-library-templates-container',
@@ -11119,13 +11589,19 @@ TemplateLibraryCollectionView = Marionette.CompositeView.extend({
     selectFilter: '.elementor-template-library-filter-select',
     myFavoritesFilter: '#elementor-template-library-filter-my-favorites',
     orderInputs: '.elementor-template-library-order-input',
-    orderLabels: 'label.elementor-template-library-order-label'
+    orderLabels: 'label.elementor-template-library-order-label',
+    searchInputIcon: '#elementor-template-library-filter-text-wrapper i',
+    loadMoreAnchor: '#elementor-template-library-load-more-anchor',
+    selectSourceFilter: '.elementor-template-library-filter-select-source',
+    addNewFolder: '#elementor-template-library-add-new-folder'
   },
   events: {
     'input @ui.textFilter': 'onTextFilterInput',
     'change @ui.selectFilter': 'onSelectFilterChange',
     'change @ui.myFavoritesFilter': 'onMyFavoritesFilterChange',
-    'mousedown @ui.orderLabels': 'onOrderLabelsClick'
+    'mousedown @ui.orderLabels': 'onOrderLabelsClick',
+    'change @ui.selectSourceFilter': 'onSelectSourceFilterChange',
+    'click @ui.addNewFolder': 'onCreateNewFolderClick'
   },
   comparators: {
     title: function title(model) {
@@ -11147,23 +11623,31 @@ TemplateLibraryCollectionView = Marionette.CompositeView.extend({
     }
   },
   getChildView: function getChildView(childModel) {
+    var sourceMappings = {
+      local: TemplateLibraryTemplateLocalView,
+      remote: TemplateLibraryTemplateRemoteView,
+      cloud: TemplateLibraryTemplateCloudView
+    };
     var activeSource = childModel.get('source') ? childModel.get('source') : 'local';
+
     /**
      * Filter template source.
      *
      * @param bool   isRemote     - If `true` the source is a remote source.
      * @param string activeSource - The current template source.
      */
-    var isRemote = elementor.hooks.applyFilters('templates/source/is-remote', activeSource !== 'local', activeSource);
-    if (isRemote) {
-      return TemplateLibraryTemplateRemoteView;
-    }
-    return TemplateLibraryTemplateLocalView;
+    var isRemote = elementor.hooks.applyFilters('templates/source/is-remote', 'remote' === activeSource, activeSource);
+    return isRemote ? TemplateLibraryTemplateRemoteView : sourceMappings[activeSource] || TemplateLibraryTemplateLocalView;
   },
   initialize: function initialize() {
     this.listenTo(elementor.channels.templates, 'filter:change', this._renderChildren);
+    this.debouncedSearchTemplates = _.debounce(this.searchTemplates, 300);
   },
   filter: function filter(childModel) {
+    var activeSource = elementor.templates.getFilter('source');
+    if ('cloud' === activeSource) {
+      return true; // Filtering happens on the backend.
+    }
     var filterTerms = elementor.templates.getFilterTerms(),
       passingFilter = true;
     jQuery.each(filterTerms, function (filterTermName) {
@@ -11252,28 +11736,77 @@ TemplateLibraryCollectionView = Marionette.CompositeView.extend({
     var templatesType = elementor.templates.getFilter('type');
     return 'page' === templatesType || 'lp' === templatesType;
   },
+  onDestroy: function onDestroy() {
+    if (this.removeScrollListener) {
+      this.removeScrollListener();
+    }
+  },
   onRender: function onRender() {
-    if ('remote' === elementor.templates.getFilter('source') && 'page' !== elementor.templates.getFilter('type') && 'lb' !== elementor.templates.getFilter('type')) {
+    var activeSource = elementor.templates.getFilter('source');
+    var templateType = elementor.templates.getFilter('type');
+    if ('remote' === activeSource && 'page' !== templateType && 'lb' !== templateType) {
       this.setFiltersUI();
     }
   },
   onRenderCollection: function onRenderCollection() {
     this.addSourceData();
     this.toggleFilterClass();
-    if ('remote' === elementor.templates.getFilter('source') && !this.isPageOrLandingPageTemplates()) {
+    var activeSource = elementor.templates.getFilter('source');
+    if ('remote' === activeSource && !this.isPageOrLandingPageTemplates()) {
       this.setMasonrySkin();
+    }
+    if ('cloud' === activeSource) {
+      this.handleLoadMore();
     }
   },
   onBeforeRenderEmpty: function onBeforeRenderEmpty() {
     this.addSourceData();
   },
   onTextFilterInput: function onTextFilterInput() {
+    var activeSource = elementor.templates.getFilter('source');
+    if ('cloud' === activeSource) {
+      this.debouncedSearchTemplates(activeSource);
+      return;
+    }
     elementor.templates.setFilter('text', this.ui.textFilter.val());
+  },
+  searchTemplates: function searchTemplates(source) {
+    var _this = this;
+    return (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _this.showLoadingSpinner();
+            _context.prev = 1;
+            _context.next = 4;
+            return elementor.templates.searchTemplates({
+              source: source,
+              search: _this.ui.textFilter.val()
+            });
+          case 4:
+            _context.prev = 4;
+            _this.showSearchIcon();
+            return _context.finish(4);
+          case 7:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[1,, 4, 7]]);
+    }))();
+  },
+  showLoadingSpinner: function showLoadingSpinner() {
+    this.ui.searchInputIcon.removeClass('eicon-search').addClass('eicon-loading eicon-animation-spin');
+  },
+  showSearchIcon: function showSearchIcon() {
+    this.ui.searchInputIcon.removeClass('eicon-loading eicon-animation-spin').addClass('eicon-search');
   },
   onSelectFilterChange: function onSelectFilterChange(event) {
     var $select = jQuery(event.currentTarget),
       filterName = $select.data('elementor-filter');
     elementor.templates.setFilter(filterName, $select.val());
+  },
+  onSelectSourceFilterChange: function onSelectSourceFilterChange(event) {
+    elementor.templates.onSelectSourceFilterChange(event);
   },
   onMyFavoritesFilterChange: function onMyFavoritesFilterChange() {
     elementor.templates.setFilter('favorite', this.ui.myFavoritesFilter[0].checked);
@@ -11286,6 +11819,45 @@ TemplateLibraryCollectionView = Marionette.CompositeView.extend({
     }
     $clickedInput.toggleClass('elementor-template-library-order-reverse', toggle);
     this.order($clickedInput.val(), $clickedInput.hasClass('elementor-template-library-order-reverse'));
+  },
+  handleLoadMore: function handleLoadMore() {
+    var _elementor,
+      _this2 = this;
+    var scrollableContainer = (_elementor = elementor) === null || _elementor === void 0 || (_elementor = _elementor.templates) === null || _elementor === void 0 || (_elementor = _elementor.layout) === null || _elementor === void 0 ? void 0 : _elementor.modal.getElements('message');
+    var listener = function listener() {
+      var scrollTop = scrollableContainer.scrollTop();
+      var scrollHeight = scrollableContainer[0].scrollHeight;
+      var clientHeight = scrollableContainer.outerHeight();
+      var scrollPercentage = scrollTop / (scrollHeight - clientHeight) * 100;
+      var canLoadMore = elementor.templates.canLoadMore() && !elementor.templates.isLoading();
+      if (scrollPercentage < 90 || !canLoadMore) {
+        return;
+      }
+      _this2.ui.loadMoreAnchor.toggleClass('elementor-visibility-hidden');
+      elementor.templates.loadMore({
+        onUpdate: function onUpdate() {
+          _this2.ui.loadMoreAnchor.toggleClass('elementor-visibility-hidden');
+        },
+        search: _this2.ui.textFilter.val()
+      });
+    };
+    scrollableContainer.on('scroll', listener);
+    this.removeScrollListener = function () {
+      return scrollableContainer.off('scroll', listener);
+    };
+  },
+  onCreateNewFolderClick: function onCreateNewFolderClick() {
+    var activeSource = elementor.templates.getFilter('source');
+    if ('cloud' !== activeSource) {
+      return;
+    }
+    elementor.templates.createFolder({
+      source: activeSource
+    }, {
+      onSuccess: function onSuccess() {
+        $e.routes.refreshContainer('library');
+      }
+    });
   }
 });
 module.exports = TemplateLibraryCollectionView;
@@ -11301,15 +11873,14 @@ module.exports = TemplateLibraryCollectionView;
 "use strict";
 
 
-var TemplateLibraryInsertTemplateBehavior = __webpack_require__(/*! elementor-templates/behaviors/insert-template */ "../assets/dev/js/editor/components/template-library/behaviors/insert-template.js"),
-  TemplateLibraryTemplateView;
+var TemplateLibraryInsertTemplateBehavior = __webpack_require__(/*! elementor-templates/behaviors/insert-template */ "../assets/dev/js/editor/components/template-library/behaviors/insert-template.js");
 var _require = __webpack_require__(/*! elementor-utils/tiers */ "../assets/dev/js/utils/tiers.js"),
   isTierAtLeast = _require.isTierAtLeast,
   TIERS = _require.TIERS;
-TemplateLibraryTemplateView = Marionette.ItemView.extend({
+var TemplateLibraryTemplateView = Marionette.ItemView.extend({
   className: function className() {
-    var classes = 'elementor-template-library-template',
-      source = this.model.get('source');
+    var classes = 'elementor-template-library-template';
+    var source = this.model.get('source');
     classes += ' elementor-template-library-template-' + source;
     if ('remote' === source) {
       classes += ' elementor-template-library-template-' + this.model.get('type');
@@ -11365,6 +11936,50 @@ module.exports = TemplateLibraryTemplateView;
 
 /***/ }),
 
+/***/ "../assets/dev/js/editor/components/template-library/views/template/cloud.js":
+/*!***********************************************************************************!*\
+  !*** ../assets/dev/js/editor/components/template-library/views/template/cloud.js ***!
+  \***********************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+var TemplateLibraryTemplateLocalView = __webpack_require__(/*! elementor-templates/views/template/local */ "../assets/dev/js/editor/components/template-library/views/template/local.js"),
+  TemplateLibraryTemplateCloudView;
+TemplateLibraryTemplateCloudView = TemplateLibraryTemplateLocalView.extend({
+  onPreviewButtonClick: function onPreviewButtonClick() {
+    if ('FOLDER' === this.model.get('subType')) {
+      $e.route('library/view-folder', {
+        model: this.model
+      });
+      return;
+    }
+    TemplateLibraryTemplateLocalView.prototype.onPreviewButtonClick.apply(this, arguments);
+  },
+  onDeleteButtonClick: function onDeleteButtonClick() {
+    if ('FOLDER' === this.model.get('subType')) {
+      this.handleDeleteFolderClick();
+      return;
+    }
+    TemplateLibraryTemplateLocalView.prototype.onDeleteButtonClick.apply(this, arguments);
+  },
+  handleDeleteFolderClick: function handleDeleteFolderClick() {
+    var toggleMoreIcon = this.ui.toggleMoreIcon;
+    elementor.templates.deleteFolder(this.model, {
+      onConfirm: function onConfirm() {
+        toggleMoreIcon.removeClass('eicon-ellipsis-h').addClass('eicon-loading eicon-animation-spin');
+      },
+      onSuccess: function onSuccess() {
+        $e.routes.refreshContainer('library');
+      }
+    });
+  }
+});
+module.exports = TemplateLibraryTemplateCloudView;
+
+/***/ }),
+
 /***/ "../assets/dev/js/editor/components/template-library/views/template/local.js":
 /*!***********************************************************************************!*\
   !*** ../assets/dev/js/editor/components/template-library/views/template/local.js ***!
@@ -11374,23 +11989,43 @@ module.exports = TemplateLibraryTemplateView;
 "use strict";
 
 
-var TemplateLibraryTemplateView = __webpack_require__(/*! elementor-templates/views/template/base */ "../assets/dev/js/editor/components/template-library/views/template/base.js"),
-  TemplateLibraryTemplateLocalView;
-TemplateLibraryTemplateLocalView = TemplateLibraryTemplateView.extend({
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
+var TemplateLibraryTemplateView = __webpack_require__(/*! elementor-templates/views/template/base */ "../assets/dev/js/editor/components/template-library/views/template/base.js");
+var TemplateLibraryTemplateLocalView = TemplateLibraryTemplateView.extend({
   template: '#tmpl-elementor-template-library-template-local',
   ui: function ui() {
     return _.extend(TemplateLibraryTemplateView.prototype.ui.apply(this, arguments), {
       deleteButton: '.elementor-template-library-template-delete',
+      renameButton: '.elementor-template-library-template-rename',
       morePopup: '.elementor-template-library-template-more',
       toggleMore: '.elementor-template-library-template-more-toggle',
-      toggleMoreIcon: '.elementor-template-library-template-more-toggle i'
+      toggleMoreIcon: '.elementor-template-library-template-more-toggle i',
+      titleCell: '.elementor-template-library-template-name',
+      resourceIcon: '.elementor-template-library-template-name i'
     });
   },
   events: function events() {
     return _.extend(TemplateLibraryTemplateView.prototype.events.apply(this, arguments), {
       'click @ui.deleteButton': 'onDeleteButtonClick',
-      'click @ui.toggleMore': 'onToggleMoreClick'
+      'click @ui.toggleMore': 'onToggleMoreClick',
+      'click @ui.renameButton': 'onRenameClick'
     });
+  },
+  modelEvents: {
+    'change:title': 'onTitleChange'
+  },
+  onTitleChange: function onTitleChange() {
+    var isCloudSource = 'cloud' === this.model.get('source');
+    var title = _.escape(this.model.get('title'));
+    var content = title;
+    if (isCloudSource) {
+      var _this$ui$resourceIcon;
+      var resourceIcon = (_this$ui$resourceIcon = this.ui.resourceIcon[0]) === null || _this$ui$resourceIcon === void 0 ? void 0 : _this$ui$resourceIcon.outerHTML;
+      content = resourceIcon + title;
+    }
+    this.ui.titleCell.html(content);
   },
   onDeleteButtonClick: function onDeleteButtonClick() {
     var toggleMoreIcon = this.ui.toggleMoreIcon;
@@ -11399,7 +12034,7 @@ TemplateLibraryTemplateLocalView = TemplateLibraryTemplateView.extend({
         toggleMoreIcon.removeClass('eicon-ellipsis-h').addClass('eicon-loading eicon-animation-spin');
       },
       onSuccess: function onSuccess() {
-        elementor.templates.showTemplates();
+        $e.routes.refreshContainer('library');
       }
     });
   },
@@ -11408,6 +12043,36 @@ TemplateLibraryTemplateLocalView = TemplateLibraryTemplateView.extend({
   },
   onPreviewButtonClick: function onPreviewButtonClick() {
     open(this.model.get('url'), '_blank');
+  },
+  onRenameClick: function onRenameClick() {
+    var _this = this;
+    return (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return elementor.templates.renameTemplate(_this.model, {
+              onConfirm: function onConfirm() {
+                return _this.showToggleMoreLoader();
+              }
+            });
+          case 3:
+            _context.prev = 3;
+            _this.hideToggleMoreLoader();
+            return _context.finish(3);
+          case 6:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[0,, 3, 6]]);
+    }))();
+  },
+  showToggleMoreLoader: function showToggleMoreLoader() {
+    this.ui.toggleMoreIcon.removeClass('eicon-ellipsis-h').addClass('eicon-loading eicon-animation-spin');
+  },
+  hideToggleMoreLoader: function hideToggleMoreLoader() {
+    this.ui.toggleMoreIcon.addClass('eicon-ellipsis-h').removeClass('eicon-loading eicon-animation-spin');
   }
 });
 module.exports = TemplateLibraryTemplateLocalView;
@@ -16495,6 +17160,78 @@ module.exports = URL;
 
 /***/ }),
 
+/***/ "../assets/dev/js/editor/controls/visual-choice.js":
+/*!*********************************************************!*\
+  !*** ../assets/dev/js/editor/controls/visual-choice.js ***!
+  \*********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+var ControlBaseDataView = __webpack_require__(/*! elementor-controls/base-data */ "../assets/dev/js/editor/controls/base-data.js"),
+  ControlVisualChoiceItemView;
+ControlVisualChoiceItemView = ControlBaseDataView.extend({
+  ui: function ui() {
+    var ui = ControlBaseDataView.prototype.ui.apply(this, arguments);
+    ui.inputs = '[type="radio"]';
+    return ui;
+  },
+  events: function events() {
+    return _.extend(ControlBaseDataView.prototype.events.apply(this, arguments), {
+      'mousedown label': 'onMouseDownLabel',
+      'click @ui.inputs': 'onClickInput',
+      'change @ui.inputs': 'onBaseInputChange'
+    });
+  },
+  updatePlaceholder: function updatePlaceholder() {
+    var placeholder = this.getControlPlaceholder();
+    if (!this.getControlValue() && placeholder) {
+      // Find the input which has value equals to the placeholder (which is the parent's value),
+      // and add it a placeholder class, to indicate which value is selected in the parent.
+      this.ui.inputs.filter("[value=\"".concat(this.getControlPlaceholder(), "\"]")).addClass('e-visual-choice-placeholder');
+    } else {
+      this.ui.inputs.removeClass('e-visual-choice-placeholder');
+    }
+  },
+  onReady: function onReady() {
+    this.updatePlaceholder();
+  },
+  applySavedValue: function applySavedValue() {
+    var currentValue = this.getControlValue();
+    if (currentValue) {
+      this.ui.inputs.filter('[value="' + currentValue + '"]').prop('checked', true);
+    } else {
+      this.ui.inputs.filter(':checked').prop('checked', false);
+    }
+  },
+  onMouseDownLabel: function onMouseDownLabel(event) {
+    var $clickedLabel = this.$(event.currentTarget),
+      $selectedInput = this.$('#' + $clickedLabel.attr('for'));
+    $selectedInput.data('checked', $selectedInput.prop('checked'));
+  },
+  onClickInput: function onClickInput(event) {
+    if (!this.model.get('toggle')) {
+      return;
+    }
+    var $selectedInput = this.$(event.currentTarget);
+    if ($selectedInput.data('checked')) {
+      $selectedInput.prop('checked', false).trigger('change');
+    }
+  },
+  onBaseInputChange: function onBaseInputChange() {
+    ControlBaseDataView.prototype.onBaseInputChange.apply(this, arguments);
+    this.updatePlaceholder();
+  }
+}, {
+  onPasteStyle: function onPasteStyle(control, clipboardValue) {
+    return '' === clipboardValue || undefined !== control.options[clipboardValue];
+  }
+});
+module.exports = ControlVisualChoiceItemView;
+
+/***/ }),
+
 /***/ "../assets/dev/js/editor/controls/wp_widget.js":
 /*!*****************************************************!*\
   !*** ../assets/dev/js/editor/controls/wp_widget.js ***!
@@ -19619,6 +20356,7 @@ var ResetSettings = exports.ResetSettings = /*#__PURE__*/function (_$e$modules$e
           }
           defaultValues[controlName] = control.default;
         });
+        defaultValues.__globals__ = {};
         $e.run('document/elements/settings', {
           container: container,
           options: options,
@@ -27199,6 +27937,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
         Box_shadow: __webpack_require__(/*! elementor-controls/box-shadow */ "../assets/dev/js/editor/controls/box-shadow.js"),
         Button: __webpack_require__(/*! elementor-controls/button */ "../assets/dev/js/editor/controls/button.js"),
         Choose: __webpack_require__(/*! elementor-controls/choose */ "../assets/dev/js/editor/controls/choose.js"),
+        Visual_choice: __webpack_require__(/*! elementor-controls/visual-choice */ "../assets/dev/js/editor/controls/visual-choice.js"),
         Code: __webpack_require__(/*! elementor-controls/code */ "../assets/dev/js/editor/controls/code.js"),
         Color: _color.default,
         Date_time: _dateTime.default,
@@ -30416,8 +31155,8 @@ BaseElementView = BaseContainer.extend({
     }
     this.renderHTML();
   },
-  isAtomicDynamic: function isAtomicDynamic(changedSettings, dataBinding, changedControl) {
-    return '__dynamic__' in changedSettings && dataBinding.el.hasAttribute('data-binding-dynamic') && elementorCommon.config.experimentalFeatures.e_nested_atomic_repeaters && dataBinding.el.getAttribute('data-binding-setting') === changedControl;
+  isAtomicDynamic: function isAtomicDynamic(changedSettings, dataBinding, changedControl, bindingDynamicCssId) {
+    return '__dynamic__' in changedSettings && dataBinding.el.hasAttribute('data-binding-dynamic') && (dataBinding.el.getAttribute('data-binding-setting') === changedControl || this.isCssIdControl(changedControl, bindingDynamicCssId));
   },
   getDynamicValue: function getDynamicValue(settings, changedControlKey, bindingSetting) {
     var _this3 = this;
@@ -30525,13 +31264,13 @@ BaseElementView = BaseContainer.extend({
     var changed = false;
     var renderDataBinding = /*#__PURE__*/function () {
       var _ref = (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee2(dataBinding) {
-        var bindingSetting, changedControl, change, dynamicValue;
+        var _dataBinding$dataset, bindingSetting, bindingDynamicCssId, changedControl, change, dynamicValue;
         return _regenerator.default.wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
-              bindingSetting = dataBinding.dataset.bindingSetting, changedControl = _this5.getChangedDynamicControlKey(settings);
+              _dataBinding$dataset = dataBinding.dataset, bindingSetting = _dataBinding$dataset.bindingSetting, bindingDynamicCssId = _dataBinding$dataset.bindingDynamicCssId, changedControl = _this5.getChangedDynamicControlKey(settings);
               change = settings.changed[bindingSetting];
-              if (!_this5.isAtomicDynamic(settings.changed, dataBinding, changedControl)) {
+              if (!_this5.isAtomicDynamic(settings.changed, dataBinding, changedControl, bindingDynamicCssId)) {
                 _context2.next = 7;
                 break;
               }
@@ -30543,15 +31282,21 @@ BaseElementView = BaseContainer.extend({
                 change = dynamicValue;
               }
             case 7:
+              if (!_this5.isCssIdControl(changedControl, bindingDynamicCssId)) {
+                _context2.next = 9;
+                break;
+              }
+              return _context2.abrupt("return", _this5.updateCssId(dataBinding, change, settings, changedControl));
+            case 9:
               if (!(change !== undefined)) {
-                _context2.next = 10;
+                _context2.next = 12;
                 break;
               }
               dataBinding.el.innerHTML = change;
               return _context2.abrupt("return", true);
-            case 10:
+            case 12:
               return _context2.abrupt("return", false);
-            case 11:
+            case 13:
             case "end":
               return _context2.stop();
           }
@@ -30600,6 +31345,19 @@ BaseElementView = BaseContainer.extend({
       _iterator.f();
     }
     return changed;
+  },
+  isCssIdControl: function isCssIdControl(changedControl, bindingDynamicCssId) {
+    return bindingDynamicCssId === changedControl;
+  },
+  updateCssId: function updateCssId(dataBinding, change, settings, changedControl) {
+    if (!change) {
+      change = settings.attributes[changedControl];
+    }
+    if (change && change.length) {
+      dataBinding.el.closest(dataBinding.dataset.bindingSingleItemHtmlWrapperTag).setAttribute('id', change);
+      return true;
+    }
+    return false;
   },
   /**
    * Function renderOnChange().
@@ -43873,15 +44631,15 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$LayoutVie
     value: function onCloseModalClick() {
       var _elementor$config$doc, _elementor$config;
       this._parent._parent._parent.hideModal();
+      var type = (_elementor$config$doc = (_elementor$config = elementor.config) === null || _elementor$config === void 0 || (_elementor$config = _elementor$config.document) === null || _elementor$config === void 0 ? void 0 : _elementor$config.type) !== null && _elementor$config$doc !== void 0 ? _elementor$config$doc : 'default';
+      var customEvent = new CustomEvent("core/modal/close/".concat(type));
+      window.dispatchEvent(customEvent);
       if (this.isFloatingButtonLibraryClose()) {
         $e.internal('document/save/set-is-modified', {
           status: false
         });
         window.location.href = elementor.config.admin_floating_button_admin_url;
       }
-      var type = (_elementor$config$doc = (_elementor$config = elementor.config) === null || _elementor$config === void 0 || (_elementor$config = _elementor$config.document) === null || _elementor$config === void 0 ? void 0 : _elementor$config.type) !== null && _elementor$config$doc !== void 0 ? _elementor$config$doc : 'default';
-      var customEvent = new CustomEvent("core/modal/close/".concat(type));
-      window.dispatchEvent(customEvent);
     }
   }, {
     key: "isFloatingButtonLibraryClose",
@@ -47200,8 +47958,17 @@ var DivBlockView = BaseElementView.extend({
     var width = +this.model.getSetting('width') || this.getPercentSize();
     return width.toFixed(1) + '%';
   },
-  renderOnChange: function renderOnChange() {
-    BaseElementView.prototype.renderOnChange.apply(this, arguments);
+  renderOnChange: function renderOnChange(settings) {
+    var changed = settings.changedAttributes();
+    if (!changed) {
+      return;
+    }
+    BaseElementView.prototype.renderOnChange.apply(this, settings);
+    if (changed.classes) {
+      // Rebuild the whole class attribute to remove previous outdated classes
+      this.$el.attr('class', this.className());
+      return;
+    }
     this.$el.addClass(this.getClasses());
   },
   onRender: function onRender() {
@@ -47237,10 +48004,22 @@ var DivBlockView = BaseElementView.extend({
       preventInit: true
     };
   },
+  getDroppableAxis: function getDroppableAxis() {
+    if (this.isHorizontalAxis()) {
+      return 'horizontal';
+    }
+    return 'vertical';
+  },
+  isHorizontalAxis: function isHorizontalAxis() {
+    var styles = window.getComputedStyle(this.$el[0]);
+    return 'flex' === styles.display && ['row', 'row-reverse'].includes(styles.flexDirection);
+  },
   getDroppableOptions: function getDroppableOptions() {
     var _this2 = this;
     var items = '> .elementor-element, > .elementor-empty-view .elementor-first-add';
+    var $placeholder;
     return {
+      axis: this.getDroppableAxis(),
       items: items,
       groups: ['elementor-element'],
       horizontalThreshold: 5,
@@ -47301,8 +48080,42 @@ var DivBlockView = BaseElementView.extend({
         _this2.onDrop(event, {
           at: newIndex
         });
+      },
+      onDragging: function onDragging(side, event) {
+        if (!$placeholder) {
+          $placeholder = _this2.$el.find('.elementor-sortable-placeholder');
+        }
+        if (!$placeholder.length) {
+          return;
+        }
+        var currentTarget = event.currentTarget,
+          currentTargetHeight = currentTarget.getBoundingClientRect().height,
+          placeholderElement = $placeholder[0],
+          isNotBeforeSibling = currentTarget !== placeholderElement.previousElementSibling;
+        if ('horizontal' === _this2.getDroppableAxis()) {
+          if (isNotBeforeSibling) {
+            _this2.handleDropSide(side, placeholderElement, currentTarget);
+          }
+          _this2.maybeShowCustomDropPlaceholder($placeholder, currentTargetHeight);
+        } else {
+          $placeholder.removeAttr('style');
+        }
       }
     };
+  },
+  handleDropSide: function handleDropSide(side, placeholderElement, currentTarget) {
+    var insertMethod = ['top', 'left'].includes(side) ? 'before' : 'after';
+    currentTarget[insertMethod](placeholderElement);
+  },
+  maybeShowCustomDropPlaceholder: function maybeShowCustomDropPlaceholder($placeholder, currentTargetHeight) {
+    if ($placeholder.css('height') !== "".concat(currentTargetHeight, "px")) {
+      $placeholder.css({
+        display: 'block',
+        height: "".concat(currentTargetHeight, "px"),
+        'background-color': '#eb8efb',
+        width: '10px'
+      });
+    }
   },
   getEditButtons: function getEditButtons() {
     var elementData = elementor.getElementData(this.model),
@@ -49204,7 +50017,6 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 var _component = _interopRequireDefault(__webpack_require__(/*! ./component */ "../modules/favorites/assets/js/editor/component.js"));
 var _widgets = _interopRequireDefault(__webpack_require__(/*! ./types/widgets/widgets */ "../modules/favorites/assets/js/editor/types/widgets/widgets.js"));
-var _notice = __webpack_require__(/*! ./notice */ "../modules/favorites/assets/js/editor/notice.js");
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
 /**
@@ -49224,15 +50036,6 @@ var FavoritesModule = /*#__PURE__*/function (_elementorModules$edi) {
   }
   (0, _inherits2.default)(FavoritesModule, _elementorModules$edi);
   return (0, _createClass2.default)(FavoritesModule, [{
-    key: "onElementorInit",
-    value: function onElementorInit() {
-      var hasSeenNotice = elementor.config.user.introduction['favorites-notice'];
-      if (hasSeenNotice) {
-        return;
-      }
-      (0, _notice.registerHooks)();
-    }
-  }, {
     key: "onElementorLoaded",
     value: function onElementorLoaded() {
       this.component = $e.components.register(new _component.default({
@@ -49267,44 +50070,6 @@ var FavoritesModule = /*#__PURE__*/function (_elementorModules$edi) {
   }]);
 }(elementorModules.editor.utils.Module);
 var _default = exports["default"] = FavoritesModule;
-
-/***/ }),
-
-/***/ "../modules/favorites/assets/js/editor/notice.js":
-/*!*******************************************************!*\
-  !*** ../modules/favorites/assets/js/editor/notice.js ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.registerHooks = registerHooks;
-exports.unregisterHooks = unregisterHooks;
-function registerHooks() {
-  elementor.hooks.addFilter('panel/elements/regionViews', onFilter);
-  $e.routes.on('run:after', onRoute);
-}
-function unregisterHooks() {
-  elementor.hooks.removeFilter('panel/elements/regionViews', onFilter);
-  $e.routes.off('run:after', onRoute);
-}
-function onRoute(component, route) {
-  if ('panel/elements/categories' === route) {
-    elementor.getPanelView().getCurrentPageView().showView('favoritesNotice');
-  }
-}
-function onFilter(regionViews, _ref) {
-  var notice = _ref.notice;
-  regionViews.favoritesNotice = {
-    region: notice,
-    view: __webpack_require__(/*! ./views/notice */ "../modules/favorites/assets/js/editor/views/notice.js")
-  };
-  return regionViews;
-}
 
 /***/ }),
 
@@ -49539,57 +50304,6 @@ var Widgets = exports["default"] = /*#__PURE__*/function (_FavoriteType) {
     }
   }]);
 }(_favoriteType.default);
-
-/***/ }),
-
-/***/ "../modules/favorites/assets/js/editor/views/notice.js":
-/*!*************************************************************!*\
-  !*** ../modules/favorites/assets/js/editor/views/notice.js ***!
-  \*************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
-
-
-var _require = __webpack_require__(/*! ../notice */ "../modules/favorites/assets/js/editor/notice.js"),
-  unregisterHooks = _require.unregisterHooks;
-var PanelElementsNoticeView = Marionette.ItemView.extend({
-  template: '#tmpl-elementor-panel-elements-notice',
-  id: 'elementor-panel-notice-wrapper',
-  ui: {
-    notice: '.elementor-panel-notice'
-  },
-  notice: {
-    message: __('For easy access, favorite the widgets you use most often by right clicking > Add to favorites.', 'elementor'),
-    hrefText: __('Got It', 'elementor'),
-    classes: 'elementor-panel-alert elementor-panel-alert-info'
-  },
-  events: {
-    'click @ui.notice a': 'onNoticeClick'
-  },
-  onNoticeClick: function onNoticeClick() {
-    this.destroy();
-    var introductionKey = 'favorites-notice';
-    unregisterHooks();
-    elementorCommon.ajax.addRequest('introduction_viewed', {
-      data: {
-        introductionKey: introductionKey
-      }
-    });
-  },
-  onRender: function onRender() {
-    var element = document.createElement('span');
-    element.innerText = this.notice.message;
-    var linkElement = document.createElement('a');
-    linkElement.href = '#';
-    linkElement.innerText = this.notice.hrefText;
-    element.append(linkElement);
-    this.ui.notice.addClass(this.notice.classes);
-    this.ui.notice.append(element);
-  }
-});
-module.exports = PanelElementsNoticeView;
 
 /***/ }),
 
@@ -52310,6 +53024,205 @@ var View = exports["default"] = /*#__PURE__*/function (_WidgetView) {
 
 /***/ }),
 
+/***/ "../modules/web-cli/assets/js/core/data/storages/base-prefix-storage.js":
+/*!******************************************************************************!*\
+  !*** ../modules/web-cli/assets/js/core/data/storages/base-prefix-storage.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../node_modules/@babel/runtime/helpers/classCallCheck.js"));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../node_modules/@babel/runtime/helpers/get.js"));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _baseStorage = _interopRequireDefault(__webpack_require__(/*! elementor-api/core/data/storages/base-storage */ "../modules/web-cli/assets/js/core/data/storages/base-storage.js"));
+function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
+function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
+var BasePrefixStorage = exports["default"] = /*#__PURE__*/function (_BaseStorage) {
+  function BasePrefixStorage() {
+    (0, _classCallCheck2.default)(this, BasePrefixStorage);
+    return _callSuper(this, BasePrefixStorage, arguments);
+  }
+  (0, _inherits2.default)(BasePrefixStorage, _BaseStorage);
+  return (0, _createClass2.default)(BasePrefixStorage, [{
+    key: "clear",
+    value: function clear() {
+      var _this = this;
+      Object.keys(this.getAll()).forEach(function (key) {
+        return _this.removeItem(key);
+      });
+    }
+  }, {
+    key: "getItem",
+    value: function getItem(key) {
+      return _superPropGet(BasePrefixStorage, "getItem", this, 3)([BasePrefixStorage.DEFAULT_KEY_PREFIX + key]);
+    }
+  }, {
+    key: "removeItem",
+    value: function removeItem(key) {
+      return _superPropGet(BasePrefixStorage, "removeItem", this, 3)([BasePrefixStorage.DEFAULT_KEY_PREFIX + key]);
+    }
+  }, {
+    key: "setItem",
+    value: function setItem(key, value) {
+      return _superPropGet(BasePrefixStorage, "setItem", this, 3)([BasePrefixStorage.DEFAULT_KEY_PREFIX + key, value]);
+    }
+  }, {
+    key: "getAll",
+    value: function getAll() {
+      var _this2 = this;
+      var DEFAULT_KEY_PREFIX = BasePrefixStorage.DEFAULT_KEY_PREFIX,
+        keys = Object.keys(this.provider),
+        result = {};
+      keys.forEach(function (key) {
+        if (key.startsWith(DEFAULT_KEY_PREFIX)) {
+          key = key.replace(DEFAULT_KEY_PREFIX, '');
+          result[key] = _this2.getItem(key);
+        }
+      });
+      return result;
+    }
+  }]);
+}(_baseStorage.default);
+(0, _defineProperty2.default)(BasePrefixStorage, "DEFAULT_KEY_PREFIX", 'e_');
+
+/***/ }),
+
+/***/ "../modules/web-cli/assets/js/core/data/storages/base-storage.js":
+/*!***********************************************************************!*\
+  !*** ../modules/web-cli/assets/js/core/data/storages/base-storage.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../node_modules/@babel/runtime/helpers/classCallCheck.js"));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
+/**
+ * TODO: Merge all storage's to one.
+ * Using this technique give's the ability to use JSDOC from 'window.storage'.
+ *
+ * @implements {Storage}
+ */
+var BaseStorage = exports["default"] = /*#__PURE__*/function () {
+  /**
+   * Create storage wrapper.
+   *
+   * @param {Storage} provider
+   */
+  function BaseStorage(provider) {
+    (0, _classCallCheck2.default)(this, BaseStorage);
+    if (BaseStorage === (this instanceof BaseStorage ? this.constructor : void 0)) {
+      throw new TypeError('Cannot construct BaseStorage instances directly');
+    }
+    this.provider = provider;
+  }
+  return (0, _createClass2.default)(BaseStorage, [{
+    key: "clear",
+    value: function clear() {
+      return this.provider.clear();
+    }
+  }, {
+    key: "getItem",
+    value: function getItem(key) {
+      var result = this.provider.getItem(key);
+      if (null !== result) {
+        return JSON.parse(result);
+      }
+      return result;
+    }
+  }, {
+    key: "key",
+    value: function key(index) {
+      return this.provider.key(index);
+    }
+  }, {
+    key: "removeItem",
+    value: function removeItem(key) {
+      return this.provider.removeItem(key);
+    }
+  }, {
+    key: "setItem",
+    value: function setItem(key, value) {
+      return this.provider.setItem(key, JSON.stringify(value));
+    }
+  }, {
+    key: "getAll",
+    value: function getAll() {
+      var _this = this;
+      var keys = Object.keys(this.provider),
+        result = {};
+      keys.forEach(function (key) {
+        result[key] = _this.getItem(key);
+      });
+      return result;
+    }
+  }]);
+}();
+
+/***/ }),
+
+/***/ "../modules/web-cli/assets/js/core/data/storages/local-storage.js":
+/*!************************************************************************!*\
+  !*** ../modules/web-cli/assets/js/core/data/storages/local-storage.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../node_modules/@babel/runtime/helpers/classCallCheck.js"));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
+var _basePrefixStorage = _interopRequireDefault(__webpack_require__(/*! ./base-prefix-storage */ "../modules/web-cli/assets/js/core/data/storages/base-prefix-storage.js"));
+function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
+function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
+var LocalStorage = exports["default"] = /*#__PURE__*/function (_BasePrefixStorage) {
+  function LocalStorage() {
+    (0, _classCallCheck2.default)(this, LocalStorage);
+    return _callSuper(this, LocalStorage, [localStorage]);
+  }
+  (0, _inherits2.default)(LocalStorage, _BasePrefixStorage);
+  return (0, _createClass2.default)(LocalStorage, [{
+    key: "debug",
+    value: function debug() {
+      var entries = this.getAll(),
+        ordered = {};
+      Object.keys(entries).sort().forEach(function (key) {
+        var value = entries[key];
+        ordered[key] = value;
+      });
+      return ordered;
+    }
+  }]);
+}(_basePrefixStorage.default);
+
+/***/ }),
+
 /***/ "../modules/web-cli/assets/js/core/states/ui-state-base.js":
 /*!*****************************************************************!*\
   !*** ../modules/web-cli/assets/js/core/states/ui-state-base.js ***!
@@ -52524,7 +53437,7 @@ var CommandBase = exports["default"] = /*#__PURE__*/function (_CommandInfra) {
     value: function onAfterApply() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var result = arguments.length > 1 ? arguments[1] : undefined;
-      $e.hooks.runDataAfter(this.command, args, result);
+      return $e.hooks.runDataAfter(this.command, args, result);
     }
   }, {
     key: "onCatchApply",

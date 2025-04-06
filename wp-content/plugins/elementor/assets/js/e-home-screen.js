@@ -1,4 +1,4 @@
-/*! elementor - v3.27.0 - 18-02-2025 */
+/*! elementor - v3.28.0 - 01-04-2025 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -516,9 +516,9 @@ var HomeScreen = function HomeScreen(props) {
       },
       pb: 2
     }
-  }, /*#__PURE__*/_react.default.createElement(_topSection.default, {
+  }, props.homeScreenData.top_with_licences && /*#__PURE__*/_react.default.createElement(_topSection.default, {
     topData: props.homeScreenData.top_with_licences,
-    createNewPageUrl: props.homeScreenData.create_new_page_url
+    buttonCtaUrl: props.homeScreenData.button_cta_url
   }), /*#__PURE__*/_react.default.createElement(_ui.Box, {
     sx: {
       display: 'flex',
@@ -595,6 +595,7 @@ var SidebarBanner = function SidebarBanner(_ref) {
     target: "_blank",
     href: link,
     sx: {
+      lineHeight: 0,
       display: 'block',
       width: '100%',
       height: '100%',
@@ -769,6 +770,19 @@ var _Button = _interopRequireDefault(__webpack_require__(/*! @elementor/ui/Butto
 var _youtubeIcon = _interopRequireDefault(__webpack_require__(/*! ../icons/youtube-icon */ "../modules/home/assets/js/icons/youtube-icon.js"));
 var TopSection = function TopSection(_ref) {
   var props = (0, _extends2.default)({}, ((0, _objectDestructuringEmpty2.default)(_ref), _ref));
+  var topData = props.topData,
+    buttonCtaUrl = props.buttonCtaUrl;
+  if (!topData) {
+    return null;
+  }
+  var title = topData.title,
+    description = topData.description,
+    buttonCtaTitle = topData.button_cta_text,
+    buttonCreatePageTitle = topData.button_create_page_title,
+    youtubeEmbeddedId = topData.youtube_embed_id,
+    buttonWatchURL = topData.button_watch_url,
+    buttonWatchTitle = topData.button_watch_title;
+  var ctaButtonTitle = buttonCtaTitle !== null && buttonCtaTitle !== void 0 ? buttonCtaTitle : buttonCreatePageTitle;
   return /*#__PURE__*/_react.default.createElement(_ui.Paper, {
     elevation: 0,
     sx: {
@@ -797,29 +811,30 @@ var TopSection = function TopSection(_ref) {
     justifyContent: "center"
   }, /*#__PURE__*/_react.default.createElement(_ui.Box, null, /*#__PURE__*/_react.default.createElement(_Typography.default, {
     variant: "h6"
-  }, props.topData.title), /*#__PURE__*/_react.default.createElement(_Typography.default, {
+  }, title), /*#__PURE__*/_react.default.createElement(_Typography.default, {
     variant: "body2",
     color: "secondary"
-  }, props.topData.description)), /*#__PURE__*/_react.default.createElement(_ui.Box, {
+  }, description)), /*#__PURE__*/_react.default.createElement(_ui.Box, {
     sx: {
       display: 'flex',
       gap: 1
     }
   }, /*#__PURE__*/_react.default.createElement(_Button.default, {
+    "data-testid": "e-create-button",
     variant: "contained",
     size: "small",
-    href: props.createNewPageUrl,
+    href: buttonCtaUrl,
     target: "_blank"
-  }, props.topData.button_create_page_title), /*#__PURE__*/_react.default.createElement(_Button.default, {
+  }, ctaButtonTitle), /*#__PURE__*/_react.default.createElement(_Button.default, {
     variant: "outlined",
     color: "secondary",
     size: "small",
     startIcon: /*#__PURE__*/_react.default.createElement(_youtubeIcon.default, null),
-    href: props.topData.button_watch_url,
+    href: buttonWatchURL,
     target: "_blank"
-  }, props.topData.button_watch_title))), /*#__PURE__*/_react.default.createElement(_ui.Box, {
+  }, buttonWatchTitle))), /*#__PURE__*/_react.default.createElement(_ui.Box, {
     component: "iframe",
-    src: "https://www.youtube.com/embed/".concat(props.topData.youtube_embed_id),
+    src: "https://www.youtube.com/embed/".concat(youtubeEmbeddedId),
     title: "YouTube video player",
     frameBorder: "0",
     allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
@@ -835,7 +850,7 @@ var TopSection = function TopSection(_ref) {
 };
 TopSection.propTypes = {
   topData: PropTypes.object.isRequired,
-  createNewPageUrl: PropTypes.string.isRequired
+  buttonCtaUrl: PropTypes.string.isRequired
 };
 var _default = exports["default"] = TopSection;
 

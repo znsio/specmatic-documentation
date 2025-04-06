@@ -13,7 +13,14 @@ __( 'General', 'elementor' );
 __( 'Style', 'elementor' );
 __( 'local', 'elementor' );
 __( 'CSS Classes', 'elementor' );
-__( 'Global CSS Classes', 'elementor' );
+__( 'Open CSS Class Menu', 'elementor' );
+__( 'Existing name', 'elementor' );
+__( 'Format is not valid', 'elementor' );
+// translators: %s is the label of the new class.
+__( 'Create new "%s"', 'elementor' );
+// translators: %s is the singular label of css class provider (e.g "Global CSS Class").
+__( 'Create New %s', 'elementor' );
+__( 'Add a pseudo selector', 'elementor' );
 __( 'Close', 'elementor' );
 __( 'Expand', 'elementor' );
 __( 'Show less', 'elementor' );
@@ -69,6 +76,7 @@ __( 'Static', 'elementor' );
 __( 'Relative', 'elementor' );
 __( 'Absolute', 'elementor' );
 __( 'Fixed', 'elementor' );
+__( 'Sticky', 'elementor' );
 __( 'Position', 'elementor' );
 __( 'Top', 'elementor' );
 __( 'Right', 'elementor' );
@@ -141,4 +149,3 @@ __( 'Bottom Left', 'elementor' );
 __( 'Border Radius', 'elementor' );
 __( 'Border', 'elementor' );
 __( 'Border Color', 'elementor' );
-__( 'Color', 'elementor' );

@@ -1995,6 +1995,10 @@ body.rtl .e-con {
   flex-direction: row;
   gap: 5px;
 }
+.elementor-button-icon {
+  display: flex;
+  align-items: center;
+}
 .elementor-button-icon svg {
   width: 1em;
   height: auto;
@@ -2137,10 +2141,6 @@ body.rtl .e-con {
     animation: none;
   }
 }
-.elementor-post__thumbnail__link {
-  transition: none;
-}
-
 @media (max-width: ELEMENTOR_SCREEN_MOBILE_MAX) {
   .elementor .elementor-hidden-phone,
   .elementor .elementor-hidden-mobile {

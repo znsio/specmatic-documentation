@@ -1,4 +1,4 @@
-/*! elementor - v3.27.0 - 18-02-2025 */
+/*! elementor - v3.28.0 - 01-04-2025 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -1631,6 +1631,104 @@ function isValidAttributeName(name) {
 
 /***/ }),
 
+/***/ "../assets/dev/js/editor/utils/files-upload-handler.js":
+/*!*************************************************************!*\
+  !*** ../assets/dev/js/editor/utils/files-upload-handler.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../node_modules/@babel/runtime/helpers/classCallCheck.js"));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
+var FilesUploadHandler = exports["default"] = /*#__PURE__*/function () {
+  function FilesUploadHandler() {
+    (0, _classCallCheck2.default)(this, FilesUploadHandler);
+  }
+  return (0, _createClass2.default)(FilesUploadHandler, null, [{
+    key: "isUploadEnabled",
+    value: function isUploadEnabled(mediaType) {
+      var unfilteredFilesTypes = ['svg', 'application/json'];
+      if (!unfilteredFilesTypes.includes(mediaType)) {
+        return true;
+      }
+      return elementorCommon.config.filesUpload.unfilteredFiles;
+    }
+  }, {
+    key: "setUploadTypeCaller",
+    value: function setUploadTypeCaller(frame) {
+      frame.uploader.uploader.param('uploadTypeCaller', 'elementor-wp-media-upload');
+    }
+  }, {
+    key: "getUnfilteredFilesNonAdminDialog",
+    value: function getUnfilteredFilesNonAdminDialog() {
+      return elementorCommon.dialogsManager.createWidget('alert', {
+        id: 'e-unfiltered-files-disabled-dialog',
+        headerMessage: __('Sorry, you can\'t upload that file yet', 'elementor'),
+        message: __('This is because JSON files may pose a security risk.', 'elementor') + '<br><br>' + __('To upload them anyway, ask the site administrator to enable unfiltered file uploads.', 'elementor'),
+        strings: {
+          confirm: __('Got it', 'elementor')
+        }
+      });
+    }
+  }, {
+    key: "getUnfilteredFilesNotEnabledDialog",
+    value: function getUnfilteredFilesNotEnabledDialog(callback) {
+      var elementorInstance = window.elementorAdmin || window.elementor;
+      if (!elementorInstance.config.user.is_administrator) {
+        return this.getUnfilteredFilesNonAdminDialog();
+      }
+      var onConfirm = function onConfirm() {
+        elementorCommon.ajax.addRequest('enable_unfiltered_files_upload', {}, true);
+        elementorCommon.config.filesUpload.unfilteredFiles = true;
+        callback();
+      };
+      return elementorInstance.helpers.getSimpleDialog('e-enable-unfiltered-files-dialog', __('Enable Unfiltered File Uploads', 'elementor'), __('Before you enable unfiltered files upload, note that such files include a security risk. Elementor does run a process to remove possible malicious code, but there is still risk involved when using such files.', 'elementor'), __('Enable', 'elementor'), onConfirm);
+    }
+  }, {
+    key: "getUnfilteredFilesNotEnabledImportTemplateDialog",
+    value: function getUnfilteredFilesNotEnabledImportTemplateDialog(callback) {
+      if (!(window.elementorAdmin || window.elementor).config.user.is_administrator) {
+        return this.getUnfilteredFilesNonAdminDialog();
+      }
+      return elementorCommon.dialogsManager.createWidget('confirm', {
+        id: 'e-enable-unfiltered-files-dialog-import-template',
+        headerMessage: __('Enable Unfiltered File Uploads', 'elementor'),
+        message: __('Before you enable unfiltered files upload, note that such files include a security risk. Elementor does run a process to remove possible malicious code, but there is still risk involved when using such files.', 'elementor') + '<br /><br />' + __('If you do not enable uploading unfiltered files, any SVG or JSON (including lottie) files used in the uploaded template will not be imported.', 'elementor'),
+        position: {
+          my: 'center center',
+          at: 'center center'
+        },
+        strings: {
+          confirm: __('Enable and Import', 'elementor'),
+          cancel: __('Import Without Enabling', 'elementor')
+        },
+        onConfirm: function onConfirm() {
+          elementorCommon.ajax.addRequest('enable_unfiltered_files_upload', {
+            success: function success() {
+              // This utility is used in both the admin and the Editor.
+              elementorCommon.config.filesUpload.unfilteredFiles = true;
+              callback();
+            }
+          }, true);
+        },
+        onCancel: function onCancel() {
+          return callback();
+        }
+      });
+    }
+  }]);
+}();
+
+/***/ }),
+
 /***/ "../assets/dev/js/utils/react.js":
 /*!***************************************!*\
   !*** ../assets/dev/js/utils/react.js ***!
@@ -1961,7 +2059,7 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.uploadImage = exports.toggleFavoriteHistoryItem = exports.setStatusFeedback = exports.setGetStarted = exports.getUserInformation = exports.getTextToImageGeneration = exports.getRemoteFrontendConfig = exports.getRemoteConfig = exports.getProductImageUnification = exports.getLayoutPromptEnhanced = exports.getImageToImageUpscale = exports.getImageToImageReplaceBackground = exports.getImageToImageRemoveText = exports.getImageToImageRemoveBackground = exports.getImageToImageOutPainting = exports.getImageToImageMaskGeneration = exports.getImageToImageMaskCleanup = exports.getImageToImageGeneration = exports.getImagePromptEnhanced = exports.getHistory = exports.getFeaturedImage = exports.getExcerpt = exports.getEditText = exports.getCustomCode = exports.getCustomCSS = exports.getCompletionText = exports.getAnimation = exports.generateLayout = exports.deleteHistoryItem = void 0;
+exports.uploadImage = exports.toggleFavoriteHistoryItem = exports.setStatusFeedback = exports.setGetStarted = exports.getUserInformation = exports.getTextToImageGeneration = exports.getRemoteFrontendConfig = exports.getRemoteConfig = exports.getProductImageUnification = exports.getLayoutPromptEnhanced = exports.getImageToImageUpscale = exports.getImageToImageReplaceBackground = exports.getImageToImageRemoveText = exports.getImageToImageRemoveBackground = exports.getImageToImageOutPainting = exports.getImageToImageMaskGeneration = exports.getImageToImageMaskCleanup = exports.getImageToImageIsolateObjects = exports.getImageToImageGeneration = exports.getImagePromptEnhanced = exports.getHistory = exports.getFeaturedImage = exports.getExcerpt = exports.getEditText = exports.getCustomCode = exports.getCustomCSS = exports.getCompletionText = exports.getAnimation = exports.generateLayout = exports.deleteHistoryItem = void 0;
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0, _defineProperty2.default)(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -2069,6 +2167,11 @@ var getImageToImageUpscale = exports.getImageToImageUpscale = function getImageT
 };
 var getImageToImageRemoveBackground = exports.getImageToImageRemoveBackground = function getImageToImageRemoveBackground(payload) {
   return request('ai_get_image_to_image_remove_background', {
+    payload: payload
+  });
+};
+var getImageToImageIsolateObjects = exports.getImageToImageIsolateObjects = function getImageToImageIsolateObjects(payload) {
+  return request('ai_get_image_to_image_isolate_objects', {
     payload: payload
   });
 };
@@ -7003,6 +7106,38 @@ var _default = exports["default"] = ExpandIcon;
 
 /***/ }),
 
+/***/ "../modules/ai/assets/js/editor/icons/isolate-object-icon.js":
+/*!*******************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/icons/isolate-object-icon.js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var IsolateObjectIcon = _react.default.forwardRef(function (props, ref) {
+  return /*#__PURE__*/_react.default.createElement(_ui.SvgIcon, (0, _extends2.default)({
+    viewBox: "0 0 16 16"
+  }, props, {
+    ref: ref
+  }), /*#__PURE__*/_react.default.createElement("path", {
+    fillRule: "evenodd",
+    clipRule: "evenodd",
+    d: "M2.6665 2.16699C2.94265 2.16699 3.1665 2.39085 3.1665 2.66699V2.67366C3.1665 2.9498 2.94265 3.17366 2.6665 3.17366C2.39036 3.17366 2.1665 2.9498 2.1665 2.67366V2.66699C2.1665 2.39085 2.39036 2.16699 2.6665 2.16699ZM5.33317 2.16699C5.60931 2.16699 5.83317 2.39085 5.83317 2.66699V2.67366C5.83317 2.9498 5.60931 3.17366 5.33317 3.17366C5.05703 3.17366 4.83317 2.9498 4.83317 2.67366V2.66699C4.83317 2.39085 5.05703 2.16699 5.33317 2.16699ZM7.99984 2.16699C8.27598 2.16699 8.49984 2.39085 8.49984 2.66699V2.67366C8.49984 2.9498 8.27598 3.17366 7.99984 3.17366C7.72369 3.17366 7.49984 2.9498 7.49984 2.67366V2.66699C7.49984 2.39085 7.72369 2.16699 7.99984 2.16699ZM10.6665 2.16699C10.9426 2.16699 11.1665 2.39085 11.1665 2.66699V2.67366C11.1665 2.9498 10.9426 3.17366 10.6665 3.17366C10.3904 3.17366 10.1665 2.9498 10.1665 2.67366V2.66699C10.1665 2.39085 10.3904 2.16699 10.6665 2.16699ZM13.3332 2.16699C13.6093 2.16699 13.8332 2.39085 13.8332 2.66699V2.67366C13.8332 2.9498 13.6093 3.17366 13.3332 3.17366C13.057 3.17366 12.8332 2.9498 12.8332 2.67366V2.66699C12.8332 2.39085 13.057 2.16699 13.3332 2.16699ZM2.6665 4.83366C2.94265 4.83366 3.1665 5.05752 3.1665 5.33366V5.34033C3.1665 5.61647 2.94265 5.84033 2.6665 5.84033C2.39036 5.84033 2.1665 5.61647 2.1665 5.34033V5.33366C2.1665 5.05752 2.39036 4.83366 2.6665 4.83366ZM4.83317 5.33366C4.83317 5.05752 5.05703 4.83366 5.33317 4.83366H10.6665C10.9426 4.83366 11.1665 5.05752 11.1665 5.33366V10.667C11.1665 10.9431 10.9426 11.167 10.6665 11.167H5.33317C5.05703 11.167 4.83317 10.9431 4.83317 10.667V5.33366ZM5.83317 5.83366V10.167H10.1665V5.83366H5.83317ZM13.3332 4.83366C13.6093 4.83366 13.8332 5.05752 13.8332 5.33366V5.34033C13.8332 5.61647 13.6093 5.84033 13.3332 5.84033C13.057 5.84033 12.8332 5.61647 12.8332 5.34033V5.33366C12.8332 5.05752 13.057 4.83366 13.3332 4.83366ZM2.6665 7.50033C2.94265 7.50033 3.1665 7.72418 3.1665 8.00033V8.00699C3.1665 8.28313 2.94265 8.50699 2.6665 8.50699C2.39036 8.50699 2.1665 8.28313 2.1665 8.00699V8.00033C2.1665 7.72418 2.39036 7.50033 2.6665 7.50033ZM13.3332 7.50033C13.6093 7.50033 13.8332 7.72418 13.8332 8.00033V8.00699C13.8332 8.28313 13.6093 8.50699 13.3332 8.50699C13.057 8.50699 12.8332 8.28313 12.8332 8.00699V8.00033C12.8332 7.72418 13.057 7.50033 13.3332 7.50033ZM2.6665 10.167C2.94265 10.167 3.1665 10.3908 3.1665 10.667V10.6737C3.1665 10.9498 2.94265 11.1737 2.6665 11.1737C2.39036 11.1737 2.1665 10.9498 2.1665 10.6737V10.667C2.1665 10.3908 2.39036 10.167 2.6665 10.167ZM13.3332 10.167C13.6093 10.167 13.8332 10.3908 13.8332 10.667V10.6737C13.8332 10.9498 13.6093 11.1737 13.3332 11.1737C13.057 11.1737 12.8332 10.9498 12.8332 10.6737V10.667C12.8332 10.3908 13.057 10.167 13.3332 10.167ZM2.6665 12.8337C2.94265 12.8337 3.1665 13.0575 3.1665 13.3337V13.3403C3.1665 13.6165 2.94265 13.8403 2.6665 13.8403C2.39036 13.8403 2.1665 13.6165 2.1665 13.3403V13.3337C2.1665 13.0575 2.39036 12.8337 2.6665 12.8337ZM5.33317 12.8337C5.60931 12.8337 5.83317 13.0575 5.83317 13.3337V13.3403C5.83317 13.6165 5.60931 13.8403 5.33317 13.8403C5.05703 13.8403 4.83317 13.6165 4.83317 13.3403V13.3337C4.83317 13.0575 5.05703 12.8337 5.33317 12.8337ZM7.99984 12.8337C8.27598 12.8337 8.49984 13.0575 8.49984 13.3337V13.3403C8.49984 13.6165 8.27598 13.8403 7.99984 13.8403C7.72369 13.8403 7.49984 13.6165 7.49984 13.3403V13.3337C7.49984 13.0575 7.72369 12.8337 7.99984 12.8337ZM10.6665 12.8337C10.9426 12.8337 11.1665 13.0575 11.1665 13.3337V13.3403C11.1665 13.6165 10.9426 13.8403 10.6665 13.8403C10.3904 13.8403 10.1665 13.6165 10.1665 13.3403V13.3337C10.1665 13.0575 10.3904 12.8337 10.6665 12.8337ZM13.3332 12.8337C13.6093 12.8337 13.8332 13.0575 13.8332 13.3337V13.3403C13.8332 13.6165 13.6093 13.8403 13.3332 13.8403C13.057 13.8403 12.8332 13.6165 12.8332 13.3403V13.3337C12.8332 13.0575 13.057 12.8337 13.3332 12.8337Z"
+  }));
+});
+var _default = exports["default"] = IsolateObjectIcon;
+
+/***/ }),
+
 /***/ "../modules/ai/assets/js/editor/icons/lock-icon.js":
 /*!*********************************************************!*\
   !*** ../modules/ai/assets/js/editor/icons/lock-icon.js ***!
@@ -11310,20 +11445,17 @@ var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runt
 var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
 var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js"));
 var _TextField = _interopRequireDefault(__webpack_require__(/*! @elementor/ui/TextField */ "@elementor/ui/TextField"));
-var _wp$components, _wp;
+var _reactColorful = __webpack_require__(/*! react-colorful */ "../node_modules/react-colorful/dist/index.js");
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0, _defineProperty2.default)(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
-var _ref = (_wp$components = (_wp = wp) === null || _wp === void 0 ? void 0 : _wp.components) !== null && _wp$components !== void 0 ? _wp$components : {},
-  ColorPicker = _ref.ColorPicker,
-  ColorIndicator = _ref.ColorIndicator;
-var ColorInput = function ColorInput(_ref2) {
+var ColorInput = function ColorInput(_ref) {
   var _elementorCommon$conf, _elementorCommon;
-  var label = _ref2.label,
-    color = _ref2.color,
-    onChange = _ref2.onChange,
-    disabled = _ref2.disabled;
+  var label = _ref.label,
+    color = _ref.color,
+    onChange = _ref.onChange,
+    disabled = _ref.disabled;
   var _useState = (0, _react.useState)(false),
     _useState2 = (0, _slicedToArray2.default)(_useState, 2),
     isOpened = _useState2[0],
@@ -11349,29 +11481,23 @@ var ColorInput = function ColorInput(_ref2) {
       setZIndex(currentZIndex > 0 ? currentZIndex + 1 : 170001);
     }
   }, [isOpened]);
-  (0, _react.useEffect)(function () {
-    if (anchorEl.current && isOpened) {
-      var timeout = setTimeout(function () {
-        var irrelevantComponents = document.querySelector('.el-ai-custom-color-picker>.components-color-picker > *:not(.react-colorful)');
-        irrelevantComponents === null || irrelevantComponents === void 0 || irrelevantComponents.remove();
-      }, 10);
-      return function () {
-        return clearTimeout(timeout);
-      };
-    }
-  }, [isOpened]);
   var handleClick = function handleClick() {
     return setIsOpened(true);
   };
   var handleClose = function handleClose() {
     setIsOpened(false);
   };
+  var handleKeyDown = function handleKeyDown(event) {
+    if ('Enter' === event.key || ' ' === event.key) {
+      event.preventDefault();
+      handleClick();
+    }
+  };
   var handleTextFieldChange = function handleTextFieldChange(event) {
     onChange("#".concat(event.target.value));
   };
   var handleColorPickerChange = function handleColorPickerChange(colorValue) {
-    // Extract the hex value from the color object
-    onChange(colorValue.hex);
+    onChange(colorValue);
   };
   var id = isOpened ? 'simple-popover' : undefined;
   return /*#__PURE__*/_react.default.createElement("div", {
@@ -11388,18 +11514,21 @@ var ColorInput = function ColorInput(_ref2) {
       whiteSpace: 'nowrap',
       flex: 4
     }
-  }, label), /*#__PURE__*/_react.default.createElement(ColorIndicator, {
-    colorValue: color,
+  }, label), /*#__PURE__*/_react.default.createElement("button", {
+    type: "button",
     onClick: handleClick,
+    onKeyDown: handleKeyDown,
     style: {
       cursor: 'pointer',
       borderRadius: '4px',
       marginRight: '8px',
       marginLeft: '8px',
-      borderColor: 'rgb(12, 13, 14)',
       background: color,
       width: '100%',
       height: 'auto',
+      borderColor: 'rgba(0, 0, 0, 0.23)',
+      borderWidth: '1px',
+      borderStyle: 'solid',
       aspectRatio: '1 / 1',
       flex: 1.1
     },
@@ -11412,6 +11541,9 @@ var ColorInput = function ColorInput(_ref2) {
     InputProps: {
       autoComplete: 'off',
       color: 'secondary',
+      sx: {
+        height: '100%'
+      },
       startAdornment: /*#__PURE__*/_react.default.createElement(_ui.InputAdornment, {
         position: "start"
       }, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
@@ -11421,7 +11553,8 @@ var ColorInput = function ColorInput(_ref2) {
     },
     onChange: handleTextFieldChange,
     sx: {
-      flex: 3
+      flex: 3,
+      height: '40px'
     }
   }), /*#__PURE__*/_react.default.createElement(_ui.Popover, {
     id: id,
@@ -11437,14 +11570,18 @@ var ColorInput = function ColorInput(_ref2) {
     open: isOpened,
     anchorEl: anchorEl.current,
     style: {
-      zIndex: zIndex
+      zIndex: zIndex,
+      overflow: 'hidden'
     }
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "el-ai-custom-color-picker"
-  }, /*#__PURE__*/_react.default.createElement(ColorPicker, {
+    className: "el-ai-custom-color-picker",
+    style: {
+      height: 'min-content',
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/_react.default.createElement(_reactColorful.HexColorPicker, {
     color: color,
-    onChangeComplete: handleColorPickerChange,
-    disableAlpha: true
+    onChange: handleColorPickerChange
   }))));
 };
 var StyledTextField = (0, _ui.styled)(_TextField.default)(function () {
@@ -12927,7 +13064,8 @@ var LOCATIONS = exports.LOCATIONS = {
   REPLACE_BACKGROUND: 'replace-background',
   REMOVE_TEXT: 'remove-text',
   CLEANUP: 'cleanup',
-  PRODUCT_IMAGE_UNIFICATION: 'product-image-unification'
+  PRODUCT_IMAGE_UNIFICATION: 'product-image-unification',
+  ISOLATE_OBJECT: 'isolate-objects'
 };
 var IMAGE_PROMPT_SETTINGS = exports.IMAGE_PROMPT_SETTINGS = {
   IMAGE_TYPE: 'image_type',
@@ -12953,6 +13091,17 @@ var IMAGE_PROMPT_CATEGORIES = exports.IMAGE_PROMPT_CATEGORIES = {
       'long-exposure': (0, _i18n.__)('Long Exposure', 'elementor'),
       product: (0, _i18n.__)('Product', 'elementor'),
       photorealistic: (0, _i18n.__)('Photorealistic', 'elementor')
+    }
+  },
+  vector: {
+    label: (0, _i18n.__)('Vector', 'elementor'),
+    subCategories: {
+      '': (0, _i18n.__)('None', 'elementor'),
+      'typographic-logo': (0, _i18n.__)('Typographic Logo', 'elementor'),
+      'shape-logo': (0, _i18n.__)('Shape Logo', 'elementor'),
+      'handwritten-logo': (0, _i18n.__)('Handwritten Logo', 'elementor'),
+      'line-art-logo': (0, _i18n.__)('Line Art Logo', 'elementor'),
+      'old-school-logo': (0, _i18n.__)('Old School Logo', 'elementor')
     }
   },
   background: {
@@ -13381,6 +13530,7 @@ var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 var _editImageContext = __webpack_require__(/*! ../context/edit-image-context */ "../modules/ai/assets/js/editor/pages/form-media/context/edit-image-context.js");
 var _useImageUpload2 = _interopRequireDefault(__webpack_require__(/*! ./use-image-upload */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-upload.js"));
 var _globalActionsContext = __webpack_require__(/*! ../context/global-actions-context */ "../modules/ai/assets/js/editor/pages/form-media/context/global-actions-context.js");
+var _filesUploadHandler = _interopRequireDefault(__webpack_require__(/*! elementor-editor/utils/files-upload-handler */ "../assets/dev/js/editor/utils/files-upload-handler.js"));
 var _excluded = ["image"];
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0, _defineProperty2.default)(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
@@ -13406,7 +13556,23 @@ var useImageActions = function useImageActions() {
     uploadError = _useImageUpload.uploadError,
     uploadImage = _useImageUpload.upload,
     resetUpload = _useImageUpload.resetUpload;
+  var ensureSVGUploading = function ensureSVGUploading(imageUrl) {
+    if (!imageUrl) {
+      return true;
+    }
+    var imageExtension = new URL(imageUrl).pathname.split('.').pop();
+    var isUploadAllowed = window._wpPluploadSettings.defaults.filters.mime_types[0].extensions.split(',').includes(imageExtension) || elementorCommon.config.filesUpload.unfilteredFiles;
+    if (!isUploadAllowed) {
+      var dialog = _filesUploadHandler.default.getUnfilteredFilesNotEnabledDialog(function () {});
+      dialog.getElements('widget').css('z-index', '170001');
+      dialog.show();
+    }
+    return isUploadAllowed;
+  };
   var upload = function upload(imageToUpload, prompt) {
+    if (!ensureSVGUploading(imageToUpload.image_url)) {
+      return Promise.reject(new Error('SVG Uploading is not allowed'));
+    }
     return uploadImage({
       image: normalizeImageData(imageToUpload),
       prompt: prompt || imageToUpload.prompt
@@ -13431,7 +13597,7 @@ var useImageActions = function useImageActions() {
             return upload(imageToUpload, prompt);
           case 6:
             result = _context.sent;
-            return _context.abrupt("return", result.image);
+            return _context.abrupt("return", result === null || result === void 0 ? void 0 : result.image);
           case 8:
           case "end":
             return _context.stop();
@@ -13959,6 +14125,7 @@ var _promptHistoryActionContext = __webpack_require__(/*! ../../components/promp
 var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js"));
 var _useTextToImage = _interopRequireDefault(__webpack_require__(/*! ./views/generate/hooks/use-text-to-image */ "../modules/ai/assets/js/editor/pages/form-media/views/generate/hooks/use-text-to-image.js"));
 var _productImageUnification = _interopRequireDefault(__webpack_require__(/*! ./views/product-image-unification */ "../modules/ai/assets/js/editor/pages/form-media/views/product-image-unification/index.js"));
+var _isolateObjects = _interopRequireDefault(__webpack_require__(/*! ./views/isolate-objects */ "../modules/ai/assets/js/editor/pages/form-media/views/isolate-objects/index.js"));
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 var MediaOutlet = function MediaOutlet(_ref) {
@@ -14005,7 +14172,7 @@ var MediaOutlet = function MediaOutlet(_ref) {
     initialSettings: additionalOptions === null || additionalOptions === void 0 ? void 0 : additionalOptions.initialSettings
   }), current === _constants.LOCATIONS.IMAGE_TOOLS && /*#__PURE__*/_react.default.createElement(_imageTools.default, null), current === _constants.LOCATIONS.VARIATIONS && /*#__PURE__*/_react.default.createElement(_variations.default, null), current === _constants.LOCATIONS.IN_PAINTING && /*#__PURE__*/_react.default.createElement(_inPainting.default, null), current === _constants.LOCATIONS.OUT_PAINTING && /*#__PURE__*/_react.default.createElement(_outPainting.default, null), current === _constants.LOCATIONS.RESIZE && /*#__PURE__*/_react.default.createElement(_resize.default, null), current === _constants.LOCATIONS.REPLACE_BACKGROUND && /*#__PURE__*/_react.default.createElement(_replaceBackground.default, null), current === _constants.LOCATIONS.REMOVE_BACKGROUND && /*#__PURE__*/_react.default.createElement(_removeBackground.default, null), current === _constants.LOCATIONS.CLEANUP && /*#__PURE__*/_react.default.createElement(_cleanup.default, null), current === _constants.LOCATIONS.PRODUCT_IMAGE_UNIFICATION && /*#__PURE__*/_react.default.createElement(_productImageUnification.default, {
     onClose: onClose
-  }));
+  }), current === _constants.LOCATIONS.ISOLATE_OBJECT && /*#__PURE__*/_react.default.createElement(_isolateObjects.default, null));
 };
 var _default = exports["default"] = MediaOutlet;
 MediaOutlet.propTypes = {
@@ -14524,6 +14691,12 @@ var shuffleImages = function shuffleImages(images) {
     return image;
   });
 };
+var checkImageTypeIgnoreStyle = function checkImageTypeIgnoreStyle(imageType, selectedType) {
+  var _imageType$split = imageType.split('/'),
+    _imageType$split2 = (0, _slicedToArray2.default)(_imageType$split, 1),
+    imageTypeFilter = _imageType$split2[0];
+  return imageTypeFilter === selectedType;
+};
 var useSuggestedImages = function useSuggestedImages(_ref7) {
   var selectedType = _ref7.selectedType;
   var _useState = (0, _react.useState)(false),
@@ -14546,7 +14719,7 @@ var useSuggestedImages = function useSuggestedImages(_ref7) {
     }
     var categoryImages = shuffledImages.filter(function (_ref8) {
       var imageType = _ref8.imageType;
-      return imageType.includes(selectedType);
+      return checkImageTypeIgnoreStyle(imageType, selectedType);
     });
 
     // Some categories don't have images, so we TEMPORARILY fallback to the shuffled images.
@@ -14904,8 +15077,10 @@ var _enlargerIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../i
 var _removeBg = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/remove-bg */ "../modules/ai/assets/js/editor/icons/remove-bg.js"));
 var _replaceBg = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/replace-bg */ "../modules/ai/assets/js/editor/icons/replace-bg.js"));
 var _cleanupIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/cleanup-icon */ "../modules/ai/assets/js/editor/icons/cleanup-icon.js"));
+var _isolateObjectIcon = _interopRequireDefault(__webpack_require__(/*! ../../../../icons/isolate-object-icon */ "../modules/ai/assets/js/editor/icons/isolate-object-icon.js"));
 var _constants = __webpack_require__(/*! ../../constants */ "../modules/ai/assets/js/editor/pages/form-media/constants/index.js");
 var _locationContext = __webpack_require__(/*! ../../context/location-context */ "../modules/ai/assets/js/editor/pages/form-media/context/location-context.js");
+var _useIntroduction2 = _interopRequireDefault(__webpack_require__(/*! ../../../../hooks/use-introduction */ "../modules/ai/assets/js/editor/hooks/use-introduction.js"));
 var TeaserDrawing = function TeaserDrawing() {
   return /*#__PURE__*/_react.default.createElement(_ui.SvgIcon, {
     viewBox: "0 0 184 80",
@@ -14989,9 +15164,23 @@ var ToolsTeaserContainer = (0, _ui.styled)(_ui.Box)(function (_ref2) {
     padding: theme.spacing(4, 0, 1)
   };
 });
+var StyledChip = (0, _ui.styled)(_ui.Chip)(function () {
+  return {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    '& .MuiChip-label': {
+      fontSize: '0.75rem',
+      fontWeight: 'normal'
+    }
+  };
+});
 var ImageToolsPanel = function ImageToolsPanel() {
   var _useLocation = (0, _locationContext.useLocation)(),
     navigate = _useLocation.navigate;
+  var _useIntroduction = (0, _useIntroduction2.default)('e-ai-image-isolate-tool'),
+    isIsolateViewed = _useIntroduction.isViewed,
+    markIsolateAsViewed = _useIntroduction.markAsViewed;
   var tools = [{
     label: (0, _i18n.__)('Expand Image', 'elementor'),
     Icon: _expandIcon.default,
@@ -15034,6 +15223,19 @@ var ImageToolsPanel = function ImageToolsPanel() {
     onClick: function onClick() {
       return navigate(_constants.LOCATIONS.CLEANUP);
     }
+  }, {
+    label: (0, _i18n.__)('Isolate object', 'elementor'),
+    Icon: _isolateObjectIcon.default,
+    ChipParam: !isIsolateViewed ? /*#__PURE__*/_react.default.createElement(StyledChip, {
+      label: "New",
+      color: "info",
+      variant: "standard",
+      size: "tiny"
+    }) : null,
+    onClick: function onClick() {
+      markIsolateAsViewed();
+      navigate(_constants.LOCATIONS.ISOLATE_OBJECT);
+    }
   }];
   return /*#__PURE__*/_react.default.createElement(ImageToolsContainer, null, /*#__PURE__*/_react.default.createElement(_ui.Box, {
     display: "grid",
@@ -15043,6 +15245,7 @@ var ImageToolsPanel = function ImageToolsPanel() {
   }, tools.map(function (_ref3) {
     var label = _ref3.label,
       Icon = _ref3.Icon,
+      ChipParam = _ref3.ChipParam,
       onClick = _ref3.onClick;
     return /*#__PURE__*/_react.default.createElement(_ui.Button, {
       onClick: onClick,
@@ -15056,7 +15259,7 @@ var ImageToolsPanel = function ImageToolsPanel() {
         height: 'auto',
         borderRadius: '4px'
       }
-    }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
+    }, ChipParam, /*#__PURE__*/_react.default.createElement(_ui.Box, {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -15532,6 +15735,144 @@ var InPainting = function InPainting() {
   })));
 };
 var _default = exports["default"] = InPainting;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/isolate-objects/hooks/use-isolate-objects.js":
+/*!**********************************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/isolate-objects/hooks/use-isolate-objects.js ***!
+  \**********************************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _api = __webpack_require__(/*! ../../../../../api */ "../modules/ai/assets/js/editor/api/index.js");
+var _useImagePrompt = _interopRequireDefault(__webpack_require__(/*! ../../../hooks/use-image-prompt */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-prompt.js"));
+var useIsolateObject = function useIsolateObject(initialValue) {
+  var fetchAction = function fetchAction(payload) {
+    return (0, _api.getImageToImageIsolateObjects)(payload);
+  };
+  return (0, _useImagePrompt.default)(fetchAction, initialValue);
+};
+var _default = exports["default"] = useIsolateObject;
+
+/***/ }),
+
+/***/ "../modules/ai/assets/js/editor/pages/form-media/views/isolate-objects/index.js":
+/*!**************************************************************************************!*\
+  !*** ../modules/ai/assets/js/editor/pages/form-media/views/isolate-objects/index.js ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _i18n = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+var _view = _interopRequireDefault(__webpack_require__(/*! ../../components/view */ "../modules/ai/assets/js/editor/pages/form-media/components/view.js"));
+var _generateSubmit = _interopRequireDefault(__webpack_require__(/*! ../../components/generate-submit */ "../modules/ai/assets/js/editor/pages/form-media/components/generate-submit.js"));
+var _imageForm = _interopRequireDefault(__webpack_require__(/*! ../../components/image-form */ "../modules/ai/assets/js/editor/pages/form-media/components/image-form.js"));
+var _imagesDisplay = _interopRequireDefault(__webpack_require__(/*! ../../components/images-display */ "../modules/ai/assets/js/editor/pages/form-media/components/images-display.js"));
+var _singleImagePreview = _interopRequireDefault(__webpack_require__(/*! ../../components/single-image-preview */ "../modules/ai/assets/js/editor/pages/form-media/components/single-image-preview.js"));
+var _editImageContext = __webpack_require__(/*! ../../context/edit-image-context */ "../modules/ai/assets/js/editor/pages/form-media/context/edit-image-context.js");
+var _useImageActions2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-actions */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-actions.js"));
+var _useIsolateObjects = _interopRequireDefault(__webpack_require__(/*! ./hooks/use-isolate-objects */ "../modules/ai/assets/js/editor/pages/form-media/views/isolate-objects/hooks/use-isolate-objects.js"));
+var _useImageSize2 = _interopRequireDefault(__webpack_require__(/*! ../../hooks/use-image-size */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-image-size.js"));
+var _requestsIds = __webpack_require__(/*! ../../../../context/requests-ids */ "../modules/ai/assets/js/editor/context/requests-ids.js");
+var _usePromptSettings2 = _interopRequireWildcard(__webpack_require__(/*! ../../hooks/use-prompt-settings */ "../modules/ai/assets/js/editor/pages/form-media/hooks/use-prompt-settings.js"));
+var _colorPicker = _interopRequireDefault(__webpack_require__(/*! ../../components/color-picker */ "../modules/ai/assets/js/editor/pages/form-media/components/color-picker.js"));
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+var IsolateObject = function IsolateObject() {
+  var _useEditImage = (0, _editImageContext.useEditImage)(),
+    editImage = _useEditImage.editImage;
+  var _useRequestIds = (0, _requestsIds.useRequestIds)(),
+    setGenerate = _useRequestIds.setGenerate;
+  var _useImageActions = (0, _useImageActions2.default)(),
+    use = _useImageActions.use,
+    edit = _useImageActions.edit,
+    isUploading = _useImageActions.isLoading;
+  var _usePromptSettings = (0, _usePromptSettings2.default)(),
+    settings = _usePromptSettings.settings,
+    updateSettings = _usePromptSettings.updateSettings;
+  var _useIsolateObject = (0, _useIsolateObjects.default)(),
+    data = _useIsolateObject.data,
+    send = _useIsolateObject.send,
+    isGenerating = _useIsolateObject.isLoading,
+    error = _useIsolateObject.error;
+  var isLoading = isGenerating || isUploading;
+  var _useImageSize = (0, _useImageSize2.default)(editImage.aspectRatio),
+    width = _useImageSize.width,
+    height = _useImageSize.height;
+  var generatedAspectRatio = (0, _react.useMemo)(function () {
+    return settings[_usePromptSettings2.IMAGE_RATIO];
+  }, [settings]);
+  var generatedBgColor = (0, _react.useMemo)(function () {
+    return settings[_usePromptSettings2.IMAGE_BACKGROUND_COLOR];
+  }, [settings]);
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    setGenerate();
+    send({
+      image: editImage,
+      settings: (0, _defineProperty2.default)((0, _defineProperty2.default)({}, _usePromptSettings2.IMAGE_RATIO, generatedAspectRatio), _usePromptSettings2.IMAGE_BACKGROUND_COLOR, generatedBgColor)
+    });
+  };
+  return /*#__PURE__*/_react.default.createElement(_view.default, null, /*#__PURE__*/_react.default.createElement(_view.default.Panel, null, /*#__PURE__*/_react.default.createElement(_view.default.BackButton, null), /*#__PURE__*/_react.default.createElement(_view.default.PanelHeading, {
+    primary: (0, _i18n.__)('Isolate Object', 'elementor'),
+    secondary: (0, _i18n.__)('Remove the background, center your object, and add a drop shadow for a clean look.', 'elementor')
+  }), error && /*#__PURE__*/_react.default.createElement(_view.default.ErrorMessage, {
+    error: error,
+    onRetry: handleSubmit
+  }), /*#__PURE__*/_react.default.createElement(_imageForm.default, {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+    gap: 2,
+    sx: {
+      my: 2.5
+    }
+  }, /*#__PURE__*/_react.default.createElement(_colorPicker.default, {
+    label: (0, _i18n.__)('Background Color', 'elementor'),
+    color: generatedBgColor,
+    onChange: function onChange(color) {
+      return updateSettings((0, _defineProperty2.default)({}, _usePromptSettings2.IMAGE_BACKGROUND_COLOR, color));
+    },
+    disabled: isLoading
+  }), /*#__PURE__*/_react.default.createElement(_generateSubmit.default, {
+    disabled: isLoading,
+    loading: isLoading
+  }, (0, _i18n.__)('Isolate Object', 'elementor'))))), /*#__PURE__*/_react.default.createElement(_view.default.Content, {
+    isGenerating: isLoading
+  }, data !== null && data !== void 0 && data.result ? /*#__PURE__*/_react.default.createElement(_ui.Box, null, /*#__PURE__*/_react.default.createElement(_imagesDisplay.default, {
+    transparentContainer: true,
+    onUseImage: use,
+    onEditImage: edit,
+    images: data.result,
+    aspectRatio: editImage.aspectRatio
+  })) : /*#__PURE__*/_react.default.createElement(_ui.Box, null, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default, null, /*#__PURE__*/_react.default.createElement(_singleImagePreview.default.Image, {
+    src: editImage.url,
+    alt: editImage.alt,
+    style: {
+      width: width,
+      height: height
+    }
+  })))));
+};
+var _default = exports["default"] = IsolateObject;
 
 /***/ }),
 
@@ -21969,6 +22310,18 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "../node_modules/react-colorful/dist/index.js":
+/*!****************************************************!*\
+  !*** ../node_modules/react-colorful/dist/index.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+var e=__webpack_require__(/*! react */ "react");function r(e){return e&&"object"==typeof e&&"default"in e?e:{default:e}}var t=r(e);function o(){return(o=Object.assign||function(e){for(var r=1;r<arguments.length;r++){var t=arguments[r];for(var o in t)Object.prototype.hasOwnProperty.call(t,o)&&(e[o]=t[o])}return e}).apply(this,arguments)}function n(e,r){if(null==e)return{};var t,o,n={},a=Object.keys(e);for(o=0;o<a.length;o++)r.indexOf(t=a[o])>=0||(n[t]=e[t]);return n}function a(r){var t=e.useRef(r),o=e.useRef(function(e){t.current&&t.current(e)});return t.current=r,o.current}var l=function(e,r,t){return void 0===r&&(r=0),void 0===t&&(t=1),e>t?t:e<r?r:e},u=function(e){return"touches"in e},c=function(e){return e&&e.ownerDocument.defaultView||self},s=function(e,r,t){var o=e.getBoundingClientRect(),n=u(r)?function(e,r){for(var t=0;t<e.length;t++)if(e[t].identifier===r)return e[t];return e[0]}(r.touches,t):r;return{left:l((n.pageX-(o.left+c(e).pageXOffset))/o.width),top:l((n.pageY-(o.top+c(e).pageYOffset))/o.height)}},f=function(e){!u(e)&&e.preventDefault()},i=t.default.memo(function(r){var l=r.onMove,i=r.onKey,d=n(r,["onMove","onKey"]),v=e.useRef(null),h=a(l),g=a(i),m=e.useRef(null),p=e.useRef(!1),b=e.useMemo(function(){var e=function(e){f(e),(u(e)?e.touches.length>0:e.buttons>0)&&v.current?h(s(v.current,e,m.current)):t(!1)},r=function(){return t(!1)};function t(t){var o=p.current,n=c(v.current),a=t?n.addEventListener:n.removeEventListener;a(o?"touchmove":"mousemove",e),a(o?"touchend":"mouseup",r)}return[function(e){var r=e.nativeEvent,o=v.current;if(o&&(f(r),!function(e,r){return r&&!u(e)}(r,p.current)&&o)){if(u(r)){p.current=!0;var n=r.changedTouches||[];n.length&&(m.current=n[0].identifier)}o.focus(),h(s(o,r,m.current)),t(!0)}},function(e){var r=e.which||e.keyCode;r<37||r>40||(e.preventDefault(),g({left:39===r?.05:37===r?-.05:0,top:40===r?.05:38===r?-.05:0}))},t]},[g,h]),_=b[0],C=b[1],x=b[2];return e.useEffect(function(){return x},[x]),t.default.createElement("div",o({},d,{onTouchStart:_,onMouseDown:_,className:"react-colorful__interactive",ref:v,onKeyDown:C,tabIndex:0,role:"slider"}))}),d=function(e){return e.filter(Boolean).join(" ")},v=function(e){var r=e.color,o=e.left,n=e.top,a=void 0===n?.5:n,l=d(["react-colorful__pointer",e.className]);return t.default.createElement("div",{className:l,style:{top:100*a+"%",left:100*o+"%"}},t.default.createElement("div",{className:"react-colorful__pointer-fill",style:{backgroundColor:r}}))},h=function(e,r,t){return void 0===r&&(r=0),void 0===t&&(t=Math.pow(10,r)),Math.round(t*e)/t},g={grad:.9,turn:360,rad:360/(2*Math.PI)},m=function(e){return S(p(e))},p=function(e){return"#"===e[0]&&(e=e.substring(1)),e.length<6?{r:parseInt(e[0]+e[0],16),g:parseInt(e[1]+e[1],16),b:parseInt(e[2]+e[2],16),a:4===e.length?h(parseInt(e[3]+e[3],16)/255,2):1}:{r:parseInt(e.substring(0,2),16),g:parseInt(e.substring(2,4),16),b:parseInt(e.substring(4,6),16),a:8===e.length?h(parseInt(e.substring(6,8),16)/255,2):1}},b=function(e,r){return void 0===r&&(r="deg"),Number(e)*(g[r]||1)},_=function(e){var r=/hsla?\(?\s*(-?\d*\.?\d+)(deg|rad|grad|turn)?[,\s]+(-?\d*\.?\d+)%?[,\s]+(-?\d*\.?\d+)%?,?\s*[/\s]*(-?\d*\.?\d+)?(%)?\s*\)?/i.exec(e);return r?x({h:b(r[1],r[2]),s:Number(r[3]),l:Number(r[4]),a:void 0===r[5]?1:Number(r[5])/(r[6]?100:1)}):{h:0,s:0,v:0,a:1}},C=_,x=function(e){var r=e.s,t=e.l;return{h:e.h,s:(r*=(t<50?t:100-t)/100)>0?2*r/(t+r)*100:0,v:t+r,a:e.a}},E=function(e){return I(N(e))},H=function(e){var r=e.s,t=e.v,o=e.a,n=(200-r)*t/100;return{h:h(e.h),s:h(n>0&&n<200?r*t/100/(n<=100?n:200-n)*100:0),l:h(n/2),a:h(o,2)}},M=function(e){var r=H(e);return"hsl("+r.h+", "+r.s+"%, "+r.l+"%)"},k=function(e){var r=H(e);return"hsla("+r.h+", "+r.s+"%, "+r.l+"%, "+r.a+")"},N=function(e){var r=e.h,t=e.s,o=e.v,n=e.a;r=r/360*6,t/=100,o/=100;var a=Math.floor(r),l=o*(1-t),u=o*(1-(r-a)*t),c=o*(1-(1-r+a)*t),s=a%6;return{r:h(255*[o,u,l,l,c,o][s]),g:h(255*[c,o,o,u,l,l][s]),b:h(255*[l,l,c,o,o,u][s]),a:h(n,2)}},w=function(e){var r=/hsva?\(?\s*(-?\d*\.?\d+)(deg|rad|grad|turn)?[,\s]+(-?\d*\.?\d+)%?[,\s]+(-?\d*\.?\d+)%?,?\s*[/\s]*(-?\d*\.?\d+)?(%)?\s*\)?/i.exec(e);return r?O({h:b(r[1],r[2]),s:Number(r[3]),v:Number(r[4]),a:void 0===r[5]?1:Number(r[5])/(r[6]?100:1)}):{h:0,s:0,v:0,a:1}},y=w,q=function(e){var r=/rgba?\(?\s*(-?\d*\.?\d+)(%)?[,\s]+(-?\d*\.?\d+)(%)?[,\s]+(-?\d*\.?\d+)(%)?,?\s*[/\s]*(-?\d*\.?\d+)?(%)?\s*\)?/i.exec(e);return r?S({r:Number(r[1])/(r[2]?100/255:1),g:Number(r[3])/(r[4]?100/255:1),b:Number(r[5])/(r[6]?100/255:1),a:void 0===r[7]?1:Number(r[7])/(r[8]?100:1)}):{h:0,s:0,v:0,a:1}},P=q,R=function(e){var r=e.toString(16);return r.length<2?"0"+r:r},I=function(e){var r=e.r,t=e.g,o=e.b,n=e.a,a=n<1?R(h(255*n)):"";return"#"+R(r)+R(t)+R(o)+a},S=function(e){var r=e.r,t=e.g,o=e.b,n=e.a,a=Math.max(r,t,o),l=a-Math.min(r,t,o),u=l?a===r?(t-o)/l:a===t?2+(o-r)/l:4+(r-t)/l:0;return{h:h(60*(u<0?u+6:u)),s:h(a?l/a*100:0),v:h(a/255*100),a:n}},O=function(e){return{h:h(e.h),s:h(e.s),v:h(e.v),a:h(e.a,2)}},j=t.default.memo(function(e){var r=e.hue,o=e.onChange,n=d(["react-colorful__hue",e.className]);return t.default.createElement("div",{className:n},t.default.createElement(i,{onMove:function(e){o({h:360*e.left})},onKey:function(e){o({h:l(r+360*e.left,0,360)})},"aria-label":"Hue","aria-valuenow":h(r),"aria-valuemax":"360","aria-valuemin":"0"},t.default.createElement(v,{className:"react-colorful__hue-pointer",left:r/360,color:M({h:r,s:100,v:100,a:1})})))}),z=t.default.memo(function(e){var r=e.hsva,o=e.onChange,n={backgroundColor:M({h:r.h,s:100,v:100,a:1})};return t.default.createElement("div",{className:"react-colorful__saturation",style:n},t.default.createElement(i,{onMove:function(e){o({s:100*e.left,v:100-100*e.top})},onKey:function(e){o({s:l(r.s+100*e.left,0,100),v:l(r.v-100*e.top,0,100)})},"aria-label":"Color","aria-valuetext":"Saturation "+h(r.s)+"%, Brightness "+h(r.v)+"%"},t.default.createElement(v,{className:"react-colorful__saturation-pointer",top:1-r.v/100,left:r.s/100,color:M(r)})))}),B=function(e,r){if(e===r)return!0;for(var t in e)if(e[t]!==r[t])return!1;return!0},D=function(e,r){return e.replace(/\s/g,"")===r.replace(/\s/g,"")},K=function(e,r){return e.toLowerCase()===r.toLowerCase()||B(p(e),p(r))};function L(r,t,o){var n=a(o),l=e.useState(function(){return r.toHsva(t)}),u=l[0],c=l[1],s=e.useRef({color:t,hsva:u});e.useEffect(function(){if(!r.equal(t,s.current.color)){var e=r.toHsva(t);s.current={hsva:e,color:t},c(e)}},[t,r]),e.useEffect(function(){var e;B(u,s.current.hsva)||r.equal(e=r.fromHsva(u),s.current.color)||(s.current={hsva:u,color:e},n(e))},[u,r,n]);var f=e.useCallback(function(e){c(function(r){return Object.assign({},r,e)})},[]);return[u,f]}var A,T="undefined"!=typeof window?e.useLayoutEffect:e.useEffect,F=function(){return A||( true?__webpack_require__.nc:0)},X=new Map,Y=function(e){T(function(){var r=e.current?e.current.ownerDocument:document;if(void 0!==r&&!X.has(r)){var t=r.createElement("style");t.innerHTML='.react-colorful{position:relative;display:flex;flex-direction:column;width:200px;height:200px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default}.react-colorful__saturation{position:relative;flex-grow:1;border-color:transparent;border-bottom:12px solid #000;border-radius:8px 8px 0 0;background-image:linear-gradient(0deg,#000,transparent),linear-gradient(90deg,#fff,hsla(0,0%,100%,0))}.react-colorful__alpha-gradient,.react-colorful__pointer-fill{content:"";position:absolute;left:0;top:0;right:0;bottom:0;pointer-events:none;border-radius:inherit}.react-colorful__alpha-gradient,.react-colorful__saturation{box-shadow:inset 0 0 0 1px rgba(0,0,0,.05)}.react-colorful__alpha,.react-colorful__hue{position:relative;height:24px}.react-colorful__hue{background:linear-gradient(90deg,red 0,#ff0 17%,#0f0 33%,#0ff 50%,#00f 67%,#f0f 83%,red)}.react-colorful__last-control{border-radius:0 0 8px 8px}.react-colorful__interactive{position:absolute;left:0;top:0;right:0;bottom:0;border-radius:inherit;outline:none;touch-action:none}.react-colorful__pointer{position:absolute;z-index:1;box-sizing:border-box;width:28px;height:28px;transform:translate(-50%,-50%);background-color:#fff;border:2px solid #fff;border-radius:50%;box-shadow:0 2px 4px rgba(0,0,0,.2)}.react-colorful__interactive:focus .react-colorful__pointer{transform:translate(-50%,-50%) scale(1.1)}.react-colorful__alpha,.react-colorful__alpha-pointer{background-color:#fff;background-image:url(\'data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill-opacity=".05"><path d="M8 0h8v8H8zM0 8h8v8H0z"/></svg>\')}.react-colorful__saturation-pointer{z-index:3}.react-colorful__hue-pointer{z-index:2}',X.set(r,t);var o=F();o&&t.setAttribute("nonce",o),r.head.appendChild(t)}},[])},V=function(r){var a=r.className,l=r.colorModel,u=r.color,c=void 0===u?l.defaultColor:u,s=r.onChange,f=n(r,["className","colorModel","color","onChange"]),i=e.useRef(null);Y(i);var v=L(l,c,s),h=v[0],g=v[1],m=d(["react-colorful",a]);return t.default.createElement("div",o({},f,{ref:i,className:m}),t.default.createElement(z,{hsva:h,onChange:g}),t.default.createElement(j,{hue:h.h,onChange:g,className:"react-colorful__last-control"}))},$={defaultColor:"000",toHsva:m,fromHsva:function(e){return E({h:e.h,s:e.s,v:e.v,a:1})},equal:K},G=function(e){var r=e.className,o=e.hsva,n=e.onChange,a={backgroundImage:"linear-gradient(90deg, "+k(Object.assign({},o,{a:0}))+", "+k(Object.assign({},o,{a:1}))+")"},u=d(["react-colorful__alpha",r]),c=h(100*o.a);return t.default.createElement("div",{className:u},t.default.createElement("div",{className:"react-colorful__alpha-gradient",style:a}),t.default.createElement(i,{onMove:function(e){n({a:e.left})},onKey:function(e){n({a:l(o.a+e.left)})},"aria-label":"Alpha","aria-valuetext":c+"%","aria-valuenow":c,"aria-valuemin":"0","aria-valuemax":"100"},t.default.createElement(v,{className:"react-colorful__alpha-pointer",left:o.a,color:k(o)})))},J=function(r){var a=r.className,l=r.colorModel,u=r.color,c=void 0===u?l.defaultColor:u,s=r.onChange,f=n(r,["className","colorModel","color","onChange"]),i=e.useRef(null);Y(i);var v=L(l,c,s),h=v[0],g=v[1],m=d(["react-colorful",a]);return t.default.createElement("div",o({},f,{ref:i,className:m}),t.default.createElement(z,{hsva:h,onChange:g}),t.default.createElement(j,{hue:h.h,onChange:g}),t.default.createElement(G,{hsva:h,onChange:g,className:"react-colorful__last-control"}))},Q={defaultColor:"0001",toHsva:m,fromHsva:E,equal:K},U={defaultColor:{h:0,s:0,l:0,a:1},toHsva:x,fromHsva:H,equal:B},W={defaultColor:"hsla(0, 0%, 0%, 1)",toHsva:_,fromHsva:k,equal:D},Z={defaultColor:{h:0,s:0,l:0},toHsva:function(e){return x({h:e.h,s:e.s,l:e.l,a:1})},fromHsva:function(e){return{h:(r=H(e)).h,s:r.s,l:r.l};var r},equal:B},ee={defaultColor:"hsl(0, 0%, 0%)",toHsva:C,fromHsva:M,equal:D},re={defaultColor:{h:0,s:0,v:0,a:1},toHsva:function(e){return e},fromHsva:O,equal:B},te={defaultColor:"hsva(0, 0%, 0%, 1)",toHsva:w,fromHsva:function(e){var r=O(e);return"hsva("+r.h+", "+r.s+"%, "+r.v+"%, "+r.a+")"},equal:D},oe={defaultColor:{h:0,s:0,v:0},toHsva:function(e){return{h:e.h,s:e.s,v:e.v,a:1}},fromHsva:function(e){var r=O(e);return{h:r.h,s:r.s,v:r.v}},equal:B},ne={defaultColor:"hsv(0, 0%, 0%)",toHsva:y,fromHsva:function(e){var r=O(e);return"hsv("+r.h+", "+r.s+"%, "+r.v+"%)"},equal:D},ae={defaultColor:{r:0,g:0,b:0,a:1},toHsva:S,fromHsva:N,equal:B},le={defaultColor:"rgba(0, 0, 0, 1)",toHsva:q,fromHsva:function(e){var r=N(e);return"rgba("+r.r+", "+r.g+", "+r.b+", "+r.a+")"},equal:D},ue={defaultColor:{r:0,g:0,b:0},toHsva:function(e){return S({r:e.r,g:e.g,b:e.b,a:1})},fromHsva:function(e){return{r:(r=N(e)).r,g:r.g,b:r.b};var r},equal:B},ce={defaultColor:"rgb(0, 0, 0)",toHsva:P,fromHsva:function(e){var r=N(e);return"rgb("+r.r+", "+r.g+", "+r.b+")"},equal:D},se=/^#?([0-9A-F]{3,8})$/i,fe=function(r){var l=r.color,u=void 0===l?"":l,c=r.onChange,s=r.onBlur,f=r.escape,i=r.validate,d=r.format,v=r.process,h=n(r,["color","onChange","onBlur","escape","validate","format","process"]),g=e.useState(function(){return f(u)}),m=g[0],p=g[1],b=a(c),_=a(s),C=e.useCallback(function(e){var r=f(e.target.value);p(r),i(r)&&b(v?v(r):r)},[f,v,i,b]),x=e.useCallback(function(e){i(e.target.value)||p(f(u)),_(e)},[u,f,i,_]);return e.useEffect(function(){p(f(u))},[u,f]),t.default.createElement("input",o({},h,{value:d?d(m):m,spellCheck:"false",onChange:C,onBlur:x}))},ie=function(e){return"#"+e};exports.HexAlphaColorPicker=function(e){return t.default.createElement(J,o({},e,{colorModel:Q}))},exports.HexColorInput=function(r){var a=r.prefixed,l=r.alpha,u=n(r,["prefixed","alpha"]),c=e.useCallback(function(e){return e.replace(/([^0-9A-F]+)/gi,"").substring(0,l?8:6)},[l]),s=e.useCallback(function(e){return function(e,r){var t=se.exec(e),o=t?t[1].length:0;return 3===o||6===o||!!r&&4===o||!!r&&8===o}(e,l)},[l]);return t.default.createElement(fe,o({},u,{escape:c,format:a?ie:void 0,process:ie,validate:s}))},exports.HexColorPicker=function(e){return t.default.createElement(V,o({},e,{colorModel:$}))},exports.HslColorPicker=function(e){return t.default.createElement(V,o({},e,{colorModel:Z}))},exports.HslStringColorPicker=function(e){return t.default.createElement(V,o({},e,{colorModel:ee}))},exports.HslaColorPicker=function(e){return t.default.createElement(J,o({},e,{colorModel:U}))},exports.HslaStringColorPicker=function(e){return t.default.createElement(J,o({},e,{colorModel:W}))},exports.HsvColorPicker=function(e){return t.default.createElement(V,o({},e,{colorModel:oe}))},exports.HsvStringColorPicker=function(e){return t.default.createElement(V,o({},e,{colorModel:ne}))},exports.HsvaColorPicker=function(e){return t.default.createElement(J,o({},e,{colorModel:re}))},exports.HsvaStringColorPicker=function(e){return t.default.createElement(J,o({},e,{colorModel:te}))},exports.RgbColorPicker=function(e){return t.default.createElement(V,o({},e,{colorModel:ue}))},exports.RgbStringColorPicker=function(e){return t.default.createElement(V,o({},e,{colorModel:ce}))},exports.RgbaColorPicker=function(e){return t.default.createElement(J,o({},e,{colorModel:ae}))},exports.RgbaStringColorPicker=function(e){return t.default.createElement(J,o({},e,{colorModel:le}))},exports.setNonce=function(e){A=e};
+//# sourceMappingURL=index.js.map
+
+
+/***/ }),
+
 /***/ "../node_modules/react-dom/client.js":
 /*!*******************************************!*\
   !*** ../node_modules/react-dom/client.js ***!
@@ -26402,6 +26755,41 @@ function _asyncToGenerator(n) {
   };
 }
 module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ "../node_modules/@babel/runtime/helpers/classCallCheck.js":
+/*!****************************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/classCallCheck.js ***!
+  \****************************************************************/
+/***/ ((module) => {
+
+function _classCallCheck(a, n) {
+  if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function");
+}
+module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ "../node_modules/@babel/runtime/helpers/createClass.js":
+/*!*************************************************************!*\
+  !*** ../node_modules/@babel/runtime/helpers/createClass.js ***!
+  \*************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var toPropertyKey = __webpack_require__(/*! ./toPropertyKey.js */ "../node_modules/@babel/runtime/helpers/toPropertyKey.js");
+function _defineProperties(e, r) {
+  for (var t = 0; t < r.length; t++) {
+    var o = r[t];
+    o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, toPropertyKey(o.key), o);
+  }
+}
+function _createClass(e, r, t) {
+  return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", {
+    writable: !1
+  }), e;
+}
+module.exports = _createClass, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 

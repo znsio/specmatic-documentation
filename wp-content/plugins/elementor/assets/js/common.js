@@ -1,4 +1,4 @@
-/*! elementor - v3.27.0 - 18-02-2025 */
+/*! elementor - v3.28.0 - 01-04-2025 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -3111,59 +3111,13 @@ var Helpers = exports["default"] = /*#__PURE__*/function () {
     (0, _classCallCheck2.default)(this, Helpers);
   }
   return (0, _createClass2.default)(Helpers, [{
-    key: "softDeprecated",
+    key: "consoleWarn",
     value:
-    /**
-     * @param {string} name
-     * @param {string} version
-     * @param {string} replacement
-     * @deprecated since 3.7.0, use `elementorDevTools.deprecation.deprecated()` instead.
-     */
-    function softDeprecated(name, version, replacement) {
-      elementorDevTools.deprecation.deprecated(name, version, replacement);
-
-      // This is is self is deprecated.
-      elementorDevTools.deprecation.deprecated('elementorCommon.helpers.softDeprecated()', '3.7.0', 'elementorDevTools.deprecation.deprecated()');
-    }
-
-    /**
-     * @param {string} name
-     * @param {string} version
-     * @param {string} replacement
-     * @deprecated since 3.7.0, use `elementorDevTools.deprecation.deprecated()` instead.
-     */
-  }, {
-    key: "hardDeprecated",
-    value: function hardDeprecated(name, version, replacement) {
-      elementorDevTools.deprecation.deprecated(name, version, replacement);
-
-      // This is is self is deprecated.
-      elementorDevTools.deprecation.deprecated('elementorCommon.helpers.hardDeprecated()', '3.7.0', 'elementorDevTools.deprecation.deprecated()');
-    }
-
-    /**
-     * @param {string} type
-     * @param {string} name
-     * @param {string} version
-     * @param {string} replacement
-     * @deprecated since 3.7.0, use `elementorDevTools.deprecation.deprecated()` instead.
-     */
-  }, {
-    key: "deprecatedMessage",
-    value: function deprecatedMessage(type, name, version, replacement) {
-      elementorDevTools.deprecation.deprecated(name, version, replacement);
-
-      // This is is self is deprecated.
-      elementorDevTools.deprecation.deprecated('elementorCommon.helpers.deprecatedMessage()', '3.7.0', 'elementorDevTools.deprecation.deprecated()');
-    }
-
     /**
      * @param {*} args
      * @deprecated since 3.7.0, use `elementorDevTools.consoleWarn()` instead.
      */
-  }, {
-    key: "consoleWarn",
-    value: function consoleWarn() {
+    function consoleWarn() {
       var _elementorDevTools;
       (_elementorDevTools = elementorDevTools).consoleWarn.apply(_elementorDevTools, arguments);
 
@@ -3183,21 +3137,6 @@ var Helpers = exports["default"] = /*#__PURE__*/function () {
 
       // This is is self is deprecated.
       elementorDevTools.deprecation.deprecated('elementorCommon.helpers.consoleError()', '3.7.0', 'console.error()');
-    }
-
-    /**
-     * @param {string} methodName
-     * @param {string} version
-     * @param {string} replacement
-     * @deprecated since 2.8.0, use `elementorDevTools.deprecation.deprecated()` instead.
-     */
-  }, {
-    key: "deprecatedMethod",
-    value: function deprecatedMethod(methodName, version, replacement) {
-      elementorDevTools.deprecation.deprecated(methodName, version, replacement);
-
-      // This itself is deprecated.
-      elementorDevTools.deprecation.deprecated('elementorCommon.helpers.deprecatedMethod()', '2.8.0', 'elementorDevTools.deprecation.deprecated()');
     }
   }, {
     key: "cloneObject",
@@ -4992,7 +4931,7 @@ var CommandBase = exports["default"] = /*#__PURE__*/function (_CommandInfra) {
     value: function onAfterApply() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var result = arguments.length > 1 ? arguments[1] : undefined;
-      $e.hooks.runDataAfter(this.command, args, result);
+      return $e.hooks.runDataAfter(this.command, args, result);
     }
   }, {
     key: "onCatchApply",

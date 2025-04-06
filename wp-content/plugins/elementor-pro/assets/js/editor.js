@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.27.0 - 06-02-2025 */
+/*! elementor-pro - v3.28.0 - 30-03-2025 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -3822,7 +3822,7 @@ module.exports = function () {
         target: '_blank',
         class: 'elementor-button elementor-edit-template',
         href: editUrl,
-        html: '<i class="eicon-pencil" /> ' + __('Edit Template', 'elementor-pro')
+        html: '<i class="eicon-pencil" aria-hidden="true"></i>' + __('Edit Template', 'elementor-pro')
       });
       self.templateIdView.$el.find('.elementor-control-input-wrapper').after($editButton);
     }

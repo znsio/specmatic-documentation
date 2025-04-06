@@ -1,4 +1,4 @@
-/*! elementor - v3.27.0 - 18-02-2025 */
+/*! elementor - v3.28.0 - 01-04-2025 */
 (self["webpackChunkelementor"] = self["webpackChunkelementor"] || []).push([["vendors-node_modules_styled-components_dist_styled-components_browser_esm_js-node_modules_bab-0097ba"],{
 
 /***/ "../node_modules/shallowequal/index.js":

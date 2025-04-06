@@ -1,4 +1,4 @@
-/*! elementor - v3.27.0 - 18-02-2025 */
+/*! elementor - v3.28.0 - 01-04-2025 */
 "use strict";
 (self["webpackChunkelementorFrontend"] = self["webpackChunkelementorFrontend"] || []).push([["frontend"],{
 
@@ -102,7 +102,7 @@ module.exports = function ($) {
     'wp-widget-media_audio.default': () => __webpack_require__.e(/*! import() | wp-audio */ "wp-audio").then(__webpack_require__.bind(__webpack_require__, /*! ./handlers/wp-audio */ "../assets/dev/js/frontend/handlers/wp-audio.js"))
   };
   if (elementorFrontendConfig.experimentalFeatures['nested-elements']) {
-    this.elementsHandlers['nested-tabs.default'] = () => Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! elementor/modules/nested-tabs/assets/js/frontend/handlers/nested-tabs */ "../modules/nested-tabs/assets/js/frontend/handlers/nested-tabs.js"));
+    this.elementsHandlers['nested-tabs.default'] = () => __webpack_require__.e(/*! import() | nested-tabs */ "nested-tabs").then(__webpack_require__.bind(__webpack_require__, /*! elementor/modules/nested-tabs/assets/js/frontend/handlers/nested-tabs */ "../modules/nested-tabs/assets/js/frontend/handlers/nested-tabs.js"));
   }
   if (elementorFrontendConfig.experimentalFeatures['nested-elements']) {
     this.elementsHandlers['nested-accordion.default'] = () => __webpack_require__.e(/*! import() | nested-accordion */ "nested-accordion").then(__webpack_require__.bind(__webpack_require__, /*! elementor/modules/nested-accordion/assets/js/frontend/handlers/nested-accordion */ "../modules/nested-accordion/assets/js/frontend/handlers/nested-accordion.js"));
@@ -1542,7 +1542,6 @@ AssetsLoader.assets = {
     }
   },
   style: {
-    // TODO: Remove 'swiper' in v3.28.0 [ED-16258].
     swiper: {
       src: `${assetsUrl}lib/swiper/v8/css/swiper${fileSuffix}.css?ver=8.4.5`,
       parent: 'head'
@@ -1680,7 +1679,6 @@ class LightboxManager extends elementorModules.ViewModule {
       dialogStylePromise = elementorFrontend.utils.assetsLoader.load('style', 'dialog'),
       shareLinkPromise = elementorFrontend.utils.assetsLoader.load('script', 'share-link'),
       swiperStylePromise = elementorFrontend.utils.assetsLoader.load('style', 'swiper'),
-      // TODO: Remove in v3.28.0 [ED-16258].
       lightboxStylePromise = elementorFrontend.utils.assetsLoader.load('style', 'e-lightbox');
     return Promise.all([lightboxPromise, dialogScriptPromise, dialogStylePromise, shareLinkPromise, swiperStylePromise, lightboxStylePromise]).then(() => lightboxPromise);
   }
