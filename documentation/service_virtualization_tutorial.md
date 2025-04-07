@@ -1739,6 +1739,122 @@ They are resolved in the order in which they appear above.
 
 This means, if a request matches an example in the specification, but also matches a dynamic expectation, the response will be served from the dynamic expectations. Put differently, dynamic expectations override expectations from examples.
 
+Furthermore, if the examples also use dynamic typing, the most specific example matching the request is chosen for the response. For example, consider following examples used to start the stub server.
+
+
+```yaml
+# example-01
+{
+    "http-request": {
+        "path": "/products",
+        "method": "POST",
+        "body": {
+            "name": "The Light We Carry",
+            "type": "book",
+            "inventory": 100
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        }
+    },
+    "http-response": {
+        "status": 201,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": {
+            "id": 1
+        }
+    }
+}
+```
+
+```yaml
+# example-02
+{
+    "http-request": {
+        "path": "/products",
+        "method": "POST",
+        "body": {
+            "name": "(string)",
+            "type": "book",
+            "inventory": 100
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        }
+    },
+    "http-response": {
+        "status": 201,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": {
+            "id": 2
+        }
+    }
+}
+```
+
+```yaml
+# example-03
+{
+    "http-request": {
+        "path": "/products",
+        "method": "POST",
+        "body": {
+            "name": "(string)",
+            "type": "book",
+            "inventory": "(number)"
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        }
+    },
+    "http-response": {
+        "status": 201,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "body": {
+            "id": 3
+        }
+    }
+}
+```
+
+In this scenario expect the following behaviour:
+
+```bash
+curl -X POST http://<stub_server_url>/products -H "Content-Type: application/json" -d '{"name": "The Light We Carry", "type": "book", "inventory": 100}'
+# matches example-01
+# Response body:
+# {
+#   "id": 1
+# }
+
+curl -X POST http://<stub_server_url>/products -H "Content-Type: application/json" -d '{"name": "Atomic Habits", "type": "book", "inventory": 100}'
+# matches example-02
+# Response body:
+# {
+#   "id": 2
+# }
+
+curl -X POST http://<stub_server_url>/products -H "Content-Type: application/json" -d '{"name": "Atomic Habits", "type": "book", "inventory": 200}'
+# matches example-03
+# Response body:
+# {
+#   "id": 3
+# }
+
+curl -X POST http://<stub_server_url>/products -H "Content-Type: application/json" -d '{"name": "iPhone", "type": "gadget", "inventory": 2}'
+# creates random response (per spec) as none of the examples match
+# Example response body:
+# {
+#   "id": 259
+# }
+```
+
 ## Checking Health Status Of Stub Server
 
 You can use the `/actuator/health` endpoint to verify if the stub server is operational. To do this, send a GET request to this endpoint using Postman or a curl command. 
