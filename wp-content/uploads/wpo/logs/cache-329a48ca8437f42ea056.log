@@ -633,3 +633,54 @@
 [2025-04-04 10:42:56 : INFO] - Cache for URL: https://specmatic.dvox.biz/eula/ has been purged, triggered by action: save_post 
 [2025-04-04 10:42:56 : INFO] - Cache for URL: https://specmatic.dvox.biz/eula/ has been purged, triggered by action: save_post 
 [2025-04-04 10:42:57 : INFO] - Cache for URL: https://specmatic.dvox.biz/eula/ has been purged, triggered by action: save_post 
+[2025-04-07 05:00:52 : INFO] - Cache for URL: https://specmatic.dvox.biz/?page_id=6810 has been purged, triggered by action: save_post 
+[2025-04-08 11:19:44 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-08 11:19:47 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-08 11:19:48 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-08 11:19:49 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-08 11:20:36 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-08 11:20:37 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-08 11:20:39 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-08 11:20:40 : INFO] - Cache for URL: https://specmatic.dvox.biz/?post_type=appearance&p=6819 has been purged, triggered by action: save_post 
+[2025-04-08 11:20:40 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Auto Draft" has been purged, triggered by action: save_post 
+[2025-04-08 11:20:41 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-08 11:34:02 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-04-08 11:34:02 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/6819/ has been purged, triggered by action: save_post 
+[2025-04-08 11:34:02 : INFO] - Cache for archive page associated with post_type: appearance and Title: "" has been purged, triggered by action: save_post 
+[2025-04-08 13:23:55 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-08 13:23:56 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-08 13:23:58 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-08 13:23:59 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-08 13:31:12 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-04-08 13:31:12 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/6819/ has been purged, triggered by action: save_post 
+[2025-04-08 13:31:12 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Observability for Engineering Teams" has been purged, triggered by action: save_post 
+[2025-04-08 13:32:01 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-04-08 13:32:01 : INFO] - Cache for URL: https://specmatic.dvox.biz/appearance/observability-for-engineering-teams/ has been purged, triggered by action: save_post 
+[2025-04-08 13:32:01 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Observability for Engineering Teams" has been purged, triggered by action: save_post 
+[2025-04-08 13:49:41 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-08 13:49:42 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-08 13:49:44 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-08 13:49:45 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-08 13:57:42 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-08 13:57:43 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-08 13:57:45 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-08 13:57:46 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-09 06:51:40 : INFO] - Cache for multiple term taxonomy have been purged due to post terms update, triggered by action: set_object_terms 
+[2025-04-09 06:51:40 : INFO] - Cache for URL: https://specmatic.dvox.biz/?post_type=appearance&p=6819 has been purged, triggered by action: save_post 
+[2025-04-09 06:51:40 : INFO] - Cache for archive page associated with post_type: appearance and Title: "Observability for Engineering Teams" has been purged, triggered by action: save_post 
+[2025-04-09 07:12:15 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-09 07:12:18 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-09 07:12:20 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-09 07:12:23 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-09 07:12:59 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-09 07:13:02 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-09 07:13:04 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-09 07:13:05 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-09 07:14:47 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-09 07:14:48 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-09 07:14:49 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-09 07:14:50 : INFO] - Cache for URL: https://specmatic.dvox.biz/ has been purged, triggered by action: save_post 
+[2025-04-09 07:17:05 : INFO] - Cache for URL: https://specmatic.dvox.biz/?p=6856 has been purged, triggered by action: save_post 
+[2025-04-09 07:17:05 : INFO] - Cache for blog post has been purged due to updates to post with Title: "Auto Draft" and URL: https://specmatic.dvox.biz/?p=6856, triggered by action: save_post 
+[2025-04-09 07:17:05 : INFO] - Cache for previous post (with URL: https://specmatic.dvox.biz/updates/update-see-how-specmatic-is-transforming-api-testing-development/) adjacent to post with id: 6856 has been purged, triggered by action: save_post 
+[2025-04-09 07:17:05 : INFO] - Cache for all archives page associated with post_type: post and Title: "Auto Draft" have been purged, triggered by action: save_post 
