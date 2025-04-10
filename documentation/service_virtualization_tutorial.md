@@ -16,7 +16,7 @@ Service Virtualization
   - [Externalizing Example Data](#externalizing-example-data)
       - [Handling No Response Body APIs](#handling-no-response-body-apis)
   - [Intelligent Service Virtualisation - Example cannot go out of sync](#intelligent-service-virtualisation---example-cannot-go-out-of-sync)
-  - [Stateful Moacking (virtual service)](#stateful-moacking-virtual-service)
+  - [Stateful Mocking (virtual service)](#stateful-mocking-virtual-service)
   - [Strict Mode](#strict-mode)
   - [Data Type-Based Examples](#data-type-based-examples)
   - [Plain Text Request Bodies - Examples With Regular Expressions](#plain-text-request-bodies---examples-with-regular-expressions)
@@ -448,11 +448,9 @@ Create a file named `out-of-sync.json` with the following contents:
 - As you can see the response contains a generated value for the id, rather than "abc123", which was in the invalid example.
 - Since the invalid example was rejected by Specmatic stub, the response is a value generated based on the response in the specification.
 
-## Stateful Moacking (virtual service)
+## Stateful Mocking (Virtual Service)
 
-### Overview
-
-While Specmatic's stub service provides stateless API mocking capabilities, modern applications often require more sophisticated testing scenarios. The virtual-service feature was introduced to address this need, providing stateful behavior that mirrors real-world API interactions.
+While Specmatic's stub service provides stateless API mocking capabilities, modern applications often require more sophisticated testing scenarios. The virtual service feature was introduced to address this need, providing stateful behavior that mirrors real-world API interactions.
 
 Key differences from stub service:
 - Maintains state across requests
@@ -495,22 +493,19 @@ flowchart LR
     end
 
     style Configuration fill:#f5f5f5,stroke:#333,stroke-width:2px
-
 ```
 
-### Getting Started
+### Example Usage
 
 #### Configuration
 
 Create a `specmatic.yaml` file in your project root:
 
 ```yaml
-sources:
-  - provider: filesystem
-    stub:
-      - products_spec.yaml
-    test:
-      - products_spec.yaml
+version: 2
+contracts:
+  - consumes:
+      - todo.yaml
 ```
 
 #### Basic Usage
@@ -606,12 +601,11 @@ The virtual service helps validate API design decisions early by providing a wor
 
 The virtual service outputs detailed logs that can help diagnose issues. Pay attention to startup logs for configuration problems and request logs for runtime issues.
 
-### See Also
+#### See Also
 
 - [Generating Examples Documentation](documentation/service_virtualization_tutorial.html#externalizing-example-data)
 - [Contract Testing with Specmatic](documentation/contract_tests.html)
 
-___
 
 ## Strict Mode
 
