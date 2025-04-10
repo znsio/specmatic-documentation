@@ -10,12 +10,12 @@
 	Comments on: Specmatic Docker Image now available	</title>
 	<atom:link href="https://specmatic.io/updates/specmatic-docker-image/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/updates/specmatic-docker-image/</link>
-	<description>Contract Driven Development</description>
+	<description>Contract Driven Development simplified</description>
 	<lastBuildDate>Fri, 23 Feb 2024 03:15:21 +0000</lastBuildDate>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.6.2</generator>
+	<generator>https://wordpress.org/?v=6.7.1</generator>
 </channel>
 </rss>

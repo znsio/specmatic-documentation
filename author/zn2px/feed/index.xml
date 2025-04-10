@@ -11,14 +11,14 @@
 	<title>John &#8211; Specmatic</title>
 	<atom:link href="https://specmatic.io/author/zn2px/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
-	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 25 Sep 2024 06:39:06 +0000</lastBuildDate>
+	<description>Contract Driven Development simplified</description>
+	<lastBuildDate>Wed, 27 Nov 2024 06:11:29 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.6.2</generator>
+	<generator>https://wordpress.org/?v=6.7.1</generator>
 
 <image>
 	<url>https://specmatic.io/wp-content/uploads/2022/09/Favicon.png</url>
@@ -28,6 +28,21 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Update: See how Specmatic is transforming API testing &#038; development</title>
+		<link>https://specmatic.io/updates/update-see-how-specmatic-is-transforming-api-testing-development/</link>
+		
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Mon, 11 Nov 2024 02:33:23 +0000</pubDate>
+				<category><![CDATA[Conference]]></category>
+		<category><![CDATA[Updates]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=6136</guid>
+
+					<description><![CDATA[We&#8217;ve been hard at work, rolling out exciting new features and sharing the power of Specmatic and Contract Driven Development around the globe! Let&#8217;s explore the latest developments in how Specmatic is transforming API testing &#38; development. Elevate Your Impact &#8211; with Specmatic  Point, Click, Generate, Validate &#38; Test: Your OpenAPI Examples Just Got Smarter  [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Specmatic Challenge &#8211; winners announced!</title>
 		<link>https://specmatic.io/updates/specmatic-challenge-winners-announced/</link>
 		

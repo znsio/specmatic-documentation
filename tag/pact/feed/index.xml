@@ -11,14 +11,14 @@
 	<title>pact &#8211; Specmatic</title>
 	<atom:link href="https://specmatic.io/tag/pact/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
-	<description>Contract Driven Development</description>
-	<lastBuildDate>Fri, 15 Sep 2023 04:09:54 +0000</lastBuildDate>
+	<description>Contract Driven Development simplified</description>
+	<lastBuildDate>Fri, 18 Oct 2024 04:29:21 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.6.2</generator>
+	<generator>https://wordpress.org/?v=6.7.1</generator>
 
 <image>
 	<url>https://specmatic.io/wp-content/uploads/2022/09/Favicon.png</url>
@@ -28,8 +28,25 @@
 	<height>32</height>
 </image> 
 	<item>
+		<title>Pact&#8217;s Dependency Drag​: Why Consumer-Driven Contracts Don&#8217;t Support Parallel Development</title>
+		<link>https://specmatic.io/updates/pacts-dependency-drag-why-consumer-driven-contracts-dont-support-parallel-development/</link>
+		
+		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
+		<pubDate>Fri, 18 Oct 2024 04:05:22 +0000</pubDate>
+				<category><![CDATA[Demonstration]]></category>
+		<category><![CDATA[Updates]]></category>
+		<category><![CDATA[pact]]></category>
+		<guid isPermaLink="false">https://specmatic.io/?p=5898</guid>
+
+					<description><![CDATA[Exploring the challenges and limitations of using Pact for contract testing in a microservices environment.  In the domain of microservices, ensuring seamless communication between different services is paramount. This necessitates robust contract testing to ensure that APIs and their consumers are in sync. With an increasing number of organizations adopting microservices, tools like Pact—a consumer-driven [&#8230;]]]></description>
+		
+		
+		
+			</item>
+		<item>
 		<title>Comparison: Specmatic vs Pact.io and Pactflow.io</title>
 		<link>https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/</link>
+					<comments>https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/#comments</comments>
 		
 		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
 		<pubDate>Tue, 08 Nov 2022 04:25:35 +0000</pubDate>
@@ -51,6 +68,8 @@
 
 					<description><![CDATA[Specmatic and Contract Driven Development differ significantly from Pact. We built Specmatic out of our own necessity where Pact did not fit the bill for us. We have tried to cover as many areas of comparison as possible, however we would love to hear if you have any other criteria on which you would like to see additional details.]]></description>
 		
+					<wfw:commentRss>https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/feed/</wfw:commentRss>
+			<slash:comments>1</slash:comments>
 		
 		
 			</item>

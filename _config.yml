@@ -1,7 +1,7 @@
 remote_theme: pmarsceill/just-the-docs
 markdown: kramdown
 title: "Specmatic"
-latest_release: 2.0.27
+latest_release: 2.7.8
 jms_release: 0.1.0
 kafka_release: 0.4.0
 db_release: 0.61.8-db
@@ -16,8 +16,19 @@ aux_links:
 plugins:
   - jekyll-remote-theme
   - jekyll-tabs
+  - jekyll-mermaid
 
 logo: "/images/specmatic-logo.png"
 
 exclude:
   - archive
+
+mermaid:
+  src: './js/mermaid.min.js'
+  config:
+    theme: 'default'
+    startOnLoad: true
+    flowchart:
+      useMaxWidth: false
+    sequence:
+      useMaxWidth: true

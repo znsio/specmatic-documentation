@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.24.0 - 01-10-2024 */
+/*! elementor-pro - v3.26.0 - 22-12-2024 */
 "use strict";
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["ajax-pagination"],{
 

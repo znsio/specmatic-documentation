@@ -11,14 +11,14 @@
 	<title>API testing &#8211; Specmatic</title>
 	<atom:link href="https://specmatic.io/tag/api-testing/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
-	<description>Contract Driven Development</description>
-	<lastBuildDate>Wed, 25 Sep 2024 10:24:55 +0000</lastBuildDate>
+	<description>Contract Driven Development simplified</description>
+	<lastBuildDate>Tue, 07 Jan 2025 09:58:11 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.6.2</generator>
+	<generator>https://wordpress.org/?v=6.7.1</generator>
 
 <image>
 	<url>https://specmatic.io/wp-content/uploads/2022/09/Favicon.png</url>

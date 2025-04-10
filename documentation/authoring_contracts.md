@@ -8,9 +8,17 @@ Generating API Specifications
 =============================
 
 - [Generating API Specifications](#generating-api-specifications)
-  - [From an existing application using proxy mode](#from-an-existing-application-using-proxy-mode)
-    - [Start the proxy](#start-the-proxy)
-    - [Generate contracts](#generate-contracts)
+  - [From an existing application using Proxy Mode](#from-an-existing-application-using-proxy-mode)
+    - [Step 1: Start the Proxy Server](#step-1-start-the-proxy-server)
+    - [Step 2: Verify Proxy Health (Optional)](#step-2-verify-proxy-health-optional)
+    - [Step 3: Send Test Requests](#step-3-send-test-requests)
+        - [Request 1: Get pet with ID 1](#request-1-get-pet-with-id-1)
+        - [Request 2: Get pet with ID 100](#request-2-get-pet-with-id-100)
+    - [Step 4: Generate the Contract and Examples](#step-4-generate-the-contract-and-examples)
+    - [Generated Contract Example](#generated-contract-example)
+    - [Final Directory Structure](#final-directory-structure)
+  - [What You've Accomplished](#what-youve-accomplished)
+  - [Next Steps](#next-steps)
   - [From a sample request and response](#from-a-sample-request-and-response)
     - [Create the sample file](#create-the-sample-file)
     - [Convert the sample into a contract](#convert-the-sample-into-a-contract)
@@ -19,125 +27,172 @@ Generating API Specifications
     - [Generate the contract](#generate-the-contract)
     - [Authenticated APIs in Postman](#authenticated-apis-in-postman)
 
-## From an existing application using proxy mode
+## From an existing application using Proxy Mode
+---
 
-\
 ![](/images/specmatic-reverse-proxy.svg)
 
-Specmatic acts as a transparent proxy between the client (Postman, your application, etc) and the API.
+Specmatic acts as a transparent proxy between the client (Postman, your application, etc) & the API.
 
-Let's use the freely provided (again many thanks to its maintainer) test employee API that we used above.
+### Step 1: Start the Proxy Server
+Let's begin by setting up Specmatic as a proxy between your client and the API:
 
-### Start the proxy
-
-```bash
-> specmatic proxy --target http://dummy.restapiexample.com ./contracts
-Proxy server is running on http://localhost:9000. Ctrl + C to stop.```
+Using CLI:
+```shell
+specmatic proxy --target https://dummyjson.com ./specification
 ```
 
-Make sure the contracts directory does not exist.
+OR
 
-### Check the health status of the proxy server (Optional)
+Using docker:
+```shell
+docker run -p 9000:9000 -v "$PWD/specification:/specification" znsio/specmatic proxy --target=https://dummyjson.com /specification
+```
 
+You will get following confirmation message: <br> `Proxy server is running on http://localhost:9000. Ctrl + C to stop.`
 
-You can use the `/actuator/health` endpoint to verify if the proxy server is operational. To do this, send a GET request to this endpoint using Postman or a curl command. 
+🐳 Docker Usage Tip: When running the Proxy command with Docker, ensure the target URL matches your Docker network mode. For example, use host.docker.internal to refer to a server running on the host machine (Windows and Mac).
 
-The response will provide the current health status of the proxy server, indicating whether it is **ready to handle requests**. 
-This allows you to confirm that the proxy server is up before routing any traffic through it.
+💡 Specification Directory Reminder: Ensure the specification directory does not exist before starting. Specmatic will generate specifications here.
 
-#### Example curl Request:
+### Step 2: Verify Proxy Health (Optional)
+You can confirm the proxy server is running properly by checking its health status:
+
 ```shell
 curl -X GET http://localhost:9000/actuator/health
-# Example successful response:
-# {
-#   "status": "UP"
-# }
+```
+```
+# Expected Response:
+{
+    "status": "UP"
+}
 ```
 
-Here's the OpenAPI specification describing the `/actuator/health` endpoint.
+### Step 3: Send Test Requests
+Let's send a couple of requests through the proxy to help Specmatic identify path parameters. Here are two example requests:
+
+##### Request 1: Get pet with ID 1
+```bash
+curl -X GET http://localhost:9000/todos/1
+```
+
+##### Request 2: Get pet with ID 100
+```bash
+curl -X GET http://localhost:9000/todos/100
+```
+
+### Step 4: Generate the Contract and Examples
+You have two options to generate the specification:
+
+1. **Option A**: Kill the proxy server using `Ctrl + C`
+2. **Option B**: Hit the dump endpoint:
+   ```bash
+   curl -X POST http://localhost:9000/_specmatic/proxy/dump
+   ```
+In case the specification and examples are not generated in the output directory, look at the proxy server logs to debug the same.
+
+By using the `/_specmatic/proxy/dump` endpoint, you can efficiently generate and review specification without interrupting the proxy server.
+
+🎉 **Success!** You should see output like this:
+```bash
+Writing stub data to todos_1_GET_200_1.json
+Writing stub data to todos_100_GET_200_2.json
+Writing specification to proxy_generated.yaml
+```
+
+**Note:** The HTTP server sometimes sends back additional data such as additional headers which may or may not be useful depending on the use-case. So you can remove those additional keys from the specification and stub data recorded by the proxy.
+
+### Generated Contract Example
+Here's what your generated specification might look like:
+
 ```yaml
-openapi: 3.0.3
+openapi: 3.0.1
 info:
-  title: Health Check API
-  description: API for checking the health status of the proxy server.
-  version: 1.0.0
+  title: New feature
+  version: "1"
 paths:
-  /actuator/health:
+  /todos/{id}:
     get:
-      description: Returns the health status of the proxy server.
+      summary: GET /todos/1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
       responses:
-        '200':
-          description: Health status of the proxy server.
+        "200":
+          description: GET /todos/1
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    enum:
-                      - UP
-                    example: UP
+                $ref: "#/components/schemas/1_ResponseBody"
+components:
+  schemas:
+    "1_ResponseBody":
+      required:
+      - completed
+      - id
+      - todo
+      - userId
+      properties:
+        id:
+          type: number
+        todo:
+          type: string
+        completed:
+          type: boolean
+        userId:
+          type: number
+
 ```
 
-### Generate contracts
-
-Now use Postman to send a request to Specmatic. Create a new Postman request to make a GET request to http://localhost:9000/api/v1/employees
-
-Finally, kill the proxy using Ctrl+C on the command prompt, and it will generate contracts from all the reqeusts and responses it has seen, in the directory that you specify (which is ./contracts in the above example).
-
-You will see something like this:
-```bash
-Writing contract to ./contracts/new_feature.yaml
-Writing stub data to ./contracts/stub0.json
+### Final Directory Structure
+```
+specification/
+├── proxy_generated.yaml               # Main specification file
+└── proxy_generated_examples/          # Folder containing examples 
+    ├── todos_1_GET_200_1.json                     
+    └── todos_100_GET_200_2.json                     
 ```
 
-You can alternatively hit the [/_specmatic/proxy/dump](#dumping-the-contracts-and-examples-using-the-dump-endpoint) endpoint without killing the proxy server to dump this data into the output directory (e.g. `./contracts`).
-
-Specmatic can identify parameters in URL path based on the traffic passing through it.
-For example: If you send two requests, ```/employees/10``` and ```/employees/20```, Specmatic will figure out that URL path should be ```/empoyees/{id}``` where id could be any number, and will add an appropriate path parameter in the specification.
-
-So we recommend making atleast two requests in such cases to provide Specmatic with enough data to idenitify such path parameters.
-
-## Dumping the contracts and examples using the dump endpoint
-
-To dump the contracts and examples while the proxy server is running, use the `/_specmatic/proxy/dump` endpoint. When a POST request is made to this endpoint, it triggers Specmatic to generate and save the current contracts and examples into the specified output directory.
-
-**OpenAPI Specification for `/_specmatic/proxy/dump` Endpoint:**
-
-```yaml
-openapi: 3.0.3
-info:
-  title: Specmatic Proxy API
-  description: API for interacting with the Specmatic proxy server.
-  version: 1.0.0
-paths:
-  /_specmatic/proxy/dump:
-    post:
-      summary: Start Dump Process for Contract and Examples
-      description: Initiates the process to dump the current state of the contract and examples into the specified output directory. The process is handled in the background.
-      responses:
-        '202':
-          description: Dump process started
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: "Dump process of spec and examples has started in the background"
+Example stub content might look like the following (todos_1_GET_200_1.json):
+```json
+{
+    "http-request": {
+        "path": "/todos/1",
+        "method": "GET"
+    },
+    "http-response": {
+        "status": 200,
+        "body": {
+            "id": 1,
+            "todo": "Do something nice for someone you care about",
+            "completed": false,
+            "userId": 152
+        },
+        "status-text": "OK"
+    }
+}
 ```
 
-**Sample `curl` Command:**
+💡 **Note**: The more traffic routed through the proxy, the better it becomes at accurately defining data types for the specification.
 
-To trigger the dump of contracts and examples, use the following `curl` command:
+## What You've Accomplished
+✔️ Set up a Specmatic proxy server  
+✔️ Verified the proxy's health status  
+✔️ Generated test traffic with multiple request examples  
+✔️ Created OpenAPI specifications automatically  
+✔️ Generated stub response files for testing  
 
-```bash
-curl -X POST http://localhost:9000/_specmatic/proxy/dump
-```
+## Next Steps
+- Try adding more complex requests with different HTTP methods (POST, PUT, etc.)
+- Customize the generated specifications
+- Use the generated specification for API testing or documentation
 
-This command sends a POST request to the `/_specmatic/proxy/dump` endpoint, which will result in Specmatic generating and saving the contracts and examples into the specified output directory.
-In case the contracts and examples are not generated in the output directory, look at the proxy server logs to debug the same.
+Need help troubleshooting or have questions? Reach out to us [Specmatic support](https://specmatic.io/contact-us/).
 
-By using the `/_specmatic/proxy/dump` endpoint, you can efficiently generate and review contracts without interrupting the proxy server.
+---
 
 ## From a sample request and response
 

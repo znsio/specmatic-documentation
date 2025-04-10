@@ -19,6 +19,9 @@ group :jekyll_plugins do
   gem "jekyll-tabs"
 end
 
+# Add sass-embedded explicitly with a stable version
+gem "sass-embedded", "~> 1.63"
+
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
 # and associated library.
 platforms :mingw, :x64_mingw, :mswin, :jruby do
@@ -39,3 +42,6 @@ gem "just-the-docs", "0.5.1", group: :jekyll_plugins
 gem "jekyll-include-cache"
 gem "kramdown-parser-gfm"
 gem "webrick"
+
+gem "jekyll-mermaid"
+

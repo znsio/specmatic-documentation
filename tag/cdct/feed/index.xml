@@ -11,14 +11,14 @@
 	<title>CDCT &#8211; Specmatic</title>
 	<atom:link href="https://specmatic.io/tag/cdct/feed/" rel="self" type="application/rss+xml" />
 	<link>https://specmatic.io/</link>
-	<description>Contract Driven Development</description>
-	<lastBuildDate>Fri, 15 Sep 2023 04:09:54 +0000</lastBuildDate>
+	<description>Contract Driven Development simplified</description>
+	<lastBuildDate>Fri, 18 Oct 2024 04:29:21 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.6.2</generator>
+	<generator>https://wordpress.org/?v=6.7.1</generator>
 
 <image>
 	<url>https://specmatic.io/wp-content/uploads/2022/09/Favicon.png</url>
@@ -30,6 +30,7 @@
 	<item>
 		<title>Comparison: Specmatic vs Pact.io and Pactflow.io</title>
 		<link>https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/</link>
+					<comments>https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/#comments</comments>
 		
 		<dc:creator><![CDATA[Hari Krishnan]]></dc:creator>
 		<pubDate>Tue, 08 Nov 2022 04:25:35 +0000</pubDate>
@@ -51,6 +52,8 @@
 
 					<description><![CDATA[Specmatic and Contract Driven Development differ significantly from Pact. We built Specmatic out of our own necessity where Pact did not fit the bill for us. We have tried to cover as many areas of comparison as possible, however we would love to hear if you have any other criteria on which you would like to see additional details.]]></description>
 		
+					<wfw:commentRss>https://specmatic.io/comparisons/specmatic-vs-pact-io-and-pactflow-io/feed/</wfw:commentRss>
+			<slash:comments>1</slash:comments>
 		
 		
 			</item>

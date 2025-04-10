@@ -20,19 +20,61 @@ Contract Tests
     - [Handling multipart form-data and file uploads](#handling-multipart-form-data-and-file-uploads)
     - [The Java Helper For Java Projects](#the-java-helper-for-java-projects)
     - [Handling Application authentication](#handling-application-authentication)
-    - [Contracts In A Mono-Repo](#contracts-in-a-mono-repo)
     - [Authentication In CI For HTTPS Git Source](#authentication-in-ci-for-https-git-source)
     - [Authentication In CI For SSH Git Source](#authentication-in-ci-for-ssh-git-source)
     - [Examples For WSDL Contracts](#examples-for-wsdl-contracts)
     - [Programmatically executing Specmatic Contract as Tests](#programmatically-executing-specmatic-contract-as-tests)
-    - [Referring to local specificatons](#referring-to-local-specificatons)
+    - [HTML Report](#html-report)
+      - [Summary](#summary)
+      - [Coverage Table](#coverage-table)
+      - [Remarks](#remarks)
+    - [Referring to local specifications](#referring-to-local-specifications)
     - [Examples that are not passing yet](#examples-that-are-not-passing-yet)
     - [Examples that trigger 400 responses](#examples-that-trigger-400-responses)
-    - [Selectively Running Tests in CI](#selectively-running-tests-in-ci)
+  - [Selectively Running Tests in CI](#selectively-running-tests-in-ci)
+    - [Test Filtering Options](#test-filtering-options)
+    - [Using the New Filter System (Recommended)](#using-the-new-filter-system-recommended)
+      - [Available Filter Keys](#available-filter-keys)
+      - [Available Filter Operations](#available-filter-operations)
+      - [Filter Syntax](#filter-syntax)
+      - [Excluding Tests](#excluding-tests)
+    - [Programmatic Usage](#programmatic-usage)
+    - [Examples](#examples)
+      - [Common Use Cases](#common-use-cases)
+    - [Putting it all together](#putting-it-all-together)
+    - [Additional Tips](#additional-tips)
     - [API Coverage](#api-coverage)
-    - [Adanced Features](#adanced-features)
-      - [Generative Tests](#generative-tests)
-      - [Limiting the Count of Tests](#limiting-the-count-of-tests)
+      - [Enable the Actuator Mapping Endpoint](#enable-the-actuator-mapping-endpoint)
+      - [Use Swagger UI](#use-swagger-ui)
+  - [Overlays](#overlays)
+    - [Introduction](#introduction)
+    - [Understanding with a Real-World Example](#understanding-with-a-real-world-example)
+    - [Base Specification](#base-specification)
+    - [Overlay Specification](#overlay-specification)
+    - [Using Overlays in Specmatic](#using-overlays-in-specmatic)
+      - [Step 1: Setting Up Files](#step-1-setting-up-files)
+      - [Step 2: Specifying Overlay Files](#step-2-specifying-overlay-files)
+      - [Step 3: Understanding the Results](#step-3-understanding-the-results)
+    - [Further Reading](#further-reading)
+  - [Hooks](#hooks)
+    - [Overview](#overview-1)
+    - [Real-World Scenarios](#real-world-scenarios)
+    - [API Gateway Transformations](#api-gateway-transformations)
+    - [Implementation Example](#implementation-example)
+      - [Initial Client API Specification](#initial-client-api-specification)
+    - [Setting Up Test Hooks](#setting-up-test-hooks)
+    - [Sample Project Access](#sample-project-access)
+      - [Creating the JAR File](#creating-the-jar-file)
+    - [How It Works](#how-it-works)
+    - [Conclusion](#conclusion)
+  - [Advanced Features](#advanced-features)
+    - [Generative Tests](#generative-tests)
+    - [Limiting the Count of Tests](#limiting-the-count-of-tests)
+    - [Dictionary](#dictionary)
+      - [Create the Specification](#create-the-specification)
+      - [Create a Dictionary](#create-a-dictionary)
+      - [Run the tests Tests](#run-the-tests-tests)
+      - [Generative Tests](#generative-tests-1)
     - [Sample Project](#sample-project)
 
 ### Overview
@@ -212,7 +254,7 @@ Next, when the application sends back a response, Specmatic must validate it aga
 
 Thus, the request and response examples named `FETCH_EMPLOYEE_SUCCESS` taken together comprise a contract test named `FETCH_EMPLOYEE_SUCCESS`.
 
-Note that the response example named `FETCH_EMPLOYEE_SUCCESS` is not compared with values returned by the application. This is what sets a Contract Test apart from an API Test. A Contract Test is concerned with checking the APIs signature, while API tests are concerned wtih checking the APIs logic.
+Note that the response example named `FETCH_EMPLOYEE_SUCCESS` is not compared with values returned by the application. This is what sets a Contract Test apart from an API Test. A Contract Test is concerned with checking the APIs signature, while API tests are concerned with checking the APIs logic.
 
 However the response example named `FETCH_EMPLOYEE_SUCCESS` is verified and used in [service virtualization](/documentation/service_virtualization_tutorial.html#examples-as-expectations).
 
@@ -253,13 +295,7 @@ The complete test data format can be referred to [here](/documentation/test_data
 Instead of creating the above example JSONs by hand, you can also generate the example JSONs using the `examples` command:
 
 ```bash
-java -jar specmatic.jar examples employees.yaml
-```
-
-Alternatively, we can also run the same command with the Docker image:
-
-```bash
-docker run znsio/specmatic examples employees.yaml
+docker run -v "$(pwd)/employees.yaml:/usr/src/app/employees.yaml" -v "$(pwd)/employees_examples:/usr/src/app/employees_examples" znsio/specmatic-openapi examples generate employees.yaml
 ```
 
 In the above case, example JSON files will be written into the directory named `employees_examples`. You can then update the files to suit your needs and use them.
@@ -282,11 +318,13 @@ Alternatively, we can also run the same command with the Docker image:
 docker run znsio/specmatic test --testBaseURL https://my-json-server.typicode.com employees.yaml
 ```
 
-Earlier for the same input we saw 4 tests and all of which were successful. This time around you will see a total of 26 tests, of which 21 are failires
+Earlier for the same input we saw 4 tests and all of which were successful. This time around you will see a total of 26 tests, of which 21 are failures.
 
 ```Tests run: 26, Successes: 5, Failures: 21, Errors: 0```
 
 Exercise: Analyse the logs to understand what input validations need to be added to the application.
+
+If you want to start small, set the flag `ONLY_POSITIVE` to true, either as an environment variable or as a Java system property. With this flag switched on, requests with all combinations of properties and values permitted by the spec will be generated and used as tests against your API. However negative tests (e.g. sending a number where boolean is required) will not be run.
 
 Demo: [Video](https://youtu.be/U5Agz-mvYIU?t=216)
 
@@ -310,7 +348,7 @@ The command will create JUnit test xml output in the specified directory which y
 
 As we saw earlier in this page, the [sample application](https://my-json-server.typicode.com/znsio/specmatic-documentation/employees/) is adhering to the ```employees.yaml``` OpenAPI Specification.
 
-Now let us experiment by making some changes to the dataypes in the ```employees.yaml``` and observe the error responses.
+Now let us experiment by making some changes to the datatypes in the ```employees.yaml``` and observe the error responses.
 
 Examples:
 * Change the datatype of ```designation``` to integer in scheme component Employee - You will notice that Specmatic will complain that your examples are not as per the Specification
@@ -328,14 +366,26 @@ So instead:
 
 * Create a file named specmatic.json OR specmatic.yaml OR specmatic.yml which contains the Specmatic configuration.
 
-{% tabs config %}
-{% tab config specmatic.json %}
+{% tabs config_contractTests %}
+{% tab config_contractTests specmatic.yaml %}
+```yaml
+version: 2
+contracts:
+  - git:
+      url: https://github.com/your-username-or-org/your-repo.git
+    provides:
+      - path/to/employees.yaml
+```
+{% endtab %}
+{% tab config_contractTests specmatic.json %}
 ```json
 {
-  "sources": [
+  "version": 2,
+  "contracts": [
     {
-      "provider": "git",
-      "repository": "https://github.com/your-username-or-org/your-repo.git",
+      "git": {
+        "url": "https://github.com/your-username-or-org/your-repo.git"
+      },
       "provides": [
         "path/to/employees.yaml"
       ]
@@ -344,19 +394,10 @@ So instead:
 }
 ```
 {% endtab %}
-{% tab config specmatic.yaml %}
-```yaml
-sources:
-  - provider: git
-    repository: https://github.com/your-username-or-org/your-repo.git
-    provides:
-      - path/to/employees.yaml
-```
-{% endtab %}
 {% endtabs %}
 
 * Create a git repository and push the employees.yaml contract into it.
-* Update the value of "repository" to the url of the git repo. This should be a url that could be used by git checkout.
+* Update the value of "url" inside "git" field to the url of the git repo. This should be a url that could be used by git checkout.
 * Update the contract path in "provides" to the relative path of employees.yaml within the git repository.
 
 Specmatic will use the git command to checkout the git repository provided in the Specmatic configuration file. So make sure that the `git` command works on your laptop.
@@ -374,8 +415,6 @@ Alternatively, we can also run the same command with the Docker image:
 ```bash
 docker run znsio/specmatic --testBaseURL https://my-json-server.typicode.com
 ```
-```
-
 Note that no contracts are passed to Specmatic. Since no contracts have been passed, Specmatic looks for the Specmatic configuration file in the current working directory, checks out the contract repo, and runs the specified contracts as contract tests.
 
 Since Specmatic uses the Specmatic configuration file in the current working directory, it's important to use `cd` into the directory containing the Specmatic configuration. For Java projects, the Specmatic configuration file should be in the same directory as the pom.xml or build.gradle file.
@@ -383,34 +422,34 @@ Since Specmatic uses the Specmatic configuration file in the current working dir
 Since Specmatic uses git under-the-hood, any authentication requirements of your git server will be handled by the underlying git command.
 
 Note:
-1. The value of "repository" is the git repository in which the contracts are declared. It can be any git repo, not just github.
+1. The value of "url" in "git" field is the git repository in which the contracts are declared. It can be any git repo, not just github.
 2. The value of "provides" is a list of contract paths, relative to the repository root, which should be run as contract tests.
 3. You may declare multiple contracts in the "provides" list.
-4. "sources" holds a list. You may declare multiple sources if required. However we recommend using a single contract repository to be shared across your organisation, or ecosystem within the organisation (if your org is large).
+4. "contracts" holds a list. You may declare multiple contracts if required. However we recommend using a single contract repository to be shared across your organisation, or ecosystem within the organisation (if your org is large).
 
-If you need to experiment with files on the local filesystem, here's how you can declare specifications locally, in the Specmatic configuration file:
+If you need to experiment with files on the local filesystem, here's how you can declare specifications locally (no need to specify the `filesystem` field if the config is in the same directory as the relative path of `provides` and if this isn't the case then specify `filesystem` with `directory` field), in the Specmatic configuration file:
 
-{% tabs config %}
-{% tab config specmatic.json %}
+{% tabs config_contractTests %}
+{% tab config_contractTests specmatic.yaml %}
+```yaml
+version: 2
+contracts:
+  - provides:
+    - path/to/employees.yaml
+```
+{% endtab %}
+{% tab config_contractTests specmatic.json %}
 ```json
 {
-  "sources": [
+  "version": 2,
+  "contracts": [
     {
-      "provider": "filesystem",
       "provides": [
         "path/to/employees.yaml"
       ]
     }
   ]
 }
-```
-{% endtab %}
-{% tab config specmatic.yaml %}
-```yaml
-sources:
-  - provider: filesystem
-    provides:
-      - path/to/employees.yaml
 ```
 {% endtab %}
 {% endtabs %}
@@ -516,39 +555,6 @@ Since it is a JUnit5 test, you can run it in all the ways you are used to. If yo
 
 If the OpenAPI contract defines API authentication using security schemas, these information will be used by Specmatic when running contract tests. Read more about it on the page on [authentication](authentication.html).
 
-### Contracts In A Mono-Repo
-
-If you are using a mono-repo, in which all the projects in the ecosystem are in the same repository, the contracts used by these projects may also be kept in the same repository.
-
-The Specmatic configuration may look like this:
-
-{% tabs sources %}
-{% tab sources specmatic.json %}
-```json
-{
-  "sources": [
-    {
-      "provider": "git",
-      "provides": [
-        "contracts/path/to/employees.yaml"
-      ]
-    }
-  ]
-}
-```
-{% endtab %}
-{% tab sources specmatic.yaml %}
-```yaml
-sources:
-  - provider: git
-    provides:
-      - contracts/path/to/employees.yaml
-```
-{% endtab %}
-{% endtabs %}
-
-Note that "repository" is missing. Specamtic will look for the contract in the git repository containing the Specmatic configuration file. It's presumed that the Specmatic configuration file would be in a git repository, as the project would have to be pushed into some git repository.
-
 ### Authentication In CI For HTTPS Git Source
 
 Specmatic does a checkout of the git repository given in the Specmatic configuration using the git command. On your laptop, the git command will take care of authentication and prompt you for a password. But a build on a CI server runs headless without no chance for a user to enter credentials, so the git checkout fails when it gets an authentication failure from the repository.
@@ -557,35 +563,39 @@ Instead, Specmatic can do the checkout using OAuth2 authentication, which is als
 
 Add a key named "auth" to the Specmatic configuration, as seen in the example below.
 
-{% tabs config %}
-{% tab config specmatic.json %}
+{% tabs config_contractTests %}
+{% tab config_contractTests specmatic.yaml %}
+```yaml
+version: 2
+contracts:
+  - git:
+      url: https://github.com/your-username-or-org/your-repo.git
+    provides:
+      - path/to/employees.yaml
+
+auth:
+  bearer-file: central_repo_auth_token.txt
+```
+{% endtab %}
+{% tab config_contractTests specmatic.json %}
 ```json
 {
-  "auth": {
-    "bearer-file": "central_repo_auth_token.txt"
-  },
-  "sources": [
+  "version": 2,
+  "contracts": [
     {
-      "provider": "git",
-      "repository": "https://github.com/your-username-or-org/your-repo.git",
+      "git": {
+        "url": "https://github.com/your-username-or-org/your-repo.git"
+      },
       "provides": [
         "path/to/employees.yaml"
       ]
     }
-  ]
-}
-```
-{% endtab %}
-{% tab config specmatic.yaml %}
-```yaml
-auth:
-  bearer-file: central_repo_auth_token.txt
+  ],
 
-sources:
-  - provider: git
-    repository: https://github.com/your-username-or-org/your-repo.git
-    provides:
-      - path/to/employees.yaml
+  "auth": {
+    "bearer-file": "central_repo_auth_token.txt"
+  }
+}
 ```
 {% endtab %}
 {% endtabs %}
@@ -606,35 +616,39 @@ steps:
 
 You could also use an environment variable to pass the token.
 
-{% tabs config %}
-{% tab config specmatic.json %}
+{% tabs config_contractTests %}
+{% tab config_contractTests specmatic.yaml %}
+```yaml
+version: 2
+contracts:
+  - git:
+      url: https://github.com/your-username-or-org/your-repo.git
+    provides:
+      - path/to/employees.yaml
+
+auth:
+  bearer-environment-variable: BEARER
+```
+{% endtab %}
+{% tab config_contractTests specmatic.json %}
 ```json
 {
-  "auth": {
-    "bearer-environment-variable": "BEARER"
-  },
-  "sources": [
+  "version": 2,
+  "contracts": [
     {
-      "provider": "git",
-      "repository": "https://github.com/your-username-or-org/your-repo.git",
+      "git": {
+        "url": "https://github.com/your-username-or-org/your-repo.git"
+      },
       "provides": [
         "path/to/employees.yaml"
       ]
     }
-  ]
-}
-```
-{% endtab %}
-{% tab config specmatic.yaml %}
-```yaml
-auth:
-  bearer-environment-variable: BEARER
+  ],
 
-sources:
-  - provider: git
-    repository: https://github.com/your-username-or-org/your-repo.git
-    provides:
-      - path/to/employees.yaml
+  "auth": {
+    "bearer-environment-variable": "BEARER"
+  },
+}
 ```
 {% endtab %}
 {% endtabs %}
@@ -793,7 +807,41 @@ Here is a complete [Specmatic Contract Test example](https://github.com/znsio/sp
 
 Note: Declare your specifications in the Specmatic configuration file as described above in the section on [declaring contracts in configuration](#declaring-contracts-in-configuration). The Specmatic configuration file should be created at the root of your project.
 
-### Referring to local specificatons
+### HTML Report
+
+Upon completion of the contract tests, Specmatic will produce an HTML report for viewing and analyzing the results. You can locate this report in the `build/reports/specmatic/html` directory of your project; simply open the `index.html` file in the browser of your choice to view the report. The results are presented in a tabular format, similar to the API coverage report displayed on the console.
+
+#### Summary
+
+The key metrics are presented in the top header, which includes overall coverage percentage, total number of tests passed, failed, errors, and skipped. You can filter the table by clicking on one of the count buttons.
+
+#### Coverage Table
+
+The table is organized by path, method, request content type, and response status code, with each row representing the number of tests executed for that specific group and the final remark. Additionally, coverage is calculated for each path and is included as one of the columns in the table.
+
+To view the actual tests along with the associated request and response for each test and other relevant information, click on one of the table rows. This action will slide in the details section, which contains all the tests executed for that specific group, if applicable. You can then click on an individual test to see the request, response, and additional details such as the URL, request and response time, and any error message in case of a failure.
+
+![Html Report](/images/html_report.gif)
+
+Similar to table filtering, clicking the header buttons filters the tests, which dynamically update counts and coverage as you switch between details and the main screen.
+<br/>**Note**: The `content-type` is of the request and is displayed below the response status code when the endpoint includes a request body.
+
+#### Remarks
+
+Remarks are displayed for each row in table and act as a summary of the tests executed for that specific group. The remarks are as follows:
+
+| Remark              | Definition                                                                                                                     |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| **Covered**         | Tests were run for this group. Red indicates a failure in one or more tests, while green means all tests passed                |
+| **Missing In Spec** | The endpoint is implemented on the service but isn't documented in the OpenAPI Specification                                     |
+| **Not Implemented** | The endpoint is documented in the OpenAPI Specification but isn't implemented by the service                                   |
+| **Not Covered**     | Tests for this group were not executed or were skipped                                                                         |
+| **WIP**             | This endpoint is marked WIP in the OpenAPI Specification, Any failures in this grouped are indicated by yellow and disregarded |
+| **Invalid**         | The endpoint doesn't conform to REST standards                                                                                 |
+
+**Note**: The remarks `Missing In Spec` and `Not Implemented` are contingent upon the actuator being enabled. Please refer to [API Coverage](#api-coverage) for further details.
+
+### Referring to local specifications
 
 If you want to temporarily refer to API specifications on your local machine please use system property ```contractPaths```.
 
@@ -909,129 +957,594 @@ Note the contract-invalid id in the example named `INVALID_ID`. Specmatic accept
 
 A contract-invalid example would not be allowed in the example named `SUCCESS`, as it is an example that should trigger a 200 response (and hence must be a contract-valid example).
 
-### Selectively Running Tests in CI
+---
 
-When contract tests are still in development, you can run only the passing tests and exclude known failures. This can be achieved using test description filters, which include the endpoint names from your OpenAPI specifications.
+## Selectively Running Tests in CI
 
-For example, for the above given OpenAPI spec (ref. [employees.yaml](#specmatic-contract-test---command-line)),
-with a test scenario named `POST /znsio/specmatic/employees -> 200 | EX:CREATE_EMPLOYEE_SUCCESS`  you can filter tests as follows:
+Specmatic provides powerful filtering capabilities to help you run specific tests during development and CI/CD pipelines. You can include or exclude tests based on various criteria such as HTTP methods, paths, status codes, and more.
 
-**1. Include Test Name**
+### Test Filtering Options
 
-To run only specific tests
+### Using the New Filter System (Recommended)
 
-##### **Programmatically**
-Set the `filterName` system property before running the test like this:
-{% tabs filter %}
-{% tab filter Java %}
-```java
-System.setProperty("filterName", "CREATE_EMPLOYEE_SUCCESS");
-```
-{% endtab %}
-{% tab filter Node %}
-```javascript
-process.env.filterName = "CREATE_EMPLOYEE_SUCCESS";
-```
-{% endtab %}
-{% tab filter Python %}
-```shell
-os.environ['filterName'] = 'CREATE_EMPLOYEE_SUCCESS'
-```
-{% endtab %}
-{% endtabs %}
+The `--filter` option provides granular control over which tests to run:
 
-Multiple `filters` can be comma-separated:
-
-{% tabs filter %}
-{% tab filter Java %}
-```java
-System.setProperty("filterName", "CREATE_EMPLOYEE_SUCCESS, FETCH_EMPLOYEE_SUCCESS");
-```
-{% endtab %}
-{% tab filter Node %}
-```javascript
-process.env.filterName = "CREATE_EMPLOYEE_SUCCESS, FETCH_EMPLOYEE_SUCCESS";
-```
-{% endtab %}
-{% tab filter Python %}
-```shell
-os.environ['filterName'] = 'CREATE_EMPLOYEE_SUCCESS, FETCH_EMPLOYEE_SUCCESS'
-```
-{% endtab %}
-{% endtabs %}
-
-Now only the contract tests where the test descriptions include certain example names will run.
-
-##### **Using Command-line:**
-You can also use the command-line parameter `--filter-name` with the test description as:
-
-```shell
-specmatic test --filter-name CREATE_EMPLOYEE_SUCCESS
+```bash
+specmatic test --filter="METHOD='POST' && PATH='/users'"
 ```
 
-**2. Omitting some tests**
+#### Available Filter Keys
 
-Set the `filterNotName` system property before running tests like this:
+- `METHOD`: Filter by HTTP methods (GET, POST, etc.)
+- `PATH`: Filter by request paths (/users, /products, etc.)
+- `STATUS`: Filter by response status codes (200, 400, etc.) - supports pattern matching with 'xx' (e.g., 4xx, 2xx)
+- `HEADERS`: Filter by request headers
+- `QUERY-PARAM`: Filter by query parameters
+- `EXAMPLE-NAME`: Filter by example names
 
-##### **Programmatic Approach:**
+#### Available Filter Operations 
+- `&&` : Represents a logical AND operator.
+- `||` : Represents a logical OR operator.
+- `!` : Negates the applied condition.
+- `=`, `!=` : Comparison operators for comparing a key with its value.
+- `(`, `)` : Parentheses are used to group multiple filter expressions.
 
-{% tabs filter %}
-{% tab filter Java %}
-```java
-System.setProperty("filterNotName", "CREATE_EMPLOYEE_SUCCESS");
-```
-{% endtab %}
-{% tab filter Node %}
-```javascript
-process.env.filterNotName = "CREATE_EMPLOYEE_SUCCESS";
-```
-{% endtab %}
-{% tab filter Python %}
-```shell
-os.environ['filterNotName'] = 'CREATE_EMPLOYEE_SUCCESS'
-```
-{% endtab %}
-{% endtabs %}
+#### Filter Syntax
 
-Now only the contract tests which do not have `CREATE_EMPLOYEE_SUCCESS` in their test description will run. 
-
-##### **Using Command-line:**
-
-```shell
-specmatic test --filter-not-name CREATE_EMPLOYEE_SUCCESS
+1. Single value:
+```bash
+--filter="METHOD='GET'"
 ```
 
-### Filtering tests by HTTP method name
+2. Multiple values for same filter (comma-separated):
+```bash
+--filter="METHOD='GET,POST'"
+```
 
-Both of the above options `filter-name` and `filter-not-name` can also be used in conjunction with HTTP methods to only run those operations or exclude the particular options respectively.
+3. Multiple filters can be joined with AND operation (`&&`):
+```bash
+--filter="METHOD='GET,POST' && PATH='/users'"
+```
+4. Multiple filters Joined with OR Operation (`||`):
+```bash
+--filter="PATH='/users,/products' || STATUS='200'"
+```
+
+#### Excluding Tests
+
+Here's how you can provide filter criteria to exclude tests:
+
+```bash
+--filter="STATUS!='400,401' && METHOD!='DELETE'"
+```
+
+### Programmatic Usage
+
+Set environment properties in your test setup:
 
 ```java
-System.setProperty("filterName", "POST /znsio/specmatic/employees");
+// Include specific tests
+System.setProperty("filter", "METHOD='POST' && PATH='/users'");
+
+// Exclude tests
+System.setProperty("filter", "STATUS!='400,401'");
 ```
 
-```shell
-specmatic test --filter-name "POST /znsio/specmatic/employees"
+### Examples
+
+#### Common Use Cases
+
+1. Run only successful response tests:
+```bash
+specmatic test --filter="STATUS='2xx'"
 ```
 
-This will only run the `POST` operation under `/znsio/specmatic/employees` and exclude other methods if available.
+2. Skip authentication error tests:
+```bash
+specmatic test --filter!="STATUS='4xx'"  
+```
 
+3. Skip specific status codes:
+```bash
+specmatic test --filter!="STATUS='401,403'"
+```
+
+4. Test specific API endpoints:
+```bash
+specmatic test --filter="PATH='/users,/products'"
+```
+
+5. Test API endpoints with wildcard(`*`) for `PATH`:
+```bash
+specmatic test --filter="PATH='/users/*'"
+```
+
+6. Test all paths that begin with /products/, followed by any pattern, and end with /v1.
+```bash
+specmatic test --filter="PATH='/products/*/v1'"
+```
+
+7. Combine multiple filters:
+```bash
+specmatic test --filter="(PATH='/users' && METHOD='POST') || (PATH='/products' && METHOD='POST')"
+```
+
+8. Exclude specified filters:
+```bash
+specmatic test --filter="!(PATH='/users' && METHOD='POST') && !(PATH='/products' && METHOD='POST')"
+```
+
+### Putting it all together
+
+Let's say you want to run tests for the employee creation API (`POST /employees`), the API to fetch department details (`GET /department`), while skipping any 4xx and 500 status tests:
+
+```bash
+specmatic test --filter="((PATH='/employees' && METHOD='POST') || (PATH='/department' && METHOD='GET')) && STATUS!='4xx,500'"
+```
+
+### Additional Tips
+
+- Filters are case-sensitive.
+- Use **single parentheses** to separate values from keys within a filter.
+- When multiple filters are specified, tests must match **ALL** criteria (**AND** operation).
+- Within a single filter with multiple values, tests matching **ANY** value will be included (**OR** operation).
+- **Negation(!)** causes a block to be excluded from being considered.
+- **Wildcard(*)** can only be used with **PATH**.
+- **Range (2xx, 50x)** can only be used with **STATUS**.
+
+
+> **Note:** Endpoints that are filtered out as a result of this expression are also excluded from the reports generated by Specmatic and from the coverage calculation.
+
+
+---
 ### API Coverage
 
-After running the tests, Specmatic will print out a tabular report showing which APIs were covered by the tests.
+After executing the tests, Specmatic generates a tabular report that displays which APIs were covered by the tests. It can also retrieve the APIs exposed by the application through the actuator module to identify which APIs were *not* covered by contract tests or those that are not *implemented* in the service.
 
-In addition, it can read the APIs exposed by the application from the actuator module, to indicate in the same report which APIs were not covered by contract tests.
+There are two methods to enable this feature:
 
-To get this working:
-1. Turn on the actuator module, and enable the mappings endpoint. You can read more about this online.
-2. Set the system property `endpointsAPI` to the mappings endpoint exposed by actuator.
+#### Enable the Actuator Mapping Endpoint
 
-Look at the sample project below to see this in action. Observe the system property, set in the [ContractTest](https://github.com/znsio/specmatic-order-api-java/blob/main/src/test/java/com/store/ContractTest.java) class, and the actuator-related dependency added in `pom.xml`.
+Activate the actuator mapping endpoint in your backend framework. Specify the URL of this endpoint as a system property using `endpointsAPI`. Specmatic will use this endpoint to retrieve and analyze the available paths and methods exposed by your backend server.
 
-The data in the coverage report is written to a file at `build/reports/specmatic/coverage_report.json`, relative to the directory from which Specmatic was executed.
+Refer to the sample project below to observe this in action. Pay attention to the system property set in the [ContractTest](https://github.com/znsio/specmatic-order-api-java/blob/main/src/test/java/com/store/ContractTest.java) class, as well as the actuator-related dependency included in `pom.xml`.
 
-### Advanced Features
+#### Use Swagger UI
 
-#### Generative Tests
+Various programming languages and frameworks offer support for Swagger UI. For example, in .NET, Swashbuckle automatically generates an OpenAPI specification from controllers and models, making it easier to document, visualize, and interact with APIs directly from a web interface.
+
+Specmatic will automatically detect and utilize Swagger UI if it is available. By default, Specmatic sends a request to `/swagger/v1/swagger.yaml`. You can customize the base URL for Swagger UI by configuring the `SWAGGER_UI_BASEURL` system property. If this property is not defined, Specmatic will default to using the URL of the System Under Test (SUT) as the base URL.
+
+The data from the coverage report is saved to a file located at `build/reports/specmatic/coverage_report.json`, relative to the directory from which Specmatic was executed. It is also accessible in the HTML report generated at `build/reports/specmatic/html/index.html`.
+
+---
+
+## Overlays
+
+### Introduction
+[Overlays](https://www.openapis.org/blog/2024/10/22/announcing-overlay-specification) provide a powerful mechanism to modify OpenAPI specifications without altering the base specification. They're particularly useful when you need to simulate middleware behavior, such as API gateways modifying requests, or when you need to extend an existing API specification.
+
+![Overlays diagram](../images/overlays-concept.svg)
+
+### Understanding with a Real-World Example
+
+Consider this common scenario in microservices architecture:
+
+```mermaid
+graph LR
+    Client[Client] -->|Original Headers| Gateway[API Gateway]
+    Gateway -->|Modified Headers| Backend[Backend Service]
+    style Gateway fill:#f9f,stroke:#333,stroke-width:4px
+```
+
+In this scenario:
+1. A client sends requests to your service through an API gateway
+2. The gateway modifies headers (adds new ones, transforms existing ones)
+3. Your backend service receives the modified request
+
+### Base Specification
+Here's our base employee service specification:
+
+```yaml
+openapi: 3.0.0
+info:
+  title: Employees
+  version: '1.0'
+servers: []
+paths:
+  '/employees':
+    post:
+      summary: Fetch employee details
+      tags: []
+      parameters:
+        - in: header
+          name: correlation-id
+          schema:
+            type: string
+          required: true
+          description: Request correlation ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Employee'
+      responses:
+        '200':
+          description: Details for employee id in request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+components:
+  schemas:
+    Employee:
+      title: Employee
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        department:
+          type: string
+        designation:
+          type: string
+```
+
+### Overlay Specification
+To simulate API gateway behavior, we'll use an overlay to modify headers:
+
+```yaml
+overlay: 1.0.0
+actions:
+  - target: $.paths['/employees'].post
+    update:
+      parameters:
+        - in: header
+          name: X-Correlation-ID
+          schema:
+            type: string
+          required: true
+          description: Correlation ID for request tracking
+        - in: header
+          name: X-Gateway-Token
+          schema:
+            type: string
+          required: true
+          description: API Gateway authentication token
+        - in: header
+          name: X-Request-ID
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: Unique request identifier for tracing
+```
+
+### Using Overlays in Specmatic
+
+#### Step 1: Setting Up Files
+1. Save your base specification as `employees.yaml`
+2. Save your overlay specification as `gateway_overlay.yaml`
+
+#### Step 2: Specifying Overlay Files
+
+You can specify overlay files in three ways:
+
+1. **Automatic Detection in Test Mode** (Recommended)
+   - Name your overlay file following the pattern: `<specname>_overlay.yaml`
+   - Place it in the same directory as your spec file
+   - Specmatic will automatically detect and apply it when running in test mode
+   
+  Example:
+```bash
+  # If your spec file is named:
+  employees.yaml
+  
+  # Name your overlay file as:
+  employees_overlay.yaml
+```
+  Note: The automatic detection is:
+
+  Only available in test mode
+  Case insensitive
+  Only works with .yaml extension
+  Requires exact naming pattern with underscore: _overlay.yaml
+
+
+2. **Command Line Approach**
+
+```shell
+  specmatic test --port 9000 --overlay-file gateway_overlay.yaml
+```
+
+3. **Environment Variable Approach**
+
+```shell
+  export OVERLAY_FILE_PATH=gateway_overlay.yaml
+  # Then run your tests programmatically or via command line
+````
+
+The environment variable approach is particularly useful when:
+
+Running tests programmatically
+Setting up CI/CD pipelines
+Working with test frameworks
+Need to specify overlays globally for multiple test runs
+
+#### Step 3: Understanding the Results
+When Specmatic runs the tests, it will send requests with the modified headers:
+
+```shell
+POST /employees
+X-Correlation-ID: correlation-123
+X-Gateway-Token: gateway-token-456
+X-Request-ID: 550e8400-e29b-41d4-a716-446655440000
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "John Doe",
+  "department": "Engineering",
+  "designation": "Senior Engineer"
+}
+```
+
+### Further Reading
+For a complete list of modifications possible with overlays, refer to the [OpenAPI Overlay Specification](https://spec.openapis.org/overlay/v1.0.0.html).
+
+---
+
+## Hooks
+
+### Overview
+
+Specmatic's test hooks provide a powerful mechanism to modify API specifications just before they're used in testing, without altering the original specification files. This feature is particularly valuable when your test scenarios require different or additional specification elements (such as headers, parameters, or request bodies) compared to what's defined in your base specification.
+
+### Real-World Scenarios
+
+Test hooks can solve various real-world challenges. Here is a common scenarios where test hooks prove invaluable:
+
+### API Gateway Transformations
+
+Consider this common architectural setup:
+
+```
+Client Application → API Gateway → Backend Service
+```
+
+In this scenario:
+1. Your client application sends requests with basic headers (e.g., `X-auth-token`)
+2. The API Gateway:
+   - Adds rate limiting headers (`X-RateLimit-Limit`, `X-RateLimit-Remaining`)
+   - Transforms authentication headers (`X-auth-token` → `X-internal-id`)
+3. The backend service expects ALL these headers to be present
+
+Without test hooks, Specmatic tests would fail because:
+- The client specification only contains `X-auth-token`
+- The backend service expects additional headers that the Gateway would normally add
+- The backend service looks for `X-internal-id` instead of `X-auth-token`
+
+### Implementation Example
+
+#### Initial Client API Specification
+<br>
+Here's a typical client-side API specification:
+
+```yaml
+openapi: 3.0.0
+info:
+  title: Sample Product API
+  version: 0.0.1
+servers:
+  - url: http://localhost:8080
+    description: Local
+paths:
+  /products:
+    get:
+      summary: Get Products
+      description: Get Products
+      parameters:
+        - in: header
+          name: X-auth-token
+          schema:
+            type: string
+          required: true
+          description: Authentication token
+      responses:
+        '200':
+          description: Returns Product With Id
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - name
+                    - sku
+                  properties:
+                    name:
+                      type: string
+                    sku:
+                      type: string
+```
+
+### Setting Up Test Hooks
+
+Step 1: **Create specmatic.yaml configuration file:**
+
+{% tabs config_contractTests %}
+{% tab config_contractTests specmatic.yaml %}
+```yaml
+version: 2
+contracts:
+  - provides:
+      - products_client.yaml
+hooks:
+  test_load_contract: python3 modify_test_headers.py
+```
+{% endtab %}
+{% tab config_contractTests specmatic.json %}
+```json
+{
+  "version": 2,
+  "contracts": [
+    {
+      "provides": [
+        "products_client.yaml"
+      ]
+    }
+  ],
+  "hooks": {
+    "test_load_contract": "python3 modify_test_headers.py"
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Both configurations are equivalent and can be used interchangeably in your Specmatic setup.
+
+Step 2: **Create the hook script:**
+
+Specmatic supports hook script in any executable format (Python, Shell, Java, Javascript etc.). Below are examples in Python and Java.
+
+Please note:
+* In the hook script we access an environment variable CONTRACT_FILE which is automatically set by Specmatic
+* It contains the absolute path to the API specification file.
+{% tabs hook_script %}
+{% tab hook_script Python %}
+
+```python
+import os
+import sys
+import yaml
+
+def main():
+    # Read the specification file path from environment
+    file_name = os.getenv('CONTRACT_FILE')
+   
+
+    if not file_name:
+        print("CONTRACT_FILE environment variable not set.")
+        sys.exit(1)
+
+    try:
+        with open(file_name, 'r') as file:
+            data = yaml.safe_load(file)
+
+            # Get the parameters section
+            paths = data.get('paths', {})
+            products_path = paths.get('/products', {})
+            get_operation = products_path.get('get', {})
+            parameters = get_operation.get('parameters', [])
+
+            # Simulate API Gateway transformation:
+            # Transform X-auth-token to X-internal-id
+            for param in parameters:
+                if param.get('in') == 'header' and param.get('name') == 'X-auth-token':
+                    param['name'] = 'X-internal-id'
+                    break
+
+            # Add Gateway-specific headers
+            gateway_headers = [
+                {
+                    'name': 'X-RateLimit-Limit',
+                    'in': 'header',
+                    'required': True,
+                    'schema': {'type': 'integer', 'example': 100},
+                    'description': 'Maximum number of requests allowed'
+                },
+                {
+                    'name': 'X-RateLimit-Remaining',
+                    'in': 'header',
+                    'required': True,
+                    'schema': {'type': 'integer', 'example': 40},
+                    'description': 'Number of remaining requests allowed'
+                }
+            ]
+            
+            parameters.extend(gateway_headers)
+            print(yaml.dump(data))
+
+            # The script MUST output valid YAML to stdout
+            # This YAML will be used by Specmatic for testing
+            # Any other prints/logs should go to stderr to avoid corrupting the YAML output
+
+    except FileNotFoundError:
+        print(f"File not found: {file_name}")
+        sys.exit(2)
+    except Exception as e:
+        print(f"Error processing file: {e}")
+        sys.exit(3)
+
+if __name__ == "__main__":
+    main()
+```
+{% endtab %}
+{% tab hook_script Java %}
+
+Following is an example using Java that can be compiled into a standalone JAR file. 
+
+### Sample Project Access
+* Reference Java based hook script implementation available at: [specmatic-hooks-java-sample](https://github.com/znsio/specmatic-hooks-java-sample)
+* Clone the repository to get started
+
+#### Creating the JAR File
+* Follow instructions in the project's README.md
+* Build will generate a standalone executable JAR, named "specmatic-hooks-sample.jar"
+* JAR will contain all necessary dependencies
+* Add the JAR file to your Specmatic configuration as shown below.
+
+The test hook configuration in Specmatic will look as follows: : 
+
+```yaml
+version: 2
+contracts:
+  - test:
+      - products_client.yaml
+hooks:
+  test_load_contract: java -jar specmatic-hooks-sample.jar
+```
+
+Following is the link to Java hook file from the sample project : [Java hook script](https://github.com/znsio/specmatic-hooks-java-sample/blob/main/src/main/java/Main.java)
+
+
+{% endtab %}
+{% endtabs %}
+
+### How It Works
+
+When Specmatic runs tests:
+1. Specmatic sets the CONTRACT_FILE environment variable with the absolute path to the specification file that needs to be modified (e.g., /path/to/your/project/products_client.yaml)
+2. The test hook intercepts the client specification before test execution
+3. It modifies the specification to:
+   - Transform `X-auth-token` to `X-internal-id` (simulating Gateway authentication header transformation)
+   - Add rate limiting headers (simulating Gateway-added headers)
+4. The test hook script is executed and MUST output a valid YAML to stdout
+5. Specmatic uses this modified specification for testing, while your client specification remains unchanged
+
+This approach:
+- Maintains clean client specifications
+- Accurately tests backend service requirements
+- Simulates API Gateway behavior in your test environment
+
+> **Note:** If you're looking to modify headers during service virtualization using Specmatic's `stub` command, then please refer to stub-specific header modifications documentation : [Using Hooks during Stub Creation](service_virtualization_tutorial.html#hooks)
+
+### Conclusion
+
+Test hooks provide a powerful way to bridge the gap between client specifications and Gateway-modified requests. By simulating Gateway behavior in your tests, you can ensure your backend service testing is accurate and comprehensive while maintaining clean client specifications.
+
+---
+
+## Advanced Features
+
+### Generative Tests
 
 Contract testing within the bounds of the contract is not enough. HTTP prescribes what should happen when contract-invalid requests are sent. To ensure that the application operates as required by HTTP, we need to test it with contract-invalid requests.
 
@@ -1117,7 +1630,7 @@ System.setProperty("SPECMATIC_GENERATIVE_TESTS", "true")
 
 The best way to see it in action is to try it out with one of your micro-services and it's API specifications.
 
-#### Limiting the Count of Tests
+### Limiting the Count of Tests
 
 Where there are no examples, Specmatic generates tests from the contract. And if there are too many optional headers, query parameters, JSON keys, nullables, and so on, Specmatic may generate too many tests.
 
@@ -1186,6 +1699,160 @@ In this example, we may ensure that just the first 2 tests run with the followin
 ```java
 System.setProperty("MAX_TEST_REQUEST_COMBINATIONS", "2");
 ```
+
+### Dictionary
+
+When Specmatic generates requests for tests and does not find any examples, it will create the requests using the structure and keys defined by the request schema in the specifications, and it will fill in the structure with random values, based again on the same schema.
+
+In order to obtain domain-specific requests without examples, you can supply a dictionary of values to Specmatic. Specmatic will then reference this dictionary when it needs to generate a request.
+
+#### Create the Specification
+To understand how this works, create the `employees.yaml` specification file as follows:
+
+```yaml
+openapi: 3.0.0
+info:
+  title: Employees
+  version: '1.0'
+servers: []
+paths:
+  /employees:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeDetails'
+      responses:
+        200:
+          description: Employee Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+
+        400:
+          description: Bad Request
+components:
+  schemas:
+    Employee:
+      type: object
+      required:
+        - id
+        - name
+        - department
+      properties:
+        id:
+          type: integer
+        employeeCode:
+          type: string
+        name:
+          type: string
+        department:
+          type: string
+
+    EmployeeDetails:
+      type: object
+      required:
+        - name
+        - department
+      properties:
+        name:
+          type: string
+        department:
+          type: string
+        employeeCode:
+          type: string
+```
+
+
+#### Create a Dictionary
+Now create a dictionary file named `employees_dictionary.json` in the same directory:
+```json
+{
+  "EmployeeDetails.name": "John Doe",
+  "EmployeeDetails.department": "IT",
+  "EmployeeDetails.employeeCode": "12345"
+}
+```
+**Note**: The naming convention for the dictionary file should be `<spec-name>_dictionary.json` where `<spec-name>` is the name of the specification file.
+<br/>To understand the syntax of dictionary refer to [service-virtualization](/documentation/service_virtualization_tutorial.html#use-meaningful-response-values-from-an-external-dictionary)
+
+#### Run the tests Tests
+Now to execute contract tests on the specification using the dictionary a service is required, we will utilize [service-virtualization](/documentation/service_virtualization_tutorial.html) for this purpose.
+
+{% tabs test %}
+{% tab test java %}
+```shell
+java -jar specmatic.jar stub employees.yaml
+```
+{% endtab %}
+{% tab test npm %}
+```shell
+npx specmatic stub employees.yaml
+```
+{% endtab %}
+{% tab test docker %}
+```shell
+docker run -v "$(pwd)/employees.yaml:/employees.yaml" -v "$(pwd)/employees_dictionary.yaml:/employees_dictionary.yaml" znsio/specmatic stub "employees.yaml"
+```
+{% endtab %}
+{% endtabs %}
+
+Next, execute the contract tests by running the following command:
+
+{% tabs test %}
+{% tab test java %}
+```shell
+java -jar specmatic.jar test employees.yaml
+```
+{% endtab %}
+{% tab test npm %}
+```shell
+npx specmatic test employees.yaml
+```
+{% endtab %}
+{% tab test docker %}
+```shell
+docker run -v "$(pwd)/employees.yaml:/employees.yaml" -v "$(pwd)/employees_dictionary.yaml:/employees_dictionary.yaml" znsio/specmatic test "employees.yaml"
+```
+{% endtab %}
+{% endtabs %}
+
+We can now examine the request sent to the service by reviewing the logs.
+```shell
+POST /employees
+Accept-Charset: UTF-8
+Accept: */*
+Content-Type: application/json
+{
+  "name": "John Doe",
+  "department": "IT",
+  "employeeCode": "12345"
+}
+```
+Notice that the values from the dictionary are utilized in the requests.
+
+#### Generative Tests
+
+As it's evident that only valid values can be included in the dictionary. hence, generative tests will ignore the values in the dictionary for the key being mutated.
+The other keys will still retrieve values from the dictionary if available; otherwise, random values will be generated.
+
+For instance, if you execute the specification with generative tests enabled, one of the request will appear as follows:
+```shell
+POST /employees
+Accept-Charset: UTF-8
+Accept: */*
+Content-Type: application/json
+{
+  "name": null,
+  "department": "IT",
+  "employeeCode": "12345"
+}
+```
+
+In this case, the key `name` is being mutated, which results in the value from the dictionary being disregarded.
+While the values for `department` and `employeeCode` are still being retrieved from the dictionary.
 
 ### Sample Project
 

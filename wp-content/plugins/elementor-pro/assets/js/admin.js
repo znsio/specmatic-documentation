@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.24.0 - 01-10-2024 */
+/*! elementor-pro - v3.28.0 - 30-03-2025 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -83,7 +83,9 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 class CustomAssetsBase extends elementorModules.ViewModule {
-  showAlertDialog(id, message, onConfirm = false, onHide = false) {
+  showAlertDialog(id, message) {
+    let onConfirm = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+    let onHide = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
     const alertData = {
       id,
       message
@@ -332,6 +334,7 @@ class CustomIcons extends _customAssetsBase.default {
     $publishButton.trigger('click');
   }
   onInit() {
+    var _this = this;
     const {
         $body
       } = elementorCommon.elements,
@@ -353,7 +356,9 @@ class CustomIcons extends _customAssetsBase.default {
       } = this.elements;
     if ('' === config) {
       $dropzone.show('fast');
-      dropzoneField.setSettings('onSuccess', (...args) => this.onSuccess(...args));
+      dropzoneField.setSettings('onSuccess', function () {
+        return _this.onSuccess(...arguments);
+      });
     } else {
       this.renderIcons(config);
     }
@@ -523,12 +528,12 @@ class CustomFontsManager extends _customAssetsBase.default {
   titleRequired() {
     this.elements.$title.prop('required', true);
   }
-  onInit(...args) {
+  onInit() {
     const settings = this.getSettings();
     if (!jQuery('body').hasClass(settings.selectors.editPageClass)) {
       return;
     }
-    super.onInit(...args);
+    super.onInit(...arguments);
     this.removeCloseHandle();
     this.titleRequired();
     settings.fields.upload.init();
@@ -1230,6 +1235,13 @@ module.exports = function () {
   this.mailChimp = new ApiValidations('mailchimp_api_key');
   this.mailerLite = new ApiValidations('mailerlite_api_key');
   this.activeCcampaign = new ApiValidations('activecampaign_api_key', 'activecampaign_api_url');
+  jQuery('.e-notice--cta.e-notice--dismissible[data-notice_id="site_mailer_forms_submissions_notice"] a.e-button--cta').on('click', function () {
+    elementorCommon.ajax.addRequest('elementor_site_mailer_campaign', {
+      data: {
+        source: 'sm-submission-install'
+      }
+    });
+  });
 };
 
 /***/ }),
@@ -1621,9 +1633,9 @@ module.exports = wp.i18n;
   \***********************************************************************/
 /***/ ((module) => {
 
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {
-    "default": obj
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
   };
 }
 module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
