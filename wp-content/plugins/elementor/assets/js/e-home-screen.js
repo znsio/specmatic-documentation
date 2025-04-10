@@ -1,4 +1,4 @@
-/*! elementor - v3.26.0 - 22-12-2024 */
+/*! elementor - v3.28.0 - 01-04-2025 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -495,7 +495,7 @@ var _addonsSection = _interopRequireDefault(__webpack_require__(/*! ./addons-sec
 var _externalLinksSection = _interopRequireDefault(__webpack_require__(/*! ./external-links-section */ "../modules/home/assets/js/components/external-links-section.js"));
 var _getStartedSection = _interopRequireDefault(__webpack_require__(/*! ./get-started-section */ "../modules/home/assets/js/components/get-started-section.js"));
 var HomeScreen = function HomeScreen(props) {
-  var hasSidebarUpgrade = props.homeScreenData.hasOwnProperty('sidebar_upgrade');
+  var hasSidebarPromotion = props.homeScreenData.hasOwnProperty('sidebar_promotion_variants');
   return /*#__PURE__*/ /*  Box wrapper around the Container is needed to neutralize wp-content area left-padding */_react.default.createElement(_ui.Box, {
     sx: {
       pr: 1
@@ -516,9 +516,9 @@ var HomeScreen = function HomeScreen(props) {
       },
       pb: 2
     }
-  }, /*#__PURE__*/_react.default.createElement(_topSection.default, {
+  }, props.homeScreenData.top_with_licences && /*#__PURE__*/_react.default.createElement(_topSection.default, {
     topData: props.homeScreenData.top_with_licences,
-    createNewPageUrl: props.homeScreenData.create_new_page_url
+    buttonCtaUrl: props.homeScreenData.button_cta_url
   }), /*#__PURE__*/_react.default.createElement(_ui.Box, {
     sx: {
       display: 'flex',
@@ -551,8 +551,8 @@ var HomeScreen = function HomeScreen(props) {
       flexDirection: 'column',
       gap: 3
     }
-  }, hasSidebarUpgrade && /*#__PURE__*/_react.default.createElement(_sidebarPromotion.default, {
-    sideData: props.homeScreenData.sidebar_upgrade
+  }, hasSidebarPromotion && /*#__PURE__*/_react.default.createElement(_sidebarPromotion.default, {
+    sideData: props.homeScreenData.sidebar_promotion_variants
   }), /*#__PURE__*/_react.default.createElement(_externalLinksSection.default, {
     externalLinksData: props.homeScreenData.external_links
   })))));
@@ -562,6 +562,155 @@ HomeScreen.propTypes = {
   adminUrl: PropTypes.string
 };
 var _default = exports["default"] = HomeScreen;
+
+/***/ }),
+
+/***/ "../modules/home/assets/js/components/promotions/sidebar-banner.js":
+/*!*************************************************************************!*\
+  !*** ../modules/home/assets/js/components/promotions/sidebar-banner.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _Link = _interopRequireDefault(__webpack_require__(/*! @elementor/ui/Link */ "@elementor/ui/Link"));
+var SidebarBanner = function SidebarBanner(_ref) {
+  var image = _ref.image,
+    link = _ref.link;
+  return /*#__PURE__*/_react.default.createElement(_ui.Paper, {
+    elevation: 0,
+    sx: {
+      overflow: 'hidden'
+    }
+  }, /*#__PURE__*/_react.default.createElement(_Link.default, {
+    target: "_blank",
+    href: link,
+    sx: {
+      lineHeight: 0,
+      display: 'block',
+      width: '100%',
+      height: '100%',
+      boxShadow: 'none',
+      '&:focus': {
+        boxShadow: 'none'
+      },
+      '&:active': {
+        boxShadow: 'none'
+      }
+    }
+  }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
+    component: 'img',
+    src: image,
+    sx: {
+      width: '100%',
+      height: '100%'
+    }
+  })));
+};
+var _default = exports["default"] = SidebarBanner;
+SidebarBanner.propTypes = {
+  image: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired
+};
+
+/***/ }),
+
+/***/ "../modules/home/assets/js/components/promotions/sidebar-default.js":
+/*!**************************************************************************!*\
+  !*** ../modules/home/assets/js/components/promotions/sidebar-default.js ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var PropTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
+var _Button = _interopRequireDefault(__webpack_require__(/*! @elementor/ui/Button */ "@elementor/ui/Button"));
+var _List = _interopRequireDefault(__webpack_require__(/*! @elementor/ui/List */ "@elementor/ui/List"));
+var _ListItem = _interopRequireDefault(__webpack_require__(/*! @elementor/ui/ListItem */ "@elementor/ui/ListItem"));
+var _sideBarCheckIcon = _interopRequireDefault(__webpack_require__(/*! ../../icons/side-bar-check-icon */ "../modules/home/assets/js/icons/side-bar-check-icon.js"));
+var _ListItemText = _interopRequireDefault(__webpack_require__(/*! @elementor/ui/ListItemText */ "@elementor/ui/ListItemText"));
+var SidebarDefault = function SidebarDefault(_ref) {
+  var header = _ref.header,
+    cta = _ref.cta,
+    repeater = _ref.repeater;
+  return /*#__PURE__*/_react.default.createElement(_ui.Paper, {
+    elevation: 0,
+    sx: {
+      p: 3
+    }
+  }, /*#__PURE__*/_react.default.createElement(_ui.Stack, {
+    gap: 1.5,
+    alignItems: "center",
+    textAlign: "center",
+    sx: {
+      pb: 4
+    }
+  }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
+    component: "img",
+    src: header.image
+  }), /*#__PURE__*/_react.default.createElement(_ui.Box, null, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    variant: "h6"
+  }, header.title), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
+    variant: "body2",
+    color: "text.secondary"
+  }, header.description)), /*#__PURE__*/_react.default.createElement(_Button.default, {
+    variant: "contained",
+    size: "medium",
+    color: "promotion",
+    href: cta.url,
+    startIcon: /*#__PURE__*/_react.default.createElement(_ui.Box, {
+      component: "img",
+      src: cta.image,
+      sx: {
+        width: '16px'
+      }
+    }),
+    target: "_blank",
+    sx: {
+      maxWidth: 'fit-content'
+    }
+  }, cta.label)), /*#__PURE__*/_react.default.createElement(_List.default, {
+    sx: {
+      p: 0
+    }
+  }, repeater.map(function (item, index) {
+    return /*#__PURE__*/_react.default.createElement(_ListItem.default, {
+      key: index,
+      sx: {
+        p: 0,
+        gap: 1
+      }
+    }, /*#__PURE__*/_react.default.createElement(_sideBarCheckIcon.default, null), /*#__PURE__*/_react.default.createElement(_ListItemText.default, {
+      primaryTypographyProps: {
+        variant: 'body2'
+      },
+      primary: item.title
+    }));
+  })));
+};
+var _default = exports["default"] = SidebarDefault;
+SidebarDefault.propTypes = {
+  header: PropTypes.object.isRequired,
+  cta: PropTypes.object.isRequired,
+  repeater: PropTypes.array
+};
 
 /***/ }),
 
@@ -581,70 +730,14 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
-var _objectDestructuringEmpty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectDestructuringEmpty */ "../node_modules/@babel/runtime/helpers/objectDestructuringEmpty.js"));
-var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "../node_modules/@babel/runtime/helpers/extends.js"));
-var _ui = __webpack_require__(/*! @elementor/ui */ "@elementor/ui");
-var _Button = _interopRequireDefault(__webpack_require__(/*! @elementor/ui/Button */ "@elementor/ui/Button"));
-var _List = _interopRequireDefault(__webpack_require__(/*! @elementor/ui/List */ "@elementor/ui/List"));
-var _ListItem = _interopRequireDefault(__webpack_require__(/*! @elementor/ui/ListItem */ "@elementor/ui/ListItem"));
-var _ListItemText = _interopRequireDefault(__webpack_require__(/*! @elementor/ui/ListItemText */ "@elementor/ui/ListItemText"));
-var _sideBarCheckIcon = _interopRequireDefault(__webpack_require__(/*! ../icons/side-bar-check-icon */ "../modules/home/assets/js/icons/side-bar-check-icon.js"));
+var _sidebarBanner = _interopRequireDefault(__webpack_require__(/*! ./promotions/sidebar-banner */ "../modules/home/assets/js/components/promotions/sidebar-banner.js"));
+var _sidebarDefault = _interopRequireDefault(__webpack_require__(/*! ./promotions/sidebar-default */ "../modules/home/assets/js/components/promotions/sidebar-default.js"));
 var SideBarPromotion = function SideBarPromotion(_ref) {
-  var props = (0, _extends2.default)({}, ((0, _objectDestructuringEmpty2.default)(_ref), _ref));
-  return /*#__PURE__*/_react.default.createElement(_ui.Paper, {
-    elevation: 0,
-    sx: {
-      p: 3
-    }
-  }, /*#__PURE__*/_react.default.createElement(_ui.Stack, {
-    gap: 1.5,
-    sx: {
-      alignItems: 'center',
-      textAlign: 'center',
-      pb: 4
-    }
-  }, /*#__PURE__*/_react.default.createElement(_ui.Box, {
-    component: "img",
-    src: props.sideData.header.image
-  }), /*#__PURE__*/_react.default.createElement(_ui.Box, null, /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "h6"
-  }, props.sideData.header.title), /*#__PURE__*/_react.default.createElement(_ui.Typography, {
-    variant: "body2",
-    color: "text.secondary"
-  }, props.sideData.header.description)), /*#__PURE__*/_react.default.createElement(_Button.default, {
-    variant: "contained",
-    size: "medium",
-    color: "promotion",
-    href: props.sideData.cta.url,
-    startIcon: /*#__PURE__*/_react.default.createElement(_ui.Box, {
-      component: "img",
-      src: props.sideData.cta.image,
-      sx: {
-        width: '16px'
-      }
-    }),
-    target: "_blank",
-    sx: {
-      maxWidth: 'fit-content'
-    }
-  }, props.sideData.cta.label)), /*#__PURE__*/_react.default.createElement(_List.default, {
-    sx: {
-      p: 0
-    }
-  }, props.sideData.repeater.map(function (item, index) {
-    return /*#__PURE__*/_react.default.createElement(_ListItem.default, {
-      key: index,
-      sx: {
-        p: 0,
-        gap: 1
-      }
-    }, /*#__PURE__*/_react.default.createElement(_sideBarCheckIcon.default, null), /*#__PURE__*/_react.default.createElement(_ListItemText.default, {
-      primaryTypographyProps: {
-        variant: 'body2'
-      },
-      primary: item.title
-    }));
-  })));
+  var sideData = _ref.sideData;
+  if ('banner' === sideData.type) {
+    return /*#__PURE__*/_react.default.createElement(_sidebarBanner.default, sideData.data);
+  }
+  return /*#__PURE__*/_react.default.createElement(_sidebarDefault.default, sideData.data);
 };
 var _default = exports["default"] = SideBarPromotion;
 SideBarPromotion.propTypes = {
@@ -677,6 +770,19 @@ var _Button = _interopRequireDefault(__webpack_require__(/*! @elementor/ui/Butto
 var _youtubeIcon = _interopRequireDefault(__webpack_require__(/*! ../icons/youtube-icon */ "../modules/home/assets/js/icons/youtube-icon.js"));
 var TopSection = function TopSection(_ref) {
   var props = (0, _extends2.default)({}, ((0, _objectDestructuringEmpty2.default)(_ref), _ref));
+  var topData = props.topData,
+    buttonCtaUrl = props.buttonCtaUrl;
+  if (!topData) {
+    return null;
+  }
+  var title = topData.title,
+    description = topData.description,
+    buttonCtaTitle = topData.button_cta_text,
+    buttonCreatePageTitle = topData.button_create_page_title,
+    youtubeEmbeddedId = topData.youtube_embed_id,
+    buttonWatchURL = topData.button_watch_url,
+    buttonWatchTitle = topData.button_watch_title;
+  var ctaButtonTitle = buttonCtaTitle !== null && buttonCtaTitle !== void 0 ? buttonCtaTitle : buttonCreatePageTitle;
   return /*#__PURE__*/_react.default.createElement(_ui.Paper, {
     elevation: 0,
     sx: {
@@ -705,29 +811,30 @@ var TopSection = function TopSection(_ref) {
     justifyContent: "center"
   }, /*#__PURE__*/_react.default.createElement(_ui.Box, null, /*#__PURE__*/_react.default.createElement(_Typography.default, {
     variant: "h6"
-  }, props.topData.title), /*#__PURE__*/_react.default.createElement(_Typography.default, {
+  }, title), /*#__PURE__*/_react.default.createElement(_Typography.default, {
     variant: "body2",
     color: "secondary"
-  }, props.topData.description)), /*#__PURE__*/_react.default.createElement(_ui.Box, {
+  }, description)), /*#__PURE__*/_react.default.createElement(_ui.Box, {
     sx: {
       display: 'flex',
       gap: 1
     }
   }, /*#__PURE__*/_react.default.createElement(_Button.default, {
+    "data-testid": "e-create-button",
     variant: "contained",
     size: "small",
-    href: props.createNewPageUrl,
+    href: buttonCtaUrl,
     target: "_blank"
-  }, props.topData.button_create_page_title), /*#__PURE__*/_react.default.createElement(_Button.default, {
+  }, ctaButtonTitle), /*#__PURE__*/_react.default.createElement(_Button.default, {
     variant: "outlined",
     color: "secondary",
     size: "small",
     startIcon: /*#__PURE__*/_react.default.createElement(_youtubeIcon.default, null),
-    href: props.topData.button_watch_url,
+    href: buttonWatchURL,
     target: "_blank"
-  }, props.topData.button_watch_title))), /*#__PURE__*/_react.default.createElement(_ui.Box, {
+  }, buttonWatchTitle))), /*#__PURE__*/_react.default.createElement(_ui.Box, {
     component: "iframe",
-    src: "https://www.youtube.com/embed/".concat(props.topData.youtube_embed_id),
+    src: "https://www.youtube.com/embed/".concat(youtubeEmbeddedId),
     title: "YouTube video player",
     frameBorder: "0",
     allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
@@ -743,7 +850,7 @@ var TopSection = function TopSection(_ref) {
 };
 TopSection.propTypes = {
   topData: PropTypes.object.isRequired,
-  createNewPageUrl: PropTypes.string.isRequired
+  buttonCtaUrl: PropTypes.string.isRequired
 };
 var _default = exports["default"] = TopSection;
 
@@ -2439,7 +2546,7 @@ module.exports = _unsupportedIterableToArray, module.exports.__esModule = true, 
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (() => {
 "use strict";
 /*!****************************************!*\

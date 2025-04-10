@@ -1,4 +1,4 @@
-/*! elementor - v3.26.0 - 22-12-2024 */
+/*! elementor - v3.28.0 - 01-04-2025 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -3603,6 +3603,7 @@ var src_exports = {};
 __export(src_exports, {
   CancelledError: () => import_retryer.CancelledError,
   InfiniteQueryObserver: () => import_infiniteQueryObserver.InfiniteQueryObserver,
+  Mutation: () => import_mutation.Mutation,
   MutationCache: () => import_mutationCache.MutationCache,
   MutationObserver: () => import_mutationObserver.MutationObserver,
   QueriesObserver: () => import_queriesObserver.QueriesObserver,
@@ -3643,6 +3644,7 @@ var import_retryer2 = __webpack_require__(/*! ./retryer.cjs */ "../node_modules/
 var import_hydration = __webpack_require__(/*! ./hydration.cjs */ "../node_modules/@tanstack/query-core/build/modern/hydration.cjs");
 __reExport(src_exports, __webpack_require__(/*! ./types.cjs */ "../node_modules/@tanstack/query-core/build/modern/types.cjs"), module.exports);
 var import_query = __webpack_require__(/*! ./query.cjs */ "../node_modules/@tanstack/query-core/build/modern/query.cjs");
+var import_mutation = __webpack_require__(/*! ./mutation.cjs */ "../node_modules/@tanstack/query-core/build/modern/mutation.cjs");
 // Annotate the CommonJS export names for ESM import in node:
 0 && (0);
 //# sourceMappingURL=index.cjs.map
@@ -3687,12 +3689,13 @@ var import_utils = __webpack_require__(/*! ./utils.cjs */ "../node_modules/@tans
 function infiniteQueryBehavior(pages) {
   return {
     onFetch: (context, query) => {
+      const options = context.options;
+      const direction = context.fetchOptions?.meta?.fetchMore?.direction;
+      const oldPages = context.state.data?.pages || [];
+      const oldPageParams = context.state.data?.pageParams || [];
+      let result = { pages: [], pageParams: [] };
+      let currentPage = 0;
       const fetchFn = async () => {
-        const options = context.options;
-        const direction = context.fetchOptions?.meta?.fetchMore?.direction;
-        const oldPages = context.state.data?.pages || [];
-        const oldPageParams = context.state.data?.pageParams || [];
-        const empty = { pages: [], pageParams: [] };
         let cancelled = false;
         const addSignalProperty = (object) => {
           Object.defineProperty(object, "signal", {
@@ -3734,7 +3737,6 @@ function infiniteQueryBehavior(pages) {
             pageParams: addTo(data.pageParams, param, maxPages)
           };
         };
-        let result;
         if (direction && oldPages.length) {
           const previous = direction === "backward";
           const pageParamFn = previous ? getPreviousPageParam : getNextPageParam;
@@ -3745,15 +3747,15 @@ function infiniteQueryBehavior(pages) {
           const param = pageParamFn(options, oldData);
           result = await fetchPage(oldData, param, previous);
         } else {
-          result = await fetchPage(
-            empty,
-            oldPageParams[0] ?? options.initialPageParam
-          );
           const remainingPages = pages ?? oldPages.length;
-          for (let i = 1; i < remainingPages; i++) {
-            const param = getNextPageParam(options, result);
+          do {
+            const param = currentPage === 0 ? oldPageParams[0] ?? options.initialPageParam : getNextPageParam(options, result);
+            if (currentPage > 0 && param == null) {
+              break;
+            }
             result = await fetchPage(result, param);
-          }
+            currentPage++;
+          } while (currentPage < remainingPages);
         }
         return result;
       };
@@ -3777,20 +3779,15 @@ function infiniteQueryBehavior(pages) {
 }
 function getNextPageParam(options, { pages, pageParams }) {
   const lastIndex = pages.length - 1;
-  return options.getNextPageParam(
+  return pages.length > 0 ? options.getNextPageParam(
     pages[lastIndex],
     pages,
     pageParams[lastIndex],
     pageParams
-  );
+  ) : void 0;
 }
 function getPreviousPageParam(options, { pages, pageParams }) {
-  return options.getPreviousPageParam?.(
-    pages[0],
-    pages,
-    pageParams[0],
-    pageParams
-  );
+  return pages.length > 0 ? options.getPreviousPageParam?.(pages[0], pages, pageParams[0], pageParams) : void 0;
 }
 function hasNextPage(options, data) {
   if (!data)
@@ -4485,22 +4482,6 @@ function createNotifyManager() {
     callback();
   };
   let scheduleFn = (cb) => setTimeout(cb, 0);
-  const setScheduler = (fn) => {
-    scheduleFn = fn;
-  };
-  const batch = (callback) => {
-    let result;
-    transactions++;
-    try {
-      result = callback();
-    } finally {
-      transactions--;
-      if (!transactions) {
-        flush();
-      }
-    }
-    return result;
-  };
   const schedule = (callback) => {
     if (transactions) {
       queue.push(callback);
@@ -4509,13 +4490,6 @@ function createNotifyManager() {
         notifyFn(callback);
       });
     }
-  };
-  const batchCalls = (callback) => {
-    return (...args) => {
-      schedule(() => {
-        callback(...args);
-      });
-    };
   };
   const flush = () => {
     const originalQueue = queue;
@@ -4530,19 +4504,48 @@ function createNotifyManager() {
       });
     }
   };
-  const setNotifyFunction = (fn) => {
-    notifyFn = fn;
-  };
-  const setBatchNotifyFunction = (fn) => {
-    batchNotifyFn = fn;
-  };
   return {
-    batch,
-    batchCalls,
+    batch: (callback) => {
+      let result;
+      transactions++;
+      try {
+        result = callback();
+      } finally {
+        transactions--;
+        if (!transactions) {
+          flush();
+        }
+      }
+      return result;
+    },
+    /**
+     * All calls to the wrapped function will be batched.
+     */
+    batchCalls: (callback) => {
+      return (...args) => {
+        schedule(() => {
+          callback(...args);
+        });
+      };
+    },
     schedule,
-    setNotifyFunction,
-    setBatchNotifyFunction,
-    setScheduler
+    /**
+     * Use this method to set a custom notify function.
+     * This can be used to for example wrap notifications with `React.act` while running tests.
+     */
+    setNotifyFunction: (fn) => {
+      notifyFn = fn;
+    },
+    /**
+     * Use this method to set a custom function to batch notifications together into a single tick.
+     * By default React Query will use the batch function provided by ReactDOM or React Native.
+     */
+    setBatchNotifyFunction: (fn) => {
+      batchNotifyFn = fn;
+    },
+    setScheduler: (fn) => {
+      scheduleFn = fn;
+    }
   };
 }
 var notifyManager = createNotifyManager();
@@ -4691,13 +4694,15 @@ var QueriesObserver = class extends import_subscribable.Subscribable {
   #client;
   #result;
   #queries;
+  #options;
   #observers;
   #combinedResult;
   #lastCombine;
   #lastResult;
-  constructor(client, queries, _options) {
+  constructor(client, queries, options) {
     super();
     this.#client = client;
+    this.#options = options;
     this.#queries = [];
     this.#observers = [];
     this.#result = [];
@@ -4723,8 +4728,17 @@ var QueriesObserver = class extends import_subscribable.Subscribable {
       observer.destroy();
     });
   }
-  setQueries(queries, _options, notifyOptions) {
+  setQueries(queries, options, notifyOptions) {
     this.#queries = queries;
+    this.#options = options;
+    if (true) {
+      const queryHashes = queries.map((query) => query.queryHash);
+      if (new Set(queryHashes).size !== queryHashes.length) {
+        console.warn(
+          "[QueriesObserver]: Duplicate Queries found. This might result in unexpected behavior."
+        );
+      }
+    }
     import_notifyManager.notifyManager.batch(() => {
       const prevObservers = this.#observers;
       const newObserverMatches = this.#findMatchingObservers(this.#queries);
@@ -4777,16 +4791,20 @@ var QueriesObserver = class extends import_subscribable.Subscribable {
         return this.#combineResult(r ?? result, combine);
       },
       () => {
-        return matches.map((match, index) => {
-          const observerResult = result[index];
-          return !match.defaultedQueryOptions.notifyOnChangeProps ? match.observer.trackResult(observerResult, (accessedProp) => {
-            matches.forEach((m) => {
-              m.observer.trackProp(accessedProp);
-            });
-          }) : observerResult;
-        });
+        return this.#trackResult(result, queries);
       }
     ];
+  }
+  #trackResult(result, queries) {
+    const matches = this.#findMatchingObservers(queries);
+    return matches.map((match, index) => {
+      const observerResult = result[index];
+      return !match.defaultedQueryOptions.notifyOnChangeProps ? match.observer.trackResult(observerResult, (accessedProp) => {
+        matches.forEach((m) => {
+          m.observer.trackProp(accessedProp);
+        });
+      }) : observerResult;
+    });
   }
   #combineResult(input, combine) {
     if (combine) {
@@ -4803,41 +4821,26 @@ var QueriesObserver = class extends import_subscribable.Subscribable {
     return input;
   }
   #findMatchingObservers(queries) {
-    const prevObservers = this.#observers;
     const prevObserversMap = new Map(
-      prevObservers.map((observer) => [observer.options.queryHash, observer])
+      this.#observers.map((observer) => [observer.options.queryHash, observer])
     );
-    const defaultedQueryOptions = queries.map(
-      (options) => this.#client.defaultQueryOptions(options)
-    );
-    const matchingObservers = defaultedQueryOptions.flatMap((defaultedOptions) => {
-      const match = prevObserversMap.get(defaultedOptions.queryHash);
-      if (match != null) {
-        return [{ defaultedQueryOptions: defaultedOptions, observer: match }];
-      }
-      return [];
-    });
-    const matchedQueryHashes = new Set(
-      matchingObservers.map((match) => match.defaultedQueryOptions.queryHash)
-    );
-    const unmatchedQueries = defaultedQueryOptions.filter(
-      (defaultedOptions) => !matchedQueryHashes.has(defaultedOptions.queryHash)
-    );
-    const getObserver = (options) => {
+    const observers = [];
+    queries.forEach((options) => {
       const defaultedOptions = this.#client.defaultQueryOptions(options);
-      const currentObserver = this.#observers.find(
-        (o) => o.options.queryHash === defaultedOptions.queryHash
-      );
-      return currentObserver ?? new import_queryObserver.QueryObserver(this.#client, defaultedOptions);
-    };
-    const newOrReusedObservers = unmatchedQueries.map((options) => {
-      return {
-        defaultedQueryOptions: options,
-        observer: getObserver(options)
-      };
+      const match = prevObserversMap.get(defaultedOptions.queryHash);
+      if (match) {
+        observers.push({
+          defaultedQueryOptions: defaultedOptions,
+          observer: match
+        });
+      } else {
+        observers.push({
+          defaultedQueryOptions: defaultedOptions,
+          observer: new import_queryObserver.QueryObserver(this.#client, defaultedOptions)
+        });
+      }
     });
-    const sortMatchesByOrderOfQueries = (a, b) => defaultedQueryOptions.indexOf(a.defaultedQueryOptions) - defaultedQueryOptions.indexOf(b.defaultedQueryOptions);
-    return matchingObservers.concat(newOrReusedObservers).sort(sortMatchesByOrderOfQueries);
+    return observers;
   }
   #onUpdate(observer, result) {
     const index = this.#observers.indexOf(observer);
@@ -4847,11 +4850,20 @@ var QueriesObserver = class extends import_subscribable.Subscribable {
     }
   }
   #notify() {
-    import_notifyManager.notifyManager.batch(() => {
-      this.listeners.forEach((listener) => {
-        listener(this.#result);
-      });
-    });
+    if (this.hasListeners()) {
+      const previousResult = this.#combinedResult;
+      const newResult = this.#combineResult(
+        this.#trackResult(this.#result, this.#queries),
+        this.#options?.combine
+      );
+      if (previousResult !== newResult) {
+        import_notifyManager.notifyManager.batch(() => {
+          this.listeners.forEach((listener) => {
+            listener(this.#result);
+          });
+        });
+      }
+    }
   }
 };
 // Annotate the CommonJS export names for ESM import in node:
@@ -4913,8 +4925,8 @@ var Query = class extends import_removable.Removable {
     this.#cache = config.cache;
     this.queryKey = config.queryKey;
     this.queryHash = config.queryHash;
-    this.#initialState = config.state || getDefaultState(this.options);
-    this.state = this.#initialState;
+    this.#initialState = getDefaultState(this.options);
+    this.state = config.state ?? this.#initialState;
     this.scheduleGc();
   }
   get meta() {
@@ -4964,7 +4976,10 @@ var Query = class extends import_removable.Removable {
     );
   }
   isDisabled() {
-    return this.getObserversCount() > 0 && !this.isActive();
+    if (this.getObserversCount() > 0) {
+      return !this.isActive();
+    }
+    return this.options.queryFn === import_utils.skipToken || this.state.dataUpdateCount + this.state.errorUpdateCount === 0;
   }
   isStale() {
     if (this.state.isInvalidated) {
@@ -5107,10 +5122,7 @@ var Query = class extends import_removable.Removable {
           this
         );
       }
-      if (!this.isFetchingOptimistic) {
-        this.scheduleGc();
-      }
-      this.isFetchingOptimistic = false;
+      this.scheduleGc();
     };
     this.#retryer = (0, import_retryer.createRetryer)({
       initialPromise: fetchOptions?.initialPromise,
@@ -5126,17 +5138,19 @@ var Query = class extends import_removable.Removable {
           onError(new Error(`${this.queryHash} data is undefined`));
           return;
         }
-        this.setData(data);
+        try {
+          this.setData(data);
+        } catch (error) {
+          onError(error);
+          return;
+        }
         this.#cache.config.onSuccess?.(data, this);
         this.#cache.config.onSettled?.(
           data,
           this.state.error,
           this
         );
-        if (!this.isFetchingOptimistic) {
-          this.scheduleGc();
-        }
-        this.isFetchingOptimistic = false;
+        this.scheduleGc();
       },
       onError,
       onFail: (failureCount, error) => {
@@ -5490,17 +5504,16 @@ var QueryClient = class {
     return this.#queryCache.get(options.queryHash)?.state.data;
   }
   ensureQueryData(options) {
-    const cachedData = this.getQueryData(options.queryKey);
-    if (cachedData === void 0)
+    const defaultedOptions = this.defaultQueryOptions(options);
+    const query = this.#queryCache.build(this, defaultedOptions);
+    const cachedData = query.state.data;
+    if (cachedData === void 0) {
       return this.fetchQuery(options);
-    else {
-      const defaultedOptions = this.defaultQueryOptions(options);
-      const query = this.#queryCache.build(this, defaultedOptions);
-      if (options.revalidateIfStale && query.isStaleByTime((0, import_utils.resolveStaleTime)(defaultedOptions.staleTime, query))) {
-        void this.prefetchQuery(defaultedOptions);
-      }
-      return Promise.resolve(cachedData);
     }
+    if (options.revalidateIfStale && query.isStaleByTime((0, import_utils.resolveStaleTime)(defaultedOptions.staleTime, query))) {
+      void this.prefetchQuery(defaultedOptions);
+    }
+    return Promise.resolve(cachedData);
   }
   getQueriesData(filters) {
     return this.#queryCache.findAll(filters).map(({ queryKey, state }) => {
@@ -5530,7 +5543,9 @@ var QueryClient = class {
   }
   getQueryState(queryKey) {
     const options = this.defaultQueryOptions({ queryKey });
-    return this.#queryCache.get(options.queryHash)?.state;
+    return this.#queryCache.get(
+      options.queryHash
+    )?.state;
   }
   removeQueries(filters) {
     const queryCache = this.#queryCache;
@@ -5553,32 +5568,32 @@ var QueryClient = class {
       return this.refetchQueries(refetchFilters, options);
     });
   }
-  cancelQueries(filters = {}, cancelOptions = {}) {
+  cancelQueries(filters, cancelOptions = {}) {
     const defaultedCancelOptions = { revert: true, ...cancelOptions };
     const promises = import_notifyManager.notifyManager.batch(
       () => this.#queryCache.findAll(filters).map((query) => query.cancel(defaultedCancelOptions))
     );
     return Promise.all(promises).then(import_utils.noop).catch(import_utils.noop);
   }
-  invalidateQueries(filters = {}, options = {}) {
+  invalidateQueries(filters, options = {}) {
     return import_notifyManager.notifyManager.batch(() => {
       this.#queryCache.findAll(filters).forEach((query) => {
         query.invalidate();
       });
-      if (filters.refetchType === "none") {
+      if (filters?.refetchType === "none") {
         return Promise.resolve();
       }
       const refetchFilters = {
         ...filters,
-        type: filters.refetchType ?? filters.type ?? "active"
+        type: filters?.refetchType ?? filters?.type ?? "active"
       };
       return this.refetchQueries(refetchFilters, options);
     });
   }
-  refetchQueries(filters = {}, options) {
+  refetchQueries(filters, options = {}) {
     const fetchOptions = {
       ...options,
-      cancelRefetch: options?.cancelRefetch ?? true
+      cancelRefetch: options.cancelRefetch ?? true
     };
     const promises = import_notifyManager.notifyManager.batch(
       () => this.#queryCache.findAll(filters).filter((query) => !query.isDisabled()).map((query) => {
@@ -5611,6 +5626,10 @@ var QueryClient = class {
   prefetchInfiniteQuery(options) {
     return this.fetchInfiniteQuery(options).then(import_utils.noop).catch(import_utils.noop);
   }
+  ensureInfiniteQueryData(options) {
+    options.behavior = (0, import_infiniteQueryBehavior.infiniteQueryBehavior)(options.pages);
+    return this.ensureQueryData(options);
+  }
   resumePausedMutations() {
     if (import_onlineManager.onlineManager.isOnline()) {
       return this.#mutationCache.resumePausedMutations();
@@ -5637,10 +5656,10 @@ var QueryClient = class {
   }
   getQueryDefaults(queryKey) {
     const defaults = [...this.#queryDefaults.values()];
-    let result = {};
+    const result = {};
     defaults.forEach((queryDefault) => {
       if ((0, import_utils.partialMatchKey)(queryKey, queryDefault.queryKey)) {
-        result = { ...result, ...queryDefault.defaultOptions };
+        Object.assign(result, queryDefault.defaultOptions);
       }
     });
     return result;
@@ -5686,7 +5705,7 @@ var QueryClient = class {
     if (!defaultedOptions.networkMode && defaultedOptions.persister) {
       defaultedOptions.networkMode = "offlineFirst";
     }
-    if (defaultedOptions.enabled !== true && defaultedOptions.queryFn === import_utils.skipToken) {
+    if (defaultedOptions.queryFn === import_utils.skipToken) {
       defaultedOptions.enabled = false;
     }
     return defaultedOptions;
@@ -5745,17 +5764,24 @@ __export(queryObserver_exports, {
   QueryObserver: () => QueryObserver
 });
 module.exports = __toCommonJS(queryObserver_exports);
-var import_utils = __webpack_require__(/*! ./utils.cjs */ "../node_modules/@tanstack/query-core/build/modern/utils.cjs");
-var import_notifyManager = __webpack_require__(/*! ./notifyManager.cjs */ "../node_modules/@tanstack/query-core/build/modern/notifyManager.cjs");
 var import_focusManager = __webpack_require__(/*! ./focusManager.cjs */ "../node_modules/@tanstack/query-core/build/modern/focusManager.cjs");
-var import_subscribable = __webpack_require__(/*! ./subscribable.cjs */ "../node_modules/@tanstack/query-core/build/modern/subscribable.cjs");
+var import_notifyManager = __webpack_require__(/*! ./notifyManager.cjs */ "../node_modules/@tanstack/query-core/build/modern/notifyManager.cjs");
 var import_query = __webpack_require__(/*! ./query.cjs */ "../node_modules/@tanstack/query-core/build/modern/query.cjs");
+var import_subscribable = __webpack_require__(/*! ./subscribable.cjs */ "../node_modules/@tanstack/query-core/build/modern/subscribable.cjs");
+var import_thenable = __webpack_require__(/*! ./thenable.cjs */ "../node_modules/@tanstack/query-core/build/modern/thenable.cjs");
+var import_utils = __webpack_require__(/*! ./utils.cjs */ "../node_modules/@tanstack/query-core/build/modern/utils.cjs");
 var QueryObserver = class extends import_subscribable.Subscribable {
   constructor(client, options) {
     super();
     this.options = options;
     this.#client = client;
     this.#selectError = null;
+    this.#currentThenable = (0, import_thenable.pendingThenable)();
+    if (!this.options.experimental_prefetchInRender) {
+      this.#currentThenable.reject(
+        new Error("experimental_prefetchInRender feature flag is not enabled")
+      );
+    }
     this.bindMethods();
     this.setOptions(options);
   }
@@ -5765,6 +5791,7 @@ var QueryObserver = class extends import_subscribable.Subscribable {
   #currentResult = void 0;
   #currentResultState;
   #currentResultOptions;
+  #currentThenable;
   #selectError;
   #selectFn;
   #selectResult;
@@ -5892,7 +5919,6 @@ var QueryObserver = class extends import_subscribable.Subscribable {
   fetchOptimistic(options) {
     const defaultedOptions = this.#client.defaultQueryOptions(options);
     const query = this.#client.getQueryCache().build(this.#client, defaultedOptions);
-    query.isFetchingOptimistic = true;
     return query.fetch().then(() => this.createResult(query, defaultedOptions));
   }
   fetch(fetchOptions) {
@@ -6070,9 +6096,42 @@ var QueryObserver = class extends import_subscribable.Subscribable {
       isPlaceholderData,
       isRefetchError: isError && hasData,
       isStale: isStale(query, options),
-      refetch: this.refetch
+      refetch: this.refetch,
+      promise: this.#currentThenable
     };
-    return result;
+    const nextResult = result;
+    if (this.options.experimental_prefetchInRender) {
+      const finalizeThenableIfPossible = (thenable) => {
+        if (nextResult.status === "error") {
+          thenable.reject(nextResult.error);
+        } else if (nextResult.data !== void 0) {
+          thenable.resolve(nextResult.data);
+        }
+      };
+      const recreateThenable = () => {
+        const pending = this.#currentThenable = nextResult.promise = (0, import_thenable.pendingThenable)();
+        finalizeThenableIfPossible(pending);
+      };
+      const prevThenable = this.#currentThenable;
+      switch (prevThenable.status) {
+        case "pending":
+          if (query.queryHash === prevQuery.queryHash) {
+            finalizeThenableIfPossible(prevThenable);
+          }
+          break;
+        case "fulfilled":
+          if (nextResult.status === "error" || nextResult.data !== prevThenable.value) {
+            recreateThenable();
+          }
+          break;
+        case "rejected":
+          if (nextResult.status !== "error" || nextResult.error !== prevThenable.reason) {
+            recreateThenable();
+          }
+          break;
+      }
+    }
+    return nextResult;
   }
   updateResult(notifyOptions) {
     const prevResult = this.#currentResult;
@@ -6279,6 +6338,7 @@ __export(retryer_exports, {
 module.exports = __toCommonJS(retryer_exports);
 var import_focusManager = __webpack_require__(/*! ./focusManager.cjs */ "../node_modules/@tanstack/query-core/build/modern/focusManager.cjs");
 var import_onlineManager = __webpack_require__(/*! ./onlineManager.cjs */ "../node_modules/@tanstack/query-core/build/modern/onlineManager.cjs");
+var import_thenable = __webpack_require__(/*! ./thenable.cjs */ "../node_modules/@tanstack/query-core/build/modern/thenable.cjs");
 var import_utils = __webpack_require__(/*! ./utils.cjs */ "../node_modules/@tanstack/query-core/build/modern/utils.cjs");
 function defaultRetryDelay(failureCount) {
   return Math.min(1e3 * 2 ** failureCount, 3e4);
@@ -6286,8 +6346,9 @@ function defaultRetryDelay(failureCount) {
 function canFetch(networkMode) {
   return (networkMode ?? "online") === "online" ? import_onlineManager.onlineManager.isOnline() : true;
 }
-var CancelledError = class {
+var CancelledError = class extends Error {
   constructor(options) {
+    super("CancelledError");
     this.revert = options?.revert;
     this.silent = options?.silent;
   }
@@ -6300,12 +6361,7 @@ function createRetryer(config) {
   let failureCount = 0;
   let isResolved = false;
   let continueFn;
-  let promiseResolve;
-  let promiseReject;
-  const promise = new Promise((outerResolve, outerReject) => {
-    promiseResolve = outerResolve;
-    promiseReject = outerReject;
-  });
+  const thenable = (0, import_thenable.pendingThenable)();
   const cancel = (cancelOptions) => {
     if (!isResolved) {
       reject(new CancelledError(cancelOptions));
@@ -6325,7 +6381,7 @@ function createRetryer(config) {
       isResolved = true;
       config.onSuccess?.(value);
       continueFn?.();
-      promiseResolve(value);
+      thenable.resolve(value);
     }
   };
   const reject = (value) => {
@@ -6333,7 +6389,7 @@ function createRetryer(config) {
       isResolved = true;
       config.onError?.(value);
       continueFn?.();
-      promiseReject(value);
+      thenable.reject(value);
     }
   };
   const pause = () => {
@@ -6388,11 +6444,11 @@ function createRetryer(config) {
     });
   };
   return {
-    promise,
+    promise: thenable,
     cancel,
     continue: () => {
       continueFn?.();
-      return promise;
+      return thenable;
     },
     cancelRetry,
     continueRetry,
@@ -6403,7 +6459,7 @@ function createRetryer(config) {
       } else {
         pause().then(run);
       }
-      return promise;
+      return thenable;
     }
   };
 }
@@ -6469,6 +6525,75 @@ var Subscribable = class {
 // Annotate the CommonJS export names for ESM import in node:
 0 && (0);
 //# sourceMappingURL=subscribable.cjs.map
+
+/***/ }),
+
+/***/ "../node_modules/@tanstack/query-core/build/modern/thenable.cjs":
+/*!**********************************************************************!*\
+  !*** ../node_modules/@tanstack/query-core/build/modern/thenable.cjs ***!
+  \**********************************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/thenable.ts
+var thenable_exports = {};
+__export(thenable_exports, {
+  pendingThenable: () => pendingThenable
+});
+module.exports = __toCommonJS(thenable_exports);
+function pendingThenable() {
+  let resolve;
+  let reject;
+  const thenable = new Promise((_resolve, _reject) => {
+    resolve = _resolve;
+    reject = _reject;
+  });
+  thenable.status = "pending";
+  thenable.catch(() => {
+  });
+  function finalize(data) {
+    Object.assign(thenable, data);
+    delete thenable.resolve;
+    delete thenable.reject;
+  }
+  thenable.resolve = (value) => {
+    finalize({
+      status: "fulfilled",
+      value
+    });
+    resolve(value);
+  };
+  thenable.reject = (reason) => {
+    finalize({
+      status: "rejected",
+      reason
+    });
+    reject(reason);
+  };
+  return thenable;
+}
+// Annotate the CommonJS export names for ESM import in node:
+0 && (0);
+//# sourceMappingURL=thenable.cjs.map
 
 /***/ }),
 
@@ -6557,7 +6682,6 @@ __export(utils_exports, {
 module.exports = __toCommonJS(utils_exports);
 var isServer = typeof window === "undefined" || "Deno" in globalThis;
 function noop() {
-  return void 0;
 }
 function functionalUpdate(updater, input) {
   return typeof updater === "function" ? updater(input) : updater;
@@ -6724,15 +6848,24 @@ function isPlainObject(o) {
 function hasObjectPrototype(o) {
   return Object.prototype.toString.call(o) === "[object Object]";
 }
-function sleep(ms) {
+function sleep(timeout) {
   return new Promise((resolve) => {
-    setTimeout(resolve, ms);
+    setTimeout(resolve, timeout);
   });
 }
 function replaceData(prevData, data, options) {
   if (typeof options.structuralSharing === "function") {
     return options.structuralSharing(prevData, data);
   } else if (options.structuralSharing !== false) {
+    if (true) {
+      try {
+        return replaceEqualDeep(prevData, data);
+      } catch (error) {
+        console.error(
+          `Structural sharing requires data to be JSON serializable. To fix this, turn off structuralSharing or return JSON-serializable data from your queryFn. [${options.queryHash}]: ${error}`
+        );
+      }
+    }
     return replaceEqualDeep(prevData, data);
   }
   return data;
@@ -6749,7 +6882,7 @@ function addToStart(items, item, max = 0) {
   return max && newItems.length > max ? newItems.slice(0, -1) : newItems;
 }
 var skipToken = Symbol();
-var ensureQueryFn = (options, fetchOptions) => {
+function ensureQueryFn(options, fetchOptions) {
   if (true) {
     if (options.queryFn === skipToken) {
       console.error(
@@ -6764,7 +6897,7 @@ var ensureQueryFn = (options, fetchOptions) => {
     return () => Promise.reject(new Error(`Missing queryFn: '${options.queryHash}'`));
   }
   return options.queryFn;
-};
+}
 // Annotate the CommonJS export names for ESM import in node:
 0 && (0);
 //# sourceMappingURL=utils.cjs.map
@@ -7074,7 +7207,7 @@ module.exports = __toCommonJS(errorBoundaryUtils_exports);
 var React = __toESM(__webpack_require__(/*! react */ "react"), 1);
 var import_utils = __webpack_require__(/*! ./utils.cjs */ "../node_modules/@tanstack/react-query/build/modern/utils.cjs");
 var ensurePreventErrorBoundaryRetry = (options, errorResetBoundary) => {
-  if (options.suspense || options.throwOnError) {
+  if (options.suspense || options.throwOnError || options.experimental_prefetchInRender) {
     if (!errorResetBoundary.isReset()) {
       options.retryOnMount = false;
     }
@@ -7142,8 +7275,8 @@ __export(src_exports, {
   useIsRestoring: () => import_isRestoring.useIsRestoring,
   useMutation: () => import_useMutation.useMutation,
   useMutationState: () => import_useMutationState.useMutationState,
-  usePrefetchInfiniteQuery: () => import_prefetch.usePrefetchInfiniteQuery,
-  usePrefetchQuery: () => import_prefetch.usePrefetchQuery,
+  usePrefetchInfiniteQuery: () => import_usePrefetchInfiniteQuery.usePrefetchInfiniteQuery,
+  usePrefetchQuery: () => import_usePrefetchQuery.usePrefetchQuery,
   useQueries: () => import_useQueries.useQueries,
   useQuery: () => import_useQuery.useQuery,
   useQueryClient: () => import_QueryClientProvider.useQueryClient,
@@ -7160,7 +7293,8 @@ var import_useQuery = __webpack_require__(/*! ./useQuery.cjs */ "../node_modules
 var import_useSuspenseQuery = __webpack_require__(/*! ./useSuspenseQuery.cjs */ "../node_modules/@tanstack/react-query/build/modern/useSuspenseQuery.cjs");
 var import_useSuspenseInfiniteQuery = __webpack_require__(/*! ./useSuspenseInfiniteQuery.cjs */ "../node_modules/@tanstack/react-query/build/modern/useSuspenseInfiniteQuery.cjs");
 var import_useSuspenseQueries = __webpack_require__(/*! ./useSuspenseQueries.cjs */ "../node_modules/@tanstack/react-query/build/modern/useSuspenseQueries.cjs");
-var import_prefetch = __webpack_require__(/*! ./prefetch.cjs */ "../node_modules/@tanstack/react-query/build/modern/prefetch.cjs");
+var import_usePrefetchQuery = __webpack_require__(/*! ./usePrefetchQuery.cjs */ "../node_modules/@tanstack/react-query/build/modern/usePrefetchQuery.cjs");
+var import_usePrefetchInfiniteQuery = __webpack_require__(/*! ./usePrefetchInfiniteQuery.cjs */ "../node_modules/@tanstack/react-query/build/modern/usePrefetchInfiniteQuery.cjs");
 var import_queryOptions = __webpack_require__(/*! ./queryOptions.cjs */ "../node_modules/@tanstack/react-query/build/modern/queryOptions.cjs");
 var import_infiniteQueryOptions = __webpack_require__(/*! ./infiniteQueryOptions.cjs */ "../node_modules/@tanstack/react-query/build/modern/infiniteQueryOptions.cjs");
 var import_QueryClientProvider = __webpack_require__(/*! ./QueryClientProvider.cjs */ "../node_modules/@tanstack/react-query/build/modern/QueryClientProvider.cjs");
@@ -7272,58 +7406,6 @@ var IsRestoringProvider = IsRestoringContext.Provider;
 
 /***/ }),
 
-/***/ "../node_modules/@tanstack/react-query/build/modern/prefetch.cjs":
-/*!***********************************************************************!*\
-  !*** ../node_modules/@tanstack/react-query/build/modern/prefetch.cjs ***!
-  \***********************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-
-// src/prefetch.ts
-var prefetch_exports = {};
-__export(prefetch_exports, {
-  usePrefetchInfiniteQuery: () => usePrefetchInfiniteQuery,
-  usePrefetchQuery: () => usePrefetchQuery
-});
-module.exports = __toCommonJS(prefetch_exports);
-var import_QueryClientProvider = __webpack_require__(/*! ./QueryClientProvider.cjs */ "../node_modules/@tanstack/react-query/build/modern/QueryClientProvider.cjs");
-function usePrefetchQuery(options) {
-  const queryClient = (0, import_QueryClientProvider.useQueryClient)();
-  if (!queryClient.getQueryState(options.queryKey)) {
-    queryClient.prefetchQuery(options);
-  }
-}
-function usePrefetchInfiniteQuery(options) {
-  const queryClient = (0, import_QueryClientProvider.useQueryClient)();
-  if (!queryClient.getQueryState(options.queryKey)) {
-    queryClient.prefetchInfiniteQuery(options);
-  }
-}
-// Annotate the CommonJS export names for ESM import in node:
-0 && (0);
-//# sourceMappingURL=prefetch.cjs.map
-
-/***/ }),
-
 /***/ "../node_modules/@tanstack/react-query/build/modern/queryOptions.cjs":
 /*!***************************************************************************!*\
   !*** ../node_modules/@tanstack/react-query/build/modern/queryOptions.cjs ***!
@@ -7395,17 +7477,20 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var suspense_exports = {};
 __export(suspense_exports, {
   defaultThrowOnError: () => defaultThrowOnError,
-  ensureStaleTime: () => ensureStaleTime,
+  ensureSuspenseTimers: () => ensureSuspenseTimers,
   fetchOptimistic: () => fetchOptimistic,
   shouldSuspend: () => shouldSuspend,
   willFetch: () => willFetch
 });
 module.exports = __toCommonJS(suspense_exports);
 var defaultThrowOnError = (_error, query) => query.state.data === void 0;
-var ensureStaleTime = (defaultedOptions) => {
+var ensureSuspenseTimers = (defaultedOptions) => {
   if (defaultedOptions.suspense) {
-    if (typeof defaultedOptions.staleTime !== "number") {
+    if (defaultedOptions.staleTime === void 0) {
       defaultedOptions.staleTime = 1e3;
+    }
+    if (typeof defaultedOptions.gcTime === "number") {
+      defaultedOptions.gcTime = Math.max(defaultedOptions.gcTime, 1e3);
     }
   }
 };
@@ -7494,11 +7579,12 @@ __export(useBaseQuery_exports, {
 module.exports = __toCommonJS(useBaseQuery_exports);
 var React = __toESM(__webpack_require__(/*! react */ "react"), 1);
 var import_query_core = __webpack_require__(/*! @tanstack/query-core */ "../node_modules/@tanstack/query-core/build/modern/index.cjs");
-var import_QueryErrorResetBoundary = __webpack_require__(/*! ./QueryErrorResetBoundary.cjs */ "../node_modules/@tanstack/react-query/build/modern/QueryErrorResetBoundary.cjs");
 var import_QueryClientProvider = __webpack_require__(/*! ./QueryClientProvider.cjs */ "../node_modules/@tanstack/react-query/build/modern/QueryClientProvider.cjs");
-var import_isRestoring = __webpack_require__(/*! ./isRestoring.cjs */ "../node_modules/@tanstack/react-query/build/modern/isRestoring.cjs");
+var import_QueryErrorResetBoundary = __webpack_require__(/*! ./QueryErrorResetBoundary.cjs */ "../node_modules/@tanstack/react-query/build/modern/QueryErrorResetBoundary.cjs");
 var import_errorBoundaryUtils = __webpack_require__(/*! ./errorBoundaryUtils.cjs */ "../node_modules/@tanstack/react-query/build/modern/errorBoundaryUtils.cjs");
+var import_isRestoring = __webpack_require__(/*! ./isRestoring.cjs */ "../node_modules/@tanstack/react-query/build/modern/isRestoring.cjs");
 var import_suspense = __webpack_require__(/*! ./suspense.cjs */ "../node_modules/@tanstack/react-query/build/modern/suspense.cjs");
+var import_utils = __webpack_require__(/*! ./utils.cjs */ "../node_modules/@tanstack/react-query/build/modern/utils.cjs");
 function useBaseQuery(options, Observer, queryClient) {
   if (true) {
     if (typeof options !== "object" || Array.isArray(options)) {
@@ -7515,9 +7601,10 @@ function useBaseQuery(options, Observer, queryClient) {
     defaultedOptions
   );
   defaultedOptions._optimisticResults = isRestoring ? "isRestoring" : "optimistic";
-  (0, import_suspense.ensureStaleTime)(defaultedOptions);
+  (0, import_suspense.ensureSuspenseTimers)(defaultedOptions);
   (0, import_errorBoundaryUtils.ensurePreventErrorBoundaryRetry)(defaultedOptions, errorResetBoundary);
   (0, import_errorBoundaryUtils.useClearResetErrorBoundary)(errorResetBoundary);
+  const isNewCacheEntry = !client.getQueryCache().get(defaultedOptions.queryHash);
   const [observer] = React.useState(
     () => new Observer(
       client,
@@ -7528,7 +7615,7 @@ function useBaseQuery(options, Observer, queryClient) {
   React.useSyncExternalStore(
     React.useCallback(
       (onStoreChange) => {
-        const unsubscribe = isRestoring ? () => void 0 : observer.subscribe(import_query_core.notifyManager.batchCalls(onStoreChange));
+        const unsubscribe = isRestoring ? import_utils.noop : observer.subscribe(import_query_core.notifyManager.batchCalls(onStoreChange));
         observer.updateResult();
         return unsubscribe;
       },
@@ -7556,6 +7643,18 @@ function useBaseQuery(options, Observer, queryClient) {
     defaultedOptions,
     result
   );
+  if (defaultedOptions.experimental_prefetchInRender && !import_query_core.isServer && (0, import_suspense.willFetch)(result, isRestoring)) {
+    const promise = isNewCacheEntry ? (
+      // Fetch immediately on render in order to ensure `.promise` is resolved even if the component is unmounted
+      (0, import_suspense.fetchOptimistic)(defaultedOptions, observer, errorResetBoundary)
+    ) : (
+      // subscribe to the "cache promise" so that we can finalize the currentThenable once data comes in
+      client.getQueryCache().get(defaultedOptions.queryHash)?.promise
+    );
+    promise?.catch(import_utils.noop).finally(() => {
+      observer.updateResult();
+    });
+  }
   return !defaultedOptions.notifyOnChangeProps ? observer.trackResult(result) : result;
 }
 // Annotate the CommonJS export names for ESM import in node:
@@ -7852,6 +7951,96 @@ function useMutationState(options = {}, queryClient) {
 
 /***/ }),
 
+/***/ "../node_modules/@tanstack/react-query/build/modern/usePrefetchInfiniteQuery.cjs":
+/*!***************************************************************************************!*\
+  !*** ../node_modules/@tanstack/react-query/build/modern/usePrefetchInfiniteQuery.cjs ***!
+  \***************************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/usePrefetchInfiniteQuery.tsx
+var usePrefetchInfiniteQuery_exports = {};
+__export(usePrefetchInfiniteQuery_exports, {
+  usePrefetchInfiniteQuery: () => usePrefetchInfiniteQuery
+});
+module.exports = __toCommonJS(usePrefetchInfiniteQuery_exports);
+var import_QueryClientProvider = __webpack_require__(/*! ./QueryClientProvider.cjs */ "../node_modules/@tanstack/react-query/build/modern/QueryClientProvider.cjs");
+function usePrefetchInfiniteQuery(options, queryClient) {
+  const client = (0, import_QueryClientProvider.useQueryClient)(queryClient);
+  if (!client.getQueryState(options.queryKey)) {
+    client.prefetchInfiniteQuery(options);
+  }
+}
+// Annotate the CommonJS export names for ESM import in node:
+0 && (0);
+//# sourceMappingURL=usePrefetchInfiniteQuery.cjs.map
+
+/***/ }),
+
+/***/ "../node_modules/@tanstack/react-query/build/modern/usePrefetchQuery.cjs":
+/*!*******************************************************************************!*\
+  !*** ../node_modules/@tanstack/react-query/build/modern/usePrefetchQuery.cjs ***!
+  \*******************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// src/usePrefetchQuery.tsx
+var usePrefetchQuery_exports = {};
+__export(usePrefetchQuery_exports, {
+  usePrefetchQuery: () => usePrefetchQuery
+});
+module.exports = __toCommonJS(usePrefetchQuery_exports);
+var import_QueryClientProvider = __webpack_require__(/*! ./QueryClientProvider.cjs */ "../node_modules/@tanstack/react-query/build/modern/QueryClientProvider.cjs");
+function usePrefetchQuery(options, queryClient) {
+  const client = (0, import_QueryClientProvider.useQueryClient)(queryClient);
+  if (!client.getQueryState(options.queryKey)) {
+    client.prefetchQuery(options);
+  }
+}
+// Annotate the CommonJS export names for ESM import in node:
+0 && (0);
+//# sourceMappingURL=usePrefetchQuery.cjs.map
+
+/***/ }),
+
 /***/ "../node_modules/@tanstack/react-query/build/modern/useQueries.cjs":
 /*!*************************************************************************!*\
   !*** ../node_modules/@tanstack/react-query/build/modern/useQueries.cjs ***!
@@ -7902,6 +8091,7 @@ var import_isRestoring = __webpack_require__(/*! ./isRestoring.cjs */ "../node_m
 var import_QueryErrorResetBoundary = __webpack_require__(/*! ./QueryErrorResetBoundary.cjs */ "../node_modules/@tanstack/react-query/build/modern/QueryErrorResetBoundary.cjs");
 var import_errorBoundaryUtils = __webpack_require__(/*! ./errorBoundaryUtils.cjs */ "../node_modules/@tanstack/react-query/build/modern/errorBoundaryUtils.cjs");
 var import_suspense = __webpack_require__(/*! ./suspense.cjs */ "../node_modules/@tanstack/react-query/build/modern/suspense.cjs");
+var import_utils = __webpack_require__(/*! ./utils.cjs */ "../node_modules/@tanstack/react-query/build/modern/utils.cjs");
 function useQueries({
   queries,
   ...options
@@ -7920,7 +8110,7 @@ function useQueries({
     [queries, client, isRestoring]
   );
   defaultedQueries.forEach((query) => {
-    (0, import_suspense.ensureStaleTime)(query);
+    (0, import_suspense.ensureSuspenseTimers)(query);
     (0, import_errorBoundaryUtils.ensurePreventErrorBoundaryRetry)(query, errorResetBoundary);
   });
   (0, import_errorBoundaryUtils.useClearResetErrorBoundary)(errorResetBoundary);
@@ -7937,7 +8127,7 @@ function useQueries({
   );
   React.useSyncExternalStore(
     React.useCallback(
-      (onStoreChange) => isRestoring ? () => void 0 : observer.subscribe(import_query_core.notifyManager.batchCalls(onStoreChange)),
+      (onStoreChange) => isRestoring ? import_utils.noop : observer.subscribe(import_query_core.notifyManager.batchCalls(onStoreChange)),
       [observer, isRestoring]
     ),
     () => observer.getCurrentResult(),
@@ -8073,6 +8263,11 @@ var import_query_core = __webpack_require__(/*! @tanstack/query-core */ "../node
 var import_useBaseQuery = __webpack_require__(/*! ./useBaseQuery.cjs */ "../node_modules/@tanstack/react-query/build/modern/useBaseQuery.cjs");
 var import_suspense = __webpack_require__(/*! ./suspense.cjs */ "../node_modules/@tanstack/react-query/build/modern/suspense.cjs");
 function useSuspenseInfiniteQuery(options, queryClient) {
+  if (true) {
+    if (options.queryFn === import_query_core.skipToken) {
+      console.error("skipToken is not allowed for useSuspenseInfiniteQuery");
+    }
+  }
   return (0, import_useBaseQuery.useBaseQuery)(
     {
       ...options,
@@ -8123,19 +8318,27 @@ __export(useSuspenseQueries_exports, {
   useSuspenseQueries: () => useSuspenseQueries
 });
 module.exports = __toCommonJS(useSuspenseQueries_exports);
+var import_query_core = __webpack_require__(/*! @tanstack/query-core */ "../node_modules/@tanstack/query-core/build/modern/index.cjs");
 var import_useQueries = __webpack_require__(/*! ./useQueries.cjs */ "../node_modules/@tanstack/react-query/build/modern/useQueries.cjs");
 var import_suspense = __webpack_require__(/*! ./suspense.cjs */ "../node_modules/@tanstack/react-query/build/modern/suspense.cjs");
 function useSuspenseQueries(options, queryClient) {
   return (0, import_useQueries.useQueries)(
     {
       ...options,
-      queries: options.queries.map((query) => ({
-        ...query,
-        suspense: true,
-        throwOnError: import_suspense.defaultThrowOnError,
-        enabled: true,
-        placeholderData: void 0
-      }))
+      queries: options.queries.map((query) => {
+        if (true) {
+          if (query.queryFn === import_query_core.skipToken) {
+            console.error("skipToken is not allowed for useSuspenseQueries");
+          }
+        }
+        return {
+          ...query,
+          suspense: true,
+          throwOnError: import_suspense.defaultThrowOnError,
+          enabled: true,
+          placeholderData: void 0
+        };
+      })
     },
     queryClient
   );
@@ -8281,7 +8484,7 @@ function noop() {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (() => {
 "use strict";
 /*!***************************************************!*\

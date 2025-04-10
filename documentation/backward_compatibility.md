@@ -8,28 +8,34 @@ Backward Compatibility
 ==========
 
 
+- [Backward Compatibility](#backward-compatibility)
 - [Why Backward Compatibility Matters](#why-backward-compatibility-matters)
 - [What's New](#whats-new)
 - [How it works](#how-it-works)
-- [Command Essentials](#command-essentials)
-- [Common Use Cases](#common-use-cases)
-  - [Validating Work in Progress (local development)](#1-validating-work-in-progress-local-development)
-  - [As a pre-commit hook](#2-as-a-pre-commit-hook)
-  - [Pre-Merge Validation (in your CI pipeline)](#3-pre-merge-validation-in-your-ci-pipeline)
-  - [Analyzing specific files](#4-analyzing-specific-files)
-  - [Comparing with a different branch](#5-comparing-with-a-different-branch)
-- [Pratical Examples (Try it Yourself)](#practical-examples-try-it-yourself)
-- [Handling Contracts In Progress](#handling-contracts-in-progress)
-- [Backward Compatibility Rules](#backward-compatibility-rules)
-- [Comparing Two Contracts (Deprecated)](#comparing-two-contracts-deprecated)
-- [Validating Changes In Git On Your Laptop (Deprecated)](#validating-changes-in-git-on-your-laptop-deprecated)
-- [Validating Changes In CI (Deprecated)](#validating-changes-in-ci-deprecated)
-- [Troubleshooting](#troubleshooting)
+- [Using Backward Compatibility](#using-backward-compatibility)
+  - [Command Essentials](#command-essentials)
+    - [Key Options](#key-options)
+  - [Common Use Cases](#common-use-cases)
+    - [1. Validating Work in Progress (local development)](#1-validating-work-in-progress-local-development)
+    - [2. As a pre-commit hook](#2-as-a-pre-commit-hook)
+    - [3. Pre-Merge Validation (in your CI pipeline)](#3-pre-merge-validation-in-your-ci-pipeline)
+    - [4. Analyzing specific files](#4-analyzing-specific-files)
+    - [5. Comparing with a different branch](#5-comparing-with-a-different-branch)
+  - [Practical Examples (Try it yourself)](#practical-examples-try-it-yourself)
+    - [Orders API Evolution](#orders-api-evolution)
+    - [Breaking Change](#breaking-change)
+  - [Handling Changes In Progress](#handling-changes-in-progress)
+  - [Backward Compatibility Rules](#backward-compatibility-rules)
+- [Backward Compatibility Commands (Deprecated)](#backward-compatibility-commands-deprecated)
+  - [Comparing Two Contracts (Deprecated)](#comparing-two-contracts-deprecated)
+  - [Validating Changes In Git On Your Laptop (Deprecated)](#validating-changes-in-git-on-your-laptop-deprecated)
+  - [Validating Changes In CI (Deprecated)](#validating-changes-in-ci-deprecated)
+  - [Troubleshooting](#troubleshooting)
 
 
 
 # Why Backward Compatibility Matters
-Backward compatibility ensures that updates to your API specifications don't accidently break compatibility. and prevents rework. Perform automated backward compatibility checks to ensure we are not accidentally breaking compatibility.
+Backward compatibility ensures that updates to your API specifications don't accidentally break compatibility. and prevents rework. Perform automated backward compatibility checks to ensure we are not accidentally breaking compatibility.
 
 Specmatic offers this powerful feature to check for backward compatibility between different versions of your API specifications.
 
@@ -80,6 +86,7 @@ specmatic backward-compatibility-check [options]
 
 - `--target-path`: Focus your analysis on specific file or folder. Default is all files and folder.
 - `--base-branch`: Select your comparison base. This defaults to head of the current branch.
+- `--repo-dir`: Specify the directory where the repository is located. Default is the current directory.
 
 ## Common Use Cases
 
@@ -155,6 +162,11 @@ specmatic backward-compatibility-check --target-path ./api/products.yaml
 specmatic backward-compatibility-check --base-branch origin/feature_v2
 ```
 
+### 6. Analyzing a specific directory
+
+```shell
+specmatic backward-compatibility-check --repo-dir /path/to/repo
+```
 
 ## Practical Examples (Try it yourself) 
 
@@ -516,7 +528,7 @@ java -jar specmatic.jar compare api_products_v1.yaml api_products_v2.yaml
 {% endtab %}
 {% tab compare npm %}
 ```bash
-npx specmaitc compare api_products_v1.yaml api_products_v2.yaml
+npx specmatic compare api_products_v1.yaml api_products_v2.yaml
 ```
 {% endtab %}
 {% tab compare docker %}
@@ -678,7 +690,7 @@ This command exits with exit code 1 if the change is backward incompatible.
 ## Troubleshooting
 
 1. **Command Not Recognized**: 
-   - Verify Specimatic is properly configured for your current directory (either Docker or Node package or Python module or Jar file)
+   - Verify Specmatic is properly configured for your current directory (either Docker or Node package or Python module or Jar file)
    - Ensure you are using the latest version of Specmatic.
 
 2. **Unexpected Outcomes**: 

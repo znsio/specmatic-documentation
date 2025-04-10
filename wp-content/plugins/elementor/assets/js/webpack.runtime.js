@@ -1,4 +1,4 @@
-/*! elementor - v3.26.0 - 22-12-2024 */
+/*! elementor - v3.28.0 - 01-04-2025 */
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({});
@@ -123,23 +123,24 @@
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if (chunkId === "nested-title-keyboard-handler") return "" + chunkId + ".451fba615fad42703872.bundle.js";
-/******/ 			if (chunkId === "lightbox") return "" + chunkId + ".796e05223323a487677f.bundle.js";
-/******/ 			if (chunkId === "text-path") return "" + chunkId + ".12d8f0d07bb4893759c1.bundle.js";
-/******/ 			if (chunkId === "accordion") return "" + chunkId + ".386ef72c00b640a5a565.bundle.js";
-/******/ 			if (chunkId === "alert") return "" + chunkId + ".0f08bb619b34118d5723.bundle.js";
-/******/ 			if (chunkId === "counter") return "" + chunkId + ".4376b4ff7a0ac7960ece.bundle.js";
-/******/ 			if (chunkId === "progress") return "" + chunkId + ".fa9d02f64d572ab7c406.bundle.js";
-/******/ 			if (chunkId === "tabs") return "tabs.6d6269a8d596a1bc73e3.bundle.js";
-/******/ 			if (chunkId === "toggle") return "" + chunkId + ".3520395de60310d5fb8d.bundle.js";
-/******/ 			if (chunkId === "video") return "" + chunkId + ".602349dafcafaba0fcb2.bundle.js";
-/******/ 			if (chunkId === "image-carousel") return "" + chunkId + ".6b6cc9be9f264358e60f.bundle.js";
-/******/ 			if (chunkId === "text-editor") return "" + chunkId + ".4c1f4c7a6496bcbd4fbc.bundle.js";
-/******/ 			if (chunkId === "wp-audio") return "" + chunkId + ".e66fbeb6bb602dcbc731.bundle.js";
-/******/ 			if (chunkId === "nested-accordion") return "" + chunkId + ".b15477b3c5d0de743d83.bundle.js";
-/******/ 			if (chunkId === "contact-buttons") return "" + chunkId + ".c953d1cdf362b19a9f7d.bundle.js";
-/******/ 			if (chunkId === "floating-bars") return "" + chunkId + ".d7a4725c8d2b0c4da40a.bundle.js";
-/******/ 			if (chunkId === "container") return "" + chunkId + ".7bbfb10dea9b7c487356.bundle.js";
+/******/ 			if (chunkId === "lightbox") return "" + chunkId + ".74688eb10c7852662847.bundle.js";
+/******/ 			if (chunkId === "text-path") return "" + chunkId + ".acb8842ac7e1cd1dfb44.bundle.js";
+/******/ 			if (chunkId === "accordion") return "" + chunkId + ".7b5b5744bdd225280eca.bundle.js";
+/******/ 			if (chunkId === "alert") return "" + chunkId + ".b696182ec6f18a35bc69.bundle.js";
+/******/ 			if (chunkId === "counter") return "" + chunkId + ".f359dee9199f5aad06c6.bundle.js";
+/******/ 			if (chunkId === "progress") return "" + chunkId + ".5d8492a023e85c6cc0e0.bundle.js";
+/******/ 			if (chunkId === "tabs") return "tabs.e808857358793ac13db5.bundle.js";
+/******/ 			if (chunkId === "toggle") return "" + chunkId + ".375da8e2f6fed12731c2.bundle.js";
+/******/ 			if (chunkId === "video") return "" + chunkId + ".d862fafddbe5d05459f3.bundle.js";
+/******/ 			if (chunkId === "image-carousel") return "" + chunkId + ".1a3e0c6222562304eed5.bundle.js";
+/******/ 			if (chunkId === "text-editor") return "" + chunkId + ".bd4eccbd156d0b1fc3cf.bundle.js";
+/******/ 			if (chunkId === "wp-audio") return "" + chunkId + ".c91cab3152c3f241f266.bundle.js";
+/******/ 			if (chunkId === "nested-tabs") return "" + chunkId + ".213892f3e7a826d32481.bundle.js";
+/******/ 			if (chunkId === "nested-accordion") return "" + chunkId + ".a0f28ea648b29da812a1.bundle.js";
+/******/ 			if (chunkId === "contact-buttons") return "" + chunkId + ".c21325756a91b795f8e4.bundle.js";
+/******/ 			if (chunkId === "floating-bars") return "" + chunkId + ".7efeeb8b098e55999ff1.bundle.js";
+/******/ 			if (chunkId === "container") return "" + chunkId + ".cb1e834c5aad68e9c908.bundle.js";
+/******/ 			if (chunkId === "nested-title-keyboard-handler") return "" + chunkId + ".967db65f6ba460c1f2e9.bundle.js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
@@ -165,7 +166,7 @@
 /******/ 	/* webpack/runtime/load script */
 /******/ 	(() => {
 /******/ 		var inProgress = {};
-/******/ 		var dataWebpackPrefix = "elementor:";
+/******/ 		var dataWebpackPrefix = "elementorFrontend:";
 /******/ 		// loadScript function to load a script via script tag
 /******/ 		__webpack_require__.l = (url, done, key, chunkId) => {
 /******/ 			if(inProgress[url]) { inProgress[url].push(done); return; }
@@ -327,7 +328,7 @@
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunkelementor"] = self["webpackChunkelementor"] || [];
+/******/ 		var chunkLoadingGlobal = self["webpackChunkelementorFrontend"] = self["webpackChunkelementorFrontend"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();

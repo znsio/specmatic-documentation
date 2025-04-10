@@ -45,9 +45,29 @@ Service Virtualization
     - [Clearing Transient Expectations](#clearing-transient-expectations)
   - [Externalised Response Generation](#externalised-response-generation)
   - [Hooks](#hooks)
+    - [Overview](#overview)
+    - [Use Case: API Gateway Header Transformation](#use-case-api-gateway-header-transformation)
+    - [Implementation Steps](#implementation-steps)
+    - [How It Works](#how-it-works)
   - [Precedence Across Types Of Examples](#precedence-across-types-of-examples)
   - [Checking Health Status Of Stub Server](#checking-health-status-of-stub-server)
       - [Example `curl` Request:](#example-curl-request)
+    - [Running Specmatic Stubs on Different Ports](#running-specmatic-stubs-on-different-ports)
+      - [Overview](#overview-1)
+      - [Directory Structure](#directory-structure)
+      - [Specmatic Configuration](#specmatic-configuration)
+        - [specmatic.yaml](#specmaticyaml)
+      - [API Specifications](#api-specifications)
+        - [imported\_product.yaml](#imported_productyaml)
+        - [exported\_product.yaml](#exported_productyaml)
+      - [Examples](#examples)
+        - [post\_imported\_product.json](#post_imported_productjson)
+        - [post\_exported\_product.json](#post_exported_productjson)
+        - [Run the stub server](#run-the-stub-server)
+      - [Example Requests](#example-requests)
+        - [Hitting the imported\_product API on default port 9000](#hitting-the-imported_product-api-on-default-port-9000)
+        - [Hitting the exported\_product API on port 9001](#hitting-the-exported_product-api-on-port-9001)
+      - [Benefits](#benefits)
   - [Sample Java Project](#sample-java-project)
 
 
@@ -117,23 +137,30 @@ Service Virtualization
 - In the same directory, create a file named `specmatic.yaml` with the following contents:
 
   ```yaml
-  sources:
-    - provider: filesystem
-      stub:
+  version: 2
+  contracts:
+    - consumes:
         - employees.yaml
   ```
 
 - `cd` into the `specmatic` directory and run the following command:
-
-    ```shell
-    java -jar specmatic.jar stub
-    ```
-
-    Alternatively, you can also run the same command with the Docker image:
-
-    ```shell
-    docker run znsio/specmatic stub
-    ```
+{% tabs test %}
+{% tab test java %}
+```shell
+java -jar specmatic.jar stub
+```
+{% endtab %}
+{% tab test npm %}
+```shell
+npx specmatic stub
+```
+{% endtab %}
+{% tab test docker %}
+```shell
+docker run -p 9000:9000 -v "${PWD}/employees.yaml:/usr/src/app/employees.yaml" -v "${PWD}/specmatic.yaml:/usr/src/app/specmatic.yaml" znsio/specmatic stub
+```
+{% endtab %}
+{% endtabs %}
 
 - In a new tab, run the following curl command:
 
@@ -228,17 +255,10 @@ It may not always be possible to add examples inline in the OpenAPI specificatio
 
 Let's see how this is done.
 
-- Run the `examples` command:
-
-  ```shell
-  java -jar specmatic.jar examples employees.yaml
-  ```
-
-  Alternatively, you can also run the same command with the Docker image:
-
-  ```shell
-  docker run znsio/specmatic examples employees.yaml
-  ```
+- Run the `examples` command:<br/><br/>
+```shell
+docker run -v "$(pwd)/employees.yaml:/usr/src/app/employees.yaml" -v "$(pwd)/employees_examples:/usr/src/app/employees_examples" znsio/specmatic-openapi examples generate employees.yaml
+```
 
 - It generates a request-response mapping JSON file in the `employees_examples` directory containing an example of the API in the spec.
   - The directory name follows the format `<spec file name without extension>_examples`.
@@ -599,17 +619,24 @@ Suppose you do not wish Specmatic to return an auto-generated response when ther
 
 Let's try this out.
 
-- Start Specamtic stub with the `--strict` flag, using the following command:
-
-  ```shell
-  java -jar specmatic.jar --strict
-  ```
-
-  Alternatively, you can also run the same command with the Docker image:
-
-  ```shell
-  docker run znsio/specmatic --strict
-  ```
+- Start Specmatic stub with the `--strict` flag, using the following command:
+{% tabs test %}
+{% tab test java %}
+```shell
+java -jar specmatic.jar stub --strict
+```
+{% endtab %}
+{% tab test npm %}
+```shell
+npx specmatic stub --strict
+```
+{% endtab %}
+{% tab test docker %}
+```shell
+docker run -p 9000:9000 -v "${PWD}/employees.yaml:/usr/src/app/employees.yaml" -v "${PWD}/specmatic.yaml:/usr/src/app/specmatic.yaml" znsio/specmatic stub --strict
+```
+{% endtab %}
+{% endtabs %}
 
 - Now run the following curl command:
 
@@ -689,103 +716,120 @@ For specifications where the request body is a string, you may find it helpful t
 
 Let's try this out.
 
-Create a new specification file named employee_sql.yaml:
+Create a new specification file named phonebook.yaml:
 
 ```yaml
 openapi: 3.0.0
 info:
-  title: SQL Query API
+  title: PhoneBook API
   version: '1.0'
 paths:
-  /employee-query:
+  /search:
     post:
-      summary: Run an SQL query
+      summary: Search By Name
       requestBody:
         required: true
         content:
           text/plain:
             schema:
               type: string
-              description: The SQL query to be executed
+              description: The name to be searched for
       responses:
-        '200':
-          description: Successful execution of the SQL query
+        200:
+          description: OK
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - id
-                  - name
-                properties:
-                  id:
-                    type: integer
-                    description: The employee ID
-                  name:
-                    type: string
-                    description: The employee name
-
+                type: array
+                items:
+                  type: object
+                  required:
+                    - name
+                    - number
+                  properties:
+                    name:
+                      type: string
+                      description: The name of the person
+                    number:
+                      type: string
+                      description: The phone number of the person
 ```
 
-- Note: the request body is a string holding an SQL query.
-- Create a directory named `employee_sql_examples`. Create a file in this directory named `select_employee_by_id.json` with the following contents:
+- Note: the request body is a string holding a name. The response body is an array of objects, each containing the name and the phone number.
+- Create a directory named `phonebook_examples`. Create a file in this directory named `search_john.json` with the following contents:
 
-  ```json
-  {
-    "http-request": {
-      "path": "/employee-query",
-      "method": "POST",
-
-      "headers": {
-        "Content-Type": "application/json"
-      },
-      
-      "body": "(string)",
-      "bodyRegex": "^SELECT .*id = 1$"
+```json
+{
+  "http-request": {
+    "path": "/search",
+    "method": "POST",
+    "headers": {
+      "Content-Type": "text/plain"
     },
-    "http-response": {
-      "status": 200,
-        
-      "body": {
-        "id": 1,
-        "name": "John Doe"
+    "body": "(string)",
+    "bodyRegex": "^[Jj][Oo][Hh][Nn].*$"
+  },
+  "http-response": {
+    "status": 200,
+    "body": [
+      {
+        "name": "John Doe",
+        "number": "123-456-7890"
       },
-      
-      "headers": {
-        "Content-Type": "application/json"
+      {
+        "name": "John Smith",
+        "number": "987-654-3210"
       },
-
-      "status-text": "OK"
-    }
+      {
+        "name": "John Johnson",
+        "number": "555-555-5555"
+      }
+    ],
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "status-text": "OK"
   }
-  ```
+}
+```
 
-- Add `employee_sql.yaml` to the `stub` list in `specmatic.yaml`, like so:
+- Add `phonebook.yaml` to the `consumes` list in `specmatic.yaml`, like so:
 
   ```yaml
-  sources:
-    - provider: filesystem
-      stub:
+  version: 2
+  contracts:
+    - consumes:
         - employees.yaml
-        - employee_sql.yaml
+        - phonebook.yaml
   ```
 
 - Run the following curl command:
 
   ```shell
-  curl -X POST -H 'Content-Type: text/plain' -d 'SELECT * from employee where id = 1' http://localhost:9000/employee-query
+  curl -X POST -H "Content-Type: text/plain" -d "John" http://localhost:9000/search
   ```
 
 - You'll get this response:
 
-  ```json
+```json
+[
   {
-      "id": 1,
-      "name": "John Doe"
+    "name": "John Doe",
+    "number": "123-456-7890"
+  },
+  {
+    "name": "John Smith",
+    "number": "987-654-3210"
+  },
+  {
+    "name": "John Johnson",
+    "number": "555-555-5555"
   }
-  ```
+]
+```
 
-- Try changing the table name, or any other part of the query. Just make sure that the query starts with `SELECT` and ends with `id = 1`, as per the regex in `bodyRegex` in the example, and you'll get the same response.
+- If the `bodyRegex` matches the incoming request body, that example is utilized. Otherwise, a random response is generated.
+- Try modifying the last name in the curl request. As long as the request begins with `John` case insensitive, you will receive the same response as defined by the regex in the `bodyRegex` in the example.
 
 ## Correlated Request And Response Values
 
@@ -1142,7 +1186,7 @@ Let's see how this works.
 
   ```
 
-- Create a file named `dictionary.json` in the same directory as your `specmatic.yaml` with below contents. The format of this dictionary JSON is on the lines of a map (key value pair) where the keys as per your OpenAPI schema object keys (in this case "department" and "designation"):
+- Create a file named `employee_details_dictionary.json` in the same directory as your `specmatic.yaml` with below contents. The format of this dictionary JSON is on the lines of a map (key value pair) where the keys as per your OpenAPI schema object keys (in this case "department" and "designation"):
 
   ```json
   {
@@ -1152,17 +1196,6 @@ Let's see how this works.
     "Employee.department": "Sales",
     "Employee.designation" : "Associate"
   }
-  ```
-
-- Update your `specmatic.yaml` file to use the `dictionary.json` we created above:
-
-  ```yaml
-  sources:
-    - provider: filesystem
-      stub:
-        - employee_details.yaml
-  stub:
-    dictionary: ./dictionary.json
   ```
 
 - Start the stub and execute this curl command:
@@ -1366,14 +1399,28 @@ All other requests, other than the specific request (product id 11) where a dela
 A Global delay can be applied to all requests handled by service virtualization. By configuring the `delayInMilliseconds` parameter in Specmatic Config, 
 you can simulate response times with the specified delay in milliseconds.
 
-{% tabs stubs %}
-{% tab stubs specmatic.json %}
+{% tabs stubs_serviceVirtualisation %}
+{% tab stubs_serviceVirtualisation specmatic.yaml %}
+```yaml
+version: 2
+contracts:
+  - git:
+      url: https://github.com/znsio/specmatic-order-contracts.git
+    consumes:
+      - io/specmatic/examples/store/openapi/api_order_v3.yaml
+stub:
+  delayInMilliseconds: 3000
+```
+{% endtab %}
+{% tab stubs_serviceVirtualisation specmatic.json %}
 ```json
 {
-  "sources": [
+  "version": 2,
+  "contracts": [
     {
-      "provider": "git",
-      "repository": "https://github.com/znsio/specmatic-order-contracts.git",
+      "git": {
+        "url": "https://github.com/znsio/specmatic-order-contracts.git"
+      },
       "consumes": [
         "io/specmatic/examples/store/openapi/api_order_v3.yaml"
       ]
@@ -1383,17 +1430,6 @@ you can simulate response times with the specified delay in milliseconds.
     "delayInMilliseconds": 3000
   }
 }
-```
-{% endtab %}
-{% tab stubs specmatic.yaml %}
-```yaml
-sources:
-  - provider: git
-    repository: https://github.com/znsio/specmatic-order-contracts.git
-    consumes:
-      - io/specmatic/examples/store/openapi/api_order_v3.yaml
-stub:
-  delayInMilliseconds: 3000
 ```
 {% endtab %}
 {% endtabs %}
@@ -1408,16 +1444,23 @@ There are multiple ways to run the Specmatic Stub with SSL.
 ### Auto-Generated Cert Store
 
 This is the quickest approach.
-
+{% tabs test %}
+{% tab test java %}
 ```shell
 java -jar specmatic.jar stub --httpsKeyStoreDir=<directory to create keystore> --port=443 product-api.yaml
 ```
-
-Alternatively, you can also run the same command with the Docker image:
-
+{% endtab %}
+{% tab test npm %}
 ```shell
-docker run znsio/specmatic stub --httpsKeyStoreDir=<directory to create keystore> --port=443 product-api.yaml
+npx specmatic stub --httpsKeyStoreDir=<directory to create keystore> --port=443 product-api.yaml
 ```
+{% endtab %}
+{% tab test docker %}
+```shell
+docker run -p 443:443 -v "${PWD}/product-api.yaml:/usr/src/app/product-api.yaml" -v "${PWD}/<directory to create keystore>:/usr/src/app/<directory to create keystore>" znsio/specmatic stub --httpsKeyStoreDir=<directory to create keystore> --port=443 product-api.yaml
+```
+{% endtab %}
+{% endtabs %}
 
 This will create a `specmatic.jks` file in the dir that you mentioned above and you can now access the stub over https.
 
@@ -1771,25 +1814,19 @@ The Product API specification as-is will not accept the frontend expectation wit
 
 ### Implementation Steps
 
-1. **Create specmatic.json configuration file:**
+- **Create specmatic.yaml configuration file:**
 
-```json
-{
-  "sources": [
-    {
-      "provider": "git",
-      "stub": [
-        "products.yaml"
-      ]
-    }
-  ],
-  "hooks": {
-    "stub_load_contract": "python3 modify_stub_header.py"
-  }
-}
+```yaml
+version: 2
+contracts:
+  - git:
+    consumes:
+      - products.yaml
+hooks:
+  stub_load_contract: python3 modify_stub_header.py
 ```
 
-2. **Create the hook script (modify_stub_header.py):**
+- **Create the hook script (modify_stub_header.py):**
 
 ```python
 import os
@@ -1910,6 +1947,203 @@ paths:
                     example: UP
 ```
 
+### Running Specmatic Stubs on Different Ports
+
+#### Overview
+This setup demonstrates how to run Specmatic stubs on different ports for different specifications. This allows serving different APIs on their respective ports while keeping their examples specific to each specification.
+
+#### Directory Structure
+```
+project-root/
+│── specmatic.yaml
+│── imported_product/
+│   ├── imported_product.yaml
+│   ├── imported_product_examples/
+│       ├── post_imported_product.json
+│── exported_product/
+│   ├── exported_product.yaml
+│   ├── exported_product_examples/
+│       ├── post_exported_product.json
+```
+
+#### Specmatic Configuration
+##### specmatic.yaml
+```yaml
+version: 2
+contracts:
+  - consumes:
+      - imported_product/imported_product.yaml
+      - port: 9001
+        specs:
+          - exported_product/exported_product.yaml
+```
+Note: The `imported_product` spec does not have a port assigned, so it defaults to `9000`, whereas `exported_product` runs on `9001`.
+
+#### API Specifications
+##### imported_product.yaml
+```yaml
+openapi: 3.0.3
+info:
+  title: Imported Product API
+  version: 1.0.0
+paths:
+  /products:
+    post:
+      summary: Add a new product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                category:
+                  type: string
+      responses:
+        '201':
+          description: Product created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  category:
+                    type: string
+```
+
+##### exported_product.yaml
+```yaml
+openapi: 3.0.3
+info:
+  title: Exported Product API
+  version: 1.0.0
+paths:
+  /products:
+    post:
+      summary: Add a new product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                category:
+                  type: string
+      responses:
+        '201':
+          description: Product created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  category:
+                    type: string
+```
+
+#### Examples
+##### post_imported_product.json
+```json
+{
+  "http-request": {
+    "method": "POST",
+    "path": "/products",
+    "body": {
+      "name": "Xiaomi",
+      "category": "Mobile"
+    }
+  },
+  "http-response": {
+    "status": 201,
+    "body": {
+      "id": "100",
+      "name": "Xiaomi",
+      "category": "Mobile"
+    }
+  }
+}
+```
+
+##### post_exported_product.json
+```json
+{
+  "http-request": {
+    "method": "POST",
+    "path": "/products",
+    "body": {
+      "name": "Xiaomi",
+      "category": "Mobile"
+    }
+  },
+  "http-response": {
+    "status": 201,
+    "body": {
+      "id": "200",
+      "name": "Xiaomi",
+      "category": "Mobile"
+    }
+  }
+}
+```
+
+##### Run the stub server
+Once we have this setup, we can run the Specmatic stub server by running the following command in the `project-root` directory:
+```shell
+specmatic stub
+```
+
+This will start the Specmatic stub server on ports `9000` and `9001` for the `imported_product` and `exported_product` APIs, respectively.
+
+#### Example Requests
+##### Hitting the imported_product API on default port 9000
+```sh
+curl -X POST http://localhost:9000/products \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Xiaomi", "category": "Mobile"}'
+```
+**Response:**
+```json
+{
+  "id": "100",
+  "name": "Xiaomi",
+  "category": "Mobile"
+}
+```
+
+##### Hitting the exported_product API on port 9001
+```sh
+curl -X POST http://localhost:9001/products \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Xiaomi", "category": "Mobile"}'
+```
+**Response:**
+```json
+{
+  "id": "200",
+  "name": "Xiaomi",
+  "category": "Mobile"
+}
+```
+
+#### Benefits
+- **Port-based segregation:** Each spec runs on a dedicated port, ensuring clear separation.
+- **Spec-specific examples:** Requests return expected responses per specification.
+- **Flexibility:** Allows hosting multiple versions or separate APIs without conflict.
+
+This setup enables serving and testing multiple specifications efficiently using Specmatic. 
 
 ## Sample Java Project
 

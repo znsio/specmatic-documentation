@@ -1,4 +1,4 @@
-/*! elementor - v3.26.0 - 22-12-2024 */
+/*! elementor - v3.28.0 - 01-04-2025 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -64,7 +64,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   removeListener: () => (/* binding */ removeListener),
 /* harmony export */   unwrapResult: () => (/* binding */ unwrapResult)
 /* harmony export */ });
-/* harmony import */ var immer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! immer */ "../node_modules/@reduxjs/toolkit/node_modules/immer/dist/immer.esm.mjs");
+/* harmony import */ var immer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! immer */ "../node_modules/immer/dist/immer.esm.mjs");
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "../node_modules/redux/es/redux.js");
 /* harmony import */ var reselect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reselect */ "../node_modules/reselect/es/index.js");
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux-thunk */ "../node_modules/redux-thunk/es/index.js");
@@ -5757,7 +5757,7 @@ function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return 
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var Component = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
   function Component() {
     (0, _classCallCheck2.default)(this, Component);
@@ -7381,7 +7381,7 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _modalContent = _interopRequireDefault(__webpack_require__(/*! ./modal-content */ "../assets/dev/js/editor/components/hotkeys/modal-content.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var _default = exports["default"] = /*#__PURE__*/function (_elementorModules$com) {
   function _default() {
     (0, _classCallCheck2.default)(this, _default);
@@ -8656,7 +8656,7 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _layout = _interopRequireDefault(__webpack_require__(/*! elementor-common/views/modal/layout */ "../core/common/assets/js/views/modal/layout.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var _default = exports["default"] = /*#__PURE__*/function (_BaseModalLayout) {
   function _default() {
     (0, _classCallCheck2.default)(this, _default);
@@ -8712,12 +8712,12 @@ var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-var Drop = exports.Drop = /*#__PURE__*/function (_$e$modules$CommandBa) {
+var Drop = exports.Drop = /*#__PURE__*/function (_$e$modules$editor$Co) {
   function Drop() {
     (0, _classCallCheck2.default)(this, Drop);
     return _callSuper(this, Drop, arguments);
   }
-  (0, _inherits2.default)(Drop, _$e$modules$CommandBa);
+  (0, _inherits2.default)(Drop, _$e$modules$editor$Co);
   return (0, _createClass2.default)(Drop, [{
     key: "validateArgs",
     value: function validateArgs() {
@@ -8743,7 +8743,7 @@ var Drop = exports.Drop = /*#__PURE__*/function (_$e$modules$CommandBa) {
       return result;
     }
   }]);
-}($e.modules.CommandBase);
+}($e.modules.editor.CommandContainerBase);
 
 /***/ }),
 
@@ -9938,6 +9938,7 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports["default"] = void 0;
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _readOnlyError2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/readOnlyError */ "../node_modules/@babel/runtime/helpers/readOnlyError.js"));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../node_modules/@babel/runtime/helpers/classCallCheck.js"));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
 var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
@@ -9953,7 +9954,7 @@ function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbol
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0, _defineProperty2.default)(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var TemplateLibraryLayoutView = __webpack_require__(/*! elementor-templates/views/library-layout */ "../assets/dev/js/editor/components/template-library/views/library-layout.js");
 var Component = exports["default"] = /*#__PURE__*/function (_ComponentModalBase) {
   function Component() {
@@ -9980,7 +9981,7 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentModalBase)
   }, {
     key: "defaultTabs",
     value: function defaultTabs() {
-      return {
+      var tabs = {
         'templates/blocks': {
           title: __('Blocks', 'elementor'),
           getFilter: function getFilter() {
@@ -10000,17 +10001,22 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentModalBase)
         },
         'templates/my-templates': {
           title: __('My Templates', 'elementor'),
-          filter: {
-            source: 'local'
+          getFilter: function getFilter() {
+            var _elementor$templates$;
+            return {
+              source: (_elementor$templates$ = elementor.templates.getSourceSelection()) !== null && _elementor$templates$ !== void 0 ? _elementor$templates$ : 'local'
+            };
           }
         }
       };
+      return tabs;
     }
   }, {
     key: "defaultRoutes",
     value: function defaultRoutes() {
-      var _this = this;
-      return {
+      var _this = this,
+        _elementorCommon$conf;
+      var defaultRoutes = {
         import: function _import() {
           _this.manager.layout.showImportView();
         },
@@ -10029,6 +10035,12 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentModalBase)
           _this.manager.layout.showConnectView(args);
         }
       };
+      if ((_elementorCommon$conf = elementorCommon.config.experimentalFeatures) !== null && _elementorCommon$conf !== void 0 && _elementorCommon$conf['cloud-library']) {
+        defaultRoutes['view-folder'] = function (args) {
+          _this.manager.layout.showFolderView(args);
+        };
+      }
+      return defaultRoutes;
     }
   }, {
     key: "defaultCommands",
@@ -10059,8 +10071,8 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentModalBase)
   }, {
     key: "renderTab",
     value: function renderTab(tab) {
-      var currentTab = this.tabs[tab],
-        filter = currentTab.getFilter ? currentTab.getFilter() : currentTab.filter;
+      var currentTab = this.tabs[tab];
+      var filter = currentTab.getFilter ? currentTab.getFilter() : currentTab.filter;
       this.manager.setScreen(filter);
     }
   }, {
@@ -10230,20 +10242,27 @@ var Component = exports["default"] = /*#__PURE__*/function (_ComponentModalBase)
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "../node_modules/@babel/runtime/helpers/typeof.js"));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 var _component = _interopRequireDefault(__webpack_require__(/*! ./component */ "../assets/dev/js/editor/components/template-library/component.js"));
-var TemplateLibraryCollection = __webpack_require__(/*! elementor-templates/collections/templates */ "../assets/dev/js/editor/components/template-library/collections/templates.js"),
-  TemplateLibraryManager;
-TemplateLibraryManager = function TemplateLibraryManager() {
+var _localStorage = _interopRequireDefault(__webpack_require__(/*! elementor-api/core/data/storages/local-storage */ "../modules/web-cli/assets/js/core/data/storages/local-storage.js"));
+var TemplateLibraryCollection = __webpack_require__(/*! elementor-templates/collections/templates */ "../assets/dev/js/editor/components/template-library/collections/templates.js");
+var TemplateLibraryManager = function TemplateLibraryManager() {
+  var _this = this;
   this.modalConfig = {};
   var self = this,
-    templateTypes = {};
+    templateTypes = {},
+    storage = new _localStorage.default(),
+    storageSelectionKey = 'my_templates_source';
   var deleteDialog,
     errorDialog,
     templatesCollection,
     config = {},
-    filterTerms = {};
+    filterTerms = {},
+    isLoading = false,
+    total = 0;
   var registerDefaultTemplateTypes = function registerDefaultTemplateTypes() {
     var data = {
       saveDialog: {
@@ -10302,6 +10321,15 @@ TemplateLibraryManager = function TemplateLibraryManager() {
       favorite: {}
     };
   };
+  this.isLoading = function () {
+    return isLoading;
+  };
+  this.canLoadMore = function () {
+    if (!templatesCollection) {
+      return false;
+    }
+    return templatesCollection.length < total;
+  };
   this.init = function () {
     registerDefaultTemplateTypes();
     registerDefaultFilterTerms();
@@ -10311,6 +10339,12 @@ TemplateLibraryManager = function TemplateLibraryManager() {
     elementor.addBackgroundClickListener('libraryToggleMore', {
       element: '.elementor-template-library-template-more'
     });
+  };
+  this.getSourceSelection = function () {
+    return storage.getItem(storageSelectionKey);
+  };
+  this.setSourceSelection = function (value) {
+    return storage.setItem(storageSelectionKey, value);
   };
   this.getTemplateTypes = function (type) {
     if (type) {
@@ -10343,6 +10377,207 @@ TemplateLibraryManager = function TemplateLibraryManager() {
       });
     };
     dialog.show();
+  };
+  this.renameTemplate = function (templateModel, options) {
+    var originalTitle = templateModel.get('title');
+    var dialog = _this.getRenameDialog(templateModel);
+    return new Promise(function (resolve) {
+      dialog.onConfirm = function () {
+        if (options.onConfirm) {
+          options.onConfirm();
+        }
+        elementorCommon.ajax.addRequest('rename_template', {
+          data: {
+            source: templateModel.get('source'),
+            id: templateModel.get('template_id'),
+            title: templateModel.get('title')
+          },
+          success: function success(response) {
+            resolve(response);
+          },
+          error: function error(_error) {
+            _this.showErrorDialog(_error);
+            templateModel.set('title', originalTitle);
+            resolve();
+          }
+        });
+      };
+      dialog.show();
+    });
+  };
+  this.getRenameDialog = function (templateModel) {
+    var headerMessage = sprintf(
+    // Translators: %1$s: Folder name, %2$s: Number of templates.
+    __('Rename "%1$s".', 'elementor'), templateModel.get('title'));
+    var originalTitle = templateModel.get('title');
+    var $inputArea = jQuery('<input>', {
+      id: 'elementor-rename-template-dialog__input',
+      type: 'text',
+      value: templateModel.get('title')
+    }).attr('autocomplete', 'off').on('change', function (event) {
+      event.preventDefault();
+      templateModel.set('title', event.target.value);
+    });
+    return elementorCommon.dialogsManager.createWidget('confirm', {
+      id: 'elementor-template-library-rename-dialog',
+      headerMessage: headerMessage,
+      message: $inputArea,
+      strings: {
+        confirm: __('Rename', 'elementor')
+      },
+      hide: {
+        ignore: '#elementor-template-library-modal'
+      },
+      onCancel: function onCancel() {
+        templateModel.set('title', originalTitle);
+      },
+      onShow: function onShow() {
+        $inputArea.trigger('focus');
+      }
+    });
+  };
+  this.getFolderTemplates = function (templateId) {
+    return new Promise(function (resolve) {
+      isLoading = true;
+      var ajaxOptions = {
+        data: {
+          source: 'cloud',
+          template_id: templateId
+        },
+        success: function success(data) {
+          _this.setFilter('parent', templateId);
+          templatesCollection = new TemplateLibraryCollection(data.templates);
+          elementor.templates.layout.hideLoadingView();
+          self.layout.updateViewCollection(templatesCollection.models);
+          self.layout.modalContent.currentView.ui.addNewFolder.remove();
+          isLoading = false;
+          resolve();
+        },
+        error: function error(_error2) {
+          isLoading = false;
+          _this.showErrorDialog(_error2);
+        }
+      };
+      elementorCommon.ajax.addRequest('get_item_children', ajaxOptions);
+    });
+  };
+  this.createFolder = function (folderData, options) {
+    var _this2 = this;
+    if (null !== this.getFilter('parent')) {
+      this.showErrorDialog(__('You can not create a folder inside another folder.', 'elementor'));
+      return;
+    }
+    var dialog = this.getCreateFolderDialog(folderData);
+    return new Promise(function (resolve) {
+      dialog.onConfirm = /*#__PURE__*/(0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return elementorCommon.ajax.addRequest('create_folder', {
+                data: {
+                  source: folderData.source,
+                  title: folderData.title
+                },
+                success: function success(response) {
+                  resolve(response);
+                  options === null || options === void 0 || options.onSuccess();
+                },
+                error: function error(_error3) {
+                  _this2.showErrorDialog(_error3);
+                  resolve();
+                }
+              });
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee);
+      }));
+      dialog.show();
+    });
+  };
+  this.getCreateFolderDialog = function (folderData) {
+    var paragraph = document.createElement('p');
+    paragraph.className = 'elementor-create-folder-template-dialog__p';
+    paragraph.textContent = __('Save assets to reuse any site in your account.', 'elementor');
+    var inputArea = document.createElement('input');
+    inputArea.className = 'elementor-create-folder-template-dialog__input';
+    inputArea.type = 'text';
+    inputArea.value = '';
+    inputArea.placeholder = __('Folder Name', 'elementor');
+    inputArea.autocomplete = 'off';
+    inputArea.addEventListener('change', function (event) {
+      event.preventDefault();
+      folderData.title = event.target.value;
+    });
+    var fragment = document.createDocumentFragment();
+    fragment.appendChild(paragraph);
+    fragment.appendChild(inputArea);
+    return elementorCommon.dialogsManager.createWidget('confirm', {
+      id: 'elementor-template-library-create-new-folder-dialog',
+      headerMessage: __('Create New Folder', 'elementor'),
+      message: fragment,
+      strings: {
+        confirm: __('Create', 'elementor')
+      },
+      Hide: {
+        ignore: '#elementor-template-library-modal'
+      },
+      onShow: function onShow() {
+        inputArea.focus();
+      }
+    });
+  };
+  this.deleteFolder = function (templateModel, options) {
+    var _this3 = this;
+    var ajaxOptions = {
+      data: {
+        source: 'cloud',
+        template_id: templateModel.get('template_id')
+      },
+      success: function success(data) {
+        return _this3.handleGetFolderDataSuccess(templateModel, options, data);
+      }
+    };
+    elementorCommon.ajax.addRequest('get_item_children', ajaxOptions);
+  };
+  this.handleGetFolderDataSuccess = function (templateModel, options, data) {
+    var _this4 = this;
+    var dialog = this.getDeleteFolderDialog(templateModel, data);
+    dialog.onConfirm = function () {
+      var _options$onConfirm;
+      (_options$onConfirm = options.onConfirm) === null || _options$onConfirm === void 0 || _options$onConfirm.call(options);
+      _this4.sendDeleteRequest(templateModel, options);
+    };
+    dialog.show();
+  };
+  this.getDeleteFolderDialog = function (templateModel, data) {
+    return elementorCommon.dialogsManager.createWidget('confirm', {
+      id: 'elementor-template-library-delete-dialog',
+      headerMessage: __('Delete Folder', 'elementor'),
+      message: sprintf(
+      // Translators: %1$s: Folder name, %2$s: Number of templates.
+      __('Are you sure you want to delete "%1$s" folder with all %2$d templates?', 'elementor'), templateModel.get('title'), data.total),
+      strings: {
+        confirm: __('Delete', 'elementor')
+      }
+    });
+  };
+  this.sendDeleteRequest = function (templateModel, options) {
+    elementorCommon.ajax.addRequest('delete_template', {
+      data: {
+        source: templateModel.get('source'),
+        template_id: templateModel.get('template_id')
+      },
+      success: function success(response) {
+        var _options$onSuccess;
+        templatesCollection.remove(templateModel, {
+          silent: true
+        });
+        (_options$onSuccess = options.onSuccess) === null || _options$onSuccess === void 0 || _options$onSuccess.call(options, response);
+      }
+    });
   };
 
   /**
@@ -10477,9 +10712,15 @@ TemplateLibraryManager = function TemplateLibraryManager() {
     self.setFilter('source', args.source, true);
     self.setFilter('type', args.type, true);
     self.setFilter('subtype', args.subtype, true);
+    if (this.shouldShowCloudConnectView(args.source)) {
+      self.layout.showCloudConnectView();
+      return;
+    }
     self.showTemplates();
   };
   this.loadTemplates = function (onUpdate) {
+    isLoading = true;
+    total = 0;
     self.layout.showLoadingView();
     var query = {
         source: this.getFilter('source')
@@ -10487,11 +10728,18 @@ TemplateLibraryManager = function TemplateLibraryManager() {
       options = {};
 
     // TODO: Remove - it when all the data commands is ready, manage the cache!.
-    if ('local' === query.source) {
+    if ('local' === query.source || 'cloud' === query.source) {
       options.refresh = true;
     }
+    this.setFilter('parent', null, query);
     $e.data.get('library/templates', query, options).then(function (result) {
-      templatesCollection = new TemplateLibraryCollection(result.data.templates);
+      var _result$data;
+      var templates = 'cloud' === query.source ? result.data.templates.templates : result.data.templates;
+      templatesCollection = new TemplateLibraryCollection(templates);
+      if ((_result$data = result.data) !== null && _result$data !== void 0 && (_result$data = _result$data.templates) !== null && _result$data !== void 0 && _result$data.total) {
+        var _result$data2;
+        total = (_result$data2 = result.data) === null || _result$data2 === void 0 || (_result$data2 = _result$data2.templates) === null || _result$data2 === void 0 ? void 0 : _result$data2.total;
+      }
       if (result.data.config) {
         config = result.data.config;
       }
@@ -10499,7 +10747,64 @@ TemplateLibraryManager = function TemplateLibraryManager() {
       if (onUpdate) {
         onUpdate();
       }
+    }).finally(function () {
+      isLoading = false;
     });
+  };
+  this.searchTemplates = function (data) {
+    return new Promise(function (resolve) {
+      _this.setFilter('parent', null);
+      isLoading = true;
+      var ajaxOptions = {
+        data: data,
+        success: function success(result) {
+          isLoading = false;
+          templatesCollection = new TemplateLibraryCollection(result.templates);
+          total = result.total;
+          self.layout.updateViewCollection(templatesCollection.models);
+          _this.setFilter('text', data.search);
+          resolve(result);
+        },
+        error: function error(_error4) {
+          isLoading = false;
+          _this.showErrorDialog(_error4);
+          resolve();
+        }
+      };
+      elementorCommon.ajax.addRequest('search_templates', ajaxOptions);
+    });
+  };
+  this.loadMore = function () {
+    var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      onUpdate = _ref2.onUpdate,
+      _ref2$search = _ref2.search,
+      search = _ref2$search === void 0 ? '' : _ref2$search;
+    isLoading = true;
+    var source = _this.getFilter('source');
+    var parentId = _this.getFilter('parent');
+    var ajaxOptions = {
+      data: {
+        source: source,
+        offset: templatesCollection.length,
+        search: search,
+        parentId: parentId
+      },
+      success: function success(result) {
+        var collection = new TemplateLibraryCollection(result.templates);
+        templatesCollection.add(collection.models, {
+          merge: true
+        });
+        self.layout.addTemplates(collection.models);
+        if (onUpdate) {
+          onUpdate();
+        }
+        isLoading = false;
+      },
+      error: function error() {
+        isLoading = false;
+      }
+    };
+    elementorCommon.ajax.addRequest('load_more_templates', ajaxOptions);
   };
   this.showTemplates = function () {
     // The tabs should exist in DOM on loading.
@@ -10538,6 +10843,24 @@ TemplateLibraryManager = function TemplateLibraryManager() {
       errorMessage = __('Please try again.', 'elementor');
     }
     self.getErrorDialog().setMessage(errorMessage).show();
+  };
+  this.onSelectSourceFilterChange = function (event) {
+    var select = event.currentTarget,
+      filterName = select.dataset.elementorFilter,
+      templatesSource = select.value;
+    self.setSourceSelection(templatesSource);
+    self.setFilter(filterName, templatesSource, true);
+    if (this.shouldShowCloudConnectView(templatesSource)) {
+      self.layout.showCloudConnectView();
+      return;
+    }
+    self.loadTemplates(function () {
+      var templatesToShow = self.filterTemplates();
+      self.layout.showTemplatesView(new TemplateLibraryCollection(templatesToShow));
+    });
+  };
+  this.shouldShowCloudConnectView = function (source) {
+    return 'cloud' === source && !elementor.config.library_connect.is_connected;
   };
 };
 module.exports = new TemplateLibraryManager();
@@ -10580,6 +10903,9 @@ module.exports = Backbone.Model.extend({
 /* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
 
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
 var TemplateLibraryHeaderActionsView = __webpack_require__(/*! elementor-templates/views/parts/header-parts/actions */ "../assets/dev/js/editor/components/template-library/views/parts/header-parts/actions.js"),
   TemplateLibraryHeaderMenuView = __webpack_require__(/*! elementor-templates/views/parts/header-parts/menu */ "../assets/dev/js/editor/components/template-library/views/parts/header-parts/menu.js"),
   TemplateLibraryHeaderPreviewView = __webpack_require__(/*! elementor-templates/views/parts/header-parts/preview */ "../assets/dev/js/editor/components/template-library/views/parts/header-parts/preview.js"),
@@ -10588,6 +10914,7 @@ var TemplateLibraryHeaderActionsView = __webpack_require__(/*! elementor-templat
   TemplateLibrarySaveTemplateView = __webpack_require__(/*! elementor-templates/views/parts/save-template */ "../assets/dev/js/editor/components/template-library/views/parts/save-template.js"),
   TemplateLibraryImportView = __webpack_require__(/*! elementor-templates/views/parts/import */ "../assets/dev/js/editor/components/template-library/views/parts/import.js"),
   TemplateLibraryConnectView = __webpack_require__(/*! elementor-templates/views/parts/connect */ "../assets/dev/js/editor/components/template-library/views/parts/connect.js"),
+  TemplateLibraryCloudConnectView = __webpack_require__(/*! elementor-templates/views/parts/connect-cloud */ "../assets/dev/js/editor/components/template-library/views/parts/connect-cloud.js"),
   TemplateLibraryPreviewView = __webpack_require__(/*! elementor-templates/views/parts/preview */ "../assets/dev/js/editor/components/template-library/views/parts/preview.js");
 module.exports = elementorModules.common.views.modal.Layout.extend({
   getModalOptions: function getModalOptions() {
@@ -10598,7 +10925,8 @@ module.exports = elementorModules.common.views.modal.Layout.extend({
       hide: {
         onOutsideClick: allowClosingModal,
         onBackgroundClick: allowClosingModal,
-        onEscKeyPress: allowClosingModal
+        onEscKeyPress: allowClosingModal,
+        ignore: '.dialog-widget-content'
       }
     };
   },
@@ -10648,6 +10976,14 @@ module.exports = elementorModules.common.views.modal.Layout.extend({
       collection: templatesCollection
     }));
   },
+  updateViewCollection: function updateViewCollection(models) {
+    this.modalContent.currentView.collection.reset(models);
+  },
+  addTemplates: function addTemplates(models) {
+    this.modalContent.currentView.collection.add(models, {
+      merge: true
+    });
+  },
   showImportView: function showImportView() {
     var headerView = this.getHeaderView();
     headerView.menuArea.reset();
@@ -10657,6 +10993,9 @@ module.exports = elementorModules.common.views.modal.Layout.extend({
   showConnectView: function showConnectView(args) {
     this.getHeaderView().menuArea.reset();
     this.modalContent.show(new TemplateLibraryConnectView(args));
+  },
+  showCloudConnectView: function showCloudConnectView() {
+    this.modalContent.show(new TemplateLibraryCloudConnectView());
   },
   showSaveTemplateView: function showSaveTemplateView(elementModel) {
     this.getHeaderView().menuArea.reset();
@@ -10674,6 +11013,75 @@ module.exports = elementorModules.common.views.modal.Layout.extend({
       model: templateModel
     }));
     headerView.logoArea.show(new TemplateLibraryHeaderBackView());
+  },
+  showFolderView: function showFolderView(elementModel) {
+    return (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
+      var templateId;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            elementor.templates.layout.showLoadingView();
+            templateId = elementModel.model.get('template_id');
+            _context.next = 5;
+            return elementor.templates.getFolderTemplates(templateId);
+          case 5:
+            _context.prev = 5;
+            elementor.templates.layout.hideLoadingView();
+            return _context.finish(5);
+          case 8:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[0,, 5, 8]]);
+    }))();
+  }
+});
+
+/***/ }),
+
+/***/ "../assets/dev/js/editor/components/template-library/views/parts/connect-cloud.js":
+/*!****************************************************************************************!*\
+  !*** ../assets/dev/js/editor/components/template-library/views/parts/connect-cloud.js ***!
+  \****************************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+module.exports = Marionette.ItemView.extend({
+  template: '#tmpl-elementor-template-library-connect-cloud',
+  id: 'elementor-template-library-connect-cloud',
+  ui: {
+    connect: '#elementor-template-library-connect__button',
+    selectSourceFilter: '.elementor-template-library-filter-select-source'
+  },
+  events: {
+    'change @ui.selectSourceFilter': 'onSelectSourceFilterChange'
+  },
+  onRender: function onRender() {
+    var _elementor$templates$;
+    this.ui.connect.elementorConnect({
+      success: function success() {
+        elementor.config.library_connect.is_connected = true;
+        $e.run('library/close');
+        elementor.notifications.showToast({
+          message: __('Connected successfully.', 'elementor')
+        });
+      },
+      error: function error() {
+        elementor.config.library_connect.is_connected = false;
+      }
+    });
+    (_elementor$templates$ = elementor.templates.layout.getHeaderView()) === null || _elementor$templates$ === void 0 || (_elementor$templates$ = _elementor$templates$.tools) === null || _elementor$templates$ === void 0 || (_elementor$templates$ = _elementor$templates$.$el[0]) === null || _elementor$templates$ === void 0 || (_elementor$templates$ = _elementor$templates$.classList) === null || _elementor$templates$ === void 0 || _elementor$templates$.add('elementor-hidden');
+  },
+  onSelectSourceFilterChange: function onSelectSourceFilterChange(event) {
+    elementor.templates.onSelectSourceFilterChange(event);
+  },
+  onDestroy: function onDestroy() {
+    var _elementor$templates$2;
+    (_elementor$templates$2 = elementor.templates.layout.getHeaderView()) === null || _elementor$templates$2 === void 0 || (_elementor$templates$2 = _elementor$templates$2.tools) === null || _elementor$templates$2 === void 0 || (_elementor$templates$2 = _elementor$templates$2.$el[0]) === null || _elementor$templates$2 === void 0 || (_elementor$templates$2 = _elementor$templates$2.classList) === null || _elementor$templates$2 === void 0 || _elementor$templates$2.remove('elementor-hidden');
   }
 });
 
@@ -10991,18 +11399,22 @@ module.exports = TemplateLibraryPreviewView;
 /*!****************************************************************************************!*\
   !*** ../assets/dev/js/editor/components/template-library/views/parts/save-template.js ***!
   \****************************************************************************************/
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
 
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _select = _interopRequireDefault(__webpack_require__(/*! elementor-editor-utils/select2.js */ "../assets/dev/js/editor/utils/select2.js"));
 var TemplateLibrarySaveTemplateView;
 TemplateLibrarySaveTemplateView = Marionette.ItemView.extend({
   id: 'elementor-template-library-save-template',
   template: '#tmpl-elementor-template-library-save-template',
   ui: {
     form: '#elementor-template-library-save-template-form',
-    submitButton: '#elementor-template-library-save-template-submit'
+    submitButton: '#elementor-template-library-save-template-submit',
+    selectDropdown: '#elementor-template-library-save-template-source'
   },
   events: {
     'submit @ui.form': 'onFormSubmit'
@@ -11033,6 +11445,43 @@ TemplateLibrarySaveTemplateView = Marionette.ItemView.extend({
     formData.content = this.model ? [this.model.toJSON(JSONParams)] : elementor.elements.toJSON(JSONParams);
     this.ui.submitButton.addClass('elementor-button-state');
     elementor.templates.saveTemplate(saveType, formData);
+  },
+  onRender: function onRender() {
+    var _elementorCommon$conf;
+    if ((_elementorCommon$conf = elementorCommon.config.experimentalFeatures) !== null && _elementorCommon$conf !== void 0 && _elementorCommon$conf['cloud-library']) {
+      this.activateSelect2();
+    }
+  },
+  activateSelect2: function activateSelect2() {
+    if (!this.select2Instance && this.$(this.ui.selectDropdown).length) {
+      var $dropdown = this.$(this.ui.selectDropdown),
+        select2Options = {
+          placeholder: __('Where do you want to save your template?', 'elementor'),
+          dropdownParent: this.$el,
+          closeOnSelect: false,
+          templateResult: this.templateResult.bind(this),
+          templateSelection: this.formatSelected.bind(this)
+        };
+      this.select2Instance = new _select.default({
+        $element: $dropdown,
+        options: select2Options
+      });
+      this.handlePlaceHolder($dropdown);
+    }
+  },
+  // https://github.com/select2/select2/issues/3292
+  handlePlaceHolder: function handlePlaceHolder($dropdown) {
+    var $searchField = $dropdown.siblings('.select2').find('.select2-search__field');
+    if ($searchField.length && 0 === $searchField.width()) {
+      $searchField.css('width', '100%');
+    }
+  },
+  templateResult: function templateResult(option) {
+    var className = !option.id || 'local' === option.id || 'cloud' === option.id ? 'main-item' : 'sub-item';
+    return jQuery("<span class=\"".concat(className, "\">").concat(option.text, "</span>"));
+  },
+  formatSelected: function formatSelected(option) {
+    return option.text;
   }
 });
 module.exports = TemplateLibrarySaveTemplateView;
@@ -11055,20 +11504,34 @@ TemplateLibraryTemplatesEmptyView = Marionette.ItemView.extend({
   template: '#tmpl-elementor-template-library-templates-empty',
   ui: {
     title: '.elementor-template-library-blank-title',
-    message: '.elementor-template-library-blank-message'
+    message: '.elementor-template-library-blank-message',
+    image: '.elementor-template-library-no-results',
+    button: '.elementor-template-library-cloud-empty__button'
   },
   modesStrings: {
     empty: {
       title: __('Haven’t Saved Templates Yet?', 'elementor'),
-      message: __('This is where your templates should be. Design it. Save it. Reuse it.', 'elementor')
+      message: __('This is where your templates should be. Design it. Save it. Reuse it.', 'elementor'),
+      image: "".concat(elementorCommon.config.urls.assets, "images/no-search-results.svg"),
+      button: ''
     },
     noResults: {
       title: __('No Results Found', 'elementor'),
-      message: __('Please make sure your search is spelled correctly or try a different words.', 'elementor')
+      message: __('Please make sure your search is spelled correctly or try a different words.', 'elementor'),
+      image: "".concat(elementorCommon.config.urls.assets, "images/no-search-results.svg"),
+      button: ''
     },
     noFavorites: {
       title: __('No Favorite Templates', 'elementor'),
-      message: __('You can mark any pre-designed template as a favorite.', 'elementor')
+      message: __('You can mark any pre-designed template as a favorite.', 'elementor'),
+      image: "".concat(elementorCommon.config.urls.assets, "images/no-search-results.svg"),
+      button: ''
+    },
+    cloudEmpty: {
+      title: __('Haven’t saved templates to cloud library yet?', 'elementor'),
+      message: __('This is where your templates should be. Design it. Save it. Reuse it.', 'elementor'),
+      image: "".concat(elementorCommon.config.urls.assets, "images/no-search-results-cloud.svg"),
+      button: '<a class="elementor-button e-primary" href="" target="_blank">call to action</a>'
     }
   },
   getCurrentMode: function getCurrentMode() {
@@ -11078,12 +11541,17 @@ TemplateLibraryTemplatesEmptyView = Marionette.ItemView.extend({
     if (elementor.templates.getFilter('favorite')) {
       return 'noFavorites';
     }
+    if ('cloud' === elementor.templates.getFilter('source')) {
+      return 'cloudEmpty';
+    }
     return 'empty';
   },
   onRender: function onRender() {
     var modeStrings = this.modesStrings[this.getCurrentMode()];
     this.ui.title.html(modeStrings.title);
     this.ui.message.html(modeStrings.message);
+    this.ui.button.html(modeStrings.button);
+    this.ui.image.attr('src', modeStrings.image);
   }
 });
 module.exports = TemplateLibraryTemplatesEmptyView;
@@ -11101,11 +11569,13 @@ module.exports = TemplateLibraryTemplatesEmptyView;
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
 var _select = _interopRequireDefault(__webpack_require__(/*! elementor-editor-utils/select2.js */ "../assets/dev/js/editor/utils/select2.js"));
-var TemplateLibraryTemplateLocalView = __webpack_require__(/*! elementor-templates/views/template/local */ "../assets/dev/js/editor/components/template-library/views/template/local.js"),
-  TemplateLibraryTemplateRemoteView = __webpack_require__(/*! elementor-templates/views/template/remote */ "../assets/dev/js/editor/components/template-library/views/template/remote.js"),
-  TemplateLibraryCollectionView;
-TemplateLibraryCollectionView = Marionette.CompositeView.extend({
+var TemplateLibraryTemplateLocalView = __webpack_require__(/*! elementor-templates/views/template/local */ "../assets/dev/js/editor/components/template-library/views/template/local.js");
+var TemplateLibraryTemplateRemoteView = __webpack_require__(/*! elementor-templates/views/template/remote */ "../assets/dev/js/editor/components/template-library/views/template/remote.js");
+var TemplateLibraryTemplateCloudView = __webpack_require__(/*! elementor-templates/views/template/cloud */ "../assets/dev/js/editor/components/template-library/views/template/cloud.js");
+var TemplateLibraryCollectionView = Marionette.CompositeView.extend({
   template: '#tmpl-elementor-template-library-templates',
   id: 'elementor-template-library-templates',
   childViewContainer: '#elementor-template-library-templates-container',
@@ -11119,13 +11589,19 @@ TemplateLibraryCollectionView = Marionette.CompositeView.extend({
     selectFilter: '.elementor-template-library-filter-select',
     myFavoritesFilter: '#elementor-template-library-filter-my-favorites',
     orderInputs: '.elementor-template-library-order-input',
-    orderLabels: 'label.elementor-template-library-order-label'
+    orderLabels: 'label.elementor-template-library-order-label',
+    searchInputIcon: '#elementor-template-library-filter-text-wrapper i',
+    loadMoreAnchor: '#elementor-template-library-load-more-anchor',
+    selectSourceFilter: '.elementor-template-library-filter-select-source',
+    addNewFolder: '#elementor-template-library-add-new-folder'
   },
   events: {
     'input @ui.textFilter': 'onTextFilterInput',
     'change @ui.selectFilter': 'onSelectFilterChange',
     'change @ui.myFavoritesFilter': 'onMyFavoritesFilterChange',
-    'mousedown @ui.orderLabels': 'onOrderLabelsClick'
+    'mousedown @ui.orderLabels': 'onOrderLabelsClick',
+    'change @ui.selectSourceFilter': 'onSelectSourceFilterChange',
+    'click @ui.addNewFolder': 'onCreateNewFolderClick'
   },
   comparators: {
     title: function title(model) {
@@ -11147,15 +11623,31 @@ TemplateLibraryCollectionView = Marionette.CompositeView.extend({
     }
   },
   getChildView: function getChildView(childModel) {
-    if ('remote' === childModel.get('source')) {
-      return TemplateLibraryTemplateRemoteView;
-    }
-    return TemplateLibraryTemplateLocalView;
+    var sourceMappings = {
+      local: TemplateLibraryTemplateLocalView,
+      remote: TemplateLibraryTemplateRemoteView,
+      cloud: TemplateLibraryTemplateCloudView
+    };
+    var activeSource = childModel.get('source') ? childModel.get('source') : 'local';
+
+    /**
+     * Filter template source.
+     *
+     * @param bool   isRemote     - If `true` the source is a remote source.
+     * @param string activeSource - The current template source.
+     */
+    var isRemote = elementor.hooks.applyFilters('templates/source/is-remote', 'remote' === activeSource, activeSource);
+    return isRemote ? TemplateLibraryTemplateRemoteView : sourceMappings[activeSource] || TemplateLibraryTemplateLocalView;
   },
   initialize: function initialize() {
     this.listenTo(elementor.channels.templates, 'filter:change', this._renderChildren);
+    this.debouncedSearchTemplates = _.debounce(this.searchTemplates, 300);
   },
   filter: function filter(childModel) {
+    var activeSource = elementor.templates.getFilter('source');
+    if ('cloud' === activeSource) {
+      return true; // Filtering happens on the backend.
+    }
     var filterTerms = elementor.templates.getFilterTerms(),
       passingFilter = true;
     jQuery.each(filterTerms, function (filterTermName) {
@@ -11244,28 +11736,77 @@ TemplateLibraryCollectionView = Marionette.CompositeView.extend({
     var templatesType = elementor.templates.getFilter('type');
     return 'page' === templatesType || 'lp' === templatesType;
   },
+  onDestroy: function onDestroy() {
+    if (this.removeScrollListener) {
+      this.removeScrollListener();
+    }
+  },
   onRender: function onRender() {
-    if ('remote' === elementor.templates.getFilter('source') && 'page' !== elementor.templates.getFilter('type') && 'lb' !== elementor.templates.getFilter('type')) {
+    var activeSource = elementor.templates.getFilter('source');
+    var templateType = elementor.templates.getFilter('type');
+    if ('remote' === activeSource && 'page' !== templateType && 'lb' !== templateType) {
       this.setFiltersUI();
     }
   },
   onRenderCollection: function onRenderCollection() {
     this.addSourceData();
     this.toggleFilterClass();
-    if ('remote' === elementor.templates.getFilter('source') && !this.isPageOrLandingPageTemplates()) {
+    var activeSource = elementor.templates.getFilter('source');
+    if ('remote' === activeSource && !this.isPageOrLandingPageTemplates()) {
       this.setMasonrySkin();
+    }
+    if ('cloud' === activeSource) {
+      this.handleLoadMore();
     }
   },
   onBeforeRenderEmpty: function onBeforeRenderEmpty() {
     this.addSourceData();
   },
   onTextFilterInput: function onTextFilterInput() {
+    var activeSource = elementor.templates.getFilter('source');
+    if ('cloud' === activeSource) {
+      this.debouncedSearchTemplates(activeSource);
+      return;
+    }
     elementor.templates.setFilter('text', this.ui.textFilter.val());
+  },
+  searchTemplates: function searchTemplates(source) {
+    var _this = this;
+    return (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _this.showLoadingSpinner();
+            _context.prev = 1;
+            _context.next = 4;
+            return elementor.templates.searchTemplates({
+              source: source,
+              search: _this.ui.textFilter.val()
+            });
+          case 4:
+            _context.prev = 4;
+            _this.showSearchIcon();
+            return _context.finish(4);
+          case 7:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[1,, 4, 7]]);
+    }))();
+  },
+  showLoadingSpinner: function showLoadingSpinner() {
+    this.ui.searchInputIcon.removeClass('eicon-search').addClass('eicon-loading eicon-animation-spin');
+  },
+  showSearchIcon: function showSearchIcon() {
+    this.ui.searchInputIcon.removeClass('eicon-loading eicon-animation-spin').addClass('eicon-search');
   },
   onSelectFilterChange: function onSelectFilterChange(event) {
     var $select = jQuery(event.currentTarget),
       filterName = $select.data('elementor-filter');
     elementor.templates.setFilter(filterName, $select.val());
+  },
+  onSelectSourceFilterChange: function onSelectSourceFilterChange(event) {
+    elementor.templates.onSelectSourceFilterChange(event);
   },
   onMyFavoritesFilterChange: function onMyFavoritesFilterChange() {
     elementor.templates.setFilter('favorite', this.ui.myFavoritesFilter[0].checked);
@@ -11278,6 +11819,45 @@ TemplateLibraryCollectionView = Marionette.CompositeView.extend({
     }
     $clickedInput.toggleClass('elementor-template-library-order-reverse', toggle);
     this.order($clickedInput.val(), $clickedInput.hasClass('elementor-template-library-order-reverse'));
+  },
+  handleLoadMore: function handleLoadMore() {
+    var _elementor,
+      _this2 = this;
+    var scrollableContainer = (_elementor = elementor) === null || _elementor === void 0 || (_elementor = _elementor.templates) === null || _elementor === void 0 || (_elementor = _elementor.layout) === null || _elementor === void 0 ? void 0 : _elementor.modal.getElements('message');
+    var listener = function listener() {
+      var scrollTop = scrollableContainer.scrollTop();
+      var scrollHeight = scrollableContainer[0].scrollHeight;
+      var clientHeight = scrollableContainer.outerHeight();
+      var scrollPercentage = scrollTop / (scrollHeight - clientHeight) * 100;
+      var canLoadMore = elementor.templates.canLoadMore() && !elementor.templates.isLoading();
+      if (scrollPercentage < 90 || !canLoadMore) {
+        return;
+      }
+      _this2.ui.loadMoreAnchor.toggleClass('elementor-visibility-hidden');
+      elementor.templates.loadMore({
+        onUpdate: function onUpdate() {
+          _this2.ui.loadMoreAnchor.toggleClass('elementor-visibility-hidden');
+        },
+        search: _this2.ui.textFilter.val()
+      });
+    };
+    scrollableContainer.on('scroll', listener);
+    this.removeScrollListener = function () {
+      return scrollableContainer.off('scroll', listener);
+    };
+  },
+  onCreateNewFolderClick: function onCreateNewFolderClick() {
+    var activeSource = elementor.templates.getFilter('source');
+    if ('cloud' !== activeSource) {
+      return;
+    }
+    elementor.templates.createFolder({
+      source: activeSource
+    }, {
+      onSuccess: function onSuccess() {
+        $e.routes.refreshContainer('library');
+      }
+    });
   }
 });
 module.exports = TemplateLibraryCollectionView;
@@ -11293,15 +11873,14 @@ module.exports = TemplateLibraryCollectionView;
 "use strict";
 
 
-var TemplateLibraryInsertTemplateBehavior = __webpack_require__(/*! elementor-templates/behaviors/insert-template */ "../assets/dev/js/editor/components/template-library/behaviors/insert-template.js"),
-  TemplateLibraryTemplateView;
+var TemplateLibraryInsertTemplateBehavior = __webpack_require__(/*! elementor-templates/behaviors/insert-template */ "../assets/dev/js/editor/components/template-library/behaviors/insert-template.js");
 var _require = __webpack_require__(/*! elementor-utils/tiers */ "../assets/dev/js/utils/tiers.js"),
   isTierAtLeast = _require.isTierAtLeast,
   TIERS = _require.TIERS;
-TemplateLibraryTemplateView = Marionette.ItemView.extend({
+var TemplateLibraryTemplateView = Marionette.ItemView.extend({
   className: function className() {
-    var classes = 'elementor-template-library-template',
-      source = this.model.get('source');
+    var classes = 'elementor-template-library-template';
+    var source = this.model.get('source');
     classes += ' elementor-template-library-template-' + source;
     if ('remote' === source) {
       classes += ' elementor-template-library-template-' + this.model.get('type');
@@ -11357,6 +11936,50 @@ module.exports = TemplateLibraryTemplateView;
 
 /***/ }),
 
+/***/ "../assets/dev/js/editor/components/template-library/views/template/cloud.js":
+/*!***********************************************************************************!*\
+  !*** ../assets/dev/js/editor/components/template-library/views/template/cloud.js ***!
+  \***********************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+var TemplateLibraryTemplateLocalView = __webpack_require__(/*! elementor-templates/views/template/local */ "../assets/dev/js/editor/components/template-library/views/template/local.js"),
+  TemplateLibraryTemplateCloudView;
+TemplateLibraryTemplateCloudView = TemplateLibraryTemplateLocalView.extend({
+  onPreviewButtonClick: function onPreviewButtonClick() {
+    if ('FOLDER' === this.model.get('subType')) {
+      $e.route('library/view-folder', {
+        model: this.model
+      });
+      return;
+    }
+    TemplateLibraryTemplateLocalView.prototype.onPreviewButtonClick.apply(this, arguments);
+  },
+  onDeleteButtonClick: function onDeleteButtonClick() {
+    if ('FOLDER' === this.model.get('subType')) {
+      this.handleDeleteFolderClick();
+      return;
+    }
+    TemplateLibraryTemplateLocalView.prototype.onDeleteButtonClick.apply(this, arguments);
+  },
+  handleDeleteFolderClick: function handleDeleteFolderClick() {
+    var toggleMoreIcon = this.ui.toggleMoreIcon;
+    elementor.templates.deleteFolder(this.model, {
+      onConfirm: function onConfirm() {
+        toggleMoreIcon.removeClass('eicon-ellipsis-h').addClass('eicon-loading eicon-animation-spin');
+      },
+      onSuccess: function onSuccess() {
+        $e.routes.refreshContainer('library');
+      }
+    });
+  }
+});
+module.exports = TemplateLibraryTemplateCloudView;
+
+/***/ }),
+
 /***/ "../assets/dev/js/editor/components/template-library/views/template/local.js":
 /*!***********************************************************************************!*\
   !*** ../assets/dev/js/editor/components/template-library/views/template/local.js ***!
@@ -11366,23 +11989,43 @@ module.exports = TemplateLibraryTemplateView;
 "use strict";
 
 
-var TemplateLibraryTemplateView = __webpack_require__(/*! elementor-templates/views/template/base */ "../assets/dev/js/editor/components/template-library/views/template/base.js"),
-  TemplateLibraryTemplateLocalView;
-TemplateLibraryTemplateLocalView = TemplateLibraryTemplateView.extend({
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ "../node_modules/@babel/runtime/regenerator/index.js"));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ "../node_modules/@babel/runtime/helpers/asyncToGenerator.js"));
+var TemplateLibraryTemplateView = __webpack_require__(/*! elementor-templates/views/template/base */ "../assets/dev/js/editor/components/template-library/views/template/base.js");
+var TemplateLibraryTemplateLocalView = TemplateLibraryTemplateView.extend({
   template: '#tmpl-elementor-template-library-template-local',
   ui: function ui() {
     return _.extend(TemplateLibraryTemplateView.prototype.ui.apply(this, arguments), {
       deleteButton: '.elementor-template-library-template-delete',
+      renameButton: '.elementor-template-library-template-rename',
       morePopup: '.elementor-template-library-template-more',
       toggleMore: '.elementor-template-library-template-more-toggle',
-      toggleMoreIcon: '.elementor-template-library-template-more-toggle i'
+      toggleMoreIcon: '.elementor-template-library-template-more-toggle i',
+      titleCell: '.elementor-template-library-template-name',
+      resourceIcon: '.elementor-template-library-template-name i'
     });
   },
   events: function events() {
     return _.extend(TemplateLibraryTemplateView.prototype.events.apply(this, arguments), {
       'click @ui.deleteButton': 'onDeleteButtonClick',
-      'click @ui.toggleMore': 'onToggleMoreClick'
+      'click @ui.toggleMore': 'onToggleMoreClick',
+      'click @ui.renameButton': 'onRenameClick'
     });
+  },
+  modelEvents: {
+    'change:title': 'onTitleChange'
+  },
+  onTitleChange: function onTitleChange() {
+    var isCloudSource = 'cloud' === this.model.get('source');
+    var title = _.escape(this.model.get('title'));
+    var content = title;
+    if (isCloudSource) {
+      var _this$ui$resourceIcon;
+      var resourceIcon = (_this$ui$resourceIcon = this.ui.resourceIcon[0]) === null || _this$ui$resourceIcon === void 0 ? void 0 : _this$ui$resourceIcon.outerHTML;
+      content = resourceIcon + title;
+    }
+    this.ui.titleCell.html(content);
   },
   onDeleteButtonClick: function onDeleteButtonClick() {
     var toggleMoreIcon = this.ui.toggleMoreIcon;
@@ -11391,7 +12034,7 @@ TemplateLibraryTemplateLocalView = TemplateLibraryTemplateView.extend({
         toggleMoreIcon.removeClass('eicon-ellipsis-h').addClass('eicon-loading eicon-animation-spin');
       },
       onSuccess: function onSuccess() {
-        elementor.templates.showTemplates();
+        $e.routes.refreshContainer('library');
       }
     });
   },
@@ -11400,6 +12043,36 @@ TemplateLibraryTemplateLocalView = TemplateLibraryTemplateView.extend({
   },
   onPreviewButtonClick: function onPreviewButtonClick() {
     open(this.model.get('url'), '_blank');
+  },
+  onRenameClick: function onRenameClick() {
+    var _this = this;
+    return (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee() {
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            _context.next = 3;
+            return elementor.templates.renameTemplate(_this.model, {
+              onConfirm: function onConfirm() {
+                return _this.showToggleMoreLoader();
+              }
+            });
+          case 3:
+            _context.prev = 3;
+            _this.hideToggleMoreLoader();
+            return _context.finish(3);
+          case 6:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[0,, 3, 6]]);
+    }))();
+  },
+  showToggleMoreLoader: function showToggleMoreLoader() {
+    this.ui.toggleMoreIcon.removeClass('eicon-ellipsis-h').addClass('eicon-loading eicon-animation-spin');
+  },
+  hideToggleMoreLoader: function hideToggleMoreLoader() {
+    this.ui.toggleMoreIcon.addClass('eicon-ellipsis-h').removeClass('eicon-loading eicon-animation-spin');
   }
 });
 module.exports = TemplateLibraryTemplateLocalView;
@@ -13137,7 +13810,7 @@ var _baseData = _interopRequireDefault(__webpack_require__(/*! ./base-data */ ".
 var _colorPicker = _interopRequireDefault(__webpack_require__(/*! ../utils/color-picker */ "../assets/dev/js/editor/utils/color-picker.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var _default = exports["default"] = /*#__PURE__*/function (_ControlBaseDataView) {
   function _default() {
     (0, _classCallCheck2.default)(this, _default);
@@ -13499,7 +14172,7 @@ var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helper
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var ControlBaseDataView = __webpack_require__(/*! elementor-controls/base-data */ "../assets/dev/js/editor/controls/base-data.js");
 var _default = exports["default"] = /*#__PURE__*/function (_ControlBaseDataView) {
   function _default() {
@@ -14308,7 +14981,7 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _filesUploadHandler = _interopRequireDefault(__webpack_require__(/*! ../utils/files-upload-handler */ "../assets/dev/js/editor/utils/files-upload-handler.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var ControlMultipleBaseItemView = __webpack_require__(/*! elementor-controls/base-multiple */ "../assets/dev/js/editor/controls/base-multiple.js");
 var ControlIconsView = /*#__PURE__*/function (_ControlMultipleBaseI) {
   function ControlIconsView() {
@@ -16372,7 +17045,7 @@ var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helper
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var BaseMultiple = __webpack_require__(/*! elementor-controls/base-multiple */ "../assets/dev/js/editor/controls/base-multiple.js");
 var URL = /*#__PURE__*/function (_BaseMultiple) {
   function URL() {
@@ -16484,6 +17157,78 @@ var URL = /*#__PURE__*/function (_BaseMultiple) {
   }]);
 }(BaseMultiple);
 module.exports = URL;
+
+/***/ }),
+
+/***/ "../assets/dev/js/editor/controls/visual-choice.js":
+/*!*********************************************************!*\
+  !*** ../assets/dev/js/editor/controls/visual-choice.js ***!
+  \*********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+
+
+var ControlBaseDataView = __webpack_require__(/*! elementor-controls/base-data */ "../assets/dev/js/editor/controls/base-data.js"),
+  ControlVisualChoiceItemView;
+ControlVisualChoiceItemView = ControlBaseDataView.extend({
+  ui: function ui() {
+    var ui = ControlBaseDataView.prototype.ui.apply(this, arguments);
+    ui.inputs = '[type="radio"]';
+    return ui;
+  },
+  events: function events() {
+    return _.extend(ControlBaseDataView.prototype.events.apply(this, arguments), {
+      'mousedown label': 'onMouseDownLabel',
+      'click @ui.inputs': 'onClickInput',
+      'change @ui.inputs': 'onBaseInputChange'
+    });
+  },
+  updatePlaceholder: function updatePlaceholder() {
+    var placeholder = this.getControlPlaceholder();
+    if (!this.getControlValue() && placeholder) {
+      // Find the input which has value equals to the placeholder (which is the parent's value),
+      // and add it a placeholder class, to indicate which value is selected in the parent.
+      this.ui.inputs.filter("[value=\"".concat(this.getControlPlaceholder(), "\"]")).addClass('e-visual-choice-placeholder');
+    } else {
+      this.ui.inputs.removeClass('e-visual-choice-placeholder');
+    }
+  },
+  onReady: function onReady() {
+    this.updatePlaceholder();
+  },
+  applySavedValue: function applySavedValue() {
+    var currentValue = this.getControlValue();
+    if (currentValue) {
+      this.ui.inputs.filter('[value="' + currentValue + '"]').prop('checked', true);
+    } else {
+      this.ui.inputs.filter(':checked').prop('checked', false);
+    }
+  },
+  onMouseDownLabel: function onMouseDownLabel(event) {
+    var $clickedLabel = this.$(event.currentTarget),
+      $selectedInput = this.$('#' + $clickedLabel.attr('for'));
+    $selectedInput.data('checked', $selectedInput.prop('checked'));
+  },
+  onClickInput: function onClickInput(event) {
+    if (!this.model.get('toggle')) {
+      return;
+    }
+    var $selectedInput = this.$(event.currentTarget);
+    if ($selectedInput.data('checked')) {
+      $selectedInput.prop('checked', false).trigger('change');
+    }
+  },
+  onBaseInputChange: function onBaseInputChange() {
+    ControlBaseDataView.prototype.onBaseInputChange.apply(this, arguments);
+    this.updatePlaceholder();
+  }
+}, {
+  onPasteStyle: function onPasteStyle(control, clipboardValue) {
+    return '' === clipboardValue || undefined !== control.options[clipboardValue];
+  }
+});
+module.exports = ControlVisualChoiceItemView;
 
 /***/ }),
 
@@ -17023,7 +17768,7 @@ function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return 
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var Component = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
   function Component() {
     (0, _classCallCheck2.default)(this, Component);
@@ -17193,7 +17938,7 @@ function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return 
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var Component = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
   function Component() {
     (0, _classCallCheck2.default)(this, Component);
@@ -17245,7 +17990,7 @@ var _commandHistoryBase = _interopRequireDefault(__webpack_require__(/*! ./comma
 var _settings = _interopRequireDefault(__webpack_require__(/*! elementor-document/elements/commands/settings */ "../assets/dev/js/editor/document/elements/commands/settings.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 /**
  * The class serve as base for commands who needs the 'enable/disable' behavior.
  */
@@ -17374,7 +18119,7 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _commandContainerBase = _interopRequireDefault(__webpack_require__(/*! elementor-editor/command-bases/command-container-base */ "../assets/dev/js/editor/command-bases/command-container-base.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 /**
  * @name $e.modules.editor.document.CommandHistoryBase
  */
@@ -17523,7 +18268,7 @@ function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return 
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var Component = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
   function Component() {
     (0, _classCallCheck2.default)(this, Component);
@@ -19611,6 +20356,7 @@ var ResetSettings = exports.ResetSettings = /*#__PURE__*/function (_$e$modules$e
           }
           defaultValues[controlName] = control.default;
         });
+        defaultValues.__globals__ = {};
         $e.run('document/elements/settings', {
           container: container,
           options: options,
@@ -20871,7 +21617,7 @@ var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helper
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 /**
  * @typedef {import ('elementor/modules/history/assets/js/module')} HistoryManager
  */
@@ -21001,7 +21747,7 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _commandHistoryInternalBase = _interopRequireDefault(__webpack_require__(/*! ../base/command-history-internal-base */ "../assets/dev/js/editor/document/history/commands/base/command-history-internal-base.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var AddTransaction = exports.AddTransaction = /*#__PURE__*/function (_CommandHistoryIntern) {
   function AddTransaction() {
     (0, _classCallCheck2.default)(this, AddTransaction);
@@ -21392,7 +22138,7 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _commandHistoryInternalBase = _interopRequireDefault(__webpack_require__(/*! ../base/command-history-internal-base */ "../assets/dev/js/editor/document/history/commands/base/command-history-internal-base.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var StartLog = exports.StartLog = /*#__PURE__*/function (_CommandHistoryIntern) {
   function StartLog() {
     (0, _classCallCheck2.default)(this, StartLog);
@@ -21576,7 +22322,7 @@ function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return 
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var Component = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
   function Component() {
     (0, _classCallCheck2.default)(this, Component);
@@ -24230,7 +24976,7 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _utils = __webpack_require__(/*! elementor/modules/nested-elements/assets/js/editor/utils */ "../modules/nested-elements/assets/js/editor/utils.js");
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var Insert = exports.Insert = /*#__PURE__*/function (_$e$modules$editor$do) {
   function Insert() {
     (0, _classCallCheck2.default)(this, Insert);
@@ -24733,7 +25479,7 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _componentBase = _interopRequireDefault(__webpack_require__(/*! elementor-api/modules/component-base */ "../modules/web-cli/assets/js/modules/component-base.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var BackwardsCompatibility = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
   function BackwardsCompatibility() {
     (0, _classCallCheck2.default)(this, BackwardsCompatibility);
@@ -25169,7 +25915,7 @@ var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helper
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var Base = exports["default"] = /*#__PURE__*/function (_$e$modules$CommandBa) {
   function Base() {
     (0, _classCallCheck2.default)(this, Base);
@@ -25892,7 +26638,7 @@ function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return 
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 /**
  * @typedef {import('./behaviors/footer-saver')} FooterSaver
  */
@@ -27191,6 +27937,7 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
         Box_shadow: __webpack_require__(/*! elementor-controls/box-shadow */ "../assets/dev/js/editor/controls/box-shadow.js"),
         Button: __webpack_require__(/*! elementor-controls/button */ "../assets/dev/js/editor/controls/button.js"),
         Choose: __webpack_require__(/*! elementor-controls/choose */ "../assets/dev/js/editor/controls/choose.js"),
+        Visual_choice: __webpack_require__(/*! elementor-controls/visual-choice */ "../assets/dev/js/editor/controls/visual-choice.js"),
         Code: __webpack_require__(/*! elementor-controls/code */ "../assets/dev/js/editor/controls/code.js"),
         Color: _color.default,
         Date_time: _dateTime.default,
@@ -27240,6 +27987,9 @@ var EditorBase = exports["default"] = /*#__PURE__*/function (_Marionette$Applica
           BaseElement: __webpack_require__(/*! elementor-elements/views/base */ "../assets/dev/js/editor/elements/views/base.js"),
           BaseWidget: __webpack_require__(/*! elementor-elements/views/base-widget */ "../assets/dev/js/editor/elements/views/base-widget.js"),
           Widget: __webpack_require__(/*! elementor-elements/views/widget */ "../assets/dev/js/editor/elements/views/widget.js")
+        },
+        components: {
+          AddSectionView: __webpack_require__(/*! elementor-views/add-section/inline */ "../assets/dev/js/editor/views/add-section/inline.js")
         }
       },
       layouts: {
@@ -28945,7 +29695,7 @@ var Document = exports["default"] = /*#__PURE__*/function (_BaseElementModel) {
       var childElType = childModel.get('elType');
 
       // Valid children.
-      return ['section', 'container'].includes(childElType);
+      return ['section', 'container', 'div-block'].includes(childElType);
     }
   }]);
 }(_baseElementModel.default);
@@ -29701,7 +30451,7 @@ var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helper
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var BaseElementView = __webpack_require__(/*! elementor-elements/views/base */ "../assets/dev/js/editor/elements/views/base.js");
 
 /**
@@ -30405,8 +31155,8 @@ BaseElementView = BaseContainer.extend({
     }
     this.renderHTML();
   },
-  isAtomicDynamic: function isAtomicDynamic(changedSettings, dataBinding, changedControl) {
-    return '__dynamic__' in changedSettings && dataBinding.el.hasAttribute('data-binding-dynamic') && elementorCommon.config.experimentalFeatures.e_nested_atomic_repeaters && dataBinding.el.getAttribute('data-binding-setting') === changedControl;
+  isAtomicDynamic: function isAtomicDynamic(changedSettings, dataBinding, changedControl, bindingDynamicCssId) {
+    return '__dynamic__' in changedSettings && dataBinding.el.hasAttribute('data-binding-dynamic') && (dataBinding.el.getAttribute('data-binding-setting') === changedControl || this.isCssIdControl(changedControl, bindingDynamicCssId));
   },
   getDynamicValue: function getDynamicValue(settings, changedControlKey, bindingSetting) {
     var _this3 = this;
@@ -30514,13 +31264,13 @@ BaseElementView = BaseContainer.extend({
     var changed = false;
     var renderDataBinding = /*#__PURE__*/function () {
       var _ref = (0, _asyncToGenerator2.default)(/*#__PURE__*/_regenerator.default.mark(function _callee2(dataBinding) {
-        var bindingSetting, changedControl, change, dynamicValue;
+        var _dataBinding$dataset, bindingSetting, bindingDynamicCssId, changedControl, change, dynamicValue;
         return _regenerator.default.wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
-              bindingSetting = dataBinding.dataset.bindingSetting, changedControl = _this5.getChangedDynamicControlKey(settings);
+              _dataBinding$dataset = dataBinding.dataset, bindingSetting = _dataBinding$dataset.bindingSetting, bindingDynamicCssId = _dataBinding$dataset.bindingDynamicCssId, changedControl = _this5.getChangedDynamicControlKey(settings);
               change = settings.changed[bindingSetting];
-              if (!_this5.isAtomicDynamic(settings.changed, dataBinding, changedControl)) {
+              if (!_this5.isAtomicDynamic(settings.changed, dataBinding, changedControl, bindingDynamicCssId)) {
                 _context2.next = 7;
                 break;
               }
@@ -30532,15 +31282,21 @@ BaseElementView = BaseContainer.extend({
                 change = dynamicValue;
               }
             case 7:
+              if (!_this5.isCssIdControl(changedControl, bindingDynamicCssId)) {
+                _context2.next = 9;
+                break;
+              }
+              return _context2.abrupt("return", _this5.updateCssId(dataBinding, change, settings, changedControl));
+            case 9:
               if (!(change !== undefined)) {
-                _context2.next = 10;
+                _context2.next = 12;
                 break;
               }
               dataBinding.el.innerHTML = change;
               return _context2.abrupt("return", true);
-            case 10:
+            case 12:
               return _context2.abrupt("return", false);
-            case 11:
+            case 13:
             case "end":
               return _context2.stop();
           }
@@ -30589,6 +31345,19 @@ BaseElementView = BaseContainer.extend({
       _iterator.f();
     }
     return changed;
+  },
+  isCssIdControl: function isCssIdControl(changedControl, bindingDynamicCssId) {
+    return bindingDynamicCssId === changedControl;
+  },
+  updateCssId: function updateCssId(dataBinding, change, settings, changedControl) {
+    if (!change) {
+      change = settings.attributes[changedControl];
+    }
+    if (change && change.length) {
+      dataBinding.el.closest(dataBinding.dataset.bindingSingleItemHtmlWrapperTag).setAttribute('id', change);
+      return true;
+    }
+    return false;
   },
   /**
    * Function renderOnChange().
@@ -30689,6 +31458,7 @@ BaseElementView = BaseContainer.extend({
       }
     });
     elementor.$preview[0].contentWindow.dispatchEvent(renderedEvent);
+    window.top.dispatchEvent(renderedEvent);
   },
   onEditSettingsChanged: function onEditSettingsChanged(changedModel) {
     elementor.channels.editor.trigger('change:editSettings', changedModel, this);
@@ -30791,6 +31561,9 @@ BaseElementView = BaseContainer.extend({
     helper.innerHTML = "\n\t\t\t<div class=\"icon\">\n\t\t\t\t<i class=\"".concat(model.getIcon(), "\"></i>\n\t\t\t</div>\n\t\t\t<div class=\"title-wrapper\">\n\t\t\t\t<div class=\"title\">").concat(model.getTitle(), "</div>\n\t\t\t</div>\n\t\t");
     return helper;
   },
+  getDraggableElement: function getDraggableElement() {
+    return this.$el;
+  },
   /**
    * Initialize the Droppable instance.
    */
@@ -30804,7 +31577,7 @@ BaseElementView = BaseContainer.extend({
     if (!this.$el.hasClass('.e-con') && !this.$el.parents('.e-con').length) {
       return;
     }
-    this.$el.html5Draggable({
+    this.getDraggableElement().html5Draggable({
       onDragStart: function onDragStart(e) {
         var _this9$options$dragga;
         e.stopPropagation();
@@ -31718,7 +32491,7 @@ var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helper
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var _default = exports["default"] = /*#__PURE__*/function (_Marionette$Behavior) {
   function _default() {
     (0, _classCallCheck2.default)(this, _default);
@@ -31878,7 +32651,7 @@ function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbol
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0, _defineProperty2.default)(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var _default = exports["default"] = /*#__PURE__*/function (_Marionette$Behavior) {
   function _default() {
     (0, _classCallCheck2.default)(this, _default);
@@ -32956,7 +33729,7 @@ var _react2 = _interopRequireDefault(__webpack_require__(/*! elementor-utils/rea
 var _emptyComponent = _interopRequireDefault(__webpack_require__(/*! elementor-elements/views/container/empty-component */ "../assets/dev/js/editor/elements/views/container/empty-component.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 /**
  * This empty view used when the container is empty, then it writes React component into the view.
  * In case of rendering different/custom React component, the switch in 'renderReactDefaultElement' method,
@@ -33928,7 +34701,7 @@ function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return 
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var Component = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
   function Component() {
     (0, _classCallCheck2.default)(this, Component);
@@ -36355,7 +37128,7 @@ function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return 
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var Component = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
   function Component() {
     (0, _classCallCheck2.default)(this, Component);
@@ -36562,7 +37335,7 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _componentBase = _interopRequireDefault(__webpack_require__(/*! elementor-api/modules/component-base */ "../modules/web-cli/assets/js/modules/component-base.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var Component = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
   function Component() {
     (0, _classCallCheck2.default)(this, Component);
@@ -38704,7 +39477,7 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _conditions = _interopRequireDefault(__webpack_require__(/*! ./conditions */ "../assets/dev/js/editor/utils/conditions.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 /**
  * Control Conditions Class
  *
@@ -39597,7 +40370,7 @@ var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runt
 var _colorPicker = _interopRequireDefault(__webpack_require__(/*! ./color-picker */ "../assets/dev/js/editor/utils/color-picker.js"));
 var _helperBc = _interopRequireDefault(__webpack_require__(/*! elementor-editor/document/helper-bc */ "../assets/dev/js/editor/document/helper-bc.js"));
 var _containerHelper = _interopRequireDefault(__webpack_require__(/*! elementor-editor-utils/container-helper */ "../assets/dev/js/editor/utils/container-helper.js"));
-var _dompurify = _interopRequireWildcard(__webpack_require__(/*! dompurify */ "../node_modules/dompurify/dist/purify.js"));
+var _dompurify = _interopRequireWildcard(__webpack_require__(/*! dompurify */ "../node_modules/dompurify/dist/purify.cjs.js"));
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 var allowedHTMLWrapperTags = ['article', 'aside', 'div', 'footer', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'main', 'nav', 'p', 'section', 'span'];
@@ -39625,6 +40398,10 @@ module.exports = {
       container: {
         widget: null,
         container: null
+      },
+      'div-block': {
+        widget: null,
+        'div-block': null
       }
     }
   },
@@ -39809,6 +40586,7 @@ module.exports = {
   },
   // The target parameter = 'editor'/'preview'. Defaults to 'preview' for backwards compatibility.
   enqueueFont: function enqueueFont(font) {
+    var _elementorCommon$conf;
     var target = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'preview';
     if ($e.devTools) {
       $e.devTools.log.info("enqueueFont font: '".concat(font, "', target: '").concat(target, "'"));
@@ -39834,6 +40612,14 @@ module.exports = {
           fontUrl += '&subset=' + subsets[elementor.config.locale];
         }
         enqueueOptions.crossOrigin = true;
+        if ((_elementorCommon$conf = elementorCommon.config.experimentalFeatures) !== null && _elementorCommon$conf !== void 0 && _elementorCommon$conf.e_local_google_fonts && 'preview' === target) {
+          elementorCommon.ajax.addRequest('enqueue_google_fonts', {
+            data: {
+              font_name: font
+            },
+            unique_id: 'enqueue_google_fonts_' + font
+          });
+        }
         break;
       case 'earlyaccess':
         {
@@ -40896,7 +41682,7 @@ var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helper
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var Select2 = exports["default"] = /*#__PURE__*/function (_elementorModules$Vie) {
   function Select2() {
     (0, _classCallCheck2.default)(this, Select2);
@@ -41597,7 +42383,7 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _base = _interopRequireDefault(__webpack_require__(/*! ./base */ "../assets/dev/js/editor/views/add-section/base.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var AddSectionView = /*#__PURE__*/function (_BaseAddSectionView) {
   function AddSectionView() {
     (0, _classCallCheck2.default)(this, AddSectionView);
@@ -41965,6 +42751,9 @@ BaseSectionsContainerView = BaseContainer.extend({
       case 'container':
         ChildView = __webpack_require__(/*! elementor-elements/views/container */ "../assets/dev/js/editor/elements/views/container.js");
         break;
+      case 'div-block':
+        ChildView = __webpack_require__(/*! elementor-modules/atomic-widgets/assets/js/editor/div-block-view */ "../modules/atomic-widgets/assets/js/editor/div-block-view.js");
+        break;
     }
     return ChildView;
   },
@@ -41984,7 +42773,7 @@ BaseSectionsContainerView = BaseContainer.extend({
     };
   },
   getChildType: function getChildType() {
-    return ['section', 'container'];
+    return ['section', 'container', 'div-block'];
   },
   initialize: function initialize() {
     BaseContainer.prototype.initialize.apply(this, arguments);
@@ -42416,7 +43205,7 @@ var Preview = BaseSectionsContainerView.extend({
   createElementFromModel: function createElementFromModel(model) {
     var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     return BaseSectionsContainerView.prototype.createElementFromModel.call(this, model, _objectSpread(_objectSpread({}, options), {}, {
-      shouldWrap: 'container' !== model.elType
+      shouldWrap: 'container' !== model.elType && 'div-block' !== model.elType
     }));
   },
   addElementFromPanel: function addElementFromPanel(options) {
@@ -42619,7 +43408,7 @@ var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
 var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../node_modules/@babel/runtime/helpers/get.js"));
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var InstanceType = exports["default"] = /*#__PURE__*/function () {
   function InstanceType() {
     var _this = this;
@@ -43840,7 +44629,11 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$LayoutVie
   }, {
     key: "onCloseModalClick",
     value: function onCloseModalClick() {
+      var _elementor$config$doc, _elementor$config;
       this._parent._parent._parent.hideModal();
+      var type = (_elementor$config$doc = (_elementor$config = elementor.config) === null || _elementor$config === void 0 || (_elementor$config = _elementor$config.document) === null || _elementor$config === void 0 ? void 0 : _elementor$config.type) !== null && _elementor$config$doc !== void 0 ? _elementor$config$doc : 'default';
+      var customEvent = new CustomEvent("core/modal/close/".concat(type));
+      window.dispatchEvent(customEvent);
       if (this.isFloatingButtonLibraryClose()) {
         $e.internal('document/save/set-is-modified', {
           status: false
@@ -43851,8 +44644,8 @@ var _default = exports["default"] = /*#__PURE__*/function (_Marionette$LayoutVie
   }, {
     key: "isFloatingButtonLibraryClose",
     value: function isFloatingButtonLibraryClose() {
-      var _elementor$config, _elementor$config2;
-      return window.elementor && ((_elementor$config = elementor.config) === null || _elementor$config === void 0 ? void 0 : _elementor$config.admin_floating_button_admin_url) && 'floating-buttons' === ((_elementor$config2 = elementor.config) === null || _elementor$config2 === void 0 || (_elementor$config2 = _elementor$config2.document) === null || _elementor$config2 === void 0 ? void 0 : _elementor$config2.type) && (this.$el.closest('.dialog-lightbox-widget-content').find('.elementor-template-library-template-floating_button').length || this.$el.closest('.dialog-lightbox-widget-content').find('#elementor-template-library-preview').length || this.$el.closest('.dialog-lightbox-widget-content').find('#elementor-template-library-templates-empty').length);
+      var _elementor$config2, _elementor$config3;
+      return window.elementor && ((_elementor$config2 = elementor.config) === null || _elementor$config2 === void 0 ? void 0 : _elementor$config2.admin_floating_button_admin_url) && 'floating-buttons' === ((_elementor$config3 = elementor.config) === null || _elementor$config3 === void 0 || (_elementor$config3 = _elementor$config3.document) === null || _elementor$config3 === void 0 ? void 0 : _elementor$config3.type) && (this.$el.closest('.dialog-lightbox-widget-content').find('.elementor-template-library-template-floating_button').length || this.$el.closest('.dialog-lightbox-widget-content').find('#elementor-template-library-preview').length || this.$el.closest('.dialog-lightbox-widget-content').find('#elementor-template-library-templates-empty').length);
     }
   }]);
 }(Marionette.LayoutView);
@@ -44500,7 +45293,7 @@ function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return 
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var _default = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
   function _default() {
     var _this;
@@ -46289,7 +47082,7 @@ function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbol
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { (0, _defineProperty2.default)(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var Manager = exports["default"] = /*#__PURE__*/function (_elementorModules$edi) {
   function Manager() {
     var _this;
@@ -46837,7 +47630,7 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _repeaterRow = _interopRequireDefault(__webpack_require__(/*! elementor-controls/repeater-row */ "../assets/dev/js/editor/controls/repeater-row.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var _default = exports["default"] = /*#__PURE__*/function (_RepeaterRow) {
   function _default() {
     (0, _classCallCheck2.default)(this, _default);
@@ -47007,7 +47800,7 @@ var _repeater = _interopRequireDefault(__webpack_require__(/*! ../../../../asset
 var _repeaterRow = _interopRequireDefault(__webpack_require__(/*! ./repeater-row */ "../core/kits/assets/js/repeater-row.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var _default = exports["default"] = /*#__PURE__*/function (_Repeater) {
   function _default() {
     var _this;
@@ -47044,6 +47837,365 @@ var _default = exports["default"] = /*#__PURE__*/function (_Repeater) {
     }
   }]);
 }(_repeater.default);
+
+/***/ }),
+
+/***/ "../modules/atomic-widgets/assets/js/editor/container/div-block-empty-view.js":
+/*!************************************************************************************!*\
+  !*** ../modules/atomic-widgets/assets/js/editor/container/div-block-empty-view.js ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../node_modules/@babel/runtime/helpers/classCallCheck.js"));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _react2 = _interopRequireDefault(__webpack_require__(/*! elementor-utils/react */ "../assets/dev/js/utils/react.js"));
+var _emptyComponent = _interopRequireDefault(__webpack_require__(/*! elementor-elements/views/container/empty-component */ "../assets/dev/js/editor/elements/views/container/empty-component.js"));
+function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
+function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
+var DivBlockEmptyView = exports["default"] = /*#__PURE__*/function (_Marionette$ItemView) {
+  function DivBlockEmptyView() {
+    var _this;
+    (0, _classCallCheck2.default)(this, DivBlockEmptyView);
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+    _this = _callSuper(this, DivBlockEmptyView, [].concat(args));
+    (0, _defineProperty2.default)(_this, "template", '<div></div>');
+    (0, _defineProperty2.default)(_this, "className", 'elementor-empty-view');
+    return _this;
+  }
+  (0, _inherits2.default)(DivBlockEmptyView, _Marionette$ItemView);
+  return (0, _createClass2.default)(DivBlockEmptyView, [{
+    key: "renderReactDefaultElement",
+    value: function renderReactDefaultElement(container) {
+      var _ReactUtils$render = _react2.default.render(/*#__PURE__*/_react.default.createElement(_emptyComponent.default, {
+          container: container
+        }), this.el),
+        unmount = _ReactUtils$render.unmount;
+      this.unmount = unmount;
+    }
+  }, {
+    key: "onRender",
+    value: function onRender() {
+      this.$el.addClass(this.className);
+      this.renderReactDefaultElement();
+    }
+  }, {
+    key: "onDestroy",
+    value: function onDestroy() {
+      this.unmount();
+    }
+  }]);
+}(Marionette.ItemView);
+
+/***/ }),
+
+/***/ "../modules/atomic-widgets/assets/js/editor/div-block-view.js":
+/*!********************************************************************!*\
+  !*** ../modules/atomic-widgets/assets/js/editor/div-block-view.js ***!
+  \********************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+"use strict";
+/* provided dependency */ var sprintf = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["sprintf"];
+/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "../node_modules/@babel/runtime/helpers/toConsumableArray.js"));
+var _divBlockEmptyView = _interopRequireDefault(__webpack_require__(/*! ./container/div-block-empty-view */ "../modules/atomic-widgets/assets/js/editor/container/div-block-empty-view.js"));
+var BaseElementView = elementor.modules.elements.views.BaseElement;
+var DivBlockView = BaseElementView.extend({
+  template: Marionette.TemplateCache.get('#tmpl-elementor-div-block-content'),
+  emptyView: _divBlockEmptyView.default,
+  tagName: function tagName() {
+    return this.model.getSetting('tag') || 'div';
+  },
+  getChildViewContainer: function getChildViewContainer() {
+    this.childViewContainer = '';
+    return Marionette.CompositeView.prototype.getChildViewContainer.apply(this, arguments);
+  },
+  className: function className() {
+    return "".concat(BaseElementView.prototype.className.apply(this), " e-con e-div-block").concat(this.getClassString());
+  },
+  // TODO: Copied from `views/column.js`.
+  ui: function ui() {
+    var ui = BaseElementView.prototype.ui.apply(this, arguments);
+    ui.percentsTooltip = '> .elementor-element-overlay .elementor-column-percents-tooltip';
+    return ui;
+  },
+  // TODO: Copied from `views/column.js`.
+  attachElContent: function attachElContent() {
+    BaseElementView.prototype.attachElContent.apply(this, arguments);
+    var $tooltip = jQuery('<div>', {
+      class: 'elementor-column-percents-tooltip',
+      'data-side': elementorCommon.config.isRTL ? 'right' : 'left'
+    });
+    this.$el.children('.elementor-element-overlay').append($tooltip);
+  },
+  // TODO: Copied from `views/column.js`.
+  getPercentSize: function getPercentSize(size) {
+    if (!size) {
+      size = this.el.getBoundingClientRect().width;
+    }
+    return +(size / this.$el.parent().width() * 100).toFixed(3);
+  },
+  // TODO: Copied from `views/column.js`.
+  getPercentsForDisplay: function getPercentsForDisplay() {
+    var width = +this.model.getSetting('width') || this.getPercentSize();
+    return width.toFixed(1) + '%';
+  },
+  renderOnChange: function renderOnChange(settings) {
+    var changed = settings.changedAttributes();
+    if (!changed) {
+      return;
+    }
+    BaseElementView.prototype.renderOnChange.apply(this, settings);
+    if (changed.classes) {
+      // Rebuild the whole class attribute to remove previous outdated classes
+      this.$el.attr('class', this.className());
+      return;
+    }
+    this.$el.addClass(this.getClasses());
+  },
+  onRender: function onRender() {
+    var _this = this;
+    BaseElementView.prototype.onRender.apply(this, arguments);
+
+    // Defer to wait for everything to render.
+    setTimeout(function () {
+      _this.droppableInitialize();
+    });
+  },
+  droppableInitialize: function droppableInitialize() {
+    this.$el.html5Droppable(this.getDroppableOptions());
+  },
+  isDroppingAllowed: function isDroppingAllowed() {
+    return true;
+  },
+  behaviors: function behaviors() {
+    var behaviors = BaseElementView.prototype.behaviors.apply(this, arguments);
+    _.extend(behaviors, {
+      Sortable: {
+        behaviorClass: __webpack_require__(/*! elementor-behaviors/sortable */ "../assets/dev/js/editor/elements/views/behaviors/sortable.js"),
+        elChildType: 'widget'
+      }
+    });
+    return elementor.hooks.applyFilters('elements/div-block/behaviors', behaviors, this);
+  },
+  /**
+   * @return {{}} options
+   */
+  getSortableOptions: function getSortableOptions() {
+    return {
+      preventInit: true
+    };
+  },
+  getDroppableAxis: function getDroppableAxis() {
+    if (this.isHorizontalAxis()) {
+      return 'horizontal';
+    }
+    return 'vertical';
+  },
+  isHorizontalAxis: function isHorizontalAxis() {
+    var styles = window.getComputedStyle(this.$el[0]);
+    return 'flex' === styles.display && ['row', 'row-reverse'].includes(styles.flexDirection);
+  },
+  getDroppableOptions: function getDroppableOptions() {
+    var _this2 = this;
+    var items = '> .elementor-element, > .elementor-empty-view .elementor-first-add';
+    var $placeholder;
+    return {
+      axis: this.getDroppableAxis(),
+      items: items,
+      groups: ['elementor-element'],
+      horizontalThreshold: 5,
+      isDroppingAllowed: this.isDroppingAllowed.bind(this),
+      currentElementClass: 'elementor-html5dnd-current-element',
+      placeholderClass: 'elementor-sortable-placeholder elementor-widget-placeholder',
+      hasDraggingOnChildClass: 'e-dragging-over',
+      getDropContainer: function getDropContainer() {
+        return _this2.getContainer();
+      },
+      onDropping: function onDropping(side, event) {
+        event.stopPropagation();
+
+        // Triggering drag end manually, since it won't fired above iframe
+        elementor.getPreviewView().onPanelElementDragEnd();
+        var draggedView = elementor.channels.editor.request('element:dragged'),
+          draggingInSameParent = (draggedView === null || draggedView === void 0 ? void 0 : draggedView.parent) === _this2,
+          containerSelector = event.currentTarget.parentElement;
+        var $elements = jQuery(containerSelector).find('> .elementor-element');
+
+        // Exclude the dragged element from the indexing calculations.
+        if (draggingInSameParent) {
+          $elements = $elements.not(draggedView.$el);
+        }
+        var widgetsArray = Object.values($elements);
+        var newIndex = widgetsArray.indexOf(event.currentTarget);
+
+        // Plus one in order to insert it after the current target element.
+        if (_this2.shouldIncrementIndex(side)) {
+          newIndex++;
+        }
+
+        // User is sorting inside a Container.
+        if (draggedView) {
+          // Prevent the user from dragging a parent container into its own child container
+          var draggedId = draggedView.getContainer().id;
+          var currentTargetParentContainer = _this2.container;
+          while (currentTargetParentContainer) {
+            if (currentTargetParentContainer.id === draggedId) {
+              return;
+            }
+            currentTargetParentContainer = currentTargetParentContainer.parent;
+          }
+
+          // Reset the dragged element cache.
+          elementor.channels.editor.reply('element:dragged', null);
+          $e.run('document/elements/move', {
+            container: draggedView.getContainer(),
+            target: _this2.getContainer(),
+            options: {
+              at: newIndex
+            }
+          });
+          return;
+        }
+
+        // User is dragging an element from the panel.
+        _this2.onDrop(event, {
+          at: newIndex
+        });
+      },
+      onDragging: function onDragging(side, event) {
+        if (!$placeholder) {
+          $placeholder = _this2.$el.find('.elementor-sortable-placeholder');
+        }
+        if (!$placeholder.length) {
+          return;
+        }
+        var currentTarget = event.currentTarget,
+          currentTargetHeight = currentTarget.getBoundingClientRect().height,
+          placeholderElement = $placeholder[0],
+          isNotBeforeSibling = currentTarget !== placeholderElement.previousElementSibling;
+        if ('horizontal' === _this2.getDroppableAxis()) {
+          if (isNotBeforeSibling) {
+            _this2.handleDropSide(side, placeholderElement, currentTarget);
+          }
+          _this2.maybeShowCustomDropPlaceholder($placeholder, currentTargetHeight);
+        } else {
+          $placeholder.removeAttr('style');
+        }
+      }
+    };
+  },
+  handleDropSide: function handleDropSide(side, placeholderElement, currentTarget) {
+    var insertMethod = ['top', 'left'].includes(side) ? 'before' : 'after';
+    currentTarget[insertMethod](placeholderElement);
+  },
+  maybeShowCustomDropPlaceholder: function maybeShowCustomDropPlaceholder($placeholder, currentTargetHeight) {
+    if ($placeholder.css('height') !== "".concat(currentTargetHeight, "px")) {
+      $placeholder.css({
+        display: 'block',
+        height: "".concat(currentTargetHeight, "px"),
+        'background-color': '#eb8efb',
+        width: '10px'
+      });
+    }
+  },
+  getEditButtons: function getEditButtons() {
+    var elementData = elementor.getElementData(this.model),
+      editTools = {};
+    if ($e.components.get('document/elements').utils.allowAddingWidgets()) {
+      editTools.add = {
+        /* Translators: %s: Element Name. */
+        title: sprintf(__('Add %s', 'elementor'), elementData.title),
+        icon: 'plus'
+      };
+      editTools.edit = {
+        /* Translators: %s: Element Name. */
+        title: sprintf(__('Edit %s', 'elementor'), elementData.title),
+        icon: 'handle'
+      };
+    }
+    if (!this.getContainer().isLocked()) {
+      if (elementor.getPreferences('edit_buttons') && $e.components.get('document/elements').utils.allowAddingWidgets()) {
+        editTools.duplicate = {
+          /* Translators: %s: Element Name. */
+          title: sprintf(__('Duplicate %s', 'elementor'), elementData.title),
+          icon: 'clone'
+        };
+      }
+      editTools.remove = {
+        /* Translators: %s: Element Name. */
+        title: sprintf(__('Delete %s', 'elementor'), elementData.title),
+        icon: 'close'
+      };
+    }
+    return editTools;
+  },
+  shouldIncrementIndex: function shouldIncrementIndex(side) {
+    if (!this.draggingOnBottomOrRightSide(side)) {
+      return false;
+    }
+    return !this.emptyViewIsCurrentlyBeingDraggedOver();
+  },
+  draggingOnBottomOrRightSide: function draggingOnBottomOrRightSide(side) {
+    return ['bottom', 'right'].includes(side);
+  },
+  emptyViewIsCurrentlyBeingDraggedOver: function emptyViewIsCurrentlyBeingDraggedOver() {
+    return this.$el.find('> .elementor-empty-view > .elementor-first-add.elementor-html5dnd-current-element').length > 0;
+  },
+  /**
+   * Toggle the `New Section` view when clicking the `add` button in the edit tools.
+   *
+   * @return {void}
+   */
+  onAddButtonClick: function onAddButtonClick() {
+    if (this.addSectionView && !this.addSectionView.isDestroyed) {
+      this.addSectionView.fadeToDeath();
+      return;
+    }
+    var addSectionView = new elementor.modules.elements.components.AddSectionView({
+      at: this.model.collection.indexOf(this.model)
+    });
+    addSectionView.render();
+    this.$el.before(addSectionView.$el);
+    addSectionView.$el.hide();
+
+    // Delaying the slide down for slow-render browsers (such as FF)
+    setTimeout(function () {
+      addSectionView.$el.slideDown(null, function () {
+        // Remove inline style, for preview mode.
+        jQuery(this).css('display', '');
+      });
+    });
+    this.addSectionView = addSectionView;
+  },
+  getClasses: function getClasses() {
+    var _this$options;
+    return ((_this$options = this.options) === null || _this$options === void 0 || (_this$options = _this$options.model) === null || _this$options === void 0 || (_this$options = _this$options.getSetting('classes')) === null || _this$options === void 0 ? void 0 : _this$options.value) || [];
+  },
+  getClassString: function getClassString() {
+    var classes = this.getClasses();
+    return classes.length ? [''].concat((0, _toConsumableArray2.default)(classes)).join(' ') : '';
+  }
+});
+module.exports = DivBlockView;
 
 /***/ }),
 
@@ -47227,7 +48379,7 @@ var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*!
 var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
 var _eventsConfig = _interopRequireDefault(__webpack_require__(/*! ./events-config */ "../modules/editor-events/assets/js/editor/events-config.js"));
-var _mixpanelBrowser = _interopRequireDefault(__webpack_require__(/*! mixpanel-browser */ "../node_modules/mixpanel-browser/dist/mixpanel.cjs.js"));
+var _mixpanelBrowser = _interopRequireDefault(__webpack_require__(/*! mixpanel-browser */ "../node_modules/mixpanel-browser/dist/mixpanel.module.js"));
 var _event = _interopRequireDefault(__webpack_require__(/*! ./event */ "../modules/editor-events/assets/js/editor/event.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
@@ -48281,7 +49433,7 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _component = _interopRequireDefault(__webpack_require__(/*! ./component */ "../modules/elements-color-picker/assets/js/editor/component.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var ElementsColorPicker = exports["default"] = /*#__PURE__*/function (_elementorModules$Vie) {
   function ElementsColorPicker() {
     (0, _classCallCheck2.default)(this, ElementsColorPicker);
@@ -48865,7 +50017,6 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
 var _component = _interopRequireDefault(__webpack_require__(/*! ./component */ "../modules/favorites/assets/js/editor/component.js"));
 var _widgets = _interopRequireDefault(__webpack_require__(/*! ./types/widgets/widgets */ "../modules/favorites/assets/js/editor/types/widgets/widgets.js"));
-var _notice = __webpack_require__(/*! ./notice */ "../modules/favorites/assets/js/editor/notice.js");
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
 /**
@@ -48885,15 +50036,6 @@ var FavoritesModule = /*#__PURE__*/function (_elementorModules$edi) {
   }
   (0, _inherits2.default)(FavoritesModule, _elementorModules$edi);
   return (0, _createClass2.default)(FavoritesModule, [{
-    key: "onElementorInit",
-    value: function onElementorInit() {
-      var hasSeenNotice = elementor.config.user.introduction['favorites-notice'];
-      if (hasSeenNotice) {
-        return;
-      }
-      (0, _notice.registerHooks)();
-    }
-  }, {
     key: "onElementorLoaded",
     value: function onElementorLoaded() {
       this.component = $e.components.register(new _component.default({
@@ -48928,44 +50070,6 @@ var FavoritesModule = /*#__PURE__*/function (_elementorModules$edi) {
   }]);
 }(elementorModules.editor.utils.Module);
 var _default = exports["default"] = FavoritesModule;
-
-/***/ }),
-
-/***/ "../modules/favorites/assets/js/editor/notice.js":
-/*!*******************************************************!*\
-  !*** ../modules/favorites/assets/js/editor/notice.js ***!
-  \*******************************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-exports.registerHooks = registerHooks;
-exports.unregisterHooks = unregisterHooks;
-function registerHooks() {
-  elementor.hooks.addFilter('panel/elements/regionViews', onFilter);
-  $e.routes.on('run:after', onRoute);
-}
-function unregisterHooks() {
-  elementor.hooks.removeFilter('panel/elements/regionViews', onFilter);
-  $e.routes.off('run:after', onRoute);
-}
-function onRoute(component, route) {
-  if ('panel/elements/categories' === route) {
-    elementor.getPanelView().getCurrentPageView().showView('favoritesNotice');
-  }
-}
-function onFilter(regionViews, _ref) {
-  var notice = _ref.notice;
-  regionViews.favoritesNotice = {
-    region: notice,
-    view: __webpack_require__(/*! ./views/notice */ "../modules/favorites/assets/js/editor/views/notice.js")
-  };
-  return regionViews;
-}
 
 /***/ }),
 
@@ -49200,57 +50304,6 @@ var Widgets = exports["default"] = /*#__PURE__*/function (_FavoriteType) {
     }
   }]);
 }(_favoriteType.default);
-
-/***/ }),
-
-/***/ "../modules/favorites/assets/js/editor/views/notice.js":
-/*!*************************************************************!*\
-  !*** ../modules/favorites/assets/js/editor/views/notice.js ***!
-  \*************************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-"use strict";
-/* provided dependency */ var __ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n")["__"];
-
-
-var _require = __webpack_require__(/*! ../notice */ "../modules/favorites/assets/js/editor/notice.js"),
-  unregisterHooks = _require.unregisterHooks;
-var PanelElementsNoticeView = Marionette.ItemView.extend({
-  template: '#tmpl-elementor-panel-elements-notice',
-  id: 'elementor-panel-notice-wrapper',
-  ui: {
-    notice: '.elementor-panel-notice'
-  },
-  notice: {
-    message: __('For easy access, favorite the widgets you use most often by right clicking > Add to favorites.', 'elementor'),
-    hrefText: __('Got It', 'elementor'),
-    classes: 'elementor-panel-alert elementor-panel-alert-info'
-  },
-  events: {
-    'click @ui.notice a': 'onNoticeClick'
-  },
-  onNoticeClick: function onNoticeClick() {
-    this.destroy();
-    var introductionKey = 'favorites-notice';
-    unregisterHooks();
-    elementorCommon.ajax.addRequest('introduction_viewed', {
-      data: {
-        introductionKey: introductionKey
-      }
-    });
-  },
-  onRender: function onRender() {
-    var element = document.createElement('span');
-    element.innerText = this.notice.message;
-    var linkElement = document.createElement('a');
-    linkElement.href = '#';
-    linkElement.innerText = this.notice.hrefText;
-    element.append(linkElement);
-    this.ui.notice.addClass(this.notice.classes);
-    this.ui.notice.append(element);
-  }
-});
-module.exports = PanelElementsNoticeView;
 
 /***/ }),
 
@@ -51926,7 +52979,7 @@ var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helper
 var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var WidgetView = elementor.modules.elements.views.Widget;
 var View = exports["default"] = /*#__PURE__*/function (_WidgetView) {
   function View() {
@@ -51968,6 +53021,205 @@ var View = exports["default"] = /*#__PURE__*/function (_WidgetView) {
     }
   }]);
 }(WidgetView);
+
+/***/ }),
+
+/***/ "../modules/web-cli/assets/js/core/data/storages/base-prefix-storage.js":
+/*!******************************************************************************!*\
+  !*** ../modules/web-cli/assets/js/core/data/storages/base-prefix-storage.js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../node_modules/@babel/runtime/helpers/classCallCheck.js"));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+var _get2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/get */ "../node_modules/@babel/runtime/helpers/get.js"));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "../node_modules/@babel/runtime/helpers/defineProperty.js"));
+var _baseStorage = _interopRequireDefault(__webpack_require__(/*! elementor-api/core/data/storages/base-storage */ "../modules/web-cli/assets/js/core/data/storages/base-storage.js"));
+function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
+function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
+var BasePrefixStorage = exports["default"] = /*#__PURE__*/function (_BaseStorage) {
+  function BasePrefixStorage() {
+    (0, _classCallCheck2.default)(this, BasePrefixStorage);
+    return _callSuper(this, BasePrefixStorage, arguments);
+  }
+  (0, _inherits2.default)(BasePrefixStorage, _BaseStorage);
+  return (0, _createClass2.default)(BasePrefixStorage, [{
+    key: "clear",
+    value: function clear() {
+      var _this = this;
+      Object.keys(this.getAll()).forEach(function (key) {
+        return _this.removeItem(key);
+      });
+    }
+  }, {
+    key: "getItem",
+    value: function getItem(key) {
+      return _superPropGet(BasePrefixStorage, "getItem", this, 3)([BasePrefixStorage.DEFAULT_KEY_PREFIX + key]);
+    }
+  }, {
+    key: "removeItem",
+    value: function removeItem(key) {
+      return _superPropGet(BasePrefixStorage, "removeItem", this, 3)([BasePrefixStorage.DEFAULT_KEY_PREFIX + key]);
+    }
+  }, {
+    key: "setItem",
+    value: function setItem(key, value) {
+      return _superPropGet(BasePrefixStorage, "setItem", this, 3)([BasePrefixStorage.DEFAULT_KEY_PREFIX + key, value]);
+    }
+  }, {
+    key: "getAll",
+    value: function getAll() {
+      var _this2 = this;
+      var DEFAULT_KEY_PREFIX = BasePrefixStorage.DEFAULT_KEY_PREFIX,
+        keys = Object.keys(this.provider),
+        result = {};
+      keys.forEach(function (key) {
+        if (key.startsWith(DEFAULT_KEY_PREFIX)) {
+          key = key.replace(DEFAULT_KEY_PREFIX, '');
+          result[key] = _this2.getItem(key);
+        }
+      });
+      return result;
+    }
+  }]);
+}(_baseStorage.default);
+(0, _defineProperty2.default)(BasePrefixStorage, "DEFAULT_KEY_PREFIX", 'e_');
+
+/***/ }),
+
+/***/ "../modules/web-cli/assets/js/core/data/storages/base-storage.js":
+/*!***********************************************************************!*\
+  !*** ../modules/web-cli/assets/js/core/data/storages/base-storage.js ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../node_modules/@babel/runtime/helpers/classCallCheck.js"));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
+/**
+ * TODO: Merge all storage's to one.
+ * Using this technique give's the ability to use JSDOC from 'window.storage'.
+ *
+ * @implements {Storage}
+ */
+var BaseStorage = exports["default"] = /*#__PURE__*/function () {
+  /**
+   * Create storage wrapper.
+   *
+   * @param {Storage} provider
+   */
+  function BaseStorage(provider) {
+    (0, _classCallCheck2.default)(this, BaseStorage);
+    if (BaseStorage === (this instanceof BaseStorage ? this.constructor : void 0)) {
+      throw new TypeError('Cannot construct BaseStorage instances directly');
+    }
+    this.provider = provider;
+  }
+  return (0, _createClass2.default)(BaseStorage, [{
+    key: "clear",
+    value: function clear() {
+      return this.provider.clear();
+    }
+  }, {
+    key: "getItem",
+    value: function getItem(key) {
+      var result = this.provider.getItem(key);
+      if (null !== result) {
+        return JSON.parse(result);
+      }
+      return result;
+    }
+  }, {
+    key: "key",
+    value: function key(index) {
+      return this.provider.key(index);
+    }
+  }, {
+    key: "removeItem",
+    value: function removeItem(key) {
+      return this.provider.removeItem(key);
+    }
+  }, {
+    key: "setItem",
+    value: function setItem(key, value) {
+      return this.provider.setItem(key, JSON.stringify(value));
+    }
+  }, {
+    key: "getAll",
+    value: function getAll() {
+      var _this = this;
+      var keys = Object.keys(this.provider),
+        result = {};
+      keys.forEach(function (key) {
+        result[key] = _this.getItem(key);
+      });
+      return result;
+    }
+  }]);
+}();
+
+/***/ }),
+
+/***/ "../modules/web-cli/assets/js/core/data/storages/local-storage.js":
+/*!************************************************************************!*\
+  !*** ../modules/web-cli/assets/js/core/data/storages/local-storage.js ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "../node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "../node_modules/@babel/runtime/helpers/classCallCheck.js"));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "../node_modules/@babel/runtime/helpers/createClass.js"));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "../node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "../node_modules/@babel/runtime/helpers/inherits.js"));
+var _basePrefixStorage = _interopRequireDefault(__webpack_require__(/*! ./base-prefix-storage */ "../modules/web-cli/assets/js/core/data/storages/base-prefix-storage.js"));
+function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
+function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
+var LocalStorage = exports["default"] = /*#__PURE__*/function (_BasePrefixStorage) {
+  function LocalStorage() {
+    (0, _classCallCheck2.default)(this, LocalStorage);
+    return _callSuper(this, LocalStorage, [localStorage]);
+  }
+  (0, _inherits2.default)(LocalStorage, _BasePrefixStorage);
+  return (0, _createClass2.default)(LocalStorage, [{
+    key: "debug",
+    value: function debug() {
+      var entries = this.getAll(),
+        ordered = {};
+      Object.keys(entries).sort().forEach(function (key) {
+        var value = entries[key];
+        ordered[key] = value;
+      });
+      return ordered;
+    }
+  }]);
+}(_basePrefixStorage.default);
 
 /***/ }),
 
@@ -52185,7 +53437,7 @@ var CommandBase = exports["default"] = /*#__PURE__*/function (_CommandInfra) {
     value: function onAfterApply() {
       var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var result = arguments.length > 1 ? arguments[1] : undefined;
-      $e.hooks.runDataAfter(this.command, args, result);
+      return $e.hooks.runDataAfter(this.command, args, result);
     }
   }, {
     key: "onCatchApply",
@@ -53328,7 +54580,7 @@ function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return 
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var ComponentModalBase = exports["default"] = /*#__PURE__*/function (_ComponentBase) {
   function ComponentModalBase() {
     (0, _classCallCheck2.default)(this, ComponentModalBase);
@@ -54124,1628 +55376,1347 @@ var _default = exports["default"] = function _default() {
 
 /***/ }),
 
-/***/ "../node_modules/dompurify/dist/purify.js":
-/*!************************************************!*\
-  !*** ../node_modules/dompurify/dist/purify.js ***!
-  \************************************************/
-/***/ (function(module) {
+/***/ "../node_modules/dompurify/dist/purify.cjs.js":
+/*!****************************************************!*\
+  !*** ../node_modules/dompurify/dist/purify.cjs.js ***!
+  \****************************************************/
+/***/ ((module) => {
 
-/*! @license DOMPurify 3.1.3 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.1.3/LICENSE */
+"use strict";
+/*! @license DOMPurify 3.2.3 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.2.3/LICENSE */
 
-(function (global, factory) {
-   true ? module.exports = factory() :
-  0;
-})(this, (function () { 'use strict';
 
-  const {
-    entries,
-    setPrototypeOf,
-    isFrozen,
-    getPrototypeOf,
-    getOwnPropertyDescriptor
-  } = Object;
-  let {
-    freeze,
-    seal,
-    create
-  } = Object; // eslint-disable-line import/no-mutable-exports
-  let {
-    apply,
-    construct
-  } = typeof Reflect !== 'undefined' && Reflect;
-  if (!freeze) {
-    freeze = function freeze(x) {
-      return x;
-    };
-  }
-  if (!seal) {
-    seal = function seal(x) {
-      return x;
-    };
-  }
-  if (!apply) {
-    apply = function apply(fun, thisValue, args) {
-      return fun.apply(thisValue, args);
-    };
-  }
-  if (!construct) {
-    construct = function construct(Func, args) {
-      return new Func(...args);
-    };
-  }
-  const arrayForEach = unapply(Array.prototype.forEach);
-  const arrayPop = unapply(Array.prototype.pop);
-  const arrayPush = unapply(Array.prototype.push);
-  const stringToLowerCase = unapply(String.prototype.toLowerCase);
-  const stringToString = unapply(String.prototype.toString);
-  const stringMatch = unapply(String.prototype.match);
-  const stringReplace = unapply(String.prototype.replace);
-  const stringIndexOf = unapply(String.prototype.indexOf);
-  const stringTrim = unapply(String.prototype.trim);
-  const objectHasOwnProperty = unapply(Object.prototype.hasOwnProperty);
-  const regExpTest = unapply(RegExp.prototype.test);
-  const typeErrorCreate = unconstruct(TypeError);
-  const numberIsNaN = unapply(Number.isNaN);
 
-  /**
-   * Creates a new function that calls the given function with a specified thisArg and arguments.
-   *
-   * @param {Function} func - The function to be wrapped and called.
-   * @returns {Function} A new function that calls the given function with a specified thisArg and arguments.
-   */
-  function unapply(func) {
-    return function (thisArg) {
-      for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        args[_key - 1] = arguments[_key];
-      }
-      return apply(func, thisArg, args);
-    };
-  }
-
-  /**
-   * Creates a new function that constructs an instance of the given constructor function with the provided arguments.
-   *
-   * @param {Function} func - The constructor function to be wrapped and called.
-   * @returns {Function} A new function that constructs an instance of the given constructor function with the provided arguments.
-   */
-  function unconstruct(func) {
-    return function () {
-      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-        args[_key2] = arguments[_key2];
-      }
-      return construct(func, args);
-    };
-  }
-
-  /**
-   * Add properties to a lookup table
-   *
-   * @param {Object} set - The set to which elements will be added.
-   * @param {Array} array - The array containing elements to be added to the set.
-   * @param {Function} transformCaseFunc - An optional function to transform the case of each element before adding to the set.
-   * @returns {Object} The modified set with added elements.
-   */
-  function addToSet(set, array) {
-    let transformCaseFunc = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : stringToLowerCase;
-    if (setPrototypeOf) {
-      // Make 'in' and truthy checks like Boolean(set.constructor)
-      // independent of any properties defined on Object.prototype.
-      // Prevent prototype setters from intercepting set as a this value.
-      setPrototypeOf(set, null);
-    }
-    let l = array.length;
-    while (l--) {
-      let element = array[l];
-      if (typeof element === 'string') {
-        const lcElement = transformCaseFunc(element);
-        if (lcElement !== element) {
-          // Config presets (e.g. tags.js, attrs.js) are immutable.
-          if (!isFrozen(array)) {
-            array[l] = lcElement;
-          }
-          element = lcElement;
-        }
-      }
-      set[element] = true;
-    }
-    return set;
-  }
-
-  /**
-   * Clean up an array to harden against CSPP
-   *
-   * @param {Array} array - The array to be cleaned.
-   * @returns {Array} The cleaned version of the array
-   */
-  function cleanArray(array) {
-    for (let index = 0; index < array.length; index++) {
-      const isPropertyExist = objectHasOwnProperty(array, index);
-      if (!isPropertyExist) {
-        array[index] = null;
-      }
-    }
-    return array;
-  }
-
-  /**
-   * Shallow clone an object
-   *
-   * @param {Object} object - The object to be cloned.
-   * @returns {Object} A new object that copies the original.
-   */
-  function clone(object) {
-    const newObject = create(null);
-    for (const [property, value] of entries(object)) {
-      const isPropertyExist = objectHasOwnProperty(object, property);
-      if (isPropertyExist) {
-        if (Array.isArray(value)) {
-          newObject[property] = cleanArray(value);
-        } else if (value && typeof value === 'object' && value.constructor === Object) {
-          newObject[property] = clone(value);
-        } else {
-          newObject[property] = value;
-        }
-      }
-    }
-    return newObject;
-  }
-
-  /**
-   * This method automatically checks if the prop is function or getter and behaves accordingly.
-   *
-   * @param {Object} object - The object to look up the getter function in its prototype chain.
-   * @param {String} prop - The property name for which to find the getter function.
-   * @returns {Function} The getter function found in the prototype chain or a fallback function.
-   */
-  function lookupGetter(object, prop) {
-    while (object !== null) {
-      const desc = getOwnPropertyDescriptor(object, prop);
-      if (desc) {
-        if (desc.get) {
-          return unapply(desc.get);
-        }
-        if (typeof desc.value === 'function') {
-          return unapply(desc.value);
-        }
-      }
-      object = getPrototypeOf(object);
-    }
-    function fallbackValue() {
-      return null;
-    }
-    return fallbackValue;
-  }
-
-  const html$1 = freeze(['a', 'abbr', 'acronym', 'address', 'area', 'article', 'aside', 'audio', 'b', 'bdi', 'bdo', 'big', 'blink', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'center', 'cite', 'code', 'col', 'colgroup', 'content', 'data', 'datalist', 'dd', 'decorator', 'del', 'details', 'dfn', 'dialog', 'dir', 'div', 'dl', 'dt', 'element', 'em', 'fieldset', 'figcaption', 'figure', 'font', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'main', 'map', 'mark', 'marquee', 'menu', 'menuitem', 'meter', 'nav', 'nobr', 'ol', 'optgroup', 'option', 'output', 'p', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'section', 'select', 'shadow', 'small', 'source', 'spacer', 'span', 'strike', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'tr', 'track', 'tt', 'u', 'ul', 'var', 'video', 'wbr']);
-
-  // SVG
-  const svg$1 = freeze(['svg', 'a', 'altglyph', 'altglyphdef', 'altglyphitem', 'animatecolor', 'animatemotion', 'animatetransform', 'circle', 'clippath', 'defs', 'desc', 'ellipse', 'filter', 'font', 'g', 'glyph', 'glyphref', 'hkern', 'image', 'line', 'lineargradient', 'marker', 'mask', 'metadata', 'mpath', 'path', 'pattern', 'polygon', 'polyline', 'radialgradient', 'rect', 'stop', 'style', 'switch', 'symbol', 'text', 'textpath', 'title', 'tref', 'tspan', 'view', 'vkern']);
-  const svgFilters = freeze(['feBlend', 'feColorMatrix', 'feComponentTransfer', 'feComposite', 'feConvolveMatrix', 'feDiffuseLighting', 'feDisplacementMap', 'feDistantLight', 'feDropShadow', 'feFlood', 'feFuncA', 'feFuncB', 'feFuncG', 'feFuncR', 'feGaussianBlur', 'feImage', 'feMerge', 'feMergeNode', 'feMorphology', 'feOffset', 'fePointLight', 'feSpecularLighting', 'feSpotLight', 'feTile', 'feTurbulence']);
-
-  // List of SVG elements that are disallowed by default.
-  // We still need to know them so that we can do namespace
-  // checks properly in case one wants to add them to
-  // allow-list.
-  const svgDisallowed = freeze(['animate', 'color-profile', 'cursor', 'discard', 'font-face', 'font-face-format', 'font-face-name', 'font-face-src', 'font-face-uri', 'foreignobject', 'hatch', 'hatchpath', 'mesh', 'meshgradient', 'meshpatch', 'meshrow', 'missing-glyph', 'script', 'set', 'solidcolor', 'unknown', 'use']);
-  const mathMl$1 = freeze(['math', 'menclose', 'merror', 'mfenced', 'mfrac', 'mglyph', 'mi', 'mlabeledtr', 'mmultiscripts', 'mn', 'mo', 'mover', 'mpadded', 'mphantom', 'mroot', 'mrow', 'ms', 'mspace', 'msqrt', 'mstyle', 'msub', 'msup', 'msubsup', 'mtable', 'mtd', 'mtext', 'mtr', 'munder', 'munderover', 'mprescripts']);
-
-  // Similarly to SVG, we want to know all MathML elements,
-  // even those that we disallow by default.
-  const mathMlDisallowed = freeze(['maction', 'maligngroup', 'malignmark', 'mlongdiv', 'mscarries', 'mscarry', 'msgroup', 'mstack', 'msline', 'msrow', 'semantics', 'annotation', 'annotation-xml', 'mprescripts', 'none']);
-  const text = freeze(['#text']);
-
-  const html = freeze(['accept', 'action', 'align', 'alt', 'autocapitalize', 'autocomplete', 'autopictureinpicture', 'autoplay', 'background', 'bgcolor', 'border', 'capture', 'cellpadding', 'cellspacing', 'checked', 'cite', 'class', 'clear', 'color', 'cols', 'colspan', 'controls', 'controlslist', 'coords', 'crossorigin', 'datetime', 'decoding', 'default', 'dir', 'disabled', 'disablepictureinpicture', 'disableremoteplayback', 'download', 'draggable', 'enctype', 'enterkeyhint', 'face', 'for', 'headers', 'height', 'hidden', 'high', 'href', 'hreflang', 'id', 'inputmode', 'integrity', 'ismap', 'kind', 'label', 'lang', 'list', 'loading', 'loop', 'low', 'max', 'maxlength', 'media', 'method', 'min', 'minlength', 'multiple', 'muted', 'name', 'nonce', 'noshade', 'novalidate', 'nowrap', 'open', 'optimum', 'pattern', 'placeholder', 'playsinline', 'poster', 'preload', 'pubdate', 'radiogroup', 'readonly', 'rel', 'required', 'rev', 'reversed', 'role', 'rows', 'rowspan', 'spellcheck', 'scope', 'selected', 'shape', 'size', 'sizes', 'span', 'srclang', 'start', 'src', 'srcset', 'step', 'style', 'summary', 'tabindex', 'title', 'translate', 'type', 'usemap', 'valign', 'value', 'width', 'wrap', 'xmlns', 'slot']);
-  const svg = freeze(['accent-height', 'accumulate', 'additive', 'alignment-baseline', 'ascent', 'attributename', 'attributetype', 'azimuth', 'basefrequency', 'baseline-shift', 'begin', 'bias', 'by', 'class', 'clip', 'clippathunits', 'clip-path', 'clip-rule', 'color', 'color-interpolation', 'color-interpolation-filters', 'color-profile', 'color-rendering', 'cx', 'cy', 'd', 'dx', 'dy', 'diffuseconstant', 'direction', 'display', 'divisor', 'dur', 'edgemode', 'elevation', 'end', 'fill', 'fill-opacity', 'fill-rule', 'filter', 'filterunits', 'flood-color', 'flood-opacity', 'font-family', 'font-size', 'font-size-adjust', 'font-stretch', 'font-style', 'font-variant', 'font-weight', 'fx', 'fy', 'g1', 'g2', 'glyph-name', 'glyphref', 'gradientunits', 'gradienttransform', 'height', 'href', 'id', 'image-rendering', 'in', 'in2', 'k', 'k1', 'k2', 'k3', 'k4', 'kerning', 'keypoints', 'keysplines', 'keytimes', 'lang', 'lengthadjust', 'letter-spacing', 'kernelmatrix', 'kernelunitlength', 'lighting-color', 'local', 'marker-end', 'marker-mid', 'marker-start', 'markerheight', 'markerunits', 'markerwidth', 'maskcontentunits', 'maskunits', 'max', 'mask', 'media', 'method', 'mode', 'min', 'name', 'numoctaves', 'offset', 'operator', 'opacity', 'order', 'orient', 'orientation', 'origin', 'overflow', 'paint-order', 'path', 'pathlength', 'patterncontentunits', 'patterntransform', 'patternunits', 'points', 'preservealpha', 'preserveaspectratio', 'primitiveunits', 'r', 'rx', 'ry', 'radius', 'refx', 'refy', 'repeatcount', 'repeatdur', 'restart', 'result', 'rotate', 'scale', 'seed', 'shape-rendering', 'specularconstant', 'specularexponent', 'spreadmethod', 'startoffset', 'stddeviation', 'stitchtiles', 'stop-color', 'stop-opacity', 'stroke-dasharray', 'stroke-dashoffset', 'stroke-linecap', 'stroke-linejoin', 'stroke-miterlimit', 'stroke-opacity', 'stroke', 'stroke-width', 'style', 'surfacescale', 'systemlanguage', 'tabindex', 'targetx', 'targety', 'transform', 'transform-origin', 'text-anchor', 'text-decoration', 'text-rendering', 'textlength', 'type', 'u1', 'u2', 'unicode', 'values', 'viewbox', 'visibility', 'version', 'vert-adv-y', 'vert-origin-x', 'vert-origin-y', 'width', 'word-spacing', 'wrap', 'writing-mode', 'xchannelselector', 'ychannelselector', 'x', 'x1', 'x2', 'xmlns', 'y', 'y1', 'y2', 'z', 'zoomandpan']);
-  const mathMl = freeze(['accent', 'accentunder', 'align', 'bevelled', 'close', 'columnsalign', 'columnlines', 'columnspan', 'denomalign', 'depth', 'dir', 'display', 'displaystyle', 'encoding', 'fence', 'frame', 'height', 'href', 'id', 'largeop', 'length', 'linethickness', 'lspace', 'lquote', 'mathbackground', 'mathcolor', 'mathsize', 'mathvariant', 'maxsize', 'minsize', 'movablelimits', 'notation', 'numalign', 'open', 'rowalign', 'rowlines', 'rowspacing', 'rowspan', 'rspace', 'rquote', 'scriptlevel', 'scriptminsize', 'scriptsizemultiplier', 'selection', 'separator', 'separators', 'stretchy', 'subscriptshift', 'supscriptshift', 'symmetric', 'voffset', 'width', 'xmlns']);
-  const xml = freeze(['xlink:href', 'xml:id', 'xlink:title', 'xml:space', 'xmlns:xlink']);
-
-  // eslint-disable-next-line unicorn/better-regex
-  const MUSTACHE_EXPR = seal(/\{\{[\w\W]*|[\w\W]*\}\}/gm); // Specify template detection regex for SAFE_FOR_TEMPLATES mode
-  const ERB_EXPR = seal(/<%[\w\W]*|[\w\W]*%>/gm);
-  const TMPLIT_EXPR = seal(/\${[\w\W]*}/gm);
-  const DATA_ATTR = seal(/^data-[\-\w.\u00B7-\uFFFF]/); // eslint-disable-line no-useless-escape
-  const ARIA_ATTR = seal(/^aria-[\-\w]+$/); // eslint-disable-line no-useless-escape
-  const IS_ALLOWED_URI = seal(/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i // eslint-disable-line no-useless-escape
-  );
-
-  const IS_SCRIPT_OR_DATA = seal(/^(?:\w+script|data):/i);
-  const ATTR_WHITESPACE = seal(/[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205F\u3000]/g // eslint-disable-line no-control-regex
-  );
-
-  const DOCTYPE_NAME = seal(/^html$/i);
-  const CUSTOM_ELEMENT = seal(/^[a-z][.\w]*(-[.\w]+)+$/i);
-
-  var EXPRESSIONS = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    MUSTACHE_EXPR: MUSTACHE_EXPR,
-    ERB_EXPR: ERB_EXPR,
-    TMPLIT_EXPR: TMPLIT_EXPR,
-    DATA_ATTR: DATA_ATTR,
-    ARIA_ATTR: ARIA_ATTR,
-    IS_ALLOWED_URI: IS_ALLOWED_URI,
-    IS_SCRIPT_OR_DATA: IS_SCRIPT_OR_DATA,
-    ATTR_WHITESPACE: ATTR_WHITESPACE,
-    DOCTYPE_NAME: DOCTYPE_NAME,
-    CUSTOM_ELEMENT: CUSTOM_ELEMENT
-  });
-
-  // https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType
-  const NODE_TYPE = {
-    element: 1,
-    attribute: 2,
-    text: 3,
-    cdataSection: 4,
-    entityReference: 5,
-    // Deprecated
-    entityNode: 6,
-    // Deprecated
-    progressingInstruction: 7,
-    comment: 8,
-    document: 9,
-    documentType: 10,
-    documentFragment: 11,
-    notation: 12 // Deprecated
+const {
+  entries,
+  setPrototypeOf,
+  isFrozen,
+  getPrototypeOf,
+  getOwnPropertyDescriptor
+} = Object;
+let {
+  freeze,
+  seal,
+  create
+} = Object; // eslint-disable-line import/no-mutable-exports
+let {
+  apply,
+  construct
+} = typeof Reflect !== 'undefined' && Reflect;
+if (!freeze) {
+  freeze = function freeze(x) {
+    return x;
   };
-
-  const getGlobal = function getGlobal() {
-    return typeof window === 'undefined' ? null : window;
+}
+if (!seal) {
+  seal = function seal(x) {
+    return x;
   };
-
-  /**
-   * Creates a no-op policy for internal use only.
-   * Don't export this function outside this module!
-   * @param {TrustedTypePolicyFactory} trustedTypes The policy factory.
-   * @param {HTMLScriptElement} purifyHostElement The Script element used to load DOMPurify (to determine policy name suffix).
-   * @return {TrustedTypePolicy} The policy created (or null, if Trusted Types
-   * are not supported or creating the policy failed).
-   */
-  const _createTrustedTypesPolicy = function _createTrustedTypesPolicy(trustedTypes, purifyHostElement) {
-    if (typeof trustedTypes !== 'object' || typeof trustedTypes.createPolicy !== 'function') {
-      return null;
+}
+if (!apply) {
+  apply = function apply(fun, thisValue, args) {
+    return fun.apply(thisValue, args);
+  };
+}
+if (!construct) {
+  construct = function construct(Func, args) {
+    return new Func(...args);
+  };
+}
+const arrayForEach = unapply(Array.prototype.forEach);
+const arrayPop = unapply(Array.prototype.pop);
+const arrayPush = unapply(Array.prototype.push);
+const stringToLowerCase = unapply(String.prototype.toLowerCase);
+const stringToString = unapply(String.prototype.toString);
+const stringMatch = unapply(String.prototype.match);
+const stringReplace = unapply(String.prototype.replace);
+const stringIndexOf = unapply(String.prototype.indexOf);
+const stringTrim = unapply(String.prototype.trim);
+const objectHasOwnProperty = unapply(Object.prototype.hasOwnProperty);
+const regExpTest = unapply(RegExp.prototype.test);
+const typeErrorCreate = unconstruct(TypeError);
+/**
+ * Creates a new function that calls the given function with a specified thisArg and arguments.
+ *
+ * @param func - The function to be wrapped and called.
+ * @returns A new function that calls the given function with a specified thisArg and arguments.
+ */
+function unapply(func) {
+  return function (thisArg) {
+    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
     }
-
-    // Allow the callers to control the unique policy name
-    // by adding a data-tt-policy-suffix to the script element with the DOMPurify.
-    // Policy creation with duplicate names throws in Trusted Types.
-    let suffix = null;
-    const ATTR_NAME = 'data-tt-policy-suffix';
-    if (purifyHostElement && purifyHostElement.hasAttribute(ATTR_NAME)) {
-      suffix = purifyHostElement.getAttribute(ATTR_NAME);
+    return apply(func, thisArg, args);
+  };
+}
+/**
+ * Creates a new function that constructs an instance of the given constructor function with the provided arguments.
+ *
+ * @param func - The constructor function to be wrapped and called.
+ * @returns A new function that constructs an instance of the given constructor function with the provided arguments.
+ */
+function unconstruct(func) {
+  return function () {
+    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
     }
-    const policyName = 'dompurify' + (suffix ? '#' + suffix : '');
-    try {
-      return trustedTypes.createPolicy(policyName, {
-        createHTML(html) {
-          return html;
-        },
-        createScriptURL(scriptUrl) {
-          return scriptUrl;
+    return construct(func, args);
+  };
+}
+/**
+ * Add properties to a lookup table
+ *
+ * @param set - The set to which elements will be added.
+ * @param array - The array containing elements to be added to the set.
+ * @param transformCaseFunc - An optional function to transform the case of each element before adding to the set.
+ * @returns The modified set with added elements.
+ */
+function addToSet(set, array) {
+  let transformCaseFunc = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : stringToLowerCase;
+  if (setPrototypeOf) {
+    // Make 'in' and truthy checks like Boolean(set.constructor)
+    // independent of any properties defined on Object.prototype.
+    // Prevent prototype setters from intercepting set as a this value.
+    setPrototypeOf(set, null);
+  }
+  let l = array.length;
+  while (l--) {
+    let element = array[l];
+    if (typeof element === 'string') {
+      const lcElement = transformCaseFunc(element);
+      if (lcElement !== element) {
+        // Config presets (e.g. tags.js, attrs.js) are immutable.
+        if (!isFrozen(array)) {
+          array[l] = lcElement;
         }
-      });
-    } catch (_) {
-      // Policy creation failed (most likely another DOMPurify script has
-      // already run). Skip creating the policy, as this will only cause errors
-      // if TT are enforced.
-      console.warn('TrustedTypes policy ' + policyName + ' could not be created.');
-      return null;
-    }
-  };
-  function createDOMPurify() {
-    let window = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : getGlobal();
-    const DOMPurify = root => createDOMPurify(root);
-
-    /**
-     * Version label, exposed for easier checks
-     * if DOMPurify is up to date or not
-     */
-    DOMPurify.version = '3.1.3';
-
-    /**
-     * Array of elements that DOMPurify removed during sanitation.
-     * Empty if nothing was removed.
-     */
-    DOMPurify.removed = [];
-    if (!window || !window.document || window.document.nodeType !== NODE_TYPE.document) {
-      // Not running in a browser, provide a factory function
-      // so that you can pass your own Window
-      DOMPurify.isSupported = false;
-      return DOMPurify;
-    }
-    let {
-      document
-    } = window;
-    const originalDocument = document;
-    const currentScript = originalDocument.currentScript;
-    const {
-      DocumentFragment,
-      HTMLTemplateElement,
-      Node,
-      Element,
-      NodeFilter,
-      NamedNodeMap = window.NamedNodeMap || window.MozNamedAttrMap,
-      HTMLFormElement,
-      DOMParser,
-      trustedTypes
-    } = window;
-    const ElementPrototype = Element.prototype;
-    const cloneNode = lookupGetter(ElementPrototype, 'cloneNode');
-    const getNextSibling = lookupGetter(ElementPrototype, 'nextSibling');
-    const getChildNodes = lookupGetter(ElementPrototype, 'childNodes');
-    const getParentNode = lookupGetter(ElementPrototype, 'parentNode');
-
-    // As per issue #47, the web-components registry is inherited by a
-    // new document created via createHTMLDocument. As per the spec
-    // (http://w3c.github.io/webcomponents/spec/custom/#creating-and-passing-registries)
-    // a new empty registry is used when creating a template contents owner
-    // document, so we use that as our parent document to ensure nothing
-    // is inherited.
-    if (typeof HTMLTemplateElement === 'function') {
-      const template = document.createElement('template');
-      if (template.content && template.content.ownerDocument) {
-        document = template.content.ownerDocument;
+        element = lcElement;
       }
     }
-    let trustedTypesPolicy;
-    let emptyHTML = '';
-    const {
-      implementation,
-      createNodeIterator,
-      createDocumentFragment,
-      getElementsByTagName
-    } = document;
-    const {
-      importNode
-    } = originalDocument;
-    let hooks = {};
+    set[element] = true;
+  }
+  return set;
+}
+/**
+ * Clean up an array to harden against CSPP
+ *
+ * @param array - The array to be cleaned.
+ * @returns The cleaned version of the array
+ */
+function cleanArray(array) {
+  for (let index = 0; index < array.length; index++) {
+    const isPropertyExist = objectHasOwnProperty(array, index);
+    if (!isPropertyExist) {
+      array[index] = null;
+    }
+  }
+  return array;
+}
+/**
+ * Shallow clone an object
+ *
+ * @param object - The object to be cloned.
+ * @returns A new object that copies the original.
+ */
+function clone(object) {
+  const newObject = create(null);
+  for (const [property, value] of entries(object)) {
+    const isPropertyExist = objectHasOwnProperty(object, property);
+    if (isPropertyExist) {
+      if (Array.isArray(value)) {
+        newObject[property] = cleanArray(value);
+      } else if (value && typeof value === 'object' && value.constructor === Object) {
+        newObject[property] = clone(value);
+      } else {
+        newObject[property] = value;
+      }
+    }
+  }
+  return newObject;
+}
+/**
+ * This method automatically checks if the prop is function or getter and behaves accordingly.
+ *
+ * @param object - The object to look up the getter function in its prototype chain.
+ * @param prop - The property name for which to find the getter function.
+ * @returns The getter function found in the prototype chain or a fallback function.
+ */
+function lookupGetter(object, prop) {
+  while (object !== null) {
+    const desc = getOwnPropertyDescriptor(object, prop);
+    if (desc) {
+      if (desc.get) {
+        return unapply(desc.get);
+      }
+      if (typeof desc.value === 'function') {
+        return unapply(desc.value);
+      }
+    }
+    object = getPrototypeOf(object);
+  }
+  function fallbackValue() {
+    return null;
+  }
+  return fallbackValue;
+}
 
-    /**
-     * Expose whether this browser supports running the full DOMPurify.
-     */
-    DOMPurify.isSupported = typeof entries === 'function' && typeof getParentNode === 'function' && implementation && implementation.createHTMLDocument !== undefined;
-    const {
-      MUSTACHE_EXPR,
-      ERB_EXPR,
-      TMPLIT_EXPR,
-      DATA_ATTR,
-      ARIA_ATTR,
-      IS_SCRIPT_OR_DATA,
-      ATTR_WHITESPACE,
-      CUSTOM_ELEMENT
-    } = EXPRESSIONS;
-    let {
-      IS_ALLOWED_URI: IS_ALLOWED_URI$1
-    } = EXPRESSIONS;
+const html$1 = freeze(['a', 'abbr', 'acronym', 'address', 'area', 'article', 'aside', 'audio', 'b', 'bdi', 'bdo', 'big', 'blink', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'center', 'cite', 'code', 'col', 'colgroup', 'content', 'data', 'datalist', 'dd', 'decorator', 'del', 'details', 'dfn', 'dialog', 'dir', 'div', 'dl', 'dt', 'element', 'em', 'fieldset', 'figcaption', 'figure', 'font', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'main', 'map', 'mark', 'marquee', 'menu', 'menuitem', 'meter', 'nav', 'nobr', 'ol', 'optgroup', 'option', 'output', 'p', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'section', 'select', 'shadow', 'small', 'source', 'spacer', 'span', 'strike', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'tr', 'track', 'tt', 'u', 'ul', 'var', 'video', 'wbr']);
+const svg$1 = freeze(['svg', 'a', 'altglyph', 'altglyphdef', 'altglyphitem', 'animatecolor', 'animatemotion', 'animatetransform', 'circle', 'clippath', 'defs', 'desc', 'ellipse', 'filter', 'font', 'g', 'glyph', 'glyphref', 'hkern', 'image', 'line', 'lineargradient', 'marker', 'mask', 'metadata', 'mpath', 'path', 'pattern', 'polygon', 'polyline', 'radialgradient', 'rect', 'stop', 'style', 'switch', 'symbol', 'text', 'textpath', 'title', 'tref', 'tspan', 'view', 'vkern']);
+const svgFilters = freeze(['feBlend', 'feColorMatrix', 'feComponentTransfer', 'feComposite', 'feConvolveMatrix', 'feDiffuseLighting', 'feDisplacementMap', 'feDistantLight', 'feDropShadow', 'feFlood', 'feFuncA', 'feFuncB', 'feFuncG', 'feFuncR', 'feGaussianBlur', 'feImage', 'feMerge', 'feMergeNode', 'feMorphology', 'feOffset', 'fePointLight', 'feSpecularLighting', 'feSpotLight', 'feTile', 'feTurbulence']);
+// List of SVG elements that are disallowed by default.
+// We still need to know them so that we can do namespace
+// checks properly in case one wants to add them to
+// allow-list.
+const svgDisallowed = freeze(['animate', 'color-profile', 'cursor', 'discard', 'font-face', 'font-face-format', 'font-face-name', 'font-face-src', 'font-face-uri', 'foreignobject', 'hatch', 'hatchpath', 'mesh', 'meshgradient', 'meshpatch', 'meshrow', 'missing-glyph', 'script', 'set', 'solidcolor', 'unknown', 'use']);
+const mathMl$1 = freeze(['math', 'menclose', 'merror', 'mfenced', 'mfrac', 'mglyph', 'mi', 'mlabeledtr', 'mmultiscripts', 'mn', 'mo', 'mover', 'mpadded', 'mphantom', 'mroot', 'mrow', 'ms', 'mspace', 'msqrt', 'mstyle', 'msub', 'msup', 'msubsup', 'mtable', 'mtd', 'mtext', 'mtr', 'munder', 'munderover', 'mprescripts']);
+// Similarly to SVG, we want to know all MathML elements,
+// even those that we disallow by default.
+const mathMlDisallowed = freeze(['maction', 'maligngroup', 'malignmark', 'mlongdiv', 'mscarries', 'mscarry', 'msgroup', 'mstack', 'msline', 'msrow', 'semantics', 'annotation', 'annotation-xml', 'mprescripts', 'none']);
+const text = freeze(['#text']);
 
-    /**
-     * We consider the elements and attributes below to be safe. Ideally
-     * don't add any new ones but feel free to remove unwanted ones.
-     */
+const html = freeze(['accept', 'action', 'align', 'alt', 'autocapitalize', 'autocomplete', 'autopictureinpicture', 'autoplay', 'background', 'bgcolor', 'border', 'capture', 'cellpadding', 'cellspacing', 'checked', 'cite', 'class', 'clear', 'color', 'cols', 'colspan', 'controls', 'controlslist', 'coords', 'crossorigin', 'datetime', 'decoding', 'default', 'dir', 'disabled', 'disablepictureinpicture', 'disableremoteplayback', 'download', 'draggable', 'enctype', 'enterkeyhint', 'face', 'for', 'headers', 'height', 'hidden', 'high', 'href', 'hreflang', 'id', 'inputmode', 'integrity', 'ismap', 'kind', 'label', 'lang', 'list', 'loading', 'loop', 'low', 'max', 'maxlength', 'media', 'method', 'min', 'minlength', 'multiple', 'muted', 'name', 'nonce', 'noshade', 'novalidate', 'nowrap', 'open', 'optimum', 'pattern', 'placeholder', 'playsinline', 'popover', 'popovertarget', 'popovertargetaction', 'poster', 'preload', 'pubdate', 'radiogroup', 'readonly', 'rel', 'required', 'rev', 'reversed', 'role', 'rows', 'rowspan', 'spellcheck', 'scope', 'selected', 'shape', 'size', 'sizes', 'span', 'srclang', 'start', 'src', 'srcset', 'step', 'style', 'summary', 'tabindex', 'title', 'translate', 'type', 'usemap', 'valign', 'value', 'width', 'wrap', 'xmlns', 'slot']);
+const svg = freeze(['accent-height', 'accumulate', 'additive', 'alignment-baseline', 'amplitude', 'ascent', 'attributename', 'attributetype', 'azimuth', 'basefrequency', 'baseline-shift', 'begin', 'bias', 'by', 'class', 'clip', 'clippathunits', 'clip-path', 'clip-rule', 'color', 'color-interpolation', 'color-interpolation-filters', 'color-profile', 'color-rendering', 'cx', 'cy', 'd', 'dx', 'dy', 'diffuseconstant', 'direction', 'display', 'divisor', 'dur', 'edgemode', 'elevation', 'end', 'exponent', 'fill', 'fill-opacity', 'fill-rule', 'filter', 'filterunits', 'flood-color', 'flood-opacity', 'font-family', 'font-size', 'font-size-adjust', 'font-stretch', 'font-style', 'font-variant', 'font-weight', 'fx', 'fy', 'g1', 'g2', 'glyph-name', 'glyphref', 'gradientunits', 'gradienttransform', 'height', 'href', 'id', 'image-rendering', 'in', 'in2', 'intercept', 'k', 'k1', 'k2', 'k3', 'k4', 'kerning', 'keypoints', 'keysplines', 'keytimes', 'lang', 'lengthadjust', 'letter-spacing', 'kernelmatrix', 'kernelunitlength', 'lighting-color', 'local', 'marker-end', 'marker-mid', 'marker-start', 'markerheight', 'markerunits', 'markerwidth', 'maskcontentunits', 'maskunits', 'max', 'mask', 'media', 'method', 'mode', 'min', 'name', 'numoctaves', 'offset', 'operator', 'opacity', 'order', 'orient', 'orientation', 'origin', 'overflow', 'paint-order', 'path', 'pathlength', 'patterncontentunits', 'patterntransform', 'patternunits', 'points', 'preservealpha', 'preserveaspectratio', 'primitiveunits', 'r', 'rx', 'ry', 'radius', 'refx', 'refy', 'repeatcount', 'repeatdur', 'restart', 'result', 'rotate', 'scale', 'seed', 'shape-rendering', 'slope', 'specularconstant', 'specularexponent', 'spreadmethod', 'startoffset', 'stddeviation', 'stitchtiles', 'stop-color', 'stop-opacity', 'stroke-dasharray', 'stroke-dashoffset', 'stroke-linecap', 'stroke-linejoin', 'stroke-miterlimit', 'stroke-opacity', 'stroke', 'stroke-width', 'style', 'surfacescale', 'systemlanguage', 'tabindex', 'tablevalues', 'targetx', 'targety', 'transform', 'transform-origin', 'text-anchor', 'text-decoration', 'text-rendering', 'textlength', 'type', 'u1', 'u2', 'unicode', 'values', 'viewbox', 'visibility', 'version', 'vert-adv-y', 'vert-origin-x', 'vert-origin-y', 'width', 'word-spacing', 'wrap', 'writing-mode', 'xchannelselector', 'ychannelselector', 'x', 'x1', 'x2', 'xmlns', 'y', 'y1', 'y2', 'z', 'zoomandpan']);
+const mathMl = freeze(['accent', 'accentunder', 'align', 'bevelled', 'close', 'columnsalign', 'columnlines', 'columnspan', 'denomalign', 'depth', 'dir', 'display', 'displaystyle', 'encoding', 'fence', 'frame', 'height', 'href', 'id', 'largeop', 'length', 'linethickness', 'lspace', 'lquote', 'mathbackground', 'mathcolor', 'mathsize', 'mathvariant', 'maxsize', 'minsize', 'movablelimits', 'notation', 'numalign', 'open', 'rowalign', 'rowlines', 'rowspacing', 'rowspan', 'rspace', 'rquote', 'scriptlevel', 'scriptminsize', 'scriptsizemultiplier', 'selection', 'separator', 'separators', 'stretchy', 'subscriptshift', 'supscriptshift', 'symmetric', 'voffset', 'width', 'xmlns']);
+const xml = freeze(['xlink:href', 'xml:id', 'xlink:title', 'xml:space', 'xmlns:xlink']);
 
-    /* allowed element names */
-    let ALLOWED_TAGS = null;
-    const DEFAULT_ALLOWED_TAGS = addToSet({}, [...html$1, ...svg$1, ...svgFilters, ...mathMl$1, ...text]);
+// eslint-disable-next-line unicorn/better-regex
+const MUSTACHE_EXPR = seal(/\{\{[\w\W]*|[\w\W]*\}\}/gm); // Specify template detection regex for SAFE_FOR_TEMPLATES mode
+const ERB_EXPR = seal(/<%[\w\W]*|[\w\W]*%>/gm);
+const TMPLIT_EXPR = seal(/\$\{[\w\W]*}/gm); // eslint-disable-line unicorn/better-regex
+const DATA_ATTR = seal(/^data-[\-\w.\u00B7-\uFFFF]+$/); // eslint-disable-line no-useless-escape
+const ARIA_ATTR = seal(/^aria-[\-\w]+$/); // eslint-disable-line no-useless-escape
+const IS_ALLOWED_URI = seal(/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i // eslint-disable-line no-useless-escape
+);
+const IS_SCRIPT_OR_DATA = seal(/^(?:\w+script|data):/i);
+const ATTR_WHITESPACE = seal(/[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205F\u3000]/g // eslint-disable-line no-control-regex
+);
+const DOCTYPE_NAME = seal(/^html$/i);
+const CUSTOM_ELEMENT = seal(/^[a-z][.\w]*(-[.\w]+)+$/i);
 
-    /* Allowed attribute names */
-    let ALLOWED_ATTR = null;
-    const DEFAULT_ALLOWED_ATTR = addToSet({}, [...html, ...svg, ...mathMl, ...xml]);
+var EXPRESSIONS = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  ARIA_ATTR: ARIA_ATTR,
+  ATTR_WHITESPACE: ATTR_WHITESPACE,
+  CUSTOM_ELEMENT: CUSTOM_ELEMENT,
+  DATA_ATTR: DATA_ATTR,
+  DOCTYPE_NAME: DOCTYPE_NAME,
+  ERB_EXPR: ERB_EXPR,
+  IS_ALLOWED_URI: IS_ALLOWED_URI,
+  IS_SCRIPT_OR_DATA: IS_SCRIPT_OR_DATA,
+  MUSTACHE_EXPR: MUSTACHE_EXPR,
+  TMPLIT_EXPR: TMPLIT_EXPR
+});
 
-    /*
-     * Configure how DOMPUrify should handle custom elements and their attributes as well as customized built-in elements.
-     * @property {RegExp|Function|null} tagNameCheck one of [null, regexPattern, predicate]. Default: `null` (disallow any custom elements)
-     * @property {RegExp|Function|null} attributeNameCheck one of [null, regexPattern, predicate]. Default: `null` (disallow any attributes not on the allow list)
-     * @property {boolean} allowCustomizedBuiltInElements allow custom elements derived from built-ins if they pass CUSTOM_ELEMENT_HANDLING.tagNameCheck. Default: `false`.
-     */
-    let CUSTOM_ELEMENT_HANDLING = Object.seal(create(null, {
-      tagNameCheck: {
-        writable: true,
-        configurable: false,
-        enumerable: true,
-        value: null
+/* eslint-disable @typescript-eslint/indent */
+// https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType
+const NODE_TYPE = {
+  element: 1,
+  attribute: 2,
+  text: 3,
+  cdataSection: 4,
+  entityReference: 5,
+  // Deprecated
+  entityNode: 6,
+  // Deprecated
+  progressingInstruction: 7,
+  comment: 8,
+  document: 9,
+  documentType: 10,
+  documentFragment: 11,
+  notation: 12 // Deprecated
+};
+const getGlobal = function getGlobal() {
+  return typeof window === 'undefined' ? null : window;
+};
+/**
+ * Creates a no-op policy for internal use only.
+ * Don't export this function outside this module!
+ * @param trustedTypes The policy factory.
+ * @param purifyHostElement The Script element used to load DOMPurify (to determine policy name suffix).
+ * @return The policy created (or null, if Trusted Types
+ * are not supported or creating the policy failed).
+ */
+const _createTrustedTypesPolicy = function _createTrustedTypesPolicy(trustedTypes, purifyHostElement) {
+  if (typeof trustedTypes !== 'object' || typeof trustedTypes.createPolicy !== 'function') {
+    return null;
+  }
+  // Allow the callers to control the unique policy name
+  // by adding a data-tt-policy-suffix to the script element with the DOMPurify.
+  // Policy creation with duplicate names throws in Trusted Types.
+  let suffix = null;
+  const ATTR_NAME = 'data-tt-policy-suffix';
+  if (purifyHostElement && purifyHostElement.hasAttribute(ATTR_NAME)) {
+    suffix = purifyHostElement.getAttribute(ATTR_NAME);
+  }
+  const policyName = 'dompurify' + (suffix ? '#' + suffix : '');
+  try {
+    return trustedTypes.createPolicy(policyName, {
+      createHTML(html) {
+        return html;
       },
-      attributeNameCheck: {
-        writable: true,
-        configurable: false,
-        enumerable: true,
-        value: null
-      },
-      allowCustomizedBuiltInElements: {
-        writable: true,
-        configurable: false,
-        enumerable: true,
-        value: false
+      createScriptURL(scriptUrl) {
+        return scriptUrl;
       }
-    }));
-
-    /* Explicitly forbidden tags (overrides ALLOWED_TAGS/ADD_TAGS) */
-    let FORBID_TAGS = null;
-
-    /* Explicitly forbidden attributes (overrides ALLOWED_ATTR/ADD_ATTR) */
-    let FORBID_ATTR = null;
-
-    /* Decide if ARIA attributes are okay */
-    let ALLOW_ARIA_ATTR = true;
-
-    /* Decide if custom data attributes are okay */
-    let ALLOW_DATA_ATTR = true;
-
-    /* Decide if unknown protocols are okay */
-    let ALLOW_UNKNOWN_PROTOCOLS = false;
-
-    /* Decide if self-closing tags in attributes are allowed.
-     * Usually removed due to a mXSS issue in jQuery 3.0 */
-    let ALLOW_SELF_CLOSE_IN_ATTR = true;
-
-    /* Output should be safe for common template engines.
-     * This means, DOMPurify removes data attributes, mustaches and ERB
-     */
-    let SAFE_FOR_TEMPLATES = false;
-
-    /* Output should be safe even for XML used within HTML and alike.
-     * This means, DOMPurify removes comments when containing risky content.
-     */
-    let SAFE_FOR_XML = true;
-
-    /* Decide if document with <html>... should be returned */
-    let WHOLE_DOCUMENT = false;
-
-    /* Track whether config is already set on this instance of DOMPurify. */
-    let SET_CONFIG = false;
-
-    /* Decide if all elements (e.g. style, script) must be children of
-     * document.body. By default, browsers might move them to document.head */
-    let FORCE_BODY = false;
-
-    /* Decide if a DOM `HTMLBodyElement` should be returned, instead of a html
-     * string (or a TrustedHTML object if Trusted Types are supported).
-     * If `WHOLE_DOCUMENT` is enabled a `HTMLHtmlElement` will be returned instead
-     */
-    let RETURN_DOM = false;
-
-    /* Decide if a DOM `DocumentFragment` should be returned, instead of a html
-     * string  (or a TrustedHTML object if Trusted Types are supported) */
-    let RETURN_DOM_FRAGMENT = false;
-
-    /* Try to return a Trusted Type object instead of a string, return a string in
-     * case Trusted Types are not supported  */
-    let RETURN_TRUSTED_TYPE = false;
-
-    /* Output should be free from DOM clobbering attacks?
-     * This sanitizes markups named with colliding, clobberable built-in DOM APIs.
-     */
-    let SANITIZE_DOM = true;
-
-    /* Achieve full DOM Clobbering protection by isolating the namespace of named
-     * properties and JS variables, mitigating attacks that abuse the HTML/DOM spec rules.
-     *
-     * HTML/DOM spec rules that enable DOM Clobbering:
-     *   - Named Access on Window (§7.3.3)
-     *   - DOM Tree Accessors (§3.1.5)
-     *   - Form Element Parent-Child Relations (§4.10.3)
-     *   - Iframe srcdoc / Nested WindowProxies (§4.8.5)
-     *   - HTMLCollection (§4.2.10.2)
-     *
-     * Namespace isolation is implemented by prefixing `id` and `name` attributes
-     * with a constant string, i.e., `user-content-`
-     */
-    let SANITIZE_NAMED_PROPS = false;
-    const SANITIZE_NAMED_PROPS_PREFIX = 'user-content-';
-
-    /* Keep element content when removing element? */
-    let KEEP_CONTENT = true;
-
-    /* If a `Node` is passed to sanitize(), then performs sanitization in-place instead
-     * of importing it into a new Document and returning a sanitized copy */
-    let IN_PLACE = false;
-
-    /* Allow usage of profiles like html, svg and mathMl */
-    let USE_PROFILES = {};
-
-    /* Tags to ignore content of when KEEP_CONTENT is true */
-    let FORBID_CONTENTS = null;
-    const DEFAULT_FORBID_CONTENTS = addToSet({}, ['annotation-xml', 'audio', 'colgroup', 'desc', 'foreignobject', 'head', 'iframe', 'math', 'mi', 'mn', 'mo', 'ms', 'mtext', 'noembed', 'noframes', 'noscript', 'plaintext', 'script', 'style', 'svg', 'template', 'thead', 'title', 'video', 'xmp']);
-
-    /* Tags that are safe for data: URIs */
-    let DATA_URI_TAGS = null;
-    const DEFAULT_DATA_URI_TAGS = addToSet({}, ['audio', 'video', 'img', 'source', 'image', 'track']);
-
-    /* Attributes safe for values like "javascript:" */
-    let URI_SAFE_ATTRIBUTES = null;
-    const DEFAULT_URI_SAFE_ATTRIBUTES = addToSet({}, ['alt', 'class', 'for', 'id', 'label', 'name', 'pattern', 'placeholder', 'role', 'summary', 'title', 'value', 'style', 'xmlns']);
-    const MATHML_NAMESPACE = 'http://www.w3.org/1998/Math/MathML';
-    const SVG_NAMESPACE = 'http://www.w3.org/2000/svg';
-    const HTML_NAMESPACE = 'http://www.w3.org/1999/xhtml';
-    /* Document namespace */
-    let NAMESPACE = HTML_NAMESPACE;
-    let IS_EMPTY_INPUT = false;
-
-    /* Allowed XHTML+XML namespaces */
-    let ALLOWED_NAMESPACES = null;
-    const DEFAULT_ALLOWED_NAMESPACES = addToSet({}, [MATHML_NAMESPACE, SVG_NAMESPACE, HTML_NAMESPACE], stringToString);
-
-    /* Parsing of strict XHTML documents */
-    let PARSER_MEDIA_TYPE = null;
-    const SUPPORTED_PARSER_MEDIA_TYPES = ['application/xhtml+xml', 'text/html'];
-    const DEFAULT_PARSER_MEDIA_TYPE = 'text/html';
-    let transformCaseFunc = null;
-
-    /* Keep a reference to config to pass to hooks */
-    let CONFIG = null;
-
-    /* Specify the maximum element nesting depth to prevent mXSS */
-    const MAX_NESTING_DEPTH = 255;
-
-    /* Ideally, do not touch anything below this line */
-    /* ______________________________________________ */
-
-    const formElement = document.createElement('form');
-    const isRegexOrFunction = function isRegexOrFunction(testValue) {
-      return testValue instanceof RegExp || testValue instanceof Function;
-    };
-
-    /**
-     * _parseConfig
-     *
-     * @param  {Object} cfg optional config literal
-     */
-    // eslint-disable-next-line complexity
-    const _parseConfig = function _parseConfig() {
-      let cfg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      if (CONFIG && CONFIG === cfg) {
-        return;
-      }
-
-      /* Shield configuration object from tampering */
-      if (!cfg || typeof cfg !== 'object') {
-        cfg = {};
-      }
-
-      /* Shield configuration object from prototype pollution */
-      cfg = clone(cfg);
-      PARSER_MEDIA_TYPE =
-      // eslint-disable-next-line unicorn/prefer-includes
-      SUPPORTED_PARSER_MEDIA_TYPES.indexOf(cfg.PARSER_MEDIA_TYPE) === -1 ? DEFAULT_PARSER_MEDIA_TYPE : cfg.PARSER_MEDIA_TYPE;
-
-      // HTML tags and attributes are not case-sensitive, converting to lowercase. Keeping XHTML as is.
-      transformCaseFunc = PARSER_MEDIA_TYPE === 'application/xhtml+xml' ? stringToString : stringToLowerCase;
-
-      /* Set configuration parameters */
-      ALLOWED_TAGS = objectHasOwnProperty(cfg, 'ALLOWED_TAGS') ? addToSet({}, cfg.ALLOWED_TAGS, transformCaseFunc) : DEFAULT_ALLOWED_TAGS;
-      ALLOWED_ATTR = objectHasOwnProperty(cfg, 'ALLOWED_ATTR') ? addToSet({}, cfg.ALLOWED_ATTR, transformCaseFunc) : DEFAULT_ALLOWED_ATTR;
-      ALLOWED_NAMESPACES = objectHasOwnProperty(cfg, 'ALLOWED_NAMESPACES') ? addToSet({}, cfg.ALLOWED_NAMESPACES, stringToString) : DEFAULT_ALLOWED_NAMESPACES;
-      URI_SAFE_ATTRIBUTES = objectHasOwnProperty(cfg, 'ADD_URI_SAFE_ATTR') ? addToSet(clone(DEFAULT_URI_SAFE_ATTRIBUTES),
-      // eslint-disable-line indent
-      cfg.ADD_URI_SAFE_ATTR,
-      // eslint-disable-line indent
-      transformCaseFunc // eslint-disable-line indent
-      ) // eslint-disable-line indent
-      : DEFAULT_URI_SAFE_ATTRIBUTES;
-      DATA_URI_TAGS = objectHasOwnProperty(cfg, 'ADD_DATA_URI_TAGS') ? addToSet(clone(DEFAULT_DATA_URI_TAGS),
-      // eslint-disable-line indent
-      cfg.ADD_DATA_URI_TAGS,
-      // eslint-disable-line indent
-      transformCaseFunc // eslint-disable-line indent
-      ) // eslint-disable-line indent
-      : DEFAULT_DATA_URI_TAGS;
-      FORBID_CONTENTS = objectHasOwnProperty(cfg, 'FORBID_CONTENTS') ? addToSet({}, cfg.FORBID_CONTENTS, transformCaseFunc) : DEFAULT_FORBID_CONTENTS;
-      FORBID_TAGS = objectHasOwnProperty(cfg, 'FORBID_TAGS') ? addToSet({}, cfg.FORBID_TAGS, transformCaseFunc) : {};
-      FORBID_ATTR = objectHasOwnProperty(cfg, 'FORBID_ATTR') ? addToSet({}, cfg.FORBID_ATTR, transformCaseFunc) : {};
-      USE_PROFILES = objectHasOwnProperty(cfg, 'USE_PROFILES') ? cfg.USE_PROFILES : false;
-      ALLOW_ARIA_ATTR = cfg.ALLOW_ARIA_ATTR !== false; // Default true
-      ALLOW_DATA_ATTR = cfg.ALLOW_DATA_ATTR !== false; // Default true
-      ALLOW_UNKNOWN_PROTOCOLS = cfg.ALLOW_UNKNOWN_PROTOCOLS || false; // Default false
-      ALLOW_SELF_CLOSE_IN_ATTR = cfg.ALLOW_SELF_CLOSE_IN_ATTR !== false; // Default true
-      SAFE_FOR_TEMPLATES = cfg.SAFE_FOR_TEMPLATES || false; // Default false
-      SAFE_FOR_XML = cfg.SAFE_FOR_XML !== false; // Default true
-      WHOLE_DOCUMENT = cfg.WHOLE_DOCUMENT || false; // Default false
-      RETURN_DOM = cfg.RETURN_DOM || false; // Default false
-      RETURN_DOM_FRAGMENT = cfg.RETURN_DOM_FRAGMENT || false; // Default false
-      RETURN_TRUSTED_TYPE = cfg.RETURN_TRUSTED_TYPE || false; // Default false
-      FORCE_BODY = cfg.FORCE_BODY || false; // Default false
-      SANITIZE_DOM = cfg.SANITIZE_DOM !== false; // Default true
-      SANITIZE_NAMED_PROPS = cfg.SANITIZE_NAMED_PROPS || false; // Default false
-      KEEP_CONTENT = cfg.KEEP_CONTENT !== false; // Default true
-      IN_PLACE = cfg.IN_PLACE || false; // Default false
-      IS_ALLOWED_URI$1 = cfg.ALLOWED_URI_REGEXP || IS_ALLOWED_URI;
-      NAMESPACE = cfg.NAMESPACE || HTML_NAMESPACE;
-      CUSTOM_ELEMENT_HANDLING = cfg.CUSTOM_ELEMENT_HANDLING || {};
-      if (cfg.CUSTOM_ELEMENT_HANDLING && isRegexOrFunction(cfg.CUSTOM_ELEMENT_HANDLING.tagNameCheck)) {
-        CUSTOM_ELEMENT_HANDLING.tagNameCheck = cfg.CUSTOM_ELEMENT_HANDLING.tagNameCheck;
-      }
-      if (cfg.CUSTOM_ELEMENT_HANDLING && isRegexOrFunction(cfg.CUSTOM_ELEMENT_HANDLING.attributeNameCheck)) {
-        CUSTOM_ELEMENT_HANDLING.attributeNameCheck = cfg.CUSTOM_ELEMENT_HANDLING.attributeNameCheck;
-      }
-      if (cfg.CUSTOM_ELEMENT_HANDLING && typeof cfg.CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements === 'boolean') {
-        CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements = cfg.CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements;
-      }
-      if (SAFE_FOR_TEMPLATES) {
-        ALLOW_DATA_ATTR = false;
-      }
-      if (RETURN_DOM_FRAGMENT) {
-        RETURN_DOM = true;
-      }
-
-      /* Parse profile info */
-      if (USE_PROFILES) {
-        ALLOWED_TAGS = addToSet({}, text);
-        ALLOWED_ATTR = [];
-        if (USE_PROFILES.html === true) {
-          addToSet(ALLOWED_TAGS, html$1);
-          addToSet(ALLOWED_ATTR, html);
-        }
-        if (USE_PROFILES.svg === true) {
-          addToSet(ALLOWED_TAGS, svg$1);
-          addToSet(ALLOWED_ATTR, svg);
-          addToSet(ALLOWED_ATTR, xml);
-        }
-        if (USE_PROFILES.svgFilters === true) {
-          addToSet(ALLOWED_TAGS, svgFilters);
-          addToSet(ALLOWED_ATTR, svg);
-          addToSet(ALLOWED_ATTR, xml);
-        }
-        if (USE_PROFILES.mathMl === true) {
-          addToSet(ALLOWED_TAGS, mathMl$1);
-          addToSet(ALLOWED_ATTR, mathMl);
-          addToSet(ALLOWED_ATTR, xml);
-        }
-      }
-
-      /* Merge configuration parameters */
-      if (cfg.ADD_TAGS) {
-        if (ALLOWED_TAGS === DEFAULT_ALLOWED_TAGS) {
-          ALLOWED_TAGS = clone(ALLOWED_TAGS);
-        }
-        addToSet(ALLOWED_TAGS, cfg.ADD_TAGS, transformCaseFunc);
-      }
-      if (cfg.ADD_ATTR) {
-        if (ALLOWED_ATTR === DEFAULT_ALLOWED_ATTR) {
-          ALLOWED_ATTR = clone(ALLOWED_ATTR);
-        }
-        addToSet(ALLOWED_ATTR, cfg.ADD_ATTR, transformCaseFunc);
-      }
-      if (cfg.ADD_URI_SAFE_ATTR) {
-        addToSet(URI_SAFE_ATTRIBUTES, cfg.ADD_URI_SAFE_ATTR, transformCaseFunc);
-      }
-      if (cfg.FORBID_CONTENTS) {
-        if (FORBID_CONTENTS === DEFAULT_FORBID_CONTENTS) {
-          FORBID_CONTENTS = clone(FORBID_CONTENTS);
-        }
-        addToSet(FORBID_CONTENTS, cfg.FORBID_CONTENTS, transformCaseFunc);
-      }
-
-      /* Add #text in case KEEP_CONTENT is set to true */
-      if (KEEP_CONTENT) {
-        ALLOWED_TAGS['#text'] = true;
-      }
-
-      /* Add html, head and body to ALLOWED_TAGS in case WHOLE_DOCUMENT is true */
-      if (WHOLE_DOCUMENT) {
-        addToSet(ALLOWED_TAGS, ['html', 'head', 'body']);
-      }
-
-      /* Add tbody to ALLOWED_TAGS in case tables are permitted, see #286, #365 */
-      if (ALLOWED_TAGS.table) {
-        addToSet(ALLOWED_TAGS, ['tbody']);
-        delete FORBID_TAGS.tbody;
-      }
-      if (cfg.TRUSTED_TYPES_POLICY) {
-        if (typeof cfg.TRUSTED_TYPES_POLICY.createHTML !== 'function') {
-          throw typeErrorCreate('TRUSTED_TYPES_POLICY configuration option must provide a "createHTML" hook.');
-        }
-        if (typeof cfg.TRUSTED_TYPES_POLICY.createScriptURL !== 'function') {
-          throw typeErrorCreate('TRUSTED_TYPES_POLICY configuration option must provide a "createScriptURL" hook.');
-        }
-
-        // Overwrite existing TrustedTypes policy.
-        trustedTypesPolicy = cfg.TRUSTED_TYPES_POLICY;
-
-        // Sign local variables required by `sanitize`.
-        emptyHTML = trustedTypesPolicy.createHTML('');
-      } else {
-        // Uninitialized policy, attempt to initialize the internal dompurify policy.
-        if (trustedTypesPolicy === undefined) {
-          trustedTypesPolicy = _createTrustedTypesPolicy(trustedTypes, currentScript);
-        }
-
-        // If creating the internal policy succeeded sign internal variables.
-        if (trustedTypesPolicy !== null && typeof emptyHTML === 'string') {
-          emptyHTML = trustedTypesPolicy.createHTML('');
-        }
-      }
-
-      // Prevent further manipulation of configuration.
-      // Not available in IE8, Safari 5, etc.
-      if (freeze) {
-        freeze(cfg);
-      }
-      CONFIG = cfg;
-    };
-    const MATHML_TEXT_INTEGRATION_POINTS = addToSet({}, ['mi', 'mo', 'mn', 'ms', 'mtext']);
-    const HTML_INTEGRATION_POINTS = addToSet({}, ['foreignobject', 'annotation-xml']);
-
-    // Certain elements are allowed in both SVG and HTML
-    // namespace. We need to specify them explicitly
-    // so that they don't get erroneously deleted from
-    // HTML namespace.
-    const COMMON_SVG_AND_HTML_ELEMENTS = addToSet({}, ['title', 'style', 'font', 'a', 'script']);
-
-    /* Keep track of all possible SVG and MathML tags
-     * so that we can perform the namespace checks
-     * correctly. */
-    const ALL_SVG_TAGS = addToSet({}, [...svg$1, ...svgFilters, ...svgDisallowed]);
-    const ALL_MATHML_TAGS = addToSet({}, [...mathMl$1, ...mathMlDisallowed]);
-
-    /**
-     * @param  {Element} element a DOM element whose namespace is being checked
-     * @returns {boolean} Return false if the element has a
-     *  namespace that a spec-compliant parser would never
-     *  return. Return true otherwise.
-     */
-    const _checkValidNamespace = function _checkValidNamespace(element) {
-      let parent = getParentNode(element);
-
-      // In JSDOM, if we're inside shadow DOM, then parentNode
-      // can be null. We just simulate parent in this case.
-      if (!parent || !parent.tagName) {
-        parent = {
-          namespaceURI: NAMESPACE,
-          tagName: 'template'
-        };
-      }
-      const tagName = stringToLowerCase(element.tagName);
-      const parentTagName = stringToLowerCase(parent.tagName);
-      if (!ALLOWED_NAMESPACES[element.namespaceURI]) {
-        return false;
-      }
-      if (element.namespaceURI === SVG_NAMESPACE) {
-        // The only way to switch from HTML namespace to SVG
-        // is via <svg>. If it happens via any other tag, then
-        // it should be killed.
-        if (parent.namespaceURI === HTML_NAMESPACE) {
-          return tagName === 'svg';
-        }
-
-        // The only way to switch from MathML to SVG is via`
-        // svg if parent is either <annotation-xml> or MathML
-        // text integration points.
-        if (parent.namespaceURI === MATHML_NAMESPACE) {
-          return tagName === 'svg' && (parentTagName === 'annotation-xml' || MATHML_TEXT_INTEGRATION_POINTS[parentTagName]);
-        }
-
-        // We only allow elements that are defined in SVG
-        // spec. All others are disallowed in SVG namespace.
-        return Boolean(ALL_SVG_TAGS[tagName]);
-      }
-      if (element.namespaceURI === MATHML_NAMESPACE) {
-        // The only way to switch from HTML namespace to MathML
-        // is via <math>. If it happens via any other tag, then
-        // it should be killed.
-        if (parent.namespaceURI === HTML_NAMESPACE) {
-          return tagName === 'math';
-        }
-
-        // The only way to switch from SVG to MathML is via
-        // <math> and HTML integration points
-        if (parent.namespaceURI === SVG_NAMESPACE) {
-          return tagName === 'math' && HTML_INTEGRATION_POINTS[parentTagName];
-        }
-
-        // We only allow elements that are defined in MathML
-        // spec. All others are disallowed in MathML namespace.
-        return Boolean(ALL_MATHML_TAGS[tagName]);
-      }
-      if (element.namespaceURI === HTML_NAMESPACE) {
-        // The only way to switch from SVG to HTML is via
-        // HTML integration points, and from MathML to HTML
-        // is via MathML text integration points
-        if (parent.namespaceURI === SVG_NAMESPACE && !HTML_INTEGRATION_POINTS[parentTagName]) {
-          return false;
-        }
-        if (parent.namespaceURI === MATHML_NAMESPACE && !MATHML_TEXT_INTEGRATION_POINTS[parentTagName]) {
-          return false;
-        }
-
-        // We disallow tags that are specific for MathML
-        // or SVG and should never appear in HTML namespace
-        return !ALL_MATHML_TAGS[tagName] && (COMMON_SVG_AND_HTML_ELEMENTS[tagName] || !ALL_SVG_TAGS[tagName]);
-      }
-
-      // For XHTML and XML documents that support custom namespaces
-      if (PARSER_MEDIA_TYPE === 'application/xhtml+xml' && ALLOWED_NAMESPACES[element.namespaceURI]) {
-        return true;
-      }
-
-      // The code should never reach this place (this means
-      // that the element somehow got namespace that is not
-      // HTML, SVG, MathML or allowed via ALLOWED_NAMESPACES).
-      // Return false just in case.
-      return false;
-    };
-
-    /**
-     * _forceRemove
-     *
-     * @param  {Node} node a DOM node
-     */
-    const _forceRemove = function _forceRemove(node) {
-      arrayPush(DOMPurify.removed, {
-        element: node
-      });
-      try {
-        // eslint-disable-next-line unicorn/prefer-dom-node-remove
-        node.parentNode.removeChild(node);
-      } catch (_) {
-        node.remove();
-      }
-    };
-
-    /**
-     * _removeAttribute
-     *
-     * @param  {String} name an Attribute name
-     * @param  {Node} node a DOM node
-     */
-    const _removeAttribute = function _removeAttribute(name, node) {
-      try {
-        arrayPush(DOMPurify.removed, {
-          attribute: node.getAttributeNode(name),
-          from: node
-        });
-      } catch (_) {
-        arrayPush(DOMPurify.removed, {
-          attribute: null,
-          from: node
-        });
-      }
-      node.removeAttribute(name);
-
-      // We void attribute values for unremovable "is"" attributes
-      if (name === 'is' && !ALLOWED_ATTR[name]) {
-        if (RETURN_DOM || RETURN_DOM_FRAGMENT) {
-          try {
-            _forceRemove(node);
-          } catch (_) {}
-        } else {
-          try {
-            node.setAttribute(name, '');
-          } catch (_) {}
-        }
-      }
-    };
-
-    /**
-     * _initDocument
-     *
-     * @param  {String} dirty a string of dirty markup
-     * @return {Document} a DOM, filled with the dirty markup
-     */
-    const _initDocument = function _initDocument(dirty) {
-      /* Create a HTML document */
-      let doc = null;
-      let leadingWhitespace = null;
-      if (FORCE_BODY) {
-        dirty = '<remove></remove>' + dirty;
-      } else {
-        /* If FORCE_BODY isn't used, leading whitespace needs to be preserved manually */
-        const matches = stringMatch(dirty, /^[\r\n\t ]+/);
-        leadingWhitespace = matches && matches[0];
-      }
-      if (PARSER_MEDIA_TYPE === 'application/xhtml+xml' && NAMESPACE === HTML_NAMESPACE) {
-        // Root of XHTML doc must contain xmlns declaration (see https://www.w3.org/TR/xhtml1/normative.html#strict)
-        dirty = '<html xmlns="http://www.w3.org/1999/xhtml"><head></head><body>' + dirty + '</body></html>';
-      }
-      const dirtyPayload = trustedTypesPolicy ? trustedTypesPolicy.createHTML(dirty) : dirty;
-      /*
-       * Use the DOMParser API by default, fallback later if needs be
-       * DOMParser not work for svg when has multiple root element.
-       */
-      if (NAMESPACE === HTML_NAMESPACE) {
-        try {
-          doc = new DOMParser().parseFromString(dirtyPayload, PARSER_MEDIA_TYPE);
-        } catch (_) {}
-      }
-
-      /* Use createHTMLDocument in case DOMParser is not available */
-      if (!doc || !doc.documentElement) {
-        doc = implementation.createDocument(NAMESPACE, 'template', null);
-        try {
-          doc.documentElement.innerHTML = IS_EMPTY_INPUT ? emptyHTML : dirtyPayload;
-        } catch (_) {
-          // Syntax error if dirtyPayload is invalid xml
-        }
-      }
-      const body = doc.body || doc.documentElement;
-      if (dirty && leadingWhitespace) {
-        body.insertBefore(document.createTextNode(leadingWhitespace), body.childNodes[0] || null);
-      }
-
-      /* Work on whole document or just its body */
-      if (NAMESPACE === HTML_NAMESPACE) {
-        return getElementsByTagName.call(doc, WHOLE_DOCUMENT ? 'html' : 'body')[0];
-      }
-      return WHOLE_DOCUMENT ? doc.documentElement : body;
-    };
-
-    /**
-     * Creates a NodeIterator object that you can use to traverse filtered lists of nodes or elements in a document.
-     *
-     * @param  {Node} root The root element or node to start traversing on.
-     * @return {NodeIterator} The created NodeIterator
-     */
-    const _createNodeIterator = function _createNodeIterator(root) {
-      return createNodeIterator.call(root.ownerDocument || root, root,
-      // eslint-disable-next-line no-bitwise
-      NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_COMMENT | NodeFilter.SHOW_TEXT | NodeFilter.SHOW_PROCESSING_INSTRUCTION | NodeFilter.SHOW_CDATA_SECTION, null);
-    };
-
-    /**
-     * _isClobbered
-     *
-     * @param  {Node} elm element to check for clobbering attacks
-     * @return {Boolean} true if clobbered, false if safe
-     */
-    const _isClobbered = function _isClobbered(elm) {
-      return elm instanceof HTMLFormElement && (
-      // eslint-disable-next-line unicorn/no-typeof-undefined
-      typeof elm.__depth !== 'undefined' && typeof elm.__depth !== 'number' ||
-      // eslint-disable-next-line unicorn/no-typeof-undefined
-      typeof elm.__removalCount !== 'undefined' && typeof elm.__removalCount !== 'number' || typeof elm.nodeName !== 'string' || typeof elm.textContent !== 'string' || typeof elm.removeChild !== 'function' || !(elm.attributes instanceof NamedNodeMap) || typeof elm.removeAttribute !== 'function' || typeof elm.setAttribute !== 'function' || typeof elm.namespaceURI !== 'string' || typeof elm.insertBefore !== 'function' || typeof elm.hasChildNodes !== 'function');
-    };
-
-    /**
-     * Checks whether the given object is a DOM node.
-     *
-     * @param  {Node} object object to check whether it's a DOM node
-     * @return {Boolean} true is object is a DOM node
-     */
-    const _isNode = function _isNode(object) {
-      return typeof Node === 'function' && object instanceof Node;
-    };
-
-    /**
-     * _executeHook
-     * Execute user configurable hooks
-     *
-     * @param  {String} entryPoint  Name of the hook's entry point
-     * @param  {Node} currentNode node to work on with the hook
-     * @param  {Object} data additional hook parameters
-     */
-    const _executeHook = function _executeHook(entryPoint, currentNode, data) {
-      if (!hooks[entryPoint]) {
-        return;
-      }
-      arrayForEach(hooks[entryPoint], hook => {
-        hook.call(DOMPurify, currentNode, data, CONFIG);
-      });
-    };
-
-    /**
-     * _sanitizeElements
-     *
-     * @protect nodeName
-     * @protect textContent
-     * @protect removeChild
-     *
-     * @param   {Node} currentNode to check for permission to exist
-     * @return  {Boolean} true if node was killed, false if left alive
-     */
-    const _sanitizeElements = function _sanitizeElements(currentNode) {
-      let content = null;
-
-      /* Execute a hook if present */
-      _executeHook('beforeSanitizeElements', currentNode, null);
-
-      /* Check if element is clobbered or can clobber */
-      if (_isClobbered(currentNode)) {
-        _forceRemove(currentNode);
-        return true;
-      }
-
-      /* Now let's check the element's type and name */
-      const tagName = transformCaseFunc(currentNode.nodeName);
-
-      /* Execute a hook if present */
-      _executeHook('uponSanitizeElement', currentNode, {
-        tagName,
-        allowedTags: ALLOWED_TAGS
-      });
-
-      /* Detect mXSS attempts abusing namespace confusion */
-      if (currentNode.hasChildNodes() && !_isNode(currentNode.firstElementChild) && regExpTest(/<[/\w]/g, currentNode.innerHTML) && regExpTest(/<[/\w]/g, currentNode.textContent)) {
-        _forceRemove(currentNode);
-        return true;
-      }
-
-      /* Remove any ocurrence of processing instructions */
-      if (currentNode.nodeType === NODE_TYPE.progressingInstruction) {
-        _forceRemove(currentNode);
-        return true;
-      }
-
-      /* Remove any kind of possibly harmful comments */
-      if (SAFE_FOR_XML && currentNode.nodeType === NODE_TYPE.comment && regExpTest(/<[/\w]/g, currentNode.data)) {
-        _forceRemove(currentNode);
-        return true;
-      }
-
-      /* Remove element if anything forbids its presence */
-      if (!ALLOWED_TAGS[tagName] || FORBID_TAGS[tagName]) {
-        /* Check if we have a custom element to handle */
-        if (!FORBID_TAGS[tagName] && _isBasicCustomElement(tagName)) {
-          if (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, tagName)) {
-            return false;
-          }
-          if (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(tagName)) {
-            return false;
-          }
-        }
-
-        /* Keep content except for bad-listed elements */
-        if (KEEP_CONTENT && !FORBID_CONTENTS[tagName]) {
-          const parentNode = getParentNode(currentNode) || currentNode.parentNode;
-          const childNodes = getChildNodes(currentNode) || currentNode.childNodes;
-          if (childNodes && parentNode) {
-            const childCount = childNodes.length;
-            for (let i = childCount - 1; i >= 0; --i) {
-              const childClone = cloneNode(childNodes[i], true);
-              childClone.__removalCount = (currentNode.__removalCount || 0) + 1;
-              parentNode.insertBefore(childClone, getNextSibling(currentNode));
-            }
-          }
-        }
-        _forceRemove(currentNode);
-        return true;
-      }
-
-      /* Check whether element has a valid namespace */
-      if (currentNode instanceof Element && !_checkValidNamespace(currentNode)) {
-        _forceRemove(currentNode);
-        return true;
-      }
-
-      /* Make sure that older browsers don't get fallback-tag mXSS */
-      if ((tagName === 'noscript' || tagName === 'noembed' || tagName === 'noframes') && regExpTest(/<\/no(script|embed|frames)/i, currentNode.innerHTML)) {
-        _forceRemove(currentNode);
-        return true;
-      }
-
-      /* Sanitize element content to be template-safe */
-      if (SAFE_FOR_TEMPLATES && currentNode.nodeType === NODE_TYPE.text) {
-        /* Get the element's text content */
-        content = currentNode.textContent;
-        arrayForEach([MUSTACHE_EXPR, ERB_EXPR, TMPLIT_EXPR], expr => {
-          content = stringReplace(content, expr, ' ');
-        });
-        if (currentNode.textContent !== content) {
-          arrayPush(DOMPurify.removed, {
-            element: currentNode.cloneNode()
-          });
-          currentNode.textContent = content;
-        }
-      }
-
-      /* Execute a hook if present */
-      _executeHook('afterSanitizeElements', currentNode, null);
-      return false;
-    };
-
-    /**
-     * _isValidAttribute
-     *
-     * @param  {string} lcTag Lowercase tag name of containing element.
-     * @param  {string} lcName Lowercase attribute name.
-     * @param  {string} value Attribute value.
-     * @return {Boolean} Returns true if `value` is valid, otherwise false.
-     */
-    // eslint-disable-next-line complexity
-    const _isValidAttribute = function _isValidAttribute(lcTag, lcName, value) {
-      /* Make sure attribute cannot clobber */
-      if (SANITIZE_DOM && (lcName === 'id' || lcName === 'name') && (value in document || value in formElement || value === '__depth' || value === '__removalCount')) {
-        return false;
-      }
-
-      /* Allow valid data-* attributes: At least one character after "-"
-          (https://html.spec.whatwg.org/multipage/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes)
-          XML-compatible (https://html.spec.whatwg.org/multipage/infrastructure.html#xml-compatible and http://www.w3.org/TR/xml/#d0e804)
-          We don't need to check the value; it's always URI safe. */
-      if (ALLOW_DATA_ATTR && !FORBID_ATTR[lcName] && regExpTest(DATA_ATTR, lcName)) ; else if (ALLOW_ARIA_ATTR && regExpTest(ARIA_ATTR, lcName)) ; else if (!ALLOWED_ATTR[lcName] || FORBID_ATTR[lcName]) {
-        if (
-        // First condition does a very basic check if a) it's basically a valid custom element tagname AND
-        // b) if the tagName passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
-        // and c) if the attribute name passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.attributeNameCheck
-        _isBasicCustomElement(lcTag) && (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, lcTag) || CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(lcTag)) && (CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.attributeNameCheck, lcName) || CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.attributeNameCheck(lcName)) ||
-        // Alternative, second condition checks if it's an `is`-attribute, AND
-        // the value passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
-        lcName === 'is' && CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements && (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, value) || CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(value))) ; else {
-          return false;
-        }
-        /* Check value is safe. First, is attr inert? If so, is safe */
-      } else if (URI_SAFE_ATTRIBUTES[lcName]) ; else if (regExpTest(IS_ALLOWED_URI$1, stringReplace(value, ATTR_WHITESPACE, ''))) ; else if ((lcName === 'src' || lcName === 'xlink:href' || lcName === 'href') && lcTag !== 'script' && stringIndexOf(value, 'data:') === 0 && DATA_URI_TAGS[lcTag]) ; else if (ALLOW_UNKNOWN_PROTOCOLS && !regExpTest(IS_SCRIPT_OR_DATA, stringReplace(value, ATTR_WHITESPACE, ''))) ; else if (value) {
-        return false;
-      } else ;
-      return true;
-    };
-
-    /**
-     * _isBasicCustomElement
-     * checks if at least one dash is included in tagName, and it's not the first char
-     * for more sophisticated checking see https://github.com/sindresorhus/validate-element-name
-     *
-     * @param {string} tagName name of the tag of the node to sanitize
-     * @returns {boolean} Returns true if the tag name meets the basic criteria for a custom element, otherwise false.
-     */
-    const _isBasicCustomElement = function _isBasicCustomElement(tagName) {
-      return tagName !== 'annotation-xml' && stringMatch(tagName, CUSTOM_ELEMENT);
-    };
-
-    /**
-     * _sanitizeAttributes
-     *
-     * @protect attributes
-     * @protect nodeName
-     * @protect removeAttribute
-     * @protect setAttribute
-     *
-     * @param  {Node} currentNode to sanitize
-     */
-    const _sanitizeAttributes = function _sanitizeAttributes(currentNode) {
-      /* Execute a hook if present */
-      _executeHook('beforeSanitizeAttributes', currentNode, null);
-      const {
-        attributes
-      } = currentNode;
-
-      /* Check if we have attributes; if not we might have a text node */
-      if (!attributes) {
-        return;
-      }
-      const hookEvent = {
-        attrName: '',
-        attrValue: '',
-        keepAttr: true,
-        allowedAttributes: ALLOWED_ATTR
-      };
-      let l = attributes.length;
-
-      /* Go backwards over all attributes; safely remove bad ones */
-      while (l--) {
-        const attr = attributes[l];
-        const {
-          name,
-          namespaceURI,
-          value: attrValue
-        } = attr;
-        const lcName = transformCaseFunc(name);
-        let value = name === 'value' ? attrValue : stringTrim(attrValue);
-
-        /* Execute a hook if present */
-        hookEvent.attrName = lcName;
-        hookEvent.attrValue = value;
-        hookEvent.keepAttr = true;
-        hookEvent.forceKeepAttr = undefined; // Allows developers to see this is a property they can set
-        _executeHook('uponSanitizeAttribute', currentNode, hookEvent);
-        value = hookEvent.attrValue;
-        /* Did the hooks approve of the attribute? */
-        if (hookEvent.forceKeepAttr) {
-          continue;
-        }
-
-        /* Remove attribute */
-        _removeAttribute(name, currentNode);
-
-        /* Did the hooks approve of the attribute? */
-        if (!hookEvent.keepAttr) {
-          continue;
-        }
-
-        /* Work around a security issue in jQuery 3.0 */
-        if (!ALLOW_SELF_CLOSE_IN_ATTR && regExpTest(/\/>/i, value)) {
-          _removeAttribute(name, currentNode);
-          continue;
-        }
-
-        /* Work around a security issue with comments inside attributes */
-        if (SAFE_FOR_XML && regExpTest(/((--!?|])>)|<\/(style|title)/i, value)) {
-          _removeAttribute(name, currentNode);
-          continue;
-        }
-
-        /* Sanitize attribute content to be template-safe */
-        if (SAFE_FOR_TEMPLATES) {
-          arrayForEach([MUSTACHE_EXPR, ERB_EXPR, TMPLIT_EXPR], expr => {
-            value = stringReplace(value, expr, ' ');
-          });
-        }
-
-        /* Is `value` valid for this attribute? */
-        const lcTag = transformCaseFunc(currentNode.nodeName);
-        if (!_isValidAttribute(lcTag, lcName, value)) {
-          continue;
-        }
-
-        /* Full DOM Clobbering protection via namespace isolation,
-         * Prefix id and name attributes with `user-content-`
-         */
-        if (SANITIZE_NAMED_PROPS && (lcName === 'id' || lcName === 'name')) {
-          // Remove the attribute with this value
-          _removeAttribute(name, currentNode);
-
-          // Prefix the value and later re-create the attribute with the sanitized value
-          value = SANITIZE_NAMED_PROPS_PREFIX + value;
-        }
-
-        /* Handle attributes that require Trusted Types */
-        if (trustedTypesPolicy && typeof trustedTypes === 'object' && typeof trustedTypes.getAttributeType === 'function') {
-          if (namespaceURI) ; else {
-            switch (trustedTypes.getAttributeType(lcTag, lcName)) {
-              case 'TrustedHTML':
-                {
-                  value = trustedTypesPolicy.createHTML(value);
-                  break;
-                }
-              case 'TrustedScriptURL':
-                {
-                  value = trustedTypesPolicy.createScriptURL(value);
-                  break;
-                }
-            }
-          }
-        }
-
-        /* Handle invalid data-* attribute set by try-catching it */
-        try {
-          if (namespaceURI) {
-            currentNode.setAttributeNS(namespaceURI, name, value);
-          } else {
-            /* Fallback to setAttribute() for browser-unrecognized namespaces e.g. "x-schema". */
-            currentNode.setAttribute(name, value);
-          }
-          if (_isClobbered(currentNode)) {
-            _forceRemove(currentNode);
-          } else {
-            arrayPop(DOMPurify.removed);
-          }
-        } catch (_) {}
-      }
-
-      /* Execute a hook if present */
-      _executeHook('afterSanitizeAttributes', currentNode, null);
-    };
-
-    /**
-     * _sanitizeShadowDOM
-     *
-     * @param  {DocumentFragment} fragment to iterate over recursively
-     */
-    const _sanitizeShadowDOM = function _sanitizeShadowDOM(fragment) {
-      let shadowNode = null;
-      const shadowIterator = _createNodeIterator(fragment);
-
-      /* Execute a hook if present */
-      _executeHook('beforeSanitizeShadowDOM', fragment, null);
-      while (shadowNode = shadowIterator.nextNode()) {
-        /* Execute a hook if present */
-        _executeHook('uponSanitizeShadowNode', shadowNode, null);
-
-        /* Sanitize tags and elements */
-        if (_sanitizeElements(shadowNode)) {
-          continue;
-        }
-        const parentNode = getParentNode(shadowNode);
-
-        /* Set the nesting depth of an element */
-        if (shadowNode.nodeType === NODE_TYPE.element) {
-          if (parentNode && parentNode.__depth) {
-            /*
-              We want the depth of the node in the original tree, which can
-              change when it's removed from its parent.
-            */
-            shadowNode.__depth = (shadowNode.__removalCount || 0) + parentNode.__depth + 1;
-          } else {
-            shadowNode.__depth = 1;
-          }
-        }
-
-        /*
-         * Remove an element if nested too deeply to avoid mXSS
-         * or if the __depth might have been tampered with
-         */
-        if (shadowNode.__depth >= MAX_NESTING_DEPTH || shadowNode.__depth < 0 || numberIsNaN(shadowNode.__depth)) {
-          _forceRemove(shadowNode);
-        }
-
-        /* Deep shadow DOM detected */
-        if (shadowNode.content instanceof DocumentFragment) {
-          shadowNode.content.__depth = shadowNode.__depth;
-          _sanitizeShadowDOM(shadowNode.content);
-        }
-
-        /* Check attributes, sanitize if necessary */
-        _sanitizeAttributes(shadowNode);
-      }
-
-      /* Execute a hook if present */
-      _executeHook('afterSanitizeShadowDOM', fragment, null);
-    };
-
-    /**
-     * Sanitize
-     * Public method providing core sanitation functionality
-     *
-     * @param {String|Node} dirty string or DOM node
-     * @param {Object} cfg object
-     */
-    // eslint-disable-next-line complexity
-    DOMPurify.sanitize = function (dirty) {
-      let cfg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      let body = null;
-      let importedNode = null;
-      let currentNode = null;
-      let returnNode = null;
-      /* Make sure we have a string to sanitize.
-        DO NOT return early, as this will return the wrong type if
-        the user has requested a DOM object rather than a string */
-      IS_EMPTY_INPUT = !dirty;
-      if (IS_EMPTY_INPUT) {
-        dirty = '<!-->';
-      }
-
-      /* Stringify, in case dirty is an object */
-      if (typeof dirty !== 'string' && !_isNode(dirty)) {
-        if (typeof dirty.toString === 'function') {
-          dirty = dirty.toString();
-          if (typeof dirty !== 'string') {
-            throw typeErrorCreate('dirty is not a string, aborting');
-          }
-        } else {
-          throw typeErrorCreate('toString is not a function');
-        }
-      }
-
-      /* Return dirty HTML if DOMPurify cannot run */
-      if (!DOMPurify.isSupported) {
-        return dirty;
-      }
-
-      /* Assign config vars */
-      if (!SET_CONFIG) {
-        _parseConfig(cfg);
-      }
-
-      /* Clean up removed elements */
-      DOMPurify.removed = [];
-
-      /* Check if dirty is correctly typed for IN_PLACE */
-      if (typeof dirty === 'string') {
-        IN_PLACE = false;
-      }
-      if (IN_PLACE) {
-        /* Do some early pre-sanitization to avoid unsafe root nodes */
-        if (dirty.nodeName) {
-          const tagName = transformCaseFunc(dirty.nodeName);
-          if (!ALLOWED_TAGS[tagName] || FORBID_TAGS[tagName]) {
-            throw typeErrorCreate('root node is forbidden and cannot be sanitized in-place');
-          }
-        }
-      } else if (dirty instanceof Node) {
-        /* If dirty is a DOM element, append to an empty document to avoid
-           elements being stripped by the parser */
-        body = _initDocument('<!---->');
-        importedNode = body.ownerDocument.importNode(dirty, true);
-        if (importedNode.nodeType === NODE_TYPE.element && importedNode.nodeName === 'BODY') {
-          /* Node is already a body, use as is */
-          body = importedNode;
-        } else if (importedNode.nodeName === 'HTML') {
-          body = importedNode;
-        } else {
-          // eslint-disable-next-line unicorn/prefer-dom-node-append
-          body.appendChild(importedNode);
-        }
-      } else {
-        /* Exit directly if we have nothing to do */
-        if (!RETURN_DOM && !SAFE_FOR_TEMPLATES && !WHOLE_DOCUMENT &&
-        // eslint-disable-next-line unicorn/prefer-includes
-        dirty.indexOf('<') === -1) {
-          return trustedTypesPolicy && RETURN_TRUSTED_TYPE ? trustedTypesPolicy.createHTML(dirty) : dirty;
-        }
-
-        /* Initialize the document to work on */
-        body = _initDocument(dirty);
-
-        /* Check we have a DOM node from the data */
-        if (!body) {
-          return RETURN_DOM ? null : RETURN_TRUSTED_TYPE ? emptyHTML : '';
-        }
-      }
-
-      /* Remove first element node (ours) if FORCE_BODY is set */
-      if (body && FORCE_BODY) {
-        _forceRemove(body.firstChild);
-      }
-
-      /* Get node iterator */
-      const nodeIterator = _createNodeIterator(IN_PLACE ? dirty : body);
-
-      /* Now start iterating over the created document */
-      while (currentNode = nodeIterator.nextNode()) {
-        /* Sanitize tags and elements */
-        if (_sanitizeElements(currentNode)) {
-          continue;
-        }
-        const parentNode = getParentNode(currentNode);
-
-        /* Set the nesting depth of an element */
-        if (currentNode.nodeType === NODE_TYPE.element) {
-          if (parentNode && parentNode.__depth) {
-            /*
-              We want the depth of the node in the original tree, which can
-              change when it's removed from its parent.
-            */
-            currentNode.__depth = (currentNode.__removalCount || 0) + parentNode.__depth + 1;
-          } else {
-            currentNode.__depth = 1;
-          }
-        }
-
-        /*
-         * Remove an element if nested too deeply to avoid mXSS
-         * or if the __depth might have been tampered with
-         */
-        if (currentNode.__depth >= MAX_NESTING_DEPTH || currentNode.__depth < 0 || numberIsNaN(currentNode.__depth)) {
-          _forceRemove(currentNode);
-        }
-
-        /* Shadow DOM detected, sanitize it */
-        if (currentNode.content instanceof DocumentFragment) {
-          currentNode.content.__depth = currentNode.__depth;
-          _sanitizeShadowDOM(currentNode.content);
-        }
-
-        /* Check attributes, sanitize if necessary */
-        _sanitizeAttributes(currentNode);
-      }
-
-      /* If we sanitized `dirty` in-place, return it. */
-      if (IN_PLACE) {
-        return dirty;
-      }
-
-      /* Return sanitized string or DOM */
-      if (RETURN_DOM) {
-        if (RETURN_DOM_FRAGMENT) {
-          returnNode = createDocumentFragment.call(body.ownerDocument);
-          while (body.firstChild) {
-            // eslint-disable-next-line unicorn/prefer-dom-node-append
-            returnNode.appendChild(body.firstChild);
-          }
-        } else {
-          returnNode = body;
-        }
-        if (ALLOWED_ATTR.shadowroot || ALLOWED_ATTR.shadowrootmode) {
-          /*
-            AdoptNode() is not used because internal state is not reset
-            (e.g. the past names map of a HTMLFormElement), this is safe
-            in theory but we would rather not risk another attack vector.
-            The state that is cloned by importNode() is explicitly defined
-            by the specs.
-          */
-          returnNode = importNode.call(originalDocument, returnNode, true);
-        }
-        return returnNode;
-      }
-      let serializedHTML = WHOLE_DOCUMENT ? body.outerHTML : body.innerHTML;
-
-      /* Serialize doctype if allowed */
-      if (WHOLE_DOCUMENT && ALLOWED_TAGS['!doctype'] && body.ownerDocument && body.ownerDocument.doctype && body.ownerDocument.doctype.name && regExpTest(DOCTYPE_NAME, body.ownerDocument.doctype.name)) {
-        serializedHTML = '<!DOCTYPE ' + body.ownerDocument.doctype.name + '>\n' + serializedHTML;
-      }
-
-      /* Sanitize final string template-safe */
-      if (SAFE_FOR_TEMPLATES) {
-        arrayForEach([MUSTACHE_EXPR, ERB_EXPR, TMPLIT_EXPR], expr => {
-          serializedHTML = stringReplace(serializedHTML, expr, ' ');
-        });
-      }
-      return trustedTypesPolicy && RETURN_TRUSTED_TYPE ? trustedTypesPolicy.createHTML(serializedHTML) : serializedHTML;
-    };
-
-    /**
-     * Public method to set the configuration once
-     * setConfig
-     *
-     * @param {Object} cfg configuration object
-     */
-    DOMPurify.setConfig = function () {
-      let cfg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      _parseConfig(cfg);
-      SET_CONFIG = true;
-    };
-
-    /**
-     * Public method to remove the configuration
-     * clearConfig
-     *
-     */
-    DOMPurify.clearConfig = function () {
-      CONFIG = null;
-      SET_CONFIG = false;
-    };
-
-    /**
-     * Public method to check if an attribute value is valid.
-     * Uses last set config, if any. Otherwise, uses config defaults.
-     * isValidAttribute
-     *
-     * @param  {String} tag Tag name of containing element.
-     * @param  {String} attr Attribute name.
-     * @param  {String} value Attribute value.
-     * @return {Boolean} Returns true if `value` is valid. Otherwise, returns false.
-     */
-    DOMPurify.isValidAttribute = function (tag, attr, value) {
-      /* Initialize shared config vars if necessary. */
-      if (!CONFIG) {
-        _parseConfig({});
-      }
-      const lcTag = transformCaseFunc(tag);
-      const lcName = transformCaseFunc(attr);
-      return _isValidAttribute(lcTag, lcName, value);
-    };
-
-    /**
-     * AddHook
-     * Public method to add DOMPurify hooks
-     *
-     * @param {String} entryPoint entry point for the hook to add
-     * @param {Function} hookFunction function to execute
-     */
-    DOMPurify.addHook = function (entryPoint, hookFunction) {
-      if (typeof hookFunction !== 'function') {
-        return;
-      }
-      hooks[entryPoint] = hooks[entryPoint] || [];
-      arrayPush(hooks[entryPoint], hookFunction);
-    };
-
-    /**
-     * RemoveHook
-     * Public method to remove a DOMPurify hook at a given entryPoint
-     * (pops it from the stack of hooks if more are present)
-     *
-     * @param {String} entryPoint entry point for the hook to remove
-     * @return {Function} removed(popped) hook
-     */
-    DOMPurify.removeHook = function (entryPoint) {
-      if (hooks[entryPoint]) {
-        return arrayPop(hooks[entryPoint]);
-      }
-    };
-
-    /**
-     * RemoveHooks
-     * Public method to remove all DOMPurify hooks at a given entryPoint
-     *
-     * @param  {String} entryPoint entry point for the hooks to remove
-     */
-    DOMPurify.removeHooks = function (entryPoint) {
-      if (hooks[entryPoint]) {
-        hooks[entryPoint] = [];
-      }
-    };
-
-    /**
-     * RemoveAllHooks
-     * Public method to remove all DOMPurify hooks
-     */
-    DOMPurify.removeAllHooks = function () {
-      hooks = {};
-    };
+    });
+  } catch (_) {
+    // Policy creation failed (most likely another DOMPurify script has
+    // already run). Skip creating the policy, as this will only cause errors
+    // if TT are enforced.
+    console.warn('TrustedTypes policy ' + policyName + ' could not be created.');
+    return null;
+  }
+};
+const _createHooksMap = function _createHooksMap() {
+  return {
+    afterSanitizeAttributes: [],
+    afterSanitizeElements: [],
+    afterSanitizeShadowDOM: [],
+    beforeSanitizeAttributes: [],
+    beforeSanitizeElements: [],
+    beforeSanitizeShadowDOM: [],
+    uponSanitizeAttribute: [],
+    uponSanitizeElement: [],
+    uponSanitizeShadowNode: []
+  };
+};
+function createDOMPurify() {
+  let window = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : getGlobal();
+  const DOMPurify = root => createDOMPurify(root);
+  DOMPurify.version = '3.2.3';
+  DOMPurify.removed = [];
+  if (!window || !window.document || window.document.nodeType !== NODE_TYPE.document) {
+    // Not running in a browser, provide a factory function
+    // so that you can pass your own Window
+    DOMPurify.isSupported = false;
     return DOMPurify;
   }
-  var purify = createDOMPurify();
+  let {
+    document
+  } = window;
+  const originalDocument = document;
+  const currentScript = originalDocument.currentScript;
+  const {
+    DocumentFragment,
+    HTMLTemplateElement,
+    Node,
+    Element,
+    NodeFilter,
+    NamedNodeMap = window.NamedNodeMap || window.MozNamedAttrMap,
+    HTMLFormElement,
+    DOMParser,
+    trustedTypes
+  } = window;
+  const ElementPrototype = Element.prototype;
+  const cloneNode = lookupGetter(ElementPrototype, 'cloneNode');
+  const remove = lookupGetter(ElementPrototype, 'remove');
+  const getNextSibling = lookupGetter(ElementPrototype, 'nextSibling');
+  const getChildNodes = lookupGetter(ElementPrototype, 'childNodes');
+  const getParentNode = lookupGetter(ElementPrototype, 'parentNode');
+  // As per issue #47, the web-components registry is inherited by a
+  // new document created via createHTMLDocument. As per the spec
+  // (http://w3c.github.io/webcomponents/spec/custom/#creating-and-passing-registries)
+  // a new empty registry is used when creating a template contents owner
+  // document, so we use that as our parent document to ensure nothing
+  // is inherited.
+  if (typeof HTMLTemplateElement === 'function') {
+    const template = document.createElement('template');
+    if (template.content && template.content.ownerDocument) {
+      document = template.content.ownerDocument;
+    }
+  }
+  let trustedTypesPolicy;
+  let emptyHTML = '';
+  const {
+    implementation,
+    createNodeIterator,
+    createDocumentFragment,
+    getElementsByTagName
+  } = document;
+  const {
+    importNode
+  } = originalDocument;
+  let hooks = _createHooksMap();
+  /**
+   * Expose whether this browser supports running the full DOMPurify.
+   */
+  DOMPurify.isSupported = typeof entries === 'function' && typeof getParentNode === 'function' && implementation && implementation.createHTMLDocument !== undefined;
+  const {
+    MUSTACHE_EXPR,
+    ERB_EXPR,
+    TMPLIT_EXPR,
+    DATA_ATTR,
+    ARIA_ATTR,
+    IS_SCRIPT_OR_DATA,
+    ATTR_WHITESPACE,
+    CUSTOM_ELEMENT
+  } = EXPRESSIONS;
+  let {
+    IS_ALLOWED_URI: IS_ALLOWED_URI$1
+  } = EXPRESSIONS;
+  /**
+   * We consider the elements and attributes below to be safe. Ideally
+   * don't add any new ones but feel free to remove unwanted ones.
+   */
+  /* allowed element names */
+  let ALLOWED_TAGS = null;
+  const DEFAULT_ALLOWED_TAGS = addToSet({}, [...html$1, ...svg$1, ...svgFilters, ...mathMl$1, ...text]);
+  /* Allowed attribute names */
+  let ALLOWED_ATTR = null;
+  const DEFAULT_ALLOWED_ATTR = addToSet({}, [...html, ...svg, ...mathMl, ...xml]);
+  /*
+   * Configure how DOMPurify should handle custom elements and their attributes as well as customized built-in elements.
+   * @property {RegExp|Function|null} tagNameCheck one of [null, regexPattern, predicate]. Default: `null` (disallow any custom elements)
+   * @property {RegExp|Function|null} attributeNameCheck one of [null, regexPattern, predicate]. Default: `null` (disallow any attributes not on the allow list)
+   * @property {boolean} allowCustomizedBuiltInElements allow custom elements derived from built-ins if they pass CUSTOM_ELEMENT_HANDLING.tagNameCheck. Default: `false`.
+   */
+  let CUSTOM_ELEMENT_HANDLING = Object.seal(create(null, {
+    tagNameCheck: {
+      writable: true,
+      configurable: false,
+      enumerable: true,
+      value: null
+    },
+    attributeNameCheck: {
+      writable: true,
+      configurable: false,
+      enumerable: true,
+      value: null
+    },
+    allowCustomizedBuiltInElements: {
+      writable: true,
+      configurable: false,
+      enumerable: true,
+      value: false
+    }
+  }));
+  /* Explicitly forbidden tags (overrides ALLOWED_TAGS/ADD_TAGS) */
+  let FORBID_TAGS = null;
+  /* Explicitly forbidden attributes (overrides ALLOWED_ATTR/ADD_ATTR) */
+  let FORBID_ATTR = null;
+  /* Decide if ARIA attributes are okay */
+  let ALLOW_ARIA_ATTR = true;
+  /* Decide if custom data attributes are okay */
+  let ALLOW_DATA_ATTR = true;
+  /* Decide if unknown protocols are okay */
+  let ALLOW_UNKNOWN_PROTOCOLS = false;
+  /* Decide if self-closing tags in attributes are allowed.
+   * Usually removed due to a mXSS issue in jQuery 3.0 */
+  let ALLOW_SELF_CLOSE_IN_ATTR = true;
+  /* Output should be safe for common template engines.
+   * This means, DOMPurify removes data attributes, mustaches and ERB
+   */
+  let SAFE_FOR_TEMPLATES = false;
+  /* Output should be safe even for XML used within HTML and alike.
+   * This means, DOMPurify removes comments when containing risky content.
+   */
+  let SAFE_FOR_XML = true;
+  /* Decide if document with <html>... should be returned */
+  let WHOLE_DOCUMENT = false;
+  /* Track whether config is already set on this instance of DOMPurify. */
+  let SET_CONFIG = false;
+  /* Decide if all elements (e.g. style, script) must be children of
+   * document.body. By default, browsers might move them to document.head */
+  let FORCE_BODY = false;
+  /* Decide if a DOM `HTMLBodyElement` should be returned, instead of a html
+   * string (or a TrustedHTML object if Trusted Types are supported).
+   * If `WHOLE_DOCUMENT` is enabled a `HTMLHtmlElement` will be returned instead
+   */
+  let RETURN_DOM = false;
+  /* Decide if a DOM `DocumentFragment` should be returned, instead of a html
+   * string  (or a TrustedHTML object if Trusted Types are supported) */
+  let RETURN_DOM_FRAGMENT = false;
+  /* Try to return a Trusted Type object instead of a string, return a string in
+   * case Trusted Types are not supported  */
+  let RETURN_TRUSTED_TYPE = false;
+  /* Output should be free from DOM clobbering attacks?
+   * This sanitizes markups named with colliding, clobberable built-in DOM APIs.
+   */
+  let SANITIZE_DOM = true;
+  /* Achieve full DOM Clobbering protection by isolating the namespace of named
+   * properties and JS variables, mitigating attacks that abuse the HTML/DOM spec rules.
+   *
+   * HTML/DOM spec rules that enable DOM Clobbering:
+   *   - Named Access on Window (§7.3.3)
+   *   - DOM Tree Accessors (§3.1.5)
+   *   - Form Element Parent-Child Relations (§4.10.3)
+   *   - Iframe srcdoc / Nested WindowProxies (§4.8.5)
+   *   - HTMLCollection (§4.2.10.2)
+   *
+   * Namespace isolation is implemented by prefixing `id` and `name` attributes
+   * with a constant string, i.e., `user-content-`
+   */
+  let SANITIZE_NAMED_PROPS = false;
+  const SANITIZE_NAMED_PROPS_PREFIX = 'user-content-';
+  /* Keep element content when removing element? */
+  let KEEP_CONTENT = true;
+  /* If a `Node` is passed to sanitize(), then performs sanitization in-place instead
+   * of importing it into a new Document and returning a sanitized copy */
+  let IN_PLACE = false;
+  /* Allow usage of profiles like html, svg and mathMl */
+  let USE_PROFILES = {};
+  /* Tags to ignore content of when KEEP_CONTENT is true */
+  let FORBID_CONTENTS = null;
+  const DEFAULT_FORBID_CONTENTS = addToSet({}, ['annotation-xml', 'audio', 'colgroup', 'desc', 'foreignobject', 'head', 'iframe', 'math', 'mi', 'mn', 'mo', 'ms', 'mtext', 'noembed', 'noframes', 'noscript', 'plaintext', 'script', 'style', 'svg', 'template', 'thead', 'title', 'video', 'xmp']);
+  /* Tags that are safe for data: URIs */
+  let DATA_URI_TAGS = null;
+  const DEFAULT_DATA_URI_TAGS = addToSet({}, ['audio', 'video', 'img', 'source', 'image', 'track']);
+  /* Attributes safe for values like "javascript:" */
+  let URI_SAFE_ATTRIBUTES = null;
+  const DEFAULT_URI_SAFE_ATTRIBUTES = addToSet({}, ['alt', 'class', 'for', 'id', 'label', 'name', 'pattern', 'placeholder', 'role', 'summary', 'title', 'value', 'style', 'xmlns']);
+  const MATHML_NAMESPACE = 'http://www.w3.org/1998/Math/MathML';
+  const SVG_NAMESPACE = 'http://www.w3.org/2000/svg';
+  const HTML_NAMESPACE = 'http://www.w3.org/1999/xhtml';
+  /* Document namespace */
+  let NAMESPACE = HTML_NAMESPACE;
+  let IS_EMPTY_INPUT = false;
+  /* Allowed XHTML+XML namespaces */
+  let ALLOWED_NAMESPACES = null;
+  const DEFAULT_ALLOWED_NAMESPACES = addToSet({}, [MATHML_NAMESPACE, SVG_NAMESPACE, HTML_NAMESPACE], stringToString);
+  let MATHML_TEXT_INTEGRATION_POINTS = addToSet({}, ['mi', 'mo', 'mn', 'ms', 'mtext']);
+  let HTML_INTEGRATION_POINTS = addToSet({}, ['annotation-xml']);
+  // Certain elements are allowed in both SVG and HTML
+  // namespace. We need to specify them explicitly
+  // so that they don't get erroneously deleted from
+  // HTML namespace.
+  const COMMON_SVG_AND_HTML_ELEMENTS = addToSet({}, ['title', 'style', 'font', 'a', 'script']);
+  /* Parsing of strict XHTML documents */
+  let PARSER_MEDIA_TYPE = null;
+  const SUPPORTED_PARSER_MEDIA_TYPES = ['application/xhtml+xml', 'text/html'];
+  const DEFAULT_PARSER_MEDIA_TYPE = 'text/html';
+  let transformCaseFunc = null;
+  /* Keep a reference to config to pass to hooks */
+  let CONFIG = null;
+  /* Ideally, do not touch anything below this line */
+  /* ______________________________________________ */
+  const formElement = document.createElement('form');
+  const isRegexOrFunction = function isRegexOrFunction(testValue) {
+    return testValue instanceof RegExp || testValue instanceof Function;
+  };
+  /**
+   * _parseConfig
+   *
+   * @param cfg optional config literal
+   */
+  // eslint-disable-next-line complexity
+  const _parseConfig = function _parseConfig() {
+    let cfg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    if (CONFIG && CONFIG === cfg) {
+      return;
+    }
+    /* Shield configuration object from tampering */
+    if (!cfg || typeof cfg !== 'object') {
+      cfg = {};
+    }
+    /* Shield configuration object from prototype pollution */
+    cfg = clone(cfg);
+    PARSER_MEDIA_TYPE =
+    // eslint-disable-next-line unicorn/prefer-includes
+    SUPPORTED_PARSER_MEDIA_TYPES.indexOf(cfg.PARSER_MEDIA_TYPE) === -1 ? DEFAULT_PARSER_MEDIA_TYPE : cfg.PARSER_MEDIA_TYPE;
+    // HTML tags and attributes are not case-sensitive, converting to lowercase. Keeping XHTML as is.
+    transformCaseFunc = PARSER_MEDIA_TYPE === 'application/xhtml+xml' ? stringToString : stringToLowerCase;
+    /* Set configuration parameters */
+    ALLOWED_TAGS = objectHasOwnProperty(cfg, 'ALLOWED_TAGS') ? addToSet({}, cfg.ALLOWED_TAGS, transformCaseFunc) : DEFAULT_ALLOWED_TAGS;
+    ALLOWED_ATTR = objectHasOwnProperty(cfg, 'ALLOWED_ATTR') ? addToSet({}, cfg.ALLOWED_ATTR, transformCaseFunc) : DEFAULT_ALLOWED_ATTR;
+    ALLOWED_NAMESPACES = objectHasOwnProperty(cfg, 'ALLOWED_NAMESPACES') ? addToSet({}, cfg.ALLOWED_NAMESPACES, stringToString) : DEFAULT_ALLOWED_NAMESPACES;
+    URI_SAFE_ATTRIBUTES = objectHasOwnProperty(cfg, 'ADD_URI_SAFE_ATTR') ? addToSet(clone(DEFAULT_URI_SAFE_ATTRIBUTES), cfg.ADD_URI_SAFE_ATTR, transformCaseFunc) : DEFAULT_URI_SAFE_ATTRIBUTES;
+    DATA_URI_TAGS = objectHasOwnProperty(cfg, 'ADD_DATA_URI_TAGS') ? addToSet(clone(DEFAULT_DATA_URI_TAGS), cfg.ADD_DATA_URI_TAGS, transformCaseFunc) : DEFAULT_DATA_URI_TAGS;
+    FORBID_CONTENTS = objectHasOwnProperty(cfg, 'FORBID_CONTENTS') ? addToSet({}, cfg.FORBID_CONTENTS, transformCaseFunc) : DEFAULT_FORBID_CONTENTS;
+    FORBID_TAGS = objectHasOwnProperty(cfg, 'FORBID_TAGS') ? addToSet({}, cfg.FORBID_TAGS, transformCaseFunc) : {};
+    FORBID_ATTR = objectHasOwnProperty(cfg, 'FORBID_ATTR') ? addToSet({}, cfg.FORBID_ATTR, transformCaseFunc) : {};
+    USE_PROFILES = objectHasOwnProperty(cfg, 'USE_PROFILES') ? cfg.USE_PROFILES : false;
+    ALLOW_ARIA_ATTR = cfg.ALLOW_ARIA_ATTR !== false; // Default true
+    ALLOW_DATA_ATTR = cfg.ALLOW_DATA_ATTR !== false; // Default true
+    ALLOW_UNKNOWN_PROTOCOLS = cfg.ALLOW_UNKNOWN_PROTOCOLS || false; // Default false
+    ALLOW_SELF_CLOSE_IN_ATTR = cfg.ALLOW_SELF_CLOSE_IN_ATTR !== false; // Default true
+    SAFE_FOR_TEMPLATES = cfg.SAFE_FOR_TEMPLATES || false; // Default false
+    SAFE_FOR_XML = cfg.SAFE_FOR_XML !== false; // Default true
+    WHOLE_DOCUMENT = cfg.WHOLE_DOCUMENT || false; // Default false
+    RETURN_DOM = cfg.RETURN_DOM || false; // Default false
+    RETURN_DOM_FRAGMENT = cfg.RETURN_DOM_FRAGMENT || false; // Default false
+    RETURN_TRUSTED_TYPE = cfg.RETURN_TRUSTED_TYPE || false; // Default false
+    FORCE_BODY = cfg.FORCE_BODY || false; // Default false
+    SANITIZE_DOM = cfg.SANITIZE_DOM !== false; // Default true
+    SANITIZE_NAMED_PROPS = cfg.SANITIZE_NAMED_PROPS || false; // Default false
+    KEEP_CONTENT = cfg.KEEP_CONTENT !== false; // Default true
+    IN_PLACE = cfg.IN_PLACE || false; // Default false
+    IS_ALLOWED_URI$1 = cfg.ALLOWED_URI_REGEXP || IS_ALLOWED_URI;
+    NAMESPACE = cfg.NAMESPACE || HTML_NAMESPACE;
+    MATHML_TEXT_INTEGRATION_POINTS = cfg.MATHML_TEXT_INTEGRATION_POINTS || MATHML_TEXT_INTEGRATION_POINTS;
+    HTML_INTEGRATION_POINTS = cfg.HTML_INTEGRATION_POINTS || HTML_INTEGRATION_POINTS;
+    CUSTOM_ELEMENT_HANDLING = cfg.CUSTOM_ELEMENT_HANDLING || {};
+    if (cfg.CUSTOM_ELEMENT_HANDLING && isRegexOrFunction(cfg.CUSTOM_ELEMENT_HANDLING.tagNameCheck)) {
+      CUSTOM_ELEMENT_HANDLING.tagNameCheck = cfg.CUSTOM_ELEMENT_HANDLING.tagNameCheck;
+    }
+    if (cfg.CUSTOM_ELEMENT_HANDLING && isRegexOrFunction(cfg.CUSTOM_ELEMENT_HANDLING.attributeNameCheck)) {
+      CUSTOM_ELEMENT_HANDLING.attributeNameCheck = cfg.CUSTOM_ELEMENT_HANDLING.attributeNameCheck;
+    }
+    if (cfg.CUSTOM_ELEMENT_HANDLING && typeof cfg.CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements === 'boolean') {
+      CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements = cfg.CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements;
+    }
+    if (SAFE_FOR_TEMPLATES) {
+      ALLOW_DATA_ATTR = false;
+    }
+    if (RETURN_DOM_FRAGMENT) {
+      RETURN_DOM = true;
+    }
+    /* Parse profile info */
+    if (USE_PROFILES) {
+      ALLOWED_TAGS = addToSet({}, text);
+      ALLOWED_ATTR = [];
+      if (USE_PROFILES.html === true) {
+        addToSet(ALLOWED_TAGS, html$1);
+        addToSet(ALLOWED_ATTR, html);
+      }
+      if (USE_PROFILES.svg === true) {
+        addToSet(ALLOWED_TAGS, svg$1);
+        addToSet(ALLOWED_ATTR, svg);
+        addToSet(ALLOWED_ATTR, xml);
+      }
+      if (USE_PROFILES.svgFilters === true) {
+        addToSet(ALLOWED_TAGS, svgFilters);
+        addToSet(ALLOWED_ATTR, svg);
+        addToSet(ALLOWED_ATTR, xml);
+      }
+      if (USE_PROFILES.mathMl === true) {
+        addToSet(ALLOWED_TAGS, mathMl$1);
+        addToSet(ALLOWED_ATTR, mathMl);
+        addToSet(ALLOWED_ATTR, xml);
+      }
+    }
+    /* Merge configuration parameters */
+    if (cfg.ADD_TAGS) {
+      if (ALLOWED_TAGS === DEFAULT_ALLOWED_TAGS) {
+        ALLOWED_TAGS = clone(ALLOWED_TAGS);
+      }
+      addToSet(ALLOWED_TAGS, cfg.ADD_TAGS, transformCaseFunc);
+    }
+    if (cfg.ADD_ATTR) {
+      if (ALLOWED_ATTR === DEFAULT_ALLOWED_ATTR) {
+        ALLOWED_ATTR = clone(ALLOWED_ATTR);
+      }
+      addToSet(ALLOWED_ATTR, cfg.ADD_ATTR, transformCaseFunc);
+    }
+    if (cfg.ADD_URI_SAFE_ATTR) {
+      addToSet(URI_SAFE_ATTRIBUTES, cfg.ADD_URI_SAFE_ATTR, transformCaseFunc);
+    }
+    if (cfg.FORBID_CONTENTS) {
+      if (FORBID_CONTENTS === DEFAULT_FORBID_CONTENTS) {
+        FORBID_CONTENTS = clone(FORBID_CONTENTS);
+      }
+      addToSet(FORBID_CONTENTS, cfg.FORBID_CONTENTS, transformCaseFunc);
+    }
+    /* Add #text in case KEEP_CONTENT is set to true */
+    if (KEEP_CONTENT) {
+      ALLOWED_TAGS['#text'] = true;
+    }
+    /* Add html, head and body to ALLOWED_TAGS in case WHOLE_DOCUMENT is true */
+    if (WHOLE_DOCUMENT) {
+      addToSet(ALLOWED_TAGS, ['html', 'head', 'body']);
+    }
+    /* Add tbody to ALLOWED_TAGS in case tables are permitted, see #286, #365 */
+    if (ALLOWED_TAGS.table) {
+      addToSet(ALLOWED_TAGS, ['tbody']);
+      delete FORBID_TAGS.tbody;
+    }
+    if (cfg.TRUSTED_TYPES_POLICY) {
+      if (typeof cfg.TRUSTED_TYPES_POLICY.createHTML !== 'function') {
+        throw typeErrorCreate('TRUSTED_TYPES_POLICY configuration option must provide a "createHTML" hook.');
+      }
+      if (typeof cfg.TRUSTED_TYPES_POLICY.createScriptURL !== 'function') {
+        throw typeErrorCreate('TRUSTED_TYPES_POLICY configuration option must provide a "createScriptURL" hook.');
+      }
+      // Overwrite existing TrustedTypes policy.
+      trustedTypesPolicy = cfg.TRUSTED_TYPES_POLICY;
+      // Sign local variables required by `sanitize`.
+      emptyHTML = trustedTypesPolicy.createHTML('');
+    } else {
+      // Uninitialized policy, attempt to initialize the internal dompurify policy.
+      if (trustedTypesPolicy === undefined) {
+        trustedTypesPolicy = _createTrustedTypesPolicy(trustedTypes, currentScript);
+      }
+      // If creating the internal policy succeeded sign internal variables.
+      if (trustedTypesPolicy !== null && typeof emptyHTML === 'string') {
+        emptyHTML = trustedTypesPolicy.createHTML('');
+      }
+    }
+    // Prevent further manipulation of configuration.
+    // Not available in IE8, Safari 5, etc.
+    if (freeze) {
+      freeze(cfg);
+    }
+    CONFIG = cfg;
+  };
+  /* Keep track of all possible SVG and MathML tags
+   * so that we can perform the namespace checks
+   * correctly. */
+  const ALL_SVG_TAGS = addToSet({}, [...svg$1, ...svgFilters, ...svgDisallowed]);
+  const ALL_MATHML_TAGS = addToSet({}, [...mathMl$1, ...mathMlDisallowed]);
+  /**
+   * @param element a DOM element whose namespace is being checked
+   * @returns Return false if the element has a
+   *  namespace that a spec-compliant parser would never
+   *  return. Return true otherwise.
+   */
+  const _checkValidNamespace = function _checkValidNamespace(element) {
+    let parent = getParentNode(element);
+    // In JSDOM, if we're inside shadow DOM, then parentNode
+    // can be null. We just simulate parent in this case.
+    if (!parent || !parent.tagName) {
+      parent = {
+        namespaceURI: NAMESPACE,
+        tagName: 'template'
+      };
+    }
+    const tagName = stringToLowerCase(element.tagName);
+    const parentTagName = stringToLowerCase(parent.tagName);
+    if (!ALLOWED_NAMESPACES[element.namespaceURI]) {
+      return false;
+    }
+    if (element.namespaceURI === SVG_NAMESPACE) {
+      // The only way to switch from HTML namespace to SVG
+      // is via <svg>. If it happens via any other tag, then
+      // it should be killed.
+      if (parent.namespaceURI === HTML_NAMESPACE) {
+        return tagName === 'svg';
+      }
+      // The only way to switch from MathML to SVG is via`
+      // svg if parent is either <annotation-xml> or MathML
+      // text integration points.
+      if (parent.namespaceURI === MATHML_NAMESPACE) {
+        return tagName === 'svg' && (parentTagName === 'annotation-xml' || MATHML_TEXT_INTEGRATION_POINTS[parentTagName]);
+      }
+      // We only allow elements that are defined in SVG
+      // spec. All others are disallowed in SVG namespace.
+      return Boolean(ALL_SVG_TAGS[tagName]);
+    }
+    if (element.namespaceURI === MATHML_NAMESPACE) {
+      // The only way to switch from HTML namespace to MathML
+      // is via <math>. If it happens via any other tag, then
+      // it should be killed.
+      if (parent.namespaceURI === HTML_NAMESPACE) {
+        return tagName === 'math';
+      }
+      // The only way to switch from SVG to MathML is via
+      // <math> and HTML integration points
+      if (parent.namespaceURI === SVG_NAMESPACE) {
+        return tagName === 'math' && HTML_INTEGRATION_POINTS[parentTagName];
+      }
+      // We only allow elements that are defined in MathML
+      // spec. All others are disallowed in MathML namespace.
+      return Boolean(ALL_MATHML_TAGS[tagName]);
+    }
+    if (element.namespaceURI === HTML_NAMESPACE) {
+      // The only way to switch from SVG to HTML is via
+      // HTML integration points, and from MathML to HTML
+      // is via MathML text integration points
+      if (parent.namespaceURI === SVG_NAMESPACE && !HTML_INTEGRATION_POINTS[parentTagName]) {
+        return false;
+      }
+      if (parent.namespaceURI === MATHML_NAMESPACE && !MATHML_TEXT_INTEGRATION_POINTS[parentTagName]) {
+        return false;
+      }
+      // We disallow tags that are specific for MathML
+      // or SVG and should never appear in HTML namespace
+      return !ALL_MATHML_TAGS[tagName] && (COMMON_SVG_AND_HTML_ELEMENTS[tagName] || !ALL_SVG_TAGS[tagName]);
+    }
+    // For XHTML and XML documents that support custom namespaces
+    if (PARSER_MEDIA_TYPE === 'application/xhtml+xml' && ALLOWED_NAMESPACES[element.namespaceURI]) {
+      return true;
+    }
+    // The code should never reach this place (this means
+    // that the element somehow got namespace that is not
+    // HTML, SVG, MathML or allowed via ALLOWED_NAMESPACES).
+    // Return false just in case.
+    return false;
+  };
+  /**
+   * _forceRemove
+   *
+   * @param node a DOM node
+   */
+  const _forceRemove = function _forceRemove(node) {
+    arrayPush(DOMPurify.removed, {
+      element: node
+    });
+    try {
+      // eslint-disable-next-line unicorn/prefer-dom-node-remove
+      getParentNode(node).removeChild(node);
+    } catch (_) {
+      remove(node);
+    }
+  };
+  /**
+   * _removeAttribute
+   *
+   * @param name an Attribute name
+   * @param element a DOM node
+   */
+  const _removeAttribute = function _removeAttribute(name, element) {
+    try {
+      arrayPush(DOMPurify.removed, {
+        attribute: element.getAttributeNode(name),
+        from: element
+      });
+    } catch (_) {
+      arrayPush(DOMPurify.removed, {
+        attribute: null,
+        from: element
+      });
+    }
+    element.removeAttribute(name);
+    // We void attribute values for unremovable "is" attributes
+    if (name === 'is') {
+      if (RETURN_DOM || RETURN_DOM_FRAGMENT) {
+        try {
+          _forceRemove(element);
+        } catch (_) {}
+      } else {
+        try {
+          element.setAttribute(name, '');
+        } catch (_) {}
+      }
+    }
+  };
+  /**
+   * _initDocument
+   *
+   * @param dirty - a string of dirty markup
+   * @return a DOM, filled with the dirty markup
+   */
+  const _initDocument = function _initDocument(dirty) {
+    /* Create a HTML document */
+    let doc = null;
+    let leadingWhitespace = null;
+    if (FORCE_BODY) {
+      dirty = '<remove></remove>' + dirty;
+    } else {
+      /* If FORCE_BODY isn't used, leading whitespace needs to be preserved manually */
+      const matches = stringMatch(dirty, /^[\r\n\t ]+/);
+      leadingWhitespace = matches && matches[0];
+    }
+    if (PARSER_MEDIA_TYPE === 'application/xhtml+xml' && NAMESPACE === HTML_NAMESPACE) {
+      // Root of XHTML doc must contain xmlns declaration (see https://www.w3.org/TR/xhtml1/normative.html#strict)
+      dirty = '<html xmlns="http://www.w3.org/1999/xhtml"><head></head><body>' + dirty + '</body></html>';
+    }
+    const dirtyPayload = trustedTypesPolicy ? trustedTypesPolicy.createHTML(dirty) : dirty;
+    /*
+     * Use the DOMParser API by default, fallback later if needs be
+     * DOMParser not work for svg when has multiple root element.
+     */
+    if (NAMESPACE === HTML_NAMESPACE) {
+      try {
+        doc = new DOMParser().parseFromString(dirtyPayload, PARSER_MEDIA_TYPE);
+      } catch (_) {}
+    }
+    /* Use createHTMLDocument in case DOMParser is not available */
+    if (!doc || !doc.documentElement) {
+      doc = implementation.createDocument(NAMESPACE, 'template', null);
+      try {
+        doc.documentElement.innerHTML = IS_EMPTY_INPUT ? emptyHTML : dirtyPayload;
+      } catch (_) {
+        // Syntax error if dirtyPayload is invalid xml
+      }
+    }
+    const body = doc.body || doc.documentElement;
+    if (dirty && leadingWhitespace) {
+      body.insertBefore(document.createTextNode(leadingWhitespace), body.childNodes[0] || null);
+    }
+    /* Work on whole document or just its body */
+    if (NAMESPACE === HTML_NAMESPACE) {
+      return getElementsByTagName.call(doc, WHOLE_DOCUMENT ? 'html' : 'body')[0];
+    }
+    return WHOLE_DOCUMENT ? doc.documentElement : body;
+  };
+  /**
+   * Creates a NodeIterator object that you can use to traverse filtered lists of nodes or elements in a document.
+   *
+   * @param root The root element or node to start traversing on.
+   * @return The created NodeIterator
+   */
+  const _createNodeIterator = function _createNodeIterator(root) {
+    return createNodeIterator.call(root.ownerDocument || root, root,
+    // eslint-disable-next-line no-bitwise
+    NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_COMMENT | NodeFilter.SHOW_TEXT | NodeFilter.SHOW_PROCESSING_INSTRUCTION | NodeFilter.SHOW_CDATA_SECTION, null);
+  };
+  /**
+   * _isClobbered
+   *
+   * @param element element to check for clobbering attacks
+   * @return true if clobbered, false if safe
+   */
+  const _isClobbered = function _isClobbered(element) {
+    return element instanceof HTMLFormElement && (typeof element.nodeName !== 'string' || typeof element.textContent !== 'string' || typeof element.removeChild !== 'function' || !(element.attributes instanceof NamedNodeMap) || typeof element.removeAttribute !== 'function' || typeof element.setAttribute !== 'function' || typeof element.namespaceURI !== 'string' || typeof element.insertBefore !== 'function' || typeof element.hasChildNodes !== 'function');
+  };
+  /**
+   * Checks whether the given object is a DOM node.
+   *
+   * @param value object to check whether it's a DOM node
+   * @return true is object is a DOM node
+   */
+  const _isNode = function _isNode(value) {
+    return typeof Node === 'function' && value instanceof Node;
+  };
+  function _executeHooks(hooks, currentNode, data) {
+    arrayForEach(hooks, hook => {
+      hook.call(DOMPurify, currentNode, data, CONFIG);
+    });
+  }
+  /**
+   * _sanitizeElements
+   *
+   * @protect nodeName
+   * @protect textContent
+   * @protect removeChild
+   * @param currentNode to check for permission to exist
+   * @return true if node was killed, false if left alive
+   */
+  const _sanitizeElements = function _sanitizeElements(currentNode) {
+    let content = null;
+    /* Execute a hook if present */
+    _executeHooks(hooks.beforeSanitizeElements, currentNode, null);
+    /* Check if element is clobbered or can clobber */
+    if (_isClobbered(currentNode)) {
+      _forceRemove(currentNode);
+      return true;
+    }
+    /* Now let's check the element's type and name */
+    const tagName = transformCaseFunc(currentNode.nodeName);
+    /* Execute a hook if present */
+    _executeHooks(hooks.uponSanitizeElement, currentNode, {
+      tagName,
+      allowedTags: ALLOWED_TAGS
+    });
+    /* Detect mXSS attempts abusing namespace confusion */
+    if (currentNode.hasChildNodes() && !_isNode(currentNode.firstElementChild) && regExpTest(/<[/\w]/g, currentNode.innerHTML) && regExpTest(/<[/\w]/g, currentNode.textContent)) {
+      _forceRemove(currentNode);
+      return true;
+    }
+    /* Remove any occurrence of processing instructions */
+    if (currentNode.nodeType === NODE_TYPE.progressingInstruction) {
+      _forceRemove(currentNode);
+      return true;
+    }
+    /* Remove any kind of possibly harmful comments */
+    if (SAFE_FOR_XML && currentNode.nodeType === NODE_TYPE.comment && regExpTest(/<[/\w]/g, currentNode.data)) {
+      _forceRemove(currentNode);
+      return true;
+    }
+    /* Remove element if anything forbids its presence */
+    if (!ALLOWED_TAGS[tagName] || FORBID_TAGS[tagName]) {
+      /* Check if we have a custom element to handle */
+      if (!FORBID_TAGS[tagName] && _isBasicCustomElement(tagName)) {
+        if (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, tagName)) {
+          return false;
+        }
+        if (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(tagName)) {
+          return false;
+        }
+      }
+      /* Keep content except for bad-listed elements */
+      if (KEEP_CONTENT && !FORBID_CONTENTS[tagName]) {
+        const parentNode = getParentNode(currentNode) || currentNode.parentNode;
+        const childNodes = getChildNodes(currentNode) || currentNode.childNodes;
+        if (childNodes && parentNode) {
+          const childCount = childNodes.length;
+          for (let i = childCount - 1; i >= 0; --i) {
+            const childClone = cloneNode(childNodes[i], true);
+            childClone.__removalCount = (currentNode.__removalCount || 0) + 1;
+            parentNode.insertBefore(childClone, getNextSibling(currentNode));
+          }
+        }
+      }
+      _forceRemove(currentNode);
+      return true;
+    }
+    /* Check whether element has a valid namespace */
+    if (currentNode instanceof Element && !_checkValidNamespace(currentNode)) {
+      _forceRemove(currentNode);
+      return true;
+    }
+    /* Make sure that older browsers don't get fallback-tag mXSS */
+    if ((tagName === 'noscript' || tagName === 'noembed' || tagName === 'noframes') && regExpTest(/<\/no(script|embed|frames)/i, currentNode.innerHTML)) {
+      _forceRemove(currentNode);
+      return true;
+    }
+    /* Sanitize element content to be template-safe */
+    if (SAFE_FOR_TEMPLATES && currentNode.nodeType === NODE_TYPE.text) {
+      /* Get the element's text content */
+      content = currentNode.textContent;
+      arrayForEach([MUSTACHE_EXPR, ERB_EXPR, TMPLIT_EXPR], expr => {
+        content = stringReplace(content, expr, ' ');
+      });
+      if (currentNode.textContent !== content) {
+        arrayPush(DOMPurify.removed, {
+          element: currentNode.cloneNode()
+        });
+        currentNode.textContent = content;
+      }
+    }
+    /* Execute a hook if present */
+    _executeHooks(hooks.afterSanitizeElements, currentNode, null);
+    return false;
+  };
+  /**
+   * _isValidAttribute
+   *
+   * @param lcTag Lowercase tag name of containing element.
+   * @param lcName Lowercase attribute name.
+   * @param value Attribute value.
+   * @return Returns true if `value` is valid, otherwise false.
+   */
+  // eslint-disable-next-line complexity
+  const _isValidAttribute = function _isValidAttribute(lcTag, lcName, value) {
+    /* Make sure attribute cannot clobber */
+    if (SANITIZE_DOM && (lcName === 'id' || lcName === 'name') && (value in document || value in formElement)) {
+      return false;
+    }
+    /* Allow valid data-* attributes: At least one character after "-"
+        (https://html.spec.whatwg.org/multipage/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes)
+        XML-compatible (https://html.spec.whatwg.org/multipage/infrastructure.html#xml-compatible and http://www.w3.org/TR/xml/#d0e804)
+        We don't need to check the value; it's always URI safe. */
+    if (ALLOW_DATA_ATTR && !FORBID_ATTR[lcName] && regExpTest(DATA_ATTR, lcName)) ; else if (ALLOW_ARIA_ATTR && regExpTest(ARIA_ATTR, lcName)) ; else if (!ALLOWED_ATTR[lcName] || FORBID_ATTR[lcName]) {
+      if (
+      // First condition does a very basic check if a) it's basically a valid custom element tagname AND
+      // b) if the tagName passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
+      // and c) if the attribute name passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.attributeNameCheck
+      _isBasicCustomElement(lcTag) && (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, lcTag) || CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(lcTag)) && (CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.attributeNameCheck, lcName) || CUSTOM_ELEMENT_HANDLING.attributeNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.attributeNameCheck(lcName)) ||
+      // Alternative, second condition checks if it's an `is`-attribute, AND
+      // the value passes whatever the user has configured for CUSTOM_ELEMENT_HANDLING.tagNameCheck
+      lcName === 'is' && CUSTOM_ELEMENT_HANDLING.allowCustomizedBuiltInElements && (CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof RegExp && regExpTest(CUSTOM_ELEMENT_HANDLING.tagNameCheck, value) || CUSTOM_ELEMENT_HANDLING.tagNameCheck instanceof Function && CUSTOM_ELEMENT_HANDLING.tagNameCheck(value))) ; else {
+        return false;
+      }
+      /* Check value is safe. First, is attr inert? If so, is safe */
+    } else if (URI_SAFE_ATTRIBUTES[lcName]) ; else if (regExpTest(IS_ALLOWED_URI$1, stringReplace(value, ATTR_WHITESPACE, ''))) ; else if ((lcName === 'src' || lcName === 'xlink:href' || lcName === 'href') && lcTag !== 'script' && stringIndexOf(value, 'data:') === 0 && DATA_URI_TAGS[lcTag]) ; else if (ALLOW_UNKNOWN_PROTOCOLS && !regExpTest(IS_SCRIPT_OR_DATA, stringReplace(value, ATTR_WHITESPACE, ''))) ; else if (value) {
+      return false;
+    } else ;
+    return true;
+  };
+  /**
+   * _isBasicCustomElement
+   * checks if at least one dash is included in tagName, and it's not the first char
+   * for more sophisticated checking see https://github.com/sindresorhus/validate-element-name
+   *
+   * @param tagName name of the tag of the node to sanitize
+   * @returns Returns true if the tag name meets the basic criteria for a custom element, otherwise false.
+   */
+  const _isBasicCustomElement = function _isBasicCustomElement(tagName) {
+    return tagName !== 'annotation-xml' && stringMatch(tagName, CUSTOM_ELEMENT);
+  };
+  /**
+   * _sanitizeAttributes
+   *
+   * @protect attributes
+   * @protect nodeName
+   * @protect removeAttribute
+   * @protect setAttribute
+   *
+   * @param currentNode to sanitize
+   */
+  const _sanitizeAttributes = function _sanitizeAttributes(currentNode) {
+    /* Execute a hook if present */
+    _executeHooks(hooks.beforeSanitizeAttributes, currentNode, null);
+    const {
+      attributes
+    } = currentNode;
+    /* Check if we have attributes; if not we might have a text node */
+    if (!attributes || _isClobbered(currentNode)) {
+      return;
+    }
+    const hookEvent = {
+      attrName: '',
+      attrValue: '',
+      keepAttr: true,
+      allowedAttributes: ALLOWED_ATTR,
+      forceKeepAttr: undefined
+    };
+    let l = attributes.length;
+    /* Go backwards over all attributes; safely remove bad ones */
+    while (l--) {
+      const attr = attributes[l];
+      const {
+        name,
+        namespaceURI,
+        value: attrValue
+      } = attr;
+      const lcName = transformCaseFunc(name);
+      let value = name === 'value' ? attrValue : stringTrim(attrValue);
+      /* Execute a hook if present */
+      hookEvent.attrName = lcName;
+      hookEvent.attrValue = value;
+      hookEvent.keepAttr = true;
+      hookEvent.forceKeepAttr = undefined; // Allows developers to see this is a property they can set
+      _executeHooks(hooks.uponSanitizeAttribute, currentNode, hookEvent);
+      value = hookEvent.attrValue;
+      /* Full DOM Clobbering protection via namespace isolation,
+       * Prefix id and name attributes with `user-content-`
+       */
+      if (SANITIZE_NAMED_PROPS && (lcName === 'id' || lcName === 'name')) {
+        // Remove the attribute with this value
+        _removeAttribute(name, currentNode);
+        // Prefix the value and later re-create the attribute with the sanitized value
+        value = SANITIZE_NAMED_PROPS_PREFIX + value;
+      }
+      /* Work around a security issue with comments inside attributes */
+      if (SAFE_FOR_XML && regExpTest(/((--!?|])>)|<\/(style|title)/i, value)) {
+        _removeAttribute(name, currentNode);
+        continue;
+      }
+      /* Did the hooks approve of the attribute? */
+      if (hookEvent.forceKeepAttr) {
+        continue;
+      }
+      /* Remove attribute */
+      _removeAttribute(name, currentNode);
+      /* Did the hooks approve of the attribute? */
+      if (!hookEvent.keepAttr) {
+        continue;
+      }
+      /* Work around a security issue in jQuery 3.0 */
+      if (!ALLOW_SELF_CLOSE_IN_ATTR && regExpTest(/\/>/i, value)) {
+        _removeAttribute(name, currentNode);
+        continue;
+      }
+      /* Sanitize attribute content to be template-safe */
+      if (SAFE_FOR_TEMPLATES) {
+        arrayForEach([MUSTACHE_EXPR, ERB_EXPR, TMPLIT_EXPR], expr => {
+          value = stringReplace(value, expr, ' ');
+        });
+      }
+      /* Is `value` valid for this attribute? */
+      const lcTag = transformCaseFunc(currentNode.nodeName);
+      if (!_isValidAttribute(lcTag, lcName, value)) {
+        continue;
+      }
+      /* Handle attributes that require Trusted Types */
+      if (trustedTypesPolicy && typeof trustedTypes === 'object' && typeof trustedTypes.getAttributeType === 'function') {
+        if (namespaceURI) ; else {
+          switch (trustedTypes.getAttributeType(lcTag, lcName)) {
+            case 'TrustedHTML':
+              {
+                value = trustedTypesPolicy.createHTML(value);
+                break;
+              }
+            case 'TrustedScriptURL':
+              {
+                value = trustedTypesPolicy.createScriptURL(value);
+                break;
+              }
+          }
+        }
+      }
+      /* Handle invalid data-* attribute set by try-catching it */
+      try {
+        if (namespaceURI) {
+          currentNode.setAttributeNS(namespaceURI, name, value);
+        } else {
+          /* Fallback to setAttribute() for browser-unrecognized namespaces e.g. "x-schema". */
+          currentNode.setAttribute(name, value);
+        }
+        if (_isClobbered(currentNode)) {
+          _forceRemove(currentNode);
+        } else {
+          arrayPop(DOMPurify.removed);
+        }
+      } catch (_) {}
+    }
+    /* Execute a hook if present */
+    _executeHooks(hooks.afterSanitizeAttributes, currentNode, null);
+  };
+  /**
+   * _sanitizeShadowDOM
+   *
+   * @param fragment to iterate over recursively
+   */
+  const _sanitizeShadowDOM = function _sanitizeShadowDOM(fragment) {
+    let shadowNode = null;
+    const shadowIterator = _createNodeIterator(fragment);
+    /* Execute a hook if present */
+    _executeHooks(hooks.beforeSanitizeShadowDOM, fragment, null);
+    while (shadowNode = shadowIterator.nextNode()) {
+      /* Execute a hook if present */
+      _executeHooks(hooks.uponSanitizeShadowNode, shadowNode, null);
+      /* Sanitize tags and elements */
+      _sanitizeElements(shadowNode);
+      /* Check attributes next */
+      _sanitizeAttributes(shadowNode);
+      /* Deep shadow DOM detected */
+      if (shadowNode.content instanceof DocumentFragment) {
+        _sanitizeShadowDOM(shadowNode.content);
+      }
+    }
+    /* Execute a hook if present */
+    _executeHooks(hooks.afterSanitizeShadowDOM, fragment, null);
+  };
+  // eslint-disable-next-line complexity
+  DOMPurify.sanitize = function (dirty) {
+    let cfg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    let body = null;
+    let importedNode = null;
+    let currentNode = null;
+    let returnNode = null;
+    /* Make sure we have a string to sanitize.
+      DO NOT return early, as this will return the wrong type if
+      the user has requested a DOM object rather than a string */
+    IS_EMPTY_INPUT = !dirty;
+    if (IS_EMPTY_INPUT) {
+      dirty = '<!-->';
+    }
+    /* Stringify, in case dirty is an object */
+    if (typeof dirty !== 'string' && !_isNode(dirty)) {
+      if (typeof dirty.toString === 'function') {
+        dirty = dirty.toString();
+        if (typeof dirty !== 'string') {
+          throw typeErrorCreate('dirty is not a string, aborting');
+        }
+      } else {
+        throw typeErrorCreate('toString is not a function');
+      }
+    }
+    /* Return dirty HTML if DOMPurify cannot run */
+    if (!DOMPurify.isSupported) {
+      return dirty;
+    }
+    /* Assign config vars */
+    if (!SET_CONFIG) {
+      _parseConfig(cfg);
+    }
+    /* Clean up removed elements */
+    DOMPurify.removed = [];
+    /* Check if dirty is correctly typed for IN_PLACE */
+    if (typeof dirty === 'string') {
+      IN_PLACE = false;
+    }
+    if (IN_PLACE) {
+      /* Do some early pre-sanitization to avoid unsafe root nodes */
+      if (dirty.nodeName) {
+        const tagName = transformCaseFunc(dirty.nodeName);
+        if (!ALLOWED_TAGS[tagName] || FORBID_TAGS[tagName]) {
+          throw typeErrorCreate('root node is forbidden and cannot be sanitized in-place');
+        }
+      }
+    } else if (dirty instanceof Node) {
+      /* If dirty is a DOM element, append to an empty document to avoid
+         elements being stripped by the parser */
+      body = _initDocument('<!---->');
+      importedNode = body.ownerDocument.importNode(dirty, true);
+      if (importedNode.nodeType === NODE_TYPE.element && importedNode.nodeName === 'BODY') {
+        /* Node is already a body, use as is */
+        body = importedNode;
+      } else if (importedNode.nodeName === 'HTML') {
+        body = importedNode;
+      } else {
+        // eslint-disable-next-line unicorn/prefer-dom-node-append
+        body.appendChild(importedNode);
+      }
+    } else {
+      /* Exit directly if we have nothing to do */
+      if (!RETURN_DOM && !SAFE_FOR_TEMPLATES && !WHOLE_DOCUMENT &&
+      // eslint-disable-next-line unicorn/prefer-includes
+      dirty.indexOf('<') === -1) {
+        return trustedTypesPolicy && RETURN_TRUSTED_TYPE ? trustedTypesPolicy.createHTML(dirty) : dirty;
+      }
+      /* Initialize the document to work on */
+      body = _initDocument(dirty);
+      /* Check we have a DOM node from the data */
+      if (!body) {
+        return RETURN_DOM ? null : RETURN_TRUSTED_TYPE ? emptyHTML : '';
+      }
+    }
+    /* Remove first element node (ours) if FORCE_BODY is set */
+    if (body && FORCE_BODY) {
+      _forceRemove(body.firstChild);
+    }
+    /* Get node iterator */
+    const nodeIterator = _createNodeIterator(IN_PLACE ? dirty : body);
+    /* Now start iterating over the created document */
+    while (currentNode = nodeIterator.nextNode()) {
+      /* Sanitize tags and elements */
+      _sanitizeElements(currentNode);
+      /* Check attributes next */
+      _sanitizeAttributes(currentNode);
+      /* Shadow DOM detected, sanitize it */
+      if (currentNode.content instanceof DocumentFragment) {
+        _sanitizeShadowDOM(currentNode.content);
+      }
+    }
+    /* If we sanitized `dirty` in-place, return it. */
+    if (IN_PLACE) {
+      return dirty;
+    }
+    /* Return sanitized string or DOM */
+    if (RETURN_DOM) {
+      if (RETURN_DOM_FRAGMENT) {
+        returnNode = createDocumentFragment.call(body.ownerDocument);
+        while (body.firstChild) {
+          // eslint-disable-next-line unicorn/prefer-dom-node-append
+          returnNode.appendChild(body.firstChild);
+        }
+      } else {
+        returnNode = body;
+      }
+      if (ALLOWED_ATTR.shadowroot || ALLOWED_ATTR.shadowrootmode) {
+        /*
+          AdoptNode() is not used because internal state is not reset
+          (e.g. the past names map of a HTMLFormElement), this is safe
+          in theory but we would rather not risk another attack vector.
+          The state that is cloned by importNode() is explicitly defined
+          by the specs.
+        */
+        returnNode = importNode.call(originalDocument, returnNode, true);
+      }
+      return returnNode;
+    }
+    let serializedHTML = WHOLE_DOCUMENT ? body.outerHTML : body.innerHTML;
+    /* Serialize doctype if allowed */
+    if (WHOLE_DOCUMENT && ALLOWED_TAGS['!doctype'] && body.ownerDocument && body.ownerDocument.doctype && body.ownerDocument.doctype.name && regExpTest(DOCTYPE_NAME, body.ownerDocument.doctype.name)) {
+      serializedHTML = '<!DOCTYPE ' + body.ownerDocument.doctype.name + '>\n' + serializedHTML;
+    }
+    /* Sanitize final string template-safe */
+    if (SAFE_FOR_TEMPLATES) {
+      arrayForEach([MUSTACHE_EXPR, ERB_EXPR, TMPLIT_EXPR], expr => {
+        serializedHTML = stringReplace(serializedHTML, expr, ' ');
+      });
+    }
+    return trustedTypesPolicy && RETURN_TRUSTED_TYPE ? trustedTypesPolicy.createHTML(serializedHTML) : serializedHTML;
+  };
+  DOMPurify.setConfig = function () {
+    let cfg = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    _parseConfig(cfg);
+    SET_CONFIG = true;
+  };
+  DOMPurify.clearConfig = function () {
+    CONFIG = null;
+    SET_CONFIG = false;
+  };
+  DOMPurify.isValidAttribute = function (tag, attr, value) {
+    /* Initialize shared config vars if necessary. */
+    if (!CONFIG) {
+      _parseConfig({});
+    }
+    const lcTag = transformCaseFunc(tag);
+    const lcName = transformCaseFunc(attr);
+    return _isValidAttribute(lcTag, lcName, value);
+  };
+  DOMPurify.addHook = function (entryPoint, hookFunction) {
+    if (typeof hookFunction !== 'function') {
+      return;
+    }
+    arrayPush(hooks[entryPoint], hookFunction);
+  };
+  DOMPurify.removeHook = function (entryPoint) {
+    return arrayPop(hooks[entryPoint]);
+  };
+  DOMPurify.removeHooks = function (entryPoint) {
+    hooks[entryPoint] = [];
+  };
+  DOMPurify.removeAllHooks = function () {
+    hooks = _createHooksMap();
+  };
+  return DOMPurify;
+}
+var purify = createDOMPurify();
 
-  return purify;
-
-}));
-//# sourceMappingURL=purify.js.map
+module.exports = purify;
+//# sourceMappingURL=purify.cjs.js.map
 
 
 /***/ }),
@@ -55893,18 +56864,4527 @@ module.exports = {"application/andrew-inset":["ez"],"application/applixware":["a
 
 /***/ }),
 
-/***/ "../node_modules/mixpanel-browser/dist/mixpanel.cjs.js":
-/*!*************************************************************!*\
-  !*** ../node_modules/mixpanel-browser/dist/mixpanel.cjs.js ***!
-  \*************************************************************/
-/***/ ((module) => {
+/***/ "../node_modules/mixpanel-browser/dist/mixpanel.module.js":
+/*!****************************************************************!*\
+  !*** ../node_modules/mixpanel-browser/dist/mixpanel.module.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ mixpanel)
+/* harmony export */ });
+var NodeType;
+(function (NodeType) {
+    NodeType[NodeType["Document"] = 0] = "Document";
+    NodeType[NodeType["DocumentType"] = 1] = "DocumentType";
+    NodeType[NodeType["Element"] = 2] = "Element";
+    NodeType[NodeType["Text"] = 3] = "Text";
+    NodeType[NodeType["CDATA"] = 4] = "CDATA";
+    NodeType[NodeType["Comment"] = 5] = "Comment";
+})(NodeType || (NodeType = {}));
 
+function isElement(n) {
+    return n.nodeType === n.ELEMENT_NODE;
+}
+function isShadowRoot(n) {
+    const host = n === null || n === void 0 ? void 0 : n.host;
+    return Boolean((host === null || host === void 0 ? void 0 : host.shadowRoot) === n);
+}
+function isNativeShadowDom(shadowRoot) {
+    return Object.prototype.toString.call(shadowRoot) === '[object ShadowRoot]';
+}
+function fixBrowserCompatibilityIssuesInCSS(cssText) {
+    if (cssText.includes(' background-clip: text;') &&
+        !cssText.includes(' -webkit-background-clip: text;')) {
+        cssText = cssText.replace(' background-clip: text;', ' -webkit-background-clip: text; background-clip: text;');
+    }
+    return cssText;
+}
+function escapeImportStatement(rule) {
+    const { cssText } = rule;
+    if (cssText.split('"').length < 3)
+        return cssText;
+    const statement = ['@import', `url(${JSON.stringify(rule.href)})`];
+    if (rule.layerName === '') {
+        statement.push(`layer`);
+    }
+    else if (rule.layerName) {
+        statement.push(`layer(${rule.layerName})`);
+    }
+    if (rule.supportsText) {
+        statement.push(`supports(${rule.supportsText})`);
+    }
+    if (rule.media.length) {
+        statement.push(rule.media.mediaText);
+    }
+    return statement.join(' ') + ';';
+}
+function stringifyStylesheet(s) {
+    try {
+        const rules = s.rules || s.cssRules;
+        return rules
+            ? fixBrowserCompatibilityIssuesInCSS(Array.from(rules, stringifyRule).join(''))
+            : null;
+    }
+    catch (error) {
+        return null;
+    }
+}
+function stringifyRule(rule) {
+    let importStringified;
+    if (isCSSImportRule(rule)) {
+        try {
+            importStringified =
+                stringifyStylesheet(rule.styleSheet) ||
+                    escapeImportStatement(rule);
+        }
+        catch (error) {
+        }
+    }
+    else if (isCSSStyleRule(rule) && rule.selectorText.includes(':')) {
+        return fixSafariColons(rule.cssText);
+    }
+    return importStringified || rule.cssText;
+}
+function fixSafariColons(cssStringified) {
+    const regex = /(\[(?:[\w-]+)[^\\])(:(?:[\w-]+)\])/gm;
+    return cssStringified.replace(regex, '$1\\$2');
+}
+function isCSSImportRule(rule) {
+    return 'styleSheet' in rule;
+}
+function isCSSStyleRule(rule) {
+    return 'selectorText' in rule;
+}
+class Mirror {
+    constructor() {
+        this.idNodeMap = new Map();
+        this.nodeMetaMap = new WeakMap();
+    }
+    getId(n) {
+        var _a;
+        if (!n)
+            return -1;
+        const id = (_a = this.getMeta(n)) === null || _a === void 0 ? void 0 : _a.id;
+        return id !== null && id !== void 0 ? id : -1;
+    }
+    getNode(id) {
+        return this.idNodeMap.get(id) || null;
+    }
+    getIds() {
+        return Array.from(this.idNodeMap.keys());
+    }
+    getMeta(n) {
+        return this.nodeMetaMap.get(n) || null;
+    }
+    removeNodeFromMap(n) {
+        const id = this.getId(n);
+        this.idNodeMap.delete(id);
+        if (n.childNodes) {
+            n.childNodes.forEach((childNode) => this.removeNodeFromMap(childNode));
+        }
+    }
+    has(id) {
+        return this.idNodeMap.has(id);
+    }
+    hasNode(node) {
+        return this.nodeMetaMap.has(node);
+    }
+    add(n, meta) {
+        const id = meta.id;
+        this.idNodeMap.set(id, n);
+        this.nodeMetaMap.set(n, meta);
+    }
+    replace(id, n) {
+        const oldNode = this.getNode(id);
+        if (oldNode) {
+            const meta = this.nodeMetaMap.get(oldNode);
+            if (meta)
+                this.nodeMetaMap.set(n, meta);
+        }
+        this.idNodeMap.set(id, n);
+    }
+    reset() {
+        this.idNodeMap = new Map();
+        this.nodeMetaMap = new WeakMap();
+    }
+}
+function createMirror() {
+    return new Mirror();
+}
+function maskInputValue({ element, maskInputOptions, tagName, type, value, maskInputFn, }) {
+    let text = value || '';
+    const actualType = type && toLowerCase(type);
+    if (maskInputOptions[tagName.toLowerCase()] ||
+        (actualType && maskInputOptions[actualType])) {
+        if (maskInputFn) {
+            text = maskInputFn(text, element);
+        }
+        else {
+            text = '*'.repeat(text.length);
+        }
+    }
+    return text;
+}
+function toLowerCase(str) {
+    return str.toLowerCase();
+}
+const ORIGINAL_ATTRIBUTE_NAME = '__rrweb_original__';
+function is2DCanvasBlank(canvas) {
+    const ctx = canvas.getContext('2d');
+    if (!ctx)
+        return true;
+    const chunkSize = 50;
+    for (let x = 0; x < canvas.width; x += chunkSize) {
+        for (let y = 0; y < canvas.height; y += chunkSize) {
+            const getImageData = ctx.getImageData;
+            const originalGetImageData = ORIGINAL_ATTRIBUTE_NAME in getImageData
+                ? getImageData[ORIGINAL_ATTRIBUTE_NAME]
+                : getImageData;
+            const pixelBuffer = new Uint32Array(originalGetImageData.call(ctx, x, y, Math.min(chunkSize, canvas.width - x), Math.min(chunkSize, canvas.height - y)).data.buffer);
+            if (pixelBuffer.some((pixel) => pixel !== 0))
+                return false;
+        }
+    }
+    return true;
+}
+function getInputType(element) {
+    const type = element.type;
+    return element.hasAttribute('data-rr-is-password')
+        ? 'password'
+        : type
+            ?
+                toLowerCase(type)
+            : null;
+}
+function extractFileExtension(path, baseURL) {
+    var _a;
+    let url;
+    try {
+        url = new URL(path, baseURL !== null && baseURL !== void 0 ? baseURL : window.location.href);
+    }
+    catch (err) {
+        return null;
+    }
+    const regex = /\.([0-9a-z]+)(?:$)/i;
+    const match = url.pathname.match(regex);
+    return (_a = match === null || match === void 0 ? void 0 : match[1]) !== null && _a !== void 0 ? _a : null;
+}
+
+let _id = 1;
+const tagNameRegex = new RegExp('[^a-z0-9-_:]');
+const IGNORED_NODE = -2;
+function genId() {
+    return _id++;
+}
+function getValidTagName(element) {
+    if (element instanceof HTMLFormElement) {
+        return 'form';
+    }
+    const processedTagName = toLowerCase(element.tagName);
+    if (tagNameRegex.test(processedTagName)) {
+        return 'div';
+    }
+    return processedTagName;
+}
+function extractOrigin(url) {
+    let origin = '';
+    if (url.indexOf('//') > -1) {
+        origin = url.split('/').slice(0, 3).join('/');
+    }
+    else {
+        origin = url.split('/')[0];
+    }
+    origin = origin.split('?')[0];
+    return origin;
+}
+let canvasService;
+let canvasCtx;
+const URL_IN_CSS_REF = /url\((?:(')([^']*)'|(")(.*?)"|([^)]*))\)/gm;
+const URL_PROTOCOL_MATCH = /^(?:[a-z+]+:)?\/\//i;
+const URL_WWW_MATCH = /^www\..*/i;
+const DATA_URI = /^(data:)([^,]*),(.*)/i;
+function absoluteToStylesheet(cssText, href) {
+    return (cssText || '').replace(URL_IN_CSS_REF, (origin, quote1, path1, quote2, path2, path3) => {
+        const filePath = path1 || path2 || path3;
+        const maybeQuote = quote1 || quote2 || '';
+        if (!filePath) {
+            return origin;
+        }
+        if (URL_PROTOCOL_MATCH.test(filePath) || URL_WWW_MATCH.test(filePath)) {
+            return `url(${maybeQuote}${filePath}${maybeQuote})`;
+        }
+        if (DATA_URI.test(filePath)) {
+            return `url(${maybeQuote}${filePath}${maybeQuote})`;
+        }
+        if (filePath[0] === '/') {
+            return `url(${maybeQuote}${extractOrigin(href) + filePath}${maybeQuote})`;
+        }
+        const stack = href.split('/');
+        const parts = filePath.split('/');
+        stack.pop();
+        for (const part of parts) {
+            if (part === '.') {
+                continue;
+            }
+            else if (part === '..') {
+                stack.pop();
+            }
+            else {
+                stack.push(part);
+            }
+        }
+        return `url(${maybeQuote}${stack.join('/')}${maybeQuote})`;
+    });
+}
+const SRCSET_NOT_SPACES = /^[^ \t\n\r\u000c]+/;
+const SRCSET_COMMAS_OR_SPACES = /^[, \t\n\r\u000c]+/;
+function getAbsoluteSrcsetString(doc, attributeValue) {
+    if (attributeValue.trim() === '') {
+        return attributeValue;
+    }
+    let pos = 0;
+    function collectCharacters(regEx) {
+        let chars;
+        const match = regEx.exec(attributeValue.substring(pos));
+        if (match) {
+            chars = match[0];
+            pos += chars.length;
+            return chars;
+        }
+        return '';
+    }
+    const output = [];
+    while (true) {
+        collectCharacters(SRCSET_COMMAS_OR_SPACES);
+        if (pos >= attributeValue.length) {
+            break;
+        }
+        let url = collectCharacters(SRCSET_NOT_SPACES);
+        if (url.slice(-1) === ',') {
+            url = absoluteToDoc(doc, url.substring(0, url.length - 1));
+            output.push(url);
+        }
+        else {
+            let descriptorsStr = '';
+            url = absoluteToDoc(doc, url);
+            let inParens = false;
+            while (true) {
+                const c = attributeValue.charAt(pos);
+                if (c === '') {
+                    output.push((url + descriptorsStr).trim());
+                    break;
+                }
+                else if (!inParens) {
+                    if (c === ',') {
+                        pos += 1;
+                        output.push((url + descriptorsStr).trim());
+                        break;
+                    }
+                    else if (c === '(') {
+                        inParens = true;
+                    }
+                }
+                else {
+                    if (c === ')') {
+                        inParens = false;
+                    }
+                }
+                descriptorsStr += c;
+                pos += 1;
+            }
+        }
+    }
+    return output.join(', ');
+}
+function absoluteToDoc(doc, attributeValue) {
+    if (!attributeValue || attributeValue.trim() === '') {
+        return attributeValue;
+    }
+    const a = doc.createElement('a');
+    a.href = attributeValue;
+    return a.href;
+}
+function isSVGElement(el) {
+    return Boolean(el.tagName === 'svg' || el.ownerSVGElement);
+}
+function getHref() {
+    const a = document.createElement('a');
+    a.href = '';
+    return a.href;
+}
+function transformAttribute(doc, tagName, name, value) {
+    if (!value) {
+        return value;
+    }
+    if (name === 'src' ||
+        (name === 'href' && !(tagName === 'use' && value[0] === '#'))) {
+        return absoluteToDoc(doc, value);
+    }
+    else if (name === 'xlink:href' && value[0] !== '#') {
+        return absoluteToDoc(doc, value);
+    }
+    else if (name === 'background' &&
+        (tagName === 'table' || tagName === 'td' || tagName === 'th')) {
+        return absoluteToDoc(doc, value);
+    }
+    else if (name === 'srcset') {
+        return getAbsoluteSrcsetString(doc, value);
+    }
+    else if (name === 'style') {
+        return absoluteToStylesheet(value, getHref());
+    }
+    else if (tagName === 'object' && name === 'data') {
+        return absoluteToDoc(doc, value);
+    }
+    return value;
+}
+function ignoreAttribute(tagName, name, _value) {
+    return (tagName === 'video' || tagName === 'audio') && name === 'autoplay';
+}
+function _isBlockedElement(element, blockClass, blockSelector) {
+    try {
+        if (typeof blockClass === 'string') {
+            if (element.classList.contains(blockClass)) {
+                return true;
+            }
+        }
+        else {
+            for (let eIndex = element.classList.length; eIndex--;) {
+                const className = element.classList[eIndex];
+                if (blockClass.test(className)) {
+                    return true;
+                }
+            }
+        }
+        if (blockSelector) {
+            return element.matches(blockSelector);
+        }
+    }
+    catch (e) {
+    }
+    return false;
+}
+function classMatchesRegex(node, regex, checkAncestors) {
+    if (!node)
+        return false;
+    if (node.nodeType !== node.ELEMENT_NODE) {
+        if (!checkAncestors)
+            return false;
+        return classMatchesRegex(node.parentNode, regex, checkAncestors);
+    }
+    for (let eIndex = node.classList.length; eIndex--;) {
+        const className = node.classList[eIndex];
+        if (regex.test(className)) {
+            return true;
+        }
+    }
+    if (!checkAncestors)
+        return false;
+    return classMatchesRegex(node.parentNode, regex, checkAncestors);
+}
+function needMaskingText(node, maskTextClass, maskTextSelector, checkAncestors) {
+    try {
+        const el = node.nodeType === node.ELEMENT_NODE
+            ? node
+            : node.parentElement;
+        if (el === null)
+            return false;
+        if (typeof maskTextClass === 'string') {
+            if (checkAncestors) {
+                if (el.closest(`.${maskTextClass}`))
+                    return true;
+            }
+            else {
+                if (el.classList.contains(maskTextClass))
+                    return true;
+            }
+        }
+        else {
+            if (classMatchesRegex(el, maskTextClass, checkAncestors))
+                return true;
+        }
+        if (maskTextSelector) {
+            if (checkAncestors) {
+                if (el.closest(maskTextSelector))
+                    return true;
+            }
+            else {
+                if (el.matches(maskTextSelector))
+                    return true;
+            }
+        }
+    }
+    catch (e) {
+    }
+    return false;
+}
+function onceIframeLoaded(iframeEl, listener, iframeLoadTimeout) {
+    const win = iframeEl.contentWindow;
+    if (!win) {
+        return;
+    }
+    let fired = false;
+    let readyState;
+    try {
+        readyState = win.document.readyState;
+    }
+    catch (error) {
+        return;
+    }
+    if (readyState !== 'complete') {
+        const timer = setTimeout(() => {
+            if (!fired) {
+                listener();
+                fired = true;
+            }
+        }, iframeLoadTimeout);
+        iframeEl.addEventListener('load', () => {
+            clearTimeout(timer);
+            fired = true;
+            listener();
+        });
+        return;
+    }
+    const blankUrl = 'about:blank';
+    if (win.location.href !== blankUrl ||
+        iframeEl.src === blankUrl ||
+        iframeEl.src === '') {
+        setTimeout(listener, 0);
+        return iframeEl.addEventListener('load', listener);
+    }
+    iframeEl.addEventListener('load', listener);
+}
+function onceStylesheetLoaded(link, listener, styleSheetLoadTimeout) {
+    let fired = false;
+    let styleSheetLoaded;
+    try {
+        styleSheetLoaded = link.sheet;
+    }
+    catch (error) {
+        return;
+    }
+    if (styleSheetLoaded)
+        return;
+    const timer = setTimeout(() => {
+        if (!fired) {
+            listener();
+            fired = true;
+        }
+    }, styleSheetLoadTimeout);
+    link.addEventListener('load', () => {
+        clearTimeout(timer);
+        fired = true;
+        listener();
+    });
+}
+function serializeNode(n, options) {
+    const { doc, mirror, blockClass, blockSelector, needsMask, inlineStylesheet, maskInputOptions = {}, maskTextFn, maskInputFn, dataURLOptions = {}, inlineImages, recordCanvas, keepIframeSrcFn, newlyAddedElement = false, } = options;
+    const rootId = getRootId(doc, mirror);
+    switch (n.nodeType) {
+        case n.DOCUMENT_NODE:
+            if (n.compatMode !== 'CSS1Compat') {
+                return {
+                    type: NodeType.Document,
+                    childNodes: [],
+                    compatMode: n.compatMode,
+                };
+            }
+            else {
+                return {
+                    type: NodeType.Document,
+                    childNodes: [],
+                };
+            }
+        case n.DOCUMENT_TYPE_NODE:
+            return {
+                type: NodeType.DocumentType,
+                name: n.name,
+                publicId: n.publicId,
+                systemId: n.systemId,
+                rootId,
+            };
+        case n.ELEMENT_NODE:
+            return serializeElementNode(n, {
+                doc,
+                blockClass,
+                blockSelector,
+                inlineStylesheet,
+                maskInputOptions,
+                maskInputFn,
+                dataURLOptions,
+                inlineImages,
+                recordCanvas,
+                keepIframeSrcFn,
+                newlyAddedElement,
+                rootId,
+            });
+        case n.TEXT_NODE:
+            return serializeTextNode(n, {
+                needsMask,
+                maskTextFn,
+                rootId,
+            });
+        case n.CDATA_SECTION_NODE:
+            return {
+                type: NodeType.CDATA,
+                textContent: '',
+                rootId,
+            };
+        case n.COMMENT_NODE:
+            return {
+                type: NodeType.Comment,
+                textContent: n.textContent || '',
+                rootId,
+            };
+        default:
+            return false;
+    }
+}
+function getRootId(doc, mirror) {
+    if (!mirror.hasNode(doc))
+        return undefined;
+    const docId = mirror.getId(doc);
+    return docId === 1 ? undefined : docId;
+}
+function serializeTextNode(n, options) {
+    var _a;
+    const { needsMask, maskTextFn, rootId } = options;
+    const parentTagName = n.parentNode && n.parentNode.tagName;
+    let textContent = n.textContent;
+    const isStyle = parentTagName === 'STYLE' ? true : undefined;
+    const isScript = parentTagName === 'SCRIPT' ? true : undefined;
+    if (isStyle && textContent) {
+        try {
+            if (n.nextSibling || n.previousSibling) {
+            }
+            else if ((_a = n.parentNode.sheet) === null || _a === void 0 ? void 0 : _a.cssRules) {
+                textContent = stringifyStylesheet(n.parentNode.sheet);
+            }
+        }
+        catch (err) {
+            console.warn(`Cannot get CSS styles from text's parentNode. Error: ${err}`, n);
+        }
+        textContent = absoluteToStylesheet(textContent, getHref());
+    }
+    if (isScript) {
+        textContent = 'SCRIPT_PLACEHOLDER';
+    }
+    if (!isStyle && !isScript && textContent && needsMask) {
+        textContent = maskTextFn
+            ? maskTextFn(textContent, n.parentElement)
+            : textContent.replace(/[\S]/g, '*');
+    }
+    return {
+        type: NodeType.Text,
+        textContent: textContent || '',
+        isStyle,
+        rootId,
+    };
+}
+function serializeElementNode(n, options) {
+    const { doc, blockClass, blockSelector, inlineStylesheet, maskInputOptions = {}, maskInputFn, dataURLOptions = {}, inlineImages, recordCanvas, keepIframeSrcFn, newlyAddedElement = false, rootId, } = options;
+    const needBlock = _isBlockedElement(n, blockClass, blockSelector);
+    const tagName = getValidTagName(n);
+    let attributes = {};
+    const len = n.attributes.length;
+    for (let i = 0; i < len; i++) {
+        const attr = n.attributes[i];
+        if (!ignoreAttribute(tagName, attr.name, attr.value)) {
+            attributes[attr.name] = transformAttribute(doc, tagName, toLowerCase(attr.name), attr.value);
+        }
+    }
+    if (tagName === 'link' && inlineStylesheet) {
+        const stylesheet = Array.from(doc.styleSheets).find((s) => {
+            return s.href === n.href;
+        });
+        let cssText = null;
+        if (stylesheet) {
+            cssText = stringifyStylesheet(stylesheet);
+        }
+        if (cssText) {
+            delete attributes.rel;
+            delete attributes.href;
+            attributes._cssText = absoluteToStylesheet(cssText, stylesheet.href);
+        }
+    }
+    if (tagName === 'style' &&
+        n.sheet &&
+        !(n.innerText || n.textContent || '').trim().length) {
+        const cssText = stringifyStylesheet(n.sheet);
+        if (cssText) {
+            attributes._cssText = absoluteToStylesheet(cssText, getHref());
+        }
+    }
+    if (tagName === 'input' || tagName === 'textarea' || tagName === 'select') {
+        const value = n.value;
+        const checked = n.checked;
+        if (attributes.type !== 'radio' &&
+            attributes.type !== 'checkbox' &&
+            attributes.type !== 'submit' &&
+            attributes.type !== 'button' &&
+            value) {
+            attributes.value = maskInputValue({
+                element: n,
+                type: getInputType(n),
+                tagName,
+                value,
+                maskInputOptions,
+                maskInputFn,
+            });
+        }
+        else if (checked) {
+            attributes.checked = checked;
+        }
+    }
+    if (tagName === 'option') {
+        if (n.selected && !maskInputOptions['select']) {
+            attributes.selected = true;
+        }
+        else {
+            delete attributes.selected;
+        }
+    }
+    if (tagName === 'canvas' && recordCanvas) {
+        if (n.__context === '2d') {
+            if (!is2DCanvasBlank(n)) {
+                attributes.rr_dataURL = n.toDataURL(dataURLOptions.type, dataURLOptions.quality);
+            }
+        }
+        else if (!('__context' in n)) {
+            const canvasDataURL = n.toDataURL(dataURLOptions.type, dataURLOptions.quality);
+            const blankCanvas = document.createElement('canvas');
+            blankCanvas.width = n.width;
+            blankCanvas.height = n.height;
+            const blankCanvasDataURL = blankCanvas.toDataURL(dataURLOptions.type, dataURLOptions.quality);
+            if (canvasDataURL !== blankCanvasDataURL) {
+                attributes.rr_dataURL = canvasDataURL;
+            }
+        }
+    }
+    if (tagName === 'img' && inlineImages) {
+        if (!canvasService) {
+            canvasService = doc.createElement('canvas');
+            canvasCtx = canvasService.getContext('2d');
+        }
+        const image = n;
+        const oldValue = image.crossOrigin;
+        image.crossOrigin = 'anonymous';
+        const recordInlineImage = () => {
+            image.removeEventListener('load', recordInlineImage);
+            try {
+                canvasService.width = image.naturalWidth;
+                canvasService.height = image.naturalHeight;
+                canvasCtx.drawImage(image, 0, 0);
+                attributes.rr_dataURL = canvasService.toDataURL(dataURLOptions.type, dataURLOptions.quality);
+            }
+            catch (err) {
+                console.warn(`Cannot inline img src=${image.currentSrc}! Error: ${err}`);
+            }
+            oldValue
+                ? (attributes.crossOrigin = oldValue)
+                : image.removeAttribute('crossorigin');
+        };
+        if (image.complete && image.naturalWidth !== 0)
+            recordInlineImage();
+        else
+            image.addEventListener('load', recordInlineImage);
+    }
+    if (tagName === 'audio' || tagName === 'video') {
+        const mediaAttributes = attributes;
+        mediaAttributes.rr_mediaState = n.paused
+            ? 'paused'
+            : 'played';
+        mediaAttributes.rr_mediaCurrentTime = n.currentTime;
+        mediaAttributes.rr_mediaPlaybackRate = n.playbackRate;
+        mediaAttributes.rr_mediaMuted = n.muted;
+        mediaAttributes.rr_mediaLoop = n.loop;
+        mediaAttributes.rr_mediaVolume = n.volume;
+    }
+    if (!newlyAddedElement) {
+        if (n.scrollLeft) {
+            attributes.rr_scrollLeft = n.scrollLeft;
+        }
+        if (n.scrollTop) {
+            attributes.rr_scrollTop = n.scrollTop;
+        }
+    }
+    if (needBlock) {
+        const { width, height } = n.getBoundingClientRect();
+        attributes = {
+            class: attributes.class,
+            rr_width: `${width}px`,
+            rr_height: `${height}px`,
+        };
+    }
+    if (tagName === 'iframe' && !keepIframeSrcFn(attributes.src)) {
+        if (!n.contentDocument) {
+            attributes.rr_src = attributes.src;
+        }
+        delete attributes.src;
+    }
+    let isCustomElement;
+    try {
+        if (customElements.get(tagName))
+            isCustomElement = true;
+    }
+    catch (e) {
+    }
+    return {
+        type: NodeType.Element,
+        tagName,
+        attributes,
+        childNodes: [],
+        isSVG: isSVGElement(n) || undefined,
+        needBlock,
+        rootId,
+        isCustom: isCustomElement,
+    };
+}
+function lowerIfExists(maybeAttr) {
+    if (maybeAttr === undefined || maybeAttr === null) {
+        return '';
+    }
+    else {
+        return maybeAttr.toLowerCase();
+    }
+}
+function slimDOMExcluded(sn, slimDOMOptions) {
+    if (slimDOMOptions.comment && sn.type === NodeType.Comment) {
+        return true;
+    }
+    else if (sn.type === NodeType.Element) {
+        if (slimDOMOptions.script &&
+            (sn.tagName === 'script' ||
+                (sn.tagName === 'link' &&
+                    (sn.attributes.rel === 'preload' ||
+                        sn.attributes.rel === 'modulepreload') &&
+                    sn.attributes.as === 'script') ||
+                (sn.tagName === 'link' &&
+                    sn.attributes.rel === 'prefetch' &&
+                    typeof sn.attributes.href === 'string' &&
+                    extractFileExtension(sn.attributes.href) === 'js'))) {
+            return true;
+        }
+        else if (slimDOMOptions.headFavicon &&
+            ((sn.tagName === 'link' && sn.attributes.rel === 'shortcut icon') ||
+                (sn.tagName === 'meta' &&
+                    (lowerIfExists(sn.attributes.name).match(/^msapplication-tile(image|color)$/) ||
+                        lowerIfExists(sn.attributes.name) === 'application-name' ||
+                        lowerIfExists(sn.attributes.rel) === 'icon' ||
+                        lowerIfExists(sn.attributes.rel) === 'apple-touch-icon' ||
+                        lowerIfExists(sn.attributes.rel) === 'shortcut icon')))) {
+            return true;
+        }
+        else if (sn.tagName === 'meta') {
+            if (slimDOMOptions.headMetaDescKeywords &&
+                lowerIfExists(sn.attributes.name).match(/^description|keywords$/)) {
+                return true;
+            }
+            else if (slimDOMOptions.headMetaSocial &&
+                (lowerIfExists(sn.attributes.property).match(/^(og|twitter|fb):/) ||
+                    lowerIfExists(sn.attributes.name).match(/^(og|twitter):/) ||
+                    lowerIfExists(sn.attributes.name) === 'pinterest')) {
+                return true;
+            }
+            else if (slimDOMOptions.headMetaRobots &&
+                (lowerIfExists(sn.attributes.name) === 'robots' ||
+                    lowerIfExists(sn.attributes.name) === 'googlebot' ||
+                    lowerIfExists(sn.attributes.name) === 'bingbot')) {
+                return true;
+            }
+            else if (slimDOMOptions.headMetaHttpEquiv &&
+                sn.attributes['http-equiv'] !== undefined) {
+                return true;
+            }
+            else if (slimDOMOptions.headMetaAuthorship &&
+                (lowerIfExists(sn.attributes.name) === 'author' ||
+                    lowerIfExists(sn.attributes.name) === 'generator' ||
+                    lowerIfExists(sn.attributes.name) === 'framework' ||
+                    lowerIfExists(sn.attributes.name) === 'publisher' ||
+                    lowerIfExists(sn.attributes.name) === 'progid' ||
+                    lowerIfExists(sn.attributes.property).match(/^article:/) ||
+                    lowerIfExists(sn.attributes.property).match(/^product:/))) {
+                return true;
+            }
+            else if (slimDOMOptions.headMetaVerification &&
+                (lowerIfExists(sn.attributes.name) === 'google-site-verification' ||
+                    lowerIfExists(sn.attributes.name) === 'yandex-verification' ||
+                    lowerIfExists(sn.attributes.name) === 'csrf-token' ||
+                    lowerIfExists(sn.attributes.name) === 'p:domain_verify' ||
+                    lowerIfExists(sn.attributes.name) === 'verify-v1' ||
+                    lowerIfExists(sn.attributes.name) === 'verification' ||
+                    lowerIfExists(sn.attributes.name) === 'shopify-checkout-api-token')) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+function serializeNodeWithId(n, options) {
+    const { doc, mirror, blockClass, blockSelector, maskTextClass, maskTextSelector, skipChild = false, inlineStylesheet = true, maskInputOptions = {}, maskTextFn, maskInputFn, slimDOMOptions, dataURLOptions = {}, inlineImages = false, recordCanvas = false, onSerialize, onIframeLoad, iframeLoadTimeout = 5000, onStylesheetLoad, stylesheetLoadTimeout = 5000, keepIframeSrcFn = () => false, newlyAddedElement = false, } = options;
+    let { needsMask } = options;
+    let { preserveWhiteSpace = true } = options;
+    if (!needsMask &&
+        n.childNodes) {
+        const checkAncestors = needsMask === undefined;
+        needsMask = needMaskingText(n, maskTextClass, maskTextSelector, checkAncestors);
+    }
+    const _serializedNode = serializeNode(n, {
+        doc,
+        mirror,
+        blockClass,
+        blockSelector,
+        needsMask,
+        inlineStylesheet,
+        maskInputOptions,
+        maskTextFn,
+        maskInputFn,
+        dataURLOptions,
+        inlineImages,
+        recordCanvas,
+        keepIframeSrcFn,
+        newlyAddedElement,
+    });
+    if (!_serializedNode) {
+        console.warn(n, 'not serialized');
+        return null;
+    }
+    let id;
+    if (mirror.hasNode(n)) {
+        id = mirror.getId(n);
+    }
+    else if (slimDOMExcluded(_serializedNode, slimDOMOptions) ||
+        (!preserveWhiteSpace &&
+            _serializedNode.type === NodeType.Text &&
+            !_serializedNode.isStyle &&
+            !_serializedNode.textContent.replace(/^\s+|\s+$/gm, '').length)) {
+        id = IGNORED_NODE;
+    }
+    else {
+        id = genId();
+    }
+    const serializedNode = Object.assign(_serializedNode, { id });
+    mirror.add(n, serializedNode);
+    if (id === IGNORED_NODE) {
+        return null;
+    }
+    if (onSerialize) {
+        onSerialize(n);
+    }
+    let recordChild = !skipChild;
+    if (serializedNode.type === NodeType.Element) {
+        recordChild = recordChild && !serializedNode.needBlock;
+        delete serializedNode.needBlock;
+        const shadowRoot = n.shadowRoot;
+        if (shadowRoot && isNativeShadowDom(shadowRoot))
+            serializedNode.isShadowHost = true;
+    }
+    if ((serializedNode.type === NodeType.Document ||
+        serializedNode.type === NodeType.Element) &&
+        recordChild) {
+        if (slimDOMOptions.headWhitespace &&
+            serializedNode.type === NodeType.Element &&
+            serializedNode.tagName === 'head') {
+            preserveWhiteSpace = false;
+        }
+        const bypassOptions = {
+            doc,
+            mirror,
+            blockClass,
+            blockSelector,
+            needsMask,
+            maskTextClass,
+            maskTextSelector,
+            skipChild,
+            inlineStylesheet,
+            maskInputOptions,
+            maskTextFn,
+            maskInputFn,
+            slimDOMOptions,
+            dataURLOptions,
+            inlineImages,
+            recordCanvas,
+            preserveWhiteSpace,
+            onSerialize,
+            onIframeLoad,
+            iframeLoadTimeout,
+            onStylesheetLoad,
+            stylesheetLoadTimeout,
+            keepIframeSrcFn,
+        };
+        if (serializedNode.type === NodeType.Element &&
+            serializedNode.tagName === 'textarea' &&
+            serializedNode.attributes.value !== undefined) ;
+        else {
+            for (const childN of Array.from(n.childNodes)) {
+                const serializedChildNode = serializeNodeWithId(childN, bypassOptions);
+                if (serializedChildNode) {
+                    serializedNode.childNodes.push(serializedChildNode);
+                }
+            }
+        }
+        if (isElement(n) && n.shadowRoot) {
+            for (const childN of Array.from(n.shadowRoot.childNodes)) {
+                const serializedChildNode = serializeNodeWithId(childN, bypassOptions);
+                if (serializedChildNode) {
+                    isNativeShadowDom(n.shadowRoot) &&
+                        (serializedChildNode.isShadow = true);
+                    serializedNode.childNodes.push(serializedChildNode);
+                }
+            }
+        }
+    }
+    if (n.parentNode &&
+        isShadowRoot(n.parentNode) &&
+        isNativeShadowDom(n.parentNode)) {
+        serializedNode.isShadow = true;
+    }
+    if (serializedNode.type === NodeType.Element &&
+        serializedNode.tagName === 'iframe') {
+        onceIframeLoaded(n, () => {
+            const iframeDoc = n.contentDocument;
+            if (iframeDoc && onIframeLoad) {
+                const serializedIframeNode = serializeNodeWithId(iframeDoc, {
+                    doc: iframeDoc,
+                    mirror,
+                    blockClass,
+                    blockSelector,
+                    needsMask,
+                    maskTextClass,
+                    maskTextSelector,
+                    skipChild: false,
+                    inlineStylesheet,
+                    maskInputOptions,
+                    maskTextFn,
+                    maskInputFn,
+                    slimDOMOptions,
+                    dataURLOptions,
+                    inlineImages,
+                    recordCanvas,
+                    preserveWhiteSpace,
+                    onSerialize,
+                    onIframeLoad,
+                    iframeLoadTimeout,
+                    onStylesheetLoad,
+                    stylesheetLoadTimeout,
+                    keepIframeSrcFn,
+                });
+                if (serializedIframeNode) {
+                    onIframeLoad(n, serializedIframeNode);
+                }
+            }
+        }, iframeLoadTimeout);
+    }
+    if (serializedNode.type === NodeType.Element &&
+        serializedNode.tagName === 'link' &&
+        typeof serializedNode.attributes.rel === 'string' &&
+        (serializedNode.attributes.rel === 'stylesheet' ||
+            (serializedNode.attributes.rel === 'preload' &&
+                typeof serializedNode.attributes.href === 'string' &&
+                extractFileExtension(serializedNode.attributes.href) === 'css'))) {
+        onceStylesheetLoaded(n, () => {
+            if (onStylesheetLoad) {
+                const serializedLinkNode = serializeNodeWithId(n, {
+                    doc,
+                    mirror,
+                    blockClass,
+                    blockSelector,
+                    needsMask,
+                    maskTextClass,
+                    maskTextSelector,
+                    skipChild: false,
+                    inlineStylesheet,
+                    maskInputOptions,
+                    maskTextFn,
+                    maskInputFn,
+                    slimDOMOptions,
+                    dataURLOptions,
+                    inlineImages,
+                    recordCanvas,
+                    preserveWhiteSpace,
+                    onSerialize,
+                    onIframeLoad,
+                    iframeLoadTimeout,
+                    onStylesheetLoad,
+                    stylesheetLoadTimeout,
+                    keepIframeSrcFn,
+                });
+                if (serializedLinkNode) {
+                    onStylesheetLoad(n, serializedLinkNode);
+                }
+            }
+        }, stylesheetLoadTimeout);
+    }
+    return serializedNode;
+}
+function snapshot(n, options) {
+    const { mirror = new Mirror(), blockClass = 'rr-block', blockSelector = null, maskTextClass = 'rr-mask', maskTextSelector = null, inlineStylesheet = true, inlineImages = false, recordCanvas = false, maskAllInputs = false, maskTextFn, maskInputFn, slimDOM = false, dataURLOptions, preserveWhiteSpace, onSerialize, onIframeLoad, iframeLoadTimeout, onStylesheetLoad, stylesheetLoadTimeout, keepIframeSrcFn = () => false, } = options || {};
+    const maskInputOptions = maskAllInputs === true
+        ? {
+            color: true,
+            date: true,
+            'datetime-local': true,
+            email: true,
+            month: true,
+            number: true,
+            range: true,
+            search: true,
+            tel: true,
+            text: true,
+            time: true,
+            url: true,
+            week: true,
+            textarea: true,
+            select: true,
+            password: true,
+        }
+        : maskAllInputs === false
+            ? {
+                password: true,
+            }
+            : maskAllInputs;
+    const slimDOMOptions = slimDOM === true || slimDOM === 'all'
+        ?
+            {
+                script: true,
+                comment: true,
+                headFavicon: true,
+                headWhitespace: true,
+                headMetaDescKeywords: slimDOM === 'all',
+                headMetaSocial: true,
+                headMetaRobots: true,
+                headMetaHttpEquiv: true,
+                headMetaAuthorship: true,
+                headMetaVerification: true,
+            }
+        : slimDOM === false
+            ? {}
+            : slimDOM;
+    return serializeNodeWithId(n, {
+        doc: n,
+        mirror,
+        blockClass,
+        blockSelector,
+        maskTextClass,
+        maskTextSelector,
+        skipChild: false,
+        inlineStylesheet,
+        maskInputOptions,
+        maskTextFn,
+        maskInputFn,
+        slimDOMOptions,
+        dataURLOptions,
+        inlineImages,
+        recordCanvas,
+        preserveWhiteSpace,
+        onSerialize,
+        onIframeLoad,
+        iframeLoadTimeout,
+        onStylesheetLoad,
+        stylesheetLoadTimeout,
+        keepIframeSrcFn,
+        newlyAddedElement: false,
+    });
+}
+
+function on(type, fn, target = document) {
+    const options = { capture: true, passive: true };
+    target.addEventListener(type, fn, options);
+    return () => target.removeEventListener(type, fn, options);
+}
+const DEPARTED_MIRROR_ACCESS_WARNING = 'Please stop import mirror directly. Instead of that,' +
+    '\r\n' +
+    'now you can use replayer.getMirror() to access the mirror instance of a replayer,' +
+    '\r\n' +
+    'or you can use record.mirror to access the mirror instance during recording.';
+let _mirror = {
+    map: {},
+    getId() {
+        console.error(DEPARTED_MIRROR_ACCESS_WARNING);
+        return -1;
+    },
+    getNode() {
+        console.error(DEPARTED_MIRROR_ACCESS_WARNING);
+        return null;
+    },
+    removeNodeFromMap() {
+        console.error(DEPARTED_MIRROR_ACCESS_WARNING);
+    },
+    has() {
+        console.error(DEPARTED_MIRROR_ACCESS_WARNING);
+        return false;
+    },
+    reset() {
+        console.error(DEPARTED_MIRROR_ACCESS_WARNING);
+    },
+};
+if (typeof window !== 'undefined' && window.Proxy && window.Reflect) {
+    _mirror = new Proxy(_mirror, {
+        get(target, prop, receiver) {
+            if (prop === 'map') {
+                console.error(DEPARTED_MIRROR_ACCESS_WARNING);
+            }
+            return Reflect.get(target, prop, receiver);
+        },
+    });
+}
+function throttle(func, wait, options = {}) {
+    let timeout = null;
+    let previous = 0;
+    return function (...args) {
+        const now = Date.now();
+        if (!previous && options.leading === false) {
+            previous = now;
+        }
+        const remaining = wait - (now - previous);
+        const context = this;
+        if (remaining <= 0 || remaining > wait) {
+            if (timeout) {
+                clearTimeout(timeout);
+                timeout = null;
+            }
+            previous = now;
+            func.apply(context, args);
+        }
+        else if (!timeout && options.trailing !== false) {
+            timeout = setTimeout(() => {
+                previous = options.leading === false ? 0 : Date.now();
+                timeout = null;
+                func.apply(context, args);
+            }, remaining);
+        }
+    };
+}
+function hookSetter(target, key, d, isRevoked, win = window) {
+    const original = win.Object.getOwnPropertyDescriptor(target, key);
+    win.Object.defineProperty(target, key, isRevoked
+        ? d
+        : {
+            set(value) {
+                setTimeout(() => {
+                    d.set.call(this, value);
+                }, 0);
+                if (original && original.set) {
+                    original.set.call(this, value);
+                }
+            },
+        });
+    return () => hookSetter(target, key, original || {}, true);
+}
+function patch(source, name, replacement) {
+    try {
+        if (!(name in source)) {
+            return () => {
+            };
+        }
+        const original = source[name];
+        const wrapped = replacement(original);
+        if (typeof wrapped === 'function') {
+            wrapped.prototype = wrapped.prototype || {};
+            Object.defineProperties(wrapped, {
+                __rrweb_original__: {
+                    enumerable: false,
+                    value: original,
+                },
+            });
+        }
+        source[name] = wrapped;
+        return () => {
+            source[name] = original;
+        };
+    }
+    catch (_a) {
+        return () => {
+        };
+    }
+}
+let nowTimestamp = Date.now;
+if (!(/[1-9][0-9]{12}/.test(Date.now().toString()))) {
+    nowTimestamp = () => new Date().getTime();
+}
+function getWindowScroll(win) {
+    var _a, _b, _c, _d, _e, _f;
+    const doc = win.document;
+    return {
+        left: doc.scrollingElement
+            ? doc.scrollingElement.scrollLeft
+            : win.pageXOffset !== undefined
+                ? win.pageXOffset
+                : (doc === null || doc === void 0 ? void 0 : doc.documentElement.scrollLeft) ||
+                    ((_b = (_a = doc === null || doc === void 0 ? void 0 : doc.body) === null || _a === void 0 ? void 0 : _a.parentElement) === null || _b === void 0 ? void 0 : _b.scrollLeft) ||
+                    ((_c = doc === null || doc === void 0 ? void 0 : doc.body) === null || _c === void 0 ? void 0 : _c.scrollLeft) ||
+                    0,
+        top: doc.scrollingElement
+            ? doc.scrollingElement.scrollTop
+            : win.pageYOffset !== undefined
+                ? win.pageYOffset
+                : (doc === null || doc === void 0 ? void 0 : doc.documentElement.scrollTop) ||
+                    ((_e = (_d = doc === null || doc === void 0 ? void 0 : doc.body) === null || _d === void 0 ? void 0 : _d.parentElement) === null || _e === void 0 ? void 0 : _e.scrollTop) ||
+                    ((_f = doc === null || doc === void 0 ? void 0 : doc.body) === null || _f === void 0 ? void 0 : _f.scrollTop) ||
+                    0,
+    };
+}
+function getWindowHeight() {
+    return (window.innerHeight ||
+        (document.documentElement && document.documentElement.clientHeight) ||
+        (document.body && document.body.clientHeight));
+}
+function getWindowWidth() {
+    return (window.innerWidth ||
+        (document.documentElement && document.documentElement.clientWidth) ||
+        (document.body && document.body.clientWidth));
+}
+function closestElementOfNode(node) {
+    if (!node) {
+        return null;
+    }
+    const el = node.nodeType === node.ELEMENT_NODE
+        ? node
+        : node.parentElement;
+    return el;
+}
+function isBlocked(node, blockClass, blockSelector, checkAncestors) {
+    if (!node) {
+        return false;
+    }
+    const el = closestElementOfNode(node);
+    if (!el) {
+        return false;
+    }
+    try {
+        if (typeof blockClass === 'string') {
+            if (el.classList.contains(blockClass))
+                return true;
+            if (checkAncestors && el.closest('.' + blockClass) !== null)
+                return true;
+        }
+        else {
+            if (classMatchesRegex(el, blockClass, checkAncestors))
+                return true;
+        }
+    }
+    catch (e) {
+    }
+    if (blockSelector) {
+        if (el.matches(blockSelector))
+            return true;
+        if (checkAncestors && el.closest(blockSelector) !== null)
+            return true;
+    }
+    return false;
+}
+function isSerialized(n, mirror) {
+    return mirror.getId(n) !== -1;
+}
+function isIgnored(n, mirror) {
+    return mirror.getId(n) === IGNORED_NODE;
+}
+function isAncestorRemoved(target, mirror) {
+    if (isShadowRoot(target)) {
+        return false;
+    }
+    const id = mirror.getId(target);
+    if (!mirror.has(id)) {
+        return true;
+    }
+    if (target.parentNode &&
+        target.parentNode.nodeType === target.DOCUMENT_NODE) {
+        return false;
+    }
+    if (!target.parentNode) {
+        return true;
+    }
+    return isAncestorRemoved(target.parentNode, mirror);
+}
+function legacy_isTouchEvent(event) {
+    return Boolean(event.changedTouches);
+}
+function polyfill(win = window) {
+    if ('NodeList' in win && !win.NodeList.prototype.forEach) {
+        win.NodeList.prototype.forEach = Array.prototype
+            .forEach;
+    }
+    if ('DOMTokenList' in win && !win.DOMTokenList.prototype.forEach) {
+        win.DOMTokenList.prototype.forEach = Array.prototype
+            .forEach;
+    }
+    if (!Node.prototype.contains) {
+        Node.prototype.contains = (...args) => {
+            let node = args[0];
+            if (!(0 in args)) {
+                throw new TypeError('1 argument is required');
+            }
+            do {
+                if (this === node) {
+                    return true;
+                }
+            } while ((node = node && node.parentNode));
+            return false;
+        };
+    }
+}
+function isSerializedIframe(n, mirror) {
+    return Boolean(n.nodeName === 'IFRAME' && mirror.getMeta(n));
+}
+function isSerializedStylesheet(n, mirror) {
+    return Boolean(n.nodeName === 'LINK' &&
+        n.nodeType === n.ELEMENT_NODE &&
+        n.getAttribute &&
+        n.getAttribute('rel') === 'stylesheet' &&
+        mirror.getMeta(n));
+}
+function hasShadowRoot(n) {
+    return Boolean(n === null || n === void 0 ? void 0 : n.shadowRoot);
+}
+class StyleSheetMirror {
+    constructor() {
+        this.id = 1;
+        this.styleIDMap = new WeakMap();
+        this.idStyleMap = new Map();
+    }
+    getId(stylesheet) {
+        var _a;
+        return (_a = this.styleIDMap.get(stylesheet)) !== null && _a !== void 0 ? _a : -1;
+    }
+    has(stylesheet) {
+        return this.styleIDMap.has(stylesheet);
+    }
+    add(stylesheet, id) {
+        if (this.has(stylesheet))
+            return this.getId(stylesheet);
+        let newId;
+        if (id === undefined) {
+            newId = this.id++;
+        }
+        else
+            newId = id;
+        this.styleIDMap.set(stylesheet, newId);
+        this.idStyleMap.set(newId, stylesheet);
+        return newId;
+    }
+    getStyle(id) {
+        return this.idStyleMap.get(id) || null;
+    }
+    reset() {
+        this.styleIDMap = new WeakMap();
+        this.idStyleMap = new Map();
+        this.id = 1;
+    }
+    generateId() {
+        return this.id++;
+    }
+}
+function getShadowHost(n) {
+    var _a, _b;
+    let shadowHost = null;
+    if (((_b = (_a = n.getRootNode) === null || _a === void 0 ? void 0 : _a.call(n)) === null || _b === void 0 ? void 0 : _b.nodeType) === Node.DOCUMENT_FRAGMENT_NODE &&
+        n.getRootNode().host)
+        shadowHost = n.getRootNode().host;
+    return shadowHost;
+}
+function getRootShadowHost(n) {
+    let rootShadowHost = n;
+    let shadowHost;
+    while ((shadowHost = getShadowHost(rootShadowHost)))
+        rootShadowHost = shadowHost;
+    return rootShadowHost;
+}
+function shadowHostInDom(n) {
+    const doc = n.ownerDocument;
+    if (!doc)
+        return false;
+    const shadowHost = getRootShadowHost(n);
+    return doc.contains(shadowHost);
+}
+function inDom(n) {
+    const doc = n.ownerDocument;
+    if (!doc)
+        return false;
+    return doc.contains(n) || shadowHostInDom(n);
+}
+
+var EventType$1 = /* @__PURE__ */ ((EventType2) => {
+  EventType2[EventType2["DomContentLoaded"] = 0] = "DomContentLoaded";
+  EventType2[EventType2["Load"] = 1] = "Load";
+  EventType2[EventType2["FullSnapshot"] = 2] = "FullSnapshot";
+  EventType2[EventType2["IncrementalSnapshot"] = 3] = "IncrementalSnapshot";
+  EventType2[EventType2["Meta"] = 4] = "Meta";
+  EventType2[EventType2["Custom"] = 5] = "Custom";
+  EventType2[EventType2["Plugin"] = 6] = "Plugin";
+  return EventType2;
+})(EventType$1 || {});
+var IncrementalSource$1 = /* @__PURE__ */ ((IncrementalSource2) => {
+  IncrementalSource2[IncrementalSource2["Mutation"] = 0] = "Mutation";
+  IncrementalSource2[IncrementalSource2["MouseMove"] = 1] = "MouseMove";
+  IncrementalSource2[IncrementalSource2["MouseInteraction"] = 2] = "MouseInteraction";
+  IncrementalSource2[IncrementalSource2["Scroll"] = 3] = "Scroll";
+  IncrementalSource2[IncrementalSource2["ViewportResize"] = 4] = "ViewportResize";
+  IncrementalSource2[IncrementalSource2["Input"] = 5] = "Input";
+  IncrementalSource2[IncrementalSource2["TouchMove"] = 6] = "TouchMove";
+  IncrementalSource2[IncrementalSource2["MediaInteraction"] = 7] = "MediaInteraction";
+  IncrementalSource2[IncrementalSource2["StyleSheetRule"] = 8] = "StyleSheetRule";
+  IncrementalSource2[IncrementalSource2["CanvasMutation"] = 9] = "CanvasMutation";
+  IncrementalSource2[IncrementalSource2["Font"] = 10] = "Font";
+  IncrementalSource2[IncrementalSource2["Log"] = 11] = "Log";
+  IncrementalSource2[IncrementalSource2["Drag"] = 12] = "Drag";
+  IncrementalSource2[IncrementalSource2["StyleDeclaration"] = 13] = "StyleDeclaration";
+  IncrementalSource2[IncrementalSource2["Selection"] = 14] = "Selection";
+  IncrementalSource2[IncrementalSource2["AdoptedStyleSheet"] = 15] = "AdoptedStyleSheet";
+  IncrementalSource2[IncrementalSource2["CustomElement"] = 16] = "CustomElement";
+  return IncrementalSource2;
+})(IncrementalSource$1 || {});
+var MouseInteractions = /* @__PURE__ */ ((MouseInteractions2) => {
+  MouseInteractions2[MouseInteractions2["MouseUp"] = 0] = "MouseUp";
+  MouseInteractions2[MouseInteractions2["MouseDown"] = 1] = "MouseDown";
+  MouseInteractions2[MouseInteractions2["Click"] = 2] = "Click";
+  MouseInteractions2[MouseInteractions2["ContextMenu"] = 3] = "ContextMenu";
+  MouseInteractions2[MouseInteractions2["DblClick"] = 4] = "DblClick";
+  MouseInteractions2[MouseInteractions2["Focus"] = 5] = "Focus";
+  MouseInteractions2[MouseInteractions2["Blur"] = 6] = "Blur";
+  MouseInteractions2[MouseInteractions2["TouchStart"] = 7] = "TouchStart";
+  MouseInteractions2[MouseInteractions2["TouchMove_Departed"] = 8] = "TouchMove_Departed";
+  MouseInteractions2[MouseInteractions2["TouchEnd"] = 9] = "TouchEnd";
+  MouseInteractions2[MouseInteractions2["TouchCancel"] = 10] = "TouchCancel";
+  return MouseInteractions2;
+})(MouseInteractions || {});
+var PointerTypes = /* @__PURE__ */ ((PointerTypes2) => {
+  PointerTypes2[PointerTypes2["Mouse"] = 0] = "Mouse";
+  PointerTypes2[PointerTypes2["Pen"] = 1] = "Pen";
+  PointerTypes2[PointerTypes2["Touch"] = 2] = "Touch";
+  return PointerTypes2;
+})(PointerTypes || {});
+var CanvasContext = /* @__PURE__ */ ((CanvasContext2) => {
+  CanvasContext2[CanvasContext2["2D"] = 0] = "2D";
+  CanvasContext2[CanvasContext2["WebGL"] = 1] = "WebGL";
+  CanvasContext2[CanvasContext2["WebGL2"] = 2] = "WebGL2";
+  return CanvasContext2;
+})(CanvasContext || {});
+
+function isNodeInLinkedList(n) {
+    return '__ln' in n;
+}
+class DoubleLinkedList {
+    constructor() {
+        this.length = 0;
+        this.head = null;
+        this.tail = null;
+    }
+    get(position) {
+        if (position >= this.length) {
+            throw new Error('Position outside of list range');
+        }
+        let current = this.head;
+        for (let index = 0; index < position; index++) {
+            current = (current === null || current === void 0 ? void 0 : current.next) || null;
+        }
+        return current;
+    }
+    addNode(n) {
+        const node = {
+            value: n,
+            previous: null,
+            next: null,
+        };
+        n.__ln = node;
+        if (n.previousSibling && isNodeInLinkedList(n.previousSibling)) {
+            const current = n.previousSibling.__ln.next;
+            node.next = current;
+            node.previous = n.previousSibling.__ln;
+            n.previousSibling.__ln.next = node;
+            if (current) {
+                current.previous = node;
+            }
+        }
+        else if (n.nextSibling &&
+            isNodeInLinkedList(n.nextSibling) &&
+            n.nextSibling.__ln.previous) {
+            const current = n.nextSibling.__ln.previous;
+            node.previous = current;
+            node.next = n.nextSibling.__ln;
+            n.nextSibling.__ln.previous = node;
+            if (current) {
+                current.next = node;
+            }
+        }
+        else {
+            if (this.head) {
+                this.head.previous = node;
+            }
+            node.next = this.head;
+            this.head = node;
+        }
+        if (node.next === null) {
+            this.tail = node;
+        }
+        this.length++;
+    }
+    removeNode(n) {
+        const current = n.__ln;
+        if (!this.head) {
+            return;
+        }
+        if (!current.previous) {
+            this.head = current.next;
+            if (this.head) {
+                this.head.previous = null;
+            }
+            else {
+                this.tail = null;
+            }
+        }
+        else {
+            current.previous.next = current.next;
+            if (current.next) {
+                current.next.previous = current.previous;
+            }
+            else {
+                this.tail = current.previous;
+            }
+        }
+        if (n.__ln) {
+            delete n.__ln;
+        }
+        this.length--;
+    }
+}
+const moveKey = (id, parentId) => `${id}@${parentId}`;
+class MutationBuffer {
+    constructor() {
+        this.frozen = false;
+        this.locked = false;
+        this.texts = [];
+        this.attributes = [];
+        this.attributeMap = new WeakMap();
+        this.removes = [];
+        this.mapRemoves = [];
+        this.movedMap = {};
+        this.addedSet = new Set();
+        this.movedSet = new Set();
+        this.droppedSet = new Set();
+        this.processMutations = (mutations) => {
+            mutations.forEach(this.processMutation);
+            this.emit();
+        };
+        this.emit = () => {
+            if (this.frozen || this.locked) {
+                return;
+            }
+            const adds = [];
+            const addedIds = new Set();
+            const addList = new DoubleLinkedList();
+            const getNextId = (n) => {
+                let ns = n;
+                let nextId = IGNORED_NODE;
+                while (nextId === IGNORED_NODE) {
+                    ns = ns && ns.nextSibling;
+                    nextId = ns && this.mirror.getId(ns);
+                }
+                return nextId;
+            };
+            const pushAdd = (n) => {
+                if (!n.parentNode ||
+                    !inDom(n) ||
+                    n.parentNode.tagName === 'TEXTAREA') {
+                    return;
+                }
+                const parentId = isShadowRoot(n.parentNode)
+                    ? this.mirror.getId(getShadowHost(n))
+                    : this.mirror.getId(n.parentNode);
+                const nextId = getNextId(n);
+                if (parentId === -1 || nextId === -1) {
+                    return addList.addNode(n);
+                }
+                const sn = serializeNodeWithId(n, {
+                    doc: this.doc,
+                    mirror: this.mirror,
+                    blockClass: this.blockClass,
+                    blockSelector: this.blockSelector,
+                    maskTextClass: this.maskTextClass,
+                    maskTextSelector: this.maskTextSelector,
+                    skipChild: true,
+                    newlyAddedElement: true,
+                    inlineStylesheet: this.inlineStylesheet,
+                    maskInputOptions: this.maskInputOptions,
+                    maskTextFn: this.maskTextFn,
+                    maskInputFn: this.maskInputFn,
+                    slimDOMOptions: this.slimDOMOptions,
+                    dataURLOptions: this.dataURLOptions,
+                    recordCanvas: this.recordCanvas,
+                    inlineImages: this.inlineImages,
+                    onSerialize: (currentN) => {
+                        if (isSerializedIframe(currentN, this.mirror)) {
+                            this.iframeManager.addIframe(currentN);
+                        }
+                        if (isSerializedStylesheet(currentN, this.mirror)) {
+                            this.stylesheetManager.trackLinkElement(currentN);
+                        }
+                        if (hasShadowRoot(n)) {
+                            this.shadowDomManager.addShadowRoot(n.shadowRoot, this.doc);
+                        }
+                    },
+                    onIframeLoad: (iframe, childSn) => {
+                        this.iframeManager.attachIframe(iframe, childSn);
+                        this.shadowDomManager.observeAttachShadow(iframe);
+                    },
+                    onStylesheetLoad: (link, childSn) => {
+                        this.stylesheetManager.attachLinkElement(link, childSn);
+                    },
+                });
+                if (sn) {
+                    adds.push({
+                        parentId,
+                        nextId,
+                        node: sn,
+                    });
+                    addedIds.add(sn.id);
+                }
+            };
+            while (this.mapRemoves.length) {
+                this.mirror.removeNodeFromMap(this.mapRemoves.shift());
+            }
+            for (const n of this.movedSet) {
+                if (isParentRemoved(this.removes, n, this.mirror) &&
+                    !this.movedSet.has(n.parentNode)) {
+                    continue;
+                }
+                pushAdd(n);
+            }
+            for (const n of this.addedSet) {
+                if (!isAncestorInSet(this.droppedSet, n) &&
+                    !isParentRemoved(this.removes, n, this.mirror)) {
+                    pushAdd(n);
+                }
+                else if (isAncestorInSet(this.movedSet, n)) {
+                    pushAdd(n);
+                }
+                else {
+                    this.droppedSet.add(n);
+                }
+            }
+            let candidate = null;
+            while (addList.length) {
+                let node = null;
+                if (candidate) {
+                    const parentId = this.mirror.getId(candidate.value.parentNode);
+                    const nextId = getNextId(candidate.value);
+                    if (parentId !== -1 && nextId !== -1) {
+                        node = candidate;
+                    }
+                }
+                if (!node) {
+                    let tailNode = addList.tail;
+                    while (tailNode) {
+                        const _node = tailNode;
+                        tailNode = tailNode.previous;
+                        if (_node) {
+                            const parentId = this.mirror.getId(_node.value.parentNode);
+                            const nextId = getNextId(_node.value);
+                            if (nextId === -1)
+                                continue;
+                            else if (parentId !== -1) {
+                                node = _node;
+                                break;
+                            }
+                            else {
+                                const unhandledNode = _node.value;
+                                if (unhandledNode.parentNode &&
+                                    unhandledNode.parentNode.nodeType ===
+                                        Node.DOCUMENT_FRAGMENT_NODE) {
+                                    const shadowHost = unhandledNode.parentNode
+                                        .host;
+                                    const parentId = this.mirror.getId(shadowHost);
+                                    if (parentId !== -1) {
+                                        node = _node;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                if (!node) {
+                    while (addList.head) {
+                        addList.removeNode(addList.head.value);
+                    }
+                    break;
+                }
+                candidate = node.previous;
+                addList.removeNode(node.value);
+                pushAdd(node.value);
+            }
+            const payload = {
+                texts: this.texts
+                    .map((text) => {
+                    const n = text.node;
+                    if (n.parentNode &&
+                        n.parentNode.tagName === 'TEXTAREA') {
+                        this.genTextAreaValueMutation(n.parentNode);
+                    }
+                    return {
+                        id: this.mirror.getId(n),
+                        value: text.value,
+                    };
+                })
+                    .filter((text) => !addedIds.has(text.id))
+                    .filter((text) => this.mirror.has(text.id)),
+                attributes: this.attributes
+                    .map((attribute) => {
+                    const { attributes } = attribute;
+                    if (typeof attributes.style === 'string') {
+                        const diffAsStr = JSON.stringify(attribute.styleDiff);
+                        const unchangedAsStr = JSON.stringify(attribute._unchangedStyles);
+                        if (diffAsStr.length < attributes.style.length) {
+                            if ((diffAsStr + unchangedAsStr).split('var(').length ===
+                                attributes.style.split('var(').length) {
+                                attributes.style = attribute.styleDiff;
+                            }
+                        }
+                    }
+                    return {
+                        id: this.mirror.getId(attribute.node),
+                        attributes: attributes,
+                    };
+                })
+                    .filter((attribute) => !addedIds.has(attribute.id))
+                    .filter((attribute) => this.mirror.has(attribute.id)),
+                removes: this.removes,
+                adds,
+            };
+            if (!payload.texts.length &&
+                !payload.attributes.length &&
+                !payload.removes.length &&
+                !payload.adds.length) {
+                return;
+            }
+            this.texts = [];
+            this.attributes = [];
+            this.attributeMap = new WeakMap();
+            this.removes = [];
+            this.addedSet = new Set();
+            this.movedSet = new Set();
+            this.droppedSet = new Set();
+            this.movedMap = {};
+            this.mutationCb(payload);
+        };
+        this.genTextAreaValueMutation = (textarea) => {
+            let item = this.attributeMap.get(textarea);
+            if (!item) {
+                item = {
+                    node: textarea,
+                    attributes: {},
+                    styleDiff: {},
+                    _unchangedStyles: {},
+                };
+                this.attributes.push(item);
+                this.attributeMap.set(textarea, item);
+            }
+            item.attributes.value = Array.from(textarea.childNodes, (cn) => cn.textContent || '').join('');
+        };
+        this.processMutation = (m) => {
+            if (isIgnored(m.target, this.mirror)) {
+                return;
+            }
+            switch (m.type) {
+                case 'characterData': {
+                    const value = m.target.textContent;
+                    if (!isBlocked(m.target, this.blockClass, this.blockSelector, false) &&
+                        value !== m.oldValue) {
+                        this.texts.push({
+                            value: needMaskingText(m.target, this.maskTextClass, this.maskTextSelector, true) && value
+                                ? this.maskTextFn
+                                    ? this.maskTextFn(value, closestElementOfNode(m.target))
+                                    : value.replace(/[\S]/g, '*')
+                                : value,
+                            node: m.target,
+                        });
+                    }
+                    break;
+                }
+                case 'attributes': {
+                    const target = m.target;
+                    let attributeName = m.attributeName;
+                    let value = m.target.getAttribute(attributeName);
+                    if (attributeName === 'value') {
+                        const type = getInputType(target);
+                        value = maskInputValue({
+                            element: target,
+                            maskInputOptions: this.maskInputOptions,
+                            tagName: target.tagName,
+                            type,
+                            value,
+                            maskInputFn: this.maskInputFn,
+                        });
+                    }
+                    if (isBlocked(m.target, this.blockClass, this.blockSelector, false) ||
+                        value === m.oldValue) {
+                        return;
+                    }
+                    let item = this.attributeMap.get(m.target);
+                    if (target.tagName === 'IFRAME' &&
+                        attributeName === 'src' &&
+                        !this.keepIframeSrcFn(value)) {
+                        if (!target.contentDocument) {
+                            attributeName = 'rr_src';
+                        }
+                        else {
+                            return;
+                        }
+                    }
+                    if (!item) {
+                        item = {
+                            node: m.target,
+                            attributes: {},
+                            styleDiff: {},
+                            _unchangedStyles: {},
+                        };
+                        this.attributes.push(item);
+                        this.attributeMap.set(m.target, item);
+                    }
+                    if (attributeName === 'type' &&
+                        target.tagName === 'INPUT' &&
+                        (m.oldValue || '').toLowerCase() === 'password') {
+                        target.setAttribute('data-rr-is-password', 'true');
+                    }
+                    if (!ignoreAttribute(target.tagName, attributeName)) {
+                        item.attributes[attributeName] = transformAttribute(this.doc, toLowerCase(target.tagName), toLowerCase(attributeName), value);
+                        if (attributeName === 'style') {
+                            if (!this.unattachedDoc) {
+                                try {
+                                    this.unattachedDoc =
+                                        document.implementation.createHTMLDocument();
+                                }
+                                catch (e) {
+                                    this.unattachedDoc = this.doc;
+                                }
+                            }
+                            const old = this.unattachedDoc.createElement('span');
+                            if (m.oldValue) {
+                                old.setAttribute('style', m.oldValue);
+                            }
+                            for (const pname of Array.from(target.style)) {
+                                const newValue = target.style.getPropertyValue(pname);
+                                const newPriority = target.style.getPropertyPriority(pname);
+                                if (newValue !== old.style.getPropertyValue(pname) ||
+                                    newPriority !== old.style.getPropertyPriority(pname)) {
+                                    if (newPriority === '') {
+                                        item.styleDiff[pname] = newValue;
+                                    }
+                                    else {
+                                        item.styleDiff[pname] = [newValue, newPriority];
+                                    }
+                                }
+                                else {
+                                    item._unchangedStyles[pname] = [newValue, newPriority];
+                                }
+                            }
+                            for (const pname of Array.from(old.style)) {
+                                if (target.style.getPropertyValue(pname) === '') {
+                                    item.styleDiff[pname] = false;
+                                }
+                            }
+                        }
+                    }
+                    break;
+                }
+                case 'childList': {
+                    if (isBlocked(m.target, this.blockClass, this.blockSelector, true))
+                        return;
+                    if (m.target.tagName === 'TEXTAREA') {
+                        this.genTextAreaValueMutation(m.target);
+                        return;
+                    }
+                    m.addedNodes.forEach((n) => this.genAdds(n, m.target));
+                    m.removedNodes.forEach((n) => {
+                        const nodeId = this.mirror.getId(n);
+                        const parentId = isShadowRoot(m.target)
+                            ? this.mirror.getId(m.target.host)
+                            : this.mirror.getId(m.target);
+                        if (isBlocked(m.target, this.blockClass, this.blockSelector, false) ||
+                            isIgnored(n, this.mirror) ||
+                            !isSerialized(n, this.mirror)) {
+                            return;
+                        }
+                        if (this.addedSet.has(n)) {
+                            deepDelete(this.addedSet, n);
+                            this.droppedSet.add(n);
+                        }
+                        else if (this.addedSet.has(m.target) && nodeId === -1) ;
+                        else if (isAncestorRemoved(m.target, this.mirror)) ;
+                        else if (this.movedSet.has(n) &&
+                            this.movedMap[moveKey(nodeId, parentId)]) {
+                            deepDelete(this.movedSet, n);
+                        }
+                        else {
+                            this.removes.push({
+                                parentId,
+                                id: nodeId,
+                                isShadow: isShadowRoot(m.target) && isNativeShadowDom(m.target)
+                                    ? true
+                                    : undefined,
+                            });
+                        }
+                        this.mapRemoves.push(n);
+                    });
+                    break;
+                }
+            }
+        };
+        this.genAdds = (n, target) => {
+            if (this.processedNodeManager.inOtherBuffer(n, this))
+                return;
+            if (this.addedSet.has(n) || this.movedSet.has(n))
+                return;
+            if (this.mirror.hasNode(n)) {
+                if (isIgnored(n, this.mirror)) {
+                    return;
+                }
+                this.movedSet.add(n);
+                let targetId = null;
+                if (target && this.mirror.hasNode(target)) {
+                    targetId = this.mirror.getId(target);
+                }
+                if (targetId && targetId !== -1) {
+                    this.movedMap[moveKey(this.mirror.getId(n), targetId)] = true;
+                }
+            }
+            else {
+                this.addedSet.add(n);
+                this.droppedSet.delete(n);
+            }
+            if (!isBlocked(n, this.blockClass, this.blockSelector, false)) {
+                n.childNodes.forEach((childN) => this.genAdds(childN));
+                if (hasShadowRoot(n)) {
+                    n.shadowRoot.childNodes.forEach((childN) => {
+                        this.processedNodeManager.add(childN, this);
+                        this.genAdds(childN, n);
+                    });
+                }
+            }
+        };
+    }
+    init(options) {
+        [
+            'mutationCb',
+            'blockClass',
+            'blockSelector',
+            'maskTextClass',
+            'maskTextSelector',
+            'inlineStylesheet',
+            'maskInputOptions',
+            'maskTextFn',
+            'maskInputFn',
+            'keepIframeSrcFn',
+            'recordCanvas',
+            'inlineImages',
+            'slimDOMOptions',
+            'dataURLOptions',
+            'doc',
+            'mirror',
+            'iframeManager',
+            'stylesheetManager',
+            'shadowDomManager',
+            'canvasManager',
+            'processedNodeManager',
+        ].forEach((key) => {
+            this[key] = options[key];
+        });
+    }
+    freeze() {
+        this.frozen = true;
+        this.canvasManager.freeze();
+    }
+    unfreeze() {
+        this.frozen = false;
+        this.canvasManager.unfreeze();
+        this.emit();
+    }
+    isFrozen() {
+        return this.frozen;
+    }
+    lock() {
+        this.locked = true;
+        this.canvasManager.lock();
+    }
+    unlock() {
+        this.locked = false;
+        this.canvasManager.unlock();
+        this.emit();
+    }
+    reset() {
+        this.shadowDomManager.reset();
+        this.canvasManager.reset();
+    }
+}
+function deepDelete(addsSet, n) {
+    addsSet.delete(n);
+    n.childNodes.forEach((childN) => deepDelete(addsSet, childN));
+}
+function isParentRemoved(removes, n, mirror) {
+    if (removes.length === 0)
+        return false;
+    return _isParentRemoved(removes, n, mirror);
+}
+function _isParentRemoved(removes, n, mirror) {
+    const { parentNode } = n;
+    if (!parentNode) {
+        return false;
+    }
+    const parentId = mirror.getId(parentNode);
+    if (removes.some((r) => r.id === parentId)) {
+        return true;
+    }
+    return _isParentRemoved(removes, parentNode, mirror);
+}
+function isAncestorInSet(set, n) {
+    if (set.size === 0)
+        return false;
+    return _isAncestorInSet(set, n);
+}
+function _isAncestorInSet(set, n) {
+    const { parentNode } = n;
+    if (!parentNode) {
+        return false;
+    }
+    if (set.has(parentNode)) {
+        return true;
+    }
+    return _isAncestorInSet(set, parentNode);
+}
+
+let errorHandler;
+function registerErrorHandler(handler) {
+    errorHandler = handler;
+}
+function unregisterErrorHandler() {
+    errorHandler = undefined;
+}
+const callbackWrapper = (cb) => {
+    if (!errorHandler) {
+        return cb;
+    }
+    const rrwebWrapped = ((...rest) => {
+        try {
+            return cb(...rest);
+        }
+        catch (error) {
+            if (errorHandler && errorHandler(error) === true) {
+                return;
+            }
+            throw error;
+        }
+    });
+    return rrwebWrapped;
+};
+
+const mutationBuffers = [];
+function getEventTarget(event) {
+    try {
+        if ('composedPath' in event) {
+            const path = event.composedPath();
+            if (path.length) {
+                return path[0];
+            }
+        }
+        else if ('path' in event && event.path.length) {
+            return event.path[0];
+        }
+    }
+    catch (_a) {
+    }
+    return event && event.target;
+}
+function initMutationObserver(options, rootEl) {
+    var _a, _b;
+    const mutationBuffer = new MutationBuffer();
+    mutationBuffers.push(mutationBuffer);
+    mutationBuffer.init(options);
+    let mutationObserverCtor = window.MutationObserver ||
+        window.__rrMutationObserver;
+    const angularZoneSymbol = (_b = (_a = window === null || window === void 0 ? void 0 : window.Zone) === null || _a === void 0 ? void 0 : _a.__symbol__) === null || _b === void 0 ? void 0 : _b.call(_a, 'MutationObserver');
+    if (angularZoneSymbol &&
+        window[angularZoneSymbol]) {
+        mutationObserverCtor = window[angularZoneSymbol];
+    }
+    const observer = new mutationObserverCtor(callbackWrapper(mutationBuffer.processMutations.bind(mutationBuffer)));
+    observer.observe(rootEl, {
+        attributes: true,
+        attributeOldValue: true,
+        characterData: true,
+        characterDataOldValue: true,
+        childList: true,
+        subtree: true,
+    });
+    return observer;
+}
+function initMoveObserver({ mousemoveCb, sampling, doc, mirror, }) {
+    if (sampling.mousemove === false) {
+        return () => {
+        };
+    }
+    const threshold = typeof sampling.mousemove === 'number' ? sampling.mousemove : 50;
+    const callbackThreshold = typeof sampling.mousemoveCallback === 'number'
+        ? sampling.mousemoveCallback
+        : 500;
+    let positions = [];
+    let timeBaseline;
+    const wrappedCb = throttle(callbackWrapper((source) => {
+        const totalOffset = Date.now() - timeBaseline;
+        mousemoveCb(positions.map((p) => {
+            p.timeOffset -= totalOffset;
+            return p;
+        }), source);
+        positions = [];
+        timeBaseline = null;
+    }), callbackThreshold);
+    const updatePosition = callbackWrapper(throttle(callbackWrapper((evt) => {
+        const target = getEventTarget(evt);
+        const { clientX, clientY } = legacy_isTouchEvent(evt)
+            ? evt.changedTouches[0]
+            : evt;
+        if (!timeBaseline) {
+            timeBaseline = nowTimestamp();
+        }
+        positions.push({
+            x: clientX,
+            y: clientY,
+            id: mirror.getId(target),
+            timeOffset: nowTimestamp() - timeBaseline,
+        });
+        wrappedCb(typeof DragEvent !== 'undefined' && evt instanceof DragEvent
+            ? IncrementalSource$1.Drag
+            : evt instanceof MouseEvent
+                ? IncrementalSource$1.MouseMove
+                : IncrementalSource$1.TouchMove);
+    }), threshold, {
+        trailing: false,
+    }));
+    const handlers = [
+        on('mousemove', updatePosition, doc),
+        on('touchmove', updatePosition, doc),
+        on('drag', updatePosition, doc),
+    ];
+    return callbackWrapper(() => {
+        handlers.forEach((h) => h());
+    });
+}
+function initMouseInteractionObserver({ mouseInteractionCb, doc, mirror, blockClass, blockSelector, sampling, }) {
+    if (sampling.mouseInteraction === false) {
+        return () => {
+        };
+    }
+    const disableMap = sampling.mouseInteraction === true ||
+        sampling.mouseInteraction === undefined
+        ? {}
+        : sampling.mouseInteraction;
+    const handlers = [];
+    let currentPointerType = null;
+    const getHandler = (eventKey) => {
+        return (event) => {
+            const target = getEventTarget(event);
+            if (isBlocked(target, blockClass, blockSelector, true)) {
+                return;
+            }
+            let pointerType = null;
+            let thisEventKey = eventKey;
+            if ('pointerType' in event) {
+                switch (event.pointerType) {
+                    case 'mouse':
+                        pointerType = PointerTypes.Mouse;
+                        break;
+                    case 'touch':
+                        pointerType = PointerTypes.Touch;
+                        break;
+                    case 'pen':
+                        pointerType = PointerTypes.Pen;
+                        break;
+                }
+                if (pointerType === PointerTypes.Touch) {
+                    if (MouseInteractions[eventKey] === MouseInteractions.MouseDown) {
+                        thisEventKey = 'TouchStart';
+                    }
+                    else if (MouseInteractions[eventKey] === MouseInteractions.MouseUp) {
+                        thisEventKey = 'TouchEnd';
+                    }
+                }
+                else if (pointerType === PointerTypes.Pen) ;
+            }
+            else if (legacy_isTouchEvent(event)) {
+                pointerType = PointerTypes.Touch;
+            }
+            if (pointerType !== null) {
+                currentPointerType = pointerType;
+                if ((thisEventKey.startsWith('Touch') &&
+                    pointerType === PointerTypes.Touch) ||
+                    (thisEventKey.startsWith('Mouse') &&
+                        pointerType === PointerTypes.Mouse)) {
+                    pointerType = null;
+                }
+            }
+            else if (MouseInteractions[eventKey] === MouseInteractions.Click) {
+                pointerType = currentPointerType;
+                currentPointerType = null;
+            }
+            const e = legacy_isTouchEvent(event) ? event.changedTouches[0] : event;
+            if (!e) {
+                return;
+            }
+            const id = mirror.getId(target);
+            const { clientX, clientY } = e;
+            callbackWrapper(mouseInteractionCb)(Object.assign({ type: MouseInteractions[thisEventKey], id, x: clientX, y: clientY }, (pointerType !== null && { pointerType })));
+        };
+    };
+    Object.keys(MouseInteractions)
+        .filter((key) => Number.isNaN(Number(key)) &&
+        !key.endsWith('_Departed') &&
+        disableMap[key] !== false)
+        .forEach((eventKey) => {
+        let eventName = toLowerCase(eventKey);
+        const handler = getHandler(eventKey);
+        if (window.PointerEvent) {
+            switch (MouseInteractions[eventKey]) {
+                case MouseInteractions.MouseDown:
+                case MouseInteractions.MouseUp:
+                    eventName = eventName.replace('mouse', 'pointer');
+                    break;
+                case MouseInteractions.TouchStart:
+                case MouseInteractions.TouchEnd:
+                    return;
+            }
+        }
+        handlers.push(on(eventName, handler, doc));
+    });
+    return callbackWrapper(() => {
+        handlers.forEach((h) => h());
+    });
+}
+function initScrollObserver({ scrollCb, doc, mirror, blockClass, blockSelector, sampling, }) {
+    const updatePosition = callbackWrapper(throttle(callbackWrapper((evt) => {
+        const target = getEventTarget(evt);
+        if (!target ||
+            isBlocked(target, blockClass, blockSelector, true)) {
+            return;
+        }
+        const id = mirror.getId(target);
+        if (target === doc && doc.defaultView) {
+            const scrollLeftTop = getWindowScroll(doc.defaultView);
+            scrollCb({
+                id,
+                x: scrollLeftTop.left,
+                y: scrollLeftTop.top,
+            });
+        }
+        else {
+            scrollCb({
+                id,
+                x: target.scrollLeft,
+                y: target.scrollTop,
+            });
+        }
+    }), sampling.scroll || 100));
+    return on('scroll', updatePosition, doc);
+}
+function initViewportResizeObserver({ viewportResizeCb }, { win }) {
+    let lastH = -1;
+    let lastW = -1;
+    const updateDimension = callbackWrapper(throttle(callbackWrapper(() => {
+        const height = getWindowHeight();
+        const width = getWindowWidth();
+        if (lastH !== height || lastW !== width) {
+            viewportResizeCb({
+                width: Number(width),
+                height: Number(height),
+            });
+            lastH = height;
+            lastW = width;
+        }
+    }), 200));
+    return on('resize', updateDimension, win);
+}
+const INPUT_TAGS = ['INPUT', 'TEXTAREA', 'SELECT'];
+const lastInputValueMap = new WeakMap();
+function initInputObserver({ inputCb, doc, mirror, blockClass, blockSelector, ignoreClass, ignoreSelector, maskInputOptions, maskInputFn, sampling, userTriggeredOnInput, }) {
+    function eventHandler(event) {
+        let target = getEventTarget(event);
+        const userTriggered = event.isTrusted;
+        const tagName = target && target.tagName;
+        if (target && tagName === 'OPTION') {
+            target = target.parentElement;
+        }
+        if (!target ||
+            !tagName ||
+            INPUT_TAGS.indexOf(tagName) < 0 ||
+            isBlocked(target, blockClass, blockSelector, true)) {
+            return;
+        }
+        if (target.classList.contains(ignoreClass) ||
+            (ignoreSelector && target.matches(ignoreSelector))) {
+            return;
+        }
+        let text = target.value;
+        let isChecked = false;
+        const type = getInputType(target) || '';
+        if (type === 'radio' || type === 'checkbox') {
+            isChecked = target.checked;
+        }
+        else if (maskInputOptions[tagName.toLowerCase()] ||
+            maskInputOptions[type]) {
+            text = maskInputValue({
+                element: target,
+                maskInputOptions,
+                tagName,
+                type,
+                value: text,
+                maskInputFn,
+            });
+        }
+        cbWithDedup(target, userTriggeredOnInput
+            ? { text, isChecked, userTriggered }
+            : { text, isChecked });
+        const name = target.name;
+        if (type === 'radio' && name && isChecked) {
+            doc
+                .querySelectorAll(`input[type="radio"][name="${name}"]`)
+                .forEach((el) => {
+                if (el !== target) {
+                    const text = el.value;
+                    cbWithDedup(el, userTriggeredOnInput
+                        ? { text, isChecked: !isChecked, userTriggered: false }
+                        : { text, isChecked: !isChecked });
+                }
+            });
+        }
+    }
+    function cbWithDedup(target, v) {
+        const lastInputValue = lastInputValueMap.get(target);
+        if (!lastInputValue ||
+            lastInputValue.text !== v.text ||
+            lastInputValue.isChecked !== v.isChecked) {
+            lastInputValueMap.set(target, v);
+            const id = mirror.getId(target);
+            callbackWrapper(inputCb)(Object.assign(Object.assign({}, v), { id }));
+        }
+    }
+    const events = sampling.input === 'last' ? ['change'] : ['input', 'change'];
+    const handlers = events.map((eventName) => on(eventName, callbackWrapper(eventHandler), doc));
+    const currentWindow = doc.defaultView;
+    if (!currentWindow) {
+        return () => {
+            handlers.forEach((h) => h());
+        };
+    }
+    const propertyDescriptor = currentWindow.Object.getOwnPropertyDescriptor(currentWindow.HTMLInputElement.prototype, 'value');
+    const hookProperties = [
+        [currentWindow.HTMLInputElement.prototype, 'value'],
+        [currentWindow.HTMLInputElement.prototype, 'checked'],
+        [currentWindow.HTMLSelectElement.prototype, 'value'],
+        [currentWindow.HTMLTextAreaElement.prototype, 'value'],
+        [currentWindow.HTMLSelectElement.prototype, 'selectedIndex'],
+        [currentWindow.HTMLOptionElement.prototype, 'selected'],
+    ];
+    if (propertyDescriptor && propertyDescriptor.set) {
+        handlers.push(...hookProperties.map((p) => hookSetter(p[0], p[1], {
+            set() {
+                callbackWrapper(eventHandler)({
+                    target: this,
+                    isTrusted: false,
+                });
+            },
+        }, false, currentWindow)));
+    }
+    return callbackWrapper(() => {
+        handlers.forEach((h) => h());
+    });
+}
+function getNestedCSSRulePositions(rule) {
+    const positions = [];
+    function recurse(childRule, pos) {
+        if ((hasNestedCSSRule('CSSGroupingRule') &&
+            childRule.parentRule instanceof CSSGroupingRule) ||
+            (hasNestedCSSRule('CSSMediaRule') &&
+                childRule.parentRule instanceof CSSMediaRule) ||
+            (hasNestedCSSRule('CSSSupportsRule') &&
+                childRule.parentRule instanceof CSSSupportsRule) ||
+            (hasNestedCSSRule('CSSConditionRule') &&
+                childRule.parentRule instanceof CSSConditionRule)) {
+            const rules = Array.from(childRule.parentRule.cssRules);
+            const index = rules.indexOf(childRule);
+            pos.unshift(index);
+        }
+        else if (childRule.parentStyleSheet) {
+            const rules = Array.from(childRule.parentStyleSheet.cssRules);
+            const index = rules.indexOf(childRule);
+            pos.unshift(index);
+        }
+        return pos;
+    }
+    return recurse(rule, positions);
+}
+function getIdAndStyleId(sheet, mirror, styleMirror) {
+    let id, styleId;
+    if (!sheet)
+        return {};
+    if (sheet.ownerNode)
+        id = mirror.getId(sheet.ownerNode);
+    else
+        styleId = styleMirror.getId(sheet);
+    return {
+        styleId,
+        id,
+    };
+}
+function initStyleSheetObserver({ styleSheetRuleCb, mirror, stylesheetManager }, { win }) {
+    if (!win.CSSStyleSheet || !win.CSSStyleSheet.prototype) {
+        return () => {
+        };
+    }
+    const insertRule = win.CSSStyleSheet.prototype.insertRule;
+    win.CSSStyleSheet.prototype.insertRule = new Proxy(insertRule, {
+        apply: callbackWrapper((target, thisArg, argumentsList) => {
+            const [rule, index] = argumentsList;
+            const { id, styleId } = getIdAndStyleId(thisArg, mirror, stylesheetManager.styleMirror);
+            if ((id && id !== -1) || (styleId && styleId !== -1)) {
+                styleSheetRuleCb({
+                    id,
+                    styleId,
+                    adds: [{ rule, index }],
+                });
+            }
+            return target.apply(thisArg, argumentsList);
+        }),
+    });
+    const deleteRule = win.CSSStyleSheet.prototype.deleteRule;
+    win.CSSStyleSheet.prototype.deleteRule = new Proxy(deleteRule, {
+        apply: callbackWrapper((target, thisArg, argumentsList) => {
+            const [index] = argumentsList;
+            const { id, styleId } = getIdAndStyleId(thisArg, mirror, stylesheetManager.styleMirror);
+            if ((id && id !== -1) || (styleId && styleId !== -1)) {
+                styleSheetRuleCb({
+                    id,
+                    styleId,
+                    removes: [{ index }],
+                });
+            }
+            return target.apply(thisArg, argumentsList);
+        }),
+    });
+    let replace;
+    if (win.CSSStyleSheet.prototype.replace) {
+        replace = win.CSSStyleSheet.prototype.replace;
+        win.CSSStyleSheet.prototype.replace = new Proxy(replace, {
+            apply: callbackWrapper((target, thisArg, argumentsList) => {
+                const [text] = argumentsList;
+                const { id, styleId } = getIdAndStyleId(thisArg, mirror, stylesheetManager.styleMirror);
+                if ((id && id !== -1) || (styleId && styleId !== -1)) {
+                    styleSheetRuleCb({
+                        id,
+                        styleId,
+                        replace: text,
+                    });
+                }
+                return target.apply(thisArg, argumentsList);
+            }),
+        });
+    }
+    let replaceSync;
+    if (win.CSSStyleSheet.prototype.replaceSync) {
+        replaceSync = win.CSSStyleSheet.prototype.replaceSync;
+        win.CSSStyleSheet.prototype.replaceSync = new Proxy(replaceSync, {
+            apply: callbackWrapper((target, thisArg, argumentsList) => {
+                const [text] = argumentsList;
+                const { id, styleId } = getIdAndStyleId(thisArg, mirror, stylesheetManager.styleMirror);
+                if ((id && id !== -1) || (styleId && styleId !== -1)) {
+                    styleSheetRuleCb({
+                        id,
+                        styleId,
+                        replaceSync: text,
+                    });
+                }
+                return target.apply(thisArg, argumentsList);
+            }),
+        });
+    }
+    const supportedNestedCSSRuleTypes = {};
+    if (canMonkeyPatchNestedCSSRule('CSSGroupingRule')) {
+        supportedNestedCSSRuleTypes.CSSGroupingRule = win.CSSGroupingRule;
+    }
+    else {
+        if (canMonkeyPatchNestedCSSRule('CSSMediaRule')) {
+            supportedNestedCSSRuleTypes.CSSMediaRule = win.CSSMediaRule;
+        }
+        if (canMonkeyPatchNestedCSSRule('CSSConditionRule')) {
+            supportedNestedCSSRuleTypes.CSSConditionRule = win.CSSConditionRule;
+        }
+        if (canMonkeyPatchNestedCSSRule('CSSSupportsRule')) {
+            supportedNestedCSSRuleTypes.CSSSupportsRule = win.CSSSupportsRule;
+        }
+    }
+    const unmodifiedFunctions = {};
+    Object.entries(supportedNestedCSSRuleTypes).forEach(([typeKey, type]) => {
+        unmodifiedFunctions[typeKey] = {
+            insertRule: type.prototype.insertRule,
+            deleteRule: type.prototype.deleteRule,
+        };
+        type.prototype.insertRule = new Proxy(unmodifiedFunctions[typeKey].insertRule, {
+            apply: callbackWrapper((target, thisArg, argumentsList) => {
+                const [rule, index] = argumentsList;
+                const { id, styleId } = getIdAndStyleId(thisArg.parentStyleSheet, mirror, stylesheetManager.styleMirror);
+                if ((id && id !== -1) || (styleId && styleId !== -1)) {
+                    styleSheetRuleCb({
+                        id,
+                        styleId,
+                        adds: [
+                            {
+                                rule,
+                                index: [
+                                    ...getNestedCSSRulePositions(thisArg),
+                                    index || 0,
+                                ],
+                            },
+                        ],
+                    });
+                }
+                return target.apply(thisArg, argumentsList);
+            }),
+        });
+        type.prototype.deleteRule = new Proxy(unmodifiedFunctions[typeKey].deleteRule, {
+            apply: callbackWrapper((target, thisArg, argumentsList) => {
+                const [index] = argumentsList;
+                const { id, styleId } = getIdAndStyleId(thisArg.parentStyleSheet, mirror, stylesheetManager.styleMirror);
+                if ((id && id !== -1) || (styleId && styleId !== -1)) {
+                    styleSheetRuleCb({
+                        id,
+                        styleId,
+                        removes: [
+                            { index: [...getNestedCSSRulePositions(thisArg), index] },
+                        ],
+                    });
+                }
+                return target.apply(thisArg, argumentsList);
+            }),
+        });
+    });
+    return callbackWrapper(() => {
+        win.CSSStyleSheet.prototype.insertRule = insertRule;
+        win.CSSStyleSheet.prototype.deleteRule = deleteRule;
+        replace && (win.CSSStyleSheet.prototype.replace = replace);
+        replaceSync && (win.CSSStyleSheet.prototype.replaceSync = replaceSync);
+        Object.entries(supportedNestedCSSRuleTypes).forEach(([typeKey, type]) => {
+            type.prototype.insertRule = unmodifiedFunctions[typeKey].insertRule;
+            type.prototype.deleteRule = unmodifiedFunctions[typeKey].deleteRule;
+        });
+    });
+}
+function initAdoptedStyleSheetObserver({ mirror, stylesheetManager, }, host) {
+    var _a, _b, _c;
+    let hostId = null;
+    if (host.nodeName === '#document')
+        hostId = mirror.getId(host);
+    else
+        hostId = mirror.getId(host.host);
+    const patchTarget = host.nodeName === '#document'
+        ? (_a = host.defaultView) === null || _a === void 0 ? void 0 : _a.Document
+        : (_c = (_b = host.ownerDocument) === null || _b === void 0 ? void 0 : _b.defaultView) === null || _c === void 0 ? void 0 : _c.ShadowRoot;
+    const originalPropertyDescriptor = (patchTarget === null || patchTarget === void 0 ? void 0 : patchTarget.prototype)
+        ? Object.getOwnPropertyDescriptor(patchTarget === null || patchTarget === void 0 ? void 0 : patchTarget.prototype, 'adoptedStyleSheets')
+        : undefined;
+    if (hostId === null ||
+        hostId === -1 ||
+        !patchTarget ||
+        !originalPropertyDescriptor)
+        return () => {
+        };
+    Object.defineProperty(host, 'adoptedStyleSheets', {
+        configurable: originalPropertyDescriptor.configurable,
+        enumerable: originalPropertyDescriptor.enumerable,
+        get() {
+            var _a;
+            return (_a = originalPropertyDescriptor.get) === null || _a === void 0 ? void 0 : _a.call(this);
+        },
+        set(sheets) {
+            var _a;
+            const result = (_a = originalPropertyDescriptor.set) === null || _a === void 0 ? void 0 : _a.call(this, sheets);
+            if (hostId !== null && hostId !== -1) {
+                try {
+                    stylesheetManager.adoptStyleSheets(sheets, hostId);
+                }
+                catch (e) {
+                }
+            }
+            return result;
+        },
+    });
+    return callbackWrapper(() => {
+        Object.defineProperty(host, 'adoptedStyleSheets', {
+            configurable: originalPropertyDescriptor.configurable,
+            enumerable: originalPropertyDescriptor.enumerable,
+            get: originalPropertyDescriptor.get,
+            set: originalPropertyDescriptor.set,
+        });
+    });
+}
+function initStyleDeclarationObserver({ styleDeclarationCb, mirror, ignoreCSSAttributes, stylesheetManager, }, { win }) {
+    const setProperty = win.CSSStyleDeclaration.prototype.setProperty;
+    win.CSSStyleDeclaration.prototype.setProperty = new Proxy(setProperty, {
+        apply: callbackWrapper((target, thisArg, argumentsList) => {
+            var _a;
+            const [property, value, priority] = argumentsList;
+            if (ignoreCSSAttributes.has(property)) {
+                return setProperty.apply(thisArg, [property, value, priority]);
+            }
+            const { id, styleId } = getIdAndStyleId((_a = thisArg.parentRule) === null || _a === void 0 ? void 0 : _a.parentStyleSheet, mirror, stylesheetManager.styleMirror);
+            if ((id && id !== -1) || (styleId && styleId !== -1)) {
+                styleDeclarationCb({
+                    id,
+                    styleId,
+                    set: {
+                        property,
+                        value,
+                        priority,
+                    },
+                    index: getNestedCSSRulePositions(thisArg.parentRule),
+                });
+            }
+            return target.apply(thisArg, argumentsList);
+        }),
+    });
+    const removeProperty = win.CSSStyleDeclaration.prototype.removeProperty;
+    win.CSSStyleDeclaration.prototype.removeProperty = new Proxy(removeProperty, {
+        apply: callbackWrapper((target, thisArg, argumentsList) => {
+            var _a;
+            const [property] = argumentsList;
+            if (ignoreCSSAttributes.has(property)) {
+                return removeProperty.apply(thisArg, [property]);
+            }
+            const { id, styleId } = getIdAndStyleId((_a = thisArg.parentRule) === null || _a === void 0 ? void 0 : _a.parentStyleSheet, mirror, stylesheetManager.styleMirror);
+            if ((id && id !== -1) || (styleId && styleId !== -1)) {
+                styleDeclarationCb({
+                    id,
+                    styleId,
+                    remove: {
+                        property,
+                    },
+                    index: getNestedCSSRulePositions(thisArg.parentRule),
+                });
+            }
+            return target.apply(thisArg, argumentsList);
+        }),
+    });
+    return callbackWrapper(() => {
+        win.CSSStyleDeclaration.prototype.setProperty = setProperty;
+        win.CSSStyleDeclaration.prototype.removeProperty = removeProperty;
+    });
+}
+function initMediaInteractionObserver({ mediaInteractionCb, blockClass, blockSelector, mirror, sampling, doc, }) {
+    const handler = callbackWrapper((type) => throttle(callbackWrapper((event) => {
+        const target = getEventTarget(event);
+        if (!target ||
+            isBlocked(target, blockClass, blockSelector, true)) {
+            return;
+        }
+        const { currentTime, volume, muted, playbackRate, loop } = target;
+        mediaInteractionCb({
+            type,
+            id: mirror.getId(target),
+            currentTime,
+            volume,
+            muted,
+            playbackRate,
+            loop,
+        });
+    }), sampling.media || 500));
+    const handlers = [
+        on('play', handler(0), doc),
+        on('pause', handler(1), doc),
+        on('seeked', handler(2), doc),
+        on('volumechange', handler(3), doc),
+        on('ratechange', handler(4), doc),
+    ];
+    return callbackWrapper(() => {
+        handlers.forEach((h) => h());
+    });
+}
+function initFontObserver({ fontCb, doc }) {
+    const win = doc.defaultView;
+    if (!win) {
+        return () => {
+        };
+    }
+    const handlers = [];
+    const fontMap = new WeakMap();
+    const originalFontFace = win.FontFace;
+    win.FontFace = function FontFace(family, source, descriptors) {
+        const fontFace = new originalFontFace(family, source, descriptors);
+        fontMap.set(fontFace, {
+            family,
+            buffer: typeof source !== 'string',
+            descriptors,
+            fontSource: typeof source === 'string'
+                ? source
+                : JSON.stringify(Array.from(new Uint8Array(source))),
+        });
+        return fontFace;
+    };
+    const restoreHandler = patch(doc.fonts, 'add', function (original) {
+        return function (fontFace) {
+            setTimeout(callbackWrapper(() => {
+                const p = fontMap.get(fontFace);
+                if (p) {
+                    fontCb(p);
+                    fontMap.delete(fontFace);
+                }
+            }), 0);
+            return original.apply(this, [fontFace]);
+        };
+    });
+    handlers.push(() => {
+        win.FontFace = originalFontFace;
+    });
+    handlers.push(restoreHandler);
+    return callbackWrapper(() => {
+        handlers.forEach((h) => h());
+    });
+}
+function initSelectionObserver(param) {
+    const { doc, mirror, blockClass, blockSelector, selectionCb } = param;
+    let collapsed = true;
+    const updateSelection = callbackWrapper(() => {
+        const selection = doc.getSelection();
+        if (!selection || (collapsed && (selection === null || selection === void 0 ? void 0 : selection.isCollapsed)))
+            return;
+        collapsed = selection.isCollapsed || false;
+        const ranges = [];
+        const count = selection.rangeCount || 0;
+        for (let i = 0; i < count; i++) {
+            const range = selection.getRangeAt(i);
+            const { startContainer, startOffset, endContainer, endOffset } = range;
+            const blocked = isBlocked(startContainer, blockClass, blockSelector, true) ||
+                isBlocked(endContainer, blockClass, blockSelector, true);
+            if (blocked)
+                continue;
+            ranges.push({
+                start: mirror.getId(startContainer),
+                startOffset,
+                end: mirror.getId(endContainer),
+                endOffset,
+            });
+        }
+        selectionCb({ ranges });
+    });
+    updateSelection();
+    return on('selectionchange', updateSelection);
+}
+function initCustomElementObserver({ doc, customElementCb, }) {
+    const win = doc.defaultView;
+    if (!win || !win.customElements)
+        return () => { };
+    const restoreHandler = patch(win.customElements, 'define', function (original) {
+        return function (name, constructor, options) {
+            try {
+                customElementCb({
+                    define: {
+                        name,
+                    },
+                });
+            }
+            catch (e) {
+                console.warn(`Custom element callback failed for ${name}`);
+            }
+            return original.apply(this, [name, constructor, options]);
+        };
+    });
+    return restoreHandler;
+}
+function mergeHooks(o, hooks) {
+    const { mutationCb, mousemoveCb, mouseInteractionCb, scrollCb, viewportResizeCb, inputCb, mediaInteractionCb, styleSheetRuleCb, styleDeclarationCb, canvasMutationCb, fontCb, selectionCb, customElementCb, } = o;
+    o.mutationCb = (...p) => {
+        if (hooks.mutation) {
+            hooks.mutation(...p);
+        }
+        mutationCb(...p);
+    };
+    o.mousemoveCb = (...p) => {
+        if (hooks.mousemove) {
+            hooks.mousemove(...p);
+        }
+        mousemoveCb(...p);
+    };
+    o.mouseInteractionCb = (...p) => {
+        if (hooks.mouseInteraction) {
+            hooks.mouseInteraction(...p);
+        }
+        mouseInteractionCb(...p);
+    };
+    o.scrollCb = (...p) => {
+        if (hooks.scroll) {
+            hooks.scroll(...p);
+        }
+        scrollCb(...p);
+    };
+    o.viewportResizeCb = (...p) => {
+        if (hooks.viewportResize) {
+            hooks.viewportResize(...p);
+        }
+        viewportResizeCb(...p);
+    };
+    o.inputCb = (...p) => {
+        if (hooks.input) {
+            hooks.input(...p);
+        }
+        inputCb(...p);
+    };
+    o.mediaInteractionCb = (...p) => {
+        if (hooks.mediaInteaction) {
+            hooks.mediaInteaction(...p);
+        }
+        mediaInteractionCb(...p);
+    };
+    o.styleSheetRuleCb = (...p) => {
+        if (hooks.styleSheetRule) {
+            hooks.styleSheetRule(...p);
+        }
+        styleSheetRuleCb(...p);
+    };
+    o.styleDeclarationCb = (...p) => {
+        if (hooks.styleDeclaration) {
+            hooks.styleDeclaration(...p);
+        }
+        styleDeclarationCb(...p);
+    };
+    o.canvasMutationCb = (...p) => {
+        if (hooks.canvasMutation) {
+            hooks.canvasMutation(...p);
+        }
+        canvasMutationCb(...p);
+    };
+    o.fontCb = (...p) => {
+        if (hooks.font) {
+            hooks.font(...p);
+        }
+        fontCb(...p);
+    };
+    o.selectionCb = (...p) => {
+        if (hooks.selection) {
+            hooks.selection(...p);
+        }
+        selectionCb(...p);
+    };
+    o.customElementCb = (...c) => {
+        if (hooks.customElement) {
+            hooks.customElement(...c);
+        }
+        customElementCb(...c);
+    };
+}
+function initObservers(o, hooks = {}) {
+    const currentWindow = o.doc.defaultView;
+    if (!currentWindow) {
+        return () => {
+        };
+    }
+    mergeHooks(o, hooks);
+    let mutationObserver;
+    if (o.recordDOM) {
+        mutationObserver = initMutationObserver(o, o.doc);
+    }
+    const mousemoveHandler = initMoveObserver(o);
+    const mouseInteractionHandler = initMouseInteractionObserver(o);
+    const scrollHandler = initScrollObserver(o);
+    const viewportResizeHandler = initViewportResizeObserver(o, {
+        win: currentWindow,
+    });
+    const inputHandler = initInputObserver(o);
+    const mediaInteractionHandler = initMediaInteractionObserver(o);
+    let styleSheetObserver = () => { };
+    let adoptedStyleSheetObserver = () => { };
+    let styleDeclarationObserver = () => { };
+    let fontObserver = () => { };
+    if (o.recordDOM) {
+        styleSheetObserver = initStyleSheetObserver(o, { win: currentWindow });
+        adoptedStyleSheetObserver = initAdoptedStyleSheetObserver(o, o.doc);
+        styleDeclarationObserver = initStyleDeclarationObserver(o, {
+            win: currentWindow,
+        });
+        if (o.collectFonts) {
+            fontObserver = initFontObserver(o);
+        }
+    }
+    const selectionObserver = initSelectionObserver(o);
+    const customElementObserver = initCustomElementObserver(o);
+    const pluginHandlers = [];
+    for (const plugin of o.plugins) {
+        pluginHandlers.push(plugin.observer(plugin.callback, currentWindow, plugin.options));
+    }
+    return callbackWrapper(() => {
+        mutationBuffers.forEach((b) => b.reset());
+        mutationObserver === null || mutationObserver === void 0 ? void 0 : mutationObserver.disconnect();
+        mousemoveHandler();
+        mouseInteractionHandler();
+        scrollHandler();
+        viewportResizeHandler();
+        inputHandler();
+        mediaInteractionHandler();
+        styleSheetObserver();
+        adoptedStyleSheetObserver();
+        styleDeclarationObserver();
+        fontObserver();
+        selectionObserver();
+        customElementObserver();
+        pluginHandlers.forEach((h) => h());
+    });
+}
+function hasNestedCSSRule(prop) {
+    return typeof window[prop] !== 'undefined';
+}
+function canMonkeyPatchNestedCSSRule(prop) {
+    return Boolean(typeof window[prop] !== 'undefined' &&
+        window[prop].prototype &&
+        'insertRule' in window[prop].prototype &&
+        'deleteRule' in window[prop].prototype);
+}
+
+class CrossOriginIframeMirror {
+    constructor(generateIdFn) {
+        this.generateIdFn = generateIdFn;
+        this.iframeIdToRemoteIdMap = new WeakMap();
+        this.iframeRemoteIdToIdMap = new WeakMap();
+    }
+    getId(iframe, remoteId, idToRemoteMap, remoteToIdMap) {
+        const idToRemoteIdMap = idToRemoteMap || this.getIdToRemoteIdMap(iframe);
+        const remoteIdToIdMap = remoteToIdMap || this.getRemoteIdToIdMap(iframe);
+        let id = idToRemoteIdMap.get(remoteId);
+        if (!id) {
+            id = this.generateIdFn();
+            idToRemoteIdMap.set(remoteId, id);
+            remoteIdToIdMap.set(id, remoteId);
+        }
+        return id;
+    }
+    getIds(iframe, remoteId) {
+        const idToRemoteIdMap = this.getIdToRemoteIdMap(iframe);
+        const remoteIdToIdMap = this.getRemoteIdToIdMap(iframe);
+        return remoteId.map((id) => this.getId(iframe, id, idToRemoteIdMap, remoteIdToIdMap));
+    }
+    getRemoteId(iframe, id, map) {
+        const remoteIdToIdMap = map || this.getRemoteIdToIdMap(iframe);
+        if (typeof id !== 'number')
+            return id;
+        const remoteId = remoteIdToIdMap.get(id);
+        if (!remoteId)
+            return -1;
+        return remoteId;
+    }
+    getRemoteIds(iframe, ids) {
+        const remoteIdToIdMap = this.getRemoteIdToIdMap(iframe);
+        return ids.map((id) => this.getRemoteId(iframe, id, remoteIdToIdMap));
+    }
+    reset(iframe) {
+        if (!iframe) {
+            this.iframeIdToRemoteIdMap = new WeakMap();
+            this.iframeRemoteIdToIdMap = new WeakMap();
+            return;
+        }
+        this.iframeIdToRemoteIdMap.delete(iframe);
+        this.iframeRemoteIdToIdMap.delete(iframe);
+    }
+    getIdToRemoteIdMap(iframe) {
+        let idToRemoteIdMap = this.iframeIdToRemoteIdMap.get(iframe);
+        if (!idToRemoteIdMap) {
+            idToRemoteIdMap = new Map();
+            this.iframeIdToRemoteIdMap.set(iframe, idToRemoteIdMap);
+        }
+        return idToRemoteIdMap;
+    }
+    getRemoteIdToIdMap(iframe) {
+        let remoteIdToIdMap = this.iframeRemoteIdToIdMap.get(iframe);
+        if (!remoteIdToIdMap) {
+            remoteIdToIdMap = new Map();
+            this.iframeRemoteIdToIdMap.set(iframe, remoteIdToIdMap);
+        }
+        return remoteIdToIdMap;
+    }
+}
+
+class IframeManager {
+    constructor(options) {
+        this.iframes = new WeakMap();
+        this.crossOriginIframeMap = new WeakMap();
+        this.crossOriginIframeMirror = new CrossOriginIframeMirror(genId);
+        this.crossOriginIframeRootIdMap = new WeakMap();
+        this.mutationCb = options.mutationCb;
+        this.wrappedEmit = options.wrappedEmit;
+        this.stylesheetManager = options.stylesheetManager;
+        this.recordCrossOriginIframes = options.recordCrossOriginIframes;
+        this.crossOriginIframeStyleMirror = new CrossOriginIframeMirror(this.stylesheetManager.styleMirror.generateId.bind(this.stylesheetManager.styleMirror));
+        this.mirror = options.mirror;
+        if (this.recordCrossOriginIframes) {
+            window.addEventListener('message', this.handleMessage.bind(this));
+        }
+    }
+    addIframe(iframeEl) {
+        this.iframes.set(iframeEl, true);
+        if (iframeEl.contentWindow)
+            this.crossOriginIframeMap.set(iframeEl.contentWindow, iframeEl);
+    }
+    addLoadListener(cb) {
+        this.loadListener = cb;
+    }
+    attachIframe(iframeEl, childSn) {
+        var _a;
+        this.mutationCb({
+            adds: [
+                {
+                    parentId: this.mirror.getId(iframeEl),
+                    nextId: null,
+                    node: childSn,
+                },
+            ],
+            removes: [],
+            texts: [],
+            attributes: [],
+            isAttachIframe: true,
+        });
+        (_a = this.loadListener) === null || _a === void 0 ? void 0 : _a.call(this, iframeEl);
+        if (iframeEl.contentDocument &&
+            iframeEl.contentDocument.adoptedStyleSheets &&
+            iframeEl.contentDocument.adoptedStyleSheets.length > 0)
+            this.stylesheetManager.adoptStyleSheets(iframeEl.contentDocument.adoptedStyleSheets, this.mirror.getId(iframeEl.contentDocument));
+    }
+    handleMessage(message) {
+        const crossOriginMessageEvent = message;
+        if (crossOriginMessageEvent.data.type !== 'rrweb' ||
+            crossOriginMessageEvent.origin !== crossOriginMessageEvent.data.origin)
+            return;
+        const iframeSourceWindow = message.source;
+        if (!iframeSourceWindow)
+            return;
+        const iframeEl = this.crossOriginIframeMap.get(message.source);
+        if (!iframeEl)
+            return;
+        const transformedEvent = this.transformCrossOriginEvent(iframeEl, crossOriginMessageEvent.data.event);
+        if (transformedEvent)
+            this.wrappedEmit(transformedEvent, crossOriginMessageEvent.data.isCheckout);
+    }
+    transformCrossOriginEvent(iframeEl, e) {
+        var _a;
+        switch (e.type) {
+            case EventType$1.FullSnapshot: {
+                this.crossOriginIframeMirror.reset(iframeEl);
+                this.crossOriginIframeStyleMirror.reset(iframeEl);
+                this.replaceIdOnNode(e.data.node, iframeEl);
+                const rootId = e.data.node.id;
+                this.crossOriginIframeRootIdMap.set(iframeEl, rootId);
+                this.patchRootIdOnNode(e.data.node, rootId);
+                return {
+                    timestamp: e.timestamp,
+                    type: EventType$1.IncrementalSnapshot,
+                    data: {
+                        source: IncrementalSource$1.Mutation,
+                        adds: [
+                            {
+                                parentId: this.mirror.getId(iframeEl),
+                                nextId: null,
+                                node: e.data.node,
+                            },
+                        ],
+                        removes: [],
+                        texts: [],
+                        attributes: [],
+                        isAttachIframe: true,
+                    },
+                };
+            }
+            case EventType$1.Meta:
+            case EventType$1.Load:
+            case EventType$1.DomContentLoaded: {
+                return false;
+            }
+            case EventType$1.Plugin: {
+                return e;
+            }
+            case EventType$1.Custom: {
+                this.replaceIds(e.data.payload, iframeEl, ['id', 'parentId', 'previousId', 'nextId']);
+                return e;
+            }
+            case EventType$1.IncrementalSnapshot: {
+                switch (e.data.source) {
+                    case IncrementalSource$1.Mutation: {
+                        e.data.adds.forEach((n) => {
+                            this.replaceIds(n, iframeEl, [
+                                'parentId',
+                                'nextId',
+                                'previousId',
+                            ]);
+                            this.replaceIdOnNode(n.node, iframeEl);
+                            const rootId = this.crossOriginIframeRootIdMap.get(iframeEl);
+                            rootId && this.patchRootIdOnNode(n.node, rootId);
+                        });
+                        e.data.removes.forEach((n) => {
+                            this.replaceIds(n, iframeEl, ['parentId', 'id']);
+                        });
+                        e.data.attributes.forEach((n) => {
+                            this.replaceIds(n, iframeEl, ['id']);
+                        });
+                        e.data.texts.forEach((n) => {
+                            this.replaceIds(n, iframeEl, ['id']);
+                        });
+                        return e;
+                    }
+                    case IncrementalSource$1.Drag:
+                    case IncrementalSource$1.TouchMove:
+                    case IncrementalSource$1.MouseMove: {
+                        e.data.positions.forEach((p) => {
+                            this.replaceIds(p, iframeEl, ['id']);
+                        });
+                        return e;
+                    }
+                    case IncrementalSource$1.ViewportResize: {
+                        return false;
+                    }
+                    case IncrementalSource$1.MediaInteraction:
+                    case IncrementalSource$1.MouseInteraction:
+                    case IncrementalSource$1.Scroll:
+                    case IncrementalSource$1.CanvasMutation:
+                    case IncrementalSource$1.Input: {
+                        this.replaceIds(e.data, iframeEl, ['id']);
+                        return e;
+                    }
+                    case IncrementalSource$1.StyleSheetRule:
+                    case IncrementalSource$1.StyleDeclaration: {
+                        this.replaceIds(e.data, iframeEl, ['id']);
+                        this.replaceStyleIds(e.data, iframeEl, ['styleId']);
+                        return e;
+                    }
+                    case IncrementalSource$1.Font: {
+                        return e;
+                    }
+                    case IncrementalSource$1.Selection: {
+                        e.data.ranges.forEach((range) => {
+                            this.replaceIds(range, iframeEl, ['start', 'end']);
+                        });
+                        return e;
+                    }
+                    case IncrementalSource$1.AdoptedStyleSheet: {
+                        this.replaceIds(e.data, iframeEl, ['id']);
+                        this.replaceStyleIds(e.data, iframeEl, ['styleIds']);
+                        (_a = e.data.styles) === null || _a === void 0 ? void 0 : _a.forEach((style) => {
+                            this.replaceStyleIds(style, iframeEl, ['styleId']);
+                        });
+                        return e;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    replace(iframeMirror, obj, iframeEl, keys) {
+        for (const key of keys) {
+            if (!Array.isArray(obj[key]) && typeof obj[key] !== 'number')
+                continue;
+            if (Array.isArray(obj[key])) {
+                obj[key] = iframeMirror.getIds(iframeEl, obj[key]);
+            }
+            else {
+                obj[key] = iframeMirror.getId(iframeEl, obj[key]);
+            }
+        }
+        return obj;
+    }
+    replaceIds(obj, iframeEl, keys) {
+        return this.replace(this.crossOriginIframeMirror, obj, iframeEl, keys);
+    }
+    replaceStyleIds(obj, iframeEl, keys) {
+        return this.replace(this.crossOriginIframeStyleMirror, obj, iframeEl, keys);
+    }
+    replaceIdOnNode(node, iframeEl) {
+        this.replaceIds(node, iframeEl, ['id', 'rootId']);
+        if ('childNodes' in node) {
+            node.childNodes.forEach((child) => {
+                this.replaceIdOnNode(child, iframeEl);
+            });
+        }
+    }
+    patchRootIdOnNode(node, rootId) {
+        if (node.type !== NodeType.Document && !node.rootId)
+            node.rootId = rootId;
+        if ('childNodes' in node) {
+            node.childNodes.forEach((child) => {
+                this.patchRootIdOnNode(child, rootId);
+            });
+        }
+    }
+}
+
+class ShadowDomManager {
+    constructor(options) {
+        this.shadowDoms = new WeakSet();
+        this.restoreHandlers = [];
+        this.mutationCb = options.mutationCb;
+        this.scrollCb = options.scrollCb;
+        this.bypassOptions = options.bypassOptions;
+        this.mirror = options.mirror;
+        this.init();
+    }
+    init() {
+        this.reset();
+        this.patchAttachShadow(Element, document);
+    }
+    addShadowRoot(shadowRoot, doc) {
+        if (!isNativeShadowDom(shadowRoot))
+            return;
+        if (this.shadowDoms.has(shadowRoot))
+            return;
+        this.shadowDoms.add(shadowRoot);
+        const observer = initMutationObserver(Object.assign(Object.assign({}, this.bypassOptions), { doc, mutationCb: this.mutationCb, mirror: this.mirror, shadowDomManager: this }), shadowRoot);
+        this.restoreHandlers.push(() => observer.disconnect());
+        this.restoreHandlers.push(initScrollObserver(Object.assign(Object.assign({}, this.bypassOptions), { scrollCb: this.scrollCb, doc: shadowRoot, mirror: this.mirror })));
+        setTimeout(() => {
+            if (shadowRoot.adoptedStyleSheets &&
+                shadowRoot.adoptedStyleSheets.length > 0)
+                this.bypassOptions.stylesheetManager.adoptStyleSheets(shadowRoot.adoptedStyleSheets, this.mirror.getId(shadowRoot.host));
+            this.restoreHandlers.push(initAdoptedStyleSheetObserver({
+                mirror: this.mirror,
+                stylesheetManager: this.bypassOptions.stylesheetManager,
+            }, shadowRoot));
+        }, 0);
+    }
+    observeAttachShadow(iframeElement) {
+        if (!iframeElement.contentWindow || !iframeElement.contentDocument)
+            return;
+        this.patchAttachShadow(iframeElement.contentWindow.Element, iframeElement.contentDocument);
+    }
+    patchAttachShadow(element, doc) {
+        const manager = this;
+        this.restoreHandlers.push(patch(element.prototype, 'attachShadow', function (original) {
+            return function (option) {
+                const shadowRoot = original.call(this, option);
+                if (this.shadowRoot && inDom(this))
+                    manager.addShadowRoot(this.shadowRoot, doc);
+                return shadowRoot;
+            };
+        }));
+    }
+    reset() {
+        this.restoreHandlers.forEach((handler) => {
+            try {
+                handler();
+            }
+            catch (e) {
+            }
+        });
+        this.restoreHandlers = [];
+        this.shadowDoms = new WeakSet();
+    }
+}
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+
+function __rest(s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+}
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+}
+
+/*
+ * base64-arraybuffer 1.0.1 <https://github.com/niklasvh/base64-arraybuffer>
+ * Copyright (c) 2021 Niklas von Hertzen <https://hertzen.com>
+ * Released under MIT License
+ */
+var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+// Use a lookup table to find the index.
+var lookup = typeof Uint8Array === 'undefined' ? [] : new Uint8Array(256);
+for (var i = 0; i < chars.length; i++) {
+    lookup[chars.charCodeAt(i)] = i;
+}
+var encode = function (arraybuffer) {
+    var bytes = new Uint8Array(arraybuffer), i, len = bytes.length, base64 = '';
+    for (i = 0; i < len; i += 3) {
+        base64 += chars[bytes[i] >> 2];
+        base64 += chars[((bytes[i] & 3) << 4) | (bytes[i + 1] >> 4)];
+        base64 += chars[((bytes[i + 1] & 15) << 2) | (bytes[i + 2] >> 6)];
+        base64 += chars[bytes[i + 2] & 63];
+    }
+    if (len % 3 === 2) {
+        base64 = base64.substring(0, base64.length - 1) + '=';
+    }
+    else if (len % 3 === 1) {
+        base64 = base64.substring(0, base64.length - 2) + '==';
+    }
+    return base64;
+};
+
+const canvasVarMap = new Map();
+function variableListFor(ctx, ctor) {
+    let contextMap = canvasVarMap.get(ctx);
+    if (!contextMap) {
+        contextMap = new Map();
+        canvasVarMap.set(ctx, contextMap);
+    }
+    if (!contextMap.has(ctor)) {
+        contextMap.set(ctor, []);
+    }
+    return contextMap.get(ctor);
+}
+const saveWebGLVar = (value, win, ctx) => {
+    if (!value ||
+        !(isInstanceOfWebGLObject(value, win) || typeof value === 'object'))
+        return;
+    const name = value.constructor.name;
+    const list = variableListFor(ctx, name);
+    let index = list.indexOf(value);
+    if (index === -1) {
+        index = list.length;
+        list.push(value);
+    }
+    return index;
+};
+function serializeArg(value, win, ctx) {
+    if (value instanceof Array) {
+        return value.map((arg) => serializeArg(arg, win, ctx));
+    }
+    else if (value === null) {
+        return value;
+    }
+    else if (value instanceof Float32Array ||
+        value instanceof Float64Array ||
+        value instanceof Int32Array ||
+        value instanceof Uint32Array ||
+        value instanceof Uint8Array ||
+        value instanceof Uint16Array ||
+        value instanceof Int16Array ||
+        value instanceof Int8Array ||
+        value instanceof Uint8ClampedArray) {
+        const name = value.constructor.name;
+        return {
+            rr_type: name,
+            args: [Object.values(value)],
+        };
+    }
+    else if (value instanceof ArrayBuffer) {
+        const name = value.constructor.name;
+        const base64 = encode(value);
+        return {
+            rr_type: name,
+            base64,
+        };
+    }
+    else if (value instanceof DataView) {
+        const name = value.constructor.name;
+        return {
+            rr_type: name,
+            args: [
+                serializeArg(value.buffer, win, ctx),
+                value.byteOffset,
+                value.byteLength,
+            ],
+        };
+    }
+    else if (value instanceof HTMLImageElement) {
+        const name = value.constructor.name;
+        const { src } = value;
+        return {
+            rr_type: name,
+            src,
+        };
+    }
+    else if (value instanceof HTMLCanvasElement) {
+        const name = 'HTMLImageElement';
+        const src = value.toDataURL();
+        return {
+            rr_type: name,
+            src,
+        };
+    }
+    else if (value instanceof ImageData) {
+        const name = value.constructor.name;
+        return {
+            rr_type: name,
+            args: [serializeArg(value.data, win, ctx), value.width, value.height],
+        };
+    }
+    else if (isInstanceOfWebGLObject(value, win) || typeof value === 'object') {
+        const name = value.constructor.name;
+        const index = saveWebGLVar(value, win, ctx);
+        return {
+            rr_type: name,
+            index: index,
+        };
+    }
+    return value;
+}
+const serializeArgs = (args, win, ctx) => {
+    return args.map((arg) => serializeArg(arg, win, ctx));
+};
+const isInstanceOfWebGLObject = (value, win) => {
+    const webGLConstructorNames = [
+        'WebGLActiveInfo',
+        'WebGLBuffer',
+        'WebGLFramebuffer',
+        'WebGLProgram',
+        'WebGLRenderbuffer',
+        'WebGLShader',
+        'WebGLShaderPrecisionFormat',
+        'WebGLTexture',
+        'WebGLUniformLocation',
+        'WebGLVertexArrayObject',
+        'WebGLVertexArrayObjectOES',
+    ];
+    const supportedWebGLConstructorNames = webGLConstructorNames.filter((name) => typeof win[name] === 'function');
+    return Boolean(supportedWebGLConstructorNames.find((name) => value instanceof win[name]));
+};
+
+function initCanvas2DMutationObserver(cb, win, blockClass, blockSelector) {
+    const handlers = [];
+    const props2D = Object.getOwnPropertyNames(win.CanvasRenderingContext2D.prototype);
+    for (const prop of props2D) {
+        try {
+            if (typeof win.CanvasRenderingContext2D.prototype[prop] !== 'function') {
+                continue;
+            }
+            const restoreHandler = patch(win.CanvasRenderingContext2D.prototype, prop, function (original) {
+                return function (...args) {
+                    if (!isBlocked(this.canvas, blockClass, blockSelector, true)) {
+                        setTimeout(() => {
+                            const recordArgs = serializeArgs(args, win, this);
+                            cb(this.canvas, {
+                                type: CanvasContext['2D'],
+                                property: prop,
+                                args: recordArgs,
+                            });
+                        }, 0);
+                    }
+                    return original.apply(this, args);
+                };
+            });
+            handlers.push(restoreHandler);
+        }
+        catch (_a) {
+            const hookHandler = hookSetter(win.CanvasRenderingContext2D.prototype, prop, {
+                set(v) {
+                    cb(this.canvas, {
+                        type: CanvasContext['2D'],
+                        property: prop,
+                        args: [v],
+                        setter: true,
+                    });
+                },
+            });
+            handlers.push(hookHandler);
+        }
+    }
+    return () => {
+        handlers.forEach((h) => h());
+    };
+}
+
+function getNormalizedContextName(contextType) {
+    return contextType === 'experimental-webgl' ? 'webgl' : contextType;
+}
+function initCanvasContextObserver(win, blockClass, blockSelector, setPreserveDrawingBufferToTrue) {
+    const handlers = [];
+    try {
+        const restoreHandler = patch(win.HTMLCanvasElement.prototype, 'getContext', function (original) {
+            return function (contextType, ...args) {
+                if (!isBlocked(this, blockClass, blockSelector, true)) {
+                    const ctxName = getNormalizedContextName(contextType);
+                    if (!('__context' in this))
+                        this.__context = ctxName;
+                    if (setPreserveDrawingBufferToTrue &&
+                        ['webgl', 'webgl2'].includes(ctxName)) {
+                        if (args[0] && typeof args[0] === 'object') {
+                            const contextAttributes = args[0];
+                            if (!contextAttributes.preserveDrawingBuffer) {
+                                contextAttributes.preserveDrawingBuffer = true;
+                            }
+                        }
+                        else {
+                            args.splice(0, 1, {
+                                preserveDrawingBuffer: true,
+                            });
+                        }
+                    }
+                }
+                return original.apply(this, [contextType, ...args]);
+            };
+        });
+        handlers.push(restoreHandler);
+    }
+    catch (_a) {
+        console.error('failed to patch HTMLCanvasElement.prototype.getContext');
+    }
+    return () => {
+        handlers.forEach((h) => h());
+    };
+}
+
+function patchGLPrototype(prototype, type, cb, blockClass, blockSelector, mirror, win) {
+    const handlers = [];
+    const props = Object.getOwnPropertyNames(prototype);
+    for (const prop of props) {
+        if ([
+            'isContextLost',
+            'canvas',
+            'drawingBufferWidth',
+            'drawingBufferHeight',
+        ].includes(prop)) {
+            continue;
+        }
+        try {
+            if (typeof prototype[prop] !== 'function') {
+                continue;
+            }
+            const restoreHandler = patch(prototype, prop, function (original) {
+                return function (...args) {
+                    const result = original.apply(this, args);
+                    saveWebGLVar(result, win, this);
+                    if ('tagName' in this.canvas &&
+                        !isBlocked(this.canvas, blockClass, blockSelector, true)) {
+                        const recordArgs = serializeArgs(args, win, this);
+                        const mutation = {
+                            type,
+                            property: prop,
+                            args: recordArgs,
+                        };
+                        cb(this.canvas, mutation);
+                    }
+                    return result;
+                };
+            });
+            handlers.push(restoreHandler);
+        }
+        catch (_a) {
+            const hookHandler = hookSetter(prototype, prop, {
+                set(v) {
+                    cb(this.canvas, {
+                        type,
+                        property: prop,
+                        args: [v],
+                        setter: true,
+                    });
+                },
+            });
+            handlers.push(hookHandler);
+        }
+    }
+    return handlers;
+}
+function initCanvasWebGLMutationObserver(cb, win, blockClass, blockSelector, mirror) {
+    const handlers = [];
+    handlers.push(...patchGLPrototype(win.WebGLRenderingContext.prototype, CanvasContext.WebGL, cb, blockClass, blockSelector, mirror, win));
+    if (typeof win.WebGL2RenderingContext !== 'undefined') {
+        handlers.push(...patchGLPrototype(win.WebGL2RenderingContext.prototype, CanvasContext.WebGL2, cb, blockClass, blockSelector, mirror, win));
+    }
+    return () => {
+        handlers.forEach((h) => h());
+    };
+}
+
+function funcToSource(fn, sourcemapArg) {
+    var sourcemap = sourcemapArg === undefined ? null : sourcemapArg;
+    var source = fn.toString();
+    var lines = source.split('\n');
+    lines.pop();
+    lines.shift();
+    var blankPrefixLength = lines[0].search(/\S/);
+    var regex = /(['"])__worker_loader_strict__(['"])/g;
+    for (var i = 0, n = lines.length; i < n; ++i) {
+        lines[i] = lines[i].substring(blankPrefixLength).replace(regex, '$1use strict$2') + '\n';
+    }
+    if (sourcemap) {
+        lines.push('\/\/# sourceMappingURL=' + sourcemap + '\n');
+    }
+    return lines;
+}
+
+function createURL(fn, sourcemapArg) {
+    var lines = funcToSource(fn, sourcemapArg);
+    var blob = new Blob(lines, { type: 'application/javascript' });
+    return URL.createObjectURL(blob);
+}
+
+function createInlineWorkerFactory(fn, sourcemapArg) {
+    var url;
+    return function WorkerFactory(options) {
+        url = url || createURL(fn, sourcemapArg);
+        return new Worker(url, options);
+    };
+}
+
+var WorkerFactory = createInlineWorkerFactory(/* rollup-plugin-web-worker-loader */function () {
+(function () {
+    '__worker_loader_strict__';
+
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation.
+
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted.
+
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+    REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+    AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+    INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+    LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+    OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+    PERFORMANCE OF THIS SOFTWARE.
+    ***************************************************************************** */
+
+    function __awaiter(thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+            function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    }
+
+    /*
+     * base64-arraybuffer 1.0.1 <https://github.com/niklasvh/base64-arraybuffer>
+     * Copyright (c) 2021 Niklas von Hertzen <https://hertzen.com>
+     * Released under MIT License
+     */
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+    // Use a lookup table to find the index.
+    var lookup = typeof Uint8Array === 'undefined' ? [] : new Uint8Array(256);
+    for (var i = 0; i < chars.length; i++) {
+        lookup[chars.charCodeAt(i)] = i;
+    }
+    var encode = function (arraybuffer) {
+        var bytes = new Uint8Array(arraybuffer), i, len = bytes.length, base64 = '';
+        for (i = 0; i < len; i += 3) {
+            base64 += chars[bytes[i] >> 2];
+            base64 += chars[((bytes[i] & 3) << 4) | (bytes[i + 1] >> 4)];
+            base64 += chars[((bytes[i + 1] & 15) << 2) | (bytes[i + 2] >> 6)];
+            base64 += chars[bytes[i + 2] & 63];
+        }
+        if (len % 3 === 2) {
+            base64 = base64.substring(0, base64.length - 1) + '=';
+        }
+        else if (len % 3 === 1) {
+            base64 = base64.substring(0, base64.length - 2) + '==';
+        }
+        return base64;
+    };
+
+    const lastBlobMap = new Map();
+    const transparentBlobMap = new Map();
+    function getTransparentBlobFor(width, height, dataURLOptions) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const id = `${width}-${height}`;
+            if ('OffscreenCanvas' in globalThis) {
+                if (transparentBlobMap.has(id))
+                    return transparentBlobMap.get(id);
+                const offscreen = new OffscreenCanvas(width, height);
+                offscreen.getContext('2d');
+                const blob = yield offscreen.convertToBlob(dataURLOptions);
+                const arrayBuffer = yield blob.arrayBuffer();
+                const base64 = encode(arrayBuffer);
+                transparentBlobMap.set(id, base64);
+                return base64;
+            }
+            else {
+                return '';
+            }
+        });
+    }
+    const worker = self;
+    worker.onmessage = function (e) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if ('OffscreenCanvas' in globalThis) {
+                const { id, bitmap, width, height, dataURLOptions } = e.data;
+                const transparentBase64 = getTransparentBlobFor(width, height, dataURLOptions);
+                const offscreen = new OffscreenCanvas(width, height);
+                const ctx = offscreen.getContext('2d');
+                ctx.drawImage(bitmap, 0, 0);
+                bitmap.close();
+                const blob = yield offscreen.convertToBlob(dataURLOptions);
+                const type = blob.type;
+                const arrayBuffer = yield blob.arrayBuffer();
+                const base64 = encode(arrayBuffer);
+                if (!lastBlobMap.has(id) && (yield transparentBase64) === base64) {
+                    lastBlobMap.set(id, base64);
+                    return worker.postMessage({ id });
+                }
+                if (lastBlobMap.get(id) === base64)
+                    return worker.postMessage({ id });
+                worker.postMessage({
+                    id,
+                    type,
+                    base64,
+                    width,
+                    height,
+                });
+                lastBlobMap.set(id, base64);
+            }
+            else {
+                return worker.postMessage({ id: e.data.id });
+            }
+        });
+    };
+
+})();
+}, null);
+
+class CanvasManager {
+    reset() {
+        this.pendingCanvasMutations.clear();
+        this.resetObservers && this.resetObservers();
+    }
+    freeze() {
+        this.frozen = true;
+    }
+    unfreeze() {
+        this.frozen = false;
+    }
+    lock() {
+        this.locked = true;
+    }
+    unlock() {
+        this.locked = false;
+    }
+    constructor(options) {
+        this.pendingCanvasMutations = new Map();
+        this.rafStamps = { latestId: 0, invokeId: null };
+        this.frozen = false;
+        this.locked = false;
+        this.processMutation = (target, mutation) => {
+            const newFrame = this.rafStamps.invokeId &&
+                this.rafStamps.latestId !== this.rafStamps.invokeId;
+            if (newFrame || !this.rafStamps.invokeId)
+                this.rafStamps.invokeId = this.rafStamps.latestId;
+            if (!this.pendingCanvasMutations.has(target)) {
+                this.pendingCanvasMutations.set(target, []);
+            }
+            this.pendingCanvasMutations.get(target).push(mutation);
+        };
+        const { sampling = 'all', win, blockClass, blockSelector, recordCanvas, dataURLOptions, } = options;
+        this.mutationCb = options.mutationCb;
+        this.mirror = options.mirror;
+        if (recordCanvas && sampling === 'all')
+            this.initCanvasMutationObserver(win, blockClass, blockSelector);
+        if (recordCanvas && typeof sampling === 'number')
+            this.initCanvasFPSObserver(sampling, win, blockClass, blockSelector, {
+                dataURLOptions,
+            });
+    }
+    initCanvasFPSObserver(fps, win, blockClass, blockSelector, options) {
+        const canvasContextReset = initCanvasContextObserver(win, blockClass, blockSelector, true);
+        const snapshotInProgressMap = new Map();
+        const worker = new WorkerFactory();
+        worker.onmessage = (e) => {
+            const { id } = e.data;
+            snapshotInProgressMap.set(id, false);
+            if (!('base64' in e.data))
+                return;
+            const { base64, type, width, height } = e.data;
+            this.mutationCb({
+                id,
+                type: CanvasContext['2D'],
+                commands: [
+                    {
+                        property: 'clearRect',
+                        args: [0, 0, width, height],
+                    },
+                    {
+                        property: 'drawImage',
+                        args: [
+                            {
+                                rr_type: 'ImageBitmap',
+                                args: [
+                                    {
+                                        rr_type: 'Blob',
+                                        data: [{ rr_type: 'ArrayBuffer', base64 }],
+                                        type,
+                                    },
+                                ],
+                            },
+                            0,
+                            0,
+                        ],
+                    },
+                ],
+            });
+        };
+        const timeBetweenSnapshots = 1000 / fps;
+        let lastSnapshotTime = 0;
+        let rafId;
+        const getCanvas = () => {
+            const matchedCanvas = [];
+            win.document.querySelectorAll('canvas').forEach((canvas) => {
+                if (!isBlocked(canvas, blockClass, blockSelector, true)) {
+                    matchedCanvas.push(canvas);
+                }
+            });
+            return matchedCanvas;
+        };
+        const takeCanvasSnapshots = (timestamp) => {
+            if (lastSnapshotTime &&
+                timestamp - lastSnapshotTime < timeBetweenSnapshots) {
+                rafId = requestAnimationFrame(takeCanvasSnapshots);
+                return;
+            }
+            lastSnapshotTime = timestamp;
+            getCanvas()
+                .forEach((canvas) => __awaiter(this, void 0, void 0, function* () {
+                var _a;
+                const id = this.mirror.getId(canvas);
+                if (snapshotInProgressMap.get(id))
+                    return;
+                if (canvas.width === 0 || canvas.height === 0)
+                    return;
+                snapshotInProgressMap.set(id, true);
+                if (['webgl', 'webgl2'].includes(canvas.__context)) {
+                    const context = canvas.getContext(canvas.__context);
+                    if (((_a = context === null || context === void 0 ? void 0 : context.getContextAttributes()) === null || _a === void 0 ? void 0 : _a.preserveDrawingBuffer) === false) {
+                        context.clear(context.COLOR_BUFFER_BIT);
+                    }
+                }
+                const bitmap = yield createImageBitmap(canvas);
+                worker.postMessage({
+                    id,
+                    bitmap,
+                    width: canvas.width,
+                    height: canvas.height,
+                    dataURLOptions: options.dataURLOptions,
+                }, [bitmap]);
+            }));
+            rafId = requestAnimationFrame(takeCanvasSnapshots);
+        };
+        rafId = requestAnimationFrame(takeCanvasSnapshots);
+        this.resetObservers = () => {
+            canvasContextReset();
+            cancelAnimationFrame(rafId);
+        };
+    }
+    initCanvasMutationObserver(win, blockClass, blockSelector) {
+        this.startRAFTimestamping();
+        this.startPendingCanvasMutationFlusher();
+        const canvasContextReset = initCanvasContextObserver(win, blockClass, blockSelector, false);
+        const canvas2DReset = initCanvas2DMutationObserver(this.processMutation.bind(this), win, blockClass, blockSelector);
+        const canvasWebGL1and2Reset = initCanvasWebGLMutationObserver(this.processMutation.bind(this), win, blockClass, blockSelector, this.mirror);
+        this.resetObservers = () => {
+            canvasContextReset();
+            canvas2DReset();
+            canvasWebGL1and2Reset();
+        };
+    }
+    startPendingCanvasMutationFlusher() {
+        requestAnimationFrame(() => this.flushPendingCanvasMutations());
+    }
+    startRAFTimestamping() {
+        const setLatestRAFTimestamp = (timestamp) => {
+            this.rafStamps.latestId = timestamp;
+            requestAnimationFrame(setLatestRAFTimestamp);
+        };
+        requestAnimationFrame(setLatestRAFTimestamp);
+    }
+    flushPendingCanvasMutations() {
+        this.pendingCanvasMutations.forEach((values, canvas) => {
+            const id = this.mirror.getId(canvas);
+            this.flushPendingCanvasMutationFor(canvas, id);
+        });
+        requestAnimationFrame(() => this.flushPendingCanvasMutations());
+    }
+    flushPendingCanvasMutationFor(canvas, id) {
+        if (this.frozen || this.locked) {
+            return;
+        }
+        const valuesWithType = this.pendingCanvasMutations.get(canvas);
+        if (!valuesWithType || id === -1)
+            return;
+        const values = valuesWithType.map((value) => {
+            const rest = __rest(value, ["type"]);
+            return rest;
+        });
+        const { type } = valuesWithType[0];
+        this.mutationCb({ id, type, commands: values });
+        this.pendingCanvasMutations.delete(canvas);
+    }
+}
+
+class StylesheetManager {
+    constructor(options) {
+        this.trackedLinkElements = new WeakSet();
+        this.styleMirror = new StyleSheetMirror();
+        this.mutationCb = options.mutationCb;
+        this.adoptedStyleSheetCb = options.adoptedStyleSheetCb;
+    }
+    attachLinkElement(linkEl, childSn) {
+        if ('_cssText' in childSn.attributes)
+            this.mutationCb({
+                adds: [],
+                removes: [],
+                texts: [],
+                attributes: [
+                    {
+                        id: childSn.id,
+                        attributes: childSn
+                            .attributes,
+                    },
+                ],
+            });
+        this.trackLinkElement(linkEl);
+    }
+    trackLinkElement(linkEl) {
+        if (this.trackedLinkElements.has(linkEl))
+            return;
+        this.trackedLinkElements.add(linkEl);
+        this.trackStylesheetInLinkElement(linkEl);
+    }
+    adoptStyleSheets(sheets, hostId) {
+        if (sheets.length === 0)
+            return;
+        const adoptedStyleSheetData = {
+            id: hostId,
+            styleIds: [],
+        };
+        const styles = [];
+        for (const sheet of sheets) {
+            let styleId;
+            if (!this.styleMirror.has(sheet)) {
+                styleId = this.styleMirror.add(sheet);
+                styles.push({
+                    styleId,
+                    rules: Array.from(sheet.rules || CSSRule, (r, index) => ({
+                        rule: stringifyRule(r),
+                        index,
+                    })),
+                });
+            }
+            else
+                styleId = this.styleMirror.getId(sheet);
+            adoptedStyleSheetData.styleIds.push(styleId);
+        }
+        if (styles.length > 0)
+            adoptedStyleSheetData.styles = styles;
+        this.adoptedStyleSheetCb(adoptedStyleSheetData);
+    }
+    reset() {
+        this.styleMirror.reset();
+        this.trackedLinkElements = new WeakSet();
+    }
+    trackStylesheetInLinkElement(linkEl) {
+    }
+}
+
+class ProcessedNodeManager {
+    constructor() {
+        this.nodeMap = new WeakMap();
+        this.loop = true;
+        this.periodicallyClear();
+    }
+    periodicallyClear() {
+        requestAnimationFrame(() => {
+            this.clear();
+            if (this.loop)
+                this.periodicallyClear();
+        });
+    }
+    inOtherBuffer(node, thisBuffer) {
+        const buffers = this.nodeMap.get(node);
+        return (buffers && Array.from(buffers).some((buffer) => buffer !== thisBuffer));
+    }
+    add(node, buffer) {
+        this.nodeMap.set(node, (this.nodeMap.get(node) || new Set()).add(buffer));
+    }
+    clear() {
+        this.nodeMap = new WeakMap();
+    }
+    destroy() {
+        this.loop = false;
+    }
+}
+
+function wrapEvent(e) {
+    return Object.assign(Object.assign({}, e), { timestamp: nowTimestamp() });
+}
+let wrappedEmit;
+let takeFullSnapshot;
+let canvasManager;
+let recording = false;
+const mirror = createMirror();
+function record(options = {}) {
+    const { emit, checkoutEveryNms, checkoutEveryNth, blockClass = 'rr-block', blockSelector = null, ignoreClass = 'rr-ignore', ignoreSelector = null, maskTextClass = 'rr-mask', maskTextSelector = null, inlineStylesheet = true, maskAllInputs, maskInputOptions: _maskInputOptions, slimDOMOptions: _slimDOMOptions, maskInputFn, maskTextFn, hooks, packFn, sampling = {}, dataURLOptions = {}, mousemoveWait, recordDOM = true, recordCanvas = false, recordCrossOriginIframes = false, recordAfter = options.recordAfter === 'DOMContentLoaded'
+        ? options.recordAfter
+        : 'load', userTriggeredOnInput = false, collectFonts = false, inlineImages = false, plugins, keepIframeSrcFn = () => false, ignoreCSSAttributes = new Set([]), errorHandler, } = options;
+    registerErrorHandler(errorHandler);
+    const inEmittingFrame = recordCrossOriginIframes
+        ? window.parent === window
+        : true;
+    let passEmitsToParent = false;
+    if (!inEmittingFrame) {
+        try {
+            if (window.parent.document) {
+                passEmitsToParent = false;
+            }
+        }
+        catch (e) {
+            passEmitsToParent = true;
+        }
+    }
+    if (inEmittingFrame && !emit) {
+        throw new Error('emit function is required');
+    }
+    if (mousemoveWait !== undefined && sampling.mousemove === undefined) {
+        sampling.mousemove = mousemoveWait;
+    }
+    mirror.reset();
+    const maskInputOptions = maskAllInputs === true
+        ? {
+            color: true,
+            date: true,
+            'datetime-local': true,
+            email: true,
+            month: true,
+            number: true,
+            range: true,
+            search: true,
+            tel: true,
+            text: true,
+            time: true,
+            url: true,
+            week: true,
+            textarea: true,
+            select: true,
+            password: true,
+        }
+        : _maskInputOptions !== undefined
+            ? _maskInputOptions
+            : { password: true };
+    const slimDOMOptions = _slimDOMOptions === true || _slimDOMOptions === 'all'
+        ? {
+            script: true,
+            comment: true,
+            headFavicon: true,
+            headWhitespace: true,
+            headMetaSocial: true,
+            headMetaRobots: true,
+            headMetaHttpEquiv: true,
+            headMetaVerification: true,
+            headMetaAuthorship: _slimDOMOptions === 'all',
+            headMetaDescKeywords: _slimDOMOptions === 'all',
+        }
+        : _slimDOMOptions
+            ? _slimDOMOptions
+            : {};
+    polyfill();
+    let lastFullSnapshotEvent;
+    let incrementalSnapshotCount = 0;
+    const eventProcessor = (e) => {
+        for (const plugin of plugins || []) {
+            if (plugin.eventProcessor) {
+                e = plugin.eventProcessor(e);
+            }
+        }
+        if (packFn &&
+            !passEmitsToParent) {
+            e = packFn(e);
+        }
+        return e;
+    };
+    wrappedEmit = (e, isCheckout) => {
+        var _a;
+        if (((_a = mutationBuffers[0]) === null || _a === void 0 ? void 0 : _a.isFrozen()) &&
+            e.type !== EventType$1.FullSnapshot &&
+            !(e.type === EventType$1.IncrementalSnapshot &&
+                e.data.source === IncrementalSource$1.Mutation)) {
+            mutationBuffers.forEach((buf) => buf.unfreeze());
+        }
+        if (inEmittingFrame) {
+            emit === null || emit === void 0 ? void 0 : emit(eventProcessor(e), isCheckout);
+        }
+        else if (passEmitsToParent) {
+            const message = {
+                type: 'rrweb',
+                event: eventProcessor(e),
+                origin: window.location.origin,
+                isCheckout,
+            };
+            window.parent.postMessage(message, '*');
+        }
+        if (e.type === EventType$1.FullSnapshot) {
+            lastFullSnapshotEvent = e;
+            incrementalSnapshotCount = 0;
+        }
+        else if (e.type === EventType$1.IncrementalSnapshot) {
+            if (e.data.source === IncrementalSource$1.Mutation &&
+                e.data.isAttachIframe) {
+                return;
+            }
+            incrementalSnapshotCount++;
+            const exceedCount = checkoutEveryNth && incrementalSnapshotCount >= checkoutEveryNth;
+            const exceedTime = checkoutEveryNms &&
+                e.timestamp - lastFullSnapshotEvent.timestamp > checkoutEveryNms;
+            if (exceedCount || exceedTime) {
+                takeFullSnapshot(true);
+            }
+        }
+    };
+    const wrappedMutationEmit = (m) => {
+        wrappedEmit(wrapEvent({
+            type: EventType$1.IncrementalSnapshot,
+            data: Object.assign({ source: IncrementalSource$1.Mutation }, m),
+        }));
+    };
+    const wrappedScrollEmit = (p) => wrappedEmit(wrapEvent({
+        type: EventType$1.IncrementalSnapshot,
+        data: Object.assign({ source: IncrementalSource$1.Scroll }, p),
+    }));
+    const wrappedCanvasMutationEmit = (p) => wrappedEmit(wrapEvent({
+        type: EventType$1.IncrementalSnapshot,
+        data: Object.assign({ source: IncrementalSource$1.CanvasMutation }, p),
+    }));
+    const wrappedAdoptedStyleSheetEmit = (a) => wrappedEmit(wrapEvent({
+        type: EventType$1.IncrementalSnapshot,
+        data: Object.assign({ source: IncrementalSource$1.AdoptedStyleSheet }, a),
+    }));
+    const stylesheetManager = new StylesheetManager({
+        mutationCb: wrappedMutationEmit,
+        adoptedStyleSheetCb: wrappedAdoptedStyleSheetEmit,
+    });
+    const iframeManager = new IframeManager({
+        mirror,
+        mutationCb: wrappedMutationEmit,
+        stylesheetManager: stylesheetManager,
+        recordCrossOriginIframes,
+        wrappedEmit,
+    });
+    for (const plugin of plugins || []) {
+        if (plugin.getMirror)
+            plugin.getMirror({
+                nodeMirror: mirror,
+                crossOriginIframeMirror: iframeManager.crossOriginIframeMirror,
+                crossOriginIframeStyleMirror: iframeManager.crossOriginIframeStyleMirror,
+            });
+    }
+    const processedNodeManager = new ProcessedNodeManager();
+    canvasManager = new CanvasManager({
+        recordCanvas,
+        mutationCb: wrappedCanvasMutationEmit,
+        win: window,
+        blockClass,
+        blockSelector,
+        mirror,
+        sampling: sampling.canvas,
+        dataURLOptions,
+    });
+    const shadowDomManager = new ShadowDomManager({
+        mutationCb: wrappedMutationEmit,
+        scrollCb: wrappedScrollEmit,
+        bypassOptions: {
+            blockClass,
+            blockSelector,
+            maskTextClass,
+            maskTextSelector,
+            inlineStylesheet,
+            maskInputOptions,
+            dataURLOptions,
+            maskTextFn,
+            maskInputFn,
+            recordCanvas,
+            inlineImages,
+            sampling,
+            slimDOMOptions,
+            iframeManager,
+            stylesheetManager,
+            canvasManager,
+            keepIframeSrcFn,
+            processedNodeManager,
+        },
+        mirror,
+    });
+    takeFullSnapshot = (isCheckout = false) => {
+        if (!recordDOM) {
+            return;
+        }
+        wrappedEmit(wrapEvent({
+            type: EventType$1.Meta,
+            data: {
+                href: window.location.href,
+                width: getWindowWidth(),
+                height: getWindowHeight(),
+            },
+        }), isCheckout);
+        stylesheetManager.reset();
+        shadowDomManager.init();
+        mutationBuffers.forEach((buf) => buf.lock());
+        const node = snapshot(document, {
+            mirror,
+            blockClass,
+            blockSelector,
+            maskTextClass,
+            maskTextSelector,
+            inlineStylesheet,
+            maskAllInputs: maskInputOptions,
+            maskTextFn,
+            slimDOM: slimDOMOptions,
+            dataURLOptions,
+            recordCanvas,
+            inlineImages,
+            onSerialize: (n) => {
+                if (isSerializedIframe(n, mirror)) {
+                    iframeManager.addIframe(n);
+                }
+                if (isSerializedStylesheet(n, mirror)) {
+                    stylesheetManager.trackLinkElement(n);
+                }
+                if (hasShadowRoot(n)) {
+                    shadowDomManager.addShadowRoot(n.shadowRoot, document);
+                }
+            },
+            onIframeLoad: (iframe, childSn) => {
+                iframeManager.attachIframe(iframe, childSn);
+                shadowDomManager.observeAttachShadow(iframe);
+            },
+            onStylesheetLoad: (linkEl, childSn) => {
+                stylesheetManager.attachLinkElement(linkEl, childSn);
+            },
+            keepIframeSrcFn,
+        });
+        if (!node) {
+            return console.warn('Failed to snapshot the document');
+        }
+        wrappedEmit(wrapEvent({
+            type: EventType$1.FullSnapshot,
+            data: {
+                node,
+                initialOffset: getWindowScroll(window),
+            },
+        }), isCheckout);
+        mutationBuffers.forEach((buf) => buf.unlock());
+        if (document.adoptedStyleSheets && document.adoptedStyleSheets.length > 0)
+            stylesheetManager.adoptStyleSheets(document.adoptedStyleSheets, mirror.getId(document));
+    };
+    try {
+        const handlers = [];
+        const observe = (doc) => {
+            var _a;
+            return callbackWrapper(initObservers)({
+                mutationCb: wrappedMutationEmit,
+                mousemoveCb: (positions, source) => wrappedEmit(wrapEvent({
+                    type: EventType$1.IncrementalSnapshot,
+                    data: {
+                        source,
+                        positions,
+                    },
+                })),
+                mouseInteractionCb: (d) => wrappedEmit(wrapEvent({
+                    type: EventType$1.IncrementalSnapshot,
+                    data: Object.assign({ source: IncrementalSource$1.MouseInteraction }, d),
+                })),
+                scrollCb: wrappedScrollEmit,
+                viewportResizeCb: (d) => wrappedEmit(wrapEvent({
+                    type: EventType$1.IncrementalSnapshot,
+                    data: Object.assign({ source: IncrementalSource$1.ViewportResize }, d),
+                })),
+                inputCb: (v) => wrappedEmit(wrapEvent({
+                    type: EventType$1.IncrementalSnapshot,
+                    data: Object.assign({ source: IncrementalSource$1.Input }, v),
+                })),
+                mediaInteractionCb: (p) => wrappedEmit(wrapEvent({
+                    type: EventType$1.IncrementalSnapshot,
+                    data: Object.assign({ source: IncrementalSource$1.MediaInteraction }, p),
+                })),
+                styleSheetRuleCb: (r) => wrappedEmit(wrapEvent({
+                    type: EventType$1.IncrementalSnapshot,
+                    data: Object.assign({ source: IncrementalSource$1.StyleSheetRule }, r),
+                })),
+                styleDeclarationCb: (r) => wrappedEmit(wrapEvent({
+                    type: EventType$1.IncrementalSnapshot,
+                    data: Object.assign({ source: IncrementalSource$1.StyleDeclaration }, r),
+                })),
+                canvasMutationCb: wrappedCanvasMutationEmit,
+                fontCb: (p) => wrappedEmit(wrapEvent({
+                    type: EventType$1.IncrementalSnapshot,
+                    data: Object.assign({ source: IncrementalSource$1.Font }, p),
+                })),
+                selectionCb: (p) => {
+                    wrappedEmit(wrapEvent({
+                        type: EventType$1.IncrementalSnapshot,
+                        data: Object.assign({ source: IncrementalSource$1.Selection }, p),
+                    }));
+                },
+                customElementCb: (c) => {
+                    wrappedEmit(wrapEvent({
+                        type: EventType$1.IncrementalSnapshot,
+                        data: Object.assign({ source: IncrementalSource$1.CustomElement }, c),
+                    }));
+                },
+                blockClass,
+                ignoreClass,
+                ignoreSelector,
+                maskTextClass,
+                maskTextSelector,
+                maskInputOptions,
+                inlineStylesheet,
+                sampling,
+                recordDOM,
+                recordCanvas,
+                inlineImages,
+                userTriggeredOnInput,
+                collectFonts,
+                doc,
+                maskInputFn,
+                maskTextFn,
+                keepIframeSrcFn,
+                blockSelector,
+                slimDOMOptions,
+                dataURLOptions,
+                mirror,
+                iframeManager,
+                stylesheetManager,
+                shadowDomManager,
+                processedNodeManager,
+                canvasManager,
+                ignoreCSSAttributes,
+                plugins: ((_a = plugins === null || plugins === void 0 ? void 0 : plugins.filter((p) => p.observer)) === null || _a === void 0 ? void 0 : _a.map((p) => ({
+                    observer: p.observer,
+                    options: p.options,
+                    callback: (payload) => wrappedEmit(wrapEvent({
+                        type: EventType$1.Plugin,
+                        data: {
+                            plugin: p.name,
+                            payload,
+                        },
+                    })),
+                }))) || [],
+            }, hooks);
+        };
+        iframeManager.addLoadListener((iframeEl) => {
+            try {
+                handlers.push(observe(iframeEl.contentDocument));
+            }
+            catch (error) {
+                console.warn(error);
+            }
+        });
+        const init = () => {
+            takeFullSnapshot();
+            handlers.push(observe(document));
+            recording = true;
+        };
+        if (document.readyState === 'interactive' ||
+            document.readyState === 'complete') {
+            init();
+        }
+        else {
+            handlers.push(on('DOMContentLoaded', () => {
+                wrappedEmit(wrapEvent({
+                    type: EventType$1.DomContentLoaded,
+                    data: {},
+                }));
+                if (recordAfter === 'DOMContentLoaded')
+                    init();
+            }));
+            handlers.push(on('load', () => {
+                wrappedEmit(wrapEvent({
+                    type: EventType$1.Load,
+                    data: {},
+                }));
+                if (recordAfter === 'load')
+                    init();
+            }, window));
+        }
+        return () => {
+            handlers.forEach((h) => h());
+            processedNodeManager.destroy();
+            recording = false;
+            unregisterErrorHandler();
+        };
+    }
+    catch (error) {
+        console.warn(error);
+    }
+}
+record.addCustomEvent = (tag, payload) => {
+    if (!recording) {
+        throw new Error('please add custom event after start recording');
+    }
+    wrappedEmit(wrapEvent({
+        type: EventType$1.Custom,
+        data: {
+            tag,
+            payload,
+        },
+    }));
+};
+record.freezePage = () => {
+    mutationBuffers.forEach((buf) => buf.freeze());
+};
+record.takeFullSnapshot = (isCheckout) => {
+    if (!recording) {
+        throw new Error('please take full snapshot after start recording');
+    }
+    takeFullSnapshot(isCheckout);
+};
+record.mirror = mirror;
+
+var EventType = /* @__PURE__ */ ((EventType2) => {
+  EventType2[EventType2["DomContentLoaded"] = 0] = "DomContentLoaded";
+  EventType2[EventType2["Load"] = 1] = "Load";
+  EventType2[EventType2["FullSnapshot"] = 2] = "FullSnapshot";
+  EventType2[EventType2["IncrementalSnapshot"] = 3] = "IncrementalSnapshot";
+  EventType2[EventType2["Meta"] = 4] = "Meta";
+  EventType2[EventType2["Custom"] = 5] = "Custom";
+  EventType2[EventType2["Plugin"] = 6] = "Plugin";
+  return EventType2;
+})(EventType || {});
+var IncrementalSource = /* @__PURE__ */ ((IncrementalSource2) => {
+  IncrementalSource2[IncrementalSource2["Mutation"] = 0] = "Mutation";
+  IncrementalSource2[IncrementalSource2["MouseMove"] = 1] = "MouseMove";
+  IncrementalSource2[IncrementalSource2["MouseInteraction"] = 2] = "MouseInteraction";
+  IncrementalSource2[IncrementalSource2["Scroll"] = 3] = "Scroll";
+  IncrementalSource2[IncrementalSource2["ViewportResize"] = 4] = "ViewportResize";
+  IncrementalSource2[IncrementalSource2["Input"] = 5] = "Input";
+  IncrementalSource2[IncrementalSource2["TouchMove"] = 6] = "TouchMove";
+  IncrementalSource2[IncrementalSource2["MediaInteraction"] = 7] = "MediaInteraction";
+  IncrementalSource2[IncrementalSource2["StyleSheetRule"] = 8] = "StyleSheetRule";
+  IncrementalSource2[IncrementalSource2["CanvasMutation"] = 9] = "CanvasMutation";
+  IncrementalSource2[IncrementalSource2["Font"] = 10] = "Font";
+  IncrementalSource2[IncrementalSource2["Log"] = 11] = "Log";
+  IncrementalSource2[IncrementalSource2["Drag"] = 12] = "Drag";
+  IncrementalSource2[IncrementalSource2["StyleDeclaration"] = 13] = "StyleDeclaration";
+  IncrementalSource2[IncrementalSource2["Selection"] = 14] = "Selection";
+  IncrementalSource2[IncrementalSource2["AdoptedStyleSheet"] = 15] = "AdoptedStyleSheet";
+  IncrementalSource2[IncrementalSource2["CustomElement"] = 16] = "CustomElement";
+  return IncrementalSource2;
+})(IncrementalSource || {});
 
 var Config = {
     DEBUG: false,
-    LIB_VERSION: '2.50.0'
+    LIB_VERSION: '2.56.0'
 };
 
 /* eslint camelcase: "off", eqeqeq: "off" */
@@ -55916,7 +61396,7 @@ if (typeof(window) === 'undefined') {
         hostname: ''
     };
     win = {
-        navigator: { userAgent: '' },
+        navigator: { userAgent: '', onLine: true },
         document: {
             location: loc,
             referrer: ''
@@ -55930,6 +61410,8 @@ if (typeof(window) === 'undefined') {
 
 // Maximum allowed session recording length
 var MAX_RECORDING_MS = 24 * 60 * 60 * 1000; // 24 hours
+// Maximum allowed value for minimum session recording length
+var MAX_VALUE_FOR_MIN_RECORDING_MS = 8 * 1000; // 8 seconds
 
 /*
  * Saved references to long variable names, so that closure compiler can
@@ -55964,7 +61446,7 @@ var _ = {
 };
 
 // Console override
-var console = {
+var console$1 = {
     /** @type {function(...*)} */
     log: function() {
         if (Config.DEBUG && !_.isUndefined(windowConsole) && windowConsole) {
@@ -56021,14 +61503,14 @@ var console = {
 var log_func_with_prefix = function(func, prefix) {
     return function() {
         arguments[0] = '[' + prefix + '] ' + arguments[0];
-        return func.apply(console, arguments);
+        return func.apply(console$1, arguments);
     };
 };
 var console_with_prefix = function(prefix) {
     return {
-        log: log_func_with_prefix(console.log, prefix),
-        error: log_func_with_prefix(console.error, prefix),
-        critical: log_func_with_prefix(console.critical, prefix)
+        log: log_func_with_prefix(console$1.log, prefix),
+        error: log_func_with_prefix(console$1.error, prefix),
+        critical: log_func_with_prefix(console$1.critical, prefix)
     };
 };
 
@@ -56870,7 +62352,7 @@ _.HTTPBuildQuery = function(formdata, arg_separator) {
 _.getQueryParam = function(url, param) {
     // Expects a raw URL
 
-    param = param.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
+    param = param.replace(/[[]/g, '\\[').replace(/[\]]/g, '\\]');
     var regexS = '[\\?&]' + param + '=([^&#]*)',
         regex = new RegExp(regexS),
         results = regex.exec(url);
@@ -56881,7 +62363,7 @@ _.getQueryParam = function(url, param) {
         try {
             result = decodeURIComponent(result);
         } catch(err) {
-            console.error('Skipping decoding for malformed query param: ' + result);
+            console$1.error('Skipping decoding for malformed query param: ' + result);
         }
         return result.replace(/\+/g, ' ');
     }
@@ -57008,13 +62490,13 @@ _.localStorage = {
     is_supported: function(force_check) {
         var supported = localStorageSupported(null, force_check);
         if (!supported) {
-            console.error('localStorage unsupported; falling back to cookie store');
+            console$1.error('localStorage unsupported; falling back to cookie store');
         }
         return supported;
     },
 
     error: function(msg) {
-        console.error('localStorage error: ' + msg);
+        console$1.error('localStorage error: ' + msg);
     },
 
     get: function(name) {
@@ -57069,7 +62551,7 @@ _.register_event = (function() {
      */
     var register_event = function(element, type, handler, oldSchool, useCapture) {
         if (!element) {
-            console.error('No valid element provided to register_event');
+            console$1.error('No valid element provided to register_event');
             return;
         }
 
@@ -57327,8 +62809,8 @@ _.dom_query = (function() {
     };
 })();
 
-var CAMPAIGN_KEYWORDS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
-var CLICK_IDS = ['dclid', 'fbclid', 'gclid', 'ko_click_id', 'li_fat_id', 'msclkid', 'ttclid', 'twclid', 'wbraid'];
+var CAMPAIGN_KEYWORDS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id', 'utm_source_platform','utm_campaign_id', 'utm_creative_format', 'utm_marketing_tactic'];
+var CLICK_IDS = ['dclid', 'fbclid', 'gclid', 'ko_click_id', 'li_fat_id', 'msclkid', 'sccid', 'ttclid', 'twclid', 'wbraid'];
 
 _.info = {
     campaignParams: function(default_value) {
@@ -57610,6 +63092,15 @@ var extract_domain = function(hostname) {
     return matches ? matches[0] : '';
 };
 
+/**
+ * Check whether we have network connection. default to true for browsers that don't support navigator.onLine (IE)
+ * @returns {boolean}
+ */
+var isOnline = function() {
+    var onLine = win.navigator['onLine'];
+    return _.isUndefined(onLine) || onLine;
+};
+
 var JSONStringify = null, JSONParse = null;
 if (typeof JSON !== 'undefined') {
     JSONStringify = JSON.stringify;
@@ -57630,874 +63121,6 @@ _['info']['device']         = _.info.device;
 _['info']['browser']        = _.info.browser;
 _['info']['browserVersion'] = _.info.browserVersion;
 _['info']['properties']     = _.info.properties;
-
-/* eslint camelcase: "off" */
-
-/**
- * DomTracker Object
- * @constructor
- */
-var DomTracker = function() {};
-
-
-// interface
-DomTracker.prototype.create_properties = function() {};
-DomTracker.prototype.event_handler = function() {};
-DomTracker.prototype.after_track_handler = function() {};
-
-DomTracker.prototype.init = function(mixpanel_instance) {
-    this.mp = mixpanel_instance;
-    return this;
-};
-
-/**
- * @param {Object|string} query
- * @param {string} event_name
- * @param {Object=} properties
- * @param {function=} user_callback
- */
-DomTracker.prototype.track = function(query, event_name, properties, user_callback) {
-    var that = this;
-    var elements = _.dom_query(query);
-
-    if (elements.length === 0) {
-        console.error('The DOM query (' + query + ') returned 0 elements');
-        return;
-    }
-
-    _.each(elements, function(element) {
-        _.register_event(element, this.override_event, function(e) {
-            var options = {};
-            var props = that.create_properties(properties, this);
-            var timeout = that.mp.get_config('track_links_timeout');
-
-            that.event_handler(e, this, options);
-
-            // in case the mixpanel servers don't get back to us in time
-            window.setTimeout(that.track_callback(user_callback, props, options, true), timeout);
-
-            // fire the tracking event
-            that.mp.track(event_name, props, that.track_callback(user_callback, props, options));
-        });
-    }, this);
-
-    return true;
-};
-
-/**
- * @param {function} user_callback
- * @param {Object} props
- * @param {boolean=} timeout_occured
- */
-DomTracker.prototype.track_callback = function(user_callback, props, options, timeout_occured) {
-    timeout_occured = timeout_occured || false;
-    var that = this;
-
-    return function() {
-        // options is referenced from both callbacks, so we can have
-        // a 'lock' of sorts to ensure only one fires
-        if (options.callback_fired) { return; }
-        options.callback_fired = true;
-
-        if (user_callback && user_callback(timeout_occured, props) === false) {
-            // user can prevent the default functionality by
-            // returning false from their callback
-            return;
-        }
-
-        that.after_track_handler(props, options, timeout_occured);
-    };
-};
-
-DomTracker.prototype.create_properties = function(properties, element) {
-    var props;
-
-    if (typeof(properties) === 'function') {
-        props = properties(element);
-    } else {
-        props = _.extend({}, properties);
-    }
-
-    return props;
-};
-
-/**
- * LinkTracker Object
- * @constructor
- * @extends DomTracker
- */
-var LinkTracker = function() {
-    this.override_event = 'click';
-};
-_.inherit(LinkTracker, DomTracker);
-
-LinkTracker.prototype.create_properties = function(properties, element) {
-    var props = LinkTracker.superclass.create_properties.apply(this, arguments);
-
-    if (element.href) { props['url'] = element.href; }
-
-    return props;
-};
-
-LinkTracker.prototype.event_handler = function(evt, element, options) {
-    options.new_tab = (
-        evt.which === 2 ||
-        evt.metaKey ||
-        evt.ctrlKey ||
-        element.target === '_blank'
-    );
-    options.href = element.href;
-
-    if (!options.new_tab) {
-        evt.preventDefault();
-    }
-};
-
-LinkTracker.prototype.after_track_handler = function(props, options) {
-    if (options.new_tab) { return; }
-
-    setTimeout(function() {
-        window.location = options.href;
-    }, 0);
-};
-
-/**
- * FormTracker Object
- * @constructor
- * @extends DomTracker
- */
-var FormTracker = function() {
-    this.override_event = 'submit';
-};
-_.inherit(FormTracker, DomTracker);
-
-FormTracker.prototype.event_handler = function(evt, element, options) {
-    options.element = element;
-    evt.preventDefault();
-};
-
-FormTracker.prototype.after_track_handler = function(props, options) {
-    setTimeout(function() {
-        options.element.submit();
-    }, 0);
-};
-
-var logger$2 = console_with_prefix('lock');
-
-/**
- * SharedLock: a mutex built on HTML5 localStorage, to ensure that only one browser
- * window/tab at a time will be able to access shared resources.
- *
- * Based on the Alur and Taubenfeld fast lock
- * (http://www.cs.rochester.edu/research/synchronization/pseudocode/fastlock.html)
- * with an added timeout to ensure there will be eventual progress in the event
- * that a window is closed in the middle of the callback.
- *
- * Implementation based on the original version by David Wolever (https://github.com/wolever)
- * at https://gist.github.com/wolever/5fd7573d1ef6166e8f8c4af286a69432.
- *
- * @example
- * const myLock = new SharedLock('some-key');
- * myLock.withLock(function() {
- *   console.log('I hold the mutex!');
- * });
- *
- * @constructor
- */
-var SharedLock = function(key, options) {
-    options = options || {};
-
-    this.storageKey = key;
-    this.storage = options.storage || window.localStorage;
-    this.pollIntervalMS = options.pollIntervalMS || 100;
-    this.timeoutMS = options.timeoutMS || 2000;
-};
-
-// pass in a specific pid to test contention scenarios; otherwise
-// it is chosen randomly for each acquisition attempt
-SharedLock.prototype.withLock = function(lockedCB, errorCB, pid) {
-    if (!pid && typeof errorCB !== 'function') {
-        pid = errorCB;
-        errorCB = null;
-    }
-
-    var i = pid || (new Date().getTime() + '|' + Math.random());
-    var startTime = new Date().getTime();
-
-    var key = this.storageKey;
-    var pollIntervalMS = this.pollIntervalMS;
-    var timeoutMS = this.timeoutMS;
-    var storage = this.storage;
-
-    var keyX = key + ':X';
-    var keyY = key + ':Y';
-    var keyZ = key + ':Z';
-
-    var reportError = function(err) {
-        errorCB && errorCB(err);
-    };
-
-    var delay = function(cb) {
-        if (new Date().getTime() - startTime > timeoutMS) {
-            logger$2.error('Timeout waiting for mutex on ' + key + '; clearing lock. [' + i + ']');
-            storage.removeItem(keyZ);
-            storage.removeItem(keyY);
-            loop();
-            return;
-        }
-        setTimeout(function() {
-            try {
-                cb();
-            } catch(err) {
-                reportError(err);
-            }
-        }, pollIntervalMS * (Math.random() + 0.1));
-    };
-
-    var waitFor = function(predicate, cb) {
-        if (predicate()) {
-            cb();
-        } else {
-            delay(function() {
-                waitFor(predicate, cb);
-            });
-        }
-    };
-
-    var getSetY = function() {
-        var valY = storage.getItem(keyY);
-        if (valY && valY !== i) { // if Y == i then this process already has the lock (useful for test cases)
-            return false;
-        } else {
-            storage.setItem(keyY, i);
-            if (storage.getItem(keyY) === i) {
-                return true;
-            } else {
-                if (!localStorageSupported(storage, true)) {
-                    throw new Error('localStorage support dropped while acquiring lock');
-                }
-                return false;
-            }
-        }
-    };
-
-    var loop = function() {
-        storage.setItem(keyX, i);
-
-        waitFor(getSetY, function() {
-            if (storage.getItem(keyX) === i) {
-                criticalSection();
-                return;
-            }
-
-            delay(function() {
-                if (storage.getItem(keyY) !== i) {
-                    loop();
-                    return;
-                }
-                waitFor(function() {
-                    return !storage.getItem(keyZ);
-                }, criticalSection);
-            });
-        });
-    };
-
-    var criticalSection = function() {
-        storage.setItem(keyZ, '1');
-        try {
-            lockedCB();
-        } finally {
-            storage.removeItem(keyZ);
-            if (storage.getItem(keyY) === i) {
-                storage.removeItem(keyY);
-            }
-            if (storage.getItem(keyX) === i) {
-                storage.removeItem(keyX);
-            }
-        }
-    };
-
-    try {
-        if (localStorageSupported(storage, true)) {
-            loop();
-        } else {
-            throw new Error('localStorage support check failed');
-        }
-    } catch(err) {
-        reportError(err);
-    }
-};
-
-var logger$1 = console_with_prefix('batch');
-
-/**
- * RequestQueue: queue for batching API requests with localStorage backup for retries.
- * Maintains an in-memory queue which represents the source of truth for the current
- * page, but also writes all items out to a copy in the browser's localStorage, which
- * can be read on subsequent pageloads and retried. For batchability, all the request
- * items in the queue should be of the same type (events, people updates, group updates)
- * so they can be sent in a single request to the same API endpoint.
- *
- * LocalStorage keying and locking: In order for reloads and subsequent pageloads of
- * the same site to access the same persisted data, they must share the same localStorage
- * key (for instance based on project token and queue type). Therefore access to the
- * localStorage entry is guarded by an asynchronous mutex (SharedLock) to prevent
- * simultaneously open windows/tabs from overwriting each other's data (which would lead
- * to data loss in some situations).
- * @constructor
- */
-var RequestQueue = function(storageKey, options) {
-    options = options || {};
-    this.storageKey = storageKey;
-    this.storage = options.storage || window.localStorage;
-    this.reportError = options.errorReporter || _.bind(logger$1.error, logger$1);
-    this.lock = new SharedLock(storageKey, {storage: this.storage});
-
-    this.pid = options.pid || null; // pass pid to test out storage lock contention scenarios
-
-    this.memQueue = [];
-};
-
-/**
- * Add one item to queues (memory and localStorage). The queued entry includes
- * the given item along with an auto-generated ID and a "flush-after" timestamp.
- * It is expected that the item will be sent over the network and dequeued
- * before the flush-after time; if this doesn't happen it is considered orphaned
- * (e.g., the original tab where it was enqueued got closed before it could be
- * sent) and the item can be sent by any tab that finds it in localStorage.
- *
- * The final callback param is called with a param indicating success or
- * failure of the enqueue operation; it is asynchronous because the localStorage
- * lock is asynchronous.
- */
-RequestQueue.prototype.enqueue = function(item, flushInterval, cb) {
-    var queueEntry = {
-        'id': cheap_guid(),
-        'flushAfter': new Date().getTime() + flushInterval * 2,
-        'payload': item
-    };
-
-    this.lock.withLock(_.bind(function lockAcquired() {
-        var succeeded;
-        try {
-            var storedQueue = this.readFromStorage();
-            storedQueue.push(queueEntry);
-            succeeded = this.saveToStorage(storedQueue);
-            if (succeeded) {
-                // only add to in-memory queue when storage succeeds
-                this.memQueue.push(queueEntry);
-            }
-        } catch(err) {
-            this.reportError('Error enqueueing item', item);
-            succeeded = false;
-        }
-        if (cb) {
-            cb(succeeded);
-        }
-    }, this), _.bind(function lockFailure(err) {
-        this.reportError('Error acquiring storage lock', err);
-        if (cb) {
-            cb(false);
-        }
-    }, this), this.pid);
-};
-
-/**
- * Read out the given number of queue entries. If this.memQueue
- * has fewer than batchSize items, then look for "orphaned" items
- * in the persisted queue (items where the 'flushAfter' time has
- * already passed).
- */
-RequestQueue.prototype.fillBatch = function(batchSize) {
-    var batch = this.memQueue.slice(0, batchSize);
-    if (batch.length < batchSize) {
-        // don't need lock just to read events; localStorage is thread-safe
-        // and the worst that could happen is a duplicate send of some
-        // orphaned events, which will be deduplicated on the server side
-        var storedQueue = this.readFromStorage();
-        if (storedQueue.length) {
-            // item IDs already in batch; don't duplicate out of storage
-            var idsInBatch = {}; // poor man's Set
-            _.each(batch, function(item) { idsInBatch[item['id']] = true; });
-
-            for (var i = 0; i < storedQueue.length; i++) {
-                var item = storedQueue[i];
-                if (new Date().getTime() > item['flushAfter'] && !idsInBatch[item['id']]) {
-                    item.orphaned = true;
-                    batch.push(item);
-                    if (batch.length >= batchSize) {
-                        break;
-                    }
-                }
-            }
-        }
-    }
-    return batch;
-};
-
-/**
- * Remove items with matching 'id' from array (immutably)
- * also remove any item without a valid id (e.g., malformed
- * storage entries).
- */
-var filterOutIDsAndInvalid = function(items, idSet) {
-    var filteredItems = [];
-    _.each(items, function(item) {
-        if (item['id'] && !idSet[item['id']]) {
-            filteredItems.push(item);
-        }
-    });
-    return filteredItems;
-};
-
-/**
- * Remove items with matching IDs from both in-memory queue
- * and persisted queue
- */
-RequestQueue.prototype.removeItemsByID = function(ids, cb) {
-    var idSet = {}; // poor man's Set
-    _.each(ids, function(id) { idSet[id] = true; });
-
-    this.memQueue = filterOutIDsAndInvalid(this.memQueue, idSet);
-
-    var removeFromStorage = _.bind(function() {
-        var succeeded;
-        try {
-            var storedQueue = this.readFromStorage();
-            storedQueue = filterOutIDsAndInvalid(storedQueue, idSet);
-            succeeded = this.saveToStorage(storedQueue);
-
-            // an extra check: did storage report success but somehow
-            // the items are still there?
-            if (succeeded) {
-                storedQueue = this.readFromStorage();
-                for (var i = 0; i < storedQueue.length; i++) {
-                    var item = storedQueue[i];
-                    if (item['id'] && !!idSet[item['id']]) {
-                        this.reportError('Item not removed from storage');
-                        return false;
-                    }
-                }
-            }
-        } catch(err) {
-            this.reportError('Error removing items', ids);
-            succeeded = false;
-        }
-        return succeeded;
-    }, this);
-
-    this.lock.withLock(function lockAcquired() {
-        var succeeded = removeFromStorage();
-        if (cb) {
-            cb(succeeded);
-        }
-    }, _.bind(function lockFailure(err) {
-        var succeeded = false;
-        this.reportError('Error acquiring storage lock', err);
-        if (!localStorageSupported(this.storage, true)) {
-            // Looks like localStorage writes have stopped working sometime after
-            // initialization (probably full), and so nobody can acquire locks
-            // anymore. Consider it temporarily safe to remove items without the
-            // lock, since nobody's writing successfully anyway.
-            succeeded = removeFromStorage();
-            if (!succeeded) {
-                // OK, we couldn't even write out the smaller queue. Try clearing it
-                // entirely.
-                try {
-                    this.storage.removeItem(this.storageKey);
-                } catch(err) {
-                    this.reportError('Error clearing queue', err);
-                }
-            }
-        }
-        if (cb) {
-            cb(succeeded);
-        }
-    }, this), this.pid);
-};
-
-// internal helper for RequestQueue.updatePayloads
-var updatePayloads = function(existingItems, itemsToUpdate) {
-    var newItems = [];
-    _.each(existingItems, function(item) {
-        var id = item['id'];
-        if (id in itemsToUpdate) {
-            var newPayload = itemsToUpdate[id];
-            if (newPayload !== null) {
-                item['payload'] = newPayload;
-                newItems.push(item);
-            }
-        } else {
-            // no update
-            newItems.push(item);
-        }
-    });
-    return newItems;
-};
-
-/**
- * Update payloads of given items in both in-memory queue and
- * persisted queue. Items set to null are removed from queues.
- */
-RequestQueue.prototype.updatePayloads = function(itemsToUpdate, cb) {
-    this.memQueue = updatePayloads(this.memQueue, itemsToUpdate);
-    this.lock.withLock(_.bind(function lockAcquired() {
-        var succeeded;
-        try {
-            var storedQueue = this.readFromStorage();
-            storedQueue = updatePayloads(storedQueue, itemsToUpdate);
-            succeeded = this.saveToStorage(storedQueue);
-        } catch(err) {
-            this.reportError('Error updating items', itemsToUpdate);
-            succeeded = false;
-        }
-        if (cb) {
-            cb(succeeded);
-        }
-    }, this), _.bind(function lockFailure(err) {
-        this.reportError('Error acquiring storage lock', err);
-        if (cb) {
-            cb(false);
-        }
-    }, this), this.pid);
-};
-
-/**
- * Read and parse items array from localStorage entry, handling
- * malformed/missing data if necessary.
- */
-RequestQueue.prototype.readFromStorage = function() {
-    var storageEntry;
-    try {
-        storageEntry = this.storage.getItem(this.storageKey);
-        if (storageEntry) {
-            storageEntry = JSONParse(storageEntry);
-            if (!_.isArray(storageEntry)) {
-                this.reportError('Invalid storage entry:', storageEntry);
-                storageEntry = null;
-            }
-        }
-    } catch (err) {
-        this.reportError('Error retrieving queue', err);
-        storageEntry = null;
-    }
-    return storageEntry || [];
-};
-
-/**
- * Serialize the given items array to localStorage.
- */
-RequestQueue.prototype.saveToStorage = function(queue) {
-    try {
-        this.storage.setItem(this.storageKey, JSONStringify(queue));
-        return true;
-    } catch (err) {
-        this.reportError('Error saving queue', err);
-        return false;
-    }
-};
-
-/**
- * Clear out queues (memory and localStorage).
- */
-RequestQueue.prototype.clear = function() {
-    this.memQueue = [];
-    this.storage.removeItem(this.storageKey);
-};
-
-// maximum interval between request retries after exponential backoff
-var MAX_RETRY_INTERVAL_MS = 10 * 60 * 1000; // 10 minutes
-
-var logger = console_with_prefix('batch');
-
-/**
- * RequestBatcher: manages the queueing, flushing, retry etc of requests of one
- * type (events, people, groups).
- * Uses RequestQueue to manage the backing store.
- * @constructor
- */
-var RequestBatcher = function(storageKey, options) {
-    this.errorReporter = options.errorReporter;
-    this.queue = new RequestQueue(storageKey, {
-        errorReporter: _.bind(this.reportError, this),
-        storage: options.storage
-    });
-
-    this.libConfig = options.libConfig;
-    this.sendRequest = options.sendRequestFunc;
-    this.beforeSendHook = options.beforeSendHook;
-    this.stopAllBatching = options.stopAllBatchingFunc;
-
-    // seed variable batch size + flush interval with configured values
-    this.batchSize = this.libConfig['batch_size'];
-    this.flushInterval = this.libConfig['batch_flush_interval_ms'];
-
-    this.stopped = !this.libConfig['batch_autostart'];
-    this.consecutiveRemovalFailures = 0;
-
-    // extra client-side dedupe
-    this.itemIdsSentSuccessfully = {};
-};
-
-/**
- * Add one item to queue.
- */
-RequestBatcher.prototype.enqueue = function(item, cb) {
-    this.queue.enqueue(item, this.flushInterval, cb);
-};
-
-/**
- * Start flushing batches at the configured time interval. Must call
- * this method upon SDK init in order to send anything over the network.
- */
-RequestBatcher.prototype.start = function() {
-    this.stopped = false;
-    this.consecutiveRemovalFailures = 0;
-    this.flush();
-};
-
-/**
- * Stop flushing batches. Can be restarted by calling start().
- */
-RequestBatcher.prototype.stop = function() {
-    this.stopped = true;
-    if (this.timeoutID) {
-        clearTimeout(this.timeoutID);
-        this.timeoutID = null;
-    }
-};
-
-/**
- * Clear out queue.
- */
-RequestBatcher.prototype.clear = function() {
-    this.queue.clear();
-};
-
-/**
- * Restore batch size configuration to whatever is set in the main SDK.
- */
-RequestBatcher.prototype.resetBatchSize = function() {
-    this.batchSize = this.libConfig['batch_size'];
-};
-
-/**
- * Restore flush interval time configuration to whatever is set in the main SDK.
- */
-RequestBatcher.prototype.resetFlush = function() {
-    this.scheduleFlush(this.libConfig['batch_flush_interval_ms']);
-};
-
-/**
- * Schedule the next flush in the given number of milliseconds.
- */
-RequestBatcher.prototype.scheduleFlush = function(flushMS) {
-    this.flushInterval = flushMS;
-    if (!this.stopped) { // don't schedule anymore if batching has been stopped
-        this.timeoutID = setTimeout(_.bind(this.flush, this), this.flushInterval);
-    }
-};
-
-/**
- * Flush one batch to network. Depending on success/failure modes, it will either
- * remove the batch from the queue or leave it in for retry, and schedule the next
- * flush. In cases of most network or API failures, it will back off exponentially
- * when retrying.
- * @param {Object} [options]
- * @param {boolean} [options.sendBeacon] - whether to send batch with
- * navigator.sendBeacon (only useful for sending batches before page unloads, as
- * sendBeacon offers no callbacks or status indications)
- */
-RequestBatcher.prototype.flush = function(options) {
-    try {
-
-        if (this.requestInProgress) {
-            logger.log('Flush: Request already in progress');
-            return;
-        }
-
-        options = options || {};
-        var timeoutMS = this.libConfig['batch_request_timeout_ms'];
-        var startTime = new Date().getTime();
-        var currentBatchSize = this.batchSize;
-        var batch = this.queue.fillBatch(currentBatchSize);
-        var dataForRequest = [];
-        var transformedItems = {};
-        _.each(batch, function(item) {
-            var payload = item['payload'];
-            if (this.beforeSendHook && !item.orphaned) {
-                payload = this.beforeSendHook(payload);
-            }
-            if (payload) {
-                // mp_sent_by_lib_version prop captures which lib version actually
-                // sends each event (regardless of which version originally queued
-                // it for sending)
-                if (payload['event'] && payload['properties']) {
-                    payload['properties'] = _.extend(
-                        {},
-                        payload['properties'],
-                        {'mp_sent_by_lib_version': Config.LIB_VERSION}
-                    );
-                }
-                var addPayload = true;
-                var itemId = item['id'];
-                if (itemId) {
-                    if ((this.itemIdsSentSuccessfully[itemId] || 0) > 5) {
-                        this.reportError('[dupe] item ID sent too many times, not sending', {
-                            item: item,
-                            batchSize: batch.length,
-                            timesSent: this.itemIdsSentSuccessfully[itemId]
-                        });
-                        addPayload = false;
-                    }
-                } else {
-                    this.reportError('[dupe] found item with no ID', {item: item});
-                }
-
-                if (addPayload) {
-                    dataForRequest.push(payload);
-                }
-            }
-            transformedItems[item['id']] = payload;
-        }, this);
-        if (dataForRequest.length < 1) {
-            this.resetFlush();
-            return; // nothing to do
-        }
-
-        this.requestInProgress = true;
-
-        var batchSendCallback = _.bind(function(res) {
-            this.requestInProgress = false;
-
-            try {
-
-                // handle API response in a try-catch to make sure we can reset the
-                // flush operation if something goes wrong
-
-                var removeItemsFromQueue = false;
-                if (options.unloading) {
-                    // update persisted data to include hook transformations
-                    this.queue.updatePayloads(transformedItems);
-                } else if (
-                    _.isObject(res) &&
-                    res.error === 'timeout' &&
-                    new Date().getTime() - startTime >= timeoutMS
-                ) {
-                    this.reportError('Network timeout; retrying');
-                    this.flush();
-                } else if (
-                    _.isObject(res) &&
-                    res.xhr_req &&
-                    (res.xhr_req['status'] >= 500 || res.xhr_req['status'] === 429 || res.error === 'timeout')
-                ) {
-                    // network or API error, or 429 Too Many Requests, retry
-                    var retryMS = this.flushInterval * 2;
-                    var headers = res.xhr_req['responseHeaders'];
-                    if (headers) {
-                        var retryAfter = headers['Retry-After'];
-                        if (retryAfter) {
-                            retryMS = (parseInt(retryAfter, 10) * 1000) || retryMS;
-                        }
-                    }
-                    retryMS = Math.min(MAX_RETRY_INTERVAL_MS, retryMS);
-                    this.reportError('Error; retry in ' + retryMS + ' ms');
-                    this.scheduleFlush(retryMS);
-                } else if (_.isObject(res) && res.xhr_req && res.xhr_req['status'] === 413) {
-                    // 413 Payload Too Large
-                    if (batch.length > 1) {
-                        var halvedBatchSize = Math.max(1, Math.floor(currentBatchSize / 2));
-                        this.batchSize = Math.min(this.batchSize, halvedBatchSize, batch.length - 1);
-                        this.reportError('413 response; reducing batch size to ' + this.batchSize);
-                        this.resetFlush();
-                    } else {
-                        this.reportError('Single-event request too large; dropping', batch);
-                        this.resetBatchSize();
-                        removeItemsFromQueue = true;
-                    }
-                } else {
-                    // successful network request+response; remove each item in batch from queue
-                    // (even if it was e.g. a 400, in which case retrying won't help)
-                    removeItemsFromQueue = true;
-                }
-
-                if (removeItemsFromQueue) {
-                    this.queue.removeItemsByID(
-                        _.map(batch, function(item) { return item['id']; }),
-                        _.bind(function(succeeded) {
-                            if (succeeded) {
-                                this.consecutiveRemovalFailures = 0;
-                                this.flush(); // handle next batch if the queue isn't empty
-                            } else {
-                                this.reportError('Failed to remove items from queue');
-                                if (++this.consecutiveRemovalFailures > 5) {
-                                    this.reportError('Too many queue failures; disabling batching system.');
-                                    this.stopAllBatching();
-                                } else {
-                                    this.resetFlush();
-                                }
-                            }
-                        }, this)
-                    );
-
-                    // client-side dedupe
-                    _.each(batch, _.bind(function(item) {
-                        var itemId = item['id'];
-                        if (itemId) {
-                            this.itemIdsSentSuccessfully[itemId] = this.itemIdsSentSuccessfully[itemId] || 0;
-                            this.itemIdsSentSuccessfully[itemId]++;
-                            if (this.itemIdsSentSuccessfully[itemId] > 5) {
-                                this.reportError('[dupe] item ID sent too many times', {
-                                    item: item,
-                                    batchSize: batch.length,
-                                    timesSent: this.itemIdsSentSuccessfully[itemId]
-                                });
-                            }
-                        } else {
-                            this.reportError('[dupe] found item with no ID while removing', {item: item});
-                        }
-                    }, this));
-                }
-
-            } catch(err) {
-                this.reportError('Error handling API response', err);
-                this.resetFlush();
-            }
-        }, this);
-        var requestOptions = {
-            method: 'POST',
-            verbose: true,
-            ignore_json_errors: true, // eslint-disable-line camelcase
-            timeout_ms: timeoutMS // eslint-disable-line camelcase
-        };
-        if (options.unloading) {
-            requestOptions.transport = 'sendBeacon';
-        }
-        logger.log('MIXPANEL REQUEST:', dataForRequest);
-        this.sendRequest(dataForRequest, requestOptions, batchSendCallback);
-
-    } catch(err) {
-        this.reportError('Error flushing request queue', err);
-        this.resetFlush();
-    }
-};
-
-/**
- * Log error to global logger and optional user-defined logger.
- */
-RequestBatcher.prototype.reportError = function(msg, err) {
-    logger.error.apply(logger.error, arguments);
-    if (this.errorReporter) {
-        try {
-            if (!(err instanceof Error)) {
-                err = new Error(msg);
-            }
-            this.errorReporter(msg, err);
-        } catch(err) {
-            logger.error(err);
-        }
-    }
-};
 
 /**
  * GDPR utils
@@ -58582,12 +63205,12 @@ function hasOptedIn(token, options) {
  */
 function hasOptedOut(token, options) {
     if (_hasDoNotTrackFlagOn(options)) {
-        console.warn('This browser has "Do Not Track" enabled. This will prevent the Mixpanel SDK from sending any data. To ignore the "Do Not Track" browser setting, initialize the Mixpanel instance with the config "ignore_dnt: true"');
+        console$1.warn('This browser has "Do Not Track" enabled. This will prevent the Mixpanel SDK from sending any data. To ignore the "Do Not Track" browser setting, initialize the Mixpanel instance with the config "ignore_dnt: true"');
         return true;
     }
     var optedOut = _getStorageValue(token, options) === '0';
     if (optedOut) {
-        console.warn('You are opted out of Mixpanel tracking. This will prevent the Mixpanel SDK from sending any data.');
+        console$1.warn('You are opted out of Mixpanel tracking. This will prevent the Mixpanel SDK from sending any data.');
     }
     return optedOut;
 }
@@ -58731,7 +63354,7 @@ function _hasDoNotTrackFlagOn(options) {
  */
 function _optInOut(optValue, token, options) {
     if (!_.isString(token) || !token.length) {
-        console.error('gdpr.' + (optValue ? 'optIn' : 'optOut') + ' called with an invalid token');
+        console$1.error('gdpr.' + (optValue ? 'optIn' : 'optOut') + ' called with an invalid token');
         return;
     }
 
@@ -58782,7 +63405,7 @@ function _addOptOutCheck(method, getConfigValue) {
                 });
             }
         } catch(err) {
-            console.error('Unexpected error when checking tracking opt-out status: ' + err);
+            console$1.error('Unexpected error when checking tracking opt-out status: ' + err);
         }
 
         if (!optedOut) {
@@ -58797,6 +63420,1281 @@ function _addOptOutCheck(method, getConfigValue) {
         return;
     };
 }
+
+var logger$4 = console_with_prefix('lock');
+
+/**
+ * SharedLock: a mutex built on HTML5 localStorage, to ensure that only one browser
+ * window/tab at a time will be able to access shared resources.
+ *
+ * Based on the Alur and Taubenfeld fast lock
+ * (http://www.cs.rochester.edu/research/synchronization/pseudocode/fastlock.html)
+ * with an added timeout to ensure there will be eventual progress in the event
+ * that a window is closed in the middle of the callback.
+ *
+ * Implementation based on the original version by David Wolever (https://github.com/wolever)
+ * at https://gist.github.com/wolever/5fd7573d1ef6166e8f8c4af286a69432.
+ *
+ * @example
+ * const myLock = new SharedLock('some-key');
+ * myLock.withLock(function() {
+ *   console.log('I hold the mutex!');
+ * });
+ *
+ * @constructor
+ */
+var SharedLock = function(key, options) {
+    options = options || {};
+
+    this.storageKey = key;
+    this.storage = options.storage || window.localStorage;
+    this.pollIntervalMS = options.pollIntervalMS || 100;
+    this.timeoutMS = options.timeoutMS || 2000;
+};
+
+// pass in a specific pid to test contention scenarios; otherwise
+// it is chosen randomly for each acquisition attempt
+SharedLock.prototype.withLock = function(lockedCB, errorCB, pid) {
+    if (!pid && typeof errorCB !== 'function') {
+        pid = errorCB;
+        errorCB = null;
+    }
+
+    var i = pid || (new Date().getTime() + '|' + Math.random());
+    var startTime = new Date().getTime();
+
+    var key = this.storageKey;
+    var pollIntervalMS = this.pollIntervalMS;
+    var timeoutMS = this.timeoutMS;
+    var storage = this.storage;
+
+    var keyX = key + ':X';
+    var keyY = key + ':Y';
+    var keyZ = key + ':Z';
+
+    var reportError = function(err) {
+        errorCB && errorCB(err);
+    };
+
+    var delay = function(cb) {
+        if (new Date().getTime() - startTime > timeoutMS) {
+            logger$4.error('Timeout waiting for mutex on ' + key + '; clearing lock. [' + i + ']');
+            storage.removeItem(keyZ);
+            storage.removeItem(keyY);
+            loop();
+            return;
+        }
+        setTimeout(function() {
+            try {
+                cb();
+            } catch(err) {
+                reportError(err);
+            }
+        }, pollIntervalMS * (Math.random() + 0.1));
+    };
+
+    var waitFor = function(predicate, cb) {
+        if (predicate()) {
+            cb();
+        } else {
+            delay(function() {
+                waitFor(predicate, cb);
+            });
+        }
+    };
+
+    var getSetY = function() {
+        var valY = storage.getItem(keyY);
+        if (valY && valY !== i) { // if Y == i then this process already has the lock (useful for test cases)
+            return false;
+        } else {
+            storage.setItem(keyY, i);
+            if (storage.getItem(keyY) === i) {
+                return true;
+            } else {
+                if (!localStorageSupported(storage, true)) {
+                    throw new Error('localStorage support dropped while acquiring lock');
+                }
+                return false;
+            }
+        }
+    };
+
+    var loop = function() {
+        storage.setItem(keyX, i);
+
+        waitFor(getSetY, function() {
+            if (storage.getItem(keyX) === i) {
+                criticalSection();
+                return;
+            }
+
+            delay(function() {
+                if (storage.getItem(keyY) !== i) {
+                    loop();
+                    return;
+                }
+                waitFor(function() {
+                    return !storage.getItem(keyZ);
+                }, criticalSection);
+            });
+        });
+    };
+
+    var criticalSection = function() {
+        storage.setItem(keyZ, '1');
+        try {
+            lockedCB();
+        } finally {
+            storage.removeItem(keyZ);
+            if (storage.getItem(keyY) === i) {
+                storage.removeItem(keyY);
+            }
+            if (storage.getItem(keyX) === i) {
+                storage.removeItem(keyX);
+            }
+        }
+    };
+
+    try {
+        if (localStorageSupported(storage, true)) {
+            loop();
+        } else {
+            throw new Error('localStorage support check failed');
+        }
+    } catch(err) {
+        reportError(err);
+    }
+};
+
+var logger$3 = console_with_prefix('batch');
+
+/**
+ * RequestQueue: queue for batching API requests with localStorage backup for retries.
+ * Maintains an in-memory queue which represents the source of truth for the current
+ * page, but also writes all items out to a copy in the browser's localStorage, which
+ * can be read on subsequent pageloads and retried. For batchability, all the request
+ * items in the queue should be of the same type (events, people updates, group updates)
+ * so they can be sent in a single request to the same API endpoint.
+ *
+ * LocalStorage keying and locking: In order for reloads and subsequent pageloads of
+ * the same site to access the same persisted data, they must share the same localStorage
+ * key (for instance based on project token and queue type). Therefore access to the
+ * localStorage entry is guarded by an asynchronous mutex (SharedLock) to prevent
+ * simultaneously open windows/tabs from overwriting each other's data (which would lead
+ * to data loss in some situations).
+ * @constructor
+ */
+var RequestQueue = function(storageKey, options) {
+    options = options || {};
+    this.storageKey = storageKey;
+    this.usePersistence = options.usePersistence;
+    if (this.usePersistence) {
+        this.storage = options.storage || window.localStorage;
+        this.lock = new SharedLock(storageKey, {storage: this.storage});
+    }
+    this.reportError = options.errorReporter || _.bind(logger$3.error, logger$3);
+
+    this.pid = options.pid || null; // pass pid to test out storage lock contention scenarios
+
+    this.memQueue = [];
+};
+
+/**
+ * Add one item to queues (memory and localStorage). The queued entry includes
+ * the given item along with an auto-generated ID and a "flush-after" timestamp.
+ * It is expected that the item will be sent over the network and dequeued
+ * before the flush-after time; if this doesn't happen it is considered orphaned
+ * (e.g., the original tab where it was enqueued got closed before it could be
+ * sent) and the item can be sent by any tab that finds it in localStorage.
+ *
+ * The final callback param is called with a param indicating success or
+ * failure of the enqueue operation; it is asynchronous because the localStorage
+ * lock is asynchronous.
+ */
+RequestQueue.prototype.enqueue = function(item, flushInterval, cb) {
+    var queueEntry = {
+        'id': cheap_guid(),
+        'flushAfter': new Date().getTime() + flushInterval * 2,
+        'payload': item
+    };
+
+    if (!this.usePersistence) {
+        this.memQueue.push(queueEntry);
+        if (cb) {
+            cb(true);
+        }
+    } else {
+        this.lock.withLock(_.bind(function lockAcquired() {
+            var succeeded;
+            try {
+                var storedQueue = this.readFromStorage();
+                storedQueue.push(queueEntry);
+                succeeded = this.saveToStorage(storedQueue);
+                if (succeeded) {
+                    // only add to in-memory queue when storage succeeds
+                    this.memQueue.push(queueEntry);
+                }
+            } catch(err) {
+                this.reportError('Error enqueueing item', item);
+                succeeded = false;
+            }
+            if (cb) {
+                cb(succeeded);
+            }
+        }, this), _.bind(function lockFailure(err) {
+            this.reportError('Error acquiring storage lock', err);
+            if (cb) {
+                cb(false);
+            }
+        }, this), this.pid);
+    }
+};
+
+/**
+ * Read out the given number of queue entries. If this.memQueue
+ * has fewer than batchSize items, then look for "orphaned" items
+ * in the persisted queue (items where the 'flushAfter' time has
+ * already passed).
+ */
+RequestQueue.prototype.fillBatch = function(batchSize) {
+    var batch = this.memQueue.slice(0, batchSize);
+    if (this.usePersistence && batch.length < batchSize) {
+        // don't need lock just to read events; localStorage is thread-safe
+        // and the worst that could happen is a duplicate send of some
+        // orphaned events, which will be deduplicated on the server side
+        var storedQueue = this.readFromStorage();
+        if (storedQueue.length) {
+            // item IDs already in batch; don't duplicate out of storage
+            var idsInBatch = {}; // poor man's Set
+            _.each(batch, function(item) { idsInBatch[item['id']] = true; });
+
+            for (var i = 0; i < storedQueue.length; i++) {
+                var item = storedQueue[i];
+                if (new Date().getTime() > item['flushAfter'] && !idsInBatch[item['id']]) {
+                    item.orphaned = true;
+                    batch.push(item);
+                    if (batch.length >= batchSize) {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return batch;
+};
+
+/**
+ * Remove items with matching 'id' from array (immutably)
+ * also remove any item without a valid id (e.g., malformed
+ * storage entries).
+ */
+var filterOutIDsAndInvalid = function(items, idSet) {
+    var filteredItems = [];
+    _.each(items, function(item) {
+        if (item['id'] && !idSet[item['id']]) {
+            filteredItems.push(item);
+        }
+    });
+    return filteredItems;
+};
+
+/**
+ * Remove items with matching IDs from both in-memory queue
+ * and persisted queue
+ */
+RequestQueue.prototype.removeItemsByID = function(ids, cb) {
+    var idSet = {}; // poor man's Set
+    _.each(ids, function(id) { idSet[id] = true; });
+
+    this.memQueue = filterOutIDsAndInvalid(this.memQueue, idSet);
+    if (!this.usePersistence) {
+        if (cb) {
+            cb(true);
+        }
+    } else {
+        var removeFromStorage = _.bind(function() {
+            var succeeded;
+            try {
+                var storedQueue = this.readFromStorage();
+                storedQueue = filterOutIDsAndInvalid(storedQueue, idSet);
+                succeeded = this.saveToStorage(storedQueue);
+
+                // an extra check: did storage report success but somehow
+                // the items are still there?
+                if (succeeded) {
+                    storedQueue = this.readFromStorage();
+                    for (var i = 0; i < storedQueue.length; i++) {
+                        var item = storedQueue[i];
+                        if (item['id'] && !!idSet[item['id']]) {
+                            this.reportError('Item not removed from storage');
+                            return false;
+                        }
+                    }
+                }
+            } catch(err) {
+                this.reportError('Error removing items', ids);
+                succeeded = false;
+            }
+            return succeeded;
+        }, this);
+
+        this.lock.withLock(function lockAcquired() {
+            var succeeded = removeFromStorage();
+            if (cb) {
+                cb(succeeded);
+            }
+        }, _.bind(function lockFailure(err) {
+            var succeeded = false;
+            this.reportError('Error acquiring storage lock', err);
+            if (!localStorageSupported(this.storage, true)) {
+                // Looks like localStorage writes have stopped working sometime after
+                // initialization (probably full), and so nobody can acquire locks
+                // anymore. Consider it temporarily safe to remove items without the
+                // lock, since nobody's writing successfully anyway.
+                succeeded = removeFromStorage();
+                if (!succeeded) {
+                    // OK, we couldn't even write out the smaller queue. Try clearing it
+                    // entirely.
+                    try {
+                        this.storage.removeItem(this.storageKey);
+                    } catch(err) {
+                        this.reportError('Error clearing queue', err);
+                    }
+                }
+            }
+            if (cb) {
+                cb(succeeded);
+            }
+        }, this), this.pid);
+    }
+
+};
+
+// internal helper for RequestQueue.updatePayloads
+var updatePayloads = function(existingItems, itemsToUpdate) {
+    var newItems = [];
+    _.each(existingItems, function(item) {
+        var id = item['id'];
+        if (id in itemsToUpdate) {
+            var newPayload = itemsToUpdate[id];
+            if (newPayload !== null) {
+                item['payload'] = newPayload;
+                newItems.push(item);
+            }
+        } else {
+            // no update
+            newItems.push(item);
+        }
+    });
+    return newItems;
+};
+
+/**
+ * Update payloads of given items in both in-memory queue and
+ * persisted queue. Items set to null are removed from queues.
+ */
+RequestQueue.prototype.updatePayloads = function(itemsToUpdate, cb) {
+    this.memQueue = updatePayloads(this.memQueue, itemsToUpdate);
+    if (!this.usePersistence) {
+        if (cb) {
+            cb(true);
+        }
+    } else {
+        this.lock.withLock(_.bind(function lockAcquired() {
+            var succeeded;
+            try {
+                var storedQueue = this.readFromStorage();
+                storedQueue = updatePayloads(storedQueue, itemsToUpdate);
+                succeeded = this.saveToStorage(storedQueue);
+            } catch(err) {
+                this.reportError('Error updating items', itemsToUpdate);
+                succeeded = false;
+            }
+            if (cb) {
+                cb(succeeded);
+            }
+        }, this), _.bind(function lockFailure(err) {
+            this.reportError('Error acquiring storage lock', err);
+            if (cb) {
+                cb(false);
+            }
+        }, this), this.pid);
+    }
+
+};
+
+/**
+ * Read and parse items array from localStorage entry, handling
+ * malformed/missing data if necessary.
+ */
+RequestQueue.prototype.readFromStorage = function() {
+    var storageEntry;
+    try {
+        storageEntry = this.storage.getItem(this.storageKey);
+        if (storageEntry) {
+            storageEntry = JSONParse(storageEntry);
+            if (!_.isArray(storageEntry)) {
+                this.reportError('Invalid storage entry:', storageEntry);
+                storageEntry = null;
+            }
+        }
+    } catch (err) {
+        this.reportError('Error retrieving queue', err);
+        storageEntry = null;
+    }
+    return storageEntry || [];
+};
+
+/**
+ * Serialize the given items array to localStorage.
+ */
+RequestQueue.prototype.saveToStorage = function(queue) {
+    try {
+        this.storage.setItem(this.storageKey, JSONStringify(queue));
+        return true;
+    } catch (err) {
+        this.reportError('Error saving queue', err);
+        return false;
+    }
+};
+
+/**
+ * Clear out queues (memory and localStorage).
+ */
+RequestQueue.prototype.clear = function() {
+    this.memQueue = [];
+
+    if (this.usePersistence) {
+        this.storage.removeItem(this.storageKey);
+    }
+};
+
+// maximum interval between request retries after exponential backoff
+var MAX_RETRY_INTERVAL_MS = 10 * 60 * 1000; // 10 minutes
+
+var logger$2 = console_with_prefix('batch');
+
+/**
+ * RequestBatcher: manages the queueing, flushing, retry etc of requests of one
+ * type (events, people, groups).
+ * Uses RequestQueue to manage the backing store.
+ * @constructor
+ */
+var RequestBatcher = function(storageKey, options) {
+    this.errorReporter = options.errorReporter;
+    this.queue = new RequestQueue(storageKey, {
+        errorReporter: _.bind(this.reportError, this),
+        storage: options.storage,
+        usePersistence: options.usePersistence
+    });
+
+    this.libConfig = options.libConfig;
+    this.sendRequest = options.sendRequestFunc;
+    this.beforeSendHook = options.beforeSendHook;
+    this.stopAllBatching = options.stopAllBatchingFunc;
+
+    // seed variable batch size + flush interval with configured values
+    this.batchSize = this.libConfig['batch_size'];
+    this.flushInterval = this.libConfig['batch_flush_interval_ms'];
+
+    this.stopped = !this.libConfig['batch_autostart'];
+    this.consecutiveRemovalFailures = 0;
+
+    // extra client-side dedupe
+    this.itemIdsSentSuccessfully = {};
+
+    // Make the flush occur at the interval specified by flushIntervalMs, default behavior will attempt consecutive flushes
+    // as long as the queue is not empty. This is useful for high-frequency events like Session Replay where we might end up
+    // in a request loop and get ratelimited by the server.
+    this.flushOnlyOnInterval = options.flushOnlyOnInterval || false;
+};
+
+/**
+ * Add one item to queue.
+ */
+RequestBatcher.prototype.enqueue = function(item, cb) {
+    this.queue.enqueue(item, this.flushInterval, cb);
+};
+
+/**
+ * Start flushing batches at the configured time interval. Must call
+ * this method upon SDK init in order to send anything over the network.
+ */
+RequestBatcher.prototype.start = function() {
+    this.stopped = false;
+    this.consecutiveRemovalFailures = 0;
+    this.flush();
+};
+
+/**
+ * Stop flushing batches. Can be restarted by calling start().
+ */
+RequestBatcher.prototype.stop = function() {
+    this.stopped = true;
+    if (this.timeoutID) {
+        clearTimeout(this.timeoutID);
+        this.timeoutID = null;
+    }
+};
+
+/**
+ * Clear out queue.
+ */
+RequestBatcher.prototype.clear = function() {
+    this.queue.clear();
+};
+
+/**
+ * Restore batch size configuration to whatever is set in the main SDK.
+ */
+RequestBatcher.prototype.resetBatchSize = function() {
+    this.batchSize = this.libConfig['batch_size'];
+};
+
+/**
+ * Restore flush interval time configuration to whatever is set in the main SDK.
+ */
+RequestBatcher.prototype.resetFlush = function() {
+    this.scheduleFlush(this.libConfig['batch_flush_interval_ms']);
+};
+
+/**
+ * Schedule the next flush in the given number of milliseconds.
+ */
+RequestBatcher.prototype.scheduleFlush = function(flushMS) {
+    this.flushInterval = flushMS;
+    if (!this.stopped) { // don't schedule anymore if batching has been stopped
+        this.timeoutID = setTimeout(_.bind(function() {
+            if (!this.stopped) {
+                this.flush();
+            }
+        }, this), this.flushInterval);
+    }
+};
+
+/**
+ * Flush one batch to network. Depending on success/failure modes, it will either
+ * remove the batch from the queue or leave it in for retry, and schedule the next
+ * flush. In cases of most network or API failures, it will back off exponentially
+ * when retrying.
+ * @param {Object} [options]
+ * @param {boolean} [options.sendBeacon] - whether to send batch with
+ * navigator.sendBeacon (only useful for sending batches before page unloads, as
+ * sendBeacon offers no callbacks or status indications)
+ */
+RequestBatcher.prototype.flush = function(options) {
+    try {
+
+        if (this.requestInProgress) {
+            logger$2.log('Flush: Request already in progress');
+            return;
+        }
+
+        options = options || {};
+        var timeoutMS = this.libConfig['batch_request_timeout_ms'];
+        var startTime = new Date().getTime();
+        var currentBatchSize = this.batchSize;
+        var batch = this.queue.fillBatch(currentBatchSize);
+        // if there's more items in the queue than the batch size, attempt
+        // to flush again after the current batch is done.
+        var attemptSecondaryFlush = batch.length === currentBatchSize;
+        var dataForRequest = [];
+        var transformedItems = {};
+        _.each(batch, function(item) {
+            var payload = item['payload'];
+            if (this.beforeSendHook && !item.orphaned) {
+                payload = this.beforeSendHook(payload);
+            }
+            if (payload) {
+                // mp_sent_by_lib_version prop captures which lib version actually
+                // sends each event (regardless of which version originally queued
+                // it for sending)
+                if (payload['event'] && payload['properties']) {
+                    payload['properties'] = _.extend(
+                        {},
+                        payload['properties'],
+                        {'mp_sent_by_lib_version': Config.LIB_VERSION}
+                    );
+                }
+                var addPayload = true;
+                var itemId = item['id'];
+                if (itemId) {
+                    if ((this.itemIdsSentSuccessfully[itemId] || 0) > 5) {
+                        this.reportError('[dupe] item ID sent too many times, not sending', {
+                            item: item,
+                            batchSize: batch.length,
+                            timesSent: this.itemIdsSentSuccessfully[itemId]
+                        });
+                        addPayload = false;
+                    }
+                } else {
+                    this.reportError('[dupe] found item with no ID', {item: item});
+                }
+
+                if (addPayload) {
+                    dataForRequest.push(payload);
+                }
+            }
+            transformedItems[item['id']] = payload;
+        }, this);
+        if (dataForRequest.length < 1) {
+            this.resetFlush();
+            return; // nothing to do
+        }
+
+        this.requestInProgress = true;
+
+        var batchSendCallback = _.bind(function(res) {
+            this.requestInProgress = false;
+
+            try {
+
+                // handle API response in a try-catch to make sure we can reset the
+                // flush operation if something goes wrong
+
+                var removeItemsFromQueue = false;
+                if (options.unloading) {
+                    // update persisted data to include hook transformations
+                    this.queue.updatePayloads(transformedItems);
+                } else if (
+                    _.isObject(res) &&
+                    res.error === 'timeout' &&
+                    new Date().getTime() - startTime >= timeoutMS
+                ) {
+                    this.reportError('Network timeout; retrying');
+                    this.flush();
+                } else if (
+                    _.isObject(res) &&
+                    (
+                        res.httpStatusCode >= 500
+                        || res.httpStatusCode === 429
+                        || (res.httpStatusCode <= 0 && !isOnline())
+                        || res.error === 'timeout'
+                    )
+                ) {
+                    // network or API error, or 429 Too Many Requests, retry
+                    var retryMS = this.flushInterval * 2;
+                    if (res.retryAfter) {
+                        retryMS = (parseInt(res.retryAfter, 10) * 1000) || retryMS;
+                    }
+                    retryMS = Math.min(MAX_RETRY_INTERVAL_MS, retryMS);
+                    this.reportError('Error; retry in ' + retryMS + ' ms');
+                    this.scheduleFlush(retryMS);
+                } else if (_.isObject(res) && res.httpStatusCode === 413) {
+                    // 413 Payload Too Large
+                    if (batch.length > 1) {
+                        var halvedBatchSize = Math.max(1, Math.floor(currentBatchSize / 2));
+                        this.batchSize = Math.min(this.batchSize, halvedBatchSize, batch.length - 1);
+                        this.reportError('413 response; reducing batch size to ' + this.batchSize);
+                        this.resetFlush();
+                    } else {
+                        this.reportError('Single-event request too large; dropping', batch);
+                        this.resetBatchSize();
+                        removeItemsFromQueue = true;
+                    }
+                } else {
+                    // successful network request+response; remove each item in batch from queue
+                    // (even if it was e.g. a 400, in which case retrying won't help)
+                    removeItemsFromQueue = true;
+                }
+
+                if (removeItemsFromQueue) {
+                    this.queue.removeItemsByID(
+                        _.map(batch, function(item) { return item['id']; }),
+                        _.bind(function(succeeded) {
+                            if (succeeded) {
+                                this.consecutiveRemovalFailures = 0;
+                                if (this.flushOnlyOnInterval && !attemptSecondaryFlush) {
+                                    this.resetFlush(); // schedule next batch with a delay
+                                } else {
+                                    this.flush(); // handle next batch if the queue isn't empty
+                                }
+                            } else {
+                                this.reportError('Failed to remove items from queue');
+                                if (++this.consecutiveRemovalFailures > 5) {
+                                    this.reportError('Too many queue failures; disabling batching system.');
+                                    this.stopAllBatching();
+                                } else {
+                                    this.resetFlush();
+                                }
+                            }
+                        }, this)
+                    );
+
+                    // client-side dedupe
+                    _.each(batch, _.bind(function(item) {
+                        var itemId = item['id'];
+                        if (itemId) {
+                            this.itemIdsSentSuccessfully[itemId] = this.itemIdsSentSuccessfully[itemId] || 0;
+                            this.itemIdsSentSuccessfully[itemId]++;
+                            if (this.itemIdsSentSuccessfully[itemId] > 5) {
+                                this.reportError('[dupe] item ID sent too many times', {
+                                    item: item,
+                                    batchSize: batch.length,
+                                    timesSent: this.itemIdsSentSuccessfully[itemId]
+                                });
+                            }
+                        } else {
+                            this.reportError('[dupe] found item with no ID while removing', {item: item});
+                        }
+                    }, this));
+                }
+
+            } catch(err) {
+                this.reportError('Error handling API response', err);
+                this.resetFlush();
+            }
+        }, this);
+        var requestOptions = {
+            method: 'POST',
+            verbose: true,
+            ignore_json_errors: true, // eslint-disable-line camelcase
+            timeout_ms: timeoutMS // eslint-disable-line camelcase
+        };
+        if (options.unloading) {
+            requestOptions.transport = 'sendBeacon';
+        }
+        logger$2.log('MIXPANEL REQUEST:', dataForRequest);
+        this.sendRequest(dataForRequest, requestOptions, batchSendCallback);
+    } catch(err) {
+        this.reportError('Error flushing request queue', err);
+        this.resetFlush();
+    }
+};
+
+/**
+ * Log error to global logger and optional user-defined logger.
+ */
+RequestBatcher.prototype.reportError = function(msg, err) {
+    logger$2.error.apply(logger$2.error, arguments);
+    if (this.errorReporter) {
+        try {
+            if (!(err instanceof Error)) {
+                err = new Error(msg);
+            }
+            this.errorReporter(msg, err);
+        } catch(err) {
+            logger$2.error(err);
+        }
+    }
+};
+
+var logger$1 = console_with_prefix('recorder');
+var CompressionStream = win['CompressionStream'];
+
+var RECORDER_BATCHER_LIB_CONFIG = {
+    'batch_size': 1000,
+    'batch_flush_interval_ms': 10 * 1000,
+    'batch_request_timeout_ms': 90 * 1000,
+    'batch_autostart': true
+};
+
+var ACTIVE_SOURCES = new Set([
+    IncrementalSource.MouseMove,
+    IncrementalSource.MouseInteraction,
+    IncrementalSource.Scroll,
+    IncrementalSource.ViewportResize,
+    IncrementalSource.Input,
+    IncrementalSource.TouchMove,
+    IncrementalSource.MediaInteraction,
+    IncrementalSource.Drag,
+    IncrementalSource.Selection,
+]);
+
+function isUserEvent(ev) {
+    return ev.type === EventType.IncrementalSnapshot && ACTIVE_SOURCES.has(ev.data.source);
+}
+
+/**
+ * This class encapsulates a single session recording and its lifecycle.
+ * @param {Object} [options.mixpanelInstance] - reference to the core MixpanelLib
+ * @param {String} [options.replayId] - unique uuid for a single replay
+ * @param {Function} [options.onIdleTimeout] - callback when a recording reaches idle timeout
+ * @param {Function} [options.onMaxLengthReached] - callback when a recording reaches its maximum length
+ * @param {Function} [options.rrwebRecord] - rrweb's `record` function
+ */
+var SessionRecording = function(options) {
+    this._mixpanel = options.mixpanelInstance;
+    this._onIdleTimeout = options.onIdleTimeout;
+    this._onMaxLengthReached = options.onMaxLengthReached;
+    this._rrwebRecord = options.rrwebRecord;
+
+    this.replayId = options.replayId;
+
+    // internal rrweb stopRecording function
+    this._stopRecording = null;
+
+    this.seqNo = 0;
+    this.replayStartTime = null;
+    this.batchStartUrl = null;
+
+    this.idleTimeoutId = null;
+    this.maxTimeoutId = null;
+
+    this.recordMaxMs = MAX_RECORDING_MS;
+    this.recordMinMs = 0;
+
+    // each replay has its own batcher key to avoid conflicts between rrweb events of different recordings
+    // this will be important when persistence is introduced
+    var batcherKey = '__mprec_' + this.getConfig('token') + '_' + this.replayId;
+    this.batcher = new RequestBatcher(batcherKey, {
+        errorReporter: _.bind(this.reportError, this),
+        flushOnlyOnInterval: true,
+        libConfig: RECORDER_BATCHER_LIB_CONFIG,
+        sendRequestFunc: _.bind(this.flushEventsWithOptOut, this),
+        usePersistence: false
+    });
+};
+
+SessionRecording.prototype.getConfig = function(configVar) {
+    return this._mixpanel.get_config(configVar);
+};
+
+// Alias for getConfig, used by the common addOptOutCheckMixpanelLib function which
+// reaches into this class instance and expects the snake case version of the function.
+// eslint-disable-next-line camelcase
+SessionRecording.prototype.get_config = function(configVar) {
+    return this.getConfig(configVar);
+};
+
+SessionRecording.prototype.startRecording = function (shouldStopBatcher) {
+    if (this._stopRecording !== null) {
+        logger$1.log('Recording already in progress, skipping startRecording.');
+        return;
+    }
+
+    this.recordMaxMs = this.getConfig('record_max_ms');
+    if (this.recordMaxMs > MAX_RECORDING_MS) {
+        this.recordMaxMs = MAX_RECORDING_MS;
+        logger$1.critical('record_max_ms cannot be greater than ' + MAX_RECORDING_MS + 'ms. Capping value.');
+    }
+
+    this.recordMinMs = this.getConfig('record_min_ms');
+    if (this.recordMinMs > MAX_VALUE_FOR_MIN_RECORDING_MS) {
+        this.recordMinMs = MAX_VALUE_FOR_MIN_RECORDING_MS;
+        logger$1.critical('record_min_ms cannot be greater than ' + MAX_VALUE_FOR_MIN_RECORDING_MS + 'ms. Capping value.');
+    }
+
+    this.replayStartTime = new Date().getTime();
+    this.batchStartUrl = _.info.currentUrl();
+
+    if (shouldStopBatcher || this.recordMinMs > 0) {
+        // the primary case for shouldStopBatcher is when we're starting recording after a reset
+        // and don't want to send anything over the network until there's
+        // actual user activity
+        // this also applies if the minimum recording length has not been hit yet
+        // so that we don't send data until we know the recording will be long enough
+        this.batcher.stop();
+    } else {
+        this.batcher.start();
+    }
+
+    var resetIdleTimeout = _.bind(function () {
+        clearTimeout(this.idleTimeoutId);
+        this.idleTimeoutId = setTimeout(this._onIdleTimeout, this.getConfig('record_idle_timeout_ms'));
+    }, this);
+
+    var blockSelector = this.getConfig('record_block_selector');
+    if (blockSelector === '' || blockSelector === null) {
+        blockSelector = undefined;
+    }
+
+    this._stopRecording = this._rrwebRecord({
+        'emit': _.bind(function (ev) {
+            this.batcher.enqueue(ev);
+            if (isUserEvent(ev)) {
+                if (this.batcher.stopped && new Date().getTime() - this.replayStartTime >= this.recordMinMs) {
+                    // start flushing again after user activity
+                    this.batcher.start();
+                }
+                resetIdleTimeout();
+            }
+        }, this),
+        'blockClass': this.getConfig('record_block_class'),
+        'blockSelector': blockSelector,
+        'collectFonts': this.getConfig('record_collect_fonts'),
+        'maskAllInputs': true,
+        'maskTextClass': this.getConfig('record_mask_text_class'),
+        'maskTextSelector': this.getConfig('record_mask_text_selector')
+    });
+
+    if (typeof this._stopRecording !== 'function') {
+        this.reportError('rrweb failed to start, skipping this recording.');
+        this._stopRecording = null;
+        this.stopRecording(); // stop batcher looping and any timeouts
+        return;
+    }
+
+    resetIdleTimeout();
+
+    this.maxTimeoutId = setTimeout(_.bind(this._onMaxLengthReached, this), this.recordMaxMs);
+};
+
+SessionRecording.prototype.stopRecording = function () {
+    if (!this.isRrwebStopped()) {
+        try {
+            this._stopRecording();
+        } catch (err) {
+            this.reportError('Error with rrweb stopRecording', err);
+        }
+        this._stopRecording = null;
+    }
+
+    if (this.batcher.stopped) {
+        // never got user activity to flush after reset, so just clear the batcher
+        this.batcher.clear();
+    } else {
+        // flush any remaining events from running batcher
+        this.batcher.flush();
+        this.batcher.stop();
+    }
+
+    clearTimeout(this.idleTimeoutId);
+    clearTimeout(this.maxTimeoutId);
+};
+
+SessionRecording.prototype.isRrwebStopped = function () {
+    return this._stopRecording === null;
+};
+
+/**
+ * Flushes the current batch of events to the server, but passes an opt-out callback to make sure
+ * we stop recording and dump any queued events if the user has opted out.
+ */
+SessionRecording.prototype.flushEventsWithOptOut = function (data, options, cb) {
+    this._flushEvents(data, options, cb, _.bind(this._onOptOut, this));
+};
+
+SessionRecording.prototype._onOptOut = function (code) {
+    // addOptOutCheckMixpanelLib invokes this function with code=0 when the user has opted out
+    if (code === 0) {
+        this.stopRecording();
+    }
+};
+
+SessionRecording.prototype._sendRequest = function(currentReplayId, reqParams, reqBody, callback) {
+    var onSuccess = _.bind(function (response, responseBody) {
+        // Update batch specific props only if the request was successful to guarantee ordering.
+        // RequestBatcher will always flush the next batch after the previous one succeeds.
+        // extra check to see if the replay ID has changed so that we don't increment the seqNo on the wrong replay
+        if (response.status === 200 && this.replayId === currentReplayId) {
+            this.seqNo++;
+            this.batchStartUrl = _.info.currentUrl();
+        }
+        callback({
+            status: 0,
+            httpStatusCode: response.status,
+            responseBody: responseBody,
+            retryAfter: response.headers.get('Retry-After')
+        });
+    }, this);
+
+    win['fetch'](this.getConfig('api_host') + '/' + this.getConfig('api_routes')['record'] + '?' + new URLSearchParams(reqParams), {
+        'method': 'POST',
+        'headers': {
+            'Authorization': 'Basic ' + btoa(this.getConfig('token') + ':'),
+            'Content-Type': 'application/octet-stream'
+        },
+        'body': reqBody,
+    }).then(function (response) {
+        response.json().then(function (responseBody) {
+            onSuccess(response, responseBody);
+        }).catch(function (error) {
+            callback({error: error});
+        });
+    }).catch(function (error) {
+        callback({error: error, httpStatusCode: 0});
+    });
+};
+
+SessionRecording.prototype._flushEvents = addOptOutCheckMixpanelLib(function (data, options, callback) {
+    const numEvents = data.length;
+
+    if (numEvents > 0) {
+        var replayId = this.replayId;
+        // each rrweb event has a timestamp - leverage those to get time properties
+        var batchStartTime = data[0].timestamp;
+        if (this.seqNo === 0 || !this.replayStartTime) {
+            // extra safety net so that we don't send a null replay start time
+            if (this.seqNo !== 0) {
+                this.reportError('Replay start time not set but seqNo is not 0. Using current batch start time as a fallback.');
+            }
+
+            this.replayStartTime = batchStartTime;
+        }
+        var replayLengthMs = data[numEvents - 1].timestamp - this.replayStartTime;
+
+        var reqParams = {
+            '$current_url': this.batchStartUrl,
+            '$lib_version': Config.LIB_VERSION,
+            'batch_start_time': batchStartTime / 1000,
+            'distinct_id': String(this._mixpanel.get_distinct_id()),
+            'mp_lib': 'web',
+            'replay_id': replayId,
+            'replay_length_ms': replayLengthMs,
+            'replay_start_time': this.replayStartTime / 1000,
+            'seq': this.seqNo
+        };
+        var eventsJson = _.JSONEncode(data);
+
+        // send ID management props if they exist
+        var deviceId = this._mixpanel.get_property('$device_id');
+        if (deviceId) {
+            reqParams['$device_id'] = deviceId;
+        }
+        var userId = this._mixpanel.get_property('$user_id');
+        if (userId) {
+            reqParams['$user_id'] = userId;
+        }
+
+        if (CompressionStream) {
+            var jsonStream = new Blob([eventsJson], {type: 'application/json'}).stream();
+            var gzipStream = jsonStream.pipeThrough(new CompressionStream('gzip'));
+            new Response(gzipStream)
+                .blob()
+                .then(_.bind(function(compressedBlob) {
+                    reqParams['format'] = 'gzip';
+                    this._sendRequest(replayId, reqParams, compressedBlob, callback);
+                }, this));
+        } else {
+            reqParams['format'] = 'body';
+            this._sendRequest(replayId, reqParams, eventsJson, callback);
+        }
+    }
+});
+
+
+SessionRecording.prototype.reportError = function(msg, err) {
+    logger$1.error.apply(logger$1.error, arguments);
+    try {
+        if (!err && !(msg instanceof Error)) {
+            msg = new Error(msg);
+        }
+        this.getConfig('error_reporter')(msg, err);
+    } catch(err) {
+        logger$1.error(err);
+    }
+};
+
+var logger = console_with_prefix('recorder');
+
+/**
+ * Recorder API: manages recordings and exposes methods public to the core Mixpanel library.
+ * @param {Object} [options.mixpanelInstance] - reference to the core MixpanelLib
+ */
+var MixpanelRecorder = function(mixpanelInstance) {
+    this._mixpanel = mixpanelInstance;
+    this.activeRecording = null;
+};
+
+MixpanelRecorder.prototype.startRecording = function(shouldStopBatcher) {
+    if (this.activeRecording && !this.activeRecording.isRrwebStopped()) {
+        logger.log('Recording already in progress, skipping startRecording.');
+        return;
+    }
+
+    var onIdleTimeout = _.bind(function () {
+        logger.log('Idle timeout reached, restarting recording.');
+        this.resetRecording();
+    }, this);
+
+    var onMaxLengthReached = _.bind(function () {
+        logger.log('Max recording length reached, stopping recording.');
+        this.resetRecording();
+    }, this);
+
+    this.activeRecording = new SessionRecording({
+        mixpanelInstance: this._mixpanel,
+        onIdleTimeout: onIdleTimeout,
+        onMaxLengthReached: onMaxLengthReached,
+        replayId: _.UUID(),
+        rrwebRecord: record
+    });
+
+    this.activeRecording.startRecording(shouldStopBatcher);
+};
+
+MixpanelRecorder.prototype.stopRecording = function() {
+    if (this.activeRecording) {
+        this.activeRecording.stopRecording();
+        this.activeRecording = null;
+    }
+};
+
+MixpanelRecorder.prototype.resetRecording = function () {
+    this.stopRecording();
+    this.startRecording(true);
+};
+
+MixpanelRecorder.prototype.getActiveReplayId = function () {
+    if (this.activeRecording && !this.activeRecording.isRrwebStopped()) {
+        return this.activeRecording.replayId;
+    } else {
+        return null;
+    }
+};
+
+// getter so that older mixpanel-core versions can still retrieve the replay ID
+// when pulling the latest recorder bundle from the CDN
+Object.defineProperty(MixpanelRecorder.prototype, 'replayId', {
+    get: function () {
+        return this.getActiveReplayId();
+    }
+});
+
+win['__mp_recorder'] = MixpanelRecorder;
+
+/* eslint camelcase: "off" */
+
+/**
+ * DomTracker Object
+ * @constructor
+ */
+var DomTracker = function() {};
+
+
+// interface
+DomTracker.prototype.create_properties = function() {};
+DomTracker.prototype.event_handler = function() {};
+DomTracker.prototype.after_track_handler = function() {};
+
+DomTracker.prototype.init = function(mixpanel_instance) {
+    this.mp = mixpanel_instance;
+    return this;
+};
+
+/**
+ * @param {Object|string} query
+ * @param {string} event_name
+ * @param {Object=} properties
+ * @param {function=} user_callback
+ */
+DomTracker.prototype.track = function(query, event_name, properties, user_callback) {
+    var that = this;
+    var elements = _.dom_query(query);
+
+    if (elements.length === 0) {
+        console$1.error('The DOM query (' + query + ') returned 0 elements');
+        return;
+    }
+
+    _.each(elements, function(element) {
+        _.register_event(element, this.override_event, function(e) {
+            var options = {};
+            var props = that.create_properties(properties, this);
+            var timeout = that.mp.get_config('track_links_timeout');
+
+            that.event_handler(e, this, options);
+
+            // in case the mixpanel servers don't get back to us in time
+            window.setTimeout(that.track_callback(user_callback, props, options, true), timeout);
+
+            // fire the tracking event
+            that.mp.track(event_name, props, that.track_callback(user_callback, props, options));
+        });
+    }, this);
+
+    return true;
+};
+
+/**
+ * @param {function} user_callback
+ * @param {Object} props
+ * @param {boolean=} timeout_occured
+ */
+DomTracker.prototype.track_callback = function(user_callback, props, options, timeout_occured) {
+    timeout_occured = timeout_occured || false;
+    var that = this;
+
+    return function() {
+        // options is referenced from both callbacks, so we can have
+        // a 'lock' of sorts to ensure only one fires
+        if (options.callback_fired) { return; }
+        options.callback_fired = true;
+
+        if (user_callback && user_callback(timeout_occured, props) === false) {
+            // user can prevent the default functionality by
+            // returning false from their callback
+            return;
+        }
+
+        that.after_track_handler(props, options, timeout_occured);
+    };
+};
+
+DomTracker.prototype.create_properties = function(properties, element) {
+    var props;
+
+    if (typeof(properties) === 'function') {
+        props = properties(element);
+    } else {
+        props = _.extend({}, properties);
+    }
+
+    return props;
+};
+
+/**
+ * LinkTracker Object
+ * @constructor
+ * @extends DomTracker
+ */
+var LinkTracker = function() {
+    this.override_event = 'click';
+};
+_.inherit(LinkTracker, DomTracker);
+
+LinkTracker.prototype.create_properties = function(properties, element) {
+    var props = LinkTracker.superclass.create_properties.apply(this, arguments);
+
+    if (element.href) { props['url'] = element.href; }
+
+    return props;
+};
+
+LinkTracker.prototype.event_handler = function(evt, element, options) {
+    options.new_tab = (
+        evt.which === 2 ||
+        evt.metaKey ||
+        evt.ctrlKey ||
+        element.target === '_blank'
+    );
+    options.href = element.href;
+
+    if (!options.new_tab) {
+        evt.preventDefault();
+    }
+};
+
+LinkTracker.prototype.after_track_handler = function(props, options) {
+    if (options.new_tab) { return; }
+
+    setTimeout(function() {
+        window.location = options.href;
+    }, 0);
+};
+
+/**
+ * FormTracker Object
+ * @constructor
+ * @extends DomTracker
+ */
+var FormTracker = function() {
+    this.override_event = 'submit';
+};
+_.inherit(FormTracker, DomTracker);
+
+FormTracker.prototype.event_handler = function(evt, element, options) {
+    options.element = element;
+    evt.preventDefault();
+};
+
+FormTracker.prototype.after_track_handler = function(props, options) {
+    setTimeout(function() {
+        options.element.submit();
+    }, 0);
+};
 
 /* eslint camelcase: "off" */
 
@@ -59218,7 +65116,7 @@ MixpanelPeople.prototype.increment = addOptOutCheckMixpanelPeople(function(prop,
         _.each(prop, function(v, k) {
             if (!this._is_reserved_property(k)) {
                 if (isNaN(parseFloat(v))) {
-                    console.error('Invalid increment value passed to mixpanel.people.increment - must be a number');
+                    console$1.error('Invalid increment value passed to mixpanel.people.increment - must be a number');
                     return;
                 } else {
                     $add[k] = v;
@@ -59343,7 +65241,7 @@ MixpanelPeople.prototype.track_charge = addOptOutCheckMixpanelPeople(function(am
     if (!_.isNumber(amount)) {
         amount = parseFloat(amount);
         if (isNaN(amount)) {
-            console.error('Invalid value passed to mixpanel.people.track_charge - must be a number');
+            console$1.error('Invalid value passed to mixpanel.people.track_charge - must be a number');
             return;
         }
     }
@@ -59380,7 +65278,7 @@ MixpanelPeople.prototype.clear_charges = function(callback) {
 */
 MixpanelPeople.prototype.delete_user = function() {
     if (!this._identify_called()) {
-        console.error('mixpanel.people.delete_user() requires you to call identify() first');
+        console$1.error('mixpanel.people.delete_user() requires you to call identify() first');
         return;
     }
     var data = {'$delete': this._mixpanel.get_distinct_id()};
@@ -59454,7 +65352,7 @@ MixpanelPeople.prototype._enqueue = function(data) {
     } else if (UNION_ACTION in data) {
         this._mixpanel['persistence']._add_to_people_queue(UNION_ACTION, data);
     } else {
-        console.error('Invalid call to _enqueue():', data);
+        console$1.error('Invalid call to _enqueue():', data);
     }
 };
 
@@ -59602,7 +65500,7 @@ var MixpanelPersistence = function(config) {
 
     var storage_type = config['persistence'];
     if (storage_type !== 'cookie' && storage_type !== 'localStorage') {
-        console.critical('Unknown persistence type ' + storage_type + '; falling back to cookie');
+        console$1.critical('Unknown persistence type ' + storage_type + '; falling back to cookie');
         storage_type = config['persistence'] = 'cookie';
     }
 
@@ -59614,7 +65512,7 @@ var MixpanelPersistence = function(config) {
 
     this.load();
     this.update_config(config);
-    this.upgrade(config);
+    this.upgrade();
     this.save();
 };
 
@@ -59642,49 +65540,12 @@ MixpanelPersistence.prototype.load = function() {
     }
 };
 
-MixpanelPersistence.prototype.upgrade = function(config) {
-    var upgrade_from_old_lib = config['upgrade'],
-        old_cookie_name,
-        old_cookie;
+MixpanelPersistence.prototype.upgrade = function() {
+    var old_cookie,
+        old_localstorage;
 
-    if (upgrade_from_old_lib) {
-        old_cookie_name = 'mp_super_properties';
-        // Case where they had a custom cookie name before.
-        if (typeof(upgrade_from_old_lib) === 'string') {
-            old_cookie_name = upgrade_from_old_lib;
-        }
-
-        old_cookie = this.storage.parse(old_cookie_name);
-
-        // remove the cookie
-        this.storage.remove(old_cookie_name);
-        this.storage.remove(old_cookie_name, true);
-
-        if (old_cookie) {
-            this['props'] = _.extend(
-                this['props'],
-                old_cookie['all'],
-                old_cookie['events']
-            );
-        }
-    }
-
-    if (!config['cookie_name'] && config['name'] !== 'mixpanel') {
-        // special case to handle people with cookies of the form
-        // mp_TOKEN_INSTANCENAME from the first release of this library
-        old_cookie_name = 'mp_' + config['token'] + '_' + config['name'];
-        old_cookie = this.storage.parse(old_cookie_name);
-
-        if (old_cookie) {
-            this.storage.remove(old_cookie_name);
-            this.storage.remove(old_cookie_name, true);
-
-            // Save the prop values that were in the cookie from before -
-            // this should only happen once as we delete the old one.
-            this.register_once(old_cookie);
-        }
-    }
-
+    // if transferring from cookie to localStorage or vice-versa, copy existing
+    // super properties over to new storage mode
     if (this.storage === _.localStorage) {
         old_cookie = _.cookie.parse(this.name);
 
@@ -59693,6 +65554,14 @@ MixpanelPersistence.prototype.upgrade = function(config) {
 
         if (old_cookie) {
             this.register_once(old_cookie);
+        }
+    } else if (this.storage === _.cookie) {
+        old_localstorage = _.localStorage.parse(this.name);
+
+        _.localStorage.remove(this.name);
+
+        if (old_localstorage) {
+            this.register_once(old_localstorage);
         }
     }
 };
@@ -59935,8 +65804,8 @@ MixpanelPersistence.prototype._add_to_people_queue = function(queue, data) {
         this._pop_from_people_queue(UNSET_ACTION, q_data);
     }
 
-    console.log('MIXPANEL PEOPLE REQUEST (QUEUED, PENDING IDENTIFY):');
-    console.log(data);
+    console$1.log('MIXPANEL PEOPLE REQUEST (QUEUED, PENDING IDENTIFY):');
+    console$1.log(data);
 
     this.save();
 };
@@ -59981,7 +65850,7 @@ MixpanelPersistence.prototype._get_queue_key = function(queue) {
     } else if (queue === UNION_ACTION) {
         return UNION_QUEUE_KEY;
     } else {
-        console.error('Invalid queue:', queue);
+        console$1.error('Invalid queue:', queue);
     }
 };
 
@@ -60038,6 +65907,12 @@ Globals should be all caps
 */
 
 var init_type;       // MODULE or SNIPPET loader
+// allow bundlers to specify how extra code (recorder bundle) should be loaded
+// eslint-disable-next-line no-unused-vars
+var load_extra_bundle = function(src, _onload) {
+    throw new Error(src + ' not available in this build.');
+};
+
 var mixpanel_master; // main mixpanel instance / object
 var INIT_MODULE  = 0;
 var INIT_SNIPPET = 1;
@@ -60129,10 +66004,15 @@ var DEFAULT_CONFIG = {
     'batch_request_timeout_ms':          90000,
     'batch_autostart':                   true,
     'hooks':                             {},
-    'record_sessions_percent':           0,
+    'record_block_class':                new RegExp('^(mp-block|fs-exclude|amp-block|rr-block|ph-no-capture)$'),
+    'record_block_selector':             'img, video',
+    'record_collect_fonts':              false,
     'record_idle_timeout_ms':            30 * 60 * 1000, // 30 minutes
-    'record_max_ms':                     MAX_RECORDING_MS,
+    'record_mask_text_class':            new RegExp('^(mp-mask|fs-mask|amp-mask|rr-mask|ph-mask)$'),
     'record_mask_text_selector':         '*',
+    'record_max_ms':                     MAX_RECORDING_MS,
+    'record_min_ms':                     0,
+    'record_sessions_percent':           0,
     'recorder_src':                      'https://cdn.mxpnl.com/libs/mixpanel-recorder.min.js'
 };
 
@@ -60161,7 +66041,7 @@ var create_mplib = function(token, config, name) {
         instance = target;
     } else {
         if (target && !_.isArray(target)) {
-            console.error('You have already initialized ' + name);
+            console$1.error('You have already initialized ' + name);
             return;
         }
         instance = new MixpanelLib();
@@ -60289,9 +66169,9 @@ MixpanelLib.prototype._init = function(token, config, name) {
     if (this._batch_requests) {
         if (!_.localStorage.is_supported(true) || !USE_XHR) {
             this._batch_requests = false;
-            console.log('Turning off Mixpanel request-queueing; needs XHR and localStorage support');
+            console$1.log('Turning off Mixpanel request-queueing; needs XHR and localStorage support');
             _.each(this.get_batcher_configs(), function(batcher_config) {
-                console.log('Clearing batch queue ' + batcher_config.queue_key);
+                console$1.log('Clearing batch queue ' + batcher_config.queue_key);
                 _.localStorage.remove(batcher_config.queue_key);
             });
         } else {
@@ -60354,7 +66234,7 @@ MixpanelLib.prototype._init = function(token, config, name) {
 
 MixpanelLib.prototype.start_session_recording = addOptOutCheckMixpanelLib(function () {
     if (!win['MutationObserver']) {
-        console.critical('Browser does not support MutationObserver; skipping session recording');
+        console$1.critical('Browser does not support MutationObserver; skipping session recording');
         return;
     }
 
@@ -60364,12 +66244,7 @@ MixpanelLib.prototype.start_session_recording = addOptOutCheckMixpanelLib(functi
     }, this);
 
     if (_.isUndefined(win['__mp_recorder'])) {
-        var scriptEl = document$1.createElement('script');
-        scriptEl.type = 'text/javascript';
-        scriptEl.async = true;
-        scriptEl.onload = handleLoadedRecorder;
-        scriptEl.src = this.get_config('recorder_src');
-        document$1.head.appendChild(scriptEl);
+        load_extra_bundle(this.get_config('recorder_src'), handleLoadedRecorder);
     } else {
         handleLoadedRecorder();
     }
@@ -60379,8 +66254,39 @@ MixpanelLib.prototype.stop_session_recording = function () {
     if (this._recorder) {
         this._recorder['stopRecording']();
     } else {
-        console.critical('Session recorder module not loaded');
+        console$1.critical('Session recorder module not loaded');
     }
+};
+
+MixpanelLib.prototype.get_session_recording_properties = function () {
+    var props = {};
+    var replay_id = this._get_session_replay_id();
+    if (replay_id) {
+        props['$mp_replay_id'] = replay_id;
+    }
+    return props;
+};
+
+MixpanelLib.prototype.get_session_replay_url = function () {
+    var replay_url = null;
+    var replay_id = this._get_session_replay_id();
+    if (replay_id) {
+        var query_params = _.HTTPBuildQuery({
+            'replay_id': replay_id,
+            'distinct_id': this.get_distinct_id(),
+            'token': this.get_config('token')
+        });
+        replay_url = 'https://mixpanel.com/projects/replay-redirect?' + query_params;
+    }
+    return replay_url;
+};
+
+MixpanelLib.prototype._get_session_replay_id = function () {
+    var replay_id = null;
+    if (this._recorder) {
+        replay_id = this._recorder['replayId'];
+    }
+    return replay_id || null;
 };
 
 // Private methods
@@ -60390,9 +66296,8 @@ MixpanelLib.prototype._loaded = function() {
     this._set_default_superprops();
     this['people'].set_once(this['persistence'].get_referrer_info());
 
-    // The original 'store_google' functionality will be deprecated and the config will be
-    // used to clear previously managed UTM parameters from persistence.
-    // stop_utm_persistence is `false` by default now but will be default `true` in the future.
+    // `store_google` is now deprecated and previously stored UTM parameters are cleared
+    // from persistence by default.
     if (this.get_config('store_google') && this.get_config('stop_utm_persistence')) {
         var utm_params = _.info.campaignParams(null);
         _.each(utm_params, function(_utm_value, utm_key) {
@@ -60406,6 +66311,7 @@ MixpanelLib.prototype._loaded = function() {
 // update persistence with info on referrer, UTM params, etc
 MixpanelLib.prototype._set_default_superprops = function() {
     this['persistence'].update_search_keyword(document$1.referrer);
+    // Registering super properties for UTM persistence by 'store_google' is deprecated.
     if (this.get_config('store_google') && !this.get_config('stop_utm_persistence')) {
         this.register(_.info.campaignParams());
     }
@@ -60657,7 +66563,8 @@ MixpanelLib.prototype._send_request = function(url, data, options, callback) {
                         lib.report_error(error);
                         if (callback) {
                             if (verbose_mode) {
-                                callback({status: 0, error: error, xhr_req: req});
+                                var response_headers = req['responseHeaders'] || {};
+                                callback({status: 0, httpStatusCode: req['status'], error: error, retryAfter: response_headers['Retry-After']});
                             } else {
                                 callback(0);
                             }
@@ -60757,6 +66664,7 @@ MixpanelLib.prototype.init_batchers = function() {
                 attrs.queue_key,
                 {
                     libConfig: this['config'],
+                    errorReporter: this.get_config('error_reporter'),
                     sendRequestFunc: _.bind(function(data, options, cb) {
                         this._send_request(
                             this.get_config('api_host') + attrs.endpoint,
@@ -60768,8 +66676,8 @@ MixpanelLib.prototype.init_batchers = function() {
                     beforeSendHook: _.bind(function(item) {
                         return this._run_hook('before_send_' + attrs.type, item);
                     }, this),
-                    errorReporter: this.get_config('error_reporter'),
-                    stopAllBatchingFunc: _.bind(this.stop_batch_senders, this)
+                    stopAllBatchingFunc: _.bind(this.stop_batch_senders, this),
+                    usePersistence: true
                 }
             );
         }, this);
@@ -60861,8 +66769,8 @@ MixpanelLib.prototype._track_or_batch = function(options, callback) {
             truncated_data = this._run_hook('before_send_' + options.type, truncated_data);
         }
         if (truncated_data) {
-            console.log('MIXPANEL REQUEST:');
-            console.log(truncated_data);
+            console$1.log('MIXPANEL REQUEST:');
+            console$1.log(truncated_data);
             return this._send_request(
                 endpoint,
                 this._encode_data_for_request(truncated_data),
@@ -60954,13 +66862,6 @@ MixpanelLib.prototype.track = addOptOutCheckMixpanelLib(function(event_name, pro
         ? _.info.marketingParams()
         : {};
 
-    if (this._recorder) {
-        var replay_id = this._recorder['replayId'];
-        if (replay_id) {
-            properties['$mp_replay_id'] = replay_id;
-        }
-    }
-
     // note: extend writes to the first object, so lets make sure we
     // don't write to the persistence properties object and info
     // properties object by passing in a new object
@@ -60972,6 +66873,7 @@ MixpanelLib.prototype.track = addOptOutCheckMixpanelLib(function(event_name, pro
         marketing_properties,
         this['persistence'].properties(),
         this.unpersisted_superprops,
+        this.get_session_recording_properties(),
         properties
     );
 
@@ -62065,54 +67967,56 @@ MixpanelLib.prototype.clear_opt_in_out_tracking = function(options) {
 };
 
 MixpanelLib.prototype.report_error = function(msg, err) {
-    console.error.apply(console.error, arguments);
+    console$1.error.apply(console$1.error, arguments);
     try {
         if (!err && !(msg instanceof Error)) {
             msg = new Error(msg);
         }
         this.get_config('error_reporter')(msg, err);
     } catch(err) {
-        console.error(err);
+        console$1.error(err);
     }
 };
 
 // EXPORTS (for closure compiler)
 
 // MixpanelLib Exports
-MixpanelLib.prototype['init']                      = MixpanelLib.prototype.init;
-MixpanelLib.prototype['reset']                     = MixpanelLib.prototype.reset;
-MixpanelLib.prototype['disable']                   = MixpanelLib.prototype.disable;
-MixpanelLib.prototype['time_event']                = MixpanelLib.prototype.time_event;
-MixpanelLib.prototype['track']                     = MixpanelLib.prototype.track;
-MixpanelLib.prototype['track_links']               = MixpanelLib.prototype.track_links;
-MixpanelLib.prototype['track_forms']               = MixpanelLib.prototype.track_forms;
-MixpanelLib.prototype['track_pageview']            = MixpanelLib.prototype.track_pageview;
-MixpanelLib.prototype['register']                  = MixpanelLib.prototype.register;
-MixpanelLib.prototype['register_once']             = MixpanelLib.prototype.register_once;
-MixpanelLib.prototype['unregister']                = MixpanelLib.prototype.unregister;
-MixpanelLib.prototype['identify']                  = MixpanelLib.prototype.identify;
-MixpanelLib.prototype['alias']                     = MixpanelLib.prototype.alias;
-MixpanelLib.prototype['name_tag']                  = MixpanelLib.prototype.name_tag;
-MixpanelLib.prototype['set_config']                = MixpanelLib.prototype.set_config;
-MixpanelLib.prototype['get_config']                = MixpanelLib.prototype.get_config;
-MixpanelLib.prototype['get_property']              = MixpanelLib.prototype.get_property;
-MixpanelLib.prototype['get_distinct_id']           = MixpanelLib.prototype.get_distinct_id;
-MixpanelLib.prototype['toString']                  = MixpanelLib.prototype.toString;
-MixpanelLib.prototype['opt_out_tracking']          = MixpanelLib.prototype.opt_out_tracking;
-MixpanelLib.prototype['opt_in_tracking']           = MixpanelLib.prototype.opt_in_tracking;
-MixpanelLib.prototype['has_opted_out_tracking']    = MixpanelLib.prototype.has_opted_out_tracking;
-MixpanelLib.prototype['has_opted_in_tracking']     = MixpanelLib.prototype.has_opted_in_tracking;
-MixpanelLib.prototype['clear_opt_in_out_tracking'] = MixpanelLib.prototype.clear_opt_in_out_tracking;
-MixpanelLib.prototype['get_group']                 = MixpanelLib.prototype.get_group;
-MixpanelLib.prototype['set_group']                 = MixpanelLib.prototype.set_group;
-MixpanelLib.prototype['add_group']                 = MixpanelLib.prototype.add_group;
-MixpanelLib.prototype['remove_group']              = MixpanelLib.prototype.remove_group;
-MixpanelLib.prototype['track_with_groups']         = MixpanelLib.prototype.track_with_groups;
-MixpanelLib.prototype['start_batch_senders']       = MixpanelLib.prototype.start_batch_senders;
-MixpanelLib.prototype['stop_batch_senders']        = MixpanelLib.prototype.stop_batch_senders;
-MixpanelLib.prototype['start_session_recording']   = MixpanelLib.prototype.start_session_recording;
-MixpanelLib.prototype['stop_session_recording']    = MixpanelLib.prototype.stop_session_recording;
-MixpanelLib.prototype['DEFAULT_API_ROUTES']        = DEFAULT_API_ROUTES;
+MixpanelLib.prototype['init']                               = MixpanelLib.prototype.init;
+MixpanelLib.prototype['reset']                              = MixpanelLib.prototype.reset;
+MixpanelLib.prototype['disable']                            = MixpanelLib.prototype.disable;
+MixpanelLib.prototype['time_event']                         = MixpanelLib.prototype.time_event;
+MixpanelLib.prototype['track']                              = MixpanelLib.prototype.track;
+MixpanelLib.prototype['track_links']                        = MixpanelLib.prototype.track_links;
+MixpanelLib.prototype['track_forms']                        = MixpanelLib.prototype.track_forms;
+MixpanelLib.prototype['track_pageview']                     = MixpanelLib.prototype.track_pageview;
+MixpanelLib.prototype['register']                           = MixpanelLib.prototype.register;
+MixpanelLib.prototype['register_once']                      = MixpanelLib.prototype.register_once;
+MixpanelLib.prototype['unregister']                         = MixpanelLib.prototype.unregister;
+MixpanelLib.prototype['identify']                           = MixpanelLib.prototype.identify;
+MixpanelLib.prototype['alias']                              = MixpanelLib.prototype.alias;
+MixpanelLib.prototype['name_tag']                           = MixpanelLib.prototype.name_tag;
+MixpanelLib.prototype['set_config']                         = MixpanelLib.prototype.set_config;
+MixpanelLib.prototype['get_config']                         = MixpanelLib.prototype.get_config;
+MixpanelLib.prototype['get_property']                       = MixpanelLib.prototype.get_property;
+MixpanelLib.prototype['get_distinct_id']                    = MixpanelLib.prototype.get_distinct_id;
+MixpanelLib.prototype['toString']                           = MixpanelLib.prototype.toString;
+MixpanelLib.prototype['opt_out_tracking']                   = MixpanelLib.prototype.opt_out_tracking;
+MixpanelLib.prototype['opt_in_tracking']                    = MixpanelLib.prototype.opt_in_tracking;
+MixpanelLib.prototype['has_opted_out_tracking']             = MixpanelLib.prototype.has_opted_out_tracking;
+MixpanelLib.prototype['has_opted_in_tracking']              = MixpanelLib.prototype.has_opted_in_tracking;
+MixpanelLib.prototype['clear_opt_in_out_tracking']          = MixpanelLib.prototype.clear_opt_in_out_tracking;
+MixpanelLib.prototype['get_group']                          = MixpanelLib.prototype.get_group;
+MixpanelLib.prototype['set_group']                          = MixpanelLib.prototype.set_group;
+MixpanelLib.prototype['add_group']                          = MixpanelLib.prototype.add_group;
+MixpanelLib.prototype['remove_group']                       = MixpanelLib.prototype.remove_group;
+MixpanelLib.prototype['track_with_groups']                  = MixpanelLib.prototype.track_with_groups;
+MixpanelLib.prototype['start_batch_senders']                = MixpanelLib.prototype.start_batch_senders;
+MixpanelLib.prototype['stop_batch_senders']                 = MixpanelLib.prototype.stop_batch_senders;
+MixpanelLib.prototype['start_session_recording']            = MixpanelLib.prototype.start_session_recording;
+MixpanelLib.prototype['stop_session_recording']             = MixpanelLib.prototype.stop_session_recording;
+MixpanelLib.prototype['get_session_recording_properties']   = MixpanelLib.prototype.get_session_recording_properties;
+MixpanelLib.prototype['get_session_replay_url']             = MixpanelLib.prototype.get_session_replay_url;
+MixpanelLib.prototype['DEFAULT_API_ROUTES']                 = DEFAULT_API_ROUTES;
 
 // MixpanelPersistence Exports
 MixpanelPersistence.prototype['properties']            = MixpanelPersistence.prototype.properties;
@@ -62223,7 +68127,8 @@ var add_dom_loaded_handler = function() {
     _.register_event(win, 'load', dom_loaded_handler, true);
 };
 
-function init_as_module() {
+function init_as_module(bundle_loader) {
+    load_extra_bundle = bundle_loader;
     init_type = INIT_MODULE;
     mixpanel_master = new MixpanelLib();
 
@@ -62234,11 +68139,18 @@ function init_as_module() {
     return mixpanel_master;
 }
 
+// For loading separate bundles asynchronously via script tag
+
+// For builds that have everything in one bundle, no extra work.
+function loadNoop (_src, onload) {
+    onload();
+}
+
 /* eslint camelcase: "off" */
 
-var mixpanel = init_as_module();
+var mixpanel = init_as_module(loadNoop);
 
-module.exports = mixpanel;
+
 
 
 /***/ }),
@@ -65543,10 +71455,10 @@ function _typeof(o) {
 
 /***/ }),
 
-/***/ "../node_modules/@reduxjs/toolkit/node_modules/immer/dist/immer.esm.mjs":
-/*!******************************************************************************!*\
-  !*** ../node_modules/@reduxjs/toolkit/node_modules/immer/dist/immer.esm.mjs ***!
-  \******************************************************************************/
+/***/ "../node_modules/immer/dist/immer.esm.mjs":
+/*!************************************************!*\
+  !*** ../node_modules/immer/dist/immer.esm.mjs ***!
+  \************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -65601,7 +71513,7 @@ function n(n){for(var r=arguments.length,t=Array(r>1?r-1:0),e=1;e<r;e++)t[e-1]=a
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -65650,7 +71562,7 @@ function n(n){for(var r=arguments.length,t=Array(r>1?r-1:0),e=1;e<r;e++)t[e-1]=a
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (() => {
 "use strict";
 /*!****************************************************************!*\
@@ -65699,7 +71611,7 @@ var __webpack_exports__ = {};
 })(jQuery);
 })();
 
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (() => {
 "use strict";
 /*!*********************************************************!*\
@@ -66065,7 +71977,7 @@ var __webpack_exports__ = {};
 })(jQuery);
 })();
 
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry needs to be wrapped in an IIFE because it needs to be in strict mode.
 (() => {
 "use strict";
 var exports = __webpack_exports__;
@@ -66088,7 +72000,7 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/h
 var _editorBase = _interopRequireDefault(__webpack_require__(/*! ./editor-base */ "../assets/dev/js/editor/editor-base.js"));
 function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
 function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
-function _superPropGet(t, e, o, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), e, o); return 2 & r && "function" == typeof p ? function (t) { return p.apply(o, t); } : p; }
+function _superPropGet(t, o, e, r) { var p = (0, _get2.default)((0, _getPrototypeOf2.default)(1 & r ? t.prototype : t), o, e); return 2 & r && "function" == typeof p ? function (t) { return p.apply(e, t); } : p; }
 var Editor = exports.Editor = /*#__PURE__*/function (_EditorBase) {
   function Editor() {
     (0, _classCallCheck2.default)(this, Editor);
