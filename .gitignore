@@ -5,6 +5,5 @@ _site
 .DS_Store
 .jekyll-cache
 .jekyll-metadata
-vendor
-
+vendor/
 .codegpt

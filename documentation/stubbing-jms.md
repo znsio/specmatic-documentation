@@ -27,7 +27,7 @@ The below-mentioned dependency needs to be in pom.xml:
     <artifactId>specmatic-jms</artifactId>
     <version>{{ site.jms_release }}</version>
 </dependency>
-```    
+```
 
 ### Start the JMS Server
 

@@ -3,11 +3,13 @@ layout: default
 title: Getting started (in 5 min)
 nav_order: 4
 ---
-Getting started
-===============
+
+# Getting started
 
 - [Getting started](#getting-started)
     - [Setup](#setup)
+      - [Command-line alias on MacOS / Linux](#command-line-alias-on-macos--linux)
+      - [Batch script on Windows](#batch-script-on-windows)
     - [Example Application - PetStore](#example-application---petstore)
     - [PetStore API Specification](#petstore-api-specification)
     - [Provider Side - Contract as a Test](#provider-side---contract-as-a-test)
@@ -19,9 +21,83 @@ Getting started
       - [Intelligent Service Virtualisation](#intelligent-service-virtualisation)
       - [Externalising stub responses](#externalising-stub-responses)
 
+
 ### Setup
 
-{% include setup_command_line.md %}
+Specmatic can be used as a standalone executable and also included [programmatically](https://specmatic.in/documentation/service_virtualization_tutorial.html#programmatically-starting-stub-server-within-tests) as part of your test suite.
+
+{% tabs install %}
+{% tab install docker %}
+
+``` bash
+docker run znsio/specmatic
+```
+
+{% endtab %}
+
+{% tab install java %}
+Download the standalone jar from our [Github releases](<https://github.com/znsio/specmatic/releases/download/{{ site.latest_release }}/specmatic.jar>) or [Maven Central](https://repo1.maven.org/maven2/io/specmatic/specmatic-executable/{{ site.latest_release }}/specmatic-executable-{{ site.latest_release }}-all.jar).
+
+If you have downloaded the standalone jar from Maven Central, you may want to rename it as shown below for convenience.
+
+```bash
+mv specmatic-executable-{{ site.latest_release }}-all.jar specmatic.jar
+```
+
+Run specmatic list all the options available
+
+```bash
+java -jar specmatic.jar
+```
+
+Follow the quick tips below to setup commands for easily running `java -jar specmatic.jar`.
+
+#### Command-line alias on MacOS / Linux
+
+Add this to the startup script of your shell like `~/.bashrc` or `~/.zshrc`
+
+``` bash
+alias specmatic='java -jar <path-to-jar>/specmatic.jar'
+```
+
+You can now run specmatic using:
+
+``` bash
+$ specmatic <options>
+```
+
+#### Batch script on Windows
+
+Create a batch file (`specmatic.bat`) with below content and add it your system path.
+
+```  bash
+java -jar <path-to-jar>/specmatic.jar %*
+```
+The %* portion at the end tells the batch script to pass all of the parameters it receives to the new command.
+
+You can now run specmatic using:
+
+``` bash
+C:\> specmatic.bat <options>
+```
+
+{% endtab %}
+{% tab install npm %}
+
+Install specmatic npm package globally
+
+``` bash
+npm install -g specmatic
+```
+
+Or you can run specmatic without installing it as below
+
+``` bash
+npx specmatic
+```
+{% endtab %}
+{% endtabs %}
+
 
 ---
 
@@ -41,7 +117,7 @@ Before we get started, here is a quick refresher on the terminology used in the 
 ---
 
 ### PetStore API Specification
-    
+
 Below is the OpenAPI specification that represents the communication between UI and Backend in the above example application. Please save this to a file called `service.yaml`.
 
 ```yaml
@@ -134,12 +210,12 @@ API Specification Summary: service.yaml
 --------------------
   Request to https://my-json-server.typicode.com/znsio/specmatic-documentation at 2025-3-14 5:16:35.598
     GET /znsio/specmatic-documentation/pets/1
-    
+
 
   Response at 2025-3-14 5:16:35.599
     200 OK
     Content-Type: application/json; charset=utf-8
-    
+
     {
         "id": 1,
         "name": "Scooby",
@@ -237,9 +313,9 @@ Unsuccessful Scenarios:
   " Scenario: GET /pets/(petid:number) -> 200 FAILED"
         Reason: Testing scenario "Should be able to get a pet by petId. Response: Should be able to get a pet by petId"
         API: GET /pets/(petid:number) -> 200
-  
+
           >> RESPONSE.STATUS
-          
+
              Expected status 200, actual was status 404
 
 Tests run: 1, Successes: 0, Failures: 1, Errors: 0
@@ -256,13 +332,13 @@ Once you restore the OpenAPI file to its [original state](/getting_started.html#
 
 #### How does this all work?
 
-* Specmatic is able to tie the **named example** `SCOOBY_200_OK` listed under the request parameters and the response sections of the OpenAPI spec to create a test. 
+* Specmatic is able to tie the **named example** `SCOOBY_200_OK` listed under the request parameters and the response sections of the OpenAPI spec to create a test.
 * This is also reflected in the name of the test where Specmatic displays the `SCOOBY_200_OK` in the test logs
 * Here's a detailed breakdown of the contract test:
   - **Request:** Specmatic uses the value defined for the **petId** request parameter from the `SCOOBY_200_OK` request example to make a HTTP request.
   - **Response:** In order to tie the above request with a HTTP response code in the spec, Specmatic looks for an example with same name: `SCOOBY_200_OK` under responses. In this case the response code happens to be 200. This request/response pair now forms a test case.
   - **Response Validation:** Note that we are running the specification as a contract test here, in which we are interested in validating only the API signature and not the API logic. Hence, Specmatic does not validate the actual response values defined in the `SCOOBY_200_OK` example against the values returned by the application. It only validates the response code. However, if you do wish to validate response values, you can find more details in our discussion [here](https://github.com/znsio/specmatic/discussions/1029).
-  
+
 
 `Scenario: GET /pets/(petid:number) -> 200 | EX:SCOOBY_200_OK has SUCCEEDED`
 
@@ -318,9 +394,9 @@ Unsuccessful Scenarios:
   " Scenario: GET /pets/(petid:number) -> 200 | EX:SCOOBY_200_OK FAILED"
         Reason: Testing scenario "Should be able to get a pet by petId. Response: Should be able to get a pet by petId"
         API: GET /pets/(petid:number) -> 200
-  
+
           >> RESPONSE.BODY.status
-          
+
              Contract expected boolean but response contained "Adopted"
 
 Tests run: 1, Successes: 0, Failures: 1, Errors: 0
@@ -481,9 +557,9 @@ API Specification Summary: service.yaml
 
   In scenario "Should be able to get a pet by petId. Response: Should be able to get a pet by petId"
   API: GET /pets/(petid:number) -> 200
-  
+
     >> RESPONSE.BODY.status
-  
+
        key named status in the spec was not found in the "SCOOBY_200_OK" example
 ```
 
@@ -572,7 +648,7 @@ You should now be able to see the data pertaining to the `togo.json` file that y
 }
 ```
 
-Specmatic validates this externalised stub JSON file `togo.json` against the `service.yaml`. Let us try this by removing the `status` field within http-response body in `togo.json` and run the stub command again. 
+Specmatic validates this externalised stub JSON file `togo.json` against the `service.yaml`. Let us try this by removing the `status` field within http-response body in `togo.json` and run the stub command again.
 
 {% tabs stub3 %}
 {% tab stub3 docker %}
@@ -613,12 +689,12 @@ API Specification Summary: /specs/service.yaml
   >> Error loading stub expectation file '/specs/service_examples/example.json':
    /specs/service_examples/example.json didn't match /specs/service.yaml
     Error from contract /specs/service.yaml
-  
+
       In scenario "Should be able to get a pet by petId. Response: Should be able to get a pet by petId"
       API: GET /pets/(petid:number) -> 200
-  
+
         >> RESPONSE.BODY.status
-  
+
            Key named status in the contract was not found in the stub
 
 
