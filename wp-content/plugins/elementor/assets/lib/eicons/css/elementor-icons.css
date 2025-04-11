@@ -1,7 +1,7 @@
 @font-face {
   font-family: "eicons";
-  src: url("https://specmatic.io/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.eot?5_36_0");
-  src: url("https://specmatic.io/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.eot?5_36_0#iefix") format("embedded-opentype"), url("https://specmatic.io/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.woff2?5_36_0") format("woff2"), url("https://specmatic.io/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.woff?5_36_0") format("woff"), url("https://specmatic.io/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.ttf?5_36_0") format("truetype"), url("https://specmatic.io/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.svg?5_36_0#eicon") format("svg");
+  src: url("/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.eot?5_36_0");
+  src: url("/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.eot?5_36_0#iefix") format("embedded-opentype"), url("/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.woff2?5_36_0") format("woff2"), url("/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.woff?5_36_0") format("woff"), url("/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.ttf?5_36_0") format("truetype"), url("/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.svg?5_36_0#eicon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
