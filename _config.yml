@@ -1,0 +1,10 @@
+plugins:
+  - jekyll-redirect-from
+
+redirect_from:
+  json: false
+
+exclude:
+  - Rakefile
+  - CNAME
+  - README.md
