@@ -1,0 +1,751 @@
+---
+title: Stateful Mocking
+sidebar_position: 1
+---
+
+import { CommercialBadge } from "../../../src/components/CommercialBadge";
+
+# Stateful Mocking <CommercialBadge />
+
+A regular mock responds to the current request. A stateful mock also remembers resources created, updated, or deleted by earlier requests. This lets a consumer exercise a realistic resource lifecycle while the actual API is unavailable.
+
+## Try Stateful Mocking
+
+This walkthrough starts with one product from an OpenAPI example. You will update it, create another product, and delete the original product.
+
+### Prerequisites
+
+- Install Docker.
+- [Configure a Specmatic Enterprise license](/enterprise_onboarding/license_key).
+- Create an empty directory and open a terminal in it.
+
+### 1. Create the OpenAPI Specification
+
+Create `product-api.yaml`:
+
+```yaml title="product-api.yaml"
+openapi: 3.0.3
+info:
+  title: Product API
+  version: 1.0.0
+
+paths:
+  /products:
+    get:
+      parameters:
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+          examples:
+            INITIAL_PRODUCTS:
+              value: Phone
+      responses:
+        "200":
+          description: Products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+              examples:
+                INITIAL_PRODUCTS:
+                  value:
+                    - productId: p100
+                      name: Phone
+                      price: 500
+        "404":
+          description: Products not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFound"
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductInput"
+      responses:
+        "201":
+          description: Product created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          description: Products not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFound"
+
+  /products/{productId}:
+    parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        "200":
+          description: Product
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFound"
+    patch:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductPatch"
+      responses:
+        "200":
+          description: Product updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFound"
+    delete:
+      responses:
+        "204":
+          description: Product deleted
+        "404":
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFound"
+
+components:
+  schemas:
+    NotFound:
+      type: object
+      required: [message]
+      properties:
+        message:
+          type: string
+    Product:
+      type: object
+      x-id-field: productId
+      required: [productId, name, price]
+      properties:
+        productId:
+          type: string
+        name:
+          type: string
+        price:
+          type: number
+
+    ProductInput:
+      type: object
+      required: [name, price]
+      properties:
+        name:
+          type: string
+        price:
+          type: number
+
+    ProductPatch:
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: number
+```
+
+This specification introduces two stateful-mocking concepts.
+
+#### Identify Each Product with `x-id-field`
+
+Specmatic uses an identifier to find the same resource across `GET`, `PATCH`, `PUT`, and `DELETE` requests. It uses a field named `id` by default. This API uses `productId`, so the returned `Product` schema declares:
+
+```yaml
+Product:
+  type: object
+  x-id-field: productId
+```
+
+The individual-resource path uses the same name: `/products/{productId}`. This lets Specmatic match `/products/p100` to the stored product whose `productId` is `p100`.
+
+Place `x-id-field` on the returned object schema—not on the property or operation. For a collection response, this is the array's item schema. You do not need the extension when the identifier field is named `id`.
+
+#### Seed the Starting State with an Example
+
+The `INITIAL_PRODUCTS` example belongs to the `200` response for `GET /products`. When the stateful mock starts, Specmatic copies the example's product into memory. The mock therefore contains product `p100` before it receives its first request.
+
+### 2. Create the Specmatic Configuration
+
+Create `specmatic.yaml` in the same directory:
+
+```yaml title="specmatic.yaml"
+version: 3
+
+dependencies:
+  services:
+    - service:
+        definitions:
+          - definition:
+              source:
+                filesystem:
+                  directory: .
+              specs:
+                - product-api.yaml
+        runOptions:
+          openapi:
+            type: stateful-mock
+            port: 9000
+```
+
+### 3. Start the Stateful Mock
+
+```shell
+docker run --rm -p 9000:9000 \
+  -v "$(pwd):/usr/src/app" \
+  -v "$HOME/.specmatic:/root/.specmatic" \
+  specmatic/enterprise mock
+```
+
+Leave the mock running and use another terminal for the following requests. The second volume makes your Specmatic Enterprise license available inside the container.
+
+### 4. Read the Seeded Product
+
+```shell
+curl http://localhost:9000/products
+```
+
+The response contains the product loaded from `INITIAL_PRODUCTS`:
+
+```json
+[
+  {
+    "productId": "p100",
+    "name": "Phone",
+    "price": 500
+  }
+]
+```
+
+You can also retrieve that product by its identifier:
+
+```shell
+curl http://localhost:9000/products/p100
+```
+
+Specmatic reads `p100` from the path and returns the stored product whose `productId` is `p100`.
+
+### 5. Update the Product
+
+```shell
+curl -X PATCH \
+  -H 'Content-Type: application/json' \
+  -d '{"price": 450}' \
+  http://localhost:9000/products/p100
+```
+
+Read it again:
+
+```shell
+curl http://localhost:9000/products/p100
+```
+
+The response now contains `"price": 450`. The name remains unchanged because `PATCH` preserves fields omitted from the request.
+
+### 6. Create Another Product
+
+```shell
+curl -X POST \
+  -H 'Content-Type: application/json' \
+  -d '{"name": "Laptop", "price": 1200}' \
+  http://localhost:9000/products
+```
+
+Specmatic generates a unique `productId` and stores the new product. List the collection to see both products:
+
+```shell
+curl http://localhost:9000/products
+```
+
+Path and query parameters filter a collection when their names match fields in its resources. For example, this request returns only the newly created Laptop:
+
+```shell
+curl 'http://localhost:9000/products?name=Laptop'
+```
+
+### 7. Delete the Seeded Product
+
+```shell
+curl -X DELETE http://localhost:9000/products/p100
+```
+
+Fetching it again returns `404`:
+
+```shell
+curl -i http://localhost:9000/products/p100
+```
+
+Restarting the mock clears these changes and loads the original `p100` example again.
+
+## Add Orders for Existing Users
+
+Replace `product-api.yaml` with this complete specification:
+
+```yaml title="product-api.yaml"
+openapi: 3.0.3
+info:
+  title: Product API
+  version: 1.0.0
+
+paths:
+  /users:
+    get:
+      responses:
+        "200":
+          description: Users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+              examples:
+                USERS:
+                  value:
+                    - userId: u123
+        "404":
+          description: Users not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFound"
+
+  /users/{user_id}/orders:
+    parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        "200":
+          description: Orders for the user
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Order"
+        "404":
+          description: Orders not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFound"
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrderInput"
+      responses:
+        "201":
+          description: Order created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+        "400":
+          description: Related user does not exist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BadRequest"
+        "404":
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFound"
+
+  /users/{user_id}/orders/{orderId}:
+    parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        "200":
+          description: Order
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+        "404":
+          description: Order not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFound"
+
+  /products:
+    get:
+      parameters:
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+          examples:
+            INITIAL_PRODUCTS:
+              value: Phone
+      responses:
+        "200":
+          description: Products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+              examples:
+                INITIAL_PRODUCTS:
+                  value:
+                    - productId: p100
+                      name: Phone
+                      price: 500
+        "404":
+          description: Products not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFound"
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductInput"
+      responses:
+        "201":
+          description: Product created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          description: Products not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFound"
+
+  /products/{productId}:
+    parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        "200":
+          description: Product
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFound"
+    patch:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductPatch"
+      responses:
+        "200":
+          description: Product updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFound"
+    delete:
+      responses:
+        "204":
+          description: Product deleted
+        "404":
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NotFound"
+
+components:
+  schemas:
+    NotFound:
+      type: object
+      required: [message]
+      properties:
+        message:
+          type: string
+
+    BadRequest:
+      type: object
+      required: [message]
+      properties:
+        message:
+          type: string
+
+    Product:
+      type: object
+      x-id-field: productId
+      required: [productId, name, price]
+      properties:
+        productId:
+          type: string
+        name:
+          type: string
+        price:
+          type: number
+
+    ProductInput:
+      type: object
+      required: [name, price]
+      properties:
+        name:
+          type: string
+        price:
+          type: number
+
+    ProductPatch:
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: number
+
+    User:
+      type: object
+      x-id-field: userId
+      required: [userId]
+      properties:
+        userId:
+          type: string
+
+    Order:
+      type: object
+      x-id-field: orderId
+      x-foreign-keys:
+        user_id: /users
+      required: [orderId, user_id, product]
+      properties:
+        orderId:
+          type: string
+        user_id:
+          type: string
+        product:
+          type: string
+
+    OrderInput:
+      type: object
+      required: [product]
+      properties:
+        product:
+          type: string
+```
+
+### 1. Restart and Read the Seeded User
+
+Stop the running container and start the stateful mock again so it loads the updated specification:
+
+```shell
+docker run --rm -p 9000:9000 \
+  -v "$(pwd):/usr/src/app" \
+  -v "$HOME/.specmatic:/root/.specmatic" \
+  specmatic/enterprise mock
+```
+
+The `USERS` example seeds user `u123`. Verify it from another terminal:
+
+```shell
+curl http://localhost:9000/users
+```
+
+```json
+[
+  {
+    "userId": "u123"
+  }
+]
+```
+
+### 2. Create an Order for the Seeded User
+
+```shell
+curl -X POST \
+  -H 'Content-Type: application/json' \
+  -d '{"product": "Laptop"}' \
+  http://localhost:9000/users/u123/orders
+```
+
+The generated `orderId` will vary, but the response has this shape:
+
+```json
+{
+  "orderId": "...",
+  "user_id": "u123",
+  "product": "Laptop"
+}
+```
+
+Two parts of the specification make this work:
+
+| Configuration | Effect |
+|---|---|
+| The `{user_id}` path parameter and `Order.user_id` have the same name and type. | Specmatic copies `u123` from the path into the stored order. |
+| `Order.x-foreign-keys` maps `user_id` to `/users`. | Specmatic requires a user with that identifier to exist before storing the order. |
+| `User.x-id-field` is `userId`. | Specmatic uses `User.userId` when looking for `u123` in `/users`. |
+
+Specmatic validates the request in this order:
+
+1. Copy `u123` from the path into `Order.user_id`.
+2. Follow `x-foreign-keys` from `Order.user_id` to `/users`.
+3. Find the user whose `userId` is `u123`.
+4. Generate a unique `orderId` and store the order.
+
+`x-foreign-keys` validates the relationship during `POST`; it does not create the related user.
+
+### 3. Read the Stored Order
+
+List the orders belonging to `u123`:
+
+```shell
+curl http://localhost:9000/users/u123/orders
+```
+
+The response contains the order you just created. Copy its generated `orderId`, replace `ORDER_ID` below, and retrieve that order directly:
+
+```shell
+curl http://localhost:9000/users/u123/orders/ORDER_ID
+```
+
+Both requests read from the same `/orders` collection. The `user_id` path parameter filters the collection to orders whose `user_id` is `u123`; the final `orderId` selects one order.
+
+### 4. Try Missing Resources
+
+Creating an order for an unknown user returns `400` and does not store the order:
+
+```shell
+curl -i -X POST \
+  -H 'Content-Type: application/json' \
+  -d '{"product": "Laptop"}' \
+  http://localhost:9000/users/unknown/orders
+```
+
+Requesting an unknown order returns `404` using the `NotFound` schema:
+
+```shell
+curl -i http://localhost:9000/users/u123/orders/does-not-exist
+```
+
+The complete specification associates the same `NotFound` schema with every endpoint, so not-found responses have a consistent shape.
+
+### Nested Path Assumptions
+
+Specmatic identifies a collection by the last fixed path segment before an optional resource identifier. These operations therefore share the `/orders` collection:
+
+```text
+POST /users/{user_id}/orders
+GET  /users/{user_id}/orders
+GET  /users/{user_id}/orders/{orderId}
+```
+
+For an operation on one resource, its identifier must be the final path segment. A parent path parameter such as `user_id` filters stored resources only when the resource has a field with the same name and a compatible type.
+
+:::caution
+Paths with the same collection segment share state within a specification. For example, `/sales/orders` and `/support/orders` both use the `/orders` state.
+:::
+
+## More Ways to Seed State
+
+Examples can populate the in-memory state before the first request reaches the mock. Specmatic loads eligible [inline examples](/contract_driven_development/service_virtualization#inline-examples) and [external examples](/features/external_examples) when the mock starts.
+
+The example operation determines what is stored:
+
+| Example | Seeded state |
+|---|---|
+| `GET /products/p100` response | The response object is stored as one product. |
+| `GET /products` response | Every object in the response array is stored as a product. |
+| `POST /products` request and response | Compatible fields from both bodies are combined and stored as one product. |
+
+In the walkthrough, the `INITIAL_PRODUCTS` example belongs to the `200` response for `GET /products`. Specmatic copies its `p100` product into memory when the mock starts. That is why `GET /products` and `GET /products/p100` work before you create anything.
+
+An example is used as seed data only when it:
+
+- Has a `2xx` response.
+- Uses `GET` or `POST`.
+- Returns a JSON object for one resource, or an array of JSON objects for a collection.
+- Conforms to a scenario in the OpenAPI specification.
+
+Examples containing runtime matchers, substitutions, or templates are skipped because they do not contain concrete values to store. Partial examples are completed with schema-generated values before being stored.
+
+## Supported Operations
+
+| Request | Behaviour |
+|---|---|
+| `POST /resources` | Creates and stores a resource. |
+| `GET /resources` | Returns stored resources. |
+| `GET /resources/{id}` | Returns one stored resource. |
+| `PATCH /resources/{id}` | Updates compatible fields and preserves omitted fields. |
+| `PUT /resources/{id}` | Updates a resource, or creates it using the ID in the path. |
+| `DELETE /resources/{id}` | Deletes one resource. |
+| `DELETE /resources` | Deletes the collection. |
+
+During `POST`, Specmatic ensures that the identifier in the generated response is unique before storing the resource. Requests for unknown individual resources return `404`; if the specification defines a compatible `404` response schema, Specmatic uses it for the error response.
+
+Other HTTP methods use normal contract-based response generation and do not change state. Stateful resources must be JSON objects; collections are arrays of JSON objects.
+
+## State Lifetime
+
+State is held in memory, isolated between OpenAPI specifications, and lost when the mock process stops or restarts. Eligible examples seed it again at startup.

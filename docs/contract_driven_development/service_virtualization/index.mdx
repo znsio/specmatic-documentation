@@ -1,16 +1,17 @@
 ---
 title: Service Virtualization
 sidebar_position: 2
+slug: /contract_driven_development/service_virtualization
 ---
 import yaml from "js-yaml";
-import {JsonDisplay, YamlDisplay} from "../../src/components/JsonYamlDisplay";
-import {V3SpecmaticJsonYamlTabs} from "../../src/components/V2V3SpecmaticConfigTabs";
+import {JsonDisplay, YamlDisplay} from "../../../src/components/JsonYamlDisplay";
+import {V3SpecmaticJsonYamlTabs} from "../../../src/components/V2V3SpecmaticConfigTabs";
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import { VERSIONS } from '@site/src/constants/versions';
-import { CommercialBadge } from "../../src/components/CommercialBadge";
-import { ReportMediaCarousel } from "../../src/components/ReportMediaCarousel";
+import { CommercialBadge } from "../../../src/components/CommercialBadge";
+import { ReportMediaCarousel } from "../../../src/components/ReportMediaCarousel";
 
 Service Virtualization
 ======================
@@ -27,11 +28,11 @@ Service Virtualization
 
 - Create a file named `employees.yaml` in the `specmatic` directory with the following contents.
 
-    <YamlDisplay object={yaml.load(require('./includes/service-virtualization/employees.yaml?raw'))} title='employees.yaml' />
+    <YamlDisplay object={yaml.load(require('../includes/service-virtualization/employees.yaml?raw'))} title='employees.yaml' />
 
 - In the same directory, create a file named `specmatic.yaml` (or `specmatic.json`) with the following contents:
 
-    <V3SpecmaticJsonYamlTabs v3Object={yaml.load(require('./includes/service-virtualization/specmatic.yaml?raw'))} />
+    <V3SpecmaticJsonYamlTabs v3Object={yaml.load(require('../includes/service-virtualization/specmatic.yaml?raw'))} />
 
 - Change into the `specmatic` directory in your terminal, and start the Specmatic mock server with the following command:
 
@@ -90,7 +91,7 @@ To configure a request that expects a response without a body, you can define an
 
 Consider the following addition to the `employees.yaml` file, where we define an example for a request that triggers a response with no body:
 
-   <YamlDisplay object={yaml.load(require('./includes/service-virtualization/employees-no-response-body.yaml?raw'))} title='employees.yaml' />
+   <YamlDisplay object={yaml.load(require('../includes/service-virtualization/employees-no-response-body.yaml?raw'))} title='employees.yaml' />
 
 
 In this example:
@@ -429,15 +430,15 @@ Let's try this out.
 endpoint that accepts a plain-text name string in the request body and returns a `200 OK` JSON array of results, each
 containing required `name` and `number` fields.
 
-    <YamlDisplay object={yaml.load(require('./includes/service-virtualization/phonebook/phonebook.yaml?raw'))} title='phonebook.yaml' />
+    <YamlDisplay object={yaml.load(require('../includes/service-virtualization/phonebook/phonebook.yaml?raw'))} title='phonebook.yaml' />
 
 2. Now, create a file named `phonebook_examples/search_john.json` with the following contents:
 
-    <JsonDisplay object={require('./includes/service-virtualization/phonebook/phonebook_examples/search_john.json')}  title={'phonebook_examples/search_john.json'}/>
+    <JsonDisplay object={require('../includes/service-virtualization/phonebook/phonebook_examples/search_john.json')}  title={'phonebook_examples/search_john.json'}/>
 
 3. Add `phonebook.yaml` as a dependency in `specmatic.yaml`, like so:
 
-    <V3SpecmaticJsonYamlTabs v3Object={yaml.load(require('./includes/service-virtualization/phonebook/specmatic.yaml?raw'))}/>
+    <V3SpecmaticJsonYamlTabs v3Object={yaml.load(require('../includes/service-virtualization/phonebook/specmatic.yaml?raw'))}/>
 
 4.  Run the following curl command:
 
@@ -831,7 +832,7 @@ A Global delay can be applied to all requests handled by service virtualization.
 you can simulate response times with the specified delay in milliseconds.
 
 <V3SpecmaticJsonYamlTabs
-  v3Object={require('../references/configuration/includes/mock-configuration/v3/simple-with-mock-virtualization-delay/specmatic.json')}/>
+  v3Object={require('../../references/configuration/includes/mock-configuration/v3/simple-with-mock-virtualization-delay/specmatic.json')}/>
 
 **Note:** If the delay is specified in the example file, it will be used to simulate response times for that specific example.
 
@@ -898,7 +899,7 @@ Use this when your consumer should call the Specmatic mock with a client certifi
 #### Configuration example
 
 <V3SpecmaticJsonYamlTabs
-  v3Object={yaml.load(require('./includes/service-virtualization/incoming-mtls/v3/specmatic.yaml?raw'))}
+  v3Object={yaml.load(require('../includes/service-virtualization/incoming-mtls/v3/specmatic.yaml?raw'))}
 />
 
 Note: Incoming mTLS requires HTTPS key material. If `mtlsEnabled: true` is set without a keystore, mock startup fails.
@@ -923,7 +924,7 @@ Specmatic mock server can accept expectation json through below http endpoint.
   http://localhost:9000/_specmatic/expectations
   ```
 
-Please see [postman collection](./SpecmaticExpectations-postman_collection.json) for reference.
+Please see [postman collection](../SpecmaticExpectations-postman_collection.json) for reference.
 
 Specmatic will verify these expectations against the OpenAPI Specifications and will only return a 2xx response if they are as per API Specifications. Specmatic returns 4xx response if the expectation json is not as per the OpenAPI Specifications.
 
@@ -966,7 +967,7 @@ Now you can import the utility to create the mock server. Below code snippets ar
 This utility can now be used in your test `setup` / `beforeAll` method to start the mock server. Specmatic automatically looks for your [Specmatic configuration](/references/configuration) file in project root directory / classpath to locate your API Specification files that need to run as part of the mock server.
 
     <CodeBlock title='com/example/YourTest.kt' language='kotlin'>
-      {require('./includes/service-virtualization/programmatic-service-virtualization/YourTest.kt?raw')}
+      {require('../includes/service-virtualization/programmatic-service-virtualization/YourTest.kt?raw')}
     </CodeBlock>
 
 We can now programmatically set [dynamic expectations](#dynamic-expectations) on the `mock` with the `setExpectation(expectedJson)` method where `expecationJson` is in the same format as [seen here](#externalizing-example-data)
@@ -1097,7 +1098,7 @@ The full matcher reference, including transient example behavior, `times`, match
 
 There may be circumstances where we need to compute the response or part of it based on the request in the expectation. Here is an example.
 
-<YamlDisplay object={yaml.load(require('./includes/service-virtualization/externalised-response-generation/spec.yaml?raw'))} />
+<YamlDisplay object={yaml.load(require('../includes/service-virtualization/externalised-response-generation/spec.yaml?raw'))} />
 
 This OpenAPI specification expects given input to be multiplied by three. It may not be possible to create expectation for each individual number. In this can we can create an expectation that can call an external command to which it can pass the incoming request and then return the value generated by that external command.
 
@@ -1175,7 +1176,7 @@ curl -X GET http://<stub_server_url>/actuator/health
 
 Here's the OpenAPI specification describing the `/actuator/health` endpoint.
 
-  <V3SpecmaticJsonYamlTabs v3Object={yaml.load(require('./includes/service-virtualization/health-check-api/health-check-api.yaml?raw'))}/>
+  <V3SpecmaticJsonYamlTabs v3Object={yaml.load(require('../includes/service-virtualization/health-check-api/health-check-api.yaml?raw'))}/>
 
 ## Retrieving Messages Served By The Mock Server
 
@@ -1256,20 +1257,20 @@ However, you can customize the endpoint by specifying the `host`, `port` or `bas
 
 With the following configuration, the mock server will run on `127.0.0.1` rather than the default host `0.0.0.0`
 
-<V3SpecmaticJsonYamlTabs v3Object={yaml.load(require('./includes/service-virtualization/specify-host/specmatic.yaml?raw'))}/>
+<V3SpecmaticJsonYamlTabs v3Object={yaml.load(require('../includes/service-virtualization/specify-host/specmatic.yaml?raw'))}/>
 
 ### Specifying Port
 
 With the following configuration, the mock server will run on port `5000` (`http://0.0.0.0:5000`) rather than the default port `9000`
 
-<V3SpecmaticJsonYamlTabs v3Object={yaml.load(require('./includes/service-virtualization/specify-port/specmatic.yaml?raw'))}/>
+<V3SpecmaticJsonYamlTabs v3Object={yaml.load(require('../includes/service-virtualization/specify-port/specmatic.yaml?raw'))}/>
 
 
 ### Specifying Base URL
 
 With the following configuration, the mock server will run on `http://localhost:1234/api/v2` rather than the default url `http://0.0.0.0:9000`
 
-<V3SpecmaticJsonYamlTabs v3Object={yaml.load(require('./includes/service-virtualization/specify-base-url/specmatic.yaml?raw'))}/>
+<V3SpecmaticJsonYamlTabs v3Object={yaml.load(require('../includes/service-virtualization/specify-base-url/specmatic.yaml?raw'))}/>
 
 > **Note**: You can either provide a `baseUrl` or specify one of or a combination of `host`, `port`, and `basePath`.
 They are mutually exclusive and cannot be used together for the same mock configuration.
@@ -1288,7 +1289,7 @@ This allows serving different APIs on their respective baseURLs while keeping th
 
 **Note:** This is not limited to `baseUrl` but can be extended to `host`, `port`, and `basePath` as well.
 
-<V3SpecmaticJsonYamlTabs v3Object={yaml.load(require('./includes/service-virtualization/specify-multiple-host-port-combinations/specmatic.yaml?raw'))}/>
+<V3SpecmaticJsonYamlTabs v3Object={yaml.load(require('../includes/service-virtualization/specify-multiple-host-port-combinations/specmatic.yaml?raw'))}/>
 
 The above configuration sets up two stubs:
 1. The first stub serves the `employeeSpec` specification on port `5000` (final endpoint: `http://0.0.0.0:5000`)
@@ -1312,7 +1313,7 @@ You can use a command-line switch: `java -jar specmatic.jar mock --hot-reload=di
 
 You can also disable it via the following configuration in specmatic.yaml:
 
-<V3SpecmaticJsonYamlTabs v3Object={yaml.load(require('./includes/service-virtualization/disable-hot-reload/specmatic.yaml?raw'))}/>
+<V3SpecmaticJsonYamlTabs v3Object={yaml.load(require('../includes/service-virtualization/disable-hot-reload/specmatic.yaml?raw'))}/>
 
 ## Using matching branches in the central contract repo
 
@@ -1323,7 +1324,7 @@ This feature may be switched on in the following ways:
 - Set an environment variable or system property named `MATCH_BRANCH` to `true`.
 - Set `matchBranch: true` in `specmatic.yaml`
 
-<V3SpecmaticJsonYamlTabs v3Object={yaml.load(require('./includes/service-virtualization/match-branch/specmatic.yaml?raw'))}/>
+<V3SpecmaticJsonYamlTabs v3Object={yaml.load(require('../includes/service-virtualization/match-branch/specmatic.yaml?raw'))}/>
 
 To understand where this may be useful, consider the following scenario. Let's say there's a branch in the central contract repo named `product-discount` with changes to the product API specification. Then to develop the feature, the API developer creates a branch named `product-discount` in the API repo and makes changes to the API implementation to support the new feature.
 
