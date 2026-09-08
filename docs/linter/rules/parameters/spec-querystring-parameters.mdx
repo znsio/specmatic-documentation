@@ -1,0 +1,36 @@
+---
+title: spec-querystring-parameters
+sidebar_position: 17
+description: Enforce OpenAPI 3.2 querystring parameter constraints.
+---
+
+# `spec-querystring-parameters`
+
+Allows at most one `in: querystring` parameter per effective parameter set and forbids mixing it with `in: query`.
+
+| Attribute | Value |
+|---|---|
+| Category | Parameters |
+| Maturity | Baseline |
+| OpenAPI | OpenAPI 3.2 only |
+| Starter–Complete | Error |
+
+## See it fail
+
+```yaml
+parameters:
+  - in: querystring
+    name: filter
+    schema: { type: string }
+  - in: query
+    name: status
+    schema: { type: string }
+```
+
+## Fix it
+
+Model the query string with one strategy: one `querystring` parameter or individual `query` parameters.
+
+Path-level and operation-level parameters are evaluated together for each operation.
+
+Nearby: `query-param-collision`, `operation-parameters-unique`.

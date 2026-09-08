@@ -1,0 +1,40 @@
+---
+title: path-parameters-snake-case
+sidebar_position: 5
+description: Use snake_case for path parameter names.
+---
+
+# `path-parameters-snake-case`
+
+Requires every `in: path` parameter name to use lowercase snake_case.
+
+| Attribute | Value |
+|---|---|
+| Category | Parameters |
+| Maturity | Gold |
+| Starter | Off |
+| Lenient–Complete | Error |
+
+## See it fail
+
+```yaml
+- in: path
+  name: accountId
+  required: true
+  schema: { type: string }
+```
+
+## Fix it
+
+```yaml
+- in: path
+  name: account_id
+  required: true
+  schema: { type: string }
+```
+
+Rename the matching ``{accountId}`` placeholder too.
+
+Configure under `profiles.<name>.rules.override.path-parameters-snake-case`.
+
+Nearby: `query-parameter-camel-case`, `path-params-defined`.

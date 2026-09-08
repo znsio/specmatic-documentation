@@ -1,0 +1,69 @@
+---
+title: error-response-media-type
+sidebar_position: 13
+description: Require problem+json among documented error response media types.
+---
+
+# `error-response-media-type`
+
+Requires error responses with content to offer `application/problem+json`.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+RFC problem details gives clients a consistent media type and structure for API failures.
+
+## Flags
+
+A response whose code begins with `4` or `5` when it declares content but none of its content keys is exactly `application/problem+json`.
+
+## Does not flag
+
+Non-error responses, error responses without content, or error responses that include `application/problem+json`. Other media types may appear beside it.
+
+## See it fail
+
+```yaml
+responses:
+  '400':
+    description: Invalid request
+    content:
+      application/json:
+        schema:
+          type: object
+```
+
+Diagnostic: ``4xx and 5xx responses should use `application/problem+json`.``
+
+## Fix it
+
+```yaml
+responses:
+  '400':
+    description: Invalid request
+    content:
+      application/problem+json:
+        schema:
+          $ref: '#/components/schemas/Problem'
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        error-response-media-type: error
+```
+
+Nearby: `operation-4xx-problem-details-rfc7807`, `not-error-json-response`.

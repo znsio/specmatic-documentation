@@ -1,0 +1,74 @@
+---
+title: no-ambiguous-paths
+sidebar_position: 36
+description: Prevent path templates from matching the same URL shape.
+---
+
+# `no-ambiguous-paths`
+
+Finds pairs of path templates that can resolve to the same URL.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Silver |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Ambiguous routes can be dispatched differently across frameworks and may make a literal endpoint unreachable.
+
+## Flags
+
+The later path in each pair when both paths have the same number of segments and every position either matches literally or is a path-template variable on at least one side.
+
+## Does not flag
+
+Paths with different segment counts or at least one position containing two different literal segments. HTTP methods do not affect this comparison.
+
+## See it fail
+
+```yaml
+paths:
+  /orders/{status}:
+    get:
+      responses:
+        '200': {description: OK}
+  /orders/pending:
+    get:
+      responses:
+        '200': {description: OK}
+```
+
+`pending` can also be captured as `{status}`.
+
+## Fix it
+
+Give the dynamic route a distinct literal prefix:
+
+```yaml
+paths:
+  /orders/by-status/{status}:
+    get:
+      responses:
+        '200': {description: OK}
+  /orders/pending:
+    get:
+      responses:
+        '200': {description: OK}
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        no-ambiguous-paths: error
+```
+
+Nearby: `no-identical-paths`, `path-declaration-must-exist`.

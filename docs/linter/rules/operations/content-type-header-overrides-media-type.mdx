@@ -1,0 +1,76 @@
+---
+title: content-type-header-overrides-media-type
+sidebar_position: 9
+description: Detect disagreement between Content-Type headers and content-map media types.
+---
+
+# `content-type-header-overrides-media-type`
+
+Finds a fixed `Content-Type` header value that disagrees with a request or response `content` key.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Platinum |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Two conflicting media-type declarations leave Specmatic and other tools needing to choose which one wins.
+
+## Flags
+
+- A request `Content-Type` header parameter with one known value that differs from a request-body content key.
+- A response `Content-Type` header with one known value that differs from a response content key.
+
+The known value may come from a one-value `enum`, `const`, `default`, or `example`. Media-type comparison is exact.
+
+## Does not flag
+
+Matching values, headers without a stable single value, or operations without corresponding content.
+
+## See it fail
+
+```yaml
+parameters:
+  - name: Content-Type
+    in: header
+    schema:
+      type: string
+      enum: [application/xml]
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+```
+
+The header says XML while the content map says JSON.
+
+## Fix it
+
+Prefer one source of truth and remove the header declaration:
+
+```yaml
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        content-type-header-overrides-media-type: error
+```
+
+Nearby: `content-type-header-declared`, `accept-response-content-type-conflict`.

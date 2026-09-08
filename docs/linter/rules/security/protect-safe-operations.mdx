@@ -1,0 +1,30 @@
+---
+title: protect-safe-operations
+sidebar_position: 18
+description: Require authentication for safe HTTP operations.
+---
+
+# `protect-safe-operations`
+
+Requires GET, HEAD, and OPTIONS path operations to inherit or declare non-empty security requirements.
+
+| Attribute | Value |
+|---|---|
+| Category | Security |
+| Maturity | Platinum |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## See it fail
+
+```yaml
+get:
+  security: []
+  responses: { '200': { description: OK } }
+```
+
+## Fix it
+
+Declare a non-empty operation requirement or remove the override to inherit non-empty root security.
+
+Nearby: `protect-unsafe-operations`, `no-empty-security`.

@@ -1,0 +1,65 @@
+---
+title: no-duplicated-tag-names
+sidebar_position: 11
+description: Keep top-level tag names unique.
+---
+
+# `no-duplicated-tag-names`
+
+Disallows repeated names in the top-level `tags` list.
+
+| Attribute | Value |
+|---|---|
+| Category | Metadata |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter–Lenient | Off |
+| Recommended–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Each tag should have one canonical description and one navigation identity.
+
+## Flags
+
+Every top-level tag entry after the first occurrence of the same name. Comparison is exact and case-sensitive.
+
+## Does not flag
+
+The first occurrence, unique names, or tag objects without a parsed name.
+
+## See it fail
+
+```yaml
+tags:
+  - name: Payments
+    description: Payment operations
+  - name: Payments
+    description: More payment operations
+```
+
+Diagnostic: `Duplicate tag name found: 'Payments'.`
+
+## Fix it
+
+Merge metadata into one entry:
+
+```yaml
+tags:
+  - name: Payments
+    description: Create, retrieve, and refund payments.
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        no-duplicated-tag-names: error
+```
+
+Nearby: `operation-tag-defined`, `tags-alphabetical`.

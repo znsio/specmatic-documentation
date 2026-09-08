@@ -1,0 +1,102 @@
+---
+title: no-required-schema-properties-undefined
+sidebar_position: 4
+description: Ensure every required schema property is defined.
+---
+
+# `no-required-schema-properties-undefined`
+
+Prevents `required` from naming properties a schema does not define.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Baseline |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Warning |
+| Lenient | Off |
+| Recommended | Warning |
+| Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+`required` contains property names, not property definitions. Every listed name must resolve to a real property so validators and generated clients agree about the object shape.
+
+## Flags
+
+This rule reports each name in `required` that cannot be found in:
+
+- the schema's own `properties`;
+- an `allOf` composition branch; or
+- every branch of an `anyOf` or `oneOf` composition.
+
+Referenced schemas are resolved during this check.
+
+## Does not flag
+
+- Required names defined directly under `properties`.
+- Properties inherited through `allOf`.
+- A property present in every `anyOf` or `oneOf` branch.
+- Schemas without an array-valued `required` field.
+
+## See it fail
+
+```yaml
+openapi: 3.0.3
+info:
+  title: Pets API
+  version: 1.0.0
+paths: {}
+components:
+  schemas:
+    Pet:
+      type: object
+      properties:
+        age:
+          type: integer
+      required:
+        - name
+```
+
+Specmatic points to `required[0]` and reports:
+
+```text
+Required property 'name' is not defined.
+```
+
+## Fix it
+
+Define the property or remove it from `required`:
+
+```yaml
+components:
+  schemas:
+    Pet:
+      type: object
+      properties:
+        name:
+          type: string
+        age:
+          type: integer
+      required:
+        - name
+```
+
+## Configure
+
+```yaml title="specmatic-linter.yaml"
+profiles:
+  default:
+    rules:
+      extends:
+        - recommended
+      override:
+        no-required-schema-properties-undefined: error
+```
+
+## Nearby rules
+
+- `no-schema-type-mismatch`
+- `no-unresolved-refs`
+- `required-query-object-conflict`

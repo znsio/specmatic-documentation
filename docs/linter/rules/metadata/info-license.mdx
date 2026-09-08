@@ -1,0 +1,64 @@
+---
+title: info-license
+sidebar_position: 9
+description: Require a license field in the API info object.
+---
+
+# `info-license`
+
+Requires an inline `info` object to contain `license`.
+
+| Attribute | Value |
+|---|---|
+| Category | Metadata |
+| Maturity | Silver |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter–Lenient | Off |
+| Recommended–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+License metadata tells consumers the terms under which they may use the API.
+
+## Flags
+
+An object-valued `info` without a `license` property.
+
+## Does not flag
+
+A non-object info value, an info object containing `$ref`, or any info object containing `license`, regardless of its value. Use `info-license-strict` to require a URL or identifier.
+
+## See it fail
+
+```yaml
+info:
+  title: Payments API
+  version: 1.0.0
+```
+
+Diagnostic: ``Info object should contain `license` field.``
+
+## Fix it
+
+```yaml
+info:
+  title: Payments API
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        info-license: error
+```
+
+Nearby: `info-license-strict`, `info-contact`.

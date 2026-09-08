@@ -1,0 +1,75 @@
+---
+title: missing-schema-fallback
+sidebar_position: 41
+description: Prevent implicit empty schemas in media types, headers, and arrays.
+---
+
+# `missing-schema-fallback`
+
+Finds places where a missing schema makes tooling fall back to an unconstrained empty schema.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Platinum |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient | Warning |
+| Recommended–Complete | Error |
+
+## Intent
+
+Implicit empty schemas accept arbitrary data and hide the API's real payload shape.
+
+## Flags
+
+- Request or response media types without `schema`.
+- Response headers without either `schema` or `content`.
+- Non-parameter array schemas without `items`.
+
+## Does not flag
+
+Media types with a schema, headers with `schema` or `content`, arrays with `items`, and array schemas inside parameters.
+
+## See it fail
+
+```yaml
+Tags:
+  type: array
+```
+
+Diagnostic: `No items schema defined for array schema defaulting to empty schema`
+
+A media type has the same problem when it declares only an example:
+
+```yaml
+content:
+  application/json:
+    example: {status: ready}
+```
+
+## Fix it
+
+Describe the accepted value explicitly:
+
+```yaml
+Tags:
+  type: array
+  items:
+    type: string
+```
+
+For media types, add `schema` alongside any example.
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        missing-schema-fallback: warn
+```
+
+Nearby: `array-max-items`, `request-body-defined`.

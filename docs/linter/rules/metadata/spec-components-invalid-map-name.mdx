@@ -1,0 +1,62 @@
+---
+title: spec-components-invalid-map-name
+sidebar_position: 22
+description: Keep component map keys portable across tools.
+---
+
+# `spec-components-invalid-map-name`
+
+Restricts every key under `components` to letters, digits, `.`, `-`, and `_`.
+
+| Attribute | Value |
+|---|---|
+| Category | Metadata |
+| Maturity | Baseline |
+| OpenAPI | OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Warning |
+| Lenient–Complete | Error |
+
+## Intent
+
+Portable names avoid broken references and code-generation problems caused by spaces or punctuation.
+
+## Flags
+
+Any component map key that does not match `^[a-zA-Z0-9.\-_]+$`, across schemas, parameters, responses, security schemes, and other component sections.
+
+## Does not flag
+
+Keys such as `Payment`, `payment-v2`, `payment_v2`, and `payment.v2`.
+
+## See it fail
+
+```yaml
+components:
+  schemas:
+    Payment Request:
+      type: object
+```
+
+## Fix it
+
+```yaml
+components:
+  schemas:
+    PaymentRequest:
+      type: object
+```
+
+Update every `$ref` after renaming a component.
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        spec-components-invalid-map-name: warn
+```
+
+Nearby: `component-name-unique`, `schema-definition-camel-case`.

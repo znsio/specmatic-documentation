@@ -1,0 +1,35 @@
+---
+title: page-default-value-defined
+sidebar_position: 7
+description: Give page query parameters a default.
+---
+
+# `page-default-value-defined`
+
+Requires case-insensitive query parameter `page` to define `schema.default`.
+
+| Attribute | Value |
+|---|---|
+| Category | Parameters |
+| Maturity | Gold |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## See it fail
+
+```yaml
+- in: query
+  name: page
+  schema: { type: integer, minimum: 1 }
+```
+
+## Fix it
+
+```yaml
+- in: query
+  name: page
+  schema: { type: integer, minimum: 1, default: 1 }
+```
+
+Nearby: `page-positive-int`, `page-optional`.

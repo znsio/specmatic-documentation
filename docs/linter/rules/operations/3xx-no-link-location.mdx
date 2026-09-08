@@ -1,0 +1,65 @@
+---
+title: 3xx-no-link-location
+sidebar_position: 4
+description: Require Location headers on redirect responses other than 304.
+---
+
+# `3xx-no-link-location`
+
+Requires a `Location` header on `3xx` responses other than `304`.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Complete | Error |
+
+## Intent
+
+A redirect response should tell the client where to continue. `304 Not Modified` is excluded because it redirects to no new location.
+
+## Flags
+
+Any response code beginning with `3`, except exactly `304`, when no `Location` header is declared. Header matching is case-insensitive.
+
+## Does not flag
+
+`304`, non-`3xx` responses, or redirects that define `Location`.
+
+## See it fail
+
+```yaml
+responses:
+  '302':
+    description: Temporarily moved
+```
+
+Diagnostic: ``3xx redirect responses should define `Location` header.``
+
+## Fix it
+
+```yaml
+responses:
+  '302':
+    description: Temporarily moved
+    headers:
+      Location:
+        schema:
+          type: string
+          format: uri
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        3xx-no-link-location: warn
+```
+
+Nearby: `201-no-link-location`, `response-contains-header`.

@@ -1,0 +1,34 @@
+---
+title: require-oauth-scopes
+sidebar_position: 20
+description: Require scopes in OAuth security requirements.
+---
+
+# `require-oauth-scopes`
+
+Requires non-empty scope arrays whenever an OAuth2 or OpenID Connect scheme appears in a root or operation security requirement.
+
+| Attribute | Value |
+|---|---|
+| Category | Security |
+| Maturity | Platinum |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## See it fail
+
+```yaml
+security:
+  - oauth: []
+```
+
+## Fix it
+
+```yaml
+security:
+  - oauth: [payments:read]
+```
+
+This rule checks scope presence, not whether each scope is declared by the scheme.
+
+Nearby: `security-defined`, `security-scheme-oauth2`.

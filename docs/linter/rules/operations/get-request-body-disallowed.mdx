@@ -1,0 +1,78 @@
+---
+title: get-request-body-disallowed
+sidebar_position: 14
+description: Prevent request bodies on GET operations.
+---
+
+# `get-request-body-disallowed`
+
+Disallows `requestBody` on `GET` operations.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Gold |
+| OpenAPI | OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Warning |
+| Lenient–Complete | Error |
+
+## Intent
+
+GET request bodies have no generally defined semantics and are ignored or rejected by some clients, proxies, and servers.
+
+## Flags
+
+A non-callback `GET` operation containing `requestBody`. By default, optional and required bodies are both reported.
+
+## Does not flag
+
+GET operations without a body, non-GET operations, or GET operations inside callbacks.
+
+## See it fail
+
+```yaml
+get:
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '200':
+      description: OK
+```
+
+Diagnostic: `GET operations must not define a requestBody in OAS 3.x.x`
+
+## Fix it
+
+Move input into query or path parameters, or use a method whose semantics support a request body:
+
+```yaml
+get:
+  parameters:
+    - name: filter
+      in: query
+      schema:
+        type: string
+  responses:
+    '200':
+      description: OK
+```
+
+## Configure
+
+To report only required GET bodies:
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        get-request-body-disallowed:
+          severity: error
+          onlyRequiredBody: true
+```
+
+Nearby: `request-body-defined`, `request-body-required`.

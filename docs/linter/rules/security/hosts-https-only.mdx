@@ -1,0 +1,29 @@
+---
+title: hosts-https-only
+sidebar_position: 1
+description: Require HTTPS server URLs.
+---
+
+# `hosts-https-only`
+
+Flags server URLs that do not start with `https://`.
+
+| Attribute | Value |
+|---|---|
+| Category | Security |
+| Maturity | Gold |
+| Starter | Off |
+| Lenient–Complete | Error |
+
+## See it fail
+
+```yaml
+servers:
+  - url: http://api.example.org
+```
+
+## Fix it
+
+Use `https://api.example.org`. Relative server URLs are also flagged because they do not explicitly declare HTTPS.
+
+Nearby: `oauth-token-url-https-only`, `openid-connect-url-https-only`.

@@ -1,0 +1,5 @@
+{
+  "label": "Parameters",
+  "position": 3,
+  "link": { "type": "generated-index", "description": "Rules for parameter names, shapes, serialization, and pagination." }
+}

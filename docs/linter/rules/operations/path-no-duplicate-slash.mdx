@@ -1,0 +1,67 @@
+---
+title: path-no-duplicate-slash
+sidebar_position: 21
+description: Prevent consecutive slashes in API paths.
+---
+
+# `path-no-duplicate-slash`
+
+Disallows `//` in a path template.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Duplicate separators create ambiguous URLs and can be normalized differently by clients, gateways, and servers.
+
+## Flags
+
+Any path key containing two consecutive forward slashes anywhere in the string.
+
+## Does not flag
+
+Paths with single separators. This rule does not check trailing slashes or path naming style.
+
+## See it fail
+
+```yaml
+paths:
+  /payments//items:
+    get:
+      responses:
+        '200':
+          description: OK
+```
+
+The diagnostic reports that `/payments//items` should not contain duplicate slashes.
+
+## Fix it
+
+```yaml
+paths:
+  /payments/items:
+    get:
+      responses:
+        '200':
+          description: OK
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        path-no-duplicate-slash: error
+```
+
+Nearby: `no-path-trailing-slash`, `paths-kebab-case`.

@@ -1,0 +1,31 @@
+---
+title: page-size-default
+sidebar_position: 10
+description: Give page-size query parameters a default.
+---
+
+# `page-size-default`
+
+Requires query parameters named `page_size`, `pageSize`, or any case variation to define `schema.default`.
+
+| Attribute | Value |
+|---|---|
+| Category | Parameters |
+| Maturity | Gold |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## See it fail
+
+```yaml
+- in: query
+  name: page_size
+  schema: { type: integer, minimum: 1 }
+```
+
+## Fix it
+
+Add an appropriate default, for example `default: 20`.
+
+Nearby: `page-size-positive-int`, `page-size-optional`.

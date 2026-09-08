@@ -1,0 +1,31 @@
+---
+title: no-numeric-ids
+sidebar_position: 17
+description: Avoid predictable numeric identifier parameters.
+---
+
+# `no-numeric-ids`
+
+Flags identifier-like parameters whose resolved schema includes integer type.
+
+| Attribute | Value |
+|---|---|
+| Category | Security |
+| Maturity | Platinum |
+| Lenient | Warning |
+| Recommended–Complete | Error |
+
+## See it fail
+
+```yaml
+- in: path
+  name: accountId
+  required: true
+  schema: { type: integer }
+```
+
+## Fix it
+
+Use non-sequential identifiers, for example ``{ type: string, format: uuid }``.
+
+Nearby: `x-request-id-uuid-format`.

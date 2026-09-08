@@ -1,0 +1,72 @@
+---
+title: operation-operationId-unique
+sidebar_position: 44
+description: Require operationId values to be unique across the document.
+---
+
+# `operation-operationId-unique`
+
+Requires every nonblank `operationId` to be unique across the API document.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Baseline |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Warning |
+| Lenient–Complete | Error |
+
+## Intent
+
+Generators and integrations use `operationId` as a unique key. Reuse can overwrite or merge unrelated operations.
+
+## Flags
+
+Every occurrence after the first when two or more operations have the same nonblank ID. Comparison is exact and case-sensitive; callbacks and webhooks participate.
+
+## Does not flag
+
+The first occurrence, unique IDs, and missing or blank IDs. Presence is handled by `operation-operationId`.
+
+## See it fail
+
+```yaml
+paths:
+  /payments:
+    get:
+      operationId: findPayment
+      responses:
+        '200': {description: OK}
+  /refunds:
+    get:
+      operationId: findPayment
+      responses:
+        '200': {description: OK}
+```
+
+Diagnostic: ``Every operation must have a unique `operationId`.``
+
+## Fix it
+
+Give each operation a distinct stable ID:
+
+```yaml
+/refunds:
+  get:
+    operationId: findRefund
+    responses:
+      '200': {description: OK}
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        operation-operationId-unique: warn
+```
+
+Nearby: `operation-operationId`, `operation-operationId-url-safe`.

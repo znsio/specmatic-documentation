@@ -1,0 +1,64 @@
+---
+title: operation-description
+sidebar_position: 42
+description: Require a nonblank description on every operation.
+---
+
+# `operation-description`
+
+Requires every operation to contain a nonblank string `description`.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+A description should explain behavior, constraints, or side effects that a short summary cannot convey.
+
+## Flags
+
+An operation whose `description` is missing, non-string, empty, or whitespace-only.
+
+## Does not flag
+
+An operation with any nonblank string description. Content quality is not evaluated.
+
+## See it fail
+
+```yaml
+get:
+  summary: Get a payment
+  responses:
+    '200': {description: OK}
+```
+
+Diagnostic: ``Operation object should contain `description` field.``
+
+## Fix it
+
+```yaml
+get:
+  summary: Get a payment
+  description: Returns the payment identified by the path parameter.
+  responses:
+    '200': {description: OK}
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        operation-description: error
+```
+
+Nearby: `operation-summary`, `operation-operationId`.

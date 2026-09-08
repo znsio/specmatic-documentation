@@ -1,0 +1,69 @@
+---
+title: path-percent-encoded
+sidebar_position: 22
+description: Keep reserved characters percent-encoded in path parameters.
+---
+
+# `path-percent-encoded`
+
+Disallows `allowReserved: true` on path parameters.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Gold |
+| OpenAPI | OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Keeping reserved characters encoded prevents a path value from being mistaken for URL structure by clients, routers, or gateways.
+
+## Flags
+
+A path parameter belonging to a path operation when `allowReserved` is explicitly `true`. Path-level and operation-level parameters are included.
+
+## Does not flag
+
+Non-path parameters, parameters outside a path operation, or path parameters where `allowReserved` is false or omitted.
+
+## See it fail
+
+```yaml
+- name: paymentId
+  in: path
+  required: true
+  allowReserved: true
+  schema:
+    type: string
+```
+
+Diagnostic: ``Path parameters should keep `allowReserved` false for percent encoding.``
+
+## Fix it
+
+```yaml
+- name: paymentId
+  in: path
+  required: true
+  allowReserved: false
+  schema:
+    type: string
+```
+
+Omitting `allowReserved` has the same false default.
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        path-percent-encoded: error
+```
+
+Nearby: `query-percent-encoded`, `path-parameters-defined`.

@@ -1,0 +1,103 @@
+---
+title: Configuration
+sidebar_position: 3
+description: Configure Specmatic Linter rules, profiles, severities, and rule categories.
+---
+
+# Configuration
+
+Specmatic Linter reads policy from `specmatic-linter.yaml` or `specmatic-linter.yml` in the current directory. Use `--config path/to/file.yaml` when the file lives elsewhere.
+
+A configuration contains:
+
+- `rules`: optional custom-rule inventory;
+- `profiles`: named policies that select and tune rules.
+
+At least one profile is required.
+
+## Practical example
+
+```yaml title="specmatic-linter.yaml"
+rules:
+  company/parameter-description:
+    severity: error
+    type: parameters
+    message: Every parameter must have a description.
+    on:
+      type: Parameter
+    must:
+      required:
+        - description
+
+profiles:
+  default:
+    rules:
+      extends:
+        - recommended
+      include:
+        - company/parameter-description
+      exclude:
+        - info-license
+      override:
+        operation-summary: warn
+```
+
+This profile:
+
+1. starts with `recommended` built-in rules;
+2. enables the custom parameter rule;
+3. disables `info-license`; and
+4. changes `operation-summary` to a warning.
+
+## Select rule categories
+
+Limit a profile to one or more rule categories with `types`:
+
+```yaml
+profiles:
+  security-review:
+    types:
+      - security
+      - schema
+    rules:
+      extends:
+        - recommended
+```
+
+Available categories: `metadata`, `parameters`, `operations`, `security`, `schema`, and `examples`. Omit `types` to run every selected category.
+
+## Set severity
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends:
+        - recommended
+      override:
+        operation-summary: warn
+        info-contact: off
+        no-unresolved-refs: error
+```
+
+| Value | Reported | Fails command |
+|---|---:|---:|
+| `error` | Yes | Yes |
+| `warn` | Yes | No |
+| `off` | No | No |
+
+`on` and `true` are aliases for `error`; `false` is an alias for `off`. Prefer explicit values for readability.
+
+## Selection order
+
+Effective rules build in this order:
+
+1. rules from `rules.extends`;
+2. rules named in `rules.include`;
+3. rules removed by `rules.exclude`;
+4. settings from `rules.override`.
+
+Use `override` to tune a built-in rule. Do not redeclare built-in rule IDs under top-level `rules`.
+
+See [Built-in Rules](./built-in-rules), [Custom Rules](./custom-rules), and [Profiles](./profiles) for details.
+

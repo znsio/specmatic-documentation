@@ -1,0 +1,34 @@
+---
+title: Built-in Rule Reference
+sidebar_position: 1
+description: Understand what each Specmatic built-in lint rule checks and how to resolve its findings.
+---
+
+# Built-in Rule Reference
+
+Use this reference when a lint report names a rule you do not recognize. Each rule page explains:
+
+- policy intent;
+- exact conditions flagged;
+- important boundaries;
+- failing and corrected OpenAPI examples;
+- preset severity and maturity;
+- supported OpenAPI versions; and
+- configuration override.
+
+Rules are grouped by the part of an API they protect:
+
+- **Metadata** (27) — API information, contacts, licenses, tags, and document structure.
+- **Operations** (53) — paths, methods, responses, and operation structure.
+- **Parameters** (19) — parameter definitions, names, and serialization.
+- **Security** (21) — authentication, authorization, credentials, and transport safety.
+- **Schema** (46) — types, constraints, composition, and references.
+- **Examples** (6) — example validity and consistency.
+
+Total: **172 built-in rules**.
+
+Start with [`no-schema-type-mismatch`](/linter/rules/schema/no-schema-type-mismatch).
+
+:::note
+This reference explains rule behavior. To see rules enabled by your configuration, generate the [effective rule catalog](/linter/built-in-rules#generate-the-rule-catalog).
+:::

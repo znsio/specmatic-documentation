@@ -1,0 +1,64 @@
+---
+title: operation-2xx-response
+sidebar_position: 40
+description: Require at least one successful response on each operation.
+---
+
+# `operation-2xx-response`
+
+Requires an operation with responses to include at least one response key beginning with `2`.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Silver |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Warning |
+| Lenient–Complete | Error |
+
+## Intent
+
+Every operation should document how a successful request is represented.
+
+## Flags
+
+An operation with at least one response but no response key starting with `2`. Set `countDefaultAsSuccess: true` to let `default` satisfy the rule.
+
+## Does not flag
+
+Operations with a `2xx` key, operations whose response collection is empty, or—when configured—operations containing `default`.
+
+## See it fail
+
+```yaml
+responses:
+  '400':
+    description: Invalid request
+```
+
+Diagnostic: ``Operation must have at least one `2XX` response.``
+
+## Fix it
+
+```yaml
+responses:
+  '200':
+    description: OK
+  '400':
+    description: Invalid request
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        operation-2xx-response:
+          severity: error
+          countDefaultAsSuccess: true
+```
+
+Nearby: `operation-4xx-response`, `response-code-in-range`.

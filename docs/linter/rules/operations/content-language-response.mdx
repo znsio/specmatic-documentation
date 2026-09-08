@@ -1,0 +1,80 @@
+---
+title: content-language-response
+sidebar_position: 6
+description: Require Content-Language when successful body responses declare headers.
+---
+
+# `content-language-response`
+
+Requires `Content-Language` on successful body responses that declare response headers.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Complete | Error |
+
+## Intent
+
+When a response already exposes metadata through headers, declaring its content language makes text interpretation explicit.
+
+## Flags
+
+A response whose code begins with `2`, except `204`, when it has both content and at least one header but no `Content-Language` header. Header matching is case-insensitive.
+
+## Does not flag
+
+Responses without content, responses without any headers, `204`, non-`2xx` responses, or responses that define `Content-Language`.
+
+## See it fail
+
+```yaml
+responses:
+  '200':
+    description: OK
+    headers:
+      X-Trace-Id:
+        schema:
+          type: string
+    content:
+      application/json:
+        schema:
+          type: object
+```
+
+Diagnostic: ``Successful responses with body and headers should define `Content-Language`.``
+
+## Fix it
+
+```yaml
+responses:
+  '200':
+    description: OK
+    headers:
+      X-Trace-Id:
+        schema:
+          type: string
+      Content-Language:
+        schema:
+          type: string
+          example: en
+    content:
+      application/json:
+        schema:
+          type: object
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        content-language-response: warn
+```
+
+Nearby: `response-contains-header`, `content-type-response`.

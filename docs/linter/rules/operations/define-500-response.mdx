@@ -1,0 +1,65 @@
+---
+title: define-500-response
+sidebar_position: 11
+description: Require every path operation to document a schema-backed 500 response.
+---
+
+# `define-500-response`
+
+Requires every path operation to define an explicit `500` response with a schema.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Platinum |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Unexpected server failures still need a stable, documented response shape that clients can handle safely.
+
+## Flags
+
+Each path operation that omits the exact `500` response, or defines `500` without a schema. A schema may be declared directly on the response or under any response content type; referenced responses are resolved.
+
+## Does not flag
+
+Non-path operations or an explicit `500` response containing at least one schema. A `default` or `5XX` response does not replace the exact status for this rule.
+
+## See it fail
+
+```yaml
+responses:
+  '200':
+    description: OK
+```
+
+Diagnostic: ``Operations should define `500` response.``
+
+## Fix it
+
+```yaml
+responses:
+  '500':
+    description: Internal server error
+    content:
+      application/problem+json:
+        schema:
+          $ref: '#/components/schemas/Problem'
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        define-500-response: error
+```
+
+Nearby: `define-validation-error-response`, `operation-4xx-problem-details-rfc7807`.

@@ -1,0 +1,57 @@
+---
+title: no-server-trailing-slash
+sidebar_position: 16
+description: Prevent trailing slashes in OpenAPI server URLs.
+---
+
+# `no-server-trailing-slash`
+
+Disallows a trailing slash in an OpenAPI server URL.
+
+| Attribute | Value |
+|---|---|
+| Category | Metadata |
+| Maturity | Baseline |
+| OpenAPI | OpenAPI 3.0, 3.1, 3.2 |
+| All rulesets | Error |
+
+## Intent
+
+Joining a slash-terminated base URL to a slash-prefixed path can produce duplicate separators and inconsistent request URLs.
+
+## Flags
+
+An object-valued server whose textual `url` is longer than one character and ends with `/`.
+
+## Does not flag
+
+The single-character URL `/`, URLs without a trailing slash, non-string URLs, or non-object server entries.
+
+## See it fail
+
+```yaml
+servers:
+  - url: https://api.example.test/v1/
+```
+
+Diagnostic: ``Server `url` should not have a trailing slash.``
+
+## Fix it
+
+```yaml
+servers:
+  - url: https://api.example.test/v1
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        no-server-trailing-slash: warn
+```
+
+Nearby: `no-path-trailing-slash`, `no-empty-servers`.

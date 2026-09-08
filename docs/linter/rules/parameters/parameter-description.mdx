@@ -1,0 +1,38 @@
+---
+title: parameter-description
+sidebar_position: 13
+description: Require meaningful parameter descriptions.
+---
+
+# `parameter-description`
+
+Requires every parameter object to have a present, non-blank string `description`.
+
+| Attribute | Value |
+|---|---|
+| Category | Parameters |
+| Maturity | Silver |
+| Starter–Recommended | Off |
+| Strict | Warning |
+| Complete | Error |
+
+## See it fail
+
+```yaml
+- in: query
+  name: status
+  schema: { type: string }
+```
+
+## Fix it
+
+```yaml
+- in: query
+  name: status
+  description: Return payments with this status.
+  schema: { type: string }
+```
+
+Referenced component parameters are checked at their definitions.
+
+Nearby: `boolean-parameter-prefixes`, `parameter-length-required`.

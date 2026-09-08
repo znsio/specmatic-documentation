@@ -1,0 +1,38 @@
+---
+title: scalar-property-missing-example
+sidebar_position: 5
+description: Require examples on scalar schema properties.
+---
+
+# `scalar-property-missing-example`
+
+Requires string, integer, number, and boolean properties in schemas to define `example`.
+
+| Attribute | Value |
+|---|---|
+| Category | Examples |
+| Maturity | Silver |
+| Starter–Recommended | Off |
+| Strict | Warning |
+| Complete | Error |
+
+## See it fail
+
+```yaml
+type: object
+properties:
+  amount:
+    type: number
+```
+
+## Fix it
+
+```yaml
+type: object
+properties:
+  amount:
+    type: number
+    example: 12.5
+```
+
+Nearby: `no-invalid-schema-examples`.

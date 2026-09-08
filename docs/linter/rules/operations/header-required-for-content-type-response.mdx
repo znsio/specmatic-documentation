@@ -1,0 +1,80 @@
+---
+title: header-required-for-content-type-response
+sidebar_position: 15
+description: Require Content-Type on every response with a body except 204.
+---
+
+# `header-required-for-content-type-response`
+
+Requires `Content-Type` on every response that declares content, except status `204`.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Every response body, including an error body, should have an explicit media type.
+
+## Flags
+
+Any response other than exactly `204` when it declares content but no `Content-Type` response header. Header matching is case-insensitive.
+
+## Does not flag
+
+Responses without content, `204`, or responses that define `Content-Type`.
+
+## See it fail
+
+```yaml
+responses:
+  '400':
+    description: Invalid request
+    content:
+      application/problem+json:
+        schema:
+          type: object
+```
+
+Diagnostic: ``Responses with body should define `Content-Type` header.``
+
+## Fix it
+
+```yaml
+responses:
+  '400':
+    description: Invalid request
+    headers:
+      Content-Type:
+        schema:
+          type: string
+          enum: [application/problem+json]
+    content:
+      application/problem+json:
+        schema:
+          type: object
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        header-required-for-content-type-response: error
+```
+
+:::caution Policy overlap
+
+`content-type-header-declared` forbids this response header. Choose one policy and turn the conflicting rule off. `content-type-response` is the narrower alternative that checks only successful responses.
+
+:::
+
+Nearby: `content-type-response`, `204-no-content-type`.

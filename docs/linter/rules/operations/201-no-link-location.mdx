@@ -1,0 +1,72 @@
+---
+title: 201-no-link-location
+sidebar_position: 2
+description: Prevent Location and Link headers on 201 responses.
+---
+
+# `201-no-link-location`
+
+Disallows `Location` and `Link` headers on `201` responses.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient | Error |
+| Recommended–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+This rule enforces the selected API guideline that creation responses describe the created resource in the response contract instead of advertising it through these headers.
+
+## Flags
+
+Any response whose status is exactly `201` and whose header names include `Location` or `Link`, matched case-insensitively.
+
+## Does not flag
+
+Other response codes or `201` responses without either header.
+
+## See it fail
+
+```yaml
+responses:
+  '201':
+    description: Created
+    headers:
+      Location:
+        schema:
+          type: string
+```
+
+Diagnostic: ``201 responses should not define `Location` or `Link` headers.``
+
+## Fix it
+
+Remove the header and return the resource identifier or representation in the documented response body when needed:
+
+```yaml
+responses:
+  '201':
+    description: Created
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Payment'
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        201-no-link-location: error
+```
+
+Nearby: `3xx-no-link-location`, `response-contains-header`.

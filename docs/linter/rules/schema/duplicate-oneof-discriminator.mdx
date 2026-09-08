@@ -1,0 +1,83 @@
+---
+title: duplicate-oneof-discriminator
+sidebar_position: 34
+description: Keep discriminator values unique across oneOf branches.
+---
+
+# `duplicate-oneof-discriminator`
+
+Finds a discriminator value reused by multiple branches of the same `oneOf`.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Platinum |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient | Warning |
+| Recommended–Complete | Error |
+
+## Intent
+
+A discriminator must identify one branch. Reused values make branch selection ambiguous.
+
+## Flags
+
+A schema with `discriminator.propertyName` and at least two `oneOf` branches when the named property has the same `const` or `enum` value in more than one branch. Inline and referenced branches are inspected.
+
+## Does not flag
+
+Unique values, schemas without both a discriminator and `oneOf`, or branches that do not constrain the discriminator with `const` or `enum`.
+
+## See it fail
+
+```yaml
+Actor:
+  discriminator:
+    propertyName: kind
+  oneOf:
+    - type: object
+      properties:
+        kind:
+          const: person
+    - type: object
+      properties:
+        kind:
+          const: person
+```
+
+Both branches claim `person`.
+
+## Fix it
+
+Assign a distinct value to each branch:
+
+```yaml
+Actor:
+  discriminator:
+    propertyName: kind
+  oneOf:
+    - type: object
+      properties:
+        kind:
+          const: person
+    - type: object
+      properties:
+        kind:
+          const: company
+```
+
+For OpenAPI 3.0, express the single values as one-item `enum` arrays.
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        duplicate-oneof-discriminator: warn
+```
+
+Nearby: `spec-discriminator-defaultMapping`, `allof-contradictory-constraints`.

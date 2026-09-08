@@ -1,0 +1,31 @@
+---
+title: security-scheme-missing
+sidebar_position: 6
+description: Catch references to undefined security schemes.
+---
+
+# `security-scheme-missing`
+
+Flags names used in root or operation security requirements that are absent from `components.securitySchemes`.
+
+| Attribute | Value |
+|---|---|
+| Category | Security |
+| Maturity | Platinum |
+| Lenient | Warning |
+| Recommended–Complete | Error |
+
+## See it fail
+
+```yaml
+security:
+  - bearerAuth: []
+components:
+  securitySchemes: {}
+```
+
+## Fix it
+
+Define `bearerAuth` under `components.securitySchemes`, or correct the requirement name.
+
+Nearby: `security-defined`.

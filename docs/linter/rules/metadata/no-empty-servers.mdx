@@ -1,0 +1,75 @@
+---
+title: no-empty-servers
+sidebar_position: 12
+description: Require a nonempty servers list on each OpenAPI document.
+---
+
+# `no-empty-servers`
+
+Requires each document to contain a nonempty `servers` value.
+
+| Attribute | Value |
+|---|---|
+| Category | Metadata |
+| Maturity | Silver |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Warning |
+| Lenient–Complete | Error |
+
+## Intent
+
+Explicit servers tell clients and tooling where the API is available instead of relying on an implicit default.
+
+## Flags
+
+- A document missing `servers`, unless `allowMissingServers` is true.
+- A present `servers` value that is null or an empty array.
+
+Referenced document locations are preserved in diagnostics.
+
+## Does not flag
+
+Documents containing `$ref`, nonempty server arrays, or missing servers when the option is enabled. Structural validation must catch a non-array non-null value.
+
+## See it fail
+
+```yaml
+openapi: 3.0.3
+info:
+  title: Payments API
+  version: 1.0.0
+servers: []
+paths: {}
+```
+
+Diagnostic: `Servers must be a non-empty array.`
+
+## Fix it
+
+```yaml
+servers:
+  - url: https://api.example.com
+```
+
+## Configure
+
+Permit OpenAPI's implicit server default while still rejecting an explicitly empty list:
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        no-empty-servers:
+          severity: error
+          allowMissingServers: true
+```
+
+:::caution Swagger 2.0
+
+Swagger 2.0 uses `host`, `basePath`, and `schemes`, not `servers`. Disable this rule for Swagger 2.0 inputs.
+
+:::
+
+Nearby: `no-server-example.com`, `no-server-trailing-slash`.

@@ -1,0 +1,43 @@
+---
+title: invalid-parameter-shape
+sidebar_position: 3
+description: Require item schemas for array parameters.
+---
+
+# `invalid-parameter-shape`
+
+Requires every array parameter schema to define `items`.
+
+| Attribute | Value |
+|---|---|
+| Category | Parameters |
+| Maturity | Platinum |
+| Lenient–Strict | Warning |
+| Recommended–Complete | Error |
+
+## Intent
+
+Without an item schema, consumers cannot know the array element shape and Specmatic must fall back to an empty schema.
+
+## See it fail
+
+```yaml
+- in: query
+  name: status
+  schema:
+    type: array
+```
+
+## Fix it
+
+```yaml
+- in: query
+  name: status
+  schema:
+    type: array
+    items: { type: string }
+```
+
+Configure under `profiles.<name>.rules.override.invalid-parameter-shape`.
+
+Nearby: `array-parameter-serialization`.

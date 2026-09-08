@@ -1,0 +1,66 @@
+---
+title: struct
+sidebar_position: 24
+description: Validate the structural shape of an OpenAPI document.
+---
+
+# `struct`
+
+Checks core OpenAPI structure and field types before more focused rules run.
+
+| Attribute | Value |
+|---|---|
+| Category | Metadata |
+| Maturity | Baseline |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter–Complete | Error |
+
+## Intent
+
+Catch malformed OpenAPI objects, invalid field types, unsupported properties, broken schema references, and invalid constraints early.
+
+## Flags
+
+Structural violations such as missing version or required root fields, invalid schema `type`, non-array `required` or `enum`, negative size constraints, invalid path-item fields, malformed security definitions, and invalid discriminators or XML metadata. Exact checks vary by OpenAPI version.
+
+## Does not flag
+
+Style and governance choices covered by focused rules. A structurally valid API can still fail other lint rules.
+
+## See it fail
+
+```yaml
+openapi: 3.0.3
+info:
+  version: 1.0.0
+paths: {}
+```
+
+Diagnostic: `The field `title` must be present on this level.`
+
+## Fix it
+
+```yaml
+openapi: 3.0.3
+info:
+  title: Payments API
+  version: 1.0.0
+paths: {}
+```
+
+## Minimal validation option
+
+Set `minimalOas3ValidationOnly: true` to check only for an OpenAPI 3 version and a `paths` field. This deliberately skips all other `struct` checks.
+
+```yaml
+profiles:
+  default:
+    rules:
+      override:
+        struct:
+          severity: error
+          options:
+            minimalOas3ValidationOnly: true
+```
+
+Nearby: `incomplete-spec`, `no-unresolved-refs`.

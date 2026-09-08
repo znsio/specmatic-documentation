@@ -1,0 +1,83 @@
+---
+title: Central Configuration
+sidebar_position: 10
+description: Share version-controlled linter policy from a central Git repository.
+---
+
+# Central Configuration
+
+Store `specmatic-linter.yaml` in a central Git repository when many services must follow one policy.
+
+## Public repository
+
+```bash
+docker run --rm \
+  -v "$(pwd):/usr/src/app" \
+  -w /usr/src/app \
+  specmatic/enterprise \
+  lint openapi.yaml \
+  --config-repo-url=https://github.com/example/api-governance.git
+```
+
+By default, Specmatic reads `specmatic-linter.yaml` from the repository root on its default branch.
+
+For a config stored elsewhere in the repository, pass a repo-relative path:
+
+```bash
+docker run --rm \
+  -v "$(pwd):/usr/src/app" \
+  -w /usr/src/app \
+  specmatic/enterprise \
+  lint openapi.yaml \
+  --config-repo-url=https://github.com/example/api-governance.git \
+  --config=config/linter.yaml \
+  --profile=internal
+```
+
+When `--config-repo-url` is present, `--config` means a path inside that repository. Absolute paths and paths escaping the repository are rejected.
+
+## Private HTTPS repository
+
+Set a read-only repository token through `CENTRAL_CONFIG_REPO_TOKEN`:
+
+```bash
+export CENTRAL_CONFIG_REPO_TOKEN="<token>"
+
+docker run --rm \
+  -v "$(pwd):/usr/src/app" \
+  -w /usr/src/app \
+  -e CENTRAL_CONFIG_REPO_TOKEN \
+  specmatic/enterprise \
+  lint openapi.yaml \
+  --config-repo-url=https://github.com/example/private-api-governance.git
+```
+
+With Docker, pass the variable into the container:
+
+```bash
+docker run --rm \
+  -v "$(pwd):/usr/src/app" \
+  -w /usr/src/app \
+  -e CENTRAL_CONFIG_REPO_TOKEN \
+  specmatic/enterprise \
+  lint openapi.yaml \
+  --config-repo-url=https://github.com/example/private-api-governance.git
+```
+
+Use a token with read access only to the required repository. Keep it in your shell or CI secret store; never commit it.
+
+## Cache and refresh behavior
+
+Specmatic stores fetched repositories under `.specmatic-linter/repos/` in the working directory. On later runs it checks the repository's default branch and refreshes the cached copy when its revision changes.
+
+Reports are written relative to the fetched configuration directory. Use the report path printed by the command when collecting artifacts from a centrally configured run.
+
+## Suggested repository layout
+
+```text
+api-governance/
+├── specmatic-linter.yaml
+└── README.md
+```
+
+Keep policy intent and ownership in `README.md`; keep executable rule definitions only in `specmatic-linter.yaml`.

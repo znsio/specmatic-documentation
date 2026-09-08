@@ -1,0 +1,62 @@
+---
+title: integer-bounds-required
+sidebar_position: 40
+description: Require both lower and upper bounds on integer schemas.
+---
+
+# `integer-bounds-required`
+
+Requires every integer schema to declare both a lower and an upper bound.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Platinum |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient | Warning |
+| Recommended–Complete | Error |
+
+## Intent
+
+Finite integer ranges reduce resource-exhaustion risk and make generated data and client types more predictable.
+
+## Flags
+
+An integer schema missing either side of its range. `minimum` or `exclusiveMinimum` supplies the lower bound; `maximum` or `exclusiveMaximum` supplies the upper bound. Referenced schemas are resolved before checking.
+
+## Does not flag
+
+Non-integer schemas or integer schemas that provide both sides, including mixed inclusive and exclusive keywords.
+
+## See it fail
+
+```yaml
+quantity:
+  type: integer
+  minimum: 1
+```
+
+The upper bound is missing.
+
+## Fix it
+
+```yaml
+quantity:
+  type: integer
+  minimum: 1
+  maximum: 100
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        integer-bounds-required: warn
+```
+
+Nearby: `integer-schema-must-define-minimum`, `integer-schema-must-define-maximum`, `invalid-numeric-bounds`.

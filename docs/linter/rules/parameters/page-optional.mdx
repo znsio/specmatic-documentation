@@ -1,0 +1,32 @@
+---
+title: page-optional
+sidebar_position: 8
+description: Keep page query parameters optional.
+---
+
+# `page-optional`
+
+Forbids `required: true` on case-insensitive query parameter `page`.
+
+| Attribute | Value |
+|---|---|
+| Category | Parameters |
+| Maturity | Gold |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## See it fail
+
+```yaml
+- in: query
+  name: page
+  required: true
+  schema: { type: integer }
+```
+
+## Fix it
+
+Remove `required: true` and define a default.
+
+Nearby: `page-default-value-defined`, `page-positive-int`.

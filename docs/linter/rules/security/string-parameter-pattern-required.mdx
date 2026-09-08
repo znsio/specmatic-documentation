@@ -1,0 +1,36 @@
+---
+title: string-parameter-pattern-required
+sidebar_position: 21
+description: Constrain string inputs with pattern or format.
+---
+
+# `string-parameter-pattern-required`
+
+Requires string parameters and direct component-schema string properties to define a non-blank `pattern` or `format`.
+
+| Attribute | Value |
+|---|---|
+| Category | Security |
+| Maturity | Gold |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## See it fail
+
+```yaml
+- in: query
+  name: countryCode
+  schema: { type: string }
+```
+
+## Fix it
+
+```yaml
+- in: query
+  name: countryCode
+  schema: { type: string, pattern: '^[A-Z]{2}$' }
+```
+
+Query, path, header, and cookie parameters are checked.
+
+Nearby: `parameter-length-required`, `string-schema-length`.

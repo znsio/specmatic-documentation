@@ -1,0 +1,70 @@
+---
+title: no-http-verbs-in-paths
+sidebar_position: 37
+description: Keep HTTP method names out of resource paths.
+---
+
+# `no-http-verbs-in-paths`
+
+Disallows HTTP method names in literal path segments.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Complete | Error |
+
+## Intent
+
+The HTTP method already expresses the action; paths should identify resources.
+
+## Flags
+
+Literal segments containing `get`, `head`, `post`, `put`, `patch`, `delete`, `options`, or `trace`, case-insensitively. Path-template variables are skipped.
+
+By default, matching uses substrings, so words such as `dispute` contain `put`. Set `splitIntoWords: true` to match only tokens split at hyphens, underscores, and camel-case boundaries.
+
+## Does not flag
+
+Path-parameter segments or literal segments with no matching method name under the selected matching mode.
+
+## See it fail
+
+```yaml
+paths:
+  /customers/get-details:
+    get:
+      responses:
+        '200': {description: OK}
+```
+
+The path repeats the `get` action.
+
+## Fix it
+
+```yaml
+paths:
+  /customers/details:
+    get:
+      responses:
+        '200': {description: OK}
+```
+
+## Configure
+
+Word-aware matching avoids substring findings such as `dispute`:
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        no-http-verbs-in-paths:
+          severity: error
+          splitIntoWords: true
+```
+
+Nearby: `path-segment-plural`, `paths-kebab-case`.

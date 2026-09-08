@@ -1,0 +1,37 @@
+---
+title: no-apikey-in-query-parameters
+sidebar_position: 2
+description: Keep API keys out of URLs.
+---
+
+# `no-apikey-in-query-parameters`
+
+Forbids security schemes with `type: apiKey` and `in: query`.
+
+| Attribute | Value |
+|---|---|
+| Category | Security |
+| Maturity | Silver |
+| Starter | Off |
+| Lenient–Complete | Error |
+
+## Intent
+
+Query strings commonly appear in browser history, access logs, and monitoring data.
+
+## See it fail
+
+```yaml
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: query
+      name: api_key
+```
+
+## Fix it
+
+Move the key to a header: `in: header`. OpenAPI 3 security schemes and Swagger 2 security definitions are checked.
+
+Nearby: `no-credentials-in-path-parameters`, `security-scheme-oauth2`.

@@ -1,0 +1,71 @@
+---
+title: health-schema-checks-in-required
+sidebar_position: 45
+description: Require checks in the health-info endpoint's response schema.
+---
+
+# `health-schema-checks-in-required`
+
+Requires the `/health/info` success response schema to list `checks` as required.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Consumers of the detailed health endpoint should be able to rely on receiving the component-level checks collection.
+
+## Flags
+
+The first `2xx` response schema of the first `GET` path ending in `/health/info` when its `required` array does not contain `checks`.
+
+## Does not flag
+
+Other paths, health-info endpoints without a `2xx` content schema, or schemas that require `checks`. Property declaration is checked separately by `health-schema-checks`.
+
+## See it fail
+
+```yaml
+schema:
+  type: object
+  required: [status]
+  properties:
+    status:
+      type: string
+    checks:
+      type: array
+```
+
+`checks` exists but remains optional.
+
+## Fix it
+
+```yaml
+schema:
+  type: object
+  required: [status, checks]
+  properties:
+    status:
+      type: string
+    checks:
+      type: array
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        health-schema-checks-in-required: error
+```
+
+Nearby: `health-schema-checks`, `health-info-schema-status-in-required`.

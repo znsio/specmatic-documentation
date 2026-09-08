@@ -1,0 +1,65 @@
+---
+title: enum-value-schema-mismatch
+sidebar_position: 38
+description: Identify individual enum values that violate their schema.
+---
+
+# `enum-value-schema-mismatch`
+
+Finds individual non-null enum values that do not satisfy the enum's schema.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Platinum |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient | Warning |
+| Recommended–Complete | Error |
+
+## Intent
+
+Every advertised enum choice should pass the same validation rules as any other instance of the schema.
+
+## Flags
+
+Each non-null enum member that violates the declared type, string length or pattern, or numeric bounds—provided at least one other non-null member is valid.
+
+## Does not flag
+
+Valid and null members, schemas without a declared non-null type, or enums where every non-null member is invalid. The last case is reported once by `enum-no-matching-values` instead.
+
+## See it fail
+
+```yaml
+Result:
+  type: string
+  minLength: 5
+  enum: [ERROR, OK]
+```
+
+`OK` violates `minLength`; `ERROR` remains valid.
+
+## Fix it
+
+Remove or correct the invalid member:
+
+```yaml
+Result:
+  type: string
+  minLength: 5
+  enum: [ERROR, READY]
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        enum-value-schema-mismatch: warn
+```
+
+Nearby: `enum-no-matching-values`, `no-enum-type-mismatch`.

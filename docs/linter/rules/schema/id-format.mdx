@@ -1,0 +1,69 @@
+---
+title: id-format
+sidebar_position: 25
+description: Require schema properties named id to use the string type.
+---
+
+# `id-format`
+
+Requires properties named `id` inside component schemas to have `type: string`.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Treating identifiers as strings preserves leading zeros and avoids numeric size limits across clients and platforms.
+
+## Flags
+
+Any `id` property under `components.schemas` whose declared type is not `string`. A missing type is also reported.
+
+## Does not flag
+
+String IDs, differently named properties, or parameters outside component schemas.
+
+## See it fail
+
+```yaml
+components:
+  schemas:
+    Payment:
+      type: object
+      properties:
+        id:
+          type: integer
+```
+
+Diagnostic: ``Property `id` should be a string.``
+
+## Fix it
+
+```yaml
+components:
+  schemas:
+    Payment:
+      type: object
+      properties:
+        id:
+          type: string
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        id-format: error
+```
+
+Nearby: `no-numeric-ids`.

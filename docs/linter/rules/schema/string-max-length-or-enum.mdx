@@ -1,0 +1,67 @@
+---
+title: string-max-length-or-enum
+sidebar_position: 18
+description: Require string schemas to be bounded by maxLength, enum, or const.
+---
+
+# `string-max-length-or-enum`
+
+Requires every resolved string schema to define `maxLength`, `enum`, or `const`.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Platinum |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient | Warning |
+| Recommended–Complete | Error |
+
+## Intent
+
+Bounded strings limit payload growth. Finite `enum` and `const` values provide an equivalent bound without `maxLength`.
+
+## Flags
+
+Schemas whose resolved type includes `string` and which omit all three fields: `maxLength`, `enum`, and `const`.
+
+The rule checks field presence; another rule validates whether a supplied bound or enum is internally valid.
+
+## See it fail
+
+```yaml
+displayName:
+  type: string
+```
+
+Diagnostic: `String schemas should define \`maxLength\`, \`enum\`, or \`const\`.`
+
+## Fix it
+
+```yaml
+displayName:
+  type: string
+  maxLength: 100
+```
+
+Or use a finite set:
+
+```yaml
+status:
+  type: string
+  enum: [active, inactive]
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        string-max-length-or-enum: warn
+```
+
+Nearby: `length-exceeds-limit`, `invalid-max-length`.
+

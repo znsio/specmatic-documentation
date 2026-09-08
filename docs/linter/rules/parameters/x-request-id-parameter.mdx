@@ -1,0 +1,39 @@
+---
+title: x-request-id-parameter
+sidebar_position: 18
+description: Require request IDs on every operation.
+---
+
+# `x-request-id-parameter`
+
+Requires every operation to declare a header parameter named `x-request-id`, case-insensitively.
+
+| Attribute | Value |
+|---|---|
+| Category | Parameters |
+| Maturity | Silver |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## See it fail
+
+```yaml
+paths:
+  /payments:
+    get:
+      responses: { '200': { description: OK } }
+```
+
+## Fix it
+
+```yaml
+parameters:
+  - in: header
+    name: x-request-id
+    schema: { type: string, format: uuid }
+```
+
+Add it to each operation; this implementation checks operation parameters.
+
+Nearby: `x-request-id-uuid-format`.

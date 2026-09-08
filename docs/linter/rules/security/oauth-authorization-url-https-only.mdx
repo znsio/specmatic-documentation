@@ -1,0 +1,30 @@
+---
+title: oauth-authorization-url-https-only
+sidebar_position: 12
+description: Require HTTPS OAuth authorization endpoints.
+---
+
+# `oauth-authorization-url-https-only`
+
+Flags an OAuth2 flow `authorizationUrl` that is not an absolute HTTPS URL.
+
+| Attribute | Value |
+|---|---|
+| Category | Security |
+| Maturity | Platinum |
+| Lenient | Warning |
+| Recommended–Complete | Error |
+
+## See it fail
+
+```yaml
+flows:
+  authorizationCode:
+    authorizationUrl: http://auth.example.org/authorize
+```
+
+## Fix it
+
+Use `https://auth.example.org/authorize`.
+
+Nearby: `oauth-token-url-https-only`, `hosts-https-only`.

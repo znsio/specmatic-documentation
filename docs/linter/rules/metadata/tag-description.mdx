@@ -1,0 +1,59 @@
+---
+title: tag-description
+sidebar_position: 25
+description: Require a description for every top-level tag.
+---
+
+# `tag-description`
+
+Requires every object in the top-level `tags` array to have a non-blank string `description`.
+
+| Attribute | Value |
+|---|---|
+| Category | Metadata |
+| Maturity | Silver |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Warning |
+| Lenient–Complete | Error |
+
+## Intent
+
+Tag descriptions make grouped operations understandable in generated API documentation.
+
+## Flags
+
+A missing, blank, or non-string `description` on a top-level tag.
+
+## Does not flag
+
+Operation-level tag names. This rule checks tag definitions, not whether every used tag is declared.
+
+## See it fail
+
+```yaml
+tags:
+  - name: payments
+```
+
+Diagnostic: `Tag should define a description.`
+
+## Fix it
+
+```yaml
+tags:
+  - name: payments
+    description: Create and track payments.
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        tag-description: warn
+```
+
+Nearby: `tags-alphabetical`, `spec-no-invalid-tag-parents`.

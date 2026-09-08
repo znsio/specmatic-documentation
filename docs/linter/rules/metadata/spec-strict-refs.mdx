@@ -1,0 +1,94 @@
+---
+title: spec-strict-refs
+sidebar_position: 2
+description: Restrict OpenAPI references to approved structural locations.
+---
+
+# `spec-strict-refs`
+
+Allows `$ref` only at locations approved by Specmatic's strict reference policy.
+
+| Attribute | Value |
+|---|---|
+| Category | Metadata |
+| Maturity | Platinum |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient | Off |
+| Recommended | Off |
+| Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Unrestricted references can fragment an API document and hide important structure. This high-rigor rule limits references to reusable objects and selected operation fields.
+
+## Flags
+
+This rule reports `$ref` outside these locations:
+
+- named entries under supported `components` collections;
+- path-level parameters;
+- operation parameters, request body, responses, and callbacks.
+
+Supported component collections are schemas, responses, parameters, request bodies, examples, headers, security schemes, links, and callbacks.
+
+## Does not flag
+
+- A `$ref` used as a complete named component entry.
+- A `$ref` used for an allowed operation or path object listed above.
+
+This rule checks placement. `no-unresolved-refs` separately checks whether the target exists.
+
+## See it fail
+
+```yaml
+openapi: 3.1.0
+info:
+  $ref: "./info.yaml"
+paths: {}
+```
+
+Specmatic reports:
+
+```text
+Field $ref is not expected here.
+```
+
+`$ref` used as a key inside a `properties` map also fails because that location expects a property name, not a reference:
+
+```yaml
+type: object
+properties:
+  $ref: "./properties.yaml"
+```
+
+## Fix it
+
+Move the reusable object into a supported component, then reference the complete component from an allowed location:
+
+```yaml
+components:
+  schemas:
+    Pet:
+      $ref: "./schemas.yaml#/Pet"
+```
+
+## Configure
+
+```yaml title="specmatic-linter.yaml"
+profiles:
+  default:
+    rules:
+      extends:
+        - strict
+      override:
+        spec-strict-refs: error
+```
+
+## Nearby rules
+
+- `no-unresolved-refs`
+- `ref-has-siblings`
+- `no-unused-components`
+

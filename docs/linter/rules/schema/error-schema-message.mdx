@@ -1,0 +1,77 @@
+---
+title: error-schema-message
+sidebar_position: 27
+description: Require error response schemas to define a message property.
+---
+
+# `error-schema-message`
+
+Requires the schema of each `4xx` or `5xx` response to define a `message` property.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+A human-readable message explains the failure to developers, operators, and user interfaces.
+
+## Flags
+
+The first media-type schema of a `4xx` or `5xx` response when its `properties` do not contain `message`.
+
+## Does not flag
+
+Successful and redirect responses, error responses without a content schema, or error schemas that define `message`. This rule checks presence; `schema-message-type-string` checks its type.
+
+## See it fail
+
+```yaml
+responses:
+  '404':
+    description: Payment not found
+    content:
+      application/problem+json:
+        schema:
+          type: object
+          properties:
+            code:
+              type: string
+```
+
+Diagnostic: ``Error schemas should define `message`.``
+
+## Fix it
+
+```yaml
+responses:
+  '404':
+    description: Payment not found
+    content:
+      application/problem+json:
+        schema:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        error-schema-message: error
+```
+
+Nearby: `schema-message-type-string`, `error-schema-code`.

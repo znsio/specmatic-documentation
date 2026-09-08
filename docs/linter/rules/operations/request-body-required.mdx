@@ -1,0 +1,70 @@
+---
+title: request-body-required
+sidebar_position: 26
+description: Prevent explicitly optional request bodies on POST, PUT, and PATCH.
+---
+
+# `request-body-required`
+
+Disallows `required: false` on OpenAPI 3 request bodies for `POST`, `PUT`, and `PATCH`.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Gold |
+| OpenAPI | OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Complete | Error |
+
+## Intent
+
+Write operations should not advertise their primary input as optional.
+
+## Flags
+
+A `post`, `put`, or `patch` operation with an inline request body whose `required` property is explicitly boolean `false`.
+
+## Does not flag
+
+Other methods, Swagger 2.0 documents, missing request bodies, referenced request bodies, or request bodies that omit `required`. Use `request-body-defined` to require the body itself.
+
+## See it fail
+
+```yaml
+post:
+  requestBody:
+    required: false
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '201':
+      description: Created
+```
+
+The diagnostic requires `required` to be `true` for the write operation.
+
+## Fix it
+
+```yaml
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        request-body-required: warn
+```
+
+Nearby: `request-body-defined`, `get-request-body-disallowed`.

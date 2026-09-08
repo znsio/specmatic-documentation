@@ -1,0 +1,47 @@
+---
+title: boolean-parameter-prefixes
+sidebar_position: 2
+description: Give boolean parameters question-like names.
+---
+
+# `boolean-parameter-prefixes`
+
+Requires boolean parameter names to start with an approved prefix followed by an uppercase letter, `-`, or `_`.
+
+| Attribute | Value |
+|---|---|
+| Category | Parameters |
+| Maturity | Gold |
+| Starter–Recommended | Off |
+| Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Names such as `isActive` and `hasAccess` reveal boolean meaning at call sites.
+
+## Flags
+
+Boolean parameters whose names do not match the configured prefixes. Default prefixes: `is`, `has`.
+
+## See it fail
+
+```yaml
+- in: query
+  name: active
+  schema: { type: boolean }
+```
+
+## Fix it
+
+```yaml
+- in: query
+  name: isActive
+  schema: { type: boolean }
+```
+
+## Options
+
+Replace defaults with ``options: { prefixes: [is, has, can] }`` in the rule override.
+
+Nearby: `query-parameter-camel-case`, `parameter-description`.

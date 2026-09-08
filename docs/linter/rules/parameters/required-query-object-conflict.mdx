@@ -1,0 +1,40 @@
+---
+title: required-query-object-conflict
+sidebar_position: 16
+description: Make required exploded query objects enforceable.
+---
+
+# `required-query-object-conflict`
+
+Rejects a required form-exploded object query parameter when its schema has no required properties.
+
+| Attribute | Value |
+|---|---|
+| Category | Parameters |
+| Maturity | Platinum |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+An exploded object is represented by its properties. If none is required, `required: true` on the wrapper cannot make any query key mandatory.
+
+## See it fail
+
+```yaml
+- in: query
+  name: filter
+  required: true
+  style: form
+  explode: true
+  schema:
+    type: object
+    properties:
+      status: { type: string }
+```
+
+## Fix it
+
+Add `required: [status]` inside the schema, or make the parameter optional.
+
+Nearby: `query-param-collision`, `array-parameter-serialization`.

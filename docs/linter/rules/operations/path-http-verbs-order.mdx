@@ -1,0 +1,77 @@
+---
+title: path-http-verbs-order
+sidebar_position: 49
+description: Keep operations under each path in a consistent method order.
+---
+
+# `path-http-verbs-order`
+
+Requires HTTP operations under each path to follow a configured order.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter–Recommended | Off |
+| Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Stable method ordering makes large YAML contracts easier to scan and review.
+
+## Flags
+
+Each adjacent pair of recognized methods that appears opposite the selected order. The default is:
+
+```text
+get, head, post, put, patch, delete, options, query, trace
+```
+
+Method names are compared case-insensitively.
+
+## Does not flag
+
+Methods already in order. Methods omitted from a custom `order` are ignored by this rule.
+
+## See it fail
+
+```yaml
+/payments:
+  post:
+    responses:
+      '201': {description: Created}
+  get:
+    responses:
+      '200': {description: OK}
+```
+
+`get` should appear before `post` under the default order.
+
+## Fix it
+
+```yaml
+/payments:
+  get:
+    responses:
+      '200': {description: OK}
+  post:
+    responses:
+      '201': {description: Created}
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [strict]
+      override:
+        path-http-verbs-order:
+          severity: error
+          order: [get, post, put, patch, delete]
+```
+
+Nearby: `path-declaration-must-exist`.
