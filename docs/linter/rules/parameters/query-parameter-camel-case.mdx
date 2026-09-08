@@ -1,0 +1,38 @@
+---
+title: query-parameter-camel-case
+sidebar_position: 6
+description: Use lower camelCase for query parameter names.
+---
+
+# `query-parameter-camel-case`
+
+Requires every `in: query` parameter name to match `^[a-z][a-zA-Z0-9]*$`.
+
+| Attribute | Value |
+|---|---|
+| Category | Parameters |
+| Maturity | Gold |
+| Starter | Off |
+| Lenient–Complete | Error |
+
+## See it fail
+
+```yaml
+- in: query
+  name: account_id
+  schema: { type: string }
+```
+
+## Fix it
+
+```yaml
+- in: query
+  name: accountId
+  schema: { type: string }
+```
+
+Component, path-level, and operation-level query parameters are checked.
+
+Configure under `profiles.<name>.rules.override.query-parameter-camel-case`.
+
+Nearby: `path-parameters-snake-case`, `boolean-parameter-prefixes`.

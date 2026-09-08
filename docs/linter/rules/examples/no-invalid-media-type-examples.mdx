@@ -1,0 +1,37 @@
+---
+title: no-invalid-media-type-examples
+sidebar_position: 2
+description: Validate request and response examples against media-type schemas.
+---
+
+# `no-invalid-media-type-examples`
+
+Validates examples attached to request, response, and other media-type objects against their schemas.
+
+| Attribute | Value |
+|---|---|
+| Category | Examples |
+| Maturity | Silver |
+| Starter–Strict | Warning |
+| Complete | Error |
+
+## See it fail
+
+```yaml
+schema:
+  type: object
+  properties:
+    amount: { type: number }
+example:
+  amount: twelve
+```
+
+## Fix it
+
+Use `amount: 12`, or change schema when string is intended.
+
+## Options
+
+Set `allowAdditionalProperties: true` to allow example fields absent from schema. Default: `false` in Starter–Strict.
+
+Nearby: `no-invalid-schema-examples`, `no-invalid-parameter-examples`.

@@ -1,0 +1,5 @@
+{
+  "label": "Security",
+  "position": 4,
+  "link": { "type": "generated-index", "description": "Rules for authentication, authorization, credentials, and transport security." }
+}

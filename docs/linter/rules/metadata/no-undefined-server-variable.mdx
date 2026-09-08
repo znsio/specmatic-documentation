@@ -1,0 +1,69 @@
+---
+title: no-undefined-server-variable
+sidebar_position: 18
+description: Keep server URL placeholders and variable definitions synchronized.
+---
+
+# `no-undefined-server-variable`
+
+Requires every server URL placeholder to be defined and, by default, every defined variable to be used.
+
+| Attribute | Value |
+|---|---|
+| Category | Metadata |
+| Maturity | Baseline |
+| OpenAPI | OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Warning |
+| Lenient–Complete | Error |
+
+## Intent
+
+Server URL templates and their variable definitions must stay synchronized for reliable URL expansion.
+
+## Flags
+
+- Each `{name}` found in a server URL with no exactly matching variable definition.
+- Unless allowed, each defined variable not present in the URL.
+
+All parsed server locations are inspected; matching is case-sensitive.
+
+## Does not flag
+
+Synchronized variables. With `allowUnusedVariables: true`, unused definitions are accepted, but undefined URL placeholders are still reported.
+
+## See it fail
+
+```yaml
+servers:
+  - url: https://{environment}.example.test
+    variables:
+      region:
+        default: us
+```
+
+This reports undefined `environment` and unused `region`.
+
+## Fix it
+
+```yaml
+servers:
+  - url: https://{environment}.example.test
+    variables:
+      environment:
+        default: production
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        no-undefined-server-variable:
+          severity: error
+          allowUnusedVariables: true
+```
+
+Nearby: `no-server-variables-empty-enum`.

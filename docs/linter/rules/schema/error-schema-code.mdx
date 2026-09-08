@@ -1,0 +1,77 @@
+---
+title: error-schema-code
+sidebar_position: 26
+description: Require error response schemas to define a code property.
+---
+
+# `error-schema-code`
+
+Requires the schema of each `4xx` or `5xx` response to define a `code` property.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+A stable machine-readable error code lets clients handle failures without parsing human-readable text.
+
+## Flags
+
+The first media-type schema of a `4xx` or `5xx` response when its `properties` do not contain `code`.
+
+## Does not flag
+
+Successful and redirect responses, error responses without a content schema, or error schemas that define `code`. This rule checks presence; `schema-code-type-string` checks its type.
+
+## See it fail
+
+```yaml
+responses:
+  '400':
+    description: Invalid request
+    content:
+      application/problem+json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+```
+
+Diagnostic: ``Error schemas should define `code`.``
+
+## Fix it
+
+```yaml
+responses:
+  '400':
+    description: Invalid request
+    content:
+      application/problem+json:
+        schema:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        error-schema-code: error
+```
+
+Nearby: `schema-code-type-string`, `error-schema-message`.

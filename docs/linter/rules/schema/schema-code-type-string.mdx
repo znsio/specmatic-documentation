@@ -1,0 +1,75 @@
+---
+title: schema-code-type-string
+sidebar_position: 28
+description: Require error response code properties to be strings.
+---
+
+# `schema-code-type-string`
+
+Requires an error schema's `code` property to use `type: string`.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+String error codes remain stable when teams use names, prefixes, or numeric-looking values with leading zeros.
+
+## Flags
+
+A `code` property in the first media-type schema of a `4xx` or `5xx` response when its type is not `string`. A missing type is also reported.
+
+## Does not flag
+
+String codes, error schemas without `code`, and non-error responses. Use `error-schema-code` to require the property itself.
+
+## See it fail
+
+```yaml
+responses:
+  '400':
+    description: Invalid request
+    content:
+      application/problem+json:
+        schema:
+          type: object
+          properties:
+            code:
+              type: integer
+```
+
+Diagnostic: ``Error property `code` should be string.``
+
+## Fix it
+
+```yaml
+responses:
+  '400':
+    description: Invalid request
+    content:
+      application/problem+json:
+        schema:
+          type: object
+          properties:
+            code:
+              type: string
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        schema-code-type-string: error
+```
+
+Nearby: `error-schema-code`, `schema-message-type-string`.

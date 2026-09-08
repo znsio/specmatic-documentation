@@ -1,0 +1,32 @@
+---
+title: page-size-optional
+sidebar_position: 11
+description: Keep page-size query parameters optional.
+---
+
+# `page-size-optional`
+
+Forbids `required: true` on query parameters named `page_size` or `pageSize`, case-insensitively.
+
+| Attribute | Value |
+|---|---|
+| Category | Parameters |
+| Maturity | Gold |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## See it fail
+
+```yaml
+- in: query
+  name: pageSize
+  required: true
+  schema: { type: integer }
+```
+
+## Fix it
+
+Remove `required: true` and define a default.
+
+Nearby: `page-size-default`, `page-size-positive-int`.

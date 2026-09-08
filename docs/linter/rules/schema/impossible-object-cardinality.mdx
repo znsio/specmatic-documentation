@@ -1,0 +1,73 @@
+---
+title: impossible-object-cardinality
+sidebar_position: 23
+description: Ensure a closed object declares enough properties to meet minProperties.
+---
+
+# `impossible-object-cardinality`
+
+Finds closed object schemas that cannot meet their declared minimum property count.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Platinum |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient | Warning |
+| Recommended–Complete | Error |
+
+## Intent
+
+When extra properties are forbidden, `minProperties` cannot exceed the number of declared properties.
+
+## Flags
+
+An object schema with `additionalProperties: false` where numeric `minProperties` is greater than the number of entries in `properties`.
+
+## Does not flag
+
+Objects that permit extra properties, declare enough properties, or omit `minProperties`.
+
+## See it fail
+
+```yaml
+Address:
+  type: object
+  minProperties: 2
+  additionalProperties: false
+  properties:
+    city:
+      type: string
+```
+
+Only one property is allowed, but at least two are required.
+
+## Fix it
+
+Declare the missing property or lower `minProperties`:
+
+```yaml
+Address:
+  type: object
+  minProperties: 2
+  additionalProperties: false
+  properties:
+    city:
+      type: string
+    country:
+      type: string
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        impossible-object-cardinality: warn
+```
+
+Nearby: `additional-properties-false`, `no-unconstrained-additional-properties`.

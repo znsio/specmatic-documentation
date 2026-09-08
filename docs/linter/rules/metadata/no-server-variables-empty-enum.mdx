@@ -1,0 +1,66 @@
+---
+title: no-server-variables-empty-enum
+sidebar_position: 17
+description: Require nonempty server-variable enums containing their defaults.
+---
+
+# `no-server-variables-empty-enum`
+
+Validates `enum` on variables in the root `servers` list.
+
+| Attribute | Value |
+|---|---|
+| Category | Metadata |
+| Maturity | Baseline |
+| OpenAPI | OpenAPI 3.0, 3.1, 3.2 |
+| All rulesets | Error |
+
+## Intent
+
+A server-variable enum must offer usable choices, and its default must be one of them.
+
+## Flags
+
+- A present `enum` that is not an array or is empty.
+- A variable defining both `enum` and `default` when the enum does not contain the exact default value.
+
+An invalid non-array enum with a default can produce both findings.
+
+## Does not flag
+
+Variables without `enum`, nonempty enums with no default, or enums containing their default. Only root-level servers are inspected.
+
+## See it fail
+
+```yaml
+servers:
+  - url: https://{environment}.example.test
+    variables:
+      environment:
+        default: production
+        enum: []
+```
+
+## Fix it
+
+```yaml
+servers:
+  - url: https://{environment}.example.test
+    variables:
+      environment:
+        default: production
+        enum: [production, staging]
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        no-server-variables-empty-enum: warn
+```
+
+Nearby: `no-undefined-server-variable`.

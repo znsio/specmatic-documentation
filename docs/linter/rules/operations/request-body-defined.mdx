@@ -1,0 +1,69 @@
+---
+title: request-body-defined
+sidebar_position: 25
+description: Require requestBody on POST, PUT, and PATCH operations.
+---
+
+# `request-body-defined`
+
+Requires OpenAPI 3 `POST`, `PUT`, and `PATCH` operations to contain `requestBody`.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Gold |
+| OpenAPI | OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+These write operations should explicitly describe the input representation expected by the API.
+
+## Flags
+
+Every `post`, `put`, or `patch` operation whose object has no `requestBody` property.
+
+## Does not flag
+
+Other methods, Swagger 2.0 documents, or operations that contain `requestBody`. This rule checks presence only; it does not require content or `required: true`.
+
+## See it fail
+
+```yaml
+post:
+  responses:
+    '201':
+      description: Created
+```
+
+Diagnostic: `requestBody must be defined for put, post and patch operations.`
+
+## Fix it
+
+```yaml
+post:
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    '201':
+      description: Created
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        request-body-defined: error
+```
+
+Nearby: `request-body-required`, `request-mime-type`.

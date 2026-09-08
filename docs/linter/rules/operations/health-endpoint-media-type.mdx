@@ -1,0 +1,69 @@
+---
+title: health-endpoint-media-type
+sidebar_position: 17
+description: Use application/health+json for health endpoint success responses.
+---
+
+# `health-endpoint-media-type`
+
+Requires health endpoint success responses to use `application/health+json`.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+A dedicated health media type makes operational responses recognizable and consistent.
+
+## Flags
+
+For the first GET path ending in `/health` and `/health/info`, the rule inspects the first `2xx` response and its first content key. It reports that endpoint when the key is not exactly `application/health+json`.
+
+## Does not flag
+
+Missing health endpoints, endpoints without a `2xx` content entry, or endpoints whose first success media type is `application/health+json`.
+
+## See it fail
+
+```yaml
+responses:
+  '200':
+    description: Health
+    content:
+      application/json:
+        schema:
+          type: object
+```
+
+Diagnostic: ``Health endpoint success response should use `application/health+json`.``
+
+## Fix it
+
+```yaml
+responses:
+  '200':
+    description: Health
+    content:
+      application/health+json:
+        schema:
+          type: object
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        health-endpoint-media-type: error
+```
+
+Nearby: `health-endpoint`, `response-mime-type`.

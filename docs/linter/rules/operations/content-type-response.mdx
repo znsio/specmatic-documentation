@@ -1,0 +1,74 @@
+---
+title: content-type-response
+sidebar_position: 7
+description: Require Content-Type on successful responses with bodies.
+---
+
+# `content-type-response`
+
+Requires `Content-Type` on successful responses that declare response content.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Clients should receive an explicit media type for every successful response body.
+
+## Flags
+
+A response whose code begins with `2`, except `204`, when it declares content but no `Content-Type` response header. Header matching is case-insensitive.
+
+## Does not flag
+
+Responses without content, `204`, non-`2xx` responses, or responses that define `Content-Type`.
+
+## See it fail
+
+```yaml
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: object
+```
+
+Diagnostic: ``Successful responses with body should define `Content-Type` header.``
+
+## Fix it
+
+```yaml
+responses:
+  '200':
+    description: OK
+    headers:
+      Content-Type:
+        schema:
+          type: string
+          enum: [application/json]
+    content:
+      application/json:
+        schema:
+          type: object
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        content-type-response: error
+```
+
+Nearby: `header-required-for-content-type-response`, `204-no-content-type`.

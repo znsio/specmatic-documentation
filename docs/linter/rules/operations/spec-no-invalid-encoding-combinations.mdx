@@ -1,0 +1,67 @@
+---
+title: spec-no-invalid-encoding-combinations
+sidebar_position: 34
+description: Prevent legacy and sequential encoding fields from being combined.
+---
+
+# `spec-no-invalid-encoding-combinations`
+
+Disallows `encoding` beside either `prefixEncoding` or `itemEncoding` in OpenAPI 3.2.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Platinum |
+| OpenAPI | OpenAPI 3.2 |
+| Starter–Lenient | Off |
+| Recommended–Complete | Error |
+
+## Intent
+
+Legacy property-based encoding and OpenAPI 3.2 sequential encoding describe different models. Combining them makes precedence ambiguous.
+
+## Flags
+
+Any object in an OpenAPI 3.2 document containing `encoding` together with `prefixEncoding`, `itemEncoding`, or both.
+
+## Does not flag
+
+Objects using only `encoding`, only the sequential encoding fields, or documents earlier than OpenAPI 3.2.
+
+## See it fail
+
+```yaml
+multipart/mixed:
+  encoding: {}
+  itemSchema:
+    type: string
+  itemEncoding:
+    contentType: text/plain
+```
+
+Diagnostic: `The 'encoding' field cannot be used together with 'prefixEncoding' or 'itemEncoding'.`
+
+## Fix it
+
+Choose the OpenAPI 3.2 sequential model:
+
+```yaml
+multipart/mixed:
+  itemSchema:
+    type: string
+  itemEncoding:
+    contentType: text/plain
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        spec-no-invalid-encoding-combinations: warn
+```
+
+Nearby: `request-mime-type`, `response-mime-type`.

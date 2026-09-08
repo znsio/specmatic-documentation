@@ -1,0 +1,69 @@
+---
+title: enum-nullability-coercion
+sidebar_position: 36
+description: Keep enum null values aligned with schema nullability.
+---
+
+# `enum-nullability-coercion`
+
+Keeps an enum's `null` membership consistent with whether its schema permits null.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Platinum |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient | Warning |
+| Recommended–Complete | Error |
+
+## Intent
+
+The schema and enum should give one answer about nullability. Contradictory declarations lead validators and generators to disagree.
+
+## Flags
+
+- A nullable schema whose enum omits `null`.
+- A non-nullable schema whose enum contains `null`.
+- A non-nullable enum containing only `null`.
+
+Nullability may come from the version-appropriate schema form, including `nullable: true` or a type containing `null`.
+
+## Does not flag
+
+A nullable enum containing `null`, or a non-nullable enum without it.
+
+## See it fail
+
+```yaml
+State:
+  type: string
+  nullable: true
+  enum: [active, inactive]
+```
+
+Diagnostic: `Enum values must contain null if the enum is marked nullable`
+
+## Fix it
+
+```yaml
+State:
+  type: string
+  nullable: true
+  enum: [active, inactive, null]
+```
+
+Alternatively, remove nullability when `null` is not a valid value.
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        enum-nullability-coercion: warn
+```
+
+Nearby: `oas30-enum-null-coercion`, `nullable-type-sibling`.

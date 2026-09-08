@@ -1,0 +1,35 @@
+---
+title: no-empty-security
+sidebar_position: 4
+description: Prevent operations from explicitly disabling inherited security.
+---
+
+# `no-empty-security`
+
+Flags operation-level `security: []`.
+
+| Attribute | Value |
+|---|---|
+| Category | Security |
+| Maturity | Gold |
+| Starter | Off |
+| Lenient–Complete | Error |
+
+## See it fail
+
+```yaml
+get:
+  security: []
+  responses:
+    '200': { description: OK }
+```
+
+## Fix it
+
+Remove the field to inherit root security, or declare a non-empty operation security requirement.
+
+## Does not flag
+
+Operations whose normalized path ends in `/health` or `/health/info`.
+
+Nearby: `security-defined`, `protect-safe-operations`.

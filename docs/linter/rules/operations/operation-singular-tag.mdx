@@ -1,0 +1,65 @@
+---
+title: operation-singular-tag
+sidebar_position: 46
+description: Limit each operation to one tag.
+---
+
+# `operation-singular-tag`
+
+Allows at most one tag on each operation.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter–Recommended | Off |
+| Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+One tag gives each operation a single, predictable home in generated documentation and client groupings.
+
+## Flags
+
+An operation whose `tags` array contains more than one entry.
+
+## Does not flag
+
+Missing, empty, or one-item tag arrays. Use `operation-tag-defined` to require a tag.
+
+## See it fail
+
+```yaml
+get:
+  tags: [Payments, Reporting]
+  responses:
+    '200': {description: OK}
+```
+
+Diagnostic: ``Operation `tags` object should have only one tag.``
+
+## Fix it
+
+Choose the operation's primary group:
+
+```yaml
+get:
+  tags: [Payments]
+  responses:
+    '200': {description: OK}
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [strict]
+      override:
+        operation-singular-tag: error
+```
+
+Nearby: `operation-tag-defined`, `tag-description`.

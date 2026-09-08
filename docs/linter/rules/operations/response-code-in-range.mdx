@@ -1,0 +1,69 @@
+---
+title: response-code-in-range
+sidebar_position: 30
+description: Restrict operation responses to the approved HTTP status-code list.
+---
+
+# `response-code-in-range`
+
+Restricts operation responses to Specmatic's approved status-code list or `default`.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Complete | Error |
+
+## Intent
+
+A controlled status vocabulary keeps contracts consistent and discourages uncommon outcomes that clients may not handle.
+
+## Flags
+
+Any response key other than `default` that is not in this exact allowlist:
+
+```text
+200 201 202 204 206 207
+301 303 304
+400 401 403 404 405 406 408 409 410 412 413 414 415 422 423 428 429 431
+500 501 503 504
+```
+
+## Does not flag
+
+The listed codes and `default`. This is an allowlist, not merely a numeric `100–599` range check.
+
+## See it fail
+
+```yaml
+responses:
+  '418':
+    description: I am a teapot
+```
+
+`418` is a real registered status, but it is not in this rule's selected allowlist.
+
+## Fix it
+
+Use an allowed status that accurately represents the outcome, or disable this policy when the API intentionally needs another status:
+
+```yaml
+responses:
+  '400':
+    description: Invalid request
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        response-code-in-range: warn
+```
+
+Nearby: `invalid-operation-status`, `operation-2xx-response`.

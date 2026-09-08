@@ -1,0 +1,35 @@
+---
+title: jwt-rfc8725-declared
+sidebar_position: 16
+description: Document JWT best-practice requirements.
+---
+
+# `jwt-rfc8725-declared`
+
+Requires JWT-capable security scheme descriptions to contain the exact text `RFC8725`.
+
+| Attribute | Value |
+|---|---|
+| Category | Security |
+| Maturity | Platinum |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Flags
+
+Every OAuth2 scheme and every scheme whose `bearerFormat` equals `jwt`, case-insensitively.
+
+## See it fail
+
+```yaml
+bearerAuth:
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+```
+
+## Fix it
+
+Add a description such as `JWTs must follow RFC8725.` Note: matching has no space or hyphen.
+
+Nearby: `security-scheme-oauth2`.

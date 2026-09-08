@@ -1,0 +1,41 @@
+---
+title: query-param-collision
+sidebar_position: 15
+description: Prevent exploded-object properties from colliding with scalar query parameters.
+---
+
+# `query-param-collision`
+
+Forbids a scalar query parameter from sharing a name with a property exposed by a form-exploded object query parameter in the same operation.
+
+| Attribute | Value |
+|---|---|
+| Category | Parameters |
+| Maturity | Platinum |
+| Lenient–Strict | Warning |
+| Recommended–Complete | Error |
+
+## See it fail
+
+```yaml
+parameters:
+  - in: query
+    name: filter
+    style: form
+    explode: true
+    schema:
+      type: object
+      properties:
+        status: { type: string }
+  - in: query
+    name: status
+    schema: { type: string }
+```
+
+Both parameters serialize a `status` query key.
+
+## Fix it
+
+Rename or remove the scalar parameter, or change the object serialization contract.
+
+Nearby: `required-query-object-conflict`, `operation-parameters-unique`.

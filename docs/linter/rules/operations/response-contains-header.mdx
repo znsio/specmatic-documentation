@@ -1,0 +1,71 @@
+---
+title: response-contains-header
+sidebar_position: 31
+description: Require configured headers on selected response codes.
+---
+
+# `response-contains-header`
+
+Requires selected response codes or status classes to declare configured headers.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Silver |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter–Recommended | Off |
+| Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Teams can enforce response metadata required by their platform or API conventions without writing a custom rule.
+
+## Flags
+
+For each response, the rule looks up a header list in `names` using its exact status first, then its class (`2XX`, `4XX`, and so on). Every missing header produces a finding. Header matching is case-insensitive.
+
+## Does not flag
+
+Responses with no matching configuration or responses containing every configured header. An exact-status entry takes precedence over its class entry.
+
+## See it fail
+
+With `X-Request-Id` required for `2XX`:
+
+```yaml
+responses:
+  '200':
+    description: OK
+```
+
+Diagnostic: `Response object must contain a "X-Request-Id" header.`
+
+## Fix it
+
+```yaml
+responses:
+  '200':
+    description: OK
+    headers:
+      X-Request-Id:
+        schema:
+          type: string
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [strict]
+      override:
+        response-contains-header:
+          severity: error
+          names:
+            2XX: [X-Request-Id]
+            '429': [Retry-After]
+```
+
+Nearby: `response-contains-property`, `rate-limit-headers`.

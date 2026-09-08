@@ -1,0 +1,69 @@
+---
+title: no-unused-components
+sidebar_position: 19
+description: Detect reusable components with no local references.
+---
+
+# `no-unused-components`
+
+Finds reusable OpenAPI components that no local `$ref` uses.
+
+| Attribute | Value |
+|---|---|
+| Category | Metadata |
+| Maturity | Silver |
+| OpenAPI | OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Warning |
+| Lenient–Complete | Error |
+
+## Intent
+
+Removing dead components keeps contracts smaller and prevents obsolete schemas from looking supported.
+
+## Flags
+
+Each named component outside `securitySchemes`, `links`, and `callbacks` when no textual local reference begins with `#/components/{section}/{name}`.
+
+## Does not flag
+
+Referenced components and all security schemes, links, and callbacks. External references do not count as local uses.
+
+With `ignoreDiscriminatorFamily: true`, the rule also ignores schemas that declare a discriminator and direct child schemas whose `allOf` locally references such a parent.
+
+## See it fail
+
+```yaml
+components:
+  schemas:
+    UnusedPayment:
+      type: object
+paths: {}
+```
+
+Diagnostic: `Component: "UnusedPayment" is never used.`
+
+## Fix it
+
+Remove the component, or reference it from a real contract location:
+
+```yaml
+content:
+  application/json:
+    schema:
+      $ref: '#/components/schemas/UnusedPayment'
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        no-unused-components:
+          severity: warn
+          ignoreDiscriminatorFamily: true
+```
+
+Nearby: `component-name-unique`, `no-unresolved-refs`.

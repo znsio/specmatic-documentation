@@ -1,0 +1,73 @@
+---
+title: path-parameters-defined
+sidebar_position: 51
+description: Keep path templates and path-parameter declarations synchronized.
+---
+
+# `path-parameters-defined`
+
+Requires every templated path variable to have a matching path parameter and every declared path parameter to be used.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Baseline |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Warning |
+| Lenient–Complete | Error |
+
+## Intent
+
+The URI template and parameter contract must describe the same inputs.
+
+## Flags
+
+- A path parameter whose `name` does not appear in the containing path template.
+- For each operation, a template variable defined at neither path-item nor operation level.
+
+Recognized template names contain letters, digits, underscores, dots, or hyphens. Matching is exact and case-sensitive; referenced parameter locations are preserved.
+
+## Does not flag
+
+Matching declarations. This rule does not check `required: true` or the parameter schema.
+
+## See it fail
+
+```yaml
+paths:
+  /payments/{paymentId}:
+    get:
+      responses:
+        '200': {description: OK}
+```
+
+The operation has no declaration for `{paymentId}`.
+
+## Fix it
+
+```yaml
+paths:
+  /payments/{paymentId}:
+    parameters:
+      - name: paymentId
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      responses:
+        '200': {description: OK}
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        path-parameters-defined: warn
+```
+
+Nearby: `path-declaration-must-exist`, `path-parameter-names`.

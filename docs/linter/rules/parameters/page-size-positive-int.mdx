@@ -1,0 +1,31 @@
+---
+title: page-size-positive-int
+sidebar_position: 12
+description: Make page-size values positive integers.
+---
+
+# `page-size-positive-int`
+
+Requires `page_size` or `pageSize` to use integer type, an integer default at least `1`, and minimum at least `1`.
+
+| Attribute | Value |
+|---|---|
+| Category | Parameters |
+| Maturity | Gold |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## See it fail
+
+```yaml
+- in: query
+  name: pageSize
+  schema: { type: integer, minimum: 0, default: 20 }
+```
+
+## Fix it
+
+Set `type: integer`, `minimum: 1`, and a positive integer `default`.
+
+Nearby: `page-size-default`, `page-size-optional`.

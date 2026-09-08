@@ -1,0 +1,7 @@
+{
+  "label": "Schema",
+  "position": 5,
+  "collapsible": true,
+  "collapsed": true,
+  "link": { "type": "generated-index", "description": "Rules for schema types, constraints, composition, and compatibility." }
+}

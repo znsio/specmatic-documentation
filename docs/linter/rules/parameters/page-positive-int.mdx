@@ -1,0 +1,35 @@
+---
+title: page-positive-int
+sidebar_position: 9
+description: Make page values positive integers.
+---
+
+# `page-positive-int`
+
+Requires query parameter `page` to use integer type, an integer default at least `1`, and minimum at least `1`.
+
+| Attribute | Value |
+|---|---|
+| Category | Parameters |
+| Maturity | Gold |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## See it fail
+
+```yaml
+- in: query
+  name: page
+  schema: { type: integer, minimum: 0, default: 0 }
+```
+
+## Fix it
+
+```yaml
+- in: query
+  name: page
+  schema: { type: integer, minimum: 1, default: 1 }
+```
+
+Nearby: `page-default-value-defined`, `page-optional`.

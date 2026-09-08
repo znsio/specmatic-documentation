@@ -1,0 +1,63 @@
+---
+title: spec-no-invalid-tag-parents
+sidebar_position: 23
+description: Validate OpenAPI 3.2 tag parent relationships.
+---
+
+# `spec-no-invalid-tag-parents`
+
+Requires every tag `parent` to name another declared tag and forbids parent cycles.
+
+| Attribute | Value |
+|---|---|
+| Category | Metadata |
+| Maturity | Platinum |
+| OpenAPI | OpenAPI 3.2 only |
+| Starter–Strict | Off |
+| Recommended–Complete | Error |
+
+## Intent
+
+Valid parent links let documentation tools render a reliable tag hierarchy.
+
+## Flags
+
+An undefined parent or any circular chain, including a tag that names itself.
+
+## Does not flag
+
+Tags without `parent`. Earlier OpenAPI versions are outside this rule.
+
+## See it fail
+
+```yaml
+openapi: 3.2.0
+tags:
+  - name: payments
+    parent: commerce
+```
+
+Diagnostic: `Tag parent 'commerce' is not defined in the API description.`
+
+## Fix it
+
+```yaml
+openapi: 3.2.0
+tags:
+  - name: commerce
+  - name: payments
+    parent: commerce
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        spec-no-invalid-tag-parents: error
+```
+
+Nearby: `tag-description`, `tags-alphabetical`.

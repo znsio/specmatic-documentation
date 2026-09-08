@@ -1,0 +1,79 @@
+---
+title: health-schema-status
+sidebar_position: 31
+description: Require the health endpoint's success schema to define status.
+---
+
+# `health-schema-status`
+
+Requires the success response schema of a `GET` health endpoint to define `status`.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+A standard status field gives health-check consumers one predictable signal for service state.
+
+## Flags
+
+The first `2xx` response schema of the first `GET` path whose normalized path ends in `/health` when `properties.status` is absent.
+
+## Does not flag
+
+Other paths, non-`GET` operations, health endpoints without a `2xx` content schema, or schemas that define `status`.
+
+## See it fail
+
+```yaml
+paths:
+  /health:
+    get:
+      responses:
+        '200':
+          description: Health
+          content:
+            application/health+json:
+              schema:
+                type: object
+                properties: {}
+```
+
+Diagnostic: ``Health schema should define `status`.``
+
+## Fix it
+
+```yaml
+paths:
+  /health:
+    get:
+      responses:
+        '200':
+          description: Health
+          content:
+            application/health+json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        health-schema-status: error
+```
+
+Nearby: `health-endpoint`, `health-schema-status-in-required`.

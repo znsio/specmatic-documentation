@@ -1,0 +1,31 @@
+---
+title: security-scheme-oauth2
+sidebar_position: 11
+description: Prefer OAuth2 over non-OAuth security schemes.
+---
+
+# `security-scheme-oauth2`
+
+Flags security schemes that are neither `type: oauth2` nor HTTP bearer authentication.
+
+| Attribute | Value |
+|---|---|
+| Category | Security |
+| Maturity | Gold |
+| Starter | Off |
+| Lenient–Complete | Error |
+
+## See it fail
+
+```yaml
+apiKey:
+  type: apiKey
+  in: header
+  name: X-API-Key
+```
+
+## Fix it
+
+Define an OAuth2 scheme, or an HTTP bearer scheme when that is the intended policy.
+
+Nearby: `require-oauth-scopes`, `no-http-basic`.

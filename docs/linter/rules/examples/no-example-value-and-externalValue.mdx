@@ -1,0 +1,31 @@
+---
+title: no-example-value-and-externalValue
+sidebar_position: 1
+description: Choose inline or external example content.
+---
+
+# `no-example-value-and-externalValue`
+
+Forbids an Example Object from containing both `value` and `externalValue`.
+
+| Attribute | Value |
+|---|---|
+| Category | Examples |
+| Maturity | Baseline |
+| Starter | Warning |
+| Lenient–Complete | Error |
+
+## See it fail
+
+```yaml
+examples:
+  payment:
+    value: { status: paid }
+    externalValue: https://example.org/payment.json
+```
+
+## Fix it
+
+Keep either `value` or `externalValue`, not both.
+
+Nearby: `spec-example-values`, `no-invalid-media-type-examples`.

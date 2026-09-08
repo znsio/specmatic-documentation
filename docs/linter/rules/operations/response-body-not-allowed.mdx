@@ -1,0 +1,69 @@
+---
+title: response-body-not-allowed
+sidebar_position: 29
+description: Prevent content on HTTP responses that cannot carry a body.
+---
+
+# `response-body-not-allowed`
+
+Disallows response content where HTTP semantics forbid a body.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Platinum |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient | Warning |
+| Recommended–Complete | Error |
+
+## Intent
+
+Documenting a body where none can be sent creates unreachable examples and incorrect generated clients.
+
+## Flags
+
+Non-webhook responses with nonempty content when any condition holds:
+
+- the operation method is `HEAD`;
+- the status is `204` or `304`; or
+- the status is a numeric informational code from `100` through `199`.
+
+## Does not flag
+
+Bodyless responses, other status/method combinations, or webhook operations.
+
+## See it fail
+
+```yaml
+responses:
+  '204':
+    description: No content
+    content:
+      application/json:
+        schema:
+          type: string
+```
+
+Diagnostic: `Response 204 must not define body content`
+
+## Fix it
+
+```yaml
+responses:
+  '204':
+    description: No content
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        response-body-not-allowed: warn
+```
+
+Nearby: `204-no-content-type`, `content-type-response`.

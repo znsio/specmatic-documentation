@@ -1,0 +1,88 @@
+---
+title: Troubleshooting
+sidebar_position: 11
+description: Resolve common Specmatic Linter configuration, target, profile, and report problems.
+---
+
+# Troubleshooting
+
+## No config file found
+
+**Cause:** Current directory contains neither `specmatic-linter.yaml` nor `specmatic-linter.yml`.
+
+**Fix:** Run from the config directory or pass `--config path/to/config.yaml`.
+
+## Multiple profiles are available
+
+**Cause:** Config has several profiles and none is named `default`.
+
+**Fix:** Pass `--profile <name>` or rename the normal profile to `default`.
+
+## Unknown profile, ruleset, or rule
+
+**Cause:** A name in `extends`, `include`, `exclude`, or `override` does not exist.
+
+**Fix:** Check spelling. Generate valid built-in IDs with the Docker `lint get-rules` command from [Built-in Rules](./built-in-rules#generate-the-rule-catalog).
+
+Remember:
+
+- profile-level `extends` names profiles;
+- `rules.extends` names built-in rulesets.
+
+## Built-in rule must not be declared in root rules inventory
+
+**Cause:** A built-in rule ID was copied under top-level `rules`.
+
+**Fix:** Remove that definition. Tune built-in rules under `profiles.<name>.rules.override`.
+
+## No API description files were provided
+
+**Cause:** No target argument was supplied.
+
+**Fix:** Pass one or more files:
+
+```bash
+docker run --rm \
+  -v "$(pwd):/usr/src/app" \
+  -w /usr/src/app \
+  specmatic/enterprise \
+  lint openapi.yaml
+```
+
+## Glob does not match files
+
+Specmatic preserves an unmatched glob, then reports the missing target during linting. Check the path relative to the working directory and quote the pattern:
+
+```bash
+docker run --rm \
+  -v "$(pwd):/usr/src/app" \
+  -w /usr/src/app \
+  specmatic/enterprise \
+  lint "specs/**/*.yaml"
+```
+
+## Referenced file cannot be resolved
+
+Relative target paths resolve from the working directory first, then from the config directory. Mount or check out every referenced OpenAPI file and keep relative `$ref` paths intact.
+
+## Report exists but command failed
+
+Expected behavior. Specmatic writes the report, then exits `1` when at least one error-level violation exists. Review report details or temporarily change adoption-stage rules to `warn`.
+
+## Report is not in current directory
+
+Reports are created relative to the linter config directory. With central Git configuration, that directory is inside `.specmatic-linter/repos/`. Use the exact path printed by the command.
+
+## Central config repository cannot be fetched
+
+Check:
+
+- repository URL and default branch;
+- network access from the process or container;
+- `CENTRAL_CONFIG_REPO_TOKEN` presence for private HTTPS repositories;
+- token read permission; and
+- repo-relative `--config` path.
+
+## Configuration is rejected
+
+Specmatic rejects unknown config keys, invalid severities, invalid rule IDs, missing profiles, circular profile inheritance, and unsupported custom assertions. Read the complete error output; it identifies the invalid field or reference.

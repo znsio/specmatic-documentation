@@ -1,0 +1,38 @@
+---
+title: x-request-id-uuid-format
+sidebar_position: 19
+description: Use UUID format when request IDs declare a format.
+---
+
+# `x-request-id-uuid-format`
+
+Requires an `x-request-id` header parameter's non-empty schema format to equal `uuid`.
+
+| Attribute | Value |
+|---|---|
+| Category | Parameters |
+| Maturity | Gold |
+| Starter | Off |
+| Lenient–Complete | Error |
+
+## Does not flag
+
+An `x-request-id` schema with no `format`. Use `x-request-id-parameter` separately to require the header.
+
+## See it fail
+
+```yaml
+- in: header
+  name: X-Request-ID
+  schema: { type: string, format: email }
+```
+
+## Fix it
+
+```yaml
+- in: header
+  name: X-Request-ID
+  schema: { type: string, format: uuid }
+```
+
+Nearby: `x-request-id-parameter`.

@@ -1,0 +1,39 @@
+---
+title: parameter-length-required
+sidebar_position: 14
+description: Bound and constrain string parameters.
+---
+
+# `parameter-length-required`
+
+Requires string parameters to define both `maxLength` and a non-blank `pattern`.
+
+| Attribute | Value |
+|---|---|
+| Category | Parameters |
+| Maturity | Gold |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Flags
+
+String parameters in query, path, header, or cookie locations. Direct string properties inside component schemas are also checked.
+
+## See it fail
+
+```yaml
+- in: query
+  name: countryCode
+  schema: { type: string }
+```
+
+## Fix it
+
+```yaml
+- in: query
+  name: countryCode
+  schema: { type: string, maxLength: 2, pattern: '^[A-Z]{2}$' }
+```
+
+Nearby: `parameter-description`, `string-schema-length`.

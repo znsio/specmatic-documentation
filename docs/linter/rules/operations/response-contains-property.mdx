@@ -1,0 +1,78 @@
+---
+title: response-contains-property
+sidebar_position: 32
+description: Require configured top-level properties on selected response schemas.
+---
+
+# `response-contains-property`
+
+Requires selected response codes or status classes to expose configured top-level schema properties.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Bronze |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter–Recommended | Off |
+| Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Teams can enforce envelope fields or shared response metadata without writing a custom rule.
+
+## Flags
+
+For each response media type, the rule looks up a property list in `names` using the exact status first, then its class (`2XX`, `4XX`, and so on). Each configured name absent from an object schema's direct `properties` produces a finding.
+
+## Does not flag
+
+`204`, responses with no matching configuration, media types without a schema, non-object schemas, or schemas containing every configured property. Property matching is case-sensitive; an exact-status entry takes precedence over its class entry.
+
+## See it fail
+
+With `requestId` required for `2XX`:
+
+```yaml
+responses:
+  '200':
+    description: OK
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            data:
+              type: object
+```
+
+Diagnostic: `Response object must contain a top-level "requestId" property.`
+
+## Fix it
+
+```yaml
+schema:
+  type: object
+  properties:
+    data:
+      type: object
+    requestId:
+      type: string
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [strict]
+      override:
+        response-contains-property:
+          severity: error
+          names:
+            2XX: [requestId]
+            4XX: [code, message]
+```
+
+Nearby: `response-contains-header`, `error-schema-code`, `error-schema-message`.

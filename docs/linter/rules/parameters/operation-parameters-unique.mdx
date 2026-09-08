@@ -1,0 +1,38 @@
+---
+title: operation-parameters-unique
+sidebar_position: 4
+description: Prevent duplicate parameters in one scope.
+---
+
+# `operation-parameters-unique`
+
+Requires each `name` + `in` pair to be unique within path-level and operation-level parameter arrays.
+
+| Attribute | Value |
+|---|---|
+| Category | Parameters |
+| Maturity | Baseline |
+| Starter | Warning |
+| Lenient–Complete | Error |
+
+## Intent
+
+Duplicate parameter identities are ambiguous for validators, generators, and callers.
+
+## See it fail
+
+```yaml
+parameters:
+  - { in: query, name: status, schema: { type: string } }
+  - { in: query, name: status, schema: { type: string } }
+```
+
+Same name in different locations, such as query and header, is allowed.
+
+## Fix it
+
+Keep one definition or give each parameter a distinct identity.
+
+Configure under `profiles.<name>.rules.override.operation-parameters-unique`.
+
+Nearby: `query-param-collision`, `path-params-defined`.

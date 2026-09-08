@@ -1,0 +1,67 @@
+---
+title: define-validation-error-response
+sidebar_position: 12
+description: Require an operation to document a validation-error response.
+---
+
+# `define-validation-error-response`
+
+Requires every operation to define `400`, `422`, or the `4XX` range response.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Platinum |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Clients need a documented outcome for requests rejected because their input is invalid.
+
+## Flags
+
+An operation whose response keys contain none of exactly `400`, `422`, or `4XX`.
+
+## Does not flag
+
+An operation defining any one of those keys. This rule checks only response presence, not whether it contains a body or schema.
+
+## See it fail
+
+```yaml
+responses:
+  '201':
+    description: Created
+```
+
+Diagnostic: ``Operations should define one of `400`, `422`, or `4XX` responses.``
+
+## Fix it
+
+Choose the status used by the API and document it:
+
+```yaml
+responses:
+  '422':
+    description: Validation failed
+    content:
+      application/problem+json:
+        schema:
+          $ref: '#/components/schemas/Problem'
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        define-validation-error-response: error
+```
+
+Nearby: `operation-4xx-problem-details-rfc7807`, `error-response-media-type`.

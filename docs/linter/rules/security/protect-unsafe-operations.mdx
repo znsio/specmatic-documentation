@@ -1,0 +1,29 @@
+---
+title: protect-unsafe-operations
+sidebar_position: 19
+description: Require authentication for state-changing operations.
+---
+
+# `protect-unsafe-operations`
+
+Requires POST, PUT, PATCH, and DELETE path operations to inherit or declare non-empty security requirements.
+
+| Attribute | Value |
+|---|---|
+| Category | Security |
+| Maturity | Platinum |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## See it fail
+
+```yaml
+delete:
+  responses: { '204': { description: Deleted } }
+```
+
+## Fix it
+
+Declare a non-empty security requirement at operation or root level.
+
+Nearby: `protect-safe-operations`, `define-401-response`.

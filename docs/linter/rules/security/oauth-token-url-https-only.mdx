@@ -1,0 +1,30 @@
+---
+title: oauth-token-url-https-only
+sidebar_position: 13
+description: Require HTTPS OAuth token endpoints.
+---
+
+# `oauth-token-url-https-only`
+
+Flags an OAuth2 flow `tokenUrl` that is not an absolute HTTPS URL.
+
+| Attribute | Value |
+|---|---|
+| Category | Security |
+| Maturity | Platinum |
+| Lenient | Warning |
+| Recommended–Complete | Error |
+
+## See it fail
+
+```yaml
+flows:
+  clientCredentials:
+    tokenUrl: http://auth.example.org/token
+```
+
+## Fix it
+
+Use `https://auth.example.org/token`.
+
+Nearby: `oauth-authorization-url-https-only`, `hosts-https-only`.

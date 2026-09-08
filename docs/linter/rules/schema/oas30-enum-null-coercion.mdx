@@ -1,0 +1,61 @@
+---
+title: oas30-enum-null-coercion
+sidebar_position: 37
+description: Detect enum values incompatible with their OpenAPI 3.0 schema.
+---
+
+# `oas30-enum-null-coercion`
+
+Finds non-null enum values that do not satisfy their OpenAPI 3.0 schema.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Platinum |
+| OpenAPI | OpenAPI 3.0 |
+| Starter | Off |
+| Lenient | Warning |
+| Recommended–Complete | Error |
+
+## Intent
+
+OpenAPI 3.0 tooling can coerce enum values inconsistently. Keeping every value compatible with its declared schema prevents ambiguous generated models.
+
+## Flags
+
+An OpenAPI 3.0 enum containing a non-null value that conflicts with the schema's type or supported constraints. Schemas already permitting null are excluded from this check.
+
+## Does not flag
+
+Matching values, nullable schemas, schemas without a declared non-null type, or OpenAPI 3.1 documents.
+
+## See it fail
+
+```yaml
+Choice:
+  type: string
+  enum: [1, 2]
+```
+
+Diagnostic: `One or more enum values do not match the declared schema type`
+
+## Fix it
+
+```yaml
+Choice:
+  type: string
+  enum: ['1', '2']
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        oas30-enum-null-coercion: warn
+```
+
+Nearby: `enum-nullability-coercion`, `enum-value-schema-mismatch`.

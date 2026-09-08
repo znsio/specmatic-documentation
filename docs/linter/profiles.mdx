@@ -1,0 +1,82 @@
+---
+title: Profiles
+sidebar_position: 6
+description: Apply different lint policies to different kinds of APIs.
+---
+
+# Profiles
+
+Profiles let one configuration serve APIs with different governance needs.
+
+## Select a profile
+
+```bash
+docker run --rm \
+  -v "$(pwd):/usr/src/app" \
+  -w /usr/src/app \
+  specmatic/enterprise \
+  lint openapi.yaml --profile public-api
+```
+
+Selection rules:
+
+1. `--profile` selects that profile explicitly.
+2. With one configured profile, Specmatic selects it automatically.
+3. With several profiles, Specmatic selects `default` when present.
+4. Otherwise, the command asks you to choose with `--profile`.
+
+## Define separate policies
+
+```yaml
+profiles:
+  internal:
+    rules:
+      extends:
+        - lenient
+      override:
+        info-contact: off
+
+  public-api:
+    rules:
+      extends:
+        - recommended
+      override:
+        info-contact: error
+        operation-description: error
+```
+
+Run each API with the policy matching its audience.
+
+## Inherit another profile
+
+Use profile-level `extends` when policies share most settings:
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends:
+        - recommended
+      override:
+        operation-summary: warn
+
+  public-api:
+    extends:
+      - default
+    rules:
+      override:
+        operation-summary: error
+        info-contact: error
+```
+
+`public-api` receives `default` settings, then applies its own settings. Child values win when both profiles configure the same rule.
+
+:::note
+`profile.extends` names another profile. `profile.rules.extends` names a built-in ruleset such as `recommended`.
+:::
+
+Profile inheritance can span multiple levels. Circular inheritance and unknown profile names are rejected during configuration loading.
+
+## Keep profiles purposeful
+
+Create profiles for real policy differences—such as internal vs public APIs—not for individual files. This keeps CI commands predictable and policy changes centralized.

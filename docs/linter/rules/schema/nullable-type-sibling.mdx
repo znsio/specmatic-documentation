@@ -1,0 +1,98 @@
+---
+title: nullable-type-sibling
+sidebar_position: 2
+description: Require an explicit schema type when OpenAPI 3.0 nullable is used.
+---
+
+# `nullable-type-sibling`
+
+Requires `nullable` to appear beside an explicit `type` in OpenAPI 3.0 schemas.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Baseline |
+| OpenAPI | OpenAPI 3.0 only |
+| Starter | Off |
+| Lenient | Off |
+| Recommended | Off |
+| Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+In OpenAPI 3.0, `nullable: true` modifies the type declared by the same schema object. Without `type`, tooling cannot determine which value type is nullable.
+
+## Flags
+
+This rule reports an OpenAPI 3.0 schema containing `nullable` without a sibling `type` field. Both `nullable: true` and `nullable: false` require `type` when present.
+
+## Does not flag
+
+- A schema containing both `type` and `nullable`.
+- A schema that omits `nullable`.
+- A node containing `$ref`; referenced schema content is checked at its definition.
+- OpenAPI 3.1 or 3.2 documents, where nullability uses JSON Schema type semantics instead.
+
+## See it fail
+
+```yaml
+openapi: 3.0.3
+info:
+  title: Customer API
+  version: 1.0.0
+paths: {}
+components:
+  schemas:
+    MiddleName:
+      nullable: true
+```
+
+Specmatic reports:
+
+```text
+The `type` field must be defined when the `nullable` field is used.
+```
+
+## Fix it
+
+Declare the value type beside `nullable`:
+
+```yaml
+components:
+  schemas:
+    MiddleName:
+      type: string
+      nullable: true
+```
+
+For OpenAPI 3.1 or 3.2, express null as an allowed type:
+
+```yaml
+components:
+  schemas:
+    MiddleName:
+      type:
+        - string
+        - "null"
+```
+
+## Configure
+
+```yaml title="specmatic-linter.yaml"
+profiles:
+  default:
+    rules:
+      extends:
+        - strict
+      override:
+        nullable-type-sibling: error
+```
+
+This override promotes the Strict warning to an error. It has no effect on OpenAPI versions where the rule does not apply.
+
+## Nearby rules
+
+- `oas30-enum-null-coercion`
+- `no-schema-type-mismatch`
+- `no-enum-type-mismatch`

@@ -1,0 +1,67 @@
+---
+title: ref-has-siblings
+sidebar_position: 20
+description: Prevent sibling properties beside refs in Swagger 2.0 and OpenAPI 3.0.
+---
+
+# `ref-has-siblings`
+
+Disallows properties beside a textual `$ref` in Swagger 2.0 and OpenAPI 3.0.
+
+| Attribute | Value |
+|---|---|
+| Category | Metadata |
+| Maturity | Platinum |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+In these versions, sibling properties can be ignored when `$ref` replaces the containing object, creating documentation that appears effective but is not.
+
+## Flags
+
+Every sibling key in an object containing a textual `$ref`. One object with two siblings produces two findings.
+
+## Does not flag
+
+A standalone `$ref`, a non-text `$ref`, or any document using OpenAPI 3.1 or 3.2.
+
+## See it fail
+
+```yaml
+Alias:
+  $ref: '#/components/schemas/Base'
+  description: Alias of Base
+  type: string
+```
+
+Both `description` and `type` are reported.
+
+## Fix it
+
+For a schema, compose the reference and added constraints:
+
+```yaml
+Alias:
+  allOf:
+    - $ref: '#/components/schemas/Base'
+  description: Alias of Base
+```
+
+Or move to OpenAPI 3.1+ where supported `$ref` siblings have updated semantics.
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        ref-has-siblings: error
+```
+
+Nearby: `no-unresolved-refs`, `spec-strict-refs`.

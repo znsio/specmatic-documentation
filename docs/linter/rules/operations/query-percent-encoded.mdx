@@ -1,0 +1,67 @@
+---
+title: query-percent-encoded
+sidebar_position: 23
+description: Keep reserved characters percent-encoded in query parameters.
+---
+
+# `query-percent-encoded`
+
+Disallows `allowReserved: true` on query parameters.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Gold |
+| OpenAPI | OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Encoding reserved characters prevents parameter values from changing the meaning or structure of the query string.
+
+## Flags
+
+A query parameter belonging to a path operation when `allowReserved` is explicitly `true`. Path-level and operation-level parameters are included.
+
+## Does not flag
+
+Non-query parameters, parameters outside a path operation, or query parameters where `allowReserved` is false or omitted.
+
+## See it fail
+
+```yaml
+- name: filter
+  in: query
+  allowReserved: true
+  schema:
+    type: string
+```
+
+Diagnostic: ``Query parameters should keep `allowReserved` false for percent encoding.``
+
+## Fix it
+
+```yaml
+- name: filter
+  in: query
+  allowReserved: false
+  schema:
+    type: string
+```
+
+Omitting `allowReserved` has the same false default.
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        query-percent-encoded: error
+```
+
+Nearby: `path-percent-encoded`, `query-parameter-camel-case`.

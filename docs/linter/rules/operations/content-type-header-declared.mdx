@@ -1,0 +1,76 @@
+---
+title: content-type-header-declared
+sidebar_position: 8
+description: Prevent explicit Content-Type header declarations in OpenAPI operations.
+---
+
+# `content-type-header-declared`
+
+Disallows declaring `Content-Type` as an OpenAPI header parameter or response header.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Platinum |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+OpenAPI represents media types through request-body and response `content` maps. A separate `Content-Type` declaration duplicates that information and can contradict it.
+
+## Flags
+
+- A path-level or operation-level header parameter named `Content-Type`.
+- A response header named `Content-Type`.
+
+Names are matched case-insensitively.
+
+## Does not flag
+
+Other headers or media types declared as keys under `content`.
+
+## See it fail
+
+```yaml
+parameters:
+  - name: Content-Type
+    in: header
+    schema:
+      type: string
+```
+
+Diagnostic: `Content-Type should not be declared as a header per OAS standards`
+
+## Fix it
+
+Remove the header parameter and declare the request media type on the body:
+
+```yaml
+requestBody:
+  content:
+    application/json:
+      schema:
+        type: object
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        content-type-header-declared: error
+```
+
+:::caution Policy overlap
+
+`content-type-response` and `header-required-for-content-type-response` require this response header in some situations. Do not enable those rules together with this rule; choose the media-type policy your API follows and turn the conflicting rules off.
+
+:::
+
+Nearby: `content-type-header-overrides-media-type`, `request-mime-type`, `response-mime-type`.

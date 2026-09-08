@@ -1,0 +1,35 @@
+---
+title: spec-example-values
+sidebar_position: 6
+description: Enforce OpenAPI 3.2 Example Object value exclusivity.
+---
+
+# `spec-example-values`
+
+Validates mutually exclusive value fields in OpenAPI 3.2 Example Objects.
+
+| Attribute | Value |
+|---|---|
+| Category | Examples |
+| Maturity | Silver |
+| OpenAPI | OpenAPI 3.2 only |
+| Lenient | Warning |
+| Recommended–Complete | Error |
+
+## Flags
+
+Conflicting pairs: `value` with `externalValue`, `dataValue`, or `serializedValue`; and `serializedValue` with `externalValue`.
+
+## See it fail
+
+```yaml
+example:
+  value: { status: paid }
+  dataValue: application/json;base64,eyJzdGF0dXMiOiJwYWlkIn0=
+```
+
+## Fix it
+
+Keep one representation appropriate to the example.
+
+Nearby: `no-example-value-and-externalValue`.

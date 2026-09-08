@@ -1,0 +1,62 @@
+---
+title: no-server-example.com
+sidebar_position: 15
+description: Prevent placeholder and localhost server URLs.
+---
+
+# `no-server-example.com`
+
+Disallows server URLs hosted on `localhost`, `example.com`, or its subdomains.
+
+| Attribute | Value |
+|---|---|
+| Category | Metadata |
+| Maturity | Baseline |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Warning |
+| Lenient–Complete | Error |
+
+## Intent
+
+Published contracts should point to a meaningful environment, not a documentation placeholder or a machine-local address.
+
+## Flags
+
+Each server whose parsed hostname is exactly `localhost`, exactly `example.com`, or ends in `.example.com`. Host comparison is case-insensitive.
+
+## Does not flag
+
+Other hosts or URLs from which a hostname cannot be parsed. With `onlyWhenAllServersPlaceholder: true`, mixed real and placeholder lists are not reported.
+
+## See it fail
+
+```yaml
+servers:
+  - url: https://api.example.com/v1
+```
+
+Diagnostic: ``Server `url` should not point to example.com or localhost.``
+
+## Fix it
+
+```yaml
+servers:
+  - url: https://api.acme.test/v1
+```
+
+## Configure
+
+Report placeholders only when every listed server is a placeholder:
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        no-server-example.com:
+          severity: error
+          onlyWhenAllServersPlaceholder: true
+```
+
+Nearby: `no-empty-servers`, `hosts-https-only`.

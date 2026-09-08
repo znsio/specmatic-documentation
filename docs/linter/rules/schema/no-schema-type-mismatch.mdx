@@ -1,0 +1,123 @@
+---
+title: no-schema-type-mismatch
+sidebar_position: 1
+description: Prevent object and array schemas from using properties that contradict their declared type.
+---
+
+# `no-schema-type-mismatch`
+
+Keeps a schema's declared type consistent with its structure.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Baseline |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Warning |
+| Lenient | Warning |
+| Recommended | Error |
+| Strict | Error |
+| Complete | Error |
+
+## Intent
+
+An object describes named fields with `properties`. An array describes repeated values with `items`. Mixing these structures makes API intent unclear and may produce different results across validators and code generators.
+
+## Flags
+
+This rule reports:
+
+- an `object` schema containing `items`;
+- an `array` schema containing `properties`.
+
+For OpenAPI 3.1 and 3.2, it also checks multi-value `type` declarations when they contain `object` or `array`.
+
+## Does not flag
+
+- An object using `properties`.
+- An array using `items`.
+- Schemas without a declared `type`.
+- A node containing `$ref`; referenced schema content is checked at its definition.
+
+## See it fail
+
+Here, `Order` claims to be an object but uses the array-only `items` field:
+
+```yaml
+openapi: 3.0.3
+info:
+  title: Orders API
+  version: 1.0.0
+paths: {}
+components:
+  schemas:
+    Order:
+      type: object
+      items:
+        type: string
+```
+
+Specmatic reports:
+
+```text
+Schema type mismatch: 'object' type should not contain 'items' field.
+```
+
+The inverse also fails:
+
+```yaml
+components:
+  schemas:
+    Orders:
+      type: array
+      properties:
+        id:
+          type: string
+```
+
+## Fix it
+
+Use `properties` for an object:
+
+```yaml
+components:
+  schemas:
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+```
+
+Use `items` for an array:
+
+```yaml
+components:
+  schemas:
+    Orders:
+      type: array
+      items:
+        $ref: "#/components/schemas/Order"
+```
+
+## Configure
+
+Change severity without redefining the rule:
+
+```yaml title="specmatic-linter.yaml"
+profiles:
+  default:
+    rules:
+      extends:
+        - recommended
+      override:
+        no-schema-type-mismatch: warn
+```
+
+Use `error` to block CI, `warn` during adoption, or `off` to disable it.
+
+## Nearby rules
+
+- `no-enum-type-mismatch`
+- `no-required-schema-properties-undefined`
+- `no-mixed-number-range-constraints`

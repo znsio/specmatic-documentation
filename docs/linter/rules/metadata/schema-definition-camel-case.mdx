@@ -1,0 +1,64 @@
+---
+title: schema-definition-camel-case
+sidebar_position: 21
+description: Use lower camelCase for component schema names.
+---
+
+# `schema-definition-camel-case`
+
+Requires names under `components.schemas` to use lower camelCase.
+
+| Attribute | Value |
+|---|---|
+| Category | Metadata |
+| Maturity | Gold |
+| OpenAPI | OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Complete | Error |
+
+## Intent
+
+One schema naming style keeps references and generated model names predictable.
+
+## Flags
+
+Every component schema name that does not start with a lowercase ASCII letter followed only by ASCII letters or digits.
+
+## Does not flag
+
+Names such as `payment`, `paymentMethod`, and `address2`. Swagger 2.0 `definitions` are outside this implementation.
+
+## See it fail
+
+```yaml
+components:
+  schemas:
+    Payment_Method:
+      type: object
+```
+
+Diagnostic: `Schema names should use camelCase.`
+
+## Fix it
+
+```yaml
+components:
+  schemas:
+    paymentMethod:
+      type: object
+```
+
+Update every `$ref` to the renamed schema. Renaming a published component can affect generated client types.
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        schema-definition-camel-case: warn
+```
+
+Nearby: `component-name-unique`, `spec-components-invalid-map-name`.

@@ -1,0 +1,74 @@
+---
+title: component-name-unique
+sidebar_position: 5
+description: Keep reusable component names unique across local and referenced definitions.
+---
+
+# `component-name-unique`
+
+Requires component names to be unique within each supported component type.
+
+| Attribute | Value |
+|---|---|
+| Category | Metadata |
+| Maturity | Bronze |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter–Recommended | Off |
+| Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Colliding reusable names make references and generated types ambiguous, especially when contracts span files.
+
+## Flags
+
+Every definition in a duplicate group for schemas, parameters, responses, or request bodies. Names are normalized by removing the final file extension and comparing lowercase text within the same component type. Local components and referenced external definitions participate.
+
+## Does not flag
+
+Unique normalized names or equal names in different component types. Any of the four types can be disabled independently.
+
+## See it fail
+
+```yaml
+components:
+  schemas:
+    Customer:
+      type: object
+    customer:
+      type: object
+```
+
+Both normalize to `customer` within `schemas`.
+
+## Fix it
+
+Give each reusable schema a distinct name and update its references:
+
+```yaml
+components:
+  schemas:
+    Customer:
+      type: object
+    CustomerSummary:
+      type: object
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [strict]
+      override:
+        component-name-unique:
+          severity: error
+          schemas: on
+          parameters: off
+          responses: on
+          requestBodies: on
+```
+
+Nearby: `spec-components-invalid-map-name`, `schema-definition-camel-case`.

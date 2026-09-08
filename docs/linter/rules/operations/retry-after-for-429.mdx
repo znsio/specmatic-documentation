@@ -1,0 +1,66 @@
+---
+title: retry-after-for-429
+sidebar_position: 33
+description: Require Retry-After on documented 429 responses.
+---
+
+# `retry-after-for-429`
+
+Requires an explicit `429` response to declare `Retry-After`.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Platinum |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient | Warning |
+| Recommended–Complete | Error |
+
+## Intent
+
+Clients need to know when they can safely retry after being rate limited.
+
+## Flags
+
+Each path operation with a nonempty exact `429` response that lacks a `Retry-After` header. Header matching is case-insensitive; referenced responses are resolved.
+
+## Does not flag
+
+Operations without `429`, an empty response object, or a `429` response defining `Retry-After`. Use `define-429-response` to require the response itself.
+
+## See it fail
+
+```yaml
+responses:
+  '429':
+    description: Too many requests
+```
+
+Diagnostic: ``429 responses should define `Retry-After` header.``
+
+## Fix it
+
+```yaml
+responses:
+  '429':
+    description: Too many requests
+    headers:
+      Retry-After:
+        schema:
+          type: integer
+          minimum: 0
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        retry-after-for-429: warn
+```
+
+Nearby: `define-429-response`, `rate-limit-headers`.

@@ -1,0 +1,96 @@
+---
+title: no-unresolved-refs
+sidebar_position: 1
+description: Require every OpenAPI reference to resolve to an existing target.
+---
+
+# `no-unresolved-refs`
+
+Finds `$ref` values that do not resolve to an existing document location.
+
+| Attribute | Value |
+|---|---|
+| Category | Metadata |
+| Maturity | Baseline |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| All rulesets | Error |
+
+## Intent
+
+References connect reusable schemas and other OpenAPI components. A broken reference leaves part of the API undefined and can stop validation, documentation, or code generation.
+
+## Flags
+
+This rule reports a textual `$ref` when:
+
+- its referenced file cannot be loaded; or
+- its JSON Pointer does not identify a node in the resolved document.
+
+Repeated uses of the same broken reference in one source are reported once.
+
+## Does not flag
+
+- Local references pointing to an existing node.
+- External references whose file and pointer resolve.
+- Non-text `$ref` values; structural validation handles invalid field types.
+
+## See it fail
+
+```yaml
+openapi: 3.0.3
+info:
+  title: Pets API
+  version: 1.0.0
+paths:
+  /pets:
+    get:
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pet"
+components:
+  schemas: {}
+```
+
+Specmatic reports:
+
+```text
+Can't resolve $ref
+```
+
+## Fix it
+
+Define the target or correct the pointer:
+
+```yaml
+components:
+  schemas:
+    Pet:
+      type: object
+      properties:
+        name:
+          type: string
+```
+
+## Configure
+
+This rule is an error in every built-in ruleset. Downgrade only while repairing an existing specification:
+
+```yaml title="specmatic-linter.yaml"
+profiles:
+  default:
+    rules:
+      extends:
+        - starter
+      override:
+        no-unresolved-refs: warn
+```
+
+## Nearby rules
+
+- `spec-strict-refs`
+- `ref-has-siblings`
+- `missing-schema-fallback`

@@ -1,0 +1,63 @@
+---
+title: no-eval-in-markdown
+sidebar_position: 13
+description: Prevent eval calls in title and description text.
+---
+
+# `no-eval-in-markdown`
+
+Finds JavaScript-style `eval(` calls in textual title and description fields.
+
+| Attribute | Value |
+|---|---|
+| Category | Metadata |
+| Maturity | Platinum |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Rendered API descriptions can flow through many tools. Removing executable-code patterns reduces injection risk.
+
+## Flags
+
+Any textual field named `title` or `description`, anywhere in the document, containing lowercase `eval`, optional whitespace, then `(` at a word boundary.
+
+## Does not flag
+
+Other field names, non-string values, or differently cased text such as `Eval(`. This is a targeted pattern check, not a complete Markdown sanitizer.
+
+## See it fail
+
+```yaml
+info:
+  title: Payments API
+  description: "Try eval(userInput) to inspect a value."
+```
+
+Diagnostic: ``Markdown fields must not include `eval(`.``
+
+## Fix it
+
+Describe the behavior without executable snippets:
+
+```yaml
+info:
+  title: Payments API
+  description: Use the SDK debugger to inspect a value.
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        no-eval-in-markdown: error
+```
+
+Nearby: `no-script-tags-in-markdown`.

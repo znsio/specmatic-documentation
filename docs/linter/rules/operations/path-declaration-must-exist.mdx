@@ -1,0 +1,67 @@
+---
+title: path-declaration-must-exist
+sidebar_position: 48
+description: Require at least one path and nonempty path-parameter declarations.
+---
+
+# `path-declaration-must-exist`
+
+Requires at least one API path and disallows empty `{}` path parameters.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Baseline |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Warning |
+| Lenient–Complete | Error |
+
+## Intent
+
+An API contract needs an addressable operation surface, and every templated segment needs a parameter name.
+
+## Flags
+
+- A document with no parsed path entries.
+- Every path string containing the exact text `{}`.
+
+## Does not flag
+
+A document with at least one path and no empty parameter declaration. Whether a path item contains an HTTP operation is outside this rule.
+
+## See it fail
+
+```yaml
+paths:
+  /payments/{}:
+    get:
+      responses:
+        '200': {description: OK}
+```
+
+Diagnostic: ``Path parameter declarations must be non-empty. `{}` is invalid.``
+
+## Fix it
+
+```yaml
+paths:
+  /payments/{paymentId}:
+    get:
+      responses:
+        '200': {description: OK}
+```
+
+Also define the matching path parameter; `path-parameters-defined` checks that requirement.
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        path-declaration-must-exist: warn
+```
+
+Nearby: `path-parameters-defined`, `no-ambiguous-paths`.

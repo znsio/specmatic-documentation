@@ -1,0 +1,36 @@
+---
+title: no-invalid-parameter-examples
+sidebar_position: 3
+description: Validate parameter examples against parameter schemas.
+---
+
+# `no-invalid-parameter-examples`
+
+Validates parameter example candidates against the resolved parameter schema.
+
+| Attribute | Value |
+|---|---|
+| Category | Examples |
+| Maturity | Bronze |
+| Starter–Lenient | Off |
+| Recommended–Strict | Warning |
+| Complete | Error |
+
+## See it fail
+
+```yaml
+- in: query
+  name: limit
+  schema: { type: integer }
+  example: ten
+```
+
+## Fix it
+
+Use `example: 10`, or change schema when text is intended.
+
+## Options
+
+Set `allowAdditionalProperties: true` when object examples may contain undeclared fields. Default: `false`.
+
+Nearby: `no-invalid-media-type-examples`, `no-invalid-schema-examples`.

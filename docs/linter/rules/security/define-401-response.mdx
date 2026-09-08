@@ -1,0 +1,39 @@
+---
+title: define-401-response
+sidebar_position: 15
+description: Document 401 responses for protected operations.
+---
+
+# `define-401-response`
+
+Requires each authenticated path operation to define a `401` response with a response schema.
+
+| Attribute | Value |
+|---|---|
+| Category | Security |
+| Maturity | Platinum |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## See it fail
+
+```yaml
+security: [{ bearerAuth: [] }]
+responses:
+  '200': { description: OK }
+```
+
+## Fix it
+
+```yaml
+responses:
+  '401':
+    description: Authentication required
+    content:
+      application/json:
+        schema: { $ref: '#/components/schemas/Error' }
+```
+
+Operations explicitly made public are not checked.
+
+Nearby: `protect-safe-operations`, `protect-unsafe-operations`.

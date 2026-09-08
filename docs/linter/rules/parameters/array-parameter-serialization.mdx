@@ -1,0 +1,55 @@
+---
+title: array-parameter-serialization
+sidebar_position: 1
+description: Make array parameter serialization explicit.
+---
+
+# `array-parameter-serialization`
+
+Requires array parameters to declare both `style` and `explode`.
+
+| Attribute | Value |
+|---|---|
+| Category | Parameters |
+| Maturity | Gold |
+| Starter–Recommended | Off |
+| Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Explicit serialization removes ambiguity about how array values appear on the wire.
+
+## Flags
+
+An inline or externally referenced array parameter missing either field. A schema with `items` or `prefixItems` is treated as an array. Local `$ref` sites are checked at their definitions.
+
+## See it fail
+
+```yaml
+- in: query
+  name: status
+  schema:
+    type: array
+    items: { type: string }
+```
+
+## Fix it
+
+```yaml
+- in: query
+  name: status
+  style: form
+  explode: true
+  schema:
+    type: array
+    items: { type: string }
+```
+
+## Options
+
+Limit checking to selected locations with `in`, for example ``options: { in: [query, header] }``.
+
+Configure under `profiles.<name>.rules.override.array-parameter-serialization`.
+
+Nearby: `invalid-parameter-shape`, `spec-querystring-parameters`.

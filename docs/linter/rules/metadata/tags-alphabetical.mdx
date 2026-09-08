@@ -1,0 +1,61 @@
+---
+title: tags-alphabetical
+sidebar_position: 26
+description: Sort top-level tag definitions alphabetically.
+---
+
+# `tags-alphabetical`
+
+Requires top-level tag names to appear in ascending, case-sensitive order.
+
+| Attribute | Value |
+|---|---|
+| Category | Metadata |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter–Recommended | Off |
+| Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Stable ordering makes large tag lists easier to scan and produces smaller review diffs.
+
+## Flags
+
+The first top-level tag whose name differs from the sorted order.
+
+## Does not flag
+
+Operation-level `tags` arrays. Duplicate tag names belong to `no-duplicated-tag-names`.
+
+## See it fail
+
+```yaml
+tags:
+  - name: payments
+  - name: accounts
+```
+
+Diagnostic: `The `tags` array should be in alphabetical order.`
+
+## Fix it
+
+```yaml
+tags:
+  - name: accounts
+  - name: payments
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        tags-alphabetical: warn
+```
+
+Nearby: `tag-description`, `no-duplicated-tag-names`.

@@ -1,0 +1,30 @@
+---
+title: no-http-basic
+sidebar_position: 8
+description: Disallow HTTP Basic authentication.
+---
+
+# `no-http-basic`
+
+Flags OpenAPI security schemes with `type: http` and `scheme: basic`.
+
+| Attribute | Value |
+|---|---|
+| Category | Security |
+| Maturity | Platinum |
+| Lenient | Warning |
+| Recommended–Complete | Error |
+
+## See it fail
+
+```yaml
+basicAuth:
+  type: http
+  scheme: basic
+```
+
+## Fix it
+
+Use a stronger supported scheme, such as OAuth2 or bearer tokens, according to the API threat model.
+
+Nearby: `no-insecure-http-auth-schemes`, `security-scheme-oauth2`.

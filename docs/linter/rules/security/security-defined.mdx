@@ -1,0 +1,43 @@
+---
+title: security-defined
+sidebar_position: 5
+description: Require valid security for every operation.
+---
+
+# `security-defined`
+
+Requires root-level or operation-level security and verifies that every referenced security scheme exists.
+
+| Attribute | Value |
+|---|---|
+| Category | Security |
+| Maturity | Baseline |
+| Starter–Complete | Error |
+
+## See it fail
+
+```yaml
+paths:
+  /health:
+    get:
+      responses: { '200': { description: OK } }
+```
+
+## Fix it
+
+Declare a security scheme and reference it at root or operation level.
+
+## Exceptions
+
+Exclude intentional public operations with exact `path`, substring `pathContains`, or regex `pathPattern`; optionally constrain `methods`.
+
+```yaml
+security-defined:
+  severity: error
+  options:
+    exceptions:
+      - path: /health
+        methods: [get]
+```
+
+Nearby: `security-scheme-missing`, `no-empty-security`.

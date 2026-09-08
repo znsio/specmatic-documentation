@@ -1,0 +1,30 @@
+---
+title: security-scheme-no-outdated-auth
+sidebar_position: 10
+description: Reject outdated HTTP auth schemes.
+---
+
+# `security-scheme-no-outdated-auth`
+
+Flags HTTP security schemes using `basic`, `digest`, or `oauth`.
+
+| Attribute | Value |
+|---|---|
+| Category | Security |
+| Maturity | Silver |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## See it fail
+
+```yaml
+legacyAuth:
+  type: http
+  scheme: basic
+```
+
+## Fix it
+
+Adopt a current security scheme supported by the clients and server.
+
+Nearby: `no-http-basic`, `security-scheme-oauth2`.

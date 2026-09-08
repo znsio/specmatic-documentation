@@ -1,0 +1,30 @@
+---
+title: Linter
+sidebar_position: 1
+description: Check OpenAPI specifications against built-in and custom API governance rules.
+---
+
+# Linter
+
+Specmatic Linter checks OpenAPI specifications before they reach implementation or production. It reports correctness, security, consistency, and documentation problems with precise source locations.
+
+Use it to:
+
+- apply curated built-in rules;
+- define organization-specific rules in YAML;
+- give different API groups their own profiles;
+- measure API maturity from Baseline through Platinum;
+- produce JSON or HTML reports; and
+- block CI only for violations classified as errors.
+
+Specmatic Linter supports Swagger 2.0 and OpenAPI 3.0, 3.1, and 3.2 documents in YAML or JSON. It is included in Specmatic Enterprise.
+
+## How it works
+
+1. Create a `specmatic-linter.yaml` configuration.
+2. Choose a built-in ruleset or specific rules.
+3. Run the Enterprise Docker image with the `lint` command against one or more specifications.
+4. Fix reported violations or tune their severity.
+5. Add the same command to CI.
+
+Start with the [Quick Start](/linter/quick-start).

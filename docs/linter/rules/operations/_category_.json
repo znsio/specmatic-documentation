@@ -1,0 +1,7 @@
+{
+  "label": "Operations",
+  "position": 2,
+  "collapsible": true,
+  "collapsed": true,
+  "link": { "type": "generated-index", "description": "Rules for paths, operations, requests, responses, and HTTP semantics." }
+}

@@ -1,0 +1,64 @@
+---
+title: 204-no-content-type
+sidebar_position: 3
+description: Prevent Content-Type headers on bodyless 204 responses.
+---
+
+# `204-no-content-type`
+
+Disallows a `Content-Type` response header on status `204`.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Complete | Error |
+
+## Intent
+
+`204 No Content` has no response body, so declaring its media type is misleading.
+
+## Flags
+
+A response whose status is exactly `204` and whose headers include `Content-Type`, matched case-insensitively.
+
+## Does not flag
+
+Other status codes or `204` responses without that header. Body declarations are handled by `response-body-not-allowed`.
+
+## See it fail
+
+```yaml
+responses:
+  '204':
+    description: Deleted
+    headers:
+      Content-Type:
+        schema:
+          type: string
+```
+
+Diagnostic: ``204 responses should not define `Content-Type` header.``
+
+## Fix it
+
+```yaml
+responses:
+  '204':
+    description: Deleted
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        204-no-content-type: warn
+```
+
+Nearby: `response-body-not-allowed`, `content-type-header-declared`.

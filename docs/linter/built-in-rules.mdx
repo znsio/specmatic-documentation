@@ -1,0 +1,90 @@
+---
+title: Built-in Rules
+sidebar_position: 4
+description: Choose a built-in ruleset and inspect every active OpenAPI lint rule.
+---
+
+# Built-in Rules
+
+Specmatic ships curated rules for API correctness, security, schemas, examples, operations, parameters, and metadata.
+
+## Choose a ruleset
+
+| Ruleset | Best for |
+|---|---|
+| `starter` | First rollout; smallest policy |
+| `lenient` | Broad checks with adoption-friendly severity |
+| `recommended` | Default policy for most teams |
+| `strict` | Strong governance and conventions |
+| `complete` | Every curated check |
+
+Configure one ruleset:
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends:
+        - recommended
+```
+
+Rulesets represent increasing enforcement. Extend the highest level you need; do not list every preceding ruleset.
+
+## Generate the rule catalog
+
+Rule availability varies by OpenAPI version. Generate a catalog from your effective configuration instead of relying on a static list:
+
+```bash
+docker run --rm \
+  -v "$(pwd):/usr/src/app" \
+  -w /usr/src/app \
+  specmatic/enterprise \
+  lint get-rules
+```
+
+Default output:
+
+```text
+build/reports/specmatic/lint/openapi/rules-report.html
+```
+
+The HTML catalog shows each rule's ID, description, category, severity, maturity, and applicable OpenAPI version. Filter by version before choosing rule IDs:
+
+- Swagger 2.0 → `oas2`
+- OpenAPI 3.0.x → `oas3_0`
+- OpenAPI 3.1.x → `oas3_1`
+- OpenAPI 3.2.x → `oas3_2`
+
+Generate machine-readable output with:
+
+```bash
+docker run --rm \
+  -v "$(pwd):/usr/src/app" \
+  -w /usr/src/app \
+  specmatic/enterprise \
+  lint get-rules --format=json
+```
+
+## Enable, disable, or tune rules
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends:
+        - recommended
+      include:
+        - operation-description
+      exclude:
+        - info-license
+      override:
+        operation-summary: warn
+```
+
+- `include` adds named built-in or custom rules.
+- `exclude` turns named rules off.
+- `override` changes severity, message, options, or maturity.
+
+Use IDs exactly as shown by `lint get-rules`. Unknown IDs make configuration loading fail.
+
+Need rule behavior and examples? Open the [Built-in Rule Reference](./rules/).

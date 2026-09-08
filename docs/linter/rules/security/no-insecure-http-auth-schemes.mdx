@@ -1,0 +1,30 @@
+---
+title: no-insecure-http-auth-schemes
+sidebar_position: 9
+description: Disallow insecure HTTP authentication schemes.
+---
+
+# `no-insecure-http-auth-schemes`
+
+Flags `negotiate` and `oauth` values of `scheme` on `type: http` security schemes.
+
+| Attribute | Value |
+|---|---|
+| Category | Security |
+| Maturity | Platinum |
+| Lenient | Warning |
+| Recommended–Complete | Error |
+
+## See it fail
+
+```yaml
+legacyAuth:
+  type: http
+  scheme: negotiate
+```
+
+## Fix it
+
+Replace the scheme with an approved authentication design, commonly OAuth2 or bearer authentication.
+
+Nearby: `no-http-basic`, `security-scheme-no-outdated-auth`.

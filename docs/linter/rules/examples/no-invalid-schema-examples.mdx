@@ -1,0 +1,35 @@
+---
+title: no-invalid-schema-examples
+sidebar_position: 4
+description: Validate schema examples against their schemas.
+---
+
+# `no-invalid-schema-examples`
+
+Validates examples declared on schemas against the resolved schema constraints.
+
+| Attribute | Value |
+|---|---|
+| Category | Examples |
+| Maturity | Bronze |
+| Starter–Lenient | Off |
+| Recommended–Strict | Warning |
+| Complete | Error |
+
+## See it fail
+
+```yaml
+type: string
+enum: [pending, paid]
+example: failed
+```
+
+## Fix it
+
+Use a valid enum value, or update the schema when `failed` is supported.
+
+## Options
+
+Set `allowAdditionalProperties: true` when object examples may contain undeclared fields. Default: `false`.
+
+Nearby: `no-invalid-media-type-examples`, `no-invalid-parameter-examples`.

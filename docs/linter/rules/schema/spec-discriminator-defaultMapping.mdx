@@ -1,0 +1,73 @@
+---
+title: spec-discriminator-defaultMapping
+sidebar_position: 46
+description: Validate OpenAPI 3.2 discriminator default mappings.
+---
+
+# `spec-discriminator-defaultMapping`
+
+Requires a discriminator's `defaultMapping` to identify an existing schema component.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Platinum |
+| OpenAPI | OpenAPI 3.2 |
+| Starter–Lenient | Off |
+| Recommended–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+`defaultMapping` provides the fallback schema when no explicit discriminator mapping matches. A missing target makes that fallback unusable.
+
+## Flags
+
+An OpenAPI 3.2 discriminator whose `defaultMapping` value matches neither a full component name nor the final schema name in the reference-like value.
+
+## Does not flag
+
+Existing component targets, discriminators without `defaultMapping`, or documents earlier than OpenAPI 3.2.
+
+## See it fail
+
+```yaml
+components:
+  schemas:
+    Animal:
+      discriminator:
+        propertyName: kind
+        defaultMapping: '#/components/schemas/UnknownAnimal'
+```
+
+`UnknownAnimal` is not defined under `components.schemas`.
+
+## Fix it
+
+Point to an existing component:
+
+```yaml
+components:
+  schemas:
+    Animal:
+      discriminator:
+        propertyName: kind
+        defaultMapping: '#/components/schemas/GenericAnimal'
+    GenericAnimal:
+      type: object
+```
+
+## Configure
+
+Rule IDs are case-sensitive; preserve the capital `M` in `defaultMapping`.
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        spec-discriminator-defaultMapping: error
+```
+
+Nearby: `duplicate-oneof-discriminator`.

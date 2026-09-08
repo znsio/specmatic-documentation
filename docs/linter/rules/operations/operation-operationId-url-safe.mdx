@@ -1,0 +1,62 @@
+---
+title: operation-operationId-url-safe
+sidebar_position: 45
+description: Restrict operationId values to URL-safe characters.
+---
+
+# `operation-operationId-url-safe`
+
+Requires nonblank `operationId` values to contain only URL-safe characters.
+
+| Attribute | Value |
+|---|---|
+| Category | Operations |
+| Maturity | Baseline |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter–Lenient | Warning |
+| Recommended–Complete | Error |
+
+## Intent
+
+Safe IDs can be reused in links, generated identifiers, and tooling without escaping surprises.
+
+## Flags
+
+An ID containing a character outside letters, digits, and this set:
+
+```text
+- . _ ~ : / ? # [ ] @ ! $ & ' ( ) * + , ; =
+```
+
+## Does not flag
+
+Missing or blank IDs, or IDs composed only of accepted characters. This rule permits URL punctuation; it does not enforce a naming case.
+
+## See it fail
+
+```yaml
+get:
+  operationId: get payment
+```
+
+The space is not allowed.
+
+## Fix it
+
+```yaml
+get:
+  operationId: getPayment
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        operation-operationId-url-safe: warn
+```
+
+Nearby: `operation-operationId`, `operation-operationId-unique`.
