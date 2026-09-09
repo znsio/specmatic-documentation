@@ -1,0 +1,94 @@
+---
+title: additional-properties-false
+sidebar_position: 6
+description: Discourage object schemas that explicitly allow arbitrary properties.
+---
+
+# `additional-properties-false`
+
+Reports object schemas that explicitly set `additionalProperties: true`.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient | Warning |
+| Recommended | Warning |
+| Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Closed object schemas make payload fields explicit. Consumers can validate unknown fields consistently, while API owners can evolve the contract deliberately.
+
+## Flags
+
+This rule reports a schema only when both conditions hold:
+
+- resolved schema type is `object`;
+- `additionalProperties` is the Boolean value `true`.
+
+## Does not flag
+
+- `additionalProperties: false`.
+- An omitted `additionalProperties` field.
+- A schema-valued `additionalProperties` definition.
+- Non-object schemas.
+
+The rule therefore catches explicit open-object declarations; it does not require every object to declare `additionalProperties: false`.
+
+## See it fail
+
+```yaml
+openapi: 3.0.3
+info:
+  title: Payments API
+  version: 1.0.0
+paths: {}
+components:
+  schemas:
+    Payment:
+      type: object
+      additionalProperties: true
+```
+
+Specmatic reports:
+
+```text
+Object schemas with `additionalProperties` should set it to false.
+```
+
+## Fix it
+
+Close the object and define supported fields:
+
+```yaml
+components:
+  schemas:
+    Payment:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+```
+
+## Configure
+
+```yaml title="specmatic-linter.yaml"
+profiles:
+  default:
+    rules:
+      extends:
+        - recommended
+      override:
+        additional-properties-false: error
+```
+
+## Nearby rules
+
+- `no-unconstrained-additional-properties`
+- `invalid-additional-properties-usage`
+- `no-schema-type-mismatch`

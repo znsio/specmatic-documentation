@@ -1,0 +1,87 @@
+---
+title: Linter
+sidebar_position: 1
+description: Check OpenAPI specifications against built-in and custom API governance rules.
+---
+
+# Linter
+
+An OpenAPI specification can be structurally valid and still be impossible to execute reliably. Contradictory schema constraints, incompatible media types, and ambiguous paths can pass surface-level validation, then break generated tests, mocks, contract validation, or implementation.
+
+Specmatic Linter exists to find this gap early. It checks whether a specification is semantically consistent and executable, not only whether its syntax and structure are valid. Findings include precise source locations and actionable explanations, so authors can fix problems before they affect downstream teams and tooling.
+
+The result: a specification that passes linting is closer to one you can execute and trust.
+
+## Watch the overview
+
+### Why executable specifications need semantic linting
+
+See why syntax and structure checks alone cannot prove that an OpenAPI specification is internally consistent and executable.
+
+<iframe
+  width="100%"
+  style={{maxWidth: '760px', aspectRatio: '16 / 9'}}
+  src="https://www.youtube.com/embed/oWh69rNlH_k"
+  title="Is Your OpenAPI Spec Actually Executable? | Specmatic Linter"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerPolicy="strict-origin-when-cross-origin"
+  loading="lazy"
+  allowFullScreen
+></iframe>
+
+[Watch on YouTube](https://www.youtube.com/watch?v=oWh69rNlH_k)
+
+### Deeper look at dynamic specification checks
+
+Learn which problems static checks miss and how execution-aware checks expose them.
+
+<iframe
+  width="100%"
+  style={{maxWidth: '760px', aspectRatio: '16 / 9'}}
+  src="https://www.youtube.com/embed/7qxo7YCrr2I"
+  title="When Linting Shrugs: Dynamic Checks for API Specs | apidays India 2026"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerPolicy="strict-origin-when-cross-origin"
+  loading="lazy"
+  allowFullScreen
+></iframe>
+
+[Watch on YouTube](https://www.youtube.com/watch?v=7qxo7YCrr2I)
+
+Use it to:
+
+- detect structural and semantic inconsistencies with curated built-in rules;
+- define organization-specific rules in YAML;
+- give different API groups their own profiles;
+- measure API maturity from Baseline through Platinum;
+- produce JSON or HTML reports; and
+- block CI only for violations classified as errors.
+
+Specmatic Linter currently supports the OpenAPI specification family: Swagger 2.0 and OpenAPI 3.0, 3.1, and 3.2 documents in YAML or JSON. It is included in Specmatic Enterprise.
+
+Ready to lint your first specification? Start with the [OpenAPI Quick Start](/features/linter/specification-formats/openapi/quick-start).
+
+## Find the right guide
+
+Linter documentation has two layers:
+
+- **Shared guides** explain Docker CLI usage, CI/CD, central governance, and common troubleshooting.
+- **Specification Formats** contains setup, configuration, rules, profiles, maturity, reports, examples, and troubleshooting specific to each supported format. OpenAPI is currently the only format listed.
+
+When another format becomes available, its guide will appear beside OpenAPI. Only behavior proven common across formats belongs in shared guides.
+
+## Learn with the sample project
+
+Use the [Specmatic Linter Interactive Lab](https://github.com/specmatic/specmatic-linter-sample) for a guided, hands-on path through built-in rules, custom rules, maturity levels, profiles, central configuration, reports, and CI usage.
+
+## How it works
+
+1. Create a `specmatic-linter.yaml` configuration.
+2. Choose a built-in ruleset or specific rules.
+3. Run the Enterprise Docker image with the `lint` command against one or more specifications.
+4. Fix reported violations or tune their severity.
+5. Add the same command to CI.
+
+Start with the [OpenAPI Quick Start](/features/linter/specification-formats/openapi/quick-start).

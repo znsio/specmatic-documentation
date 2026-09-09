@@ -1,0 +1,94 @@
+---
+title: no-unconstrained-additional-properties
+sidebar_position: 7
+description: Require a property-count limit when object schemas allow additional properties.
+---
+
+# `no-unconstrained-additional-properties`
+
+Requires `maxProperties` when an object schema permits additional properties.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Platinum |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient | Warning |
+| Recommended | Warning |
+| Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Open-ended objects can grow without bound. Limiting total properties reduces oversized payload risk while still allowing dynamic keys.
+
+## Flags
+
+This rule reports an object schema when:
+
+- `additionalProperties` is `true` or a schema object; and
+- `maxProperties` is absent.
+
+## Does not flag
+
+- `additionalProperties: false`.
+- Objects without an explicit `additionalProperties` field.
+- Open objects that declare `maxProperties`.
+- Non-object schemas.
+
+Schema-valued `additionalProperties` still needs `maxProperties`; constraining each value does not limit key count.
+
+## See it fail
+
+```yaml
+openapi: 3.0.3
+info:
+  title: Events API
+  version: 1.0.0
+paths: {}
+components:
+  schemas:
+    Labels:
+      type: object
+      additionalProperties:
+        type: string
+```
+
+Specmatic reports:
+
+```text
+Object schemas with unconstrained `additionalProperties` should also define `maxProperties`.
+```
+
+## Fix it
+
+Set a limit appropriate for expected payloads:
+
+```yaml
+components:
+  schemas:
+    Labels:
+      type: object
+      maxProperties: 50
+      additionalProperties:
+        type: string
+```
+
+## Configure
+
+```yaml title="specmatic-linter.yaml"
+profiles:
+  default:
+    rules:
+      extends:
+        - recommended
+      override:
+        no-unconstrained-additional-properties: error
+```
+
+## Nearby rules
+
+- `additional-properties-false`
+- `invalid-additional-properties-usage`
+- `string-max-length-or-enum`

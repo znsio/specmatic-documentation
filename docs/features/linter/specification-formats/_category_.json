@@ -1,0 +1,11 @@
+{
+  "label": "Specification Formats",
+  "position": 2,
+  "collapsible": true,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "title": "Supported specification formats",
+    "description": "Choose a specification format to find its setup, rules, examples, and format-specific guidance. OpenAPI is currently supported."
+  }
+}

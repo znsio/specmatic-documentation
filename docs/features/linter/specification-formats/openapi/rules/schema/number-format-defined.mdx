@@ -1,0 +1,56 @@
+---
+title: number-format-defined
+sidebar_position: 12
+description: Require number schemas to use a supported numeric format.
+---
+
+# `number-format-defined`
+
+Requires every resolved number schema to use `float`, `double`, or `decimal` format.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Gold |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Off |
+| Lenient–Strict | Warning |
+| Complete | Error |
+
+## Intent
+
+Number format communicates precision expectations and helps generators select a suitable native type.
+
+## Flags
+
+A `number` schema with no format or a format outside `float`, `double`, and `decimal`. Integer schemas are handled separately.
+
+## See it fail
+
+```yaml
+amount:
+  type: number
+```
+
+Diagnostic: `Number schemas should define format \`float\`, \`double\` or \`decimal\`.`
+
+## Fix it
+
+```yaml
+amount:
+  type: number
+  format: decimal
+```
+
+## Configure
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends: [recommended]
+      override:
+        number-format-defined: error
+```
+
+Nearby: `integer-format-defined`, `invalid-numeric-bounds`.

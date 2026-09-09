@@ -1,0 +1,76 @@
+---
+title: CI/CD Integration
+sidebar_position: 3
+description: Run Specmatic Linter as a repeatable CI quality gate and retain its reports.
+---
+
+# CI/CD Integration
+
+Use the same configuration locally and in CI. Error-level violations fail the build; warnings provide feedback without blocking it.
+
+Current examples lint OpenAPI documents because OpenAPI is the supported specification format today.
+
+## Current OpenAPI example
+
+```bash
+docker run --rm \
+  -v "$(pwd):/usr/src/app" \
+  -w /usr/src/app \
+  specmatic/enterprise \
+  lint "specs/**/*.{yaml,yml,json}" \
+  --config specmatic-linter.yaml
+```
+
+Quote glob patterns so Specmatic, not shell, expands them consistently.
+
+After the command runs, publish this directory as a pipeline artifact:
+
+```text
+build/reports/specmatic/lint/openapi/
+```
+
+## GitHub Actions example
+
+```yaml
+name: Lint API specifications
+
+on:
+  pull_request:
+    paths:
+      - "specs/**"
+      - "specmatic-linter.yaml"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint OpenAPI documents
+        run: |
+          docker run --rm \
+            -v "$GITHUB_WORKSPACE:/usr/src/app" \
+            -w /usr/src/app \
+            specmatic/enterprise \
+            lint "specs/**/*.{yaml,yml,json}"
+
+      - name: Upload lint reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: specmatic-lint-reports
+          path: build/reports/specmatic/lint/openapi/
+```
+
+Configure Enterprise image access and licensing using your CI secret store. Never place credentials in workflow files or linter configuration.
+
+## Roll out without blocking teams
+
+1. Start with `starter` or `lenient`.
+2. Mark newly introduced policy rules as `warn`.
+3. Publish reports on every pull request.
+4. Fix or approve existing findings.
+5. Promote stable rules to `error`.
+6. Move toward `recommended`, then stricter policies only when needed.
+
+Exit code `2` usually means broken pipeline/configuration, not an API violation. Treat it separately when your CI system supports distinct failure handling.

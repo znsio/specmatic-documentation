@@ -1,0 +1,96 @@
+---
+title: no-enum-type-mismatch
+sidebar_position: 3
+description: Require every enum value to match its schema's declared type.
+---
+
+# `no-enum-type-mismatch`
+
+Prevents an enum from containing values its schema type cannot represent.
+
+| Attribute | Value |
+|---|---|
+| Category | Schema |
+| Maturity | Baseline |
+| OpenAPI | Swagger 2.0; OpenAPI 3.0, 3.1, 3.2 |
+| Starter | Warning |
+| Lenient | Error |
+| Recommended | Error |
+| Strict | Error |
+| Complete | Error |
+
+## Intent
+
+An enum narrows a schema to named values. Each value must still satisfy the schema's declared `type`, or validators and generated clients receive contradictory instructions.
+
+## Flags
+
+This rule reports each enum value that does not match `type`.
+
+- A `string` enum cannot contain numbers or booleans.
+- A `number` enum may contain integers or decimal numbers.
+- OpenAPI 3.1/3.2 multi-value `type` accepts an enum value matching any declared type.
+- A null enum value is accepted when OpenAPI 3.0 `nullable: true` applies.
+
+## Does not flag
+
+- Schemas without both `type` and an array-valued `enum`.
+- Enum values matching the declared type.
+- A node containing `$ref`; referenced content is checked at its definition.
+
+## See it fail
+
+```yaml
+openapi: 3.0.3
+info:
+  title: Pets API
+  version: 1.0.0
+paths: {}
+components:
+  schemas:
+    PetType:
+      type: string
+      enum:
+        - dog
+        - 123
+```
+
+Specmatic points to the second enum value and reports:
+
+```text
+All values of `enum` field must be of the same type as the `type` field: expected "string" but received "integer".
+```
+
+## Fix it
+
+Remove the mismatched value or express it using the declared type:
+
+```yaml
+components:
+  schemas:
+    PetType:
+      type: string
+      enum:
+        - dog
+        - "123"
+```
+
+## Configure
+
+```yaml title="specmatic-linter.yaml"
+profiles:
+  default:
+    rules:
+      extends:
+        - recommended
+      override:
+        no-enum-type-mismatch: warn
+```
+
+Use `error` to block mismatched enums, `warn` during cleanup, or `off` to disable the rule.
+
+## Nearby rules
+
+- `no-schema-type-mismatch`
+- `no-required-schema-properties-undefined`
+- `oas30-enum-null-coercion`

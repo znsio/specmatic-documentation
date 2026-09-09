@@ -1,0 +1,10 @@
+{
+  "label": "Built-in Rule Reference",
+  "position": 7,
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "doc",
+    "id": "features/linter/specification-formats/openapi/rules/index"
+  }
+}

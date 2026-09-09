@@ -1,0 +1,79 @@
+---
+title: CLI Reference
+sidebar_position: 5
+description: Docker CLI commands and options for Specmatic Linter.
+---
+
+# CLI Reference
+
+## `lint`
+
+```bash
+docker run --rm \
+  -v "$(pwd):/usr/src/app" \
+  -w /usr/src/app \
+  specmatic/enterprise \
+  lint [targets...] [options]
+```
+
+Specmatic Linter currently accepts OpenAPI documents in YAML or JSON. Targets may be individual files, multiple paths, or glob patterns.
+
+| Option | Meaning | Default |
+|---|---|---|
+| `--config <path>` | Local config path; repo-relative path with `--config-repo-url` | Auto-discover local config or remote root config |
+| `--config-repo-url <url>` | Git repository containing central config | None |
+| `--profile <name>` | Profile to apply | Sole profile or `default` |
+| `--format <json\|html>` | Detailed report format | `json` |
+| `--time` | Print per-target and total duration | Off |
+| `-h`, `--help` | Show command help | Not applicable |
+| `-V`, `--version` | Show version | Not applicable |
+
+Examples:
+
+```bash
+docker run --rm \
+  -v "$(pwd):/usr/src/app" \
+  -w /usr/src/app \
+  specmatic/enterprise \
+  lint openapi.yaml
+
+docker run --rm \
+  -v "$(pwd):/usr/src/app" \
+  -w /usr/src/app \
+  specmatic/enterprise \
+  lint orders.yaml payments.yaml --profile public-api
+
+docker run --rm \
+  -v "$(pwd):/usr/src/app" \
+  -w /usr/src/app \
+  specmatic/enterprise \
+  lint "specs/**/*.{yaml,yml,json}" --format=html --time
+```
+
+## `lint get-rules`
+
+`get-rules` describes rules for selected specification format. It currently generates OpenAPI rule catalog.
+
+```bash
+docker run --rm \
+  -v "$(pwd):/usr/src/app" \
+  -w /usr/src/app \
+  specmatic/enterprise \
+  lint get-rules [options]
+```
+
+| Option | Meaning | Default |
+|---|---|---|
+| `--config <path>` | Linter config path | Parent command value or auto-discovery |
+| `--config-repo-url <url>` | Central config repository | Parent command value |
+| `--profile <name>` | Profile whose effective rules are listed | Parent command value or automatic selection |
+| `--format <html\|json>` | Catalog format | `html` |
+| `--time` | Print catalog generation duration | Off |
+
+OpenAPI catalog output:
+
+```text
+<config-directory>/build/reports/specmatic/lint/openapi/rules-report.<format>
+```
+
+See [OpenAPI Configuration Reference](./specification-formats/openapi/configuration-reference) for rule configuration, assertions, node types, and report fields.

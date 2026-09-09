@@ -166,6 +166,22 @@ const config = {
     [
       '@docusaurus/plugin-client-redirects',
       {
+      createRedirects(existingPath) {
+        if (existingPath === '/features/linter/specification-formats/openapi/troubleshooting') {
+          return undefined;
+        }
+
+        if (existingPath.startsWith('/features/linter/specification-formats/openapi/')) {
+            const previousOpenApiPath = existingPath.replace('/specification-formats', '');
+            const previousFeaturePath = existingPath.replace('/specification-formats/openapi', '');
+            const originalPath = previousOpenApiPath.replace('/features/linter/openapi', '/linter');
+            return [previousOpenApiPath, previousFeaturePath, originalPath];
+          }
+          if (existingPath.startsWith('/features/linter')) {
+            return [existingPath.replace('/features', '')];
+          }
+          return undefined;
+        },
         redirects: [
           // === Redirects from /docs/* to /* (docs prefix redirects) ===
           // contract_driven_development

@@ -10,13 +10,17 @@ workflow:
 
 lint_openapi_files:
   stage: lint
-  image:
-    name: specmatic/enterprise
-    entrypoint: [""]
-  before_script:
-    - mkdir -p ~/.specmatic && echo "$SPECMATIC_LICENSE_KEY" > ~/.specmatic/specmatic-license.txt
+  image: docker:cli
+  services:
+    - docker:dind
   script:
-    - specmatic lint 'io/specmatic/examples/store/openapi/*.yaml'
+    - >-
+      docker run --rm
+      -v "$CI_PROJECT_DIR:/usr/src/app"
+      -w /usr/src/app
+      -e SPECMATIC_LICENSE_CONTENT="$SPECMATIC_LICENSE_KEY"
+      specmatic/enterprise
+      lint 'io/specmatic/examples/store/openapi/*.yaml'
 
 validate_openapi_examples:
   stage: example_validation

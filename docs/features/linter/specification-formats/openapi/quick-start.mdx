@@ -1,0 +1,84 @@
+---
+title: Quick Start
+sidebar_position: 1
+description: Run your first OpenAPI lint check in a few minutes.
+---
+
+# Quick Start
+
+You need Docker, access to the Specmatic Enterprise image, and a valid Enterprise license. See [Download Specmatic](/download#specmatic-enterprise) for setup.
+
+## 1. Create a configuration
+
+Add `specmatic-linter.yaml` beside your OpenAPI document:
+
+```yaml title="specmatic-linter.yaml"
+profiles:
+  default:
+    rules:
+      extends:
+        - starter
+```
+
+`starter` is the smallest built-in ruleset and causes the least friction when adopting linting.
+
+Your directory now looks like this:
+
+```text
+my-api/
+├── openapi.yaml
+└── specmatic-linter.yaml
+```
+
+## 2. Run the linter
+
+From `my-api/`, run:
+
+```bash
+docker run --rm \
+  -v "$(pwd):/usr/src/app" \
+  -w /usr/src/app \
+  specmatic/enterprise \
+  lint openapi.yaml
+```
+
+Specmatic finds `specmatic-linter.yaml` in the current directory automatically.
+
+## 3. Read the result
+
+Every target gets a summary:
+
+```text
+Target: openapi.yaml
+Maturity Level: Silver
+Errors: 2, Warnings: 4, Ignored: 0
+Status: FAILED
+```
+
+- **Errors** fail the command.
+- **Warnings** remain visible but do not fail the command.
+- **Ignored** problems are detected but excluded by configuration.
+
+The detailed JSON report is written to:
+
+```text
+build/reports/specmatic/lint/openapi/lint-report-openapi.json
+```
+
+For a browser-friendly report, run the command with `--format=html`.
+
+## 4. Choose more rules
+
+After fixing or triaging starter findings, move to a broader ruleset:
+
+```yaml
+profiles:
+  default:
+    rules:
+      extends:
+        - recommended
+```
+
+Next: learn how to [configure rules and profiles](./configuration).
+
+Want a complete guided exercise? Continue with the [Specmatic Linter Interactive Lab](https://github.com/specmatic/specmatic-linter-sample), which includes runnable examples for rules, profiles, maturity levels, reports, and central configuration.

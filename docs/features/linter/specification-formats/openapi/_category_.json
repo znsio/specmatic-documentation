@@ -1,0 +1,11 @@
+{
+  "label": "OpenAPI",
+  "position": 2,
+  "collapsible": true,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "title": "OpenAPI linting",
+    "description": "Run Specmatic Linter against OpenAPI documents and understand its OpenAPI rules."
+  }
+}
