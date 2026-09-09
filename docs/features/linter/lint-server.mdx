@@ -1,0 +1,68 @@
+---
+title: Specmatic Lint Server
+sidebar_position: 5
+description: Lint OpenAPI specifications through an HTTP API.
+---
+
+import {CommercialBadge} from "../../../src/components/CommercialBadge";
+
+# Specmatic Lint Server <CommercialBadge/>
+
+:::caution[Experimental]
+Specmatic Lint Server currently supports only OpenAPI specifications. Support for other specification formats will be added in future releases. The server is experimental, may change, and requires a Specmatic Enterprise service-account license.
+:::
+
+Specmatic Lint Server exposes an HTTP API for linting OpenAPI specifications. It loads lint configuration from a central Git repository and applies a requested profile to each specification.
+
+## Start server
+
+```bash
+docker run --rm \
+  -p 8000:8000 \
+  -v "$HOME/.specmatic:/root/.specmatic:ro" \
+  specmatic/enterprise \
+  lint-server \
+  --config-repo-url=https://github.com/example/api-governance.git
+```
+
+Server listens on port `8000` by default. Use `--port <number>` to choose another port.
+
+For a private configuration repository, pass `--config-repo-token <token>`. Keep token in secret storage and do not commit it.
+
+## Lint specification
+
+Send URL of OpenAPI specification and profile to `POST /lint-reports`:
+
+```bash
+curl --request POST http://localhost:8000/lint-reports \
+  --header "Content-Type: application/json" \
+  --data '{
+    "specUuid": "550e8400-e29b-41d4-a716-446655440000",
+    "specUrl": "https://example.com/openapi.yaml",
+    "profile": "default"
+  }'
+```
+
+`specUrl` must use HTTP or HTTPS and must be reachable from server container. `specUuid` identifies source in lint report.
+
+Successful request returns JSON lint report with problems, totals, maturity assessment, and notes. Error-level violations remain part of successful `200` response.
+
+## API documentation
+
+After server starts, open `http://localhost:8000/api-docs` for interactive API documentation.
+
+## Configuration status
+
+Server checks central repository for configuration changes every five minutes.
+
+```bash
+curl http://localhost:8000/config/status
+```
+
+Request immediate refresh:
+
+```bash
+curl --request POST http://localhost:8000/config/refresh
+```
+
+Refresh request returns `202`. Use `/config/status` to confirm latest result.

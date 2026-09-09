@@ -4,7 +4,9 @@ sidebar_position: 1
 description: Check OpenAPI specifications against built-in and custom API governance rules.
 ---
 
-# Linter
+import {CommercialBadge} from "../../../src/components/CommercialBadge";
+
+# Linter <CommercialBadge/>
 
 An OpenAPI specification can be structurally valid and still be impossible to execute reliably. Contradictory schema constraints, incompatible media types, and ambiguous paths can pass surface-level validation, then break generated tests, mocks, contract validation, or implementation.
 
@@ -85,3 +87,5 @@ Use the [Specmatic Linter Interactive Lab](https://github.com/specmatic/specmati
 5. Add the same command to CI.
 
 Start with the [OpenAPI Quick Start](/features/linter/specification-formats/openapi/quick-start).
+
+To lint specifications through an HTTP API, see [Specmatic Lint Server](/features/linter/lint-server).
