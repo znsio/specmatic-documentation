@@ -823,7 +823,7 @@ If the same incoming request appears in multiple examples having different respo
 
 You can detect such issues with competing example requests early by using Specmatic to validate your examples.
 
-Transient examples (`"transient": true` or `"http-stub-id"`) and persistent examples are checked in separate buckets. A transient example that overlaps a persistent example is not competing, because the mock uses the transient example first and can still fall back to the persistent example afterward. Two overlapping transient examples, or two overlapping persistent examples, are still reported as competing.
+Competing-example detection checks transient examples (`"transient": true` or `"http-stub-id"`) and persistent examples in separate buckets. Within each bucket, overlapping requests are still competing. Across buckets they are not, because the mock uses the transient example first and can still fall back to the persistent example afterward. So a transient example may intentionally share a request with a persistent one.
 
 Let's try the validation out. 
 
