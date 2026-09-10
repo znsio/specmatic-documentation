@@ -817,7 +817,7 @@ For each template, Specmatic resolves values in this order:
 
 ## Identifying Examples with Competing Requests <CommercialBadge/>
 
-When using multiple examples, it's important to ensure each request is unique. 
+When using multiple examples within the same bucket (all persistent, or all transient), it's important to ensure each request is unique. 
 
 If the same incoming request appears in multiple examples having different responses (e.g., one returns HTTP 200 and another HTTP 400), then Specmatic mock server will arbitrarily pick one of the examples matching the incoming request and serve its response, ignoring the others. The user may not even realise that there are multiple examples matching the incoming request. Thus, the response from Specmatic mock may not be the one that the user expects, resulting in confusion.
 
