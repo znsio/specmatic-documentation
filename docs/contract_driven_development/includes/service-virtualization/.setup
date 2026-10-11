@@ -16,6 +16,12 @@ cleanup() {
   if [[ -n "$mock_pid" ]]; then
     if [[ "$result" == 0 ]]; then node verify-response.js || result=$?; fi
     kill "$mock_pid" 2>/dev/null || true
+    # Bound graceful shutdown; Enterprise can stall after serving a valid response.
+    for attempt in {1..20}; do
+      kill -0 "$mock_pid" 2>/dev/null || break
+      sleep 0.1
+    done
+    kill -KILL "$mock_pid" 2>/dev/null || true
     wait "$mock_pid" 2>/dev/null || true
   fi
   exit "$result"

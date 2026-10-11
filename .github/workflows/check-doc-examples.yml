@@ -29,7 +29,7 @@ jobs:
           distribution: temurin
           java-version: '21'
       - name: Test the generic example runner
-        run: node --test scripts/check-doc-examples.test.js
+        run: node --test scripts/check-doc-examples.test.js scripts/service-virtualization-setup.test.js
       - name: Run published CLI examples
         env:
           SPECMATIC_LICENSE_CONTENT: ${{ matrix.edition == 'enterprise' && secrets.SPECMATIC_LICENSE_KEY || '' }}
