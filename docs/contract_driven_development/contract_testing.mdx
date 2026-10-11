@@ -1059,7 +1059,7 @@ This fallback applies when:
 
 For example,
 - if a response contains `$(EMPLOYEE_CODE)` but `EMPLOYEE_CODE` was not captured from the request, Specmatic will ignore the unresolved substitution and generate a valid value for that response field.
-- Similarly, if a data lookup expression such as `$(dataLookup.departments[DEPARTMENT].desig)` cannot be resolved, Specmatic will generate a valid value for `designation` based on its schema.
+- Similarly, if a data lookup expression such as `$(dataLookup.departments[DEPARTMENT].design)` cannot be resolved, Specmatic will generate a valid value for `designation` based on its schema.
 
 Substitution also supports:
 - interpolated expressions, such as `"Employee $(EMPLOYEE_CODE) updated"`

@@ -385,18 +385,18 @@ Let's try this out.
 
   <CodeBlock language="json">{require('../includes/service-virtualization/lookup-sales-response.json?raw').trimEnd()}</CodeBlock>
 
-- Note: The curl request matched the example request, so Specmatic loaded the corresponding response in the example, evaluated the expression `$(dataLookup.departments[DEPARTMENT].desig)` to get value of `designation` (which turned out to be "Associate"), evaluated the direct substitution expressions to get the values of `employeeCode` and `department`, and returned this response to the caller.
+- Note: The curl request matched the example request, so Specmatic loaded the corresponding response in the example, evaluated the expression `$(dataLookup.departments[DEPARTMENT].design)` to get value of `designation` (which turned out to be "Associate"), evaluated the direct substitution expressions to get the values of `employeeCode` and `department`, and returned this response to the caller.
 
-- Specmatic evaluates the expression `$(dataLookup.departments[DEPARTMENT].desig)` from the example response using the following steps:
+- Specmatic evaluates the expression `$(dataLookup.departments[DEPARTMENT].design)` from the example response using the following steps:
   - Access the `dataLookup` object (you'll find it in the example JSON).
   - Retrieve the `departments` collection from the `dataLookup` object.
   - Select the department corresponding to the value of the variable `DEPARTMENT` from the departments collection.
     - In this case, the value of `DEPARTMENT` is set to "Sales" (see the section on Direct Substitution above if you don't understand how that came about).
-  - Access the `desig` property of the selected department.
-- It's the value of the `desig` property that gets used as the value of `designation` in the response.
+  - Access the `design` property of the selected department.
+- It's the value of the `design` property that gets used as the value of `designation` in the response.
 
 - The format of these expressions is fixed: `top-level-object.collection[LOOKUP_VARIABLE_NAME].property`
-  - The names themselves, such as `dataLookup`, `departments`, `desig` are not restricted to any format. You may use names that are meaningful to you.
+  - The names themselves, such as `dataLookup`, `departments`, `design` are not restricted to any format. You may use names that are meaningful to you.
 
 - Next execute this curl command:
 
@@ -420,7 +420,7 @@ This fallback applies when:
 
 For example,
 - if a response contains `$(EMPLOYEE_CODE)` but `EMPLOYEE_CODE` was not captured from the request, Specmatic will ignore the unresolved substitution and generate a valid value for that response field.
-- Similarly, if a data lookup expression such as `$(dataLookup.departments[DEPARTMENT].desig)` cannot be resolved, Specmatic will generate a valid value for `designation` based on its schema.
+- Similarly, if a data lookup expression such as `$(dataLookup.departments[DEPARTMENT].design)` cannot be resolved, Specmatic will generate a valid value for `designation` based on its schema.
 
 Substitution also supports:
 - interpolated expressions, such as `"Employee $(EMPLOYEE_CODE) updated"`
