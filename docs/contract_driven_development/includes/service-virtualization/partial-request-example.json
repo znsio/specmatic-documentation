@@ -1,0 +1,21 @@
+{
+    "partial": {
+        "http-request": {
+            "method": "PATCH",
+            "path": "/employees",
+            "body": {
+                "name": "George"
+            }
+        },
+        "http-response": {
+            "status": 200,
+            "body": {
+                "id": 10,
+                "employeeCode": "abc123",
+                "name": "George",
+                "department": "Sales",
+                "designation": "Manager"
+            }
+        }
+    }
+}

@@ -95,6 +95,7 @@ async function main() {
   if (!folders.length) folders.push(
     path.join(__dirname, '../docs/getting_started/includes/cli-quick-start'),
     path.join(__dirname, '../docs/contract_driven_development/includes/contract-testing'),
+    path.join(__dirname, '../docs/contract_driven_development/includes/service-virtualization'),
   );
   const failures = [];
   for (const edition of selected === 'both' ? Object.keys(editions) : [selected]) {

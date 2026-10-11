@@ -1,0 +1,6 @@
+# Capture the actual published curl response for semantic verification.
+curl() {
+  command curl --silent --show-error --dump-header response-headers.txt "$@" > response-body.txt
+  cat response-body.txt
+}
+export -f curl

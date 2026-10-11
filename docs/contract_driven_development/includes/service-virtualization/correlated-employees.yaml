@@ -1,0 +1,47 @@
+openapi: 3.0.0
+info:
+  title: Employees
+  version: '1.0'
+servers: []
+paths:
+  /employees:
+    patch:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Employee'
+      responses:
+        '200':
+          description: Employee Updated Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeResponse'
+components:
+  schemas:
+    Employee:
+      type: object
+      required:
+        - employeeCode
+      properties:
+        employeeCode:
+          type: string
+        name:
+          type: string
+        department:
+          type: string
+        designation:
+          type: string
+    EmployeeResponse:
+      allOf:
+        - $ref: '#/components/schemas/Employee'
+        - type: object
+          required:
+            - id
+            - employeeCode
+          properties:
+            id:
+              type: integer
+            employeeCode:
+              type: string

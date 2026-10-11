@@ -69,7 +69,7 @@ npm run check:links
 
 ## Validate executable documentation examples
 
-Run the quick-start and contract-testing checks against the latest release of both OSS and Enterprise:
+Run the quick-start, contract-testing, and service-virtualization checks against the latest release of both OSS and Enterprise:
 
 ```bash
 npm run check:examples
@@ -149,3 +149,12 @@ the three documented command errors identified in the findings report are correc
 historical timestamps and placeholder versions. The separate `*.terminaloutput`
 files contain stable test assertions rather than full transcript comparisons.
 The labs' Python validator is not invoked here.
+
+
+Service-virtualization coverage includes 12 shared Java/curl examples under
+`docs/contract_driven_development/includes/service-virtualization/`. These checks
+start real mocks, verify HTTP status and response values against shared page
+fixtures, and clean up each mock. Port 9000 must be available. The department mismatch and missing employeeCode instructions are corrected
+and covered by the normal suite.
+See [service-virtualization findings](scripts/service-virtualization-findings.md)
+for reproduction commands and coverage limits. The rendered page is preserved apart from these explicitly corrected instructions.

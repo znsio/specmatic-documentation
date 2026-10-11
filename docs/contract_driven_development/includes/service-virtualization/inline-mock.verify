@@ -1,0 +1,3 @@
+source ./capture-response
+bash inline-request.sh
+node verify-response.js

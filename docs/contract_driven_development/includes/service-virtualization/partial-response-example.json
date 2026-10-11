@@ -1,0 +1,19 @@
+{
+    "partial": {
+        "http-request": {
+            "method": "PATCH",
+            "path": "/employees",
+            "body": {
+                "name": "George"
+            }
+        },
+        "http-response": {
+            "status": 200,
+            "body": {
+                "name": "George",
+                "department": "Sales",
+                "designation": "Manager"
+            }
+        }
+    }
+}

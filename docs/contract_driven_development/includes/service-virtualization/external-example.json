@@ -1,0 +1,29 @@
+{
+    "http-request": {
+        "path": "/employees",
+        "method": "POST",
+
+        "headers": {
+            "Content-Type": "application/json"
+        },
+
+        "body": {
+            "name": "Jack Sprat",
+            "department": "Sales",
+            "designation": "Director"
+        }
+    },
+    "http-response": {
+        "status": 201,
+
+        "body": {
+            "id": 20
+        },
+
+        "headers": {
+            "Content-Type": "application/json"
+        },
+
+        "status-text": "Created"
+    }
+}

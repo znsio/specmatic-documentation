@@ -37,3 +37,4 @@ jobs:
           npm run check:examples -- --edition ${{ matrix.edition }}
           docs/getting_started/includes/cli-quick-start
           docs/contract_driven_development/includes/contract-testing
+          docs/contract_driven_development/includes/service-virtualization

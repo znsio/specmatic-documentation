@@ -38,9 +38,7 @@ Service Virtualization
 
     <Tabs groupId="test">
       <TabItem value="java" label="java">
-        ```shell
-        java -jar specmatic.jar mock
-        ```
+        <CodeBlock language="shell">{require('../includes/service-virtualization/inline-mock.sh?raw').trimEnd()}</CodeBlock>
       </TabItem>
 
       <TabItem value="npm" label="npm">
@@ -64,17 +62,11 @@ Service Virtualization
 
 - In a new tab, run the following curl command:
 
-  ```shell
-  curl -X POST -H 'Content-Type: application/json' -d '{"name": "Jill Doe", "department": "Engineering", "designation": "Director"}' http://localhost:9000/employees
-  ```
+  <CodeBlock language="shell">{require('../includes/service-virtualization/inline-request.sh?raw').trimEnd()}</CodeBlock>
 
 - You should get the following response back:
 
-  ```json
-  {
-    "id": 10
-  }
-  ```
+  <CodeBlock language="json">{require('../includes/service-virtualization/inline-response.json?raw').trimEnd()}</CodeBlock>
 
 - Specmatic ties the **named example** `CREATE_EMPLOYEE_SUCCESS` listed under the request parameters and the response sections of the OpenAPI spec to create a test.
 - Here's a detailed breakdown of the contract test:
@@ -161,53 +153,17 @@ Note that when the mock starts, it will log the count of examples loaded for a s
 
 - Now let's update the request section to suit our needs, by modifying the value of `name` to "Jack Sprat", and the value of `department` to "Sales". And in the response, let us modify the value of `id` to 20, like so:
 
-  ```json
-  {
-      "http-request": {
-          "path": "/employees",
-          "method": "POST",
-
-          "headers": {
-              "Content-Type": "application/json"
-          },
-
-          "body": {
-              "name": "Jack Sprat",
-              "department": "Sales",
-              "designation": "Director"
-          }
-      },
-      "http-response": {
-          "status": 201,
-
-          "body": {
-              "id": 20
-          },
-
-          "headers": {
-              "Content-Type": "application/json"
-          },
-
-          "status-text": "Created"
-      }
-  }
-  ```
+  <CodeBlock language="json">{require('../includes/service-virtualization/external-example.json?raw').trimEnd()}</CodeBlock>
 
 - Kill the mock (`Ctrl+C`) if it is running, and start it again.
   - You will see that file name is mentioned in the startup logs.
 - In a new tab, run the following curl command:
 
-  ```shell
-  curl -X POST -H 'Content-Type: application/json' -d '{"name": "Jack Sprat", "department": "Sales", "designation": "Director"}' http://localhost:9000/employees
-  ```
+  <CodeBlock language="shell">{require('../includes/service-virtualization/external-request.sh?raw').trimEnd()}</CodeBlock>
 
 - Specmatic mock will response with this payload:
 
-  ```json
-  {
-    "id": 20
-  }
-  ```
+  <CodeBlock language="json">{require('../includes/service-virtualization/external-response.json?raw').trimEnd()}</CodeBlock>
 
 #### Handling No Response Body APIs
 
@@ -252,37 +208,7 @@ Let's try this feature out.
 
 Create a file named `out-of-sync.json` with the following contents:
 
-  ```json
-  {
-    "http-request": {
-      "path": "/employees",
-      "method": "POST",
-
-      "headers": {
-        "Content-Type": "application/json"
-      },
-
-      "body": {
-        "name": "Janet",
-        "department": "Sales",
-        "designation": "Director"
-      }
-    },
-    "http-response": {
-      "status": 201,
-
-      "body": {
-        "id": "abc123"
-      },
-
-      "headers": {
-        "Content-Type": "application/json"
-      },
-
-      "status-text": "Created"
-    }
-  }
-  ```
+  <CodeBlock language="json">{require('../includes/service-virtualization/out-of-sync.json?raw').trimEnd()}</CodeBlock>
 
 - Note: the value of `id` in the response is a string in the example, but an integer in the specification.
 - Now when you start the mock server, you'll see the following error message in the log:
@@ -298,9 +224,7 @@ Create a file named `out-of-sync.json` with the following contents:
 
 - Specmatic's mock rejected the example because of the mismatch. Let us ascertain the same by running the following curl command:
 
-  ```shell
-  curl -X POST -H 'Content-Type: application/json' -d '{"name": "Janet", "department": "Sales", "designation": "Director"}' http://localhost:9000/employees
-  ```
+  <CodeBlock language="shell">{require('../includes/service-virtualization/out-of-sync-request.sh?raw').trimEnd()}</CodeBlock>
 
 - You'll get this response:
 
@@ -323,9 +247,7 @@ Let's try this out.
 
     <Tabs groupId="test">
       <TabItem value="java" label="Java">
-        ```shell
-        java -jar specmatic.jar mock --strict
-        ```
+        <CodeBlock language="shell">{require('../includes/service-virtualization/strict-mock.sh?raw').trimEnd()}</CodeBlock>
       </TabItem>
       <TabItem value="npm" label="npm">
         ```shell
@@ -348,9 +270,7 @@ Let's try this out.
 
 - Now run the following curl command:
 
-  ```shell
-  curl -X POST -H 'Content-Type: application/json' -d '{"name": "Janet", "department": "Sales", "designation": "Director"}' http://localhost:9000/employees
-  ```
+  <CodeBlock language="shell">{require('../includes/service-virtualization/strict-request.sh?raw').trimEnd()}</CodeBlock>
 
 - Specmatic will return a 400, with a detailed error message.
 
@@ -368,56 +288,20 @@ Let's see how we can formulate an example that meets these requirements.
 
 - Create a new file in the `employees_examples` directory named `any_name.json` with the following contents:
 
-  ```json title='employees_example/any_name.json'
-  {
-    "http-request": {
-      "path": "/employees",
-      "method": "POST",
-
-      "headers": {
-        "Content-Type": "application/json"
-      },
-
-      "body": {
-        "name": "(string)",
-        "department": "Sales",
-        "designation": "Director"
-      }
-    },
-    "http-response": {
-      "status": 201,
-
-      "body": {
-        "id": 30
-      },
-
-      "headers": {
-        "Content-Type": "application/json"
-      },
-
-      "status-text": "Created"
-    }
-  }
-  ```
+  <CodeBlock language="json" title='employees_example/any_name.json'>{require('../includes/service-virtualization/any-name.json?raw').trimEnd()}</CodeBlock>
 
 - Start the Specmatic mock and execute the following command, which has the `name` "Janet":
 
-  ```shell
-  curl -X POST -H 'Content-Type: application/json' -d '{"name": "Janet", "department": "Engineering", "designation": "Director"}' http://localhost:9000/employees
-  ```
+  <CodeBlock language="shell">{require('../includes/service-virtualization/data-type-request.sh?raw').trimEnd()}</CodeBlock>
 
 - You'll get this response:
 
-  ```json
-  {
-      "id": 30
-  }
-  ```
+  <CodeBlock language="json">{require('../includes/service-virtualization/data-type-response.json?raw').trimEnd()}</CodeBlock>
 
 - Modify the `name` to "Justin", or any other name, and you'll get the same response.
   - This is because Specmatic just checks that the `name` in your curl request is a string. It doesn't care about the exact value.
 - But modify the value of `department` in the curl command to "Facilities".
-  - This time round, the request does not match the example, because the values of `department` in the example and the request are different ("Sales" and "Engineering" respectively).
+  - This time round, the request does not match the example, because the values of `department` in the example and the request are different ("Sales" and "Facilities" respectively).
   - Since no example available matches the incoming request, a response is generated based on the specification and returned.
 
 ## Plain Text Request Bodies - Examples With Regular Expressions
@@ -442,28 +326,11 @@ containing required `name` and `number` fields.
 
 4.  Run the following curl command:
 
-    ```shell
-    curl -X POST -H "Content-Type: text/plain" -d "John" http://localhost:9000/search
-    ```
+    <CodeBlock language="shell">{require('../includes/service-virtualization/phonebook-request.sh?raw').trimEnd()}</CodeBlock>
 
 - You'll get this response:
 
-    ```json
-    [
-      {
-        "name": "John Doe",
-        "number": "123-456-7890"
-      },
-      {
-        "name": "John Smith",
-        "number": "987-654-3210"
-      },
-      {
-        "name": "John Johnson",
-        "number": "555-555-5555"
-      }
-    ]
-    ```
+    <CodeBlock language="json">{require('../includes/service-virtualization/phonebook-response.json?raw').trimEnd()}</CodeBlock>
 
 - If the `bodyRegex` matches the incoming request body, that example is utilized. Otherwise, a random response is generated.
 - Try modifying the last name in the curl request. As long as the request begins with `John` case-insensitive, you will receive the same response as defined by the regex in the `bodyRegex` in the example.
@@ -474,55 +341,7 @@ Sometimes, your application may require the request and response to be coordinat
 
 In preparation, let's update our employees.yaml specification with the following content:
 
-  ```yaml
-  openapi: 3.0.0
-  info:
-    title: Employees
-    version: '1.0'
-  servers: []
-  paths:
-    /employees:
-      patch:
-        requestBody:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Employee'
-        responses:
-          '200':
-            description: Employee Updated Response
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/EmployeeResponse'
-  components:
-    schemas:
-      Employee:
-        type: object
-        required:
-          - employeeCode
-        properties:
-          employeeCode:
-            type: string
-          name:
-            type: string
-          department:
-            type: string
-          designation:
-            type: string
-      EmployeeResponse:
-        allOf:
-          - $ref: '#/components/schemas/Employee'
-          - type: object
-            required:
-              - id
-              - employeeCode
-            properties:
-              id:
-                type: integer
-              employeeCode:
-                type: string
-  ```
+  <CodeBlock language="yaml">{require('../includes/service-virtualization/correlated-employees.yaml?raw').trimEnd()}</CodeBlock>
 
 Since we have changed the spec, remove all the examples in `employees_examples`, as they will now be invalid.
 
@@ -530,46 +349,15 @@ Since we have changed the spec, remove all the examples in `employees_examples`,
 
 - In the `employees_examples` directory, add a file named `direct_substitution.json` with the following content:
 
-  ```json
-  {
-      "http-request": {
-          "method": "PATCH",
-          "path": "/employees",
-          "body": {
-              "name": "Jake",
-              "employeeCode": "(EMPLOYEE_CODE:string)"
-          }
-      },
-      "http-response": {
-          "status": 200,
-          "body": {
-              "id": 10,
-              "name": "Jake",
-              "employeeCode": "$(EMPLOYEE_CODE)",
-              "department": "Sales",
-              "designation": "Associate"
-          }
-      }
-  }
-  ```
+  <CodeBlock language="json">{require('../includes/service-virtualization/direct-substitution.json?raw').trimEnd()}</CodeBlock>
 
 - Execute the following `curl` command:
 
-  ```shell
-  curl -X PATCH -H 'Content-Type: application/json' -d '{"name": "Jake", "employeeCode": "abc123"}' http://localhost:9000/employees
-  ```
+  <CodeBlock language="shell">{require('../includes/service-virtualization/direct-request.sh?raw').trimEnd()}</CodeBlock>
 
 - You'll get this response:
 
-  ```json
-  {
-      "id": 10,
-      "name": "Jake",
-      "employeeCode": "abc123",
-      "department": "Sales",
-      "designation": "Associate"
-  }
-  ```
+  <CodeBlock language="json">{require('../includes/service-virtualization/direct-response.json?raw').trimEnd()}</CodeBlock>
 
 - Here's what's happening.
   - The value of `employeeCode` in the incoming curl request is stored to a variable named `EMPLOYEE_CODE`, due to `"employeeCode": "(EMPLOYEE_CODE:string)"`.
@@ -585,58 +373,17 @@ Let's try this out.
 
 - Add a new file into the `employees_examples` directory named `data_lookup.json` with the following contents:
 
-  ```json
-  {
-      "http-request": {
-          "method": "PATCH",
-          "path": "/employees",
-          "body": {
-              "employeeCode": "(EMPLOYEE_CODE:string)",
-              "department": "(DEPARTMENT:string)"
-          }
-      },
-      "http-response": {
-          "status": 200,
-          "body": {
-              "id": 10,
-              "employeeCode": "$(EMPLOYEE_CODE)",
-              "name": "Jack",
-              "department": "$(DEPARTMENT)",
-              "designation": "$(dataLookup.departments[DEPARTMENT].desig)"
-          }
-      },
-      "dataLookup": {
-          "departments": {
-              "Sales": {
-                  "desig": "Associate"
-              },
-              "Engineering": {
-                  "desig": "Manager"
-              }
-          }
-      }
-  }
-  ```
+  <CodeBlock language="json">{require('../includes/service-virtualization/data-lookup.json?raw').trimEnd()}</CodeBlock>
 
 - Observe the value of `designation` in the response. Specmatic will resolve this expression at runtime on receiving a request that matches the request in this example.
 
 - First let's see it in action. Execute this curl command:
 
-  ```shell
-  curl -X PATCH -H 'Content-Type: application/json' -d '{"department": "Sales", "employeeCode": "abc123"}' http://localhost:9000/employees
-  ```
+  <CodeBlock language="shell">{require('../includes/service-virtualization/lookup-sales-request.sh?raw').trimEnd()}</CodeBlock>
 
 - You'll get the following response, in which the value of `designation` is "Associate", as per the lookup.
 
-  ```json
-  {
-      "id": 10,
-      "name": "Jack",
-      "employeeCode": "abc123",
-      "department": "Sales",
-      "designation": "Associate"
-  }
-  ```
+  <CodeBlock language="json">{require('../includes/service-virtualization/lookup-sales-response.json?raw').trimEnd()}</CodeBlock>
 
 - Note: The curl request matched the example request, so Specmatic loaded the corresponding response in the example, evaluated the expression `$(dataLookup.departments[DEPARTMENT].desig)` to get value of `designation` (which turned out to be "Associate"), evaluated the direct substitution expressions to get the values of `employeeCode` and `department`, and returned this response to the caller.
 
@@ -653,21 +400,11 @@ Let's try this out.
 
 - Next execute this curl command:
 
-  ```shell
-  curl -X PATCH -H 'Content-Type: application/json' -d '{"department": "Engineering"}' http://localhost:9000/employees
-  ```
+  <CodeBlock language="shell">{require('../includes/service-virtualization/lookup-engineering-request.sh?raw').trimEnd()}</CodeBlock>
 
 - You will get the following response, in which the value of `designation` is "Manager", as per the lookup.
 
-  ```json
-  {
-    "id": 10,
-    "name": "Jack",
-    "employeeCode": "abc123",
-    "department": "Engineering",
-    "designation": "Manager"
-  }
-  ```
+  <CodeBlock language="json">{require('../includes/service-virtualization/lookup-engineering-response.json?raw').trimEnd()}</CodeBlock>
 
 - You can use as many collections and properties as you like in the `dataLookup` data object.
 
@@ -704,49 +441,17 @@ For example, suppose I want to set up a response for all requests with `name` se
 
 - Create a file in `employees_examples` named partial.json, with the following contents:
 
-  ```json
-  {
-      "partial": {
-          "http-request": {
-              "method": "PATCH",
-              "path": "/employees",
-              "body": {
-                  "name": "George"
-              }
-          },
-          "http-response": {
-              "status": 200,
-              "body": {
-                  "id": 10,
-                  "employeeCode": "abc123",
-                  "name": "George",
-                  "department": "Sales",
-                  "designation": "Manager"
-              }
-          }
-      }
-  }
-  ```
+  <CodeBlock language="json">{require('../includes/service-virtualization/partial-request-example.json?raw').trimEnd()}</CodeBlock>
 
 - Note: In the request, the example only contains `name`. But because this is a `partial` example, Specmatic knows that `employeeCode` is mandatory and will validate the incoming request accordingly, despite it being missing in the example.
 
 - Start the mock, and execute the following curl command:
 
-    ```shell
-    curl -X PATCH -H 'Content-Type: application/json' -d '{"name": "George", "employeeCode": "abc12dd3"}' http://localhost:9000/employees
-    ```
+    <CodeBlock language="shell">{require('../includes/service-virtualization/partial-request.sh?raw').trimEnd()}</CodeBlock>
 
 - You'll get this response:
 
-    ```json
-    {
-        "id": 10,
-        "employeeCode": "abc123",
-        "name": "George",
-        "department": "Sales",
-        "designation": "Manager"
-    }
-    ```
+    <CodeBlock language="json">{require('../includes/service-virtualization/partial-response.json?raw').trimEnd()}</CodeBlock>
 
 - Try the same but vary status code. As long as the `name` is "George", you will get the above response.
 
@@ -756,27 +461,7 @@ The same idea extends to the response.
 
 - Replace the content of `employees_examples/partial.json` with the following contents:
 
-    ```json
-    {
-        "partial": {
-            "http-request": {
-                "method": "PATCH",
-                "path": "/employees",
-                "body": {
-                    "name": "George"
-                }
-            },
-            "http-response": {
-                "status": 200,
-                "body": {
-                    "name": "George",
-                    "department": "Sales",
-                    "designation": "Manager"
-                }
-            }
-        }
-    }
-    ```
+    <CodeBlock language="json">{require('../includes/service-virtualization/partial-response-example.json?raw').trimEnd()}</CodeBlock>
 
 - Note that the two mandatory keys in the response named `id` and `employeeCode` are omitted from the example.
 - But because it's a partial example, when you execute the previous curl command, Specmatic will autogenerate values for `id` and `employeeCode` from their schemas in the specification.

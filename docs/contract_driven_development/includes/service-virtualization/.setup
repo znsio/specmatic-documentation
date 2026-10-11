@@ -1,0 +1,35 @@
+# Only the illustrative JAR filename is substituted; all arguments are preserved.
+java() {
+  if [[ "$1" == -jar && "$2" == specmatic.jar ]]; then
+    shift 2
+    command specmatic "$@"
+  else
+    command java "$@"
+  fi
+}
+export -f java
+source ./capture-response
+node prepare.js
+mock_pid=''
+cleanup() {
+  local result=$?
+  if [[ -n "$mock_pid" ]]; then
+    if [[ "$result" == 0 ]]; then node verify-response.js || result=$?; fi
+    kill "$mock_pid" 2>/dev/null || true
+    wait "$mock_pid" 2>/dev/null || true
+  fi
+  exit "$result"
+}
+trap cleanup EXIT
+if [[ "$DOC_EXAMPLE_NAME" != *-mock.sh ]]; then
+  args=(mock)
+  [[ "$DOC_EXAMPLE_NAME" == strict-request.sh ]] && args+=(--strict)
+  command specmatic "${args[@]}" > mock.log 2>&1 &
+  mock_pid=$!
+  for attempt in {1..300}; do
+    if [[ "$(cat mock.log)" == *"Mock server is running on the following URLs:"* ]] && command curl --silent --fail http://localhost:9000/actuator/health > /dev/null; then break; fi
+    kill -0 "$mock_pid" 2>/dev/null || { cat mock.log; exit 1; }
+    sleep 0.1
+  done
+  command curl --silent --fail http://localhost:9000/actuator/health > /dev/null || { cat mock.log; exit 1; }
+fi

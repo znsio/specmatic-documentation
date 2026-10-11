@@ -1,0 +1,30 @@
+{
+    "http-request": {
+        "method": "PATCH",
+        "path": "/employees",
+        "body": {
+            "employeeCode": "(EMPLOYEE_CODE:string)",
+            "department": "(DEPARTMENT:string)"
+        }
+    },
+    "http-response": {
+        "status": 200,
+        "body": {
+            "id": 10,
+            "employeeCode": "$(EMPLOYEE_CODE)",
+            "name": "Jack",
+            "department": "$(DEPARTMENT)",
+            "designation": "$(dataLookup.departments[DEPARTMENT].desig)"
+        }
+    },
+    "dataLookup": {
+        "departments": {
+            "Sales": {
+                "desig": "Associate"
+            },
+            "Engineering": {
+                "desig": "Manager"
+            }
+        }
+    }
+}
