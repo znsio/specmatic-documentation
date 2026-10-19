@@ -38,12 +38,12 @@ docker run -it --rm specmatic/specmatic:VERSION --help
 
 You can download the standalone JAR from:
 
-  - <a href={`https://github.com/specmatic/specmatic/releases/download/${VERSIONS["specmatic-core-version"]}/specmatic.jar`} className="external-link" target="_blank" rel="noopener noreferrer">
-      GitHub
+  - <a href={`https://github.com/specmatic/specmatic/releases/download/${VERSIONS["specmatic-core-version"]}/specmatic-executable-all-${VERSIONS["specmatic-core-version"]}.jar`} className="external-link" target="_blank" rel="noopener noreferrer">
+      GitHub Releases
     </a>
 
-  - <a href={`https://repo1.maven.org/maven2/io/specmatic/specmatic-executable-all/${VERSIONS["specmatic-core-version"]}/specmatic-executable-all-${VERSIONS["specmatic-core-version"]}.jar`} className="external-link" target="_blank" rel="noopener noreferrer">
-      Maven Central
+  - <a href={`https://repo.specmatic.io/releases/io/specmatic/specmatic-executable-all/${VERSIONS["specmatic-core-version"]}/specmatic-executable-all-${VERSIONS["specmatic-core-version"]}.jar`} className="external-link" target="_blank" rel="noopener noreferrer">
+      Specmatic Repository
     </a>
 
 To run the JAR:
@@ -133,12 +133,9 @@ These tools are part of Specmatic's commercial suite.Please visit the [pricing p
 
 <CommercialDownload
   imageName="specmatic/enterprise"
-  toolVersion={VERSIONS["specmatic-enterprise-version"]}
-  jarUrl={`https://repo1.maven.org/maven2/io/specmatic/enterprise/executable-all/${VERSIONS["specmatic-enterprise-version"]}/executable-all-${VERSIONS['specmatic-enterprise-version']}.jar`}
-  repoUrl="https://repo1.maven.org/maven2/io/specmatic/enterprise/executable-all/"
+  jarUrl={`https://repo.specmatic.io/releases/io/specmatic/enterprise/executable-all/${VERSIONS["specmatic-enterprise-version"]}/executable-all-${VERSIONS['specmatic-enterprise-version']}.jar`}
+  repoUrl="https://repo.specmatic.io/#releases/io/specmatic/enterprise/executable-all/"
   installScript="install-specmatic-enterprise"
-  mavenGroupId="io.specmatic.enterprise"
-  mavenArtifactId="executable-all"
 />
 
 ---
@@ -147,7 +144,6 @@ These tools are part of Specmatic's commercial suite.Please visit the [pricing p
 
 <CommercialDownload
   imageName="specmatic/specmatic-redis"
-  toolVersion={VERSIONS["specmatic-redis-version"]}
   jarUrl={`https://repo.specmatic.io/releases/io/specmatic/redis/specmatic-redis-all/${VERSIONS["specmatic-redis-version"]}/specmatic-redis-all-${VERSIONS["specmatic-redis-version"]}.jar`}
   repoUrl="https://repo.specmatic.io/#releases/io/specmatic/redis/specmatic-redis-all/"
   installScript="install-specmatic-redis"

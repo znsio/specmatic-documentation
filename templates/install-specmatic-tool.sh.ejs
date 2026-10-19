@@ -80,8 +80,7 @@ mkdir -p ${DOWNLOAD_DIR_ACTUAL}
 
 download_success=0
 for original_url in "${download_urls[@]}"; do
-  # Replace placeholder with actual version
-  url="${original_url//$latest_tool_version/$tool_version}"
+  url="${original_url//\{tool_version\}/$tool_version}"
   info "Attempting to download $tool_name from $url"
   if "$DOWNLOADER" "${DOWNLOADER_ARGS[@]}" "$JAR_PATH_ACTUAL" "$url"; then
     info "Downloaded $tool_name to $JAR_PATH"

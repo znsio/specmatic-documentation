@@ -5,22 +5,16 @@ import CodeBlock from '@theme/CodeBlock';
 
 interface CommercialDownloadProps {
   imageName: string;
-  toolVersion: string;
   jarUrl: string;
   repoUrl: string;
   installScript: string;
-  mavenGroupId?: string;
-  mavenArtifactId?: string;
 }
 
 export default function CommercialDownload({
   imageName,
-  toolVersion,
   jarUrl,
   repoUrl,
   installScript,
-  mavenGroupId,
-  mavenArtifactId,
 }: CommercialDownloadProps) {
   // Extract tab name from image name (e.g., "specmatic/specmatic-openapi" -> "specmatic-openapi")
   const tabName = imageName.replace('specmatic/', '');
@@ -107,25 +101,6 @@ export default function CommercialDownload({
         <CodeBlock language="batch">
 {`docker run -it --rm ${imageName}:VERSION --help`}
         </CodeBlock>
-      </TabItem>
-
-      {/* Maven */}
-      <TabItem value="maven" label="Maven">
-        {mavenGroupId && mavenArtifactId ? (
-          <>
-            <p>Add this dependency to your project:</p>
-
-            <CodeBlock language="xml">
-{`<dependency>
-  <groupId>${mavenGroupId}</groupId>
-  <artifactId>${mavenArtifactId}</artifactId>
-  <version>${toolVersion}</version>
-</dependency>`}
-            </CodeBlock>
-          </>
-        ) : (
-          <p>Maven coordinates are not available for this tool.</p>
-        )}
       </TabItem>
 
       {/* JAR */}

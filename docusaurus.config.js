@@ -16,9 +16,8 @@ const specmaticCore = {
   siteUrl: "https://docs.specmatic.io",
   pageName: "install-specmatic.sh",
   downloadUrls: [
-    `https://repo1.maven.org/maven2/io/specmatic/specmatic-executable-all/${VERSIONS['specmatic-core-version']}/specmatic-executable-all-${VERSIONS['specmatic-core-version']}.jar`,
-    `https://github.com/specmatic/specmatic/releases/download/${VERSIONS['specmatic-core-version']}/specmatic.jar`,
-    `https://repo.specmatic.io/releases/io/specmatic/specmatic-executable-all/${VERSIONS['specmatic-core-version']}/specmatic-executable-all-${VERSIONS['specmatic-core-version']}.jar`,
+    "https://github.com/specmatic/specmatic/releases/download/{tool_version}/specmatic-executable-all-{tool_version}.jar",
+    "https://repo.specmatic.io/releases/io/specmatic/specmatic-executable-all/{tool_version}/specmatic-executable-all-{tool_version}.jar",
   ]
 };
 
@@ -29,7 +28,7 @@ const specmaticEnterprise = {
   siteUrl: "https://docs.specmatic.io",
   pageName: "install-specmatic-enterprise.sh",
   downloadUrls: [
-    `https://repo1.maven.org/maven2/io/specmatic/enterprise/executable-all/${VERSIONS['specmatic-enterprise-version']}/executable-all-${VERSIONS['specmatic-enterprise-version']}.jar`
+    "https://repo.specmatic.io/releases/io/specmatic/enterprise/executable-all/{tool_version}/executable-all-{tool_version}.jar"
   ]
 }
 
