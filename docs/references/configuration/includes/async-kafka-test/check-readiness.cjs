@@ -1,0 +1,14 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const mode = process.argv[2];
+assert.ok(['config', 'cli'].includes(mode), 'Unknown readiness scenario');
+const report = JSON.parse(fs.readFileSync('build/reports/specmatic/async/test/ctrf/ctrf-report.json', 'utf8')).results;
+assert.equal(report.summary.tests, 1);
+assert.equal(report.summary.passed, 1);
+assert.equal(report.tests.length, 1);
+const test = report.tests[0];
+assert.equal(test.status, 'passed');
+assert.ok(Number.isFinite(test.duration) && test.duration >= 0);
+assert.ok(test.duration < 50000, 'The first test must finish before the configured 60000 ms readiness delay');
+if (mode === 'cli') assert.ok(test.duration >= 3000, 'The CLI readiness delay must occur inside the test');
+console.log(`Readiness ${mode} check: test duration ${test.duration} ms`);

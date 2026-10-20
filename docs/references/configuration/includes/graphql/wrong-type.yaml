@@ -1,0 +1,14 @@
+version: 3
+systemUnderTest:
+  service:
+    definitions:
+      - definition:
+          source:
+            filesystem: {}
+          specs:
+            - catalog.graphqls
+    runOptions:
+      graphqlsdl:
+        type: mock
+        host: 127.0.0.1
+        port: 9100

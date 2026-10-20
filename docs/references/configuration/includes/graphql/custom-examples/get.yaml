@@ -1,0 +1,8 @@
+request:
+  httpHeaders:
+    X-Example: custom-examples
+  body: |
+    query {
+      get(type: "book")
+    }
+response: 20

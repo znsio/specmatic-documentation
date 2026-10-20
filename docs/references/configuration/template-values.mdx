@@ -3,57 +3,118 @@ title: Template Values
 sidebar_position: 7
 ---
 
-import {V2V3SpecmaticConfigTabs} from "../../../src/components/V2V3SpecmaticConfigTabs";
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
 
+# Template values in V3 configuration
 
-Specmatic configuration can pull in values from environment variables or Java system properties at runtime, through the
-use of template values.
+Use templates when the same configuration needs a different specification path, endpoint or settings object in another environment. Keep `version: 3` literal. This page describes OSS 2.55.3 and Enterprise 1.28.3 configuration loading; [example-file templates](/features/external_examples) have separate rules.
 
-## Template Syntax
+## Syntax and lookup
 
-Template values use the format:
+Quote a template in YAML so the YAML parser treats it as a string:
 
-```
-{ENV_VAR_NAME:defaultValue}
-```
-
-Resolution order:
-
-1. Environment variable `ENV_VAR_NAME`
-2. System property `ENV_VAR_NAME`
-3. `defaultValue`
-
-## Scalar Examples
-
-<V2V3SpecmaticConfigTabs
-  v2Object={require('./includes/template-values/v2/simple/specmatic.json')}
-  v3Object={require('./includes/template-values/v3/simple/specmatic.json')}
-/>
-
-Set the value in a shell (zsh/bash):
-
-```
-export STUB_GENERATIVE=false
+```yaml
+# A whole value
+baseUrl: '{API_URL:http://127.0.0.1:9100}'
+# An embedded value
+baseUrl: 'http://{API_HOST:127.0.0.1}:9100'
 ```
 
-## Structured Values (Object or Array)
+These are placement fragments. Use the complete file below for a runnable setup.
 
-If the resolved value starts with `{` or `[`, it is parsed as JSON and used as an object or array value in the config.
+Both `{NAME:default}` and `${NAME:default}` are supported. The colon is required; `${NAME}` and `{NAME}` remain literal text. A default can be empty: `{NAME:}`.
 
-<V2V3SpecmaticConfigTabs
-  v2Object={require('./includes/template-values/v2/structured/specmatic.json')}
-  v3Object={require('./includes/template-values/v3/structured/specmatic.json')}
-/>
+For one name, Specmatic uses:
 
-Set the value in a shell:
+1. The environment variable, if present.
+2. The Java system property of the same name, if present.
+3. The authored default.
 
-```
-export STUB_CONFIG='{"generative": false}'
-```
+An empty environment value is present and suppresses both the property and default. Defaults belong to the template you wrote; they are not necessarily the default for that configuration key. Values are resolved recursively inside configuration objects and lists, but **map keys are literal**: a component named `{NAME:books}` keeps that name.
 
-## Notes
+## Whole values and embedded values
 
-- JSON must be valid when using object/array templates.
-- Quoted JSON strings are treated as strings, not parsed into objects or arrays.
+A whole-value template can supply an object or array. Use valid JSON for a portable, readable structured value. A JSON-quoted string is decoded as a string; ordinary scalar results remain text at the template-resolution stage. An embedded template always produces a string, even when its replacement resembles JSON.
+
+This matters for typed fields. A numeric string can bind during a mock run while failing the stricter resolved-schema validation. The checked recipe below uses a literal numeric port and a whole settings object containing real booleans. To parameterize a typed number or boolean while retaining schema validity, supply its enclosing object as structured JSON, for example:
+
+<details>
+<summary>Complete structured run-options variant</summary>
+<CodeBlock language="yaml" title="structured-options.yaml">{require('./includes/template-recipes/structured-options.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/template-recipes/structured-options.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/template-recipes/structured-options.terminaloutput?raw').trimEnd()}</CodeBlock>
+Use the same books specification shown below. With the variables absent, this starts the same strict mock. Stop it before starting another example on port 9101.
+</details>
+
+Malformed structured replacements remain strings when parsing fails; a field requiring an object then fails validation/binding. Template resolution does not recursively expand tokens introduced by a replacement. Avoid putting secrets in defaults or printing resolved credentials.
+
+### Multiple names: a release limitation
+
+Embedded `{FIRST|SECOND:default}` checks each name in order, using that name's environment value before its system property. However, a **whole-value** `{FIRST|SECOND:default}` currently uses only `FIRST` or its default. A missing first name does not fall through to `SECOND` in the releases above. Prefer a single name for whole values.
+
+Whole-value detection also takes precedence over embedded detection. Avoid a string that starts with one bare token and ends with another, such as `{FIRST:a}-{SECOND:b}`; it can be interpreted as one whole-value expression. Use a literal prefix/suffix, such as `prefix-{FIRST:a}-{SECOND:b}`, when combining embedded tokens. These boundaries were checked directly against both released template resolvers.
+
+## A complete local mock
+
+Put these two files in one directory and run the commands there. You need the [Docker setup](/references/configuration/local-openapi#docker-setup), and free port 9101.
+
+<CodeBlock language="yaml" title="specmatic.yaml">{require('./includes/template-recipes/specmatic.yaml?raw').trimEnd()}</CodeBlock>
+
+<details>
+<summary>books.yaml — specification and deterministic response</summary>
+<CodeBlock language="yaml" title="books.yaml">{require('./includes/template-recipes/books.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+
+With the named variables absent, the defaults select `books.yaml` and strict mode:
+
+<CodeBlock language="shell">{require('./includes/template-recipes/defaults.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/template-recipes/defaults.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+`GET /books/1` returns `{"id":1,"title":"Specmatic Handbook"}`. `GET /books/2` returns HTTP 400 with `STRICT MODE ON`, because there is no matching authored example. Stop the mock before trying the next command.
+
+Supply a complete settings object through the environment:
+
+<CodeBlock language="shell">{require('./includes/template-recipes/environment.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/template-recipes/environment.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The authored response for `/books/1` remains the same; `/books/2` now returns a generated HTTP 200 response. This demonstrates that the resolved settings changed mock behavior. Stop the mock and start a fresh shell for the next examples, so the exported settings do not carry over.
+
+## Java properties and environment precedence
+
+For this example, save the same specification as `books.yml` too. The property selects that file:
+
+<CodeBlock language="shell">{require('./includes/template-recipes/property.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/template-recipes/property.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Stop the mock. This command supplies a missing filename through the property, but the environment selects the existing `books.yaml`, so the mock starts successfully:
+
+<CodeBlock language="shell">{require('./includes/template-recipes/environment-wins.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/template-recipes/environment-wins.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+`JAVA_TOOL_OPTIONS` supplies JVM options to the CLI process. These examples do not change the separate precedence of global, dependency and service settings; see [mock settings](/references/configuration/mock-settings-guide).
+
+## Validate and recover
+
+Save `structured-options.yaml` from the expanded variant above too. In a fresh shell with the example variables absent, validate both complete configurations:
+
+<CodeBlock language="shell">{require('./includes/template-recipes/validate.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/template-recipes/validate.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Configuration validation resolves values in **that process's environment**, checks the resolved schema and supported semantics, and loads selected specification sources. Remote sources can therefore be fetched or cached. Validation does not prove that a mock serves the expected responses.
+
+An object field cannot accept an ordinary string:
+
+<CodeBlock language="shell">{require('./includes/template-recipes/invalid-settings.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/template-recipes/invalid-settings.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+This intentionally exits with code 1. Recover by supplying the valid JSON settings object shown above, or removing the variable to use the default.
+
+<details>
+<summary>Why a scalar port template fails resolved-schema validation</summary>
+<CodeBlock language="yaml" title="invalid-port.yaml">{require('./includes/template-recipes/invalid-port.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/template-recipes/invalid-port.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/template-recipes/invalid-port.terminaloutput?raw').trimEnd()}</CodeBlock>
+This intentionally exits with code 1: the whole scalar resolves to text, while the schema requires an integer. Recover with the literal port in the complete configuration, or the structured run-options form above.
+</details>
+
+The [browser inspector](/references/configuration/inspect) preserves templates and reports unresolved checks; it cannot know your environment or Java properties. Use the CLI validation and the actual run for authoritative outcomes in your environment.

@@ -1,0 +1,144 @@
+---
+title: Run Examples and Dictionary Recipes
+sidebar_position: 4.6
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Run examples and dictionary recipes
+
+These complete OpenAPI mock recipes demonstrate **which example is returned and which dictionary supplies generated values**. They use the same inputs and response assertions tested against OSS 2.55.3 and Enterprise 1.28.3.
+
+## Save the inputs
+
+Follow the [Docker setup](/references/configuration/local-openapi#docker-setup). Save the files below in one folder, run commands there, and keep port **9101** free. Stop each mock with Ctrl+C before starting the next scenario.
+
+```text
+.
+├── orders.yaml
+├── service-data.yaml
+├── shared-data.yaml
+├── empty-examples.yaml
+├── extra-only.yaml
+├── combined-data.yaml
+├── data/
+│   ├── shared.yaml
+│   └── service.yaml
+└── examples/
+    ├── common/order.json
+    ├── service/order.json
+    └── environment/order.json
+```
+
+`/orders/{id}` can return an external example. `/generated` has no authored example, so its response demonstrates dictionary-driven generation. The contract has no inline examples.
+
+<details>
+<summary>Contract — orders.yaml</summary>
+
+<CodeBlock language="yaml" title="orders.yaml">{require('./includes/data-recipes/orders.yaml?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+The dictionaries deliberately supply different values for the same `Order` schema:
+
+<CodeBlock language="yaml" title="data/shared.yaml">{require('./includes/data-recipes/data/shared.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="yaml" title="data/service.yaml">{require('./includes/data-recipes/data/service.yaml?raw').trimEnd()}</CodeBlock>
+
+<details>
+<summary>External examples — save all three files at their shown paths</summary>
+
+<CodeBlock language="json" title="examples/common/order.json">{require('./includes/data-recipes/examples/common/order.json?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="json" title="examples/service/order.json">{require('./includes/data-recipes/examples/service/order.json?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="json" title="examples/environment/order.json">{require('./includes/data-recipes/examples/environment/order.json?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+## Combine examples and override a dictionary
+
+Save **service-data.yaml**. Dependency-wide `data` selects the common example and shared dictionary. The service adds its own example list and selects another dictionary through reusable components.
+
+<CodeBlock language="yaml" title="service-data.yaml">{require('./includes/data-recipes/service-data.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/data-recipes/service-data.sh?raw').trimEnd()}</CodeBlock>
+
+Expected startup excerpts, also used by the other scenarios:
+
+<CodeBlock language="terminaloutput">{require('./includes/data-recipes/service-data.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Open these URLs and check their JSON responses:
+
+| URL | Expected response |
+|---|---|
+| `http://127.0.0.1:9101/orders/1` | `{"id":1,"title":"Common example"}` |
+| `http://127.0.0.1:9101/orders/2` | `{"id":2,"title":"Service example"}` |
+| `http://127.0.0.1:9101/generated` | `{"id":77,"title":"Service dictionary"}` |
+
+Both example directories contribute. The generated response uses the service dictionary rather than the dependency-wide dictionary.
+
+## Inherit dependency-wide data
+
+Stop the first mock. Save **shared-data.yaml**, which has no service-level `data`, and start it:
+
+<details>
+<summary>Complete shared-data.yaml</summary>
+
+<CodeBlock language="yaml" title="shared-data.yaml">{require('./includes/data-recipes/shared-data.yaml?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+<CodeBlock language="shell">{require('./includes/data-recipes/shared-data.sh?raw').trimEnd()}</CodeBlock>
+
+`/orders/1` still returns the common example. `/generated` now returns `{"id":70,"title":"Shared dictionary"}`. `/orders/2` has no selected example and also returns that dictionary-generated body. The response ID need not equal the path ID: the contract does not impose that relationship.
+
+## An empty service list retains shared examples
+
+Stop the mock, save **empty-examples.yaml**, and run:
+
+<details>
+<summary>Complete empty-examples.yaml</summary>
+
+<CodeBlock language="yaml" title="empty-examples.yaml">{require('./includes/data-recipes/empty-examples.yaml?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+<CodeBlock language="shell">{require('./includes/data-recipes/empty-examples.sh?raw').trimEnd()}</CodeBlock>
+
+The service has `examples: []` and its own dictionary. `/orders/1` still returns the dependency-wide common example; `/orders/2` and `/generated` return `{"id":77,"title":"Service dictionary"}`. The empty list contributes no service examples; it does not clear shared examples.
+
+## Additional directories: check the actual result
+
+In these released CLI mocks, an additional directory supplied through `--examples` or `EXAMPLE_DIRECTORIES` loads when no configured example directories contribute examples. With the configured service/common examples in this recipe, the additional directory is bypassed. The loader can take the configured/implicit-example branch before its fallback to the additional directory.
+
+**To reliably add a directory alongside configured examples, include it in `data.examples`.** A directory appearing in a config accessor's list does not prove that the mock loader used it.
+
+<details>
+<summary>Reproduce the difference with complete inputs and commands</summary>
+
+Save **extra-only.yaml**. It keeps the dictionary but selects no configured example directories. Stop the previous mock before each command below.
+
+<CodeBlock language="yaml" title="extra-only.yaml">{require('./includes/data-recipes/extra-only.yaml?raw').trimEnd()}</CodeBlock>
+
+Using a CLI directory:
+
+<CodeBlock language="shell">{require('./includes/data-recipes/cli-only.sh?raw').trimEnd()}</CodeBlock>
+
+Or using the environment variable:
+
+<CodeBlock language="shell">{require('./includes/data-recipes/environment-only.sh?raw').trimEnd()}</CodeBlock>
+
+Each returns `{"id":3,"title":"Environment example"}` for `/orders/3`, and the service dictionary body for `/generated`. The directory name and example title are simply labels; either command selects the same file.
+
+Compare with the config that already selects common and service examples:
+
+<CodeBlock language="shell">{require('./includes/data-recipes/configured-cli.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/data-recipes/configured-environment.sh?raw').trimEnd()}</CodeBlock>
+
+Each keeps the common/service responses for `/orders/1` and `/orders/2`, but `/orders/3` returns `{"id":77,"title":"Service dictionary"}`. The additional example was not loaded in this setup. Move its directory into the configured example list to include it reliably. The complete corrected file below adds `./examples/environment` as another directory group under `components.examples.mockExamples`.
+
+<CodeBlock language="yaml" title="combined-data.yaml">{require('./includes/data-recipes/combined-data.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/data-recipes/combined-data.sh?raw').trimEnd()}</CodeBlock>
+
+After stopping the previous mock and running this command, all three order URLs return their external examples. `/generated` still uses the service dictionary.
+
+</details>
+
+These scenarios establish the behavior of the supplied files in the stated releases. They do not establish precedence between overlapping example requests, every implicit-directory layout or other protocol runners. For shapes, fallback rules and common mistakes, see [Select Examples and Dictionaries](/references/configuration/data-selection).

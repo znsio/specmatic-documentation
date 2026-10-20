@@ -1,0 +1,1 @@
+node verify-reference.cjs strict

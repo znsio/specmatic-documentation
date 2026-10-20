@@ -1,0 +1,81 @@
+---
+title: Choose Test Settings and See Their Effect
+sidebar_position: 4
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Choose test settings and see their effect
+
+Test settings belong under `specmatic.settings.test` for global values, or `systemUnderTest.service.settings` for the tested service. Service settings inherit missing fields individually. A value of `false` or `0` is still an explicit value; it does not mean “inherit.”
+
+This example uses core OpenAPI HTTP tests, with two named examples and a small API that waits 300 ms before responding. You need Node 20+, Specmatic, and a free port 9100. Save the files below in one directory. The commands use `CONFIG_FILE_PATH` at process startup to select the named config consistently in the documented releases.
+
+## Start the example API
+
+Save this as `demo-server.cjs`:
+
+<CodeBlock language="javascript" title="demo-server.cjs">{require('./includes/test-settings/demo-server.cjs?raw').trimEnd()}</CodeBlock>
+
+In one terminal, keep the API running:
+
+<CodeBlock language="shell">{require('./includes/test-settings/start-demo.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/test-settings/start-demo.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Save the contract as `books.yaml`:
+
+<details>
+<summary>Complete OpenAPI contract with two examples</summary>
+
+<CodeBlock language="yaml" title="books.yaml">{require('./includes/test-settings/books.yaml?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+Run the following commands from a second terminal in the same directory.
+
+## A service value overrides a global value
+
+Save `full.yaml`. The global timeout is 20 ms; the service overrides it with 1,000 ms, allowing the delayed API to respond. The service inherits the global report directory.
+
+<CodeBlock language="yaml" title="full.yaml">{require('./includes/test-settings/full.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/test-settings/full.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/test-settings/full.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The two authored examples pass. Core CLI JUnit XML output is configured under `reports/TEST-junit-jupiter.xml`. Other report types have separate settings.
+
+## Limit executed scenarios
+
+Save `limited.yaml`. Its service adds `maxTestCount: 1`; the remaining executable scenario is skipped.
+
+<CodeBlock language="yaml" title="limited.yaml">{require('./includes/test-settings/limited.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/test-settings/limited.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/test-settings/limited.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Omit `maxTestCount` for no configured execution cap. A zero or negative value skips executable scenarios in this runner. `maxTestRequestCombinations` instead bounds request-generation expansion; it does not replace this execution limit.
+
+## Diagnose a timeout and override it for one run
+
+Save `short-timeout.yaml`. Here the service's 20 ms wins over the global 1,000 ms, so the delayed requests time out.
+
+<CodeBlock language="yaml" title="short-timeout.yaml">{require('./includes/test-settings/short-timeout.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/test-settings/short-timeout.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/test-settings/short-timeout.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+This command intentionally exits with code 1. Correct the service timeout in the file, or override it for this core CLI run:
+
+<CodeBlock language="shell">{require('./includes/test-settings/override-timeout.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/test-settings/override-timeout.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+`--timeout-in-ms` uses milliseconds and wins over `--timeout`, which uses seconds. The fallback `SPECMATIC_TEST_TIMEOUT` is used only when config does not supply a timeout; environment wins over the JVM property of the same name. Without any of these inputs, the core JUnit runner uses 6,000 ms per request.
+
+## Choose other settings deliberately
+
+| Setting | Use it for | Watch for |
+|---|---|---|
+| [`schemaResiliencyTests`](/references/configuration/explorer?key=TestSettings%2FschemaResiliencyTests&view=Behavior) | Generate positive-only or positive/negative schema variations | `none` disables this generation mode, not authored tests |
+| [`strictMode`](/references/configuration/explorer?key=TestSettings%2FstrictMode&view=Behavior) | Enforce usable examples and dictionary matches in strict-sensitive paths | Fix missing request examples or mismatched dictionary data; strictness is not a universal validation toggle |
+| [`lenientMode`](/references/configuration/explorer?key=TestSettings%2FlenientMode&view=Behavior) | Continue through selected parser/collector failures | The core CLI supplies false without `--lenient`, overriding a true file value; later checks can still fail |
+| [`parallelism`](/references/configuration/explorer?key=TestSettings%2Fparallelism&view=Behavior) | Configure core CLI JUnit scheduling | Use `auto` or a quoted positive integer such as `"4"`; other integrations have their own scheduler setup |
+| [`junitReportDir`](/references/configuration/explorer?key=TestSettings%2FjunitReportDir&view=Behavior) | Collect core CLI JUnit XML | Ordinary core CLI relative output paths use the process working directory; keep it writable |
+
+These explanations cover the stated core runner. For another protocol or integration, use its specific run options and applicability guidance. The [key explorer](/references/configuration/explorer) gives each field's omission, precedence and caveats; the [local OpenAPI guide](/references/configuration/local-openapi) covers a basic API and mocked dependency.

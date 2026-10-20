@@ -95,6 +95,23 @@ npm run check:examples -- --edition oss
 npm run check:examples -- --edition enterprise
 ```
 
+Configuration-reference commands use the `specmatic/enterprise` Docker image. Run
+those folders with the Docker orchestration script instead of the CLI provisioner:
+
+```bash
+node scripts/run-config-docker-examples.js docs/references/configuration/includes/local-openapi
+```
+
+Docker 23+ and an Enterprise license in `~/.specmatic` are required. CI writes its
+license secret to that mounted directory before running configuration examples.
+The runner reports the image's
+actual version and uses that image's JAR for independent Java client fixtures.
+It delegates the published commands to Docker without changing Specmatic flags;
+container-ID files are added only to track and clean up test containers. CI runs
+these folders once in the Enterprise job, retaining separate OSS/Enterprise CLI
+checks for quick-start and contract-testing. See the configuration guide's Docker
+setup for host networking and filesystem mounts.
+
 For release candidates, set `SPECMATIC_JAR` and `SPECMATIC_VERSION` for OSS, or
 `SPECMATIC_ENTERPRISE_JAR` and `SPECMATIC_ENTERPRISE_VERSION` for Enterprise. Local
 JAR overrides are checked for the supplied edition/version. Pass additional

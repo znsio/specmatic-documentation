@@ -1,0 +1,2 @@
+Configuration is invalid: missing-type.yaml
+The 'type' for the server at '/dependencies/services/0/service/runOptions/asyncapi/servers/0/server' must be explicitly configured.

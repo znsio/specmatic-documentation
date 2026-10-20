@@ -2,42 +2,21 @@
 title: Upgrade Configuration
 sidebar_position: 10
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
 
+# Upgrade Older Configuration to V3
 
-# Upgrade Older Configuration to the Latest Version
+Use `config upgrade` with an explicit input and a separate output. Keep the original until you have compared the configurations' behavior. The [complete migration journey](./migrating-config-v2-to-v3) supplies both files, specifications, test/mock commands and expected outcomes.
 
-If you have an old version of the config, Specmatic can upgrade it to the latest version.
+With that journey's files, run:
 
-<Tabs groupId="compare">
+<CodeBlock language="shell">{require('./includes/migration/upgrade.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/migration/upgrade.terminaloutput?raw').trimEnd()}</CodeBlock>
 
-  <TabItem value="docker" label="docker">
+`--input` selects the existing file. `--output` writes YAML to the supplied path, regardless of its extension; choose a `.yaml` filename. An existing output can be overwritten. The first line above prevents that in the demonstration.
 
-```bash
-docker run -v "/your-local-specs-directory:/specs" specmatic/specmatic config upgrade --input "/specs/specmatic.yaml" --output "specmatic_new.yaml"
-```
+Without `--input`, the command uses [normal config discovery](./files-and-paths). Without `--output`, it logs the converted YAML to the terminal; this does not create a file. Avoid treating the entire terminal transcript as a config because release banners or warnings may also appear.
 
-  </TabItem>
+An already-V3 input exits successfully with an up-to-date message and does not write a requested output. Missing files, invalid versions or binding errors fail; correct the original input before retrying. Conversion does not automatically establish runtime equivalence: validate the output and compare the tests, mock responses, targets and reports you rely on.
 
-  <TabItem value="java" label="java">
-
-```bash
-java -jar specmatic.jar config upgrade --input specmatic_old.yaml --output specmatic.yaml
-```
-
-  </TabItem>
-
-  <TabItem value="npm" label="npm">
-
-```bash
-npx specmatic config upgrade --input specmatic_old.yaml --output specmatic.yaml
-```
-
-  </TabItem>
-
-</Tabs>
-
-When you run the `config upgrade` command without specifying `input` or `output` parameters, it will search for the config file in default locations (the directory from which the command is run, the application classpath, `CONFIG_FILE_PATH` environment variable, or `CONFIG_FILE_PATH` system property) and display the result in the same terminal from which the command was executed.
-
-> For details about migrating from v2 to v3 configuration, see the [v2 to v3 migration guide](./migrating-config-v2-to-v3).
+[Follow the migration journey](./migrating-config-v2-to-v3) · [Create a new V3 configuration](./local-openapi)

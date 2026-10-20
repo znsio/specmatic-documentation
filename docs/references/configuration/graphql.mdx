@@ -1,0 +1,198 @@
+---
+title: Configure GraphQL with SDL
+sidebar_position: 1.4
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Configure GraphQL with SDL
+
+Use `runOptions.graphqlsdl` to select a GraphQL mock listener or a running implementation for contract testing. These complete V3 examples require **Specmatic Enterprise** with GraphQL access. They use HTTP POST at `/graphql`.
+
+## Save the contract and example
+
+Follow the [Enterprise Docker setup](/references/configuration/local-openapi#docker-setup) and configure your [license](/enterprise_onboarding/license_key). Save all files in one folder and run commands there. Keep ports **9100**, **9101** and **9102** free; the optional demo needs Node.js 20+, and commands use a Bash-compatible shell.
+
+Save this SDL as **catalog.graphqls**:
+
+<CodeBlock language="graphql" title="catalog.graphqls">{require('./includes/graphql/catalog.graphqls?raw').trimEnd()}</CodeBlock>
+
+Save the example at **catalog_examples/get.yaml**, next to the SDL. The `_examples` directory name follows the SDL filename. `response` contains the selected field's value, not the enclosing GraphQL `data` object. This example also requires an HTTP header.
+
+<CodeBlock language="yaml" title="catalog_examples/get.yaml">{require('./includes/graphql/catalog_examples/get.yaml?raw').trimEnd()}</CodeBlock>
+
+## Mock the API
+
+Save **mock.yaml**. The dependency service selects the SDL and listens at `127.0.0.1:9101`. GraphQL uses `host` and `port`; do not copy OpenAPI's `baseUrl` setting into this setup.
+
+<CodeBlock language="yaml" title="mock.yaml">{require('./includes/graphql/mock.yaml?raw').trimEnd()}</CodeBlock>
+
+<CodeBlock language="shell">{require('./includes/graphql/mock.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/graphql/mock.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+In another terminal, save this query as **request.json**:
+
+<CodeBlock language="json" title="request.json">{require('./includes/graphql/request.json?raw').trimEnd()}</CodeBlock>
+
+Send it with the matching example header:
+
+<CodeBlock language="shell">{require('./includes/graphql/request.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/graphql/request.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The exact value 10 demonstrates that the example matched. Omitting its required `X-Example` header can cause the mock to generate a valid integer instead. Stop the mock with Ctrl+C before trying another listener scenario.
+
+## Test the implementation
+
+Save **test.yaml**. Testing does not start your application; it sends the example query to the configured implementation and validates its response against the SDL.
+
+<CodeBlock language="yaml" title="test.yaml">{require('./includes/graphql/test.yaml?raw').trimEnd()}</CodeBlock>
+
+Use your implementation at port 9100, or save this small demo. It also listens on 9102 for the override scenario.
+
+<details>
+<summary>Demo implementation — save as target.cjs</summary>
+
+<CodeBlock language="javascript" title="target.cjs">{require('./includes/graphql/target.cjs?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+Start it in another terminal:
+
+<CodeBlock language="shell">{require('./includes/graphql/start-target.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/graphql/start-target.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Run the contract test from your original terminal:
+
+<CodeBlock language="shell">{require('./includes/graphql/test.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/graphql/test.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Keep the demo running for the other test commands; stop it with Ctrl+C when finished. The runner checks the implementation's response against the SDL, rather than merely accepting HTTP 200.
+
+## Configured endpoints and CLI fallback
+
+In these released Enterprise commands, a configured GraphQL host/port is selected ahead of competing CLI values. With the primary files unchanged, these commands still mock on **9101** and test against **9100**, despite `--port 9102`:
+
+<CodeBlock language="shell">{require('./includes/graphql/mock-cli.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/graphql/mock-cli.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+<CodeBlock language="shell">{require('./includes/graphql/test-cli.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/graphql/test-cli.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+CLI values are useful when the corresponding configured values are absent. These examples establish explicit config precedence; entry-point defaults and programmatic behavior are described separately in the key reference.
+
+## Override the endpoint for one spec
+
+Assign `id: catalog` in the contract definition and match it in `graphqlsdl.specs[].spec`. These complete files select port 9102 instead of their outer port:
+
+<details>
+<summary>Save as mock-override.yaml</summary>
+
+<CodeBlock language="yaml" title="mock-override.yaml">{require('./includes/graphql/mock-override.yaml?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+<CodeBlock language="shell">{require('./includes/graphql/mock-override.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/graphql/mock-override.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+<details>
+<summary>Save as test-override.yaml</summary>
+
+<CodeBlock language="yaml" title="test-override.yaml">{require('./includes/graphql/test-override.yaml?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+<CodeBlock language="shell">{require('./includes/graphql/test-override.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/graphql/test-override.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Stop the mock between commands. A reusable component can share the same definition and run options; the selected service still determines whether it is mocked or tested.
+
+This is a **single-SDL** mock override. The GraphQL mock uses one listener and selects its configuration from the first available specification config; these examples do not establish independent mock ports for several SDL files. Also, a nonempty matching override replaces the protocol configuration map rather than merging each field. Supply the desired host and port together when overriding an endpoint.
+
+## Custom example directories differ between mock and test
+
+Save this second example as **custom-examples/get.yaml**. It selects `book`, requires a different header and returns 20.
+
+<CodeBlock language="yaml" title="custom-examples/get.yaml">{require('./includes/graphql/custom-examples/get.yaml?raw').trimEnd()}</CodeBlock>
+
+For mocking, configure the directory through service `data.examples`:
+
+<CodeBlock language="yaml" title="mock-custom.yaml">{require('./includes/graphql/mock-custom.yaml?raw').trimEnd()}</CodeBlock>
+
+<CodeBlock language="shell">{require('./includes/graphql/mock-custom.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/graphql/mock-custom.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+POST a `get(type: "book")` query with `X-Example: custom-examples` to port 9101: the configured example returns `{"data":{"get":20}}`. Stop the mock with Ctrl+C.
+
+For **Enterprise 1.28.3 GraphQL testing**, that same directory selection does not replace the colocated SDL example lookup. This file deliberately selects `custom-examples`:
+
+<CodeBlock language="yaml" title="test-custom.yaml">{require('./includes/graphql/test-custom.yaml?raw').trimEnd()}</CodeBlock>
+
+<CodeBlock language="shell">{require('./includes/graphql/test-custom.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/graphql/test-custom.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The test still sends `get(type: "gadget")` with `X-Example: catalog_examples` from **catalog_examples/get.yaml**. To control this runner's authored tests, keep them in the colocated `_examples` directory as in the primary setup. Do not assume a schema-valid data selection affects every protocol consumer.
+
+## Validate and fix a wrong role
+
+Validate the primary configurations:
+
+<CodeBlock language="shell">{require('./includes/graphql/validate.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/graphql/validate.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+A tested GraphQL service cannot declare `type: mock`. Save this intentional error as **wrong-type.yaml**:
+
+<details>
+<summary>Invalid configuration</summary>
+
+<CodeBlock language="yaml" title="wrong-type.yaml">{require('./includes/graphql/wrong-type.yaml?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+<CodeBlock language="shell">{require('./includes/graphql/wrong-type.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/graphql/wrong-type.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Validation exits 1. Change the mode to `test`, as in `test.yaml`, then rerun the validation command. Validation checks the configuration shape; a contract test additionally checks the running API.
+
+## Verified scope
+
+These files and commands are shared with documentation checks against **Enterprise 1.28.3**: deterministic mocks, implementation tests, configured versus CLI endpoint selection, matching single-spec overrides, custom mock example directories, the test directory limitation and wrong-role validation. OSS 2.55.3 does not provide this GraphQL runtime; accepting a V3 GraphQL shape is not an edition-support promise.
+
+TLS, multiple SDLs/listeners, remote sources, variables/aliases, generative cases, compatibility and example-validation commands need their own checks; this small recipe does not establish those behaviors.
+
+Continue with the [GraphQL protocol guide](/supported_protocols/graphql), [all V3 keys](/references/configuration/all-keys) or [configuration explorer](/references/configuration/explorer?protocol=graphqlsdl).

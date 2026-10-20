@@ -1,0 +1,7 @@
+version: 3
+specmatic:
+  settings:
+    backwardCompatibility:
+      baseBranch: main
+      targetPath: contract.yaml
+      strictMode: true

@@ -1,0 +1,4 @@
+Configuration is valid: matched.yaml
+Configuration is valid: mismatched.yaml
+Configuration is valid: duplicate.yaml
+Configuration is valid: base-url.yaml

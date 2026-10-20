@@ -1,0 +1,2 @@
+Please specify a valid URL in 'scheme://host[:port][path]' format in testBaseURL environment variable
+Tests run: 1, Successes: 0, Failures: 1

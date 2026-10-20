@@ -1,0 +1,27 @@
+version: 3
+systemUnderTest:
+  service:
+    definitions:
+      - definition:
+          source:
+            filesystem: {}
+          specs:
+            - spec:
+                id: greeting
+                path: greeter.proto
+    runOptions:
+      protobuf:
+        type: test
+        protocVersion: 3.23.4
+        host: 127.0.0.1
+        port: 9100
+        specs:
+          - spec:
+              id: greeting
+              port: 9102
+              protocVersion: 3.23.4
+              host: 127.0.0.1
+specmatic:
+  settings:
+    test:
+      resiliencyTests: none

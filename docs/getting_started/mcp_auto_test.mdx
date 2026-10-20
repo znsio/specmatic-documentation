@@ -9,7 +9,11 @@ redirect_from:
   - /documentation/getting_started/mcp_auto_test.html
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+
 # MCP Auto Test
+
+For a complete V3 setup checked in both editions, start with [Configure MCP tool tests](/references/configuration/mcp). It includes a local server, configuration, dictionary, CLI precedence and a report check. In OSS 2.55.3 and Enterprise 1.28.3, mixed pass/fail runs can exit 0; check individual report verdicts when every scenario must pass.
 
 
 ## Automated Testing for MCP Tools
@@ -23,7 +27,7 @@ MCP Auto Test addresses this gap by providing a reproducible, fully automated fr
 
 **MCP Auto Test** addresses a critical gap in the MCP tool development lifecycle: automated, repeatable, and systematic testing of server-exposed MCP tools. Manual testing, as enabled by tools like MCP Inspector, is slow, non-repeatable, and limits comprehensive regression verification. In contrast, MCP Auto Test enables users to:
 
-- Define sample inputs and expected behaviors upfront via a flexible "dictionary" configuration file.
+- Supply sample tool arguments through a dictionary file; output schemas separately describe response structure.
 - Execute large suites of positive and negative test scenarios with a single command.
 - Detect regressions immediately as the MCP server or its tools evolve.
 
@@ -77,17 +81,7 @@ Consider a tool schema:
 ```
 
 Based on this schema, a test dictionary can be written as:
-```json
-{
-  "createUser": {
-    "name": ["Alice", "Bob"],
-    "age": [25, 40],
-    "address": {
-      "city": "Paris"
-    }
-  }
-}
-```
+<CodeBlock language="json">{require('../references/configuration/includes/mcp/dictionary-create-user.json?raw').trimEnd()}</CodeBlock>
 
 A more formal structure of the dictionary can be summarised as follows:
 ```json
@@ -101,15 +95,9 @@ A more formal structure of the dictionary can be summarised as follows:
 
 - **Values** can be primitives (strings, numbers), arrays, or nested objects.
 - **Partial specification** is allowed: you only need to set fields that are important for your test coverage. Unspecified fields will be filled automatically.
-- **Multiple values** per argument enable value randomization across tests for increased coverage:
+- **Arrays** are argument values for array schemas, not automatically a list of alternative scalar values. Supply one string for a scalar `name`:
 
-```json
-{
-  "tool_name": {
-    "name": ["Anna", "Bob", "Chris"]
-  }
-}
-```
+<CodeBlock language="json">{require('../references/configuration/includes/mcp/dictionary-scalar.json?raw').trimEnd()}</CodeBlock>
 
 #### Sample dictionary with partial fields
 

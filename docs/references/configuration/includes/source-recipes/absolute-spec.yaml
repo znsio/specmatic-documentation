@@ -1,0 +1,18 @@
+version: 3
+dependencies:
+  settings:
+    hotReload: false
+  services:
+    - service:
+        definitions:
+          - definition:
+              source:
+                web:
+                  url: http://127.0.0.1:9200/contracts
+              specs:
+                - http://127.0.0.1:9200/contracts/books.yaml
+        runOptions:
+          openapi:
+            type: mock
+            host: 127.0.0.1
+            port: 9101

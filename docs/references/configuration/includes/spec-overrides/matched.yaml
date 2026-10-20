@@ -1,0 +1,29 @@
+version: 3
+dependencies:
+  settings:
+    strictMode: true
+    hotReload: false
+  services:
+    - service:
+        definitions:
+          - definition:
+              source:
+                filesystem:
+                  directory: .
+              specs:
+                - spec:
+                    id: books
+                    path: books.yaml
+                - spec:
+                    id: authors
+                    path: authors.yaml
+        runOptions:
+          openapi:
+            type: mock
+            host: 127.0.0.1
+            port: 9101
+            specs:
+              - spec:
+                  id: authors
+                  host: 127.0.0.1
+                  port: 9102

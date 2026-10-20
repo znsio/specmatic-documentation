@@ -1,0 +1,18 @@
+version: 3
+systemUnderTest:
+  service:
+    definitions:
+      - definition:
+          source:
+            filesystem: {}
+          specs:
+            - catalog.graphqls
+    data:
+      examples:
+        - directories:
+            - custom-examples
+    runOptions:
+      graphqlsdl:
+        type: test
+        host: 127.0.0.1
+        port: 9100

@@ -1,0 +1,2 @@
+Configuration is invalid: empty-web-url.yaml
+does not match the uri pattern must be a valid RFC 3986 URI

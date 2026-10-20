@@ -1,0 +1,2 @@
+Successfully generated the descriptor set for ./imported-greeter.proto
+Message type HelloRequest referred by the service Greeter is missing in the spec.

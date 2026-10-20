@@ -1,0 +1,2 @@
+Configuration is invalid: global-ref.yaml
+Server references are supported only in AsyncAPI v3 spec-level servers

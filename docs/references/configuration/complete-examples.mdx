@@ -5,8 +5,6 @@ sidebar_position: 8
 import {JsonDisplay, YamlDisplay} from "../../../src/components/JsonYamlDisplay";
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import {V2V3SpecmaticConfigTabs} from "../../../src/components/V2V3SpecmaticConfigTabs";
-import yaml from "js-yaml";
 
 
 # Complete Configuration Examples
@@ -84,21 +82,15 @@ This example shows the main configuration sections working together. Protocol-sp
 
 ## HTTPS and mTLS Configuration Snippets
 
-Use these snippets alongside the complete examples above when configuring certificates.
+Use the [complete V3 HTTPS and client-certificate recipe](/references/configuration/https) for checked configs, separate demo identities, commands, observable outcomes and failure recovery.
 
 ### Contract testing against an mTLS service (outgoing client cert)
 
-<V2V3SpecmaticConfigTabs
-  v3Object={yaml.load(require('./includes/complete-examples/mtls-test/v3/specmatic.yaml?raw'))}
-  v2Object={yaml.load(require('./includes/complete-examples/mtls-test/v2/specmatic.yaml?raw'))}
-/>
+Put client key material under `systemUnderTest.service.runOptions.openapi.cert`. Sending a client certificate does not require `mtlsEnabled`; that flag controls incoming mock connections. The recipe tests an independent target that trusts the demo client certificate.
 
 ### Mock with incoming mTLS enabled (client cert required)
 
-<V2V3SpecmaticConfigTabs
-  v3Object={yaml.load(require('./includes/complete-examples/mtls-mock/v3/specmatic.yaml?raw'))}
-  v2Object={yaml.load(require('./includes/complete-examples/mtls-mock/v2/specmatic.yaml?raw'))}
-/>
+Put server key material under `dependencies.services[].service.runOptions.openapi.cert` and set `mtlsEnabled: true`. The checked mock requires a client certificate but accepts an independently self-signed client; this is not a trusted-client CA policy. Follow the recipe's explicit HTTP/1.1 request and trust-boundary explanation.
 
 ### Notes
 

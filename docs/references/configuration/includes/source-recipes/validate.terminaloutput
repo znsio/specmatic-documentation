@@ -1,0 +1,6 @@
+Configuration is valid: filesystem.yaml
+Configuration is valid: local-directory.yaml
+Configuration is valid: git-current.yaml
+Configuration is valid: web.yaml
+Configuration is valid: web-leading-path.yaml
+Configuration is valid: web-trailing-source.yaml

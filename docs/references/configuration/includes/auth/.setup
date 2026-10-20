@@ -1,0 +1,25 @@
+unset BearerAuth OAuthAuth OidcAuth BasicAuth HeaderKey QueryKey SPECMATIC_OAUTH2_TOKEN SPECMATIC_BASIC_AUTH_TOKEN API_TOKEN
+if [[ "$DOC_EXAMPLE_NAME" == mock.sh || "$DOC_EXAMPLE_NAME" == start-target.sh ]]; then return; fi
+if [[ "$DOC_EXAMPLE_NAME" == mock-request.sh ]]; then
+  docker run --rm --network host -v ./:/usr/src/app -v "$HOME/.specmatic:/root/.specmatic" --env CONFIG_FILE_PATH=mock.yaml specmatic/enterprise mock > fixture.log 2>&1 &
+  ready='http://127.0.0.1:19131'
+else
+  node target.cjs > fixture.log 2>&1 &
+  ready='Auth target ready'
+fi
+fixture_pid=$!
+cleanup() {
+  result=$?
+  if [[ "$DOC_EXAMPLE_NAME" == mock-request.sh ]]; then node verify-auth.cjs mock || result=2
+  else node verify-auth.cjs "$DOC_EXAMPLE_NAME" || result=2; fi
+  kill "$fixture_pid" 2>/dev/null || true
+  wait "$fixture_pid" 2>/dev/null || true
+  exit "$result"
+}
+trap cleanup EXIT
+for attempt in {1..600}; do
+  grep -q "$ready" fixture.log && break
+  kill -0 "$fixture_pid" 2>/dev/null || { cat fixture.log; exit 1; }
+  sleep 0.1
+done
+grep -q "$ready" fixture.log || { cat fixture.log; exit 1; }

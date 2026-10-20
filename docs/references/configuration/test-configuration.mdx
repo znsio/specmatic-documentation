@@ -10,6 +10,8 @@ import yaml from "js-yaml";
 
 # Test Configuration
 
+Start with [test settings and their observable effects](/references/configuration/test-settings-guide) for timeout, service/global inheritance, execution limits and JUnit output. Use the [key explorer](/references/configuration/explorer) for field-specific defaults and runner differences.
+
 ## Resiliency Tests
 
 To enable [schema resiliency tests](/spec_driven_api_development/contract_testing#smart-resiliency-orchestration), add `schemaResiliencyTests` in a v3 configuration or `resiliencyTests` in a v2 configuration, as shown below:
@@ -212,3 +214,5 @@ in addition to any directories specified under the `examples` key. For example, 
 `api_order_v1.yaml`, Specmatic will look for examples in the `api_order_v1_examples`
 directory by default, even if it's not explicitly mentioned in the configuration.
 :::
+
+For checked two-target tests, CLI base-URL interaction and a per-spec path prefix, see [test specs against separate targets](/references/configuration/test-spec-overrides).

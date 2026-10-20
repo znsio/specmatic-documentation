@@ -1,0 +1,2 @@
+Configuration is invalid: deprecated.yaml
+The 'inMemoryBroker' configuration for the AsyncAPI specification with id 'ping' is deprecated.

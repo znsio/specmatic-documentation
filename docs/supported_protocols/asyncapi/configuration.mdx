@@ -5,6 +5,8 @@ sidebar_position: 1
 
 # AsyncAPI Configuration
 
+For a complete, checked starting point, use [Mock Kafka with AsyncAPI](/references/configuration/async-kafka). It includes the contract, V3 configs, an independent message client and recovery from invalid server settings.
+
 Specmatic reads the message contract from your AsyncAPI document and the runtime connection settings from `specmatic.yaml`.
 
 - The **AsyncAPI document** describes servers, channels, messages, and schemas.
@@ -348,6 +350,8 @@ Resolution rules:
 Use shared inline servers for common infrastructure. Use per-spec references when connection details already live in each AsyncAPI document.
 
 ## Test options
+
+For a complete checked setup, see [Test a Kafka service](/references/configuration/async-kafka-test). In Enterprise 1.28.3's CLI request/reply runner, the initial broker check uses the contract endpoint and the message wait remains 10,000 ms despite `replyTimeout` or `--reply-timeout`; the recipe demonstrates both limitations. The first scenario's subscriber readiness wait is also taken from the CLI-initialized property before its config is applied; the recipe checks this separately. DTO defaults below do not establish each option's effect in every runner.
 
 | Property | Default | Description |
 |---|---:|---|

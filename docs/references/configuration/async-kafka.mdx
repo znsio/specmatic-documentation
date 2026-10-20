@@ -1,0 +1,161 @@
+---
+title: Mock Kafka with AsyncAPI
+sidebar_position: 1.37
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Mock Kafka with AsyncAPI
+
+Start a local Kafka broker and a message mock from one V3 configuration. These examples were checked with **Enterprise 1.28.3**: an independent Kafka client sends a ping and checks the exact pong response.
+
+## Save the inputs
+
+Follow the [Docker setup](/references/configuration/local-openapi#docker-setup) and configure your [license](/enterprise_onboarding/license_key). Use a fresh directory and run the commands there. The client below needs **JDK 17+** and the downloaded Enterprise executable JAR. Set `SPECMATIC_ENTERPRISE_JAR` in the client terminal to that JAR's absolute path.
+
+Ports **19092**, **19093**, **19095** and the mock control API port **19999** must be free. Stop each mock before starting the next variant. The embedded broker also opens dynamically assigned ports. Kafka listeners bind to **0.0.0.0** in this release, even though these examples advertise `localhost`; use a suitable local environment. Broker data is temporary and this setup is for local mocking.
+
+Save `asyncapi.yaml`. It describes a service receiving `ping` and replying on `pong`. The payload constants make the generated response predictable without a separate example file.
+
+<CodeBlock language="yaml" title="asyncapi.yaml">{require('./includes/async-kafka/asyncapi.yaml?raw').trimEnd()}</CodeBlock>
+
+## Start the mock
+
+Save `mock.yaml`. `dependencies` selects mocking; `asyncapi.type: mock` selects the operation; the nested server's `type: in-memory` tells Specmatic to start the broker.
+
+<CodeBlock language="yaml" title="mock.yaml">{require('./includes/async-kafka/mock.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/async-kafka/mock.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka/mock.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The contract declares `localhost:19095`, but the matching Kafka runtime server selects **19092**. The mock control API starts on **19999**.
+
+In another terminal, save `KafkaRoundTrip.java`. It uses the Kafka client libraries packaged in the Enterprise JAR. No separate Kafka client installation is needed.
+
+<details>
+<summary>Complete independent client</summary>
+<CodeBlock language="java" title="KafkaRoundTrip.java">{require('./includes/async-kafka/KafkaRoundTrip.java?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+With `SPECMATIC_ENTERPRISE_JAR` set, run:
+
+<CodeBlock language="shell">{require('./includes/async-kafka/client.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka/client.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The client checks the full JSON response, rather than merely observing that the broker started. Stop the mock with Ctrl+C, or call the control API:
+
+<CodeBlock language="shell">{require('./includes/async-kafka/stop.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka/stop.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The checked stop command terminates the mock process. Starting the next example creates a fresh broker.
+
+## Choose the broker endpoint
+
+A matching spec ID lets you select a different server for that spec. Both the declaration and the override use `ping`:
+
+<details>
+<summary>Complete per-spec override: port 19093</summary>
+<CodeBlock language="yaml" title="mock-override.yaml">{require('./includes/async-kafka/mock-override.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/async-kafka/mock-override.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka/mock-override.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+The spec-level server list replaces the service-level server list for this spec. The independent client also verified the reply on **19093**.
+
+A typed runtime server takes precedence over the legacy mock CLI port. With the original `mock.yaml`, this command still starts Kafka on **19092**, despite `--port 19094`:
+
+<CodeBlock language="shell">{require('./includes/async-kafka/mock-cli-port.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka/mock-cli-port.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+## Reuse a server from the contract
+
+`$serverRef` points into the **AsyncAPI document**, not into `specmatic.yaml`. Put it in the matching spec's `servers` list. The named contract server supplies host and protocol; the config supplies who manages the broker.
+
+<details>
+<summary>Complete contract-server reference: port 19095</summary>
+<CodeBlock language="yaml" title="mock-ref.yaml">{require('./includes/async-kafka/mock-ref.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/async-kafka/mock-ref.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka/mock-ref.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+This starts Kafka on **19095** and the same ping/pong exchange succeeds. It requires AsyncAPI 3 and a spec-level server reference. A global reference fails configuration validation:
+
+<details>
+<summary>Invalid global reference and the error</summary>
+<CodeBlock language="yaml" title="global-ref.yaml">{require('./includes/async-kafka/global-ref.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/async-kafka/global-ref.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka/global-ref.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+That command exits **1**. Move the reference into the matching spec entry as shown in `mock-ref.yaml`, then validate again.
+
+## Reuse configuration components
+
+Component `$ref` values point into **specmatic.yaml**. This complete variant shares the source, mock options and service; it produces the same reply on **19092**:
+
+<details>
+<summary>Complete component-based configuration</summary>
+<CodeBlock language="yaml" title="mock-components.yaml">{require('./includes/async-kafka/mock-components.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/async-kafka/mock-components.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka/mock-components.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+Choose inline or components according to reuse needs. Components are optional.
+
+## Validate and correct mistakes
+
+Check the four valid configurations without starting a broker:
+
+<CodeBlock language="shell">{require('./includes/async-kafka/validate.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka/validate.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+CLI configuration validation checks structure and protocol-specific rules. The browser inspector checks the bundled schema; it accepts the missing-type, global-reference and deprecated-block examples below because those restrictions require CLI protocol validation. It does not establish that an external broker is reachable or a running application behaves correctly.
+
+<details>
+<summary>Missing broker management type</summary>
+
+Every runtime server must explicitly select `in-memory` or `external`.
+
+<CodeBlock language="yaml" title="missing-type.yaml">{require('./includes/async-kafka/missing-type.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/async-kafka/missing-type.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka/missing-type.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The command exits **1**. Restore `type: in-memory` as in `mock.yaml`. Run configuration validation again.
+
+</details>
+
+<details>
+<summary>Wrong operation in a dependency</summary>
+
+This dependency selects mock options. `type: test` is invalid in this placement.
+
+<CodeBlock language="yaml" title="wrong-type.yaml">{require('./includes/async-kafka/wrong-type.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/async-kafka/wrong-type.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka/wrong-type.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The command exits **1**. Restore `asyncapi.type: mock` as in `mock.yaml`. Run configuration validation again.
+
+</details>
+
+<details>
+<summary>Deprecated broker block</summary>
+
+The legacy `inMemoryBroker` block is rejected by this release's configuration validator.
+
+<CodeBlock language="yaml" title="deprecated.yaml">{require('./includes/async-kafka/deprecated.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/async-kafka/deprecated.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka/deprecated.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The command exits **1**. Remove the legacy block and retain the typed `servers` list as in `mock.yaml`. Run configuration validation again.
+
+</details>
+
+## Next steps
+
+Return to [configuration tasks](/references/configuration), explore [every configuration key](/references/configuration/explorer), or read the [AsyncAPI server configuration reference](/supported_protocols/asyncapi/configuration).
+
+This recipe establishes local Kafka **mocking**. For application testing, follow the separate [checked Kafka test recipe](/references/configuration/async-kafka-test). External broker deployment, authentication/TLS, schema registries and other AsyncAPI bindings require separate guidance; these mock checks do not establish their behavior.

@@ -1,0 +1,1 @@
+node -e "fetch('http://127.0.0.1:9200/contracts/books.yaml').then(r=>r.text()).then(text=>require('node:assert/strict').match(text,/openapi: 3/))"

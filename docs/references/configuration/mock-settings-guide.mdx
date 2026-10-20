@@ -1,0 +1,108 @@
+---
+title: Choose Mock Settings and Understand Their Scope
+sidebar_position: 4.2
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Choose mock settings and understand their scope
+
+Mock settings have two scopes: **request behavior can be selected per service; lifecycle settings apply to the whole core mock runner.** This guide covers core HTTP mocks in OSS 2.55.3 and Enterprise 1.28.3. Other protocol runners and Studio can consume settings differently.
+
+## Where values come from
+
+<div className="configuration-settings-summary">
+
+| Setting | Core consumer scope | Omitted value / fallback |
+|---|---|---|
+| `strictMode` | Request handling can use service → dependency → global; startup/loading also uses dependency → global | `SPECMATIC_STUB_STRICT_MODE`, environment before JVM property; otherwise false in these consumers |
+| `generative` | Service → dependency → global | false; does not disable ordinary generated success responses |
+| `delayInMilliseconds` | Service → dependency → global, unless the expectation supplies its own delay | `SPECMATIC_STUB_DELAY`, environment before JVM property; otherwise no configured delay |
+| `lenientMode` | Selected service's parser mode, unless the source entry supplies one | false in core loading; no V3 mock environment/property fallback |
+| `startTimeoutInMilliseconds` | Dependency → global | 20,000 ms in the lifecycle accessor |
+| `hotReload` | Dependency → global, then CLI watcher choice | Enabled by the core CLI when omitted |
+| `gracefulRestartTimeoutInMilliseconds` | Dependency → global, then CLI server stop | 1,000 ms in the core CLI |
+
+</div>
+
+Settings merge **field by field**. Overriding delay does not discard inherited generative or lenient values. Explicit `false` and `0` are retained; omission falls back. Lifecycle accessors do not consult individual service settings, even though those keys are structurally accepted in a service settings object.
+
+Use dependency-wide settings for startup, watcher and shutdown choices. Use service settings for request behavior that should differ between services.
+
+## Try strict and relaxed request handling
+
+Save the following files in one folder and run commands from that folder. Follow the [Docker setup](/references/configuration/local-openapi#docker-setup) and keep port **9101** free. Stop each mock with Ctrl+C before the next scenario.
+
+<details>
+<summary>Contract — save as books.yaml</summary>
+
+<CodeBlock language="yaml" title="books.yaml">{require('./includes/mock-settings/books.yaml?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+The contract contains a named example for `/books/1`. `/books/2` matches the same schema but has no matching authored request example.
+
+Save **relaxed.yaml**. It deliberately sets dependency strictness to true and service strictness to false:
+
+<CodeBlock language="yaml" title="relaxed.yaml">{require('./includes/mock-settings/relaxed.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/mock-settings/relaxed.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpts:
+
+<CodeBlock language="terminaloutput">{require('./includes/mock-settings/relaxed.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+- `http://127.0.0.1:9101/books/1` returns HTTP 200 and `{"id":1,"title":"Specmatic Handbook"}`.
+- `http://127.0.0.1:9101/books/2` returns HTTP 200 with a generated integer `id` and string `title`.
+
+The service false controls this request behavior. Also, **`generative: false` still permits that normal generated success response.** The generative setting affects particular invalid-request/strict-response paths; it is not an on/off switch for every generated response.
+
+Now stop the mock and save **strict.yaml**. This reverses the strict settings: dependency false, service true.
+
+<details>
+<summary>Complete strict.yaml</summary>
+
+<CodeBlock language="yaml" title="strict.yaml">{require('./includes/mock-settings/strict.yaml?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+<CodeBlock language="shell">{require('./includes/mock-settings/strict.sh?raw').trimEnd()}</CodeBlock>
+
+`/books/1` still returns the authored example. `/books/2` now returns HTTP 400 with a body containing `STRICT MODE ON`, because no matching expectation is available. With `generative: true`, a matching contract-defined invalid-request response can change the strict fallback; that variant is not demonstrated by this recipe.
+
+## CLI strictness and service strictness can differ
+
+Stop the mock and run the relaxed configuration with the CLI flag:
+
+<CodeBlock language="shell">{require('./includes/mock-settings/cli-strict.sh?raw').trimEnd()}</CodeBlock>
+
+`/books/2` still returns a generated HTTP 200 response. The core CLI flag sets dependency-level strictness for startup/loading and fallback use; the service's explicit `strictMode: false` remains selected for its request handling. If you want that service to use strict request behavior, set its value to true or remove its false override.
+
+## Add a response delay
+
+Save **delayed.yaml**. It inherits a global 20 ms delay but selects 600 ms at service level:
+
+<details>
+<summary>Complete delayed.yaml</summary>
+
+<CodeBlock language="yaml" title="delayed.yaml">{require('./includes/mock-settings/delayed.yaml?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+<CodeBlock language="shell">{require('./includes/mock-settings/delayed.sh?raw').trimEnd()}</CodeBlock>
+
+The `/books/1` response is still the same authored example, with the service delay before it is sent. This delay applies to normal example responses too; an expectation-specific delay can take priority.
+
+After stopping the mock, compare the CLI override:
+
+<CodeBlock language="shell">{require('./includes/mock-settings/cli-delay.sh?raw').trimEnd()}</CodeBlock>
+
+The service still selects 600 ms: this CLI option writes a dependency-wide value, which the service overrides. Remove the service delay to use the dependency-wide choice. `delayInMilliseconds: 0` requests no added wait in this path; elapsed response time can still include transport and processing time.
+
+## Lifecycle and parsing: avoid the wrong expectation
+
+- **Startup timeout:** put it at dependency/global scope. It bounds particular startup/readiness waits, not every phase of the command or a whole test suite. CLI readiness can perform multiple waits using the selected timeout.
+- **Hot reload:** the core CLI defaults to enabled. Dependency `hotReload: false` disables its watcher in these recipes. CLI `--hot-reload enabled/disabled` controls the CLI choice. The watcher is registered for contract paths and CLI example directories; this does not establish that every referenced config/data file is watched.
+- **Graceful restart:** the core CLI uses the selected dependency/global value for server stop, with `--graceful-restart-timeout-in-ms` taking priority. It is a shutdown grace period, not an extra delay before the new server becomes ready.
+- **Leniency:** source-entry parsing mode, including CLI `--lenient`, can override service configuration. It applies to selected parser recovery paths. It does not disable all validation or make every broken contract usable; strictness and leniency are independent.
+
+The recipes verify request strictness, normal generation with generative false, service delay and the shown CLI interactions. Watch/restart timing, startup failure timing, lenient recovery and generative invalid-request variants still need their own effect checks. Read each key's scoped explanation in [All V3 Configuration Keys](/references/configuration/all-keys), or explore its placement in the [Configuration Explorer](/references/configuration/explorer).

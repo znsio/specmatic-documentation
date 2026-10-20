@@ -1,0 +1,113 @@
+---
+title: Identify Specs and Override Their Run Options
+sidebar_position: 4
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Identify specs and override their run options
+
+A service can load several specifications. Give a specification an `id` when you want to target it from `runOptions.<protocol>.specs`. The two lists have different jobs:
+
+- `definitions[].definition.specs` selects the specification files.
+- `runOptions.openapi.specs` selects overrides for already selected files, by ID. It does not load additional files.
+
+This guide checks OpenAPI mocking against OSS 2.55.3 and Enterprise 1.28.3. Other protocol overrides and test targets need their own supported fields and execution checks.
+
+## Two specs, two ports
+
+Put these three files in one directory. Run beside them with the [Docker setup](/references/configuration/local-openapi#docker-setup) and free ports 9101 and 9102.
+
+<CodeBlock language="yaml" title="matched.yaml">{require('./includes/spec-overrides/matched.yaml?raw').trimEnd()}</CodeBlock>
+
+<details>
+<summary>books.yaml — first specification</summary>
+<CodeBlock language="yaml">{require('./includes/spec-overrides/books.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+
+<details>
+<summary>authors.yaml — second specification</summary>
+<CodeBlock language="yaml">{require('./includes/spec-overrides/authors.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+
+The service's OpenAPI run options put books on port 9101. The `authors` override selects port 9102 for that spec only:
+
+<CodeBlock language="shell">{require('./includes/spec-overrides/matched.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/spec-overrides/matched.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Expected responses:
+
+<div className="configuration-settings-summary">
+
+| Request | Result |
+|---|---|
+| `http://127.0.0.1:9101/books/1` | HTTP 200, `{"id":1,"title":"Specmatic Handbook"}` |
+| `http://127.0.0.1:9102/authors/1` | HTTP 200, `{"id":1,"title":"Authors Handbook"}` |
+| `http://127.0.0.1:9101/authors/1` | HTTP 400 with `STRICT MODE ON`: authors is served on the other port |
+
+</div>
+
+Stop the mock before trying another configuration below.
+
+## Matching rules and fallback
+
+IDs match exactly, including case. They are local joins to a service's run-option list; they are not filenames or CLI aliases. A plain string specification path has no ID. An object specification can omit its ID when it needs no ID-based override.
+
+If there is no matching override, the spec uses the service's protocol run options. When duplicates match, the **first** override wins. Avoid duplicates rather than relying on ordering.
+
+Endpoint selection is not a field-by-field merge:
+
+1. A matching override's `baseUrl` supplies the endpoint when present, taking priority over its `host` and `port`.
+2. Otherwise an override needs `port` to supply an endpoint. Its omitted host defaults to `0.0.0.0` for mock source selection or `localhost` for test source selection; it does not inherit the service's host.
+3. An override containing only `host` supplies no endpoint, so endpoint selection falls back to the service run options.
+4. The service endpoint likewise prefers its `baseUrl`, otherwise its `host` plus `port`.
+
+The endpoint accessor rules above are source traced. The recipes observe matching, mismatch, duplicate order and `baseUrl` priority in released OpenAPI mocks; they do not establish all test/CLI/protocol precedence or every downstream bind-address behavior. Supplying both host and port explicitly keeps the mock's intended bind address clear.
+
+### A mismatch can be valid but ineffective
+
+This changes the override to `Authors` while the declaration remains `authors`:
+
+<details>
+<summary>mismatched.yaml — complete mismatch example</summary>
+<CodeBlock language="yaml">{require('./includes/spec-overrides/mismatched.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/spec-overrides/mismatched.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/spec-overrides/mismatched.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Both `/books/1` and `/authors/1` now return their authored HTTP 200 responses on **9101**. The override did not select the authors spec. Config validation accepts this file in the checked releases; schema validity does not establish that an ID joined successfully. Recover by using the same `authors` spelling in both places, as in `matched.yaml`.
+
+### Duplicate overrides
+
+<details>
+<summary>duplicate.yaml — complete duplicate example</summary>
+<CodeBlock language="yaml">{require('./includes/spec-overrides/duplicate.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/spec-overrides/duplicate.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/spec-overrides/duplicate.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The first `authors` override selects 9102; the later override for 9103 is bypassed. Validation accepts the duplicate list in these releases. Keep one override per ID.
+
+### A base URL wins over the port
+
+<details>
+<summary>base-url.yaml — complete endpoint-priority example</summary>
+<CodeBlock language="yaml">{require('./includes/spec-overrides/base-url.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/spec-overrides/base-url.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/spec-overrides/base-url.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The `authors` override contains a base URL for 9102 and a port value of 9103. Authors is served on **9102**, using the base URL. Prefer one endpoint form to make the choice obvious.
+
+## Validate and check the actual outcome
+
+Save all four complete configs shown above beside the specs, then validate them:
+
+<CodeBlock language="shell">{require('./includes/spec-overrides/validate.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/spec-overrides/validate.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+All four validate successfully, including the mismatch and duplicate. Check the run's reported endpoints and actual responses too. Validation loads specification sources; remote sources may be fetched or cached.
+
+If an override seems ignored, check its exact ID, its placement under the selected service/protocol, duplicate order, and whether it supplies a complete endpoint. For component-based configurations, follow the service's reference to the run options it actually uses. The [explorer](/references/configuration/explorer) shows component use sites; the [key reference](/references/configuration/all-keys#openapirunoptionspecification-id) shows supported placements and constraints.
+
+For checked two-target tests, CLI base-URL interaction and a per-spec path prefix, see [test specs against separate targets](/references/configuration/test-spec-overrides).

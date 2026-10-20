@@ -1,0 +1,7 @@
+version: 3
+specmatic:
+  settings:
+    backwardCompatibility:
+      baseBranch: main
+      repoDirectory: contracts-demo
+      strictMode: true

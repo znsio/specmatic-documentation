@@ -1,0 +1,33 @@
+export SPECMATIC_ENTERPRISE_JAR="$DOC_EXAMPLE_JAR"
+if [[ "$DOC_EXAMPLE_NAME" != start-*.sh && "$DOC_EXAMPLE_NAME" != validate.sh ]]; then
+  demo_event=pong
+  demo_delay=0
+  [[ "$DOC_EXAMPLE_NAME" != bad-reply.sh ]] || demo_event=wrong
+  [[ "$DOC_EXAMPLE_NAME" != short-timeout.sh && "$DOC_EXAMPLE_NAME" != cli-timeout.sh ]] || demo_delay=1500
+  java -cp "$DOC_EXAMPLE_JAR" KafkaService.java "$demo_event" "$demo_delay" > target.log 2>&1 &
+  demo_pid=$!
+  cleanup() {
+    result=$?
+    if [[ "$DOC_EXAMPLE_NAME" == bad-reply.sh && "$result" == 1 ]]; then
+      grep -Fq 'Demo replied with event: wrong' target.log || result=2
+    elif [[ "$result" == 0 ]]; then
+      grep -Fq 'Demo replied with event: pong' target.log || result=2
+    fi
+    if [[ "$result" == 0 && "$DOC_EXAMPLE_NAME" == readiness-config.sh ]]; then
+      node check-readiness.cjs config || result=2
+    elif [[ "$result" == 0 && "$DOC_EXAMPLE_NAME" == readiness-cli.sh ]]; then
+      node check-readiness.cjs cli || result=2
+    fi
+    kill "$demo_pid" 2>/dev/null || true
+    wait "$demo_pid" 2>/dev/null || true
+    exit "$result"
+  }
+  trap cleanup EXIT
+  ready=false
+  for attempt in {1..600}; do
+    if grep -q 'Demo service ready on localhost:19096' target.log; then ready=true; break; fi
+    kill -0 "$demo_pid" 2>/dev/null || { cat target.log; exit 1; }
+    sleep 0.1
+  done
+  [[ "$ready" == true ]] || { cat target.log; exit 1; }
+fi

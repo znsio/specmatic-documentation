@@ -1,0 +1,19 @@
+openapi: 3.0.3
+info:
+  title: Greeting API
+  version: '1.0'
+paths:
+  /greeting:
+    get:
+      operationId: getGreeting
+      responses:
+        '200':
+          description: A greeting
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [message]
+                properties:
+                  message:
+                    type: integer

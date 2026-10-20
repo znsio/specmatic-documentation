@@ -1,0 +1,32 @@
+export TLS_PASSWORD=docs-demo-pass
+if [[ "$DOC_EXAMPLE_NAME" != certificates.sh ]]; then
+  bash -e -o pipefail certificates.sh > certificates.log 2>&1
+fi
+if [[ "$DOC_EXAMPLE_NAME" == *request.sh ]]; then
+  if [[ "$DOC_EXAMPLE_NAME" == mtls-request.sh ]]; then docker run --rm --network host -v ./:/usr/src/app -v "$HOME/.specmatic:/root/.specmatic" --env TLS_PASSWORD --env CONFIG_FILE_PATH=mtls-mock.yaml specmatic/enterprise mock > mock.log 2>&1 &
+  else docker run --rm --network host -v ./:/usr/src/app -v "$HOME/.specmatic:/root/.specmatic" --env TLS_PASSWORD specmatic/enterprise mock > mock.log 2>&1 &
+  fi
+  fixture_pid=$!
+elif [[ "$DOC_EXAMPLE_NAME" == test-*.sh ]]; then
+  node target.cjs > target.log 2>&1 &
+  fixture_pid=$!
+fi
+if [[ -n "${fixture_pid:-}" ]]; then
+  cleanup() {
+    result=$?
+    if [[ "$result" == 0 && "$DOC_EXAMPLE_NAME" == test-*.sh && "$DOC_EXAMPLE_NAME" != test-no-cert.sh ]]; then node verify-tls.cjs report || result=2; fi
+    if [[ "$result" == 1 && "$DOC_EXAMPLE_NAME" == test-no-cert.sh ]]; then node verify-tls.cjs rejected || result=2; fi
+    kill "$fixture_pid" 2>/dev/null || true
+    wait "$fixture_pid" 2>/dev/null || true
+    exit "$result"
+  }
+  trap cleanup EXIT
+  for attempt in {1..600}; do
+    if [[ "$DOC_EXAMPLE_NAME" == *request.sh ]]; then grep -q 'https://127.0.0.1:19120' mock.log && break
+    else grep -q 'Independent mTLS target ready' target.log && break; fi
+    kill -0 "$fixture_pid" 2>/dev/null || { cat mock.log target.log 2>/dev/null; exit 1; }
+    sleep 0.1
+  done
+  if [[ "$DOC_EXAMPLE_NAME" == *request.sh ]]; then grep -q 'https://127.0.0.1:19120' mock.log
+  else grep -q 'Independent mTLS target ready' target.log; fi
+fi

@@ -1,0 +1,148 @@
+---
+title: Configure HTTPS and Client Certificates
+sidebar_position: 3.12
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Configure HTTPS and client certificates
+
+Use `cert` to give a mock its server identity, or give contract tests a client identity for an mTLS service. These V3 examples use a local OpenAPI contract and were checked with **OSS 2.55.3** and **Enterprise 1.28.3**.
+
+<div className="configuration-settings-summary">
+
+| Your task | Start here |
+|---|---|
+| Start an HTTPS mock | [Configure its server identity](#start-an-https-mock) |
+| Require a client certificate at the mock | [Enable incoming mTLS](#require-a-client-certificate) |
+| Test an mTLS service | [Configure the test client's identity](#test-an-independent-mtls-service) |
+| Reuse an identity | Use a named certificate component; the [mock example](#start-an-https-mock) shows both forms. |
+
+</div>
+
+**Trust boundary:** the checked mock requires a client certificate when mTLS is enabled, but accepts the independently self-signed demo client. Its reviewed implementation uses an insecure trust manager; this is not a trusted-client CA policy. The core HTTP test client also trusts server certificates and disables hostname verification in the reviewed source. A successful contract test therefore does not establish certificate-chain or hostname validity. HTTP authentication tokens are configured [separately](/features/authentication).
+
+## Save the files and create demo identities
+
+Use a **fresh directory**, Java, the [Docker setup](/references/configuration/local-openapi#docker-setup), OpenSSL supporting `-addext`, curl and Node 20+ for the independent target below. Ports 19120 and 19121 must be free. Run commands from this directory.
+
+Save `greeting.yaml`:
+
+<CodeBlock language="yaml" title="greeting.yaml">{require('./includes/https/greeting.yaml?raw').trimEnd()}</CodeBlock>
+
+Save this script as `certificates.sh` and run it with `bash certificates.sh`:
+
+<CodeBlock language="shell" title="certificates.sh">{require('./includes/https/certificates.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/https/certificates.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+This creates separate server and client identities, public PEM certificates, unencrypted demo private keys and password-protected `.pfx` stores under `certificates/`. The certificates last one day. `docs-demo-pass` is a public demo password; use your organization's issued identities and secret mechanism for a real setup. The script refuses an existing `certificates` directory rather than replacing its contents. Exporting the password in the script does not change its parent shell; the example configs use that same public default through [config templates](/references/configuration/template-values).
+
+## Start an HTTPS mock
+
+Save `specmatic.yaml`:
+
+<CodeBlock language="yaml" title="specmatic.yaml">{require('./includes/https/specmatic.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/https/https-mock.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/https/https-mock.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The same configured host/port now serves HTTPS because it has key material. In another terminal, verify the server certificate using the demo's public certificate:
+
+<CodeBlock language="shell">{require('./includes/https/request.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/https/request.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+A plain HTTP request to this listener fails. Stop the mock with Ctrl+C before trying another config on 19120.
+
+<details>
+<summary>Reuse the certificate as a component</summary>
+
+<CodeBlock language="yaml" title="mock-ref.yaml">{require('./includes/https/mock-ref.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/https/mock-ref.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/https/mock-ref.terminaloutput?raw').trimEnd()}</CodeBlock>
+The named reference produces the same HTTPS response. Stop this mock before continuing.
+</details>
+
+### Require a client certificate
+
+Save `mtls-mock.yaml`; it adds `mtlsEnabled: true` to the server certificate configuration:
+
+<CodeBlock language="yaml" title="mtls-mock.yaml">{require('./includes/https/mtls-mock.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/https/mtls-mock.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/https/mtls-mock.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The earlier request without a client certificate fails during TLS. Supply the client identity:
+
+<CodeBlock language="shell">{require('./includes/https/mtls-request.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/https/mtls-request.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+This client certificate is self-signed independently of the server, demonstrating the trust boundary above. The published curl commands explicitly use HTTP/1.1: default curl HTTP/2 negotiation failed against this mTLS listener in both checked releases with an unexpected SETTINGS-frame error. Stop the mock with Ctrl+C.
+
+## Test an independent mTLS service
+
+Save `target.cjs` and start it in another terminal:
+
+<details>
+<summary>Complete independent HTTPS target</summary>
+
+<CodeBlock language="javascript" title="target.cjs">{require('./includes/https/target.cjs?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/https/start-target.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/https/start-target.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+This target trusts only the demo client's certificate and refuses requests without a trusted client identity. Save `test-mtls.yaml`:
+
+<CodeBlock language="yaml" title="test-mtls.yaml">{require('./includes/https/test-mtls.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/https/test-mtls.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/https/test-mtls.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The checked run verifies the actual JUnit result and an authorized request identifying `docs-client` at the independent target. `mtlsEnabled` is not needed to send a client certificate: it controls incoming mock connections, not this test-client selection.
+
+<details>
+<summary>Failure without the client certificate, and recovery</summary>
+
+<CodeBlock language="yaml" title="test-no-cert.yaml">{require('./includes/https/test-no-cert.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/https/test-no-cert.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/https/test-no-cert.terminaloutput?raw').trimEnd()}</CodeBlock>
+This command exits 1 and does not reach the authenticated handler. Run the earlier `test-mtls.yaml` command to recover.
+</details>
+
+Stop the independent target with Ctrl+C when finished. The configured JUnit reports are written under `reports`; the target records authorized demo requests in `target-requests.log`.
+
+## Choose the right store settings
+
+| Key | Meaning in this setup |
+|---|---|
+| `keyStore.file` | Existing private-key store; the mock loader accepts `.jks` and `.pfx`. The test loader also accepts `.p12`. |
+| `keyStore.alias` | Identity alias: `demo-server` for the mock, `demo-client` for tests. |
+| `keyStore.password` | Password unlocking the private key. |
+| `keyStorePassword` | Password opening the store. For these PKCS12 demo stores, use the same password for both. |
+| `keyStore.directory` | A different mode: the mock creates/replaces `specmatic.jks` there; the test client reads an existing `specmatic.jks`. Do not point a generating mock at a directory whose existing store you need to keep. |
+| `mtlsEnabled` | Incoming client-certificate requirement at the mock; omitted or false does not require a client certificate. |
+
+Store/key passwords default to `forgotten` in the reviewed model if omitted. That does not guess the password of an existing store. Set both explicitly using the supported secret/template mechanism.
+
+<details>
+<summary>Filename-format boundary: .p12 for tests, .pfx for mocks</summary>
+
+The same PKCS12 bytes work for the test client with a `.p12` extension:
+<CodeBlock language="yaml" title="test-p12.yaml">{require('./includes/https/test-p12.yaml?raw').trimEnd()}</CodeBlock>
+The command copies the generated `client.pfx` to `client.p12`, then runs:
+<CodeBlock language="shell">{require('./includes/https/test-p12.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/https/test-p12.terminaloutput?raw').trimEnd()}</CodeBlock>
+For the mock, save this config; its command copies `server.pfx` to `server.p12`:
+<CodeBlock language="yaml" title="bad-format.yaml">{require('./includes/https/bad-format.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/https/bad-format.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/https/bad-format.terminaloutput?raw').trimEnd()}</CodeBlock>
+The mock command exits 1. Keep a supported `.pfx` filename, as in the first working config.
+</details>
+
+<details>
+<summary>An explicit config store password is not overridden by the CLI password</summary>
+
+Save this intentionally wrong-password config:
+<CodeBlock language="yaml" title="wrong-password.yaml">{require('./includes/https/wrong-password.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/https/wrong-password.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/https/wrong-password.terminaloutput?raw').trimEnd()}</CodeBlock>
+The command exits 1 despite the correct CLI store password. The explicit config `keyStorePassword` is retained by this merge. Correct the config or its resolved template value. Nested file/alias/private-key-password merging follows different rules; do not assume a single precedence rule for every certificate field.
+</details>
+
+Return to [configuration tasks](/references/configuration), find certificate fields in the [explorer](/references/configuration/explorer), or read [all keys](/references/configuration/all-keys). This recipe establishes local core OpenAPI HTTPS/mTLS behavior; SOAP, proxy, other protocols, directory generation, relocated config paths, multiple identities and production trust integrations need their own checks.

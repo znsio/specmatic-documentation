@@ -16,7 +16,7 @@ jobs:
       matrix:
         edition: [oss, enterprise]
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     permissions:
       contents: read
     steps:
@@ -28,6 +28,13 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+      - name: Install documentation dependencies
+        run: npm ci
+      - name: Check configuration catalog coverage and generated reference
+        run: |
+          node scripts/build-config-catalog.js --check
+          node scripts/build-config-validator.js --check
+          node --test scripts/check-config-catalog.test.js scripts/check-config-inspector.test.js scripts/check-config-builder.test.js scripts/check-config-explorer.test.js scripts/check-config-docker.test.js
       - name: Test the generic example runner
         run: node --test scripts/check-doc-examples.test.js
       - name: Run published CLI examples
@@ -37,3 +44,52 @@ jobs:
           npm run check:examples -- --edition ${{ matrix.edition }}
           docs/getting_started/includes/cli-quick-start
           docs/contract_driven_development/includes/contract-testing
+      - name: Install grpcurl for Enterprise example response checks
+        if: matrix.edition == 'enterprise'
+        run: |
+          mkdir -p "$RUNNER_TEMP/grpcurl"
+          cd "$RUNNER_TEMP/grpcurl"
+          curl --fail --location --retry 3 --output grpcurl_1.9.1_linux_x86_64.tar.gz https://github.com/fullstorydev/grpcurl/releases/download/v1.9.1/grpcurl_1.9.1_linux_x86_64.tar.gz
+          curl --fail --location --retry 3 --output checksums.txt https://github.com/fullstorydev/grpcurl/releases/download/v1.9.1/grpcurl_1.9.1_checksums.txt
+          sha256sum --check --ignore-missing checksums.txt
+          tar --extract --gzip --file grpcurl_1.9.1_linux_x86_64.tar.gz grpcurl
+          echo "$RUNNER_TEMP/grpcurl" >> "$GITHUB_PATH"
+      - name: Prepare mounted Enterprise license
+        if: matrix.edition == 'enterprise'
+        env:
+          SPECMATIC_LICENSE_CONTENT: ${{ secrets.SPECMATIC_LICENSE_KEY }}
+        run: |
+          umask 077
+          mkdir -p "$HOME/.specmatic"
+          printf '%s' "$SPECMATIC_LICENSE_CONTENT" > "$HOME/.specmatic/specmatic-license.txt"
+      - name: Pull the published Enterprise Docker image
+        if: matrix.edition == 'enterprise'
+        run: docker pull specmatic/enterprise
+      - name: Run published configuration Docker examples
+        if: matrix.edition == 'enterprise'
+        env:
+          SPECMATIC_LICENSE_CONTENT: ${{ secrets.SPECMATIC_LICENSE_KEY }}
+        run: >-
+          node scripts/run-config-docker-examples.js
+          docs/references/configuration/includes/local-openapi
+          docs/references/configuration/includes/test-settings
+          docs/references/configuration/includes/discovery
+          docs/references/configuration/includes/data-recipes
+          docs/references/configuration/includes/mock-settings
+          docs/references/configuration/includes/template-recipes
+          docs/references/configuration/includes/spec-overrides
+          docs/references/configuration/includes/spec-test-overrides
+          docs/references/configuration/includes/component-references
+          docs/references/configuration/includes/test-targets
+          docs/references/configuration/includes/source-recipes
+          docs/references/configuration/includes/migration
+          docs/references/configuration/includes/wsdl
+          docs/references/configuration/includes/compatibility
+          docs/references/configuration/includes/mcp
+          docs/references/configuration/includes/proxy
+          docs/references/configuration/includes/https
+          docs/references/configuration/includes/auth
+          docs/references/configuration/includes/graphql
+          docs/references/configuration/includes/grpc
+          docs/references/configuration/includes/async-kafka
+          docs/references/configuration/includes/async-kafka-test

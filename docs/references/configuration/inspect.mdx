@@ -1,0 +1,32 @@
+---
+title: Inspect Your Configuration
+sidebar_position: 1.6
+hide_table_of_contents: true
+---
+
+import Link from '@docusaurus/Link';
+import ConfigurationInspector from '@site/src/components/ConfigurationInspector';
+
+# Inspect your configuration
+
+Paste a V3 file to browse its structure, follow local component references and find explanations for recognized keys. Your original text is kept as written, including templates, unknown fields and references.
+
+<ConfigurationInspector />
+
+## What the browser checks
+
+For a concrete file, the inspector checks nested types, allowed fields, required fields, protocol variants and URI formats against the documented V3 resolved-schema snapshot. It also checks source-provider exclusivity and local destinations. For up to 50 found local references, it checks the target with shallow sibling overrides against the documented shape at that use site. This temporary browser-only projection never rewrites your file, adds defaults or converts authored values.
+
+If template inputs are unresolved, the schema check is skipped rather than rejecting a placeholder as the wrong type. Cyclic or oversized structures also skip schema validation. External refs are not fetched. Chained references and truncated shape diagnostics remain unchecked. A found target or a passing use-site shape still needs Specmatic's semantic checks for typed conversion, overrides, cycles and protocol behavior. See <Link to="/references/configuration/component-references" target="_blank" rel="noopener noreferrer">component references</Link> for checked failures and corrections.
+
+Configuration values use templates such as `{NAME:default}` or `${NAME:default}`. A placeholder without the colon/default portion, such as `${NAME}`, is a literal string in the documented config parser. Map keys are kept literal; they are not substituted by that parser. The browser recognizes the value syntax but does not read your environment or resolve it.
+
+For the documented releases, local `#/components/` references traverse map keys literally: they do not decode `~1`/`~0` or traverse array indices. Choose simple component names such as `booksBackend`; a name containing `/` cannot be reached by escaping the slash. Inspector location labels use escaped pointers to identify fields, but those labels are not necessarily usable as Specmatic references.
+
+## What to check next
+
+A successful browser check does **not** mean the configuration will run. It cannot evaluate your environment, credentials, referenced contracts, local paths, ports, protocol semantics or CLI overrides. Templates and external refs remain unresolved.
+
+Save your file and use Specmatic's configuration validation. The <Link to="/references/configuration/local-openapi#validate-the-configuration-files" target="_blank" rel="noopener noreferrer">local OpenAPI recipes</Link> show the validation commands and explain their possible fetching/cache effects. Configuration validation, example validation and a test/mock run answer different questions.
+
+To find optional keys absent from your file, open the <Link to="/references/configuration/explorer" target="_blank" rel="noopener noreferrer">all-keys explorer</Link>. To start a new file, choose a <Link to="/references/configuration" target="_blank" rel="noopener noreferrer">task</Link>.

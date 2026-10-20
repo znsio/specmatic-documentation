@@ -1,0 +1,30 @@
+version: 3
+specmatic:
+  settings:
+    mock:
+      delayInMilliseconds: 20
+      generative: false
+      hotReload: true
+      startTimeoutInMilliseconds: 20000
+      gracefulRestartTimeoutInMilliseconds: 1000
+      lenientMode: false
+dependencies:
+  settings:
+    hotReload: false
+    strictMode: false
+  services:
+    - service:
+        definitions:
+          - definition:
+              source:
+                filesystem:
+                  directory: .
+              specs: [books.yaml]
+        settings:
+          strictMode: false
+          delayInMilliseconds: 600
+        runOptions:
+          openapi:
+            type: mock
+            host: 127.0.0.1
+            port: 9101

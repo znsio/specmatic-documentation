@@ -1,0 +1,214 @@
+---
+title: Configure SOAP with WSDL
+sidebar_position: 1.3
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Configure SOAP with WSDL
+
+Use `runOptions.wsdl` to mock a SOAP service or test its running implementation. These complete V3 examples exercise a local SOAP 1.1 contract in OSS and Enterprise.
+
+## Save the inputs
+
+Follow the [Docker setup](/references/configuration/local-openapi#docker-setup). Save the files below in one folder and run commands there. Use Bash-compatible commands; the optional demo needs Node.js 20+. Keep ports **9100**, **9101** and **9102** free. The relative-path troubleshooting example additionally uses **9000**.
+
+The source directory uses a configuration template. Each command supplies its mounted container path, `/usr/src/app`, through `SOAP_SPEC_DIRECTORY`; this avoids the released WSDL mock path-matching issue described below. `CONFIG_FILE_PATH` selects the named configuration at process startup. With your final file named `specmatic.yaml`, ordinary config discovery also applies.
+
+<details>
+<summary>Contract — save as hello.wsdl</summary>
+
+<CodeBlock language="xml" title="hello.wsdl">{require('./includes/wsdl/hello.wsdl?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+Save the external example and XML bodies at these exact paths. The example selects `SimpleOperation` and gives the mock a deterministic response.
+
+<CodeBlock language="json" title="soap-examples/hello.json">{require('./includes/wsdl/soap-examples/hello.json?raw').trimEnd()}</CodeBlock>
+
+<CodeBlock language="xml" title="request.xml">{require('./includes/wsdl/request.xml?raw').trimEnd()}</CodeBlock>
+
+<CodeBlock language="xml" title="response.xml">{require('./includes/wsdl/response.xml?raw').trimEnd()}</CodeBlock>
+
+## Mock the service
+
+Save **mock.yaml**. `dependencies` selects the service for mocking; no system under test or reusable component is required. Disable file watching for this small example.
+
+<CodeBlock language="yaml" title="mock.yaml">{require('./includes/wsdl/mock.yaml?raw').trimEnd()}</CodeBlock>
+
+<CodeBlock language="shell">{require('./includes/wsdl/mock.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/wsdl/mock.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Send the XML request to `http://127.0.0.1:9101/soap` using POST, `Content-Type: text/xml` and `SOAPAction: http://specmatic.io/SOAPService/SimpleOperation`. Use the body from `request.xml`. The result is HTTP 200 with the SOAP envelope in `response.xml`; whitespace formatting may differ. Stop the mock with Ctrl+C.
+
+## Test the implementation
+
+Save **test.yaml**. Testing selects an existing service; it does not start your application. This configuration sends the example request to port 9100 and writes JUnit results under `reports` in the working directory.
+
+<CodeBlock language="yaml" title="test.yaml">{require('./includes/wsdl/test.yaml?raw').trimEnd()}</CodeBlock>
+
+Use your own SOAP implementation, or save this demo next to the XML files. It listens on ports 9100 and 9102 so you can also try the per-spec override below.
+
+<details>
+<summary>Demo implementation — save as target.cjs</summary>
+
+<CodeBlock language="javascript" title="target.cjs">{require('./includes/wsdl/target.cjs?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+Start it in another terminal:
+
+<CodeBlock language="shell">{require('./includes/wsdl/start-target.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/wsdl/start-target.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+In your original terminal:
+
+<CodeBlock language="shell">{require('./includes/wsdl/test.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/wsdl/test.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The response is checked against the WSDL. Stop the demo with Ctrl+C when finished.
+
+## Choose the endpoint
+
+`baseUrl` takes precedence over `host` and `port` when both forms are present. These complete examples deliberately specify a competing port 9102: the mock still listens on 9101, and the test still contacts 9100.
+
+### mock-base-url.yaml
+
+<CodeBlock language="yaml" title="mock-base-url.yaml">{require('./includes/wsdl/mock-base-url.yaml?raw').trimEnd()}</CodeBlock>
+
+<CodeBlock language="shell">{require('./includes/wsdl/mock-base-url.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/wsdl/mock-base-url.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+### test-base-url.yaml
+
+<CodeBlock language="yaml" title="test-base-url.yaml">{require('./includes/wsdl/test-base-url.yaml?raw').trimEnd()}</CodeBlock>
+
+<CodeBlock language="shell">{require('./includes/wsdl/test-base-url.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/wsdl/test-base-url.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Stop each mock before starting the next one. Keep the demo implementation running for test commands.
+
+## Override one specification
+
+Give the specification an ID, then use the same ID in `runOptions.wsdl.specs`. These examples route `greeting` to port 9102. The outer run options still show 9101 for mocking and 9100 for testing; the matching specification override selects the effective endpoint.
+
+### mock-override.yaml
+
+<CodeBlock language="yaml" title="mock-override.yaml">{require('./includes/wsdl/mock-override.yaml?raw').trimEnd()}</CodeBlock>
+
+<CodeBlock language="shell">{require('./includes/wsdl/mock-override.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/wsdl/mock-override.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+### test-override.yaml
+
+<CodeBlock language="yaml" title="test-override.yaml">{require('./includes/wsdl/test-override.yaml?raw').trimEnd()}</CodeBlock>
+
+<CodeBlock language="shell">{require('./includes/wsdl/test-override.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/wsdl/test-override.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+IDs must match exactly. An unmatched override does not select this specification; use the same authored ID in both locations. Stop the mock with Ctrl+C.
+
+## Understand SOAPAction quoting
+
+For generated requests without an example-supplied SOAPAction, the default is an unquoted header. Save this version without `data.examples`:
+
+<CodeBlock language="yaml" title="test-generated.yaml">{require('./includes/wsdl/test-generated.yaml?raw').trimEnd()}</CodeBlock>
+
+<CodeBlock language="shell">{require('./includes/wsdl/test-generated.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/wsdl/test-generated.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Set `specmatic.settings.general.featureFlags.escapeSoapAction: true` to generate a quoted SOAPAction instead:
+
+<CodeBlock language="yaml" title="test-quoted-action.yaml">{require('./includes/wsdl/test-quoted-action.yaml?raw').trimEnd()}</CodeBlock>
+
+<CodeBlock language="shell">{require('./includes/wsdl/test-quoted-action.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/wsdl/test-quoted-action.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+An explicit SOAPAction in an external example takes precedence over that preference. This file sets the flag but retains the unquoted header from `soap-examples/hello.json`:
+
+<CodeBlock language="yaml" title="test-example-action.yaml">{require('./includes/wsdl/test-example-action.yaml?raw').trimEnd()}</CodeBlock>
+
+<CodeBlock language="shell">{require('./includes/wsdl/test-example-action.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/wsdl/test-example-action.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+All three variants pass against the demo. Choose the form your implementation expects; inspect example headers when changing the flag seems to have no effect.
+
+## Fix a relative-path mock endpoint
+
+In OSS 2.55.3 and Enterprise 1.28.3, this local WSDL mock can miss its configured endpoint when the specification source remains relative. The WSDL feature records an absolute path while the endpoint lookup retains a relative path. This is a released mock-routing limitation, not a rule that WSDL always ignores its run options.
+
+With no `SOAP_SPEC_DIRECTORY` supplied, the directory template in `mock.yaml` falls back to `.`. Run this in a fresh terminal without that variable:
+
+<CodeBlock language="shell">{require('./includes/wsdl/mock-relative.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/wsdl/mock-relative.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The mock starts at `0.0.0.0:9000`, despite the configured 9101. Stop it with Ctrl+C. The primary command above supplies the absolute source directory and restores configured routing. Alternatively, for this single-listener setup, choose the fallback listener through CLI options:
+
+<CodeBlock language="shell">{require('./includes/wsdl/mock-relative-cli.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/wsdl/mock-relative-cli.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+That recovery listens on 9101. It does not establish that CLI options reproduce multiple per-spec endpoints; use the absolute-directory command for the override examples.
+
+## Validate and correct a wrong mode
+
+Validate the primary files:
+
+<CodeBlock language="shell">{require('./includes/wsdl/validate.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/wsdl/validate.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+A system-under-test WSDL run option cannot declare `type: mock`. Save this intentional error as **wrong-type.yaml**:
+
+<CodeBlock language="yaml" title="wrong-type.yaml">{require('./includes/wsdl/wrong-type.yaml?raw').trimEnd()}</CodeBlock>
+
+<CodeBlock language="shell">{require('./includes/wsdl/wrong-type.sh?raw').trimEnd()}</CodeBlock>
+
+Expected excerpt:
+
+<CodeBlock language="terminaloutput">{require('./includes/wsdl/wrong-type.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Validation exits with code 1. Change the type to `test`, as in `test.yaml`, then validate again. Configuration validation checks the file; a successful test additionally establishes that your running implementation responds according to the contract.
+
+## Scope of these examples
+
+Verified against OSS **2.55.3** and Enterprise **1.28.3**: local SOAP 1.1 mocking/testing, explicit examples, endpoint precedence, matching per-spec overrides, generated SOAPAction quoting and wrong-mode validation. The commands use the same files as the documentation checks. These examples do not establish HTTPS/mTLS, imported WSDL/XSD resolution, SOAP 1.2 or other integration behavior.
+
+Explore [all V3 keys](/references/configuration/all-keys), [template values](/references/configuration/template-values), [data selection](/references/configuration/data-selection) and [the SOAP protocol overview](/supported_protocols/soap).

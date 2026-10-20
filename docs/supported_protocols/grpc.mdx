@@ -10,6 +10,8 @@ import {CommercialBadge} from "../../src/components/CommercialBadge";
 
 Specmatic supports service virtualization, contract testing and backward compatibility for gRPC APIs, similar to its support for REST (OpenAPI) and SOAP APIs. This document will guide you through using Specmatic for gRPC services.
 
+For complete V3 files and checked local commands, start with [Configure gRPC with Protobuf](/references/configuration/grpc). It explains mock/test port differences, compiler selection and example directories. A gRPC mock in the documented release binds to `0.0.0.0`; a mock override's `host` does not select its listener interface.
+
 ## What Can You Achieve with Specmatic's gRPC Support?
 
 With Specmatic gRPC support you will be to leverage your proto files as executable contracts.
@@ -87,7 +89,7 @@ Make sure to update the repository URLs, paths, and configuration to reflect you
 Specmatic gRPC also supports proto files that import other proto files locally. There are two scenarios:
 
 1. **Locally imported file in the same folder:**
-   - If your proto file imports another proto file that is present in the same directory, Specmatic gRPC will automatically resolve the import. No additional configuration is required.
+   - For configuration-driven V3 runs, explicitly include `.` in `runOptions.protobuf.importPaths`. In Enterprise 1.28.3, the compiler can find a same-folder import while Specmatic's message parser still fails when its search list is empty. See the [complete failure and recovery](/references/configuration/grpc#resolve-imported-message-types).
 
 2. **Locally imported file in a different folder:**
    - If your proto file imports another proto file from a different directory, Specmatic gRPC will not resolve the import automatically. You need to specify the import path so Specmatic can locate the imported file.
@@ -139,7 +141,7 @@ package com.store.order;
 // ... service and message definitions ...
 ```
 
-If you run Specmatic gRPC from the `contracts` directory, it will automatically resolve the import if `common/types.proto` is inside `contracts/common`.
+For a configuration-driven run, include `.` in the selected protobuf `importPaths` so the main proto's directory is searched. A successful compiler import does not by itself establish that Specmatic's message parser found the imported type. The linked configuration recipe checks one same-folder import; this nested layout needs its own verification.
 
 If `types.proto` is located outside the `contracts` directory, for example:
 

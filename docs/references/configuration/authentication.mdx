@@ -1,0 +1,192 @@
+---
+title: Configure OpenAPI Authentication
+sidebar_position: 3.13
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Configure OpenAPI authentication
+
+Put credentials in a **matching per-spec run-option entry**. Two names must line up: the spec `id` identifies the contract, and each `securitySchemes` map key identifies a scheme in that contract's `components.securitySchemes`.
+
+This V3 recipe checks **OSS 2.55.3** and **Enterprise 1.28.3** against an independent local service. It covers bearer, OAuth2, OpenID Connect, Basic, header API keys and query API keys, plus an unauthenticated operation. It supplies tokens; it does not demonstrate token issuance, login or refreshing an expired token.
+
+## Save the config and specification
+
+Use a fresh directory, free ports 19130/19131, the [Docker setup](/references/configuration/local-openapi#docker-setup) and Node 20+. Save these files and run commands from that directory.
+
+<CodeBlock language="yaml" title="specmatic.yaml">{require('./includes/auth/specmatic.yaml?raw').trimEnd()}</CodeBlock>
+
+`auth-demo` appears in both the definition and the per-spec options. `BearerAuth`, for example, is the **scheme name**, not the Authorization header name. The OpenAPI declaration uses `type: http` and `scheme: bearer`; its Specmatic credential entry uses `type: bearer`.
+
+<details>
+<summary>auth.yaml — complete specification with all six schemes</summary>
+
+<CodeBlock language="yaml" title="auth.yaml">{require('./includes/auth/auth.yaml?raw').trimEnd()}</CodeBlock>
+
+`/bearer` inherits the global bearer requirement. The other authenticated operations override it with their own scheme. `/public` uses `security: []` and receives no credential. OAuth/OIDC URLs are illustrative; this setup supplies already-issued demo tokens.
+
+</details>
+
+<div className="configuration-settings-summary">
+
+| Config `type` | Supply in `token` | Request sent |
+|---|---|---|
+| `bearer`, `oauth2`, `openIdConnect` | Raw token, without `Bearer ` | `Authorization: Bearer <token>` |
+| `basicAuth` | Base64 of `username:password`, without `Basic ` | `Authorization: Basic <token>` |
+| `apiKey` | Raw key | Header or query parameter selected by the OpenAPI scheme's `in` and `name` |
+
+</div>
+
+The example uses public demo credentials. For a real endpoint, use [HTTPS](/references/configuration/https) and a [config template](/references/configuration/template-values) such as `token: '{API_TOKEN:}'` with the variable supplied by your environment. Test request logs and reports can contain credentials; do not share them as sanitized output.
+
+## Start the independent service and run tests
+
+Save the complete local target:
+
+<details>
+<summary>target.cjs — checks actual credentials at each operation</summary>
+
+<CodeBlock language="javascript" title="target.cjs">{require('./includes/auth/target.cjs?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+Start it in another terminal:
+
+<CodeBlock language="shell">{require('./includes/auth/start-target.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/auth/start-target.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+In the original directory, run:
+
+<CodeBlock language="shell">{require('./includes/auth/test.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/auth/test.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The checked run asserts all seven operations, exact credentials received by the independent target and the actual JUnit result. Reports go under `reports`; the demo target records fictitious credentials in `requests.log`. Keep the target running for the following variants, then stop it with Ctrl+C.
+
+## Find and correct a credential lookup problem
+
+A config can have valid structure while the ID, scheme name or credential adapter is wrong. These examples deliberately fail; run the original `specmatic.yaml` command to recover.
+
+<details>
+<summary>Spec ID mismatch: six authenticated operations fail</summary>
+
+The definition remains `auth-demo`; only the run-option ID changes to `Auth-demo`. No credential map is selected. Generated credentials are not accepted by the demo service; `/public` still passes. This command exits 1.
+
+<CodeBlock language="yaml" title="wrong-id.yaml">{require('./includes/auth/wrong-id.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/auth/wrong-id.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/auth/wrong-id.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+<details>
+<summary>Scheme-name mismatch: bearer fails while the other six operations pass</summary>
+
+The contract declares `BearerAuth`, but this map uses `bearerAuth`. The lookup is case-sensitive. This command exits 1.
+
+<CodeBlock language="yaml" title="wrong-name.yaml">{require('./includes/auth/wrong-name.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/auth/wrong-name.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/auth/wrong-name.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+<details>
+<summary>Wrong credential type: a valid enum is not necessarily the right adapter</summary>
+
+This changes the bearer credential entry to `basicAuth`. The bearer consumer cannot use that adapter's token and falls back. The command exits 1; config-schema acceptance alone does not check agreement with the OpenAPI scheme.
+
+<CodeBlock language="yaml" title="wrong-type.yaml">{require('./includes/auth/wrong-type.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/auth/wrong-type.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/auth/wrong-type.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+<details>
+<summary>A full Authorization header is not a raw token</summary>
+
+Supplying `Bearer demo-bearer` produces `Authorization: Bearer Bearer demo-bearer` in the checked request. The command exits 1. Keep only `demo-bearer` in the token field.
+
+<CodeBlock language="yaml" title="full-header.yaml">{require('./includes/auth/full-header.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/auth/full-header.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/auth/full-header.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+## Choose where the credential comes from
+
+For these core HTTP consumers, lookup is:
+
+1. A nonblank token from the matching config entry, with a compatible credential type.
+2. The environment variable named exactly after the OpenAPI scheme, then a Java property of that name.
+3. For bearer/OAuth/OIDC, `SPECMATIC_OAUTH2_TOKEN`; for Basic, `SPECMATIC_BASIC_AUTH_TOKEN` (environment before Java property).
+4. Without a supplied credential, request generation can use dictionary/generated values. A generated value is not an issued credential.
+
+Config-template resolution happens before this lookup. It uses the variable named inside the template, which can differ from the scheme name. Example-level headers and dictionary selection have additional consumers; this recipe establishes the cases below, not a universal precedence rule for every authored example.
+
+### A scheme-named environment variable can recover an absent matching entry
+
+Use the earlier `wrong-name.yaml` and supply the variable matching the contract's real name:
+
+<CodeBlock language="shell">{require('./includes/auth/scheme-env.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/auth/scheme-env.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+### A template variable can supply the configured token
+
+Save `template.yaml`; its bearer token is `'{API_TOKEN:wrong-demo}'`:
+
+<CodeBlock language="yaml" title="template.yaml">{require('./includes/auth/template.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/auth/template-env.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/auth/template-env.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+
+<details>
+<summary>Blank config token falls back to the scheme-named variable</summary>
+
+An empty configured token is ignored at credential lookup. The named environment value supplies the real demo token, and all operations pass.
+
+<CodeBlock language="yaml" title="blank-token.yaml">{require('./includes/auth/blank-token.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/auth/blank-token.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/auth/blank-token.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+<details>
+<summary>A nonblank configured token wins over the scheme-named variable</summary>
+
+The config sets `wrong-demo`; the command supplies `BearerAuth=demo-bearer`. The request still contains `Bearer wrong-demo`, so one test fails and the command exits 1. Fix the config or the variable used by its template.
+
+<CodeBlock language="yaml" title="wrong-token.yaml">{require('./includes/auth/wrong-token.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/auth/wrong-token.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/auth/wrong-token.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+<details>
+<summary>An empty scheme-named variable suppresses the global fallback</summary>
+
+Use the earlier `blank-token.yaml`. This command supplies an empty scheme variable and a valid global bearer token:
+
+<CodeBlock language="shell">{require('./includes/auth/empty-env.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/auth/empty-env.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The empty environment value is present, so the global token is not selected. Bearer authentication fails and the command exits 1; the other six operations pass. Use the earlier nonempty scheme-variable command to recover. A blank config token and an empty environment variable therefore have different fallback behavior.
+
+</details>
+
+## Understand the mock boundary
+
+The schema permits these fields under mock run options too. The reviewed V3 credential lookup selects from `systemUnderTest`, not a dependency's credential map. Core mock matching does not authenticate a bearer token against this map.
+
+Save this mock config and start it after stopping any process already using 19131:
+
+<CodeBlock language="yaml" title="mock.yaml">{require('./includes/auth/mock.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/auth/mock.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/auth/mock.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+In another terminal, try both requests:
+
+<CodeBlock language="shell">{require('./includes/auth/mock-request.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/auth/mock-request.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Both return the same `hello auth` response: no Authorization header is required in the checked mock mode, and an arbitrary bearer value is accepted. This is not token validation or a substitute for the application's authentication policy. Stop the mock with Ctrl+C.
+
+Return to [configuration tasks](/references/configuration), inspect credentials in the [key explorer](/references/configuration/explorer), or read the [authentication feature guide](/features/authentication) for example/fixture approaches. This recipe does not verify cookie API keys, multiple simultaneous or alternative requirements, role/scope authorization, refresh flows, external examples/dictionaries, JVM/global fallback variants or Studio/programmatic consumers.

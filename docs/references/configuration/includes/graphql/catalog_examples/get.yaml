@@ -1,0 +1,8 @@
+request:
+  httpHeaders:
+    X-Example: catalog_examples
+  body: |
+    query {
+      get(type: "gadget")
+    }
+response: 10

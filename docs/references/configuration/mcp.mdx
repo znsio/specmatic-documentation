@@ -1,0 +1,169 @@
+---
+title: Configure MCP Tool Tests
+sidebar_position: 1.39
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Configure MCP tool tests
+
+Use `mcp.test` to test tools exposed by a running MCP server. These V3 examples were checked with **OSS 2.55.3** and **Enterprise 1.28.3**. They use streamable HTTP, a harmless local echo tool and a deliberately broken tool.
+
+This config is for testing an MCP server. Registering Specmatic's own MCP server with a coding agent is a [different setup](/features/specmatic_mcp).
+
+## Save the inputs
+
+Follow the [Enterprise Docker setup](/references/configuration/local-openapi#docker-setup). The optional local demo needs **Node 20+** and port **19100** free. Use a fresh directory and run commands there. No OpenAPI or AsyncAPI file is needed: the tool schemas are fetched from the running server.
+
+Save `specmatic.yaml` and `dictionary.json`:
+
+<CodeBlock language="yaml" title="specmatic.yaml">{require('./includes/mcp/specmatic.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="json" title="dictionary.json">{require('./includes/mcp/dictionary.json?raw').trimEnd()}</CodeBlock>
+
+`baseUrl` is the full MCP HTTP endpoint, including `/mcp` here. Use the exact configured transport `STREAMABLE_HTTP`. The example's `docs-demo` bearer token is a public, local demo value; replace it for your real server. The dictionary supplies a request argument, not an expected response.
+
+Use your matching MCP server, or save this independent demo. It implements only the JSON request/response methods needed by this recipe, not the complete MCP server protocol. It exposes `echo` and `broken`; `echo` validates its input and returns structured content, while `broken` deliberately returns a tool error.
+
+<details>
+<summary>Complete local demonstration server</summary>
+<CodeBlock language="javascript" title="server.cjs">{require('./includes/mcp/server.cjs?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+Start the demo in another terminal:
+
+<CodeBlock language="shell">{require('./includes/mcp/start-server.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/mcp/start-server.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+## Run and inspect the result
+
+Run in the original terminal:
+
+<CodeBlock language="shell">{require('./includes/mcp/test.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/mcp/test.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Only `echo` is tested. The actual request contains `text: hello docs`. The tool's `outputSchema` checks the shape of `structuredContent`; a dictionary does not make Specmatic compare the response to an exact business value. With no output schema, positive testing has a different validation boundary.
+
+The default reports are written under `build/reports/specmatic/mcp`, relative to the process directory:
+
+- `tools_schema.json`: fetched tool schemas, including tools excluded from execution.
+- `mcp_test_report.json`: individual requests, responses, verdicts and errors.
+
+Requests/responses can contain sensitive data; treat these report files accordingly.
+
+## Require every scenario to pass
+
+In these releases, MCP testing returns exit **0 when at least one scenario passes**, even if another fails. An empty or all-failing run returns **1**. Do not use exit 0 alone as proof that the whole run passed.
+
+Save this small report check, which rejects empty reports and any failing verdict:
+
+<CodeBlock language="javascript" title="check-report.cjs">{require('./includes/mcp/check-report.cjs?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/mcp/gate.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/mcp/gate.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Run it immediately after each MCP test when you require all scenarios to pass. A missing or malformed report also fails the check. Use a fresh run directory so an old report cannot stand in for the current result.
+
+## Include and exclude tools
+
+`filterTools` limits execution; with no included names, all fetched tools are candidates. `skipTools` excludes tools after inclusion. CLI names **add to** config names rather than replacing them.
+
+This command adds `broken` to the config's `echo` selection:
+
+<CodeBlock language="shell">{require('./includes/mcp/mixed.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/mcp/mixed.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+It exits **0** despite the failing tool. Check the same generated report:
+
+<CodeBlock language="shell">{require('./includes/mcp/gate-mixed.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/mcp/gate-mixed.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The report check exits **1**. Correct the tool, or exclude it when it is outside the intended test scope:
+
+<CodeBlock language="shell">{require('./includes/mcp/skip.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/mcp/skip.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Now only `echo` runs and passes. Skipping the only included tool instead leaves an empty run:
+
+<CodeBlock language="shell">{require('./includes/mcp/empty.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/mcp/empty.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+That command exits **1**. Remove the exclusion or select a tool that exists. Tool names match exactly; inclusion is not a pattern or substring search.
+
+## Override endpoint, credentials or dictionary
+
+CLI scalar options override their corresponding config values. Tool lists use the additive rule above.
+
+<details>
+<summary>Complete wrong-endpoint config and CLI recovery</summary>
+
+Save `wrong-url.yaml`. The CLI selects the running demo endpoint instead of configured port 19101:
+
+<CodeBlock language="yaml" title="wrong-url.yaml">{require('./includes/mcp/wrong-url.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/mcp/url-cli.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/mcp/url-cli.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+<details>
+<summary>Complete authentication failure and CLI recovery</summary>
+
+Save `bad-auth.yaml`. The wrong demo token produces unauthorized responses and no tests; the command exits 1:
+
+<CodeBlock language="yaml" title="bad-auth.yaml">{require('./includes/mcp/bad-auth.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/mcp/bad-auth.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/mcp/bad-auth.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The CLI token overrides that config value:
+
+<CodeBlock language="shell">{require('./includes/mcp/auth-cli.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/mcp/auth-cli.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+<details>
+<summary>Complete dictionary override and missing-file boundary</summary>
+
+Save `dictionary-cli.json`. This CLI choice changes the actual request to `hello CLI`:
+
+<CodeBlock language="json" title="dictionary-cli.json">{require('./includes/mcp/dictionary-cli.json?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/mcp/dictionary-cli.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/mcp/dictionary-cli.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+A nonexistent dictionary file does **not** fail this entry point. It uses generated values instead. Save `missing-dictionary.yaml` to demonstrate that boundary:
+
+<CodeBlock language="yaml" title="missing-dictionary.yaml">{require('./includes/mcp/missing-dictionary.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/mcp/missing-dictionary.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/mcp/missing-dictionary.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Use a valid file when exact inputs matter. The following directory check makes the path base observable. Save the same config under `elsewhere/specmatic.yaml`, keep the original `dictionary.json` in the working directory, and save this different dictionary beside the relocated config:
+
+<CodeBlock language="yaml" title="elsewhere/specmatic.yaml">{require('./includes/mcp/elsewhere/specmatic.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="json" title="elsewhere/dictionary.json">{require('./includes/mcp/elsewhere/dictionary.json?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/mcp/config-directory.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/mcp/config-directory.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The actual request still uses `hello docs` from the working-directory dictionary. The relative dictionary path is not automatically rebased to the config directory in this CLI entry point. Other entry points need separate guidance.
+
+</details>
+
+## Add resiliency scenarios
+
+Save `resilience.yaml`; it enables generated positive and negative cases. This tool schema produces one positive and three negative scenarios. The demo rejects invalid input, so all four pass:
+
+<CodeBlock language="yaml" title="resilience.yaml">{require('./includes/mcp/resilience.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/mcp/resilience.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/mcp/resilience.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The count depends on the tool schema. Negative cases check error handling rather than requiring every invocation to return a successful tool result. A CLI false value turns this config option off:
+
+<CodeBlock language="shell">{require('./includes/mcp/resilience-cli.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/mcp/resilience-cli.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+## Validate configuration separately
+
+<CodeBlock language="shell">{require('./includes/mcp/validate.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/mcp/validate.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Configuration validation does not connect to the MCP server or prove that tool calls work. MCP tests invoke real tools: select appropriate tools and a suitable test environment.
+
+Stop the local demo with Ctrl+C when finished. Return to [configuration tasks](/references/configuration), explore [every key](/references/configuration/explorer), or read the [MCP auto-test guide](/getting_started/mcp_auto_test). SSE/session handling, TLS, remote servers and other integration entry points need separate verification; this recipe checks the local JSON streamable-HTTP path.

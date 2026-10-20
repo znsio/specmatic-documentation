@@ -1,0 +1,17 @@
+version: 3
+dependencies:
+  settings: '{DOC_TEMPLATE_SETTINGS:{"strictMode":true,"hotReload":false}}'
+  services:
+    - service:
+        definitions:
+          - definition:
+              source:
+                filesystem:
+                  directory: .
+              specs:
+                - 'books.{DOC_TEMPLATE_FORMAT:yaml}'
+        runOptions:
+          openapi:
+            type: mock
+            host: 127.0.0.1
+            port: 9101

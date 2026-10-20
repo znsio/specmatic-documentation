@@ -1,0 +1,2 @@
+grpcurl -plaintext -proto greeter.proto -d '{"name":"docs"}' 127.0.0.1:9101 docs.Greeter/SayHello > response.json
+node -e 'require("node:assert/strict").deepEqual(JSON.parse(require("node:fs").readFileSync("response.json")), {message:"Hello docs!"})'

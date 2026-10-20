@@ -1,0 +1,9 @@
+{
+  "fullMethodName": "docs.Greeter/SayHello",
+  "request": {
+    "name": "docs"
+  },
+  "response": {
+    "message": "Hello docs!"
+  }
+}

@@ -1,0 +1,37 @@
+version: 3
+systemUnderTest:
+  service:
+    $ref: '#/components/services/booksGateway'
+    runOptions:
+      openapi:
+        type: test
+        baseUrl: http://127.0.0.1:9100
+dependencies:
+  services:
+    - service:
+        $ref: '#/components/services/booksBackend'
+        runOptions:
+          openapi:
+            type: mock
+            host: 127.0.0.1
+            port: 9101
+components:
+  sources:
+    localContracts:
+      filesystem:
+        directory: .
+  services:
+    booksGateway:
+      definitions:
+        - definition:
+            source:
+              $ref: '#/components/sources/localContracts'
+            specs:
+              - books.yaml
+    booksBackend:
+      definitions:
+        - definition:
+            source:
+              $ref: '#/components/sources/localContracts'
+            specs:
+              - books.yaml

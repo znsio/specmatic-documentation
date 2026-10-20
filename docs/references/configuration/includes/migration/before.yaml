@@ -1,0 +1,17 @@
+version: 2
+contracts:
+  - filesystem:
+      directory: .
+    provides:
+      - baseUrl: http://127.0.0.1:9100
+        specs:
+          - books.yaml
+    consumes:
+      - host: 127.0.0.1
+        port: 9101
+        specs:
+          - books.yaml
+stub:
+  hotReload: disabled
+test:
+  junitReportDir: reports

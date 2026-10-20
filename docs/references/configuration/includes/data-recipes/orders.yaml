@@ -1,0 +1,39 @@
+openapi: 3.0.3
+info:
+  title: Orders
+  version: '1.0'
+paths:
+  /orders/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: An order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /generated:
+    get:
+      responses:
+        '200':
+          description: A generated order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+components:
+  schemas:
+    Order:
+      type: object
+      required: [id, title]
+      properties:
+        id:
+          type: integer
+        title:
+          type: string

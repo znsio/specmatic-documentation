@@ -1,0 +1,119 @@
+---
+title: Choose a Test Target Across Environments
+sidebar_position: 4.15
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Choose a test target across environments
+
+For a V3 OpenAPI test, set `systemUnderTest.service.runOptions.openapi.baseUrl`, or use `host` and `port`. Use a [configuration template](/references/configuration/template-values) when the same file should select a different target in CI or another environment.
+
+These recipes cover configuration-driven core HTTP tests in OSS 2.55.3 and Enterprise 1.28.3. Direct contract-path arguments, JUnit integrations and other protocols can select targets differently.
+
+## A complete configured target
+
+Save these files together. You need Node 20+, Java, the [Docker setup](/references/configuration/local-openapi#docker-setup), and free ports 9000, 9100 and 9102 for the demonstration. Run beside the files.
+
+<CodeBlock language="yaml" title="configured.yaml">{require('./includes/test-targets/configured.yaml?raw').trimEnd()}</CodeBlock>
+
+The deliberately conflicting `host`/`port` values illustrate precedence: `baseUrl` selects port **9100**. For your own config, use one target form to keep the intent clear.
+
+<details>
+<summary>books.yaml — contract with a deterministic response</summary>
+<CodeBlock language="yaml">{require('./includes/test-targets/books.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<details>
+<summary>targets.cjs — demonstration APIs that print the receiving port</summary>
+<CodeBlock language="javascript">{require('./includes/test-targets/targets.cjs?raw').trimEnd()}</CodeBlock>
+</details>
+
+Start the targets in one terminal:
+
+<CodeBlock language="shell">{require('./includes/test-targets/start-targets.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/test-targets/start-targets.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+In another terminal, run:
+
+<CodeBlock language="shell">{require('./includes/test-targets/configured.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/test-targets/configured.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The API receives `GET /books/1` on 9100. All three demonstration targets return the same contract-valid book; the printed receiving port lets you check routing separately from test success. JUnit XML is written under `reports`, relative to the process directory.
+
+## Use host and port instead
+
+<details>
+<summary>host-port.yaml — complete alternative</summary>
+<CodeBlock language="yaml">{require('./includes/test-targets/host-port.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/test-targets/host-port.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/test-targets/host-port.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+This selects HTTP on 9102. Without `baseUrl`, the service model needs `port` to construct an endpoint; `host` alone is insufficient. An omitted host with a configured port uses `localhost`. Use `baseUrl` for an explicit scheme or URL path.
+
+## Configured endpoints and CLI fallback are different
+
+Keep `configured.yaml`. These inputs still send the request to its configured endpoint on **9100**:
+
+<CodeBlock language="shell">{require('./includes/test-targets/configured-environment.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/test-targets/configured-environment.terminaloutput?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/test-targets/configured-cli-port.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/test-targets/configured-cli-port.terminaloutput?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/test-targets/cli-base-url.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/test-targets/cli-base-url.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The runner loads specification targets from the file separately from its fallback settings. A CLI base URL is staged, but it does not reroute the file-loaded service endpoint in these releases. [Per-spec targets](/references/configuration/test-spec-overrides) have a similar checked boundary. Check the actual receiving URL; a passing test alone does not prove that an override took effect.
+
+To let the fallback select the target, omit the configured endpoint:
+
+<details>
+<summary>fallback.yaml — complete file with no endpoint</summary>
+<CodeBlock language="yaml">{require('./includes/test-targets/fallback.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/test-targets/cli-fallback.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/test-targets/cli-fallback.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Now the CLI URL selects **9102**. With no selected endpoint or fallback input, the checked runner uses `http://localhost:9000`:
+
+<CodeBlock language="shell">{require('./includes/test-targets/no-target.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/test-targets/no-target.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+For this fallback, an explicit CLI `--testBaseURL` wins over the `testBaseURL` environment variable, which wins over the same JVM property. This command has competing environment and property values and selects **9102**:
+
+<CodeBlock language="shell">{require('./includes/test-targets/environment-property.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/test-targets/environment-property.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Explicit CLI host/port can supply the next fallback when there is no selected base URL. The CLI host defaults to `localhost`; its port defaults to 0 when not supplied. Prefer a full URL or specify both host and port.
+
+## Prefer a template for an environment-specific configured URL
+
+<CodeBlock language="yaml" title="templated.yaml">{require('./includes/test-targets/templated.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/test-targets/template-target.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/test-targets/template-target.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+This resolves the file's target to **9102** before it is loaded. Without `BOOKS_TARGET`, the authored default is 9100. The template can also read a same-named JVM property; environment values win. Keep numeric ports numeric by templating the whole run-options object when needed; see the [template guide](/references/configuration/template-values).
+
+V3 has no root `environments` section in these releases. This attempted named environment is rejected:
+
+<details>
+<summary>named-environment.yaml — unsupported root section</summary>
+<CodeBlock language="yaml">{require('./includes/test-targets/named-environment.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/test-targets/named-environment.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/test-targets/named-environment.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Recover with the templated file, or select separate complete files through [config discovery](/references/configuration/files-and-paths). Data selection has its own [example-directory and dictionary rules](/references/configuration/data-selection); there is no universal environment override order for every key.
+
+## Invalid fallback values can still stop a configured run
+
+<CodeBlock language="shell">{require('./includes/test-targets/invalid-environment.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/test-targets/invalid-environment.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+This intentional failure exits with code 1 before sending the book request. The runner checks its fallback URL even though the file has a configured endpoint. Remove the invalid `testBaseURL` input and rerun `configured.yaml`; do not leave conflicting unused inputs in the process environment.
+
+Validate the four supported files separately:
+
+<CodeBlock language="shell">{require('./includes/test-targets/validate.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/test-targets/validate.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Validation resolves templates in that process and can load/fetch specification sources. It does not establish actual request routing. Stop the demonstration targets when finished and replace them with your implementations when adapting these examples.

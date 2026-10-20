@@ -1,0 +1,10 @@
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const name=process.argv[2];
+const requests=fs.readFileSync('targets.log','utf8').split('\n').filter(line=>line.startsWith('{')).map(JSON.parse);
+const authorPort=name==='test-mismatched.sh'?9100:9102;
+const authorPath=name==='test-prefix.sh'?'/v2/authors/1':'/authors/1';
+assert.ok(requests.some(r=>r.port===9100 && r.path==='/books/1'));
+assert.ok(requests.some(r=>r.port===authorPort && r.path===authorPath));
+assert.equal(requests.some(r=>r.port!==authorPort && /\/authors\/1$/.test(r.path)),false);
+assert.match(fs.readFileSync('reports/TEST-junit-jupiter.xml','utf8'),/<testcase\b/);

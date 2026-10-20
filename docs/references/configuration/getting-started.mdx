@@ -2,11 +2,25 @@
 title: Getting Started
 sidebar_position: 1
 ---
-# Getting Started with Configuration
+import CodeBlock from '@theme/CodeBlock';
 
-The Specmatic configuration file provides a centralized way to define how Specmatic should operate within your project. It allows you to declaratively specify the specifications to load, the test mode to run in, the mock settings, and other runtime options required by Specmatic.
+# Getting started with configuration
 
-Using this configuration file helps keep all Specmatic-related settings together so you don’t need to update multiple places when making changes. It simplifies setup, reduces repetition, and makes your Specmatic usage predictable and easy to understand—whether you are working with consumer tests, provider tests, or using Specmatic as a mock.
+Start with your task: [mock an API, test it, or test with a mocked dependency](/references/configuration/local-openapi). Each local example includes the contract, a complete configuration and a command with an observable result.
+
+Before changing filenames or moving the file, check [config discovery and relative paths](/references/configuration/files-and-paths). Source paths and output paths can use different base directories.
+
+## A small mock-only configuration
+
+This file selects a local specification and starts a mock on port 9101. It needs neither a system under test nor reusable components.
+
+<CodeBlock language="yaml" title="specmatic.yaml">{require('./includes/local-openapi/specmatic-mock.yaml?raw').trimEnd()}</CodeBlock>
+
+The [local OpenAPI recipe](/references/configuration/local-openapi#mock-an-api) supplies `books.yaml` and the exact command. Use the [explorer](/references/configuration/explorer) when you need an optional setting or its placement.
+
+## Reuse definitions when it helps
+
+Inline definitions are useful for a small setup. Components let multiple services share sources, data, settings and run options. The example below illustrates that structure; its repository paths and application URLs must be replaced with real values for your project.
 
 ## Specmatic Config v3
 
@@ -18,7 +32,7 @@ It treats the configuration as a *wiring specification* that describes:
 - where contracts come from,
 - and how each service should be run (test or mock).
 
-This document explains the **full structure** using a concrete, minimal example.
+The sections below explain reusable service/source wiring. For the complete key inventory, see [All V3 Configuration Keys](/references/configuration/all-keys).
 
 ---
 
@@ -125,7 +139,7 @@ components:
 
 ```yaml
 version: 3
-````
+```
 
 Declares the configuration format version.
 All Specmatic YAML v3 features require this to be set to `3`.
@@ -296,15 +310,15 @@ paymentMock:
 
 ## 5. Minimal checklist
 
-To create a valid Specmatic YAML v3 file:
+For a useful V3 setup:
 
-1. Set `version: 3`
-2. Define at least one `components.sources`
-3. Define one or more `components.services`
-4. Define corresponding `components.runOptions`
-5. Wire the System Under Test under `systemUnderTest`
-6. Add dependencies under `dependencies` (if applicable)
+1. Set `version: 3`.
+2. Select the service you want to test under `systemUnderTest.service`, or the services you want to mock under `dependencies.services`.
+3. Supply their source and specification definitions inline or through components.
+4. Add the applicable protocol run options for targets/listeners and any data/settings you need.
+5. Validate the configuration and run the relevant command from the documented working directory.
 
+Components, a system under test and dependency services are not universal structural requirements. Choose only the sections required by your task. A component declaration alone does not add its service to a run.
 
 
 By consolidating these details into a dedicated configuration file, Specmatic allows your project to remain clean and organized while giving you full control over how contract tests and mocks behave.

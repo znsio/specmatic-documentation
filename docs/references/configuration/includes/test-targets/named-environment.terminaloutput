@@ -1,0 +1,2 @@
+Configuration is invalid: named-environment.yaml
+property 'environments' is not defined in the schema and the schema does not allow additional properties

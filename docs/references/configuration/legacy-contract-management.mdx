@@ -1,0 +1,59 @@
+---
+title: Legacy Contract Management (V2 comparison)
+sidebar_class_name: hidden
+---
+
+import {V2V3SpecmaticConfigTabs} from "../../../src/components/V2V3SpecmaticConfigTabs";
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import {JsonDisplay, YamlDisplay} from '@site/src/components/JsonYamlDisplay';
+
+# Legacy contract management
+
+## Versions 3 - systemUnderTest and dependencies
+In V3, define a service inline or reuse it from `components.services`. Its definitions select a source and specification paths. `systemUnderTest.service` selects the tested service, while `dependencies.services` selects mocked services and their run options. Components alone do not select a service for a run.
+
+For multiple specs and ID-based run-option overrides, see [identify specs and override their run options](/references/configuration/spec-overrides).
+
+## Versions 2 - Provides and Consumes
+
+In v2, a service needs to list the API Specifications it implements under the `provides` attribute and the
+API Specifications of its dependencies under the `consumes` attribute.
+
+## Contracts from Git Repository
+
+Configure Specmatic to pull contracts from a Git repository:
+
+<V2V3SpecmaticConfigTabs
+  v2ObjectWithoutConfig={require('./includes/contract-management/v2/without-config/contracts-configuration/specmatic.json')}
+  v2Object={require('./includes/contract-management/v2/contracts-configuration/specmatic.json')}
+  v3Object={require('./includes/contract-management/v3/contracts-configuration/specmatic.json')}
+/>
+
+
+
+## Contracts from Local Filesystem
+
+For local specifications, choose a `filesystem` source. Its omitted `directory` defaults to `.` in the CLI loader. Run beside the config so that the process working directory and typed V3 resolver agree, or supply an absolute source directory; see [config discovery and paths](/references/configuration/files-and-paths).
+
+<V2V3SpecmaticConfigTabs
+  v3Object={require('./includes/contract-management/v3/local_configuration_v3/specmatic.json')}
+  v2Object={require('./includes/contract-management/v2/local-filesystem/specmatic.json')}
+  v2ObjectWithoutConfig={require('./includes/contract-management/v2/without-config/local-filesystem/specmatic.json')}
+/>
+
+Specification paths are selected inside the source directory and may include subdirectories. They need not all sit directly in the current directory. Do not assume moving the config also rebases every relative path.
+
+## Contracts from Web Source
+
+If your specifications are hosted over HTTP(S), specify `web` field within contracts and set the source `url`:
+
+<V2V3SpecmaticConfigTabs
+  v3Object={require('./includes/contract-management/v3/web-configuration/specmatic.json')}
+  v2Object={require('./includes/contract-management/v2/web-configuration/specmatic.json')}
+  v2ObjectWithoutConfig={require('./includes/contract-management/v2/without-config/web-configuration/specmatic.json')}
+/>
+
+Specmatic resolves each specification path in `specs` relative to the configured web `url`.
+
+For reusable services, sibling replacement and reference failures, see [component references](/references/configuration/component-references).

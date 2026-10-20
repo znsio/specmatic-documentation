@@ -1,0 +1,6 @@
+if java -cp "$DOC_EXAMPLE_JAR" KafkaRoundTrip.java localhost:19096 > client.log 2>&1; then
+  cat client.log
+  exit 1
+fi
+cat client.log
+grep -Fq 'Unexpected reply: {"event":"wrong"}' client.log

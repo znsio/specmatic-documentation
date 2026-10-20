@@ -1,0 +1,12 @@
+version: 3
+proxies:
+  - proxy:
+      target: http://127.0.0.1:19110
+      baseUrl: http://127.0.0.1:19111
+      recordingsDirectory: recordings
+      timeoutInMilliseconds: 20
+specmatic:
+  settings:
+    proxy:
+      recordRequests: true
+      ignoreHeaders: [X-Trace]

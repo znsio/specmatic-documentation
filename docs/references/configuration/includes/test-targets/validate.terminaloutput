@@ -1,0 +1,4 @@
+Configuration is valid: configured.yaml
+Configuration is valid: fallback.yaml
+Configuration is valid: host-port.yaml
+Configuration is valid: templated.yaml

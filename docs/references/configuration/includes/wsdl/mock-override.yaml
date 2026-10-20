@@ -1,0 +1,28 @@
+version: 3
+dependencies:
+  settings:
+    hotReload: false
+  services:
+    - service:
+        definitions:
+          - definition:
+              source:
+                filesystem:
+                  directory: '{SOAP_SPEC_DIRECTORY:.}'
+              specs:
+                - spec:
+                    id: greeting
+                    path: hello.wsdl
+        data:
+          examples:
+            - directories:
+                - soap-examples
+        runOptions:
+          wsdl:
+            type: mock
+            host: 127.0.0.1
+            port: 9101
+            specs:
+              - spec:
+                  id: greeting
+                  baseUrl: http://127.0.0.1:9102

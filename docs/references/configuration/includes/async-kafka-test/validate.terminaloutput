@@ -1,0 +1,4 @@
+Configuration is valid: test.yaml
+Configuration is valid: test-short.yaml
+Configuration is valid: test-endpoint.yaml
+Configuration is valid: test-readiness.yaml

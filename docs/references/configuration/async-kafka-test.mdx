@@ -1,0 +1,135 @@
+---
+title: Test a Kafka Service with AsyncAPI
+sidebar_position: 1.38
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Test a Kafka service with AsyncAPI
+
+Test a running application's messages against its AsyncAPI contract. These V3 examples were checked with **Enterprise 1.28.3**. Specmatic sends a ping, receives the application's pong, and checks its payload. An incorrect reply fails the test.
+
+## Prepare the local demo
+
+Follow the [Docker setup](/references/configuration/local-openapi#docker-setup), configure your [license](/enterprise_onboarding/license_key), and use a fresh directory. The optional demo needs **JDK 17+** and the downloaded Enterprise executable JAR. Set `SPECMATIC_ENTERPRISE_JAR` to that JAR's absolute path in the demo terminal. Port **19096** must be free.
+
+Save `asyncapi.yaml` and `test.yaml`:
+
+<CodeBlock language="yaml" title="asyncapi.yaml">{require('./includes/async-kafka-test/asyncapi.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="yaml" title="test.yaml">{require('./includes/async-kafka-test/test.yaml?raw').trimEnd()}</CodeBlock>
+
+`systemUnderTest` selects the service to test. The runtime server is `external`: the test connects to the broker started separately by your application or the demo. This test config does not start a broker. Keep the document's server endpoint aligned with the runtime server for this release; the initial broker check has the limitation described below.
+
+Use your matching implementation, or save `KafkaService.java`. This small independent demo starts a loopback Kafka broker and replies to ping messages. It uses Apache Kafka/Curator/Jackson libraries packaged in the executable JAR; it does not run a Specmatic message mock. Broker data is created in a new temporary directory and removed on normal shutdown. It is a local demonstration, not a production Kafka deployment.
+
+<details>
+<summary>Complete independent demo service and broker</summary>
+<CodeBlock language="java" title="KafkaService.java">{require('./includes/async-kafka-test/KafkaService.java?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+Start the demo in a separate terminal:
+
+<CodeBlock language="shell">{require('./includes/async-kafka-test/start-target.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka-test/start-target.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+## Run the contract test
+
+In the original terminal:
+
+<CodeBlock language="shell">{require('./includes/async-kafka-test/test.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka-test/test.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The single request/reply test passes. The demo also asserts that it receives the exact ping payload. Stop it with Ctrl+C before starting another demo variant.
+
+## Detect an incorrect reply
+
+Start the demo with a deliberately incorrect response:
+
+<CodeBlock language="shell">{require('./includes/async-kafka-test/start-wrong.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka-test/start-wrong.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Run the same test config:
+
+<CodeBlock language="shell">{require('./includes/async-kafka-test/bad-reply.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka-test/bad-reply.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The test exits **1**. Stop the broken demo, restart the original `start-target` command, and run the test again: the reply matches and the test passes. The contract and test config stay the same; the application's response changes.
+
+## Keep both broker endpoints aligned
+
+In this release, the initial availability check uses the **document's** server endpoint. A runtime config pointing to the healthy broker does not replace that endpoint for the initial check.
+
+<details>
+<summary>Complete mismatch example and failure</summary>
+
+Save `asyncapi-other.yaml` and `test-endpoint.yaml`. The contract points to 19095; the config still points to the demo's healthy 19096.
+
+<CodeBlock language="yaml" title="asyncapi-other.yaml">{require('./includes/async-kafka-test/asyncapi-other.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="yaml" title="test-endpoint.yaml">{require('./includes/async-kafka-test/test-endpoint.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/async-kafka-test/endpoint-check.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka-test/endpoint-check.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+With the original demo running on 19096 and no broker on 19095, the command exits **1** before message testing. Recover with the original contract and `test.yaml`, where both endpoints are 19096. This is a released limitation, not evidence that the configured runtime server is unused by every consumer.
+
+## Reply timeout limitation
+
+The released CLI request/reply runner passes a fixed **10,000 ms** message wait to its scenario. Although the config DTO reads `replyTimeout` and the CLI accepts `--reply-timeout`, these values do not replace that wait in this checked entry point.
+
+Stop the previous demo and start one that waits **1,500 ms** before replying:
+
+<CodeBlock language="shell">{require('./includes/async-kafka-test/start-delayed.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka-test/start-delayed.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+<details>
+<summary>Both 500 ms timeout choices still pass</summary>
+
+Save `test-short.yaml` with `replyTimeout: 500`:
+
+<CodeBlock language="yaml" title="test-short.yaml">{require('./includes/async-kafka-test/test-short.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/async-kafka-test/short-timeout.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka-test/short-timeout.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The competing CLI choice also passes:
+
+<CodeBlock language="shell">{require('./includes/async-kafka-test/cli-timeout.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka-test/cli-timeout.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+Do not rely on these options to enforce a shorter reply deadline in Enterprise 1.28.3's CLI request/reply tests. The demo remains within the runner's fixed wait. Other integration entry points and retry/dead-letter workflows need separate verification. Stop the demo with Ctrl+C when finished.
+
+## Subscriber readiness limitation
+
+For this CLI runner, the first scenario's timeout object is created **before** that scenario's config is applied. Its readiness wait therefore comes from the CLI-initialized JVM property. The Kafka client waits for its subscription latch, then applies this additional delay; the delay does not start or verify your application's subscriber.
+
+<details>
+<summary>Complete first-scenario readiness comparison</summary>
+
+Save `test-readiness.yaml`. It requests a 60,000 ms readiness delay. Use the original demo with no response delay:
+
+<CodeBlock language="yaml" title="test-readiness.yaml">{require('./includes/async-kafka-test/test-readiness.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/async-kafka-test/readiness-config.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka-test/readiness-config.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The single test passes and its recorded duration is below 50,000 ms: the configured 60,000 ms wait was not applied to that first test. Now supply a CLI wait:
+
+<CodeBlock language="shell">{require('./includes/async-kafka-test/readiness-cli.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka-test/readiness-cli.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The test duration includes at least 3,000 ms and remains below 50,000 ms. Those bounds are checked from the generated CTRF report, in addition to checking the actual reply.
+
+</details>
+
+Use `--subscriber-readiness-wait-time` for this checked first-scenario CLI setup. Do not infer a reliable per-scenario config delay: the runner changes JVM properties after constructing the timeout object, which may affect later scenarios. Multi-scenario timing and other bindings/integrations still need separate verification. Per-spec mock options reject both `subscriberReadinessWaitTime` and `replyTimeout`; neither is a mock response-delay setting.
+
+## Validate the config separately
+
+These configs are structurally valid, including the endpoint-mismatch case. Validation does not prove that a broker is reachable or that a configured timeout changes execution:
+
+<CodeBlock language="shell">{require('./includes/async-kafka-test/validate.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/async-kafka-test/validate.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Return to [configuration tasks](/references/configuration), see [Kafka mocking](/references/configuration/async-kafka), or explore the [configuration keys](/references/configuration/explorer). Authentication/TLS, schema registries, multiple-spec timing and other AsyncAPI bindings are outside this checked local request/reply recipe.

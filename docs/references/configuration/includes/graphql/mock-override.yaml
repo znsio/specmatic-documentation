@@ -1,0 +1,22 @@
+version: 3
+dependencies:
+  services:
+    - service:
+        definitions:
+          - definition:
+              source:
+                filesystem: {}
+              specs:
+                - spec:
+                    id: catalog
+                    path: catalog.graphqls
+        runOptions:
+          graphqlsdl:
+            type: mock
+            host: 127.0.0.1
+            port: 9101
+            specs:
+              - spec:
+                  id: catalog
+                  host: 127.0.0.1
+                  port: 9102

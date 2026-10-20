@@ -1,0 +1,159 @@
+---
+title: Check OpenAPI Changes Against a Git Baseline
+sidebar_position: 6.5
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Check OpenAPI changes against a Git baseline
+
+Use `specmatic.settings.backwardCompatibility` to choose the repository, baseline and changed files checked by `specmatic backward-compatibility-check`. This recipe was checked with **OSS 2.55.3 and Enterprise 1.28.3**. It needs Git and Docker with the `specmatic/enterprise` image; it does not start an API or mock.
+
+The command compares Git states, not the specs declared under `systemUnderTest` or `dependencies`. It can switch branches and stash/restore local changes while reading both versions. The demo below uses a separate new repository with committed inputs. Save and review changes before applying the command to your own repository; restoration with uncommitted/conflicting changes is outside this recipe's checks.
+
+## 1. Save the contracts and create a demo repository
+
+Use a fresh directory. Save these three complete specifications there:
+
+<details>
+<summary>Original contract — original.yaml</summary>
+<CodeBlock language="yaml" title="original.yaml">{require('./includes/compatibility/original.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<details>
+<summary>Compatible change — compatible.yaml</summary>
+<CodeBlock language="yaml" title="compatible.yaml">{require('./includes/compatibility/compatible.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<details>
+<summary>Breaking change — breaking.yaml</summary>
+<CodeBlock language="yaml" title="breaking.yaml">{require('./includes/compatibility/breaking.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+
+The compatible version adds an optional `language` query parameter. The breaking version changes the response's `message` from a string to an integer.
+
+Save this command sequence as `prepare.sh` and run it with Bash. It creates `contracts-demo`, records the original contracts on `main`, and commits changes on `change`. Its Git identity settings apply only to this new demo repository.
+
+<CodeBlock language="shell" title="prepare.sh">{require('./includes/compatibility/prepare.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/compatibility/prepare.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+It refuses to overwrite an existing `contracts-demo`. Running it a second time demonstrates that protection and exits with code 1:
+
+<CodeBlock language="shell">{require('./includes/compatibility/prepare-existing.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/compatibility/prepare-existing.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+## 2. Select the baseline and check one contract
+
+Save `specmatic.yaml` in the original directory, beside the three input specifications and `contracts-demo`:
+
+<CodeBlock language="yaml" title="specmatic.yaml">{require('./includes/compatibility/specmatic.yaml?raw').trimEnd()}</CodeBlock>
+
+Run from that original directory:
+
+<CodeBlock language="shell">{require('./includes/compatibility/compatible.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/compatibility/compatible.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+`contract.yaml` passes: older clients can omit the new optional query parameter and still receive a string. The separately changed `other.yaml` is outside the configured scope.
+
+Both editions write compatibility reports under `build/reports/specmatic/backward_compatibility` in the command's working directory. Enterprise may consult Specmatic Insights for consumer impact on breaking OpenAPI changes. This demo has no Git `origin`, so an Insights consumer check cannot be initiated. Its breaking changes fail in both editions; their explanatory verdict text differs.
+
+## 3. Make a breaking change, then recover
+
+Replace the selected contract with the integer-response version and commit it:
+
+<CodeBlock language="shell">{require('./includes/compatibility/breaking.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/compatibility/breaking.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The command exits with code 1. Restore the string-response contract and rerun the check. This complete recovery sequence also works directly after the initial preparation:
+
+<CodeBlock language="shell" title="recovery.sh">{require('./includes/compatibility/recovery.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/compatibility/recovery.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+To check the same recovery after an already committed breaking change, save the sequence above as `recovery.sh` and use this complete variant after the initial preparation:
+
+<details>
+<summary>Recovery after a committed breaking change</summary>
+<CodeBlock language="shell">{require('./includes/compatibility/recovery-after-breaking.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/compatibility/recovery-after-breaking.terminaloutput?raw').trimEnd()}</CodeBlock>
+</details>
+
+The command returns to the `change` branch. The automated demo checks that the branch is restored and its tracked files have no unstaged or staged changes after each scenario. This does not establish recovery from every interrupted or conflicting Git operation.
+
+## Understand the four settings
+
+| Setting | Omission and use |
+|---|---|
+| `baseBranch` | Uses the current branch's upstream when configured, otherwise the current branch. Set an explicit baseline to avoid an accidental self-comparison. CLI `--base-branch` wins. |
+| `repoDirectory` | Defaults to the command's working directory (`.`). The checked relative value `contracts-demo` is also process-relative. CLI `--repo-dir` wins. |
+| `targetPath` | Defaults to no narrower path filter. It filters changed file paths; it does not select service definitions or fetch sources. CLI `--target-path` wins. |
+| `strictMode` | Defaults to `false`. Controls usage-aware Insights verdicts; it does not enable ordinary schema validation or make a basic breaking change safe. CLI `--strict` wins. |
+
+In the reviewed consumer, `targetPath` is a path-substring filter, not a glob or a guaranteed exact-file match. Choose a specific path that distinguishes your intended files. The strict-versus-lenient Insights result needs a configured usage service and is not demonstrated by this local demo.
+
+### Change the scope from the CLI
+
+After the preparation or recovery above, the other contract remains breaking. Override the configured target:
+
+<CodeBlock language="shell">{require('./includes/compatibility/cli-target.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/compatibility/cli-target.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+This exits with code 1 for `other.yaml` while leaving `specmatic.yaml` unchanged.
+
+### Recognize a skipped check
+
+Compare the branch with itself:
+
+<CodeBlock language="shell">{require('./includes/compatibility/no-changes.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/compatibility/no-changes.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The command exits successfully but checks no changed specs. This is not a compatibility verdict. In this demo, omitting `baseBranch` has the same result because `change` has no upstream:
+
+<details>
+<summary>Complete config with omitted baseline and its command</summary>
+<CodeBlock language="yaml" title="no-baseline.yaml">{require('./includes/compatibility/no-baseline.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/compatibility/default-baseline.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/compatibility/default-baseline.terminaloutput?raw').trimEnd()}</CodeBlock>
+</details>
+
+A nonexistent baseline is an error, not an empty comparison:
+
+<CodeBlock language="shell">{require('./includes/compatibility/missing-baseline.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/compatibility/missing-baseline.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+It exits with code 1. Recover by removing that CLI override and using the existing configured `main` baseline.
+
+### Check path defaults and overrides
+
+These complete variants can each be tried after the preparation or recovery. They use the same files:
+
+<details>
+<summary>Omit targetPath: both changed contracts are checked</summary>
+<CodeBlock language="yaml" title="no-target.yaml">{require('./includes/compatibility/no-target.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/compatibility/default-target.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/compatibility/default-target.terminaloutput?raw').trimEnd()}</CodeBlock>
+</details>
+
+This exits with code 1 because the extra contract is breaking. Set `targetPath` back to `contract.yaml` to limit the comparison.
+
+<details>
+<summary>Omit repoDirectory: run inside the demo while reading config from its parent</summary>
+<CodeBlock language="yaml" title="no-repository.yaml">{require('./includes/compatibility/no-repository.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/compatibility/default-repository.sh?raw').trimEnd()}</CodeBlock>
+
+The Docker command gives Git a process-local `safe.directory` entry for this mounted demo repository. It does not change your global Git configuration; this avoids Docker Desktop ownership checks during branch restoration.
+<CodeBlock language="terminaloutput">{require('./includes/compatibility/default-repository.terminaloutput?raw').trimEnd()}</CodeBlock>
+</details>
+
+This sequence returns to the original directory before you try other commands.
+
+<details>
+<summary>CLI repo-dir overrides a nonexistent configured directory</summary>
+<CodeBlock language="yaml" title="bad-repository.yaml">{require('./includes/compatibility/bad-repository.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/compatibility/cli-repository.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/compatibility/cli-repository.terminaloutput?raw').trimEnd()}</CodeBlock>
+</details>
+
+## Validate the configuration structure
+
+<CodeBlock language="shell">{require('./includes/compatibility/validate-config.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/compatibility/validate-config.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+This checks the config structure, not branch existence, source fetching, the compatibility verdict or application behavior. Protocol-specific compatibility, Insights consumer/strictness effects, external references, deleted/renamed specs and interrupted Git-state restoration require their own checks.

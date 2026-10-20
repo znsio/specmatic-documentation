@@ -1,0 +1,4 @@
+Configuration is valid: mock.yaml
+Configuration is valid: mock-override.yaml
+Configuration is valid: mock-ref.yaml
+Configuration is valid: mock-components.yaml

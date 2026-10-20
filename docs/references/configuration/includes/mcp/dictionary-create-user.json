@@ -1,0 +1,7 @@
+{
+  "createUser": {
+    "name": "Alice",
+    "age": 25,
+    "address": {"city": "Paris"}
+  }
+}

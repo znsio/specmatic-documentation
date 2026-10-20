@@ -1,0 +1,3 @@
+Configuration is invalid: multiple-providers.yaml
+property 'web' is not defined in the schema and the schema does not allow additional properties
+property 'filesystem' is not defined in the schema and the schema does not allow additional properties

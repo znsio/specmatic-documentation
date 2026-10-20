@@ -1,0 +1,20 @@
+unset SOAP_SPEC_DIRECTORY SPECMATIC_ESCAPE_SOAP_ACTION
+if [[ "$DOC_EXAMPLE_NAME" == test* ]]; then
+  node target.cjs > target.log 2>&1 &
+  soap_target_pid=$!
+  cleanup() {
+    result=$?
+    kill "$soap_target_pid" 2>/dev/null || true
+    wait "$soap_target_pid" 2>/dev/null || true
+    node check-routing.cjs "$DOC_EXAMPLE_NAME" || exit 2
+    exit "$result"
+  }
+  trap cleanup EXIT
+  ready=false
+  for attempt in {1..100}; do
+    if [[ $(grep -c 'SOAP target ready' target.log) == 2 ]]; then ready=true; break; fi
+    kill -0 "$soap_target_pid" 2>/dev/null || { cat target.log; exit 1; }
+    sleep 0.1
+  done
+  [[ "$ready" == true ]] || { cat target.log; exit 1; }
+fi

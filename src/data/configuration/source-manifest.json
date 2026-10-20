@@ -1,0 +1,979 @@
+{
+  "recorded": "2026-10-09",
+  "releases": {
+    "oss": "2.55.3",
+    "enterprise": "1.28.3"
+  },
+  "revisions": {
+    "specmatic": "fa123c52fd6771339784945d20c22a1c04555868",
+    "enterprise": "2d66adfe7602377560100ce34a518e1e842a51d7"
+  },
+  "schemaSha256": "f4745a35962d6e90c13743db7b35f42e0c2844f702c2a2d383af30d87cf837d4",
+  "sources": [
+    {
+      "repo": "specmatic",
+      "path": "application/src/main/kotlin/application/CertInfo.kt",
+      "sha256": "f65f22ecac9e0907485def243d8569409e5f1c48316c784df54c2eae292e9ca3"
+    },
+    {
+      "repo": "specmatic",
+      "path": "application/src/main/kotlin/application/ConfigCommand.kt",
+      "sha256": "862d59214849cdb2b67993365fdd00469b26eb6ffe18926e072224a7de63c7e3"
+    },
+    {
+      "repo": "specmatic",
+      "path": "application/src/main/kotlin/application/HTTPStubEngine.kt",
+      "sha256": "376aff5a33049128b7a7da44064e5df934161f8ae16736f6b857d003e55b3a0e"
+    },
+    {
+      "repo": "specmatic",
+      "path": "application/src/main/kotlin/application/ProxyCommand.kt",
+      "sha256": "d1e183637067f5ecc7d6695a594b68e2febeb2a18f7deac3cc309144eef9b2ac"
+    },
+    {
+      "repo": "specmatic",
+      "path": "application/src/main/kotlin/application/StubCommand.kt",
+      "sha256": "a02a10d4b95ef94d926ef8574049646fdca47af769f5b709a57043d7c661e803"
+    },
+    {
+      "repo": "specmatic",
+      "path": "application/src/main/kotlin/application/StubLoaderEngine.kt",
+      "sha256": "97605171cace70f825c942536d02a3cf09877e883cefe3244cbca7bdd392f29f"
+    },
+    {
+      "repo": "specmatic",
+      "path": "application/src/main/kotlin/application/TestCommand.kt",
+      "sha256": "6a3d95806634e9a0735a0747d507ab19bbd9d80701d0da8de95f9ec0ec179889"
+    },
+    {
+      "repo": "specmatic",
+      "path": "application/src/main/kotlin/application/backwardCompatibility/BackwardCompatibilityCheckBaseCommand.kt",
+      "sha256": "bf0f79596ae9132d79e4e868e43abc4c513584bab4829c34495b4d577752517e"
+    },
+    {
+      "repo": "specmatic",
+      "path": "application/src/main/kotlin/application/backwardCompatibility/BackwardCompatibilityCheckHookValidator.kt",
+      "sha256": "dea781a96fa9252e412aa7652026ea073d4977eeab38f3e98240cacadb4016df"
+    },
+    {
+      "repo": "specmatic",
+      "path": "application/src/main/kotlin/application/backwardCompatibility/BackwardCompatibilityCheckOptions.kt",
+      "sha256": "72291432bf42b7acdd540be38dc453a04b5bfb5a7fadc81c477f7e35b1ca25da"
+    },
+    {
+      "repo": "specmatic",
+      "path": "application/src/main/kotlin/application/mcp/McpTestCommand.kt",
+      "sha256": "2823fc8e35ffd70bc7783ed40729bf5d2db5660efb8c1d9ae4b7b677f0230780"
+    },
+    {
+      "repo": "specmatic",
+      "path": "application/src/main/kotlin/application/validate/ValidateCommand.kt",
+      "sha256": "2f15b89cafd8ccc84fae42cab30b2ebb8740299df30cb8364ff724ffa1b278d5"
+    },
+    {
+      "repo": "specmatic",
+      "path": "application/src/main/kotlin/application/validate/ValidationProcessor.kt",
+      "sha256": "bd0180e43b70ee3fc3be1d1bfb35e813111d9075bfd2b07d9e9056fad35ea9b4"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/conversions/APIKeyInHeaderSecurityScheme.kt",
+      "sha256": "dc7ae9c76a7caf81b82094fa1be54adf186b655cd2e9549576bb905d1ce025a8"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/conversions/APIKeyInQueryParamSecurityScheme.kt",
+      "sha256": "036859cc691a80403ca4d7caec79f3b6e929c785a06f0a0e78a113f1a16a2c2d"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/conversions/BasicAuthSecurityScheme.kt",
+      "sha256": "04dc506e9618dff3c2bd1ed23e75c6edd4035b40bb09591dc9646eee16facc02"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/conversions/BearerSecurityScheme.kt",
+      "sha256": "13bfe07d7a8b143b688b4fe6c76edca094d8c0eb62d988e0716c21dc67fa777d"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/conversions/OpenApiSpecification.kt",
+      "sha256": "94fd9026189c43a3f4c4be5f55977544e04698fc3100d6cca9e7910a00a8547a"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/CertRegistry.kt",
+      "sha256": "e59e5dd45cce12e9a47d2de3a51aed89cfea26feb407c2992a4dbe6a28f38211"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/Configuration.kt",
+      "sha256": "142becbd65d52d89318345fbb5d6fe79b92ab8756f837902f8608472c168c064"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/Dictionary.kt",
+      "sha256": "93d1a8259ea54df2a3a859766a26143df381cdbc3738d2aa7ae2e56cdc9f3fdd"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/Feature.kt",
+      "sha256": "d9084695c722a6b64239ca2f6336f6025d65a68b63ceb9bec94372234525eafc"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/FlagsBased.kt",
+      "sha256": "bcaf4a080323d77cf99ded5162e5b08a4aed2561e3334c742a68dae44eefdad7"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/HttpHeadersPattern.kt",
+      "sha256": "22b4a6a8ac68afad03e782a4c3ef34a7d0ed042b3ec6006639013040aa3e01db"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/HttpsKeyData.kt",
+      "sha256": "50492d316826b86a476d497435a12f271e5fddd85e33904662f87f3483d18940"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/OpenApiBackwardCompatibilityChecker.kt",
+      "sha256": "2b0db3417a9211b0eb3d3983b014b1a71494ac3e29304893a52bf885cc51d86e"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/ProxyConfig.kt",
+      "sha256": "b9627d68f5d150377f23e32e3e8a355507c1b7fd56a14a559a9e35aaa09dd0a7"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/SpecmaticConfig.kt",
+      "sha256": "7693ee9449c35e08c15c61875dc464a8c9bf4a0039ec15e85c97bb81f48842f4"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/SpecmaticConfigV1V2Common.kt",
+      "sha256": "af7bae5821bb1a45d506bfec24d63796ad1492d5fa2f94879379fa754c0d53a7"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/TestBackwardCompatibility.kt",
+      "sha256": "6c0a77606a10c79091daf47c5b6a4b89830d248648b7d7745e6102c1faecb54c"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/azure/AzureAuthCredentials.kt",
+      "sha256": "3ef647d856d3b60a65c72abf4b7eea0e674923089e2c41c2f3315318ce953da4"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/azure/PersonalAccessToken.kt",
+      "sha256": "f9db078af456845676490ad0647d52e3781b4ce02f02bb433cab0b2a434a3d54"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/BackwardCompatibilityConfig.kt",
+      "sha256": "ad8f2514541233dd5cc185c43b6b6cd981b57372e46acdef695a38d7db8a78e7"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/ConfigPathMapper.kt",
+      "sha256": "2fceea945da1af0af26bb9a7380b5ecd526f0ea4ee3e6d980a1806abc411aa74"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/ConfigTemplateUtils.kt",
+      "sha256": "5412b462b230c0c57c20158eb0f832ecab9f472eaa3b6c4468c58e03793667ce"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/ConfigValuesProviderImpl.kt",
+      "sha256": "eed8d60a7075a32a9d46f2acebf7e7d4121a87b239d55d8848e5db8b283ca508"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/EmptyConfigCollectionFilter.kt",
+      "sha256": "0edd3043e51bf888c8157ad698e964f5be2622c69b86bfdae23f382e8625b5af"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/HttpsConfiguration.kt",
+      "sha256": "cfba7dba8ffce89143a8191ac22a91a0d56ef38b119ad62a04a1da830ebd93a8"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/LoggingConfiguration.kt",
+      "sha256": "e46a1df52e5dce1ad6ac3bc379067304807acfebba610f0373291c985a77b376"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/McpConfiguration.kt",
+      "sha256": "cdc5aa5f2c4aef25a73bc445fdf351807f33c868e5e3c1a5f98234c86c561899"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/MockMode.kt",
+      "sha256": "6653da42cb9c0d12591ed16a5a1e8786cee999cac096072ede0a0da223358c3a"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/OpenAPIMockConfig.kt",
+      "sha256": "e77b7aae7a413c39dae4bb3f7fa32334c356cfa171b1ccaeac87db514e593646"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/OpenAPITestConfig.kt",
+      "sha256": "2dab47eeb9a889a76caf9aeeaf9a7a059106ef51a093e26fddbf56f39fb7ddde"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/SpecmaticConfigVersion.kt",
+      "sha256": "bfadc1e2fb78e01a6765e68013faf72bff4aacd871fc782371b9546767f9ca1e"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/SpecmaticGlobalSettings.kt",
+      "sha256": "66ad8ad5d9a8f2fc797b80abf693b422bdd14f2a9a663914a7d92223f7dcb1bc"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/SpecmaticSpecConfig.kt",
+      "sha256": "96ae445f5609efe5f5b0157a11fbe821b841f8a7430c74ae23e1a256c55182dd"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/SpecmaticVersionedConfig.kt",
+      "sha256": "7f0784eb840a6636e9dda7317e906a021ec67ada570006e031dd7e552ba8229d"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/SpecmaticVersionedConfigLoader.kt",
+      "sha256": "05cc28838b8126e7eb5a22d1a35e17669a0367b61260787db1ea1d9862d21d45"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/Switch.kt",
+      "sha256": "c084be01a134955a804e17221f94a748d259d36c96da03369016c43956839ec2"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/VersionAwareConfigParser.kt",
+      "sha256": "ea82424c55feb3b82502e41967f9ca3f0b9b40ed6cd1d07bf46b238142c66d0f"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v1/SpecmaticConfigV1.kt",
+      "sha256": "7cc7a7d8b8d57983a18657b937ad351bbe861d2210ef62d13a8697a4bdad2734"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v2/ContractConfig.kt",
+      "sha256": "3cfc31b5a1b4cd27fe27abccca304aeb320fa2a2235412f184ce4a418cadcc23"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v2/ProvidesDeserializer.kt",
+      "sha256": "4c538846d6e2342526af0f706070fb1cf1df013b1538eaf3d7f88797d3a4534f"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v2/SpecExecutionConfig.kt",
+      "sha256": "fc31915175176474672c096ec87086a8fa99fab7768cf971fe8eb8d2556a5ba6"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v2/SpecmaticConfigV2.kt",
+      "sha256": "c732b7f023c63ea5c4275a5a13859622b23d167cc9e1c4ee35ca5d2c6f441f46"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/Components.kt",
+      "sha256": "8808c4c1faa34fc909291f461c9f7149cdfa28bb7c129c925a046cc7e7b28239"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/Data.kt",
+      "sha256": "0156410282ff107eab6afee0ea24ba32fba3ae3dbdff90d50b72f1cf50b7e81f"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/InternalComponentsResolver.kt",
+      "sha256": "e08a749674d4d7a9195dfe025a4a2af9ec72bd5dfb90ed0fd37e83acf380c707"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/ProtocolConfigValidator.kt",
+      "sha256": "e75391d902dcddf18b79d6d2408b85ec08ba58109c69bc30cf24f789e9fd2ca9"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/Proxy.kt",
+      "sha256": "ea75c522f5e5f1697a849a3f519542e3d546873e1e74913130b93a06c6594b93"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/RefOrValue.kt",
+      "sha256": "824832899bf7864159d551c7fe4fc6231753ef80dacfa010ab5e596201fa97df"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/Settings.kt",
+      "sha256": "491a27cddddfdbd3c25c47289b3a1b547c9114cc0da306410ffedc1f941e1de8"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/Specmatic.kt",
+      "sha256": "975de68ee4a463b73bbae10bbe2b6296f794a01bd8346b54bae626735612d7f8"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/SpecmaticConfigV3.kt",
+      "sha256": "77a33da0e2f97450f8a8046d8bba23c3020831861b00590dc508c95b32f17ed9"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/SpecmaticConfigV3Impl.kt",
+      "sha256": "d9dbf1694c36b796e71c609b2e2cfd000c7d38c6ebdec106cfa4aaef8c2b4388"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/TypedProtocolConfigValidator.kt",
+      "sha256": "c0a8834642ce97f26fa997333ecb1abfcd6632356370f996186329c7bc6501aa"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/ValidationContext.kt",
+      "sha256": "1e945664caf89d45325abd4c83bd4c8ae078f3b387d75ed6d68747450a4fe518"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/Adapter.kt",
+      "sha256": "a98a2b04416d5ca7c2864a75f57a9bbc71e4a5eb5454925c73ff4b4e26f57377"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/Dictionary.kt",
+      "sha256": "19fd65e7c89c4e8c73e7a46a02c613e342bea7ee9b82612266d61376178430c5"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/Example.kt",
+      "sha256": "a09f1777eeaf790da5988382a21cadbe394495d22bfd8549aa8595c850352abe"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/SecuritySchemes.kt",
+      "sha256": "90a522dbbac80ba879e0442ef5f740f8c8b8a2c9ad951cc181e1ff6d851738f4"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/runOptions/AsyncApiRunOptions.kt",
+      "sha256": "62834d4afcf4cf4a78e87f297ecb1beabc5423ed0d3d7f09f742a86fe0df35bf"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/runOptions/GraphQLSdlRunOptions.kt",
+      "sha256": "b04049ee30f79e4dfb5186162bde81821e87f094a95af6ed6ea1391fab331d62"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/runOptions/OpenApiRunOptions.kt",
+      "sha256": "6d3ea7df1c7882cae30aa6db94649dd9212d9044278879ed5aa2bcf774a06b58"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/runOptions/ProtobufRunOptions.kt",
+      "sha256": "441886b67a5f1ba92ba32702f6f8df2041ae6379df444df716bc10298c41c8ce"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/runOptions/RunOptionType.kt",
+      "sha256": "090728bec612739622f96bdef14b64dcdee39b7dc0d04a8770221aed82d54a19"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/runOptions/RunOptions.kt",
+      "sha256": "642d3a3871671566b058b74ef1a00f7312f2fa1dc7eff2bff54ec2cddb3c3b95"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/runOptions/RunOptionsSpecifications.kt",
+      "sha256": "79cb26a8cce6cbffda21081e70a33a92cdf2c4671a9b95e5271dfd15df194e4a"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/runOptions/WsdlRunOptions.kt",
+      "sha256": "2496910c582d8ea45bf77722b63e72dcd6ce419e5947f9e62fa84b4709f60eb3"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/services/CommonServiceConfig.kt",
+      "sha256": "54860318f31edbb53d4c866e39e3a3c8f316d7bb636ebabd6be99b38100ebe0f"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/services/Definition.kt",
+      "sha256": "e84ab927a724ddbb45ca32fb667acfc6579fd3b887baebb820765948b83f3d03"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/services/MockServiceConfig.kt",
+      "sha256": "48aecc1e761a20cf73481895ae8d2d0aa304a06265be8f3de4b2c27e3e06d3b8"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/services/SpecificationDefinition.kt",
+      "sha256": "6ee17e0de70c038befbc8a037b5574f67a50b42ce9362a69c487971e4465f6a9"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/services/TestServiceConfig.kt",
+      "sha256": "c01f3b850a9490d4605320518fb3973507afcf5ef6a7988217d33d663f42ba8f"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/settings/FeatureFlags.kt",
+      "sha256": "d3ff4a64b77a69f7ba3e410a8a1477315aa6bcf9f29a466bd5c1bdfe28f4aa3a"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/settings/GeneralSettings.kt",
+      "sha256": "b479fea55ff26495be96877bf2ae7d90aca64f293598e04ba9eebeae29352d24"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/settings/MockSettings.kt",
+      "sha256": "8c67f8f0a4de8d0851a17a64b7d07d532555ae283f7adc77ef4ed7cbfa0a92bb"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/settings/ProxySettings.kt",
+      "sha256": "e3d9d74bb550f12d5ac54cb577bb0d59ab9d831d63487ee7a0d22296abd645d9"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/settings/TestSettings.kt",
+      "sha256": "fa09af0843a01c66643917a5be3626bc1fea09940f2ce52f891f63517afd3d15"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/sources/GitAuthentication.kt",
+      "sha256": "921b73d2c59ffe7cb70f52457a592d0eaaf01d4706a613c4d20301c1fa4408d6"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/components/sources/SourceV3.kt",
+      "sha256": "953360692f66871e50ee0001a608504b7488d71bac35dbc1069000647a2b9dbc"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/specmatic/Governance.kt",
+      "sha256": "0428c2256c24ec607ca60519c77a90a6389f6ff6dec36bc1025725136b2da620"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/specmatic/License.kt",
+      "sha256": "63d741a883bedeac3c5fd0b57d97d191eca2fcdad429e59fbb270e62723158db"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/specmatic/Report.kt",
+      "sha256": "75fd88fbe564a8d15df585f41006177e5274ebe9525de8c949ee3f9f034f4350"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/specmatic/SuccessCriterion.kt",
+      "sha256": "99c7a3860144fcbb8a0f402de1c81d2fc134bd9db087dcda0841aaa95d4ac5b9"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/upgrade/DataSectionMapper.kt",
+      "sha256": "5ff85ce70489973b97cf4d4ca2a82fae432fae5a126390a89a45c2f85c13226b"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/upgrade/DependenciesMapper.kt",
+      "sha256": "ad86952712f7e412b5524a4a8353d29f8bc179dbc3c7e9f45c85a617982af99b"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/upgrade/LegacyConfigView.kt",
+      "sha256": "585d2466f0f518e4a209870edbc0fac490626a0137684d040545863dda5857b5"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/upgrade/LegacySpecmaticConfigToV3Upgrader.kt",
+      "sha256": "71d8736b345bd64c71c36bc21dcd98484a18abe00522144981cc317ca2cfece4"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/upgrade/RunOptionsMapper.kt",
+      "sha256": "733e10d0044bbd3852df39da7283aea12ac5cae959a17824f4cf6892fa26a514"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/upgrade/SourceMigrationBuilder.kt",
+      "sha256": "184d7ac2aca5b413082ce978618832287244b95775446ab988d3e554aea7b290"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/upgrade/SpecificationIdBuilder.kt",
+      "sha256": "fe10d772abbbe32f678fd38c3a04e1fc5c9a7a9b13d7d9ec4db6cd1fdd57934d"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/upgrade/SpecmaticMetadataMapper.kt",
+      "sha256": "e904131125bac240aafea1bc1ca9cc912aae327fbf1c9355832a0aa9374a3474"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/upgrade/SystemUnderTestMapper.kt",
+      "sha256": "c1006c7b705e8e44f098c99398f19d70b6b063b53c7833733f3899b76dbb8195"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/v3/utils.kt",
+      "sha256": "65a9a426f61591d75e0deb1c5813cf7635c5c92e0a9e7ae70a1652ffd5d7fd94"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/validation/ConfigSchemaValidator.kt",
+      "sha256": "5cf5db23eb0611635c2ef4995197824b65168b4f7978c9c461d1152613957cf5"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/validation/ConfigValidationResult.kt",
+      "sha256": "2d3fdc9eabd6ba6298461cfe58ab77d124e2644fed9b230e874827e1a66340da"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/config/validation/SpecmaticConfigValidator.kt",
+      "sha256": "0bc0b93f885362ec1354c87bc4b481d18808e2dfd4f7a24767216fc959bf85eb"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/examples/module/ExampleModule.kt",
+      "sha256": "d03edb0d34cf95639f553c7d9c652e1b1b5194b921543208399373720ed9f511"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/examples/source/DirectoryExampleSource.kt",
+      "sha256": "28a85ccf34d552486a1b0f6ac12f1f33238ebaa68196fd40aaf40456759a038e"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/git/GitOperations.kt",
+      "sha256": "68c37025b2b33bbe1538b989f9b85650b0bf734f48a07afec1e6dc40ccd8b4fd"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/git/SystemGit.kt",
+      "sha256": "f5064b2b31e2a2f69a26c0c4464064435bdeb58b24be89bc4289d72a408a14fc"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/log/LogDirectory.kt",
+      "sha256": "d1b76d8f77debf00b814c8d0a36bc5110608a1f178c564bb08345985c3c657fe"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/log/Logging.kt",
+      "sha256": "d8b3f0b1ae0ddc05ded16e961235b18c83ae44332b71e426c2b8109f3230fa26"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/log/LoggingSetup.kt",
+      "sha256": "750f04f9a72569d76da284154ca22be0eba417b22abc5b22858d2d257c7047ca"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/pattern/CombinationSpec.kt",
+      "sha256": "3860f6f0f27125cb06461261e03908138fbd238b18f729af08a8eff06932b95e"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/pattern/TabularPattern.kt",
+      "sha256": "62f4c2e6e83a89d76b2e8ee63387e692b2dd741efd3b00acd2d3fd953a7e46ef"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/utilities/Flags.kt",
+      "sha256": "60c6aff48ceb37c7df382dbfadbf031fe7ae63c2d5e05d4b204d0aa7f1ef78b6"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/utilities/GitMonoRepo.kt",
+      "sha256": "7b939e40a9c54ccd4da0e0145b9289a2474b6373d4b590498dcc8773b2bb4d8b"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/utilities/GitRepo.kt",
+      "sha256": "dd29dd150a88f31a773933edc39b90a4a4fdcc4d51b4f83b6dc823e2a2720294"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/utilities/LocalFileSystemSource.kt",
+      "sha256": "ad11859a34512c37bc54c8ea135d03c046e6405a931e249072f809b1ad1875b4"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/utilities/ResolvedWebSource.kt",
+      "sha256": "13258e75e19aa0b93ed5756a778a9e5c39840a69ec3465b0048f8a2418e4c182"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/utilities/Utilities.kt",
+      "sha256": "44d5d1819afc23fba6e72f1a914eff79fe9a738106b436f2cafb0e8e9c959628"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/core/wsdl/parser/SOAP11Parser.kt",
+      "sha256": "c1615fbecd53ad9ae45bc78364d19b8e88d2802e57b9f3c72b883c1fbda1aa19"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/loader/RecursiveSpecificationAndExampleClassifier.kt",
+      "sha256": "ba47d45665ccc0a73a90d11996b71320d72534f72ac1a68f9be1722d2daa478d"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/proxy/ExampleTransformer.kt",
+      "sha256": "20cdff52d830c6b912133cf83b0768efcdc857f41b2d3c02e8b6c3a8051820e0"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/proxy/Proxy.kt",
+      "sha256": "fb94bf881282d032feb37151449cc16e04860dad4ca16d2256d62a37794bca62"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/proxy/ValueTransformer.kt",
+      "sha256": "bd1c96f50777796a997648b75a8e5ff7f7925e4cf644e643e969dc0388a485fd"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/stub/HttpStub.kt",
+      "sha256": "534becc02964f2359a73bdc9bf34878dc3377097029b48e42e6708c1e6fbda6b"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/stub/ThreadSafeListOfStubs.kt",
+      "sha256": "c7f09802ccee63000b086ab0c95c6f2a20a94d8d31e758baf1edb9f861d96ed5"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/stub/api.kt",
+      "sha256": "476d28759b5e7229ef983370452fd36a1064ed61abe7974bb960ff131502d581"
+    },
+    {
+      "repo": "specmatic",
+      "path": "core/src/main/kotlin/io/specmatic/test/ApacheHttpClientFactory.kt",
+      "sha256": "d534c0e58f91abf9edc6c2489c3e6e8a1e8f009fb187a84c9a41dfea64513a7f"
+    },
+    {
+      "repo": "specmatic",
+      "path": "junit5-support/src/main/kotlin/io/specmatic/test/ContractTestSettings.kt",
+      "sha256": "09ad9af8b9574d70181a2558a8f91b48dfe51bc6654cf4511553ea85bad9f64f"
+    },
+    {
+      "repo": "specmatic",
+      "path": "junit5-support/src/main/kotlin/io/specmatic/test/SpecmaticJUnitSupport.kt",
+      "sha256": "842920074fca2efa138edea6af364a006632946ae50b9661c74a362fe59f7d7c"
+    },
+    {
+      "repo": "specmatic",
+      "path": "specmatic-mcp/src/main/kotlin/io/specmatic/mcp/report/McpConsoleReport.kt",
+      "sha256": "7dc767430a711259285a419bdb8510d65007525cc15fa62d3abbeffccc2b9987"
+    },
+    {
+      "repo": "specmatic",
+      "path": "specmatic-mcp/src/main/kotlin/io/specmatic/mcp/report/McpJsonReport.kt",
+      "sha256": "4c96f18efcc7fc72e4b2801b94d6a37d70ae8d9340726b159c2c173488e28a7d"
+    },
+    {
+      "repo": "specmatic",
+      "path": "specmatic-mcp/src/main/kotlin/io/specmatic/mcp/test/McpAutoTest.kt",
+      "sha256": "c46529fd7b23d183313b50260b6cd24e7173911c204ddd174947192a34f6873c"
+    },
+    {
+      "repo": "specmatic",
+      "path": "specmatic-mcp/src/main/kotlin/io/specmatic/mcp/test/McpScenario.kt",
+      "sha256": "4f07d621cc827d6384cae1b2c5c26d893a11a29c32a10fd7a60789a2d97f9833"
+    },
+    {
+      "repo": "specmatic",
+      "path": "specmatic-mcp/src/main/kotlin/io/specmatic/mcp/test/client/McpStreamableHttpTestClient.kt",
+      "sha256": "ea41837f0a0ccdbdb0966d53fe8bb981144c9428724843cdde20be62b271f10e"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/application/TestCommand.kt",
+      "sha256": "bf2b499c5960edd6a125781fa8bf3d835f025fd395e9a29e5c5b5288ffa63b07"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/client/AsyncClient.kt",
+      "sha256": "698b596d0628bef43bc0f723adca94a15336c9df5903e92b23c2124b9ca63322"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/client/KafkaClient.kt",
+      "sha256": "754f12b369e3893e9cbc19c0cf3f7dc81bc37b19108fa9528dd5975e8a2e1cb0"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/client/config/AsyncClientProps.kt",
+      "sha256": "a74074f2b9f1bc2bce02715c8236a96db868562672c8ba8033f8a1974fbeca19"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/client/config/AsyncClientServerConfig.kt",
+      "sha256": "264cd0e1de1e7b11682998cb25853b5564f459d4f3f8405dc3eede9eebf2b088"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/client/config/AsyncMockConfig.kt",
+      "sha256": "8e2a895541f606aa50e7052b1d3f90e12036ef470e88792a324e8e5d7414b5e3"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/client/config/AsyncServerConfig.kt",
+      "sha256": "db0a963991422a1acb721d2043697909e2696dbee6a4bfccf296bee9e20c74b6"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/client/config/AsyncServerConfigResolver.kt",
+      "sha256": "c28f390793eb10f3d360c4c274a61b082167a5063cbe5d1d4ad14e99bdd00afa"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/client/config/AsyncTestConfig.kt",
+      "sha256": "7eebac21da5dd9782c337830c624fe12e6c7d15c7048449cd5b89990db5b413d"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/client/config/InMemoryBrokerConfigResolver.kt",
+      "sha256": "a91c4bea1931319ff165a42384b6a8d42ebaa6ed2e9ef5500ab229f742698b0d"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/client/config/SchemaRegistryProps.kt",
+      "sha256": "914e70442d19b9955b10d7abcdf4c3cb051b811479b22d593af6b52382ab0f30"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/configvalidation/AsyncConfigResolution.kt",
+      "sha256": "937f1ba43dfd6190c356b3483e3c76017c16d460af2d93dcd313efc9421b5e1c"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/configvalidation/AsyncConfigValidation.kt",
+      "sha256": "b905dde77d987f65f765e63bb75612f4868038753ae3b03396b4809fc40ca576"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/configvalidation/AsyncMockConfigValidator.kt",
+      "sha256": "8e5b3d2df35610e7b4abb392c1ab46300fb0acd375f6166a5ef071a9b07cf951"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/configvalidation/AsyncTestConfigValidator.kt",
+      "sha256": "c3ed73e756abc4c30c42a6678dbe7f90b2445ff0e13c42d958d88ae14e02603e"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/configvalidation/MockConfigPortValidator.kt",
+      "sha256": "7cd11d9f35f30ffa564f1dc4ee6c24c1caf1df88ae54791cad0db11e22ca8817"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/mock/broker/InMemoryBrokerFactory.kt",
+      "sha256": "0a6c241be862d1e76248db5a690d28eb279f828afce92a81d6cbb4cfdc9f0c62"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/scenario/AsyncScenario.kt",
+      "sha256": "c06928089140bba165e11d85ced97ae640ff825de0f200555aa2533721f91a61"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/scenario/strategy/RequestReplyScenarioStrategy.kt",
+      "sha256": "0a395c9165c78555b0f9c23ce8b418dda8a7f8f2c8ba9eb2e5948509c4d53730"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/test/SpecmaticAsyncContractTestInternal.kt",
+      "sha256": "7a37f17012feae11a8d707a242fe552f071becf5ff5279da504c1927e6acb278"
+    },
+    {
+      "repo": "enterprise",
+      "path": "async/src/main/kotlin/io/specmatic/async/internal/test/TimeoutConfig.kt",
+      "sha256": "100873e6705543fc51e073cc32180582bec62dfb86a8ef476f6e7da42f018153"
+    },
+    {
+      "repo": "enterprise",
+      "path": "executable/src/main/kotlin/io/specmatic/enterprise/exec/internal/BackwardCompatibilityCommand.kt",
+      "sha256": "0f642dd8989e7f162586013bd2ca808542a6155199c36589b18051c191569404"
+    },
+    {
+      "repo": "enterprise",
+      "path": "executable/src/main/kotlin/io/specmatic/enterprise/executable/backwardcompatibility/InsightsBasedBackwardCompatibilityChecker.kt",
+      "sha256": "da205ed61f143ea90d8c4fe4004d5debbde439b2f130b70903d46fe5c6d197ba"
+    },
+    {
+      "repo": "enterprise",
+      "path": "graphql/src/main/kotlin/io/specmatic/graphql/internal/application/command/StubCommand.kt",
+      "sha256": "e31012a1d0962b9ad97813ae4160ba5283f0f4f40833cf5540b64c29a82c90e6"
+    },
+    {
+      "repo": "enterprise",
+      "path": "graphql/src/main/kotlin/io/specmatic/graphql/internal/application/command/TestCommand.kt",
+      "sha256": "eb948cbab6f34262c0230bec22877ce9930152635d786e2aba56fb0e840d385d"
+    },
+    {
+      "repo": "enterprise",
+      "path": "graphql/src/main/kotlin/io/specmatic/graphql/internal/config/Config.kt",
+      "sha256": "5c3dbcdeabae5e9bb3cac9a3028bef5524854d49532e6afcae45f7fbaa7f31eb"
+    },
+    {
+      "repo": "enterprise",
+      "path": "graphql/src/main/kotlin/io/specmatic/graphql/internal/config/GraphQLMockConfig.kt",
+      "sha256": "026ecbe9b452edb2496046a586d2e9d9ddfa2191db166c2c7e469ce0ae78fe1a"
+    },
+    {
+      "repo": "enterprise",
+      "path": "graphql/src/main/kotlin/io/specmatic/graphql/internal/config/GraphQLTestConfig.kt",
+      "sha256": "16bd8410e3db9ec67c460e1c5f80c8d1d3d9cd146bcb2d73ff621d6cda2a7a9b"
+    },
+    {
+      "repo": "enterprise",
+      "path": "graphql/src/main/kotlin/io/specmatic/graphql/internal/specification/GraphQLSpecification.kt",
+      "sha256": "fab266354982af3b6f23cff97d902ea720768c2c69fdd44ed96bc8e23b99c908"
+    },
+    {
+      "repo": "enterprise",
+      "path": "graphql/src/main/kotlin/io/specmatic/graphql/internal/test/GraphQLTestSettings.kt",
+      "sha256": "8bbd67ca277d2a81f629ea2a6dbae1021d71826951ec36f4b5b273abf40a0daf"
+    },
+    {
+      "repo": "enterprise",
+      "path": "graphql/src/main/kotlin/io/specmatic/graphql/internal/test/SpecmaticGraphQLContractTest.kt",
+      "sha256": "c939ae8692f9b577e0101cd3197022f9d0a0cf34073c0115dbc5a11b9684c741"
+    },
+    {
+      "repo": "enterprise",
+      "path": "grpc/src/main/kotlin/io/specmatic/grpc/Constants.kt",
+      "sha256": "54a86df39338e6babfd3caea5c1b8b5d1495852a201916105de7ec097bca3dc6"
+    },
+    {
+      "repo": "enterprise",
+      "path": "grpc/src/main/kotlin/io/specmatic/grpc/client/GrpcClient.kt",
+      "sha256": "55f5d74d73b83925bc2000916e3998027efb2c6017202baccf34baa6b33f1b57"
+    },
+    {
+      "repo": "enterprise",
+      "path": "grpc/src/main/kotlin/io/specmatic/grpc/example/ExternalisedExample.kt",
+      "sha256": "fe743d682dc6d15ba21f4c92495bb7724584909fe95aea62e667851c27498c1f"
+    },
+    {
+      "repo": "enterprise",
+      "path": "grpc/src/main/kotlin/io/specmatic/grpc/internal/application/command/GrpcValidateCommand.kt",
+      "sha256": "152b7e03de53c79c7bdea208530373797adbeecebe36b9a4b7016e304fcef5e3"
+    },
+    {
+      "repo": "enterprise",
+      "path": "grpc/src/main/kotlin/io/specmatic/grpc/internal/application/command/StubCommand.kt",
+      "sha256": "a13544f3dddd816ca3b4531cb0ea914e67bf12099182c26c884c30df4e6d3314"
+    },
+    {
+      "repo": "enterprise",
+      "path": "grpc/src/main/kotlin/io/specmatic/grpc/internal/application/command/config/CommonGrpcConfig.kt",
+      "sha256": "fed41ba989dc8e3b974debe468b07fbab7b129287ad48329af9c6d4cb2247908"
+    },
+    {
+      "repo": "enterprise",
+      "path": "grpc/src/main/kotlin/io/specmatic/grpc/internal/application/command/config/GrpcMockConfig.kt",
+      "sha256": "157a7ff1eb259b14ec6f1ba98598747300d8bc9baacaf6fb1e842903a4219e16"
+    },
+    {
+      "repo": "enterprise",
+      "path": "grpc/src/main/kotlin/io/specmatic/grpc/internal/application/command/config/GrpcTestConfig.kt",
+      "sha256": "3cd1ac8e14eace33606ddf9a9e4235853d8c2273dc130ff3e08bd077de21a55d"
+    },
+    {
+      "repo": "enterprise",
+      "path": "grpc/src/main/kotlin/io/specmatic/grpc/internal/reflection/GrpcReflectionUtil.kt",
+      "sha256": "b1871ee4f3524d06026bfa5ae0e3386450f5b0c3a9e50d4a3beb0a7e86fedf72"
+    },
+    {
+      "repo": "enterprise",
+      "path": "grpc/src/main/kotlin/io/specmatic/grpc/internal/specification/GrpcSpecification.kt",
+      "sha256": "e35f77a13130cc54bfbd669b4a185a8c32f001eb9ac88f2f802774b4e2b07d66"
+    },
+    {
+      "repo": "enterprise",
+      "path": "grpc/src/main/kotlin/io/specmatic/grpc/internal/utils/FileUtils.kt",
+      "sha256": "9c322b2390cabb1582377446a2c4a2686adb858927738ab8da622fdaf672f078"
+    },
+    {
+      "repo": "enterprise",
+      "path": "grpc/src/main/kotlin/io/specmatic/grpc/junit/GrpcTestSettings.kt",
+      "sha256": "90c9dde1bdf852b9e0bf85af1be2e638f1a6253759ec10b9da45244c476bd753"
+    },
+    {
+      "repo": "enterprise",
+      "path": "grpc/src/main/kotlin/io/specmatic/grpc/junit/SpecmaticGrpcContractTestInternal.kt",
+      "sha256": "8e1c7574167b31c577f841ad64a40ceef900d29f40d301b83c22df25858b22d5"
+    }
+  ],
+  "runtimeVerification": {
+    "verified": "2026-10-09",
+    "configurationFormatVersion": 3,
+    "artifacts": {
+      "oss": {
+        "version": "2.55.3",
+        "mavenCoordinate": "io.specmatic:specmatic-executable-all:2.55.3",
+        "jarSha256": "2026a53459794d01e0f11843f24ad55588098d2dfbfd3e9a27b7705e29b5734d",
+        "executableRevision": "05a98c122d5af96854d79e941b3f24ae84a0ac6f",
+        "embeddedCore": {
+          "version": "2.55.3",
+          "revision": "05a98c122d5af96854d79e941b3f24ae84a0ac6f"
+        },
+        "packagedSchemaSha256": "f4745a35962d6e90c13743db7b35f42e0c2844f702c2a2d383af30d87cf837d4",
+        "versionOutput": "Specmatic Version: v2.55.3(05a98c12)"
+      },
+      "enterprise": {
+        "version": "1.28.3",
+        "mavenCoordinate": "io.specmatic.enterprise:executable-all:1.28.3",
+        "jarSha256": "eb4b3a1d097226a7d4519f7ceabfbc2b54501a0e856adc083f3b0d49884c3d3f",
+        "executableRevision": "ccb3f95781249204d1be8f5c682b213e9481174b",
+        "embeddedCore": {
+          "version": "2.55.3",
+          "revision": "fa123c52fd6771339784945d20c22a1c04555868"
+        },
+        "packagedSchemaSha256": "f4745a35962d6e90c13743db7b35f42e0c2844f702c2a2d383af30d87cf837d4",
+        "versionOutput": "Specmatic Enterprise v1.28.3(ccb3f957)\nSpecmatic Core v2.55.3(fa123c52)"
+      }
+    },
+    "checks": [
+      "Both local JAR --version outputs match their manifest and recorded edition version.",
+      "Both packaged resolved V3 schemas match the committed snapshot structurally and byte-for-byte."
+    ],
+    "scope": "Artifact identity and schema parity only. Runtime behavior requires the scoped recipe and field evidence in coverage.json and configuration-acceptance-matrix.md.",
+    "researchCheckoutParity": "Not established for all consumers. Research revisions and per-file fingerprints below identify the checkout, not the released binaries.",
+    "knownDifferences": [
+      {
+        "area": "Core source identity",
+        "detail": "The same core version 2.55.3 has different embedded commits: OSS 05a98c12 and Enterprise fa123c52. Version/schema equality does not prove identical runtime behavior."
+      },
+      {
+        "area": "Enterprise AsyncAPI broker log directory",
+        "repo": "enterprise",
+        "path": "async/src/main/kotlin/io/specmatic/async/internal/client/config/InMemoryBrokerConfigResolver.kt",
+        "releaseRevision": "ccb3f95781249204d1be8f5c682b213e9481174b",
+        "researchRevision": "2d66adfe7602377560100ce34a518e1e842a51d7",
+        "detail": "Release typed brokers honor CLI log-directory input; legacy brokers prefer CLI over configured logDir. The research checkout ignores CLI log-directory input for typed brokers and prefers legacy configured logDir. This source comparison does not execute every log-directory case."
+      }
+    ]
+  }
+}

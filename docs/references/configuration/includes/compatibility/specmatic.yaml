@@ -1,0 +1,8 @@
+version: 3
+specmatic:
+  settings:
+    backwardCompatibility:
+      baseBranch: main
+      repoDirectory: contracts-demo
+      targetPath: contract.yaml
+      strictMode: true

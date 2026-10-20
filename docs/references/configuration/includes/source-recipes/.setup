@@ -1,0 +1,24 @@
+if [[ "$DOC_EXAMPLE_NAME" == "git-repository.sh" || "$DOC_EXAMPLE_NAME" == "git-alternate.sh" ]]; then
+bash prepare-git.sh
+fi
+if [[ "$DOC_EXAMPLE_NAME" == "git-current.sh" || "$DOC_EXAMPLE_NAME" == "validate.sh" ]]; then
+git init -q -b main
+fi
+if [[ "$DOC_EXAMPLE_NAME" == web* || "$DOC_EXAMPLE_NAME" == "validate.sh" ]]; then
+node source-server.cjs > source.log 2>&1 &
+source_pid=$!
+cleanup() {
+  result=$?
+  kill "$source_pid" 2>/dev/null || true
+  wait "$source_pid" 2>/dev/null || true
+  exit "$result"
+}
+trap cleanup EXIT
+ready=false
+for attempt in {1..100}; do
+  if grep -q 'Contract source ready' source.log; then ready=true; break; fi
+  kill -0 "$source_pid" 2>/dev/null || { cat source.log; exit 1; }
+  sleep 0.1
+done
+[[ "$ready" == true ]] || { cat source.log; exit 1; }
+fi

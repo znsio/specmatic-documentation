@@ -1,0 +1,19 @@
+# Test fixture for standalone contract-test commands. Other scenarios start their own services.
+if [[ "$DOC_EXAMPLE_NAME" == 'nested-test.sh' ]]; then
+  node demo-service.cjs > demo.log 2>&1 &
+  demo_pid=$!
+  cleanup() {
+    result=$?
+    kill "$demo_pid" 2>/dev/null || true
+    wait "$demo_pid" 2>/dev/null || true
+    if [[ "$result" == 0 ]]; then node .check-paths.cjs || exit 1; fi
+    exit "$result"
+  }
+  trap cleanup EXIT
+  for attempt in {1..100}; do
+    [[ -f demo-ready.txt ]] && break
+    kill -0 "$demo_pid" 2>/dev/null || { cat demo.log; exit 1; }
+    sleep 0.1
+  done
+  [[ -f demo-ready.txt ]] || { cat demo.log; exit 1; }
+fi

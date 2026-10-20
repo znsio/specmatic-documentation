@@ -24,6 +24,8 @@
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
+  --ifm-link-color: #cba8e7;
+  --ifm-link-hover-color: #cba8e7;
   --ifm-color-primary: #7a3cad;
   --ifm-color-primary-dark: #7a3cad;
   --ifm-color-primary-darker: #7a3cad;
@@ -33,6 +35,14 @@
   --ifm-color-primary-lightest: #7a3cad;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
   font-family: "Rubik", sans-serif;
+}
+
+/* Active navigation text needs the lighter link color on dark surfaces. */
+[data-theme='dark'] .navbar__link--active,
+[data-theme='dark'] .menu__link--sublist.menu__link--active,
+[data-theme='dark'] .breadcrumbs__item--active .breadcrumbs__link,
+[data-theme='dark'] .table-of-contents__link--active {
+  color: var(--ifm-link-color);
 }
 
 ::selection {
@@ -278,4 +288,15 @@
   .report-media-carousel__fullscreenImage {
     max-height: calc(100vh - 3rem);
   }
+}
+
+/* Keep long configuration keys readable without hiding the defaults column. */
+.configuration-settings-summary table {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+.configuration-settings-summary code {
+  white-space: normal;
+  overflow-wrap: anywhere;
 }

@@ -1,0 +1,55 @@
+asyncapi: 3.0.0
+info:
+  title: Ping service
+  version: 1.0.0
+
+servers:
+  localKafka:
+    host: localhost:19095
+    protocol: kafka
+
+channels:
+  ping:
+    address: ping
+    messages:
+      ping:
+        $ref: "#/components/messages/ping"
+  pong:
+    address: pong
+    messages:
+      pong:
+        $ref: "#/components/messages/pong"
+
+operations:
+  pingRequest:
+    action: receive
+    channel:
+      $ref: "#/channels/ping"
+    messages:
+      - $ref: "#/channels/ping/messages/ping"
+    reply:
+      channel:
+        $ref: "#/channels/pong"
+      messages:
+        - $ref: "#/channels/pong/messages/pong"
+
+components:
+  messages:
+    ping:
+      contentType: application/json
+      payload:
+        type: object
+        required: [event]
+        properties:
+          event:
+            type: string
+            const: ping
+    pong:
+      contentType: application/json
+      payload:
+        type: object
+        required: [event]
+        properties:
+          event:
+            type: string
+            const: pong

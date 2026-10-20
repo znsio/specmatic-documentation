@@ -1,0 +1,12 @@
+if [[ "$DOC_EXAMPLE_NAME" != prepare.sh ]]; then
+  bash prepare.sh > setup.log 2>&1
+fi
+cleanup() {
+  result=$?
+  [[ "$(git -C contracts-demo branch --show-current)" == change ]] || exit 2
+  git -C contracts-demo diff --quiet || exit 2
+  git -C contracts-demo diff --cached --quiet || exit 2
+  node check-report.cjs "$DOC_EXAMPLE_NAME" || exit 2
+  exit "$result"
+}
+trap cleanup EXIT

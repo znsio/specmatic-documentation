@@ -1,0 +1,4 @@
+Failed to parse gRPC mock configuration from the Specmatic configuration.
+JSON property host
+[FAIL] Skipped 1 examples due to specification validation failure
+[FAIL] OVERALL RESULT: FAILED

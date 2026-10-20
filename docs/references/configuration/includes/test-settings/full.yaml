@@ -1,0 +1,21 @@
+version: 3
+systemUnderTest:
+  service:
+    definitions:
+      - definition:
+          source:
+            filesystem:
+              directory: .
+          specs:
+            - books.yaml
+    runOptions:
+      openapi:
+        type: test
+        baseUrl: http://127.0.0.1:9100
+    settings:
+      timeoutInMilliseconds: 1000
+specmatic:
+  settings:
+    test:
+      timeoutInMilliseconds: 20
+      junitReportDir: ./reports

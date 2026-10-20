@@ -1,0 +1,22 @@
+version: 3
+dependencies:
+  services:
+    - service:
+        definitions:
+          - definition:
+              source:
+                filesystem: {}
+              specs:
+                - spec:
+                    id: ping
+                    path: asyncapi.yaml
+        runOptions:
+          asyncapi:
+            type: mock
+            specs:
+              - spec:
+                  id: ping
+                  servers:
+                    - server:
+                        $serverRef: "#/servers/localKafka"
+                        type: in-memory

@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Mock an API",
+    "description": "Turn a local OpenAPI spec into a running mock.",
+    "href": "/references/configuration/local-openapi#mock-an-api",
+    "availability": "OpenAPI \u00b7 OSS & Enterprise"
+  },
+  {
+    "title": "Test an API",
+    "description": "Check a running service against its contract.",
+    "href": "/references/configuration/local-openapi#test-an-api",
+    "availability": "OpenAPI \u00b7 OSS & Enterprise"
+  },
+  {
+    "title": "Test with mocked dependencies",
+    "description": "Reuse sources and wire a service to its dependency mocks.",
+    "href": "/references/configuration/local-openapi#test-with-a-mocked-dependency",
+    "availability": "OpenAPI \u00b7 OSS & Enterprise"
+  },
+  {
+    "title": "Validate examples",
+    "description": "Check specification examples before running tests or mocks.",
+    "href": "/features/external_examples",
+    "availability": "See protocol-specific support"
+  },
+  {
+    "title": "Configure a proxy",
+    "description": "Select the listener, upstream service and recording behavior.",
+    "href": "/references/configuration/proxy",
+    "availability": "HTTP \u00b7 OSS & Enterprise"
+  },
+  {
+    "title": "Check compatibility",
+    "description": "Compare contract changes against a baseline.",
+    "href": "/references/configuration/compatibility",
+    "availability": "OpenAPI \u00b7 OSS & Enterprise"
+  },
+  {
+    "title": "Test MCP tools",
+    "description": "Configure a server endpoint, transport and selected tools.",
+    "href": "/references/configuration/mcp",
+    "availability": "MCP \u00b7 OSS & Enterprise"
+  },
+  {
+    "title": "Configure another protocol",
+    "description": "Choose AsyncAPI, GraphQL, gRPC or WSDL run options.",
+    "href": "/references/configuration/test-configuration",
+    "availability": "Edition support varies by protocol"
+  }
+]

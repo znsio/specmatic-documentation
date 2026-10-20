@@ -1,0 +1,18 @@
+# Default-discovery examples use the same configs saved as specmatic.yaml.
+case "$DOC_EXAMPLE_NAME" in
+  mock.sh|run-mock.sh|validate.sh) cp specmatic-mock.yaml specmatic.yaml ;;
+  test.sh|run-test.sh) cp specmatic-test.yaml specmatic.yaml ;;
+  components-test.sh) cp specmatic-components.yaml specmatic.yaml ;;
+esac
+# Test fixture for standalone contract-test commands. Other scenarios start their own services.
+if [[ "$DOC_EXAMPLE_NAME" == 'test.sh' || "$DOC_EXAMPLE_NAME" == 'run-test.sh' ]]; then
+  node demo-service.cjs > demo.log 2>&1 &
+  demo_pid=$!
+  trap 'kill "$demo_pid" 2>/dev/null || true; wait "$demo_pid" 2>/dev/null || true' EXIT
+  for attempt in {1..100}; do
+    [[ -f demo-ready.txt ]] && break
+    kill -0 "$demo_pid" 2>/dev/null || { cat demo.log; exit 1; }
+    sleep 0.1
+  done
+  [[ -f demo-ready.txt ]] || { cat demo.log; exit 1; }
+fi

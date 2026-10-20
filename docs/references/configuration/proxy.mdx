@@ -1,0 +1,148 @@
+---
+title: Configure an HTTP Proxy
+sidebar_position: 1.4
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Configure an HTTP proxy
+
+Forward HTTP requests to a running service and save observed interactions as an OpenAPI contract and examples. These V3 examples were checked with **OSS 2.55.3** and **Enterprise 1.28.3**.
+
+**Recording limitation:** `ignoreHeaders: [X-Trace]` did not remove that response header from saved examples in either release. Use nonsensitive traffic for this demo. Do not rely on that field to redact recordings; disable recording when the traffic must not be saved.
+
+## Save the config and start a target
+
+Follow the [Enterprise Docker setup](/references/configuration/local-openapi#docker-setup). Use a fresh directory and run commands there. Ports **19110**, **19111** and **19112** must be free. The optional local target needs Node 20+. Use new output directories: generated contracts/examples can replace or extend files there.
+
+Save `specmatic.yaml`:
+
+<CodeBlock language="yaml" title="specmatic.yaml">{require('./includes/proxy/specmatic.yaml?raw').trimEnd()}</CodeBlock>
+
+`target` is the upstream service. `baseUrl` selects the proxy listener; it is not the upstream endpoint. `recordingsDirectory` selects where recorded files are written. No service definition is needed for this forwarding setup.
+
+Use your HTTP service, or save this independent local target:
+
+<details>
+<summary>Complete local target service</summary>
+<CodeBlock language="javascript" title="target.cjs">{require('./includes/proxy/target.cjs?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+Start it in another terminal:
+
+<CodeBlock language="shell">{require('./includes/proxy/start-target.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/proxy/start-target.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+## Start the proxy and send a request
+
+In the original terminal:
+
+<CodeBlock language="shell">{require('./includes/proxy/proxy.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/proxy/proxy.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+In another terminal, call the **proxy** on 19111:
+
+<CodeBlock language="shell">{require('./includes/proxy/request.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/proxy/request.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The target receives the request on 19110. The proxy returns its response, including the demo `X-Trace` and `X-Keep` headers.
+
+Save recordings while the proxy is running:
+
+<CodeBlock language="shell">{require('./includes/proxy/dump.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/proxy/dump.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The dump request returns **202** and generation runs in the background. The checked example waits for actual files and inspects their contents; the response alone does not prove that files were written.
+
+Under `recordings`, this exchange produces:
+
+- `proxy_generated.yaml`: a contract inferred from observed traffic.
+- `proxy_generated_examples`: JSON request/response examples.
+
+The example contains GET `/greeting`, status 200 and the exact response body. The saved response still contains `X-Trace: demo-trace`, despite its presence in `ignoreHeaders`. Treat recordings and console logs as data from the traffic. An inferred contract needs review; observing one exchange does not establish the complete API contract.
+
+Stop the proxy with Ctrl+C before trying another listener variant. Normal shutdown also requests recording generation. Keep the target running until finished.
+
+## Forward without recording
+
+Save `no-record.yaml`; only `recordRequests` changes. This command also keeps a local log so the checked example can wait for the completed empty recording result:
+
+<CodeBlock language="yaml" title="no-record.yaml">{require('./includes/proxy/no-record.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/proxy/no-record.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/proxy/no-record.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The same request reaches the target and returns the correct response. Dumping produces no recorded examples or contract, with `No stubs were recorded. No contract will be written.` after processing. This disables recording, **not console logging**. It is not a promise that request/response data never appears in logs.
+
+## Override the listener, target or output directory
+
+CLI options override the corresponding config choices.
+
+<details>
+<summary>Listener override: port 19112</summary>
+<CodeBlock language="shell">{require('./includes/proxy/port-cli.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/proxy/port-cli.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Call `/greeting` on 19112 for this variant. Stop it before starting another proxy.
+
+</details>
+
+<details>
+<summary>Complete wrong-target config and CLI recovery</summary>
+
+Save `wrong-target.yaml`. The config points to 19113; the CLI selects the running target on 19110:
+
+<CodeBlock language="yaml" title="wrong-target.yaml">{require('./includes/proxy/wrong-target.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/proxy/target-cli.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/proxy/target-cli.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The independent target receives the request and the proxy returns its exact response.
+
+</details>
+
+<details>
+<summary>Recording directory override</summary>
+<CodeBlock language="shell">{require('./includes/proxy/recordings-cli.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/proxy/recordings-cli.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The positional directory replaces configured `recordings`. The checked dump writes the contract/example under `cli-recordings`, with no contract under `recordings`. Use a fresh directory; existing-output guards differ when the target is supplied through CLI versus config.
+
+</details>
+
+## Set the upstream response timeout
+
+Save `short-timeout.yaml`. The demo's `/slow` endpoint waits 200 ms; the configured 20 ms timeout produces HTTP **500** at the proxy with a timeout error:
+
+<CodeBlock language="yaml" title="short-timeout.yaml">{require('./includes/proxy/short-timeout.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/proxy/short-timeout.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/proxy/short-timeout.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+This is a forwarded-request timeout, not the lifetime of the proxy process. Stop that proxy and supply a CLI timeout of 1,000 ms:
+
+<CodeBlock language="shell">{require('./includes/proxy/timeout-cli.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/proxy/timeout-cli.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Now `/slow` returns 200 with the exact demo response. The CLI timeout overrides the config field.
+
+## Understand the proxy list
+
+The released CLI selects **only the first proxy** in `proxies`. A second list entry does not start a second listener.
+
+<details>
+<summary>Complete two-entry example</summary>
+<CodeBlock language="yaml" title="two-proxies.yaml">{require('./includes/proxy/two-proxies.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/proxy/two-proxies.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/proxy/two-proxies.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Only the first listener, 19111, starts and forwards correctly; the checked 19112 connection is refused. Run separate proxy processes with separate selected configs when you need more listeners, rather than assuming the list starts them all.
+
+</details>
+
+## Validate config separately
+
+<CodeBlock language="shell">{require('./includes/proxy/validate.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/proxy/validate.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+This checks configuration structure, not target reachability or safe redaction. Stop the target with Ctrl+C when finished.
+
+Return to [configuration tasks](/references/configuration), find proxy fields in the [explorer](/references/configuration/explorer), or read [all keys](/references/configuration/all-keys). This recipe checks local HTTP forwarding and recording; TLS/client certificates, adapters, mock-backed interception, other entry points and broader path layouts need separate verification. The forward proxy's CONNECT method is unsupported in the reviewed runtime; do not use this setup as an HTTPS tunneling proxy.

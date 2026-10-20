@@ -1,0 +1,6 @@
+.grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.85rem; margin:1.5rem 0 2rem; }
+.task { display:flex; flex-direction:column; gap:.5rem; padding:1.2rem; border:1px solid var(--ifm-color-emphasis-200); border-radius:.65rem; background:var(--ifm-background-surface-color); color:var(--ifm-font-color-base); }
+.task:hover { text-decoration:none; color:var(--ifm-font-color-base); border-color:var(--ifm-color-primary); }
+.task:focus-visible { outline:3px solid var(--ifm-color-primary); outline-offset:3px; }
+.title { font-weight:600; }.title span { color:var(--ifm-color-primary); }.description { font-size:.95rem; }.availability { font-size:.8rem; color:var(--ifm-color-emphasis-700); margin-top:auto; }
+@media(max-width:600px) { .grid { grid-template-columns:1fr; } }

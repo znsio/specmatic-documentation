@@ -14,7 +14,8 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "check:links": "bundle exec htmlproofer ./build --disable-external",
     "build:verified": "npm run build && npm run check:links",
-    "check:examples": "node scripts/run-doc-examples.js"
+    "check:examples": "node scripts/run-doc-examples.js",
+    "check:config": "node scripts/build-config-catalog.js --check && node scripts/build-config-validator.js --check && node --test scripts/check-config-catalog.test.js scripts/check-config-inspector.test.js scripts/check-config-builder.test.js scripts/check-config-explorer.test.js scripts/check-config-docker.test.js"
   },
   "dependencies": {
     "@docusaurus/core": "3.10.1",
@@ -22,7 +23,10 @@
     "@docusaurus/preset-classic": "3.10.1",
     "@easyops-cn/docusaurus-search-local": "^0.55.0",
     "@mdx-js/react": "^3.0.0",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^2.1.1",
     "clsx": "^2.0.0",
+    "copy-text-to-clipboard": "^3.2.2",
     "ejs": "^6.0.0",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.0.0",

@@ -1,0 +1,392 @@
+{
+  "Root": {
+    "summary": "V3 uses version, systemUnderTest, dependencies, proxies, mcp, specmatic and components. A file can configure only the operation you need.",
+    "interaction": "Inline services are supported. Named components are reusable declarations; declaring a component does not automatically select it for a run.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "Components": {
+    "summary": "Components hold reusable definitions. Select a service through systemUnderTest or dependencies to use its specs for testing or mocking.",
+    "interaction": "Component services and run options are interpreted in their use-site context. A component reused in incompatible test/mock contexts can fail typed conversion.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "ContextService": {
+    "summary": "Components hold reusable definitions. Select a service through systemUnderTest or dependencies to use its specs for testing or mocking.",
+    "interaction": "Component services and run options are interpreted in their use-site context. A component reused in incompatible test/mock contexts can fail typed conversion.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "Reference": {
+    "summary": "A reference identifies reusable configuration. Local component refs use #/components/<collection>/<name>.",
+    "interaction": "Sibling properties replace matching properties on the referenced object with a shallow merge. Replacing a nested settings object does not preserve its omitted child fields. Internal component resolution does not support array indices or JSON Pointer escape decoding.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "TestService": {
+    "summary": "The system under test supplies the specifications and execution settings for testing a real service.",
+    "interaction": "Service settings override global test settings field by field. Run options select protocol targets; data supplies examples and dictionaries.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "SystemUnderTestServiceDefinition": {
+    "summary": "The system under test supplies the specifications and execution settings for testing a real service.",
+    "interaction": "Service settings override global test settings field by field. Run options select protocol targets; data supplies examples and dictionaries.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "MockService": {
+    "summary": "Dependency services provide specifications and settings for mocks.",
+    "interaction": "Mock settings use service, then dependency-wide, then global values. Startup/hot-reload/restart accessors use dependency/global settings rather than a single service\u2019s value.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "MockServiceEntry": {
+    "summary": "Dependency services provide specifications and settings for mocks.",
+    "interaction": "Mock settings use service, then dependency-wide, then global values. Startup/hot-reload/restart accessors use dependency/global settings rather than a single service\u2019s value.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "DependenciesDefinition": {
+    "summary": "Dependency services provide specifications and settings for mocks.",
+    "interaction": "Mock settings use service, then dependency-wide, then global values. Startup/hot-reload/restart accessors use dependency/global settings rather than a single service\u2019s value.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "DefinitionValue": {
+    "summary": "A definition binds a source to specification paths. Named spec IDs connect declarations to per-spec run-option overrides.",
+    "interaction": "Specs can be strings or wrapped spec objects. IDs are matching identifiers, not a global CLI alias registry. The first matching ID override is selected.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "SpecificationObject": {
+    "summary": "A definition binds a source to specification paths. Named spec IDs connect declarations to per-spec run-option overrides.",
+    "interaction": "Specs can be strings or wrapped spec objects. IDs are matching identifiers, not a global CLI alias registry. The first matching ID override is selected.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "SpecificationDefinition": {
+    "summary": "A definition binds a source to specification paths. Named spec IDs connect declarations to per-spec run-option overrides.",
+    "interaction": "Specs can be strings or wrapped spec objects. IDs are matching identifiers, not a global CLI alias registry. The first matching ID override is selected.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "GitSourceOptions": {
+    "summary": "A Git source loads contracts from a repository and can select a branch or authentication method.",
+    "interaction": "matchBranch attempts the current checkout branch, with a declared-branch fallback. Repository caches and bundled contracts can affect where files are loaded; config validation may fetch repositories.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "GitSourceSchema": {
+    "summary": "A Git source loads contracts from a repository and can select a branch or authentication method.",
+    "interaction": "matchBranch attempts the current checkout branch, with a declared-branch fallback. Repository caches and bundled contracts can affect where files are loaded; config validation may fetch repositories.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "GitBearerFileAuthentication": {
+    "summary": "Choose one Git authentication form: bearer token file, environment variable containing a bearer token, or personal access token.",
+    "interaction": "This authenticates contract-source access, not API requests. Bearer environment lookup reads the environment directly; token files are trimmed.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "GitBearerEnvAuthentication": {
+    "summary": "Choose one Git authentication form: bearer token file, environment variable containing a bearer token, or personal access token.",
+    "interaction": "This authenticates contract-source access, not API requests. Bearer environment lookup reads the environment directly; token files are trimmed.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "GitPersonalAccessTokenAuthentication": {
+    "summary": "Choose one Git authentication form: bearer token file, environment variable containing a bearer token, or personal access token.",
+    "interaction": "This authenticates contract-source access, not API requests. Bearer environment lookup reads the environment directly; token files are trimmed.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "FileSystemSourceOptions": {
+    "summary": "A filesystem source supplies local specification files.",
+    "interaction": "Path resolution depends on the consumer: typed V3 helpers use the discovered config directory; the released CLI local loader resolves a relative source directory from the process working directory. Run beside the selected config, or use an absolute source directory to align those bases.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "FileSystemSourceSchema": {
+    "summary": "A filesystem source supplies local specification files.",
+    "interaction": "Path resolution depends on the consumer: typed V3 helpers use the discovered config directory; the released CLI local loader resolves a relative source directory from the process working directory. Run beside the selected config, or use an absolute source directory to align those bases.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "WebSourceOptions": {
+    "summary": "A web source downloads specifications from a nonblank base URL.",
+    "interaction": "The source has a local cache. Structural browser checks cannot establish remote availability or validate downloaded content.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "WebSourceSchema": {
+    "summary": "A web source downloads specifications from a nonblank base URL.",
+    "interaction": "The source has a local cache. Structural browser checks cannot establish remote availability or validate downloaded content.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "OpenApiTestRunOptions": {
+    "summary": "Test run options choose the service endpoint and protocol-specific behavior.",
+    "interaction": "A per-spec origin overrides the service origin. baseUrl takes precedence over host/port; host alone does not establish an origin. A certificate reference supplies TLS material.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "WsdlTestRunOptions": {
+    "summary": "Test run options choose the service endpoint and protocol-specific behavior.",
+    "interaction": "A per-spec origin overrides the service origin. baseUrl takes precedence over host/port; host alone does not establish an origin. A certificate reference supplies TLS material.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "OpenApiMockRunOptions": {
+    "summary": "Mock run options choose the listener origin; OpenAPI also supports stateful-mock.",
+    "interaction": "baseUrl takes precedence over host/port. A configured certificate selects HTTPS. OpenAPI logMode/logsDirPath are schema-declared, but no runtime reader was confirmed in the source snapshot.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "WsdlMockRunOptions": {
+    "summary": "Mock run options choose the listener origin; OpenAPI also supports stateful-mock.",
+    "interaction": "baseUrl takes precedence over host/port. A configured certificate selects HTTPS. OpenAPI logMode/logsDirPath are schema-declared, but no runtime reader was confirmed in the source snapshot.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "TestSettings": {
+    "summary": "Service test settings override specmatic.settings.test field by field.",
+    "interaction": "Do not assume every CLI flag replaces config: HTTP reporting combines staged/configured filters with AND. schemaResiliencyTests also accepts resiliencyTests as a binding alias.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "MockSettings": {
+    "summary": "Service settings override dependency-wide settings, which override global mock settings.",
+    "interaction": "Global startup timeout defaults to 20 seconds; generative mocks default to false. Startup/hot-reload/restart getters use dependency/global settings. Other defaults must be checked per runner.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "GeneralSettings": {
+    "summary": "General settings are used by shared parsers, matching, logging and lifecycle code.",
+    "interaction": "They can affect tests, mocks and validation. Telemetry uses environment/property precedence and disabling is retained for the lifetime of the process. Pretty printing defaults to enabled.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "FeatureFlags": {
+    "summary": "General settings are used by shared parsers, matching, logging and lifecycle code.",
+    "interaction": "They can affect tests, mocks and validation. Telemetry uses environment/property precedence and disabling is retained for the lifetime of the process. Pretty printing defaults to enabled.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "DataDefinition": {
+    "summary": "Data supplies external examples, dictionaries and adapters at applicable service/dependency use sites.",
+    "interaction": "Test examples combine service directories with environment/property additions. Mock examples also include dependency-wide directories. Conventional example-directory templates provide discovery beyond explicit lists.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "ExampleDirectories": {
+    "summary": "Data supplies external examples, dictionaries and adapters at applicable service/dependency use sites.",
+    "interaction": "Test examples combine service directories with environment/property additions. Mock examples also include dependency-wide directories. Conventional example-directory templates provide discovery beyond explicit lists.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "ExamplesConfiguration": {
+    "summary": "Data supplies external examples, dictionaries and adapters at applicable service/dependency use sites.",
+    "interaction": "Test examples combine service directories with environment/property additions. Mock examples also include dependency-wide directories. Conventional example-directory templates provide discovery beyond explicit lists.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "DictionaryConfiguration": {
+    "summary": "A dictionary supplies values used by generated requests or mock responses.",
+    "interaction": "Tests prefer service dictionaries then the dictionary flag. Mocks prefer service, then dependency, then flag. Shared parser accessors do not all consume scoped YAML dictionaries.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "AdapterConfiguration": {
+    "summary": "Adapter entries are literal hook names mapped to commands/scripts.",
+    "interaction": "Schema camelCase and snake_case names are not necessarily runtime aliases. The traced contract/codec hook readers use snake_case names; no automatic name conversion was confirmed.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "CertConfiguration": {
+    "summary": "Certificates configure TLS key material and, for mock listeners, optional incoming mutual TLS.",
+    "interaction": "Select a keystore file or directory. Schema validation rejects both together, although plain binding prefers file. Store/key passwords default to forgotten and aliases default to specmatic plus a caller-specific suffix.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "KeyStoreFileConfiguration": {
+    "summary": "Certificates configure TLS key material and, for mock listeners, optional incoming mutual TLS.",
+    "interaction": "Select a keystore file or directory. Schema validation rejects both together, although plain binding prefers file. Store/key passwords default to forgotten and aliases default to specmatic plus a caller-specific suffix.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "KeyStoreDirectoryConfiguration": {
+    "summary": "Certificates configure TLS key material and, for mock listeners, optional incoming mutual TLS.",
+    "interaction": "Select a keystore file or directory. Schema validation rejects both together, although plain binding prefers file. Store/key passwords default to forgotten and aliases default to specmatic plus a caller-specific suffix.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "ProxyDefinition": {
+    "summary": "Proxy configuration chooses an upstream target, listener, optional mocks and recording behavior.",
+    "interaction": "The common V3 proxy getter uses only the first proxy even though the schema accepts a list. Proxy adapter and certificate consumers differ from service use sites.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "ProxyEntry": {
+    "summary": "Proxy configuration chooses an upstream target, listener, optional mocks and recording behavior.",
+    "interaction": "The common V3 proxy getter uses only the first proxy even though the schema accepts a list. Proxy adapter and certificate consumers differ from service use sites.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "ProxySettings": {
+    "summary": "Proxy configuration chooses an upstream target, listener, optional mocks and recording behavior.",
+    "interaction": "The common V3 proxy getter uses only the first proxy even though the schema accepts a list. Proxy adapter and certificate consumers differ from service use sites.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "McpTestRunOptions": {
+    "summary": "MCP test settings choose the server, transport, credentials, dictionary and tool selection.",
+    "interaction": "CLI scalar options override config. filterTools and skipTools combine CLI/config entries. The command requires a transport even though its transport-conversion helper has a default. This model has no timeout key.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "McpDefinition": {
+    "summary": "MCP test settings choose the server, transport, credentials, dictionary and tool selection.",
+    "interaction": "CLI scalar options override config. filterTools and skipTools combine CLI/config entries. The command requires a transport even though its transport-conversion helper has a default. This model has no timeout key.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "ReportsDefinition": {
+    "summary": "Governance provides coverage criteria and a report output directory.",
+    "interaction": "Report formats are schema-declared, but no runtime format-selection reader was confirmed. Do not rely on formats alone to select output. Coverage discovery settings belong to OpenAPI test run options.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "SuccessCriteriaDefinition": {
+    "summary": "Governance provides coverage criteria and a report output directory.",
+    "interaction": "Report formats are schema-declared, but no runtime format-selection reader was confirmed. Do not rely on formats alone to select output. Coverage discovery settings belong to OpenAPI test run options.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "Governance": {
+    "summary": "Governance provides coverage criteria and a report output directory.",
+    "interaction": "Report formats are schema-declared, but no runtime format-selection reader was confirmed. Do not rely on formats alone to select output. Coverage discovery settings belong to OpenAPI test run options.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "LicenseDefinition": {
+    "summary": "The license path is supplied to the license provider.",
+    "interaction": "The external licensing implementation is outside the scanned source repositories. A schema declaration is not proof of edition availability or license validity.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "AsyncApiTestRunOptions": {
+    "summary": "AsyncAPI options configure server connections, client/admin properties and schema registry access.",
+    "interaction": "A nonempty per-spec override generally replaces the global option map; Async server extraction additionally falls back to global servers when the override omits them. Test reply timeout defaults to 10000 ms and readiness wait to 0.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "AsyncApiMockRunOptions": {
+    "summary": "AsyncAPI options configure server connections, client/admin properties and schema registry access.",
+    "interaction": "A nonempty per-spec override generally replaces the global option map; Async server extraction additionally falls back to global servers when the override omits them. Test reply timeout defaults to 10000 ms and readiness wait to 0.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "AsyncApiCommonRunOptions": {
+    "summary": "AsyncAPI options configure server connections, client/admin properties and schema registry access.",
+    "interaction": "A nonempty per-spec override generally replaces the global option map; Async server extraction additionally falls back to global servers when the override omits them. Test reply timeout defaults to 10000 ms and readiness wait to 0.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "AsyncApiRunOptionSpecificationCommon": {
+    "summary": "AsyncAPI options configure server connections, client/admin properties and schema registry access.",
+    "interaction": "A nonempty per-spec override generally replaces the global option map; Async server extraction additionally falls back to global servers when the override omits them. Test reply timeout defaults to 10000 ms and readiness wait to 0.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "AsyncServerReferenceConfig": {
+    "summary": "A $serverRef selects a named server in the AsyncAPI specification, not a Specmatic component.",
+    "interaction": "Supported for AsyncAPI 3 per-spec server entries. Unresolved server variables and conflicting types fail validation.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "AsyncClientServerConfig": {
+    "summary": "Servers select external or in-memory lifecycle and protocol-specific client/admin properties.",
+    "interaction": "Client property maps are passed to the protocol implementation. Their property vocabulary depends on the broker/client and is not a finite Specmatic key inventory.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "AsyncClientProperties": {
+    "summary": "Servers select external or in-memory lifecycle and protocol-specific client/admin properties.",
+    "interaction": "Client property maps are passed to the protocol implementation. Their property vocabulary depends on the broker/client and is not a finite Specmatic key inventory.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "InMemoryBrokerConfiguration": {
+    "summary": "The older inMemoryBroker configuration is retained by runtime DTOs.",
+    "interaction": "Explicit Enterprise validation rejects it as deprecated. Use server entries with type: in-memory instead.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "GraphqlSdlTestRunOptions": {
+    "summary": "GraphQL run options are converted into Enterprise test/mock configuration.",
+    "interaction": "Nonempty per-spec option maps replace global maps, rather than deep merging. Test config host/port precede staged values; fallback is localhost:8080. DTOs ignore unknown properties.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "GraphqlSdlMockRunOptions": {
+    "summary": "GraphQL run options are converted into Enterprise test/mock configuration.",
+    "interaction": "Nonempty per-spec option maps replace global maps, rather than deep merging. Test config host/port precede staged values; fallback is localhost:8080. DTOs ignore unknown properties.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "GraphqlSdlCommonRunOptions": {
+    "summary": "GraphQL run options are converted into Enterprise test/mock configuration.",
+    "interaction": "Nonempty per-spec option maps replace global maps, rather than deep merging. Test config host/port precede staged values; fallback is localhost:8080. DTOs ignore unknown properties.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "GraphqlSdlRunOptionSpecificationCommon": {
+    "summary": "GraphQL run options are converted into Enterprise test/mock configuration.",
+    "interaction": "Nonempty per-spec option maps replace global maps, rather than deep merging. Test config host/port precede staged values; fallback is localhost:8080. DTOs ignore unknown properties.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "ProtobufTestRunOptions": {
+    "summary": "Protobuf options configure gRPC targets/listeners, import paths, compiler version and test timeout.",
+    "interaction": "Test DTO host/port are required and timeout defaults to 5000 ms. The mock service DTO does not require host. A map-based mock parser used by validation instead returns the test DTO; this is a recorded product limitation.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "ProtobufMockRunOptions": {
+    "summary": "Protobuf options configure gRPC targets/listeners, import paths, compiler version and test timeout.",
+    "interaction": "Test DTO host/port are required and timeout defaults to 5000 ms. The mock service DTO does not require host. A map-based mock parser used by validation instead returns the test DTO; this is a recorded product limitation.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "ProtobufCommonRunOptions": {
+    "summary": "Protobuf options configure gRPC targets/listeners, import paths, compiler version and test timeout.",
+    "interaction": "Test DTO host/port are required and timeout defaults to 5000 ms. The mock service DTO does not require host. A map-based mock parser used by validation instead returns the test DTO; this is a recorded product limitation.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "ProtobufRunOptionSpecificationCommon": {
+    "summary": "Protobuf options configure gRPC targets/listeners, import paths, compiler version and test timeout.",
+    "interaction": "Test DTO host/port are required and timeout defaults to 5000 ms. The mock service DTO does not require host. A map-based mock parser used by validation instead returns the test DTO; this is a recorded product limitation.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "LoggingConfiguration": {
+    "summary": "Logging controls level, console/file output and file-name prefix.",
+    "interaction": "logPrefix is a binding alias of logFilePrefix. Incoming non-null logging fields win during merge; this differs from the top-level HTTPS merge behavior.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "LogOutputConfiguration": {
+    "summary": "Logging controls level, console/file output and file-name prefix.",
+    "interaction": "logPrefix is a binding alias of logFilePrefix. Incoming non-null logging fields win during merge; this differs from the top-level HTTPS merge behavior.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  },
+  "BackwardCompatibilitySettings": {
+    "summary": "Backward-compatibility settings select the baseline branch/path, repository and strictness.",
+    "interaction": "These are consumed by compatibility-check commands, not ordinary test target routing. Paths and branch availability still require runtime checks.",
+    "status": "source-traced",
+    "evidence": "Configuration codebase reference, behavior guide; schema facts are recorded separately."
+  }
+}

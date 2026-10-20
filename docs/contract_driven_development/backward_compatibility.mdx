@@ -10,6 +10,8 @@ import {CommercialBadge} from "../../src/components/CommercialBadge";
 Backward Compatibility
 ==========
 
+For complete V3 configuration and independently checked OpenAPI commands, use [Check OpenAPI Changes Against a Git Baseline](/references/configuration/compatibility). It covers defaults, CLI overrides, skipped checks, breaking-change recovery and local Git-state effects.
+
 ![Backward Compatibility](/img/backward-compatibility.png)
 
 
@@ -40,7 +42,7 @@ Backward compatibility needs to be ensured at 3 levels:
 
 The backward-compatibility-check command validates compatibility at the API contract interface level. Think wire-compatibility.
 
-It starts a mock server using the new version of the specification, generates tests from the previous version of the specification, and executes those newly generated tests against the mock server. If all the tests pass, we know the new version of the spec honours the existing contract established by the current version of the spec across the entire interface surface, including:
+For the documented OpenAPI releases, it compares request and response patterns from the old and new specifications in process. It generates request variations from the older contract and checks them against the newer contract; it does not need to start a mock server or an application. The comparison covers supported contract behavior such as:
 
 - protocol semantics
 - operations, endpoints, message channels
@@ -57,9 +59,9 @@ specmatic backward-compatibility-check [options]
 
 #### Key Options
 
-- `--target-path`: Focus your analysis on specific file or folder. Default is all files and folder.
-- `--base-branch`: Select your comparison base. This defaults to head of the current branch.
-- `--repo-dir`: Specify the directory where the repository is located. Default is the current directory.
+- `--target-path`: Override the configured changed-file path filter. Without a CLI or config value, no narrower path filter is applied.
+- `--base-branch`: Override the configured comparison baseline. Without either value, use the current branch's upstream if one exists, otherwise the current branch; a self-comparison can skip the check.
+- `--repo-dir`: Override the configured local repository directory. Without either value, use the command's working directory.
 
 ### Level 2: Example Validation
 

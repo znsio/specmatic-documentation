@@ -1,0 +1,18 @@
+version: 3
+systemUnderTest:
+  service:
+    definitions:
+      - definition:
+          source:
+            filesystem:
+              directory: .
+          specs:
+            - books.yaml
+    settings:
+      junitReportDir: reports
+    runOptions:
+      openapi:
+        type: test
+        baseUrl: http://127.0.0.1:9100
+        host: localhost
+        port: 9102

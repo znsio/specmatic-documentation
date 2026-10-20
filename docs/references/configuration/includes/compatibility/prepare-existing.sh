@@ -1,0 +1,1 @@
+bash prepare.sh

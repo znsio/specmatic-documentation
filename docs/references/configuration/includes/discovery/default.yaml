@@ -1,0 +1,16 @@
+version: 3
+dependencies:
+  services:
+    - service:
+        definitions:
+          - definition:
+              source:
+                filesystem:
+                  directory: specs
+              specs:
+                - books.yaml
+        runOptions:
+          openapi:
+            type: mock
+            host: 127.0.0.1
+            port: 9101

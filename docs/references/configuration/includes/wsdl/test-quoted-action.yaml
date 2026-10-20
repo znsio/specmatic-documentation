@@ -1,0 +1,22 @@
+version: 3
+systemUnderTest:
+  service:
+    definitions:
+      - definition:
+          source:
+            filesystem:
+              directory: '{SOAP_SPEC_DIRECTORY:.}'
+          specs:
+            - hello.wsdl
+    runOptions:
+      wsdl:
+        type: test
+        host: 127.0.0.1
+        port: 9100
+specmatic:
+  settings:
+    general:
+      featureFlags:
+        escapeSoapAction: true
+    test:
+      junitReportDir: reports

@@ -1,0 +1,142 @@
+---
+title: Find Your Config and Resolve Paths
+sidebar_position: 1.5
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Find your config and resolve paths
+
+Use one config filename deliberately, and know the directory from which you run Specmatic. Moving `specmatic.yaml` does not move every input and output path to the same base directory.
+
+## Which file gets loaded?
+
+Core discovery checks these in order:
+
+1. `CONFIG_FILE_PATH` from the environment, otherwise the JVM property of the same name, **if that selected path exists**.
+2. A file-backed `specmatic.yaml`, `specmatic.yml` or `specmatic.json` resource on the classpath, in that order, if its resource path exists as a filesystem file.
+3. `specmatic.yaml`, then `specmatic.yml`, then `specmatic.json` in the process working directory.
+
+If nothing exists, discovery returns the working-directory `specmatic.yaml` candidate. Whether the command then fails or uses defaults depends on its loader and task. Discovery does not search parent directories. A config embedded inside a JAR is not automatically a filesystem-backed resource.
+
+An existing but invalid first choice is not skipped in favor of a later valid file. Conversely, a nonexistent `CONFIG_FILE_PATH` can fall through to another discovered file. Check that a deliberately selected path exists before running it; keep stale alternative files out of the same directory.
+
+When `CONFIG_FILE_PATH` is set in the environment, the JVM property is not separately retried if that selected path is missing; discovery proceeds to the classpath/default-file choices.
+
+Some commands accept `--config`; configuration validation selects its input with `--input`. These are command entry points, not another universal discovery order. The examples below set `CONFIG_FILE_PATH` before startup, which also avoids the documented Enterprise 1.28.3 mock constructor's early path capture. Do not set a conflicting environment path and CLI path: core environment lookup wins over the JVM property written by some CLI entry points.
+
+## A small project layout
+
+The examples use Bash/POSIX shell syntax, Node 20+ for response checks, and a free mock port 9101. For the test example, run a matching Books API on 9100; the [local OpenAPI guide](/references/configuration/local-openapi#test-an-api) provides one.
+
+```text
+project/
+  default.yaml
+  default.json
+  config/
+    mock.yaml
+    test.yaml
+  specs/
+    books.yaml
+```
+
+Save this contract as `specs/books.yaml`:
+
+<details>
+<summary>Complete Books API contract</summary>
+
+<CodeBlock language="yaml" title="specs/books.yaml">{require('./includes/discovery/specs/books.yaml?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+## Default filenames
+
+Save the following as `default.yaml`. Run from the project root, beside the selected default config: both local path-resolution bases then agree on `specs/`.
+
+<CodeBlock language="yaml" title="default.yaml">{require('./includes/discovery/default.yaml?raw').trimEnd()}</CodeBlock>
+
+From `project/`, choose **one** of these alternatives. Stop the mock before trying another, and remove the previously chosen default file so it cannot take precedence.
+
+### YAML
+
+<CodeBlock language="shell">{require('./includes/discovery/yaml.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/discovery/yaml.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+### YML
+
+The same YAML content can use the `.yml` extension. Make sure `specmatic.yaml` is absent:
+
+<CodeBlock language="shell">{require('./includes/discovery/yml.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/discovery/yml.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+### JSON
+
+Save this as `default.json` and make sure both YAML default filenames are absent:
+
+<details>
+<summary>Equivalent complete JSON configuration</summary>
+
+<CodeBlock language="json" title="default.json">{require('./includes/discovery/default.json?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+<CodeBlock language="shell">{require('./includes/discovery/json.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/discovery/json.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Each mock returns the named book at `http://127.0.0.1:9101/books/1`; startup alone is not proof it loaded the right spec.
+
+## Select a nested config
+
+Save `config/mock.yaml`. Run beside it, in `config/`: `filesystem.directory: ../specs` then finds the sibling specs directory, and `specs: [books.yaml]` selects a file inside it.
+
+<CodeBlock language="yaml" title="config/mock.yaml">{require('./includes/discovery/config/mock.yaml?raw').trimEnd()}</CodeBlock>
+
+Start from `project/`. The first line checks the file exists, then the command changes into `config/` before launching Specmatic:
+
+<CodeBlock language="shell">{require('./includes/discovery/nested-mock.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/discovery/nested-mock.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The selected spec is `project/specs/books.yaml`. Stop the mock when finished, and return to `project/` before the next example.
+
+Do not simply select this file from `project/` while leaving `directory: ../specs`: the released CLI's local-source loader would look one directory above the project. Its typed V3 resolver uses the discovered config directory, so those two paths can disagree. Running beside the config aligns them; an absolute source directory is another reliable option.
+
+## Input paths and output paths can have different bases
+
+Save `config/test.yaml` and keep the matching Books API running on port 9100. This version uses a template for an absolute source directory, so the following command can run from `project/` without changing directories:
+
+<CodeBlock language="yaml" title="config/test.yaml">{require('./includes/discovery/config/test.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/discovery/nested-test.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/discovery/nested-test.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The command resolves `CONTRACT_DIRECTORY` to `project/specs` before source loading, avoiding the two relative source bases. Ordinary core CLI report output uses `junitReportDir: ./reports` from the **process working directory**, creating `project/reports/TEST-junit-jupiter.xml`, not `project/config/reports/TEST-junit-jupiter.xml`.
+
+| Value | Base to use |
+|---|---|
+| Relative `CONFIG_FILE_PATH` | Process working directory |
+| Relative filesystem source `directory` in the released CLI loader | Process working directory; the typed V3 resolver separately uses the discovered config directory. Run beside the config or use an absolute directory to align them |
+| Git `definition.specs` paths | Paths inside the selected repository, not local project paths; a URL-less Git source uses monorepo behavior |
+| Web `definition.specs` paths | Paths under the configured web source URL; downloaded files use the web cache |
+| Local component `$ref` | The config's component map; it is not a filesystem path |
+| External `$ref` | The resolver's origin file; relative external references need the correct origin |
+| Core CLI `junitReportDir` | Process working directory for an ordinary run; a separate rebasing tool can rewrite it |
+
+Do not apply this table's filesystem-source rule to arbitrary strings. Examples, dictionaries, certificates, overlays, adapter scripts and other outputs have their own consumers; use their field guidance. A `mapPaths()` capability in the model does not mean every command automatically rebases those paths on load.
+
+## JUnit and programmatic callers
+
+JUnit discovery can pick up a file-backed test resource before a working-directory file. Use the same `CONFIG_FILE_PATH` environment/JVM input when you need a specific file, and avoid competing inputs. Your launcher can also stage settings that override the file; see [test settings](/references/configuration/test-settings-guide).
+
+Programmatic source resolution can depend on the globally discovered config path, while a directly loaded config carries an origin for external refs. Passing a filename to a loader is not proof that both are aligned. Use your integration's documented file-selection mechanism; keep the selected config path and resolver origin consistent. Studio/editing tools can rebase paths during a move or edit, which is different from ordinary CLI loading.
+
+## When the selected file fails
+
+| Symptom | Check and correction |
+|---|---|
+| The wrong mock starts | Check `CONFIG_FILE_PATH`, classpath resources and the default filename order; verify the returned response |
+| A missing environment path seems to be ignored | Discovery may fall through; check file existence before startup |
+| A file exists but parsing fails | Correct that file; Specmatic does not skip it merely because another default is valid |
+| A spec is missing after moving the config | Check both config location and process working directory; run beside the config or use an absolute source directory |
+| A report appears in an unexpected directory | Check the command's working directory and the field's consumer; use an explicit output path if needed |
+| Browser inspection passes but the run fails | The browser cannot check local files, credentials, fetched specs or command selection; validate the saved config and run the task |
+
+Use [configuration validation](/references/configuration/local-openapi#validate-the-configuration-files) to check a saved file, then the actual test/mock command to confirm its sources and targets work. Validation can fetch sources and update caches; it is not a test against your implementation.

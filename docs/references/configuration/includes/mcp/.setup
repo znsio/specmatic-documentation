@@ -1,0 +1,23 @@
+if [[ "$DOC_EXAMPLE_NAME" != start-server.sh && "$DOC_EXAMPLE_NAME" != validate.sh ]]; then
+  node server.cjs > server.log 2>&1 &
+  mcp_demo_pid=$!
+  cleanup() {
+    result=$?
+    if [[ "$result" == 0 || "$DOC_EXAMPLE_NAME" == empty.sh || "$DOC_EXAMPLE_NAME" == bad-auth.sh || "$DOC_EXAMPLE_NAME" == gate-mixed.sh ]]; then
+      node assert-results.cjs "${DOC_EXAMPLE_NAME%.sh}" || result=2
+    fi
+    kill "$mcp_demo_pid" 2>/dev/null || true
+    wait "$mcp_demo_pid" 2>/dev/null || true
+    exit "$result"
+  }
+  trap cleanup EXIT
+  ready=false
+  for attempt in {1..100}; do
+    if grep -q 'Demo MCP server ready' server.log; then ready=true; break; fi
+    kill -0 "$mcp_demo_pid" 2>/dev/null || { cat server.log; exit 1; }
+    sleep 0.1
+  done
+  [[ "$ready" == true ]] || { cat server.log; exit 1; }
+  if [[ "$DOC_EXAMPLE_NAME" == gate.sh ]]; then docker run --rm --network host -v ./:/usr/src/app -v "$HOME/.specmatic:/root/.specmatic" specmatic/enterprise mcp test > test.log 2>&1; fi
+  if [[ "$DOC_EXAMPLE_NAME" == gate-mixed.sh ]]; then docker run --rm --network host -v ./:/usr/src/app -v "$HOME/.specmatic:/root/.specmatic" specmatic/enterprise mcp test --filter-tools broken > test.log 2>&1; fi
+fi

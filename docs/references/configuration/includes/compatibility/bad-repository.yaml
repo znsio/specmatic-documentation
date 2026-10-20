@@ -1,0 +1,8 @@
+version: 3
+specmatic:
+  settings:
+    backwardCompatibility:
+      baseBranch: main
+      repoDirectory: missing-demo
+      targetPath: contract.yaml
+      strictMode: true

@@ -1,0 +1,15 @@
+version: 3
+systemUnderTest:
+  service:
+    definitions:
+      - definition:
+          source:
+            filesystem:
+              directory: .
+          specs:
+            - books.yaml
+    settings:
+      junitReportDir: reports
+environments:
+  local:
+    baseUrl: http://127.0.0.1:9100

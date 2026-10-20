@@ -1,0 +1,213 @@
+---
+title: Configure gRPC with Protobuf
+sidebar_position: 1.35
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Configure gRPC with Protobuf
+
+Use `runOptions.protobuf` to mock or test a `.proto` contract. These V3 examples were checked with **Enterprise 1.28.3**. They use a local, plaintext unary RPC; streaming, TLS, remote sources and multiple-spec setups need separate guidance.
+
+## Save the inputs
+
+Follow the [Enterprise Docker setup](/references/configuration/local-openapi#docker-setup) and configure your [license](/enterprise_onboarding/license_key). Use one directory and run commands there. Ports **9100**, **9101** and **9102** must be free. The optional demo service needs Node 20+; checking the mock uses [grpcurl](https://github.com/fullstorydev/grpcurl) (checked with 1.9.1).
+
+Save these files, including the example subdirectory:
+
+<CodeBlock language="protobuf" title="greeter.proto">{require('./includes/grpc/greeter.proto?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="json" title="greeter_examples/hello.json">{require('./includes/grpc/greeter_examples/hello.json?raw').trimEnd()}</CodeBlock>
+
+The example names the RPC, request and exact response. With no explicit example directories, gRPC looks beside the proto in `greeter_examples`.
+
+The configs explicitly select `protocVersion: '3.23.4'`. Compilation may download the compiler on first use. The release default, `3.11.4`, failed on the tested Apple Silicon machine with `Unsupported platform`; the explicit version is the checked recovery. It is a compiler version, not the Specmatic release or config format version.
+
+## Mock the service
+
+Save `mock.yaml`:
+
+<CodeBlock language="yaml" title="mock.yaml">{require('./includes/grpc/mock.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/grpc/mock.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/mock.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The released gRPC mock listens on **0.0.0.0**, not only loopback. Its top-level protobuf mock options have no `host` field. In another terminal, call the mock using the local proto, so server reflection is not required:
+
+<CodeBlock language="shell">{require('./includes/grpc/request.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/request.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Stop the mock with Ctrl+C before trying another mock on the same port.
+
+## Test a running service
+
+Save `test.yaml`. The test targets the application at **127.0.0.1:9100**; it does not start that application.
+
+<CodeBlock language="yaml" title="test.yaml">{require('./includes/grpc/test.yaml?raw').trimEnd()}</CodeBlock>
+
+Use your matching implementation, or save this demo as `target.cjs`. It implements only the short, uncompressed unary request in this example; it is not a general gRPC server.
+
+<details>
+<summary>Complete local demo service</summary>
+<CodeBlock language="javascript" title="target.cjs">{require('./includes/grpc/target.cjs?raw').trimEnd()}</CodeBlock>
+</details>
+
+Start it in a separate terminal:
+
+<CodeBlock language="shell">{require('./includes/grpc/start-target.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/start-target.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Run the test in the original terminal:
+
+<CodeBlock language="shell">{require('./includes/grpc/test.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/test.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The test sends `name: docs` and checks `message: Hello docs!`. `resiliencyTests: none` keeps this example to its authored positive request. Stop the demo with Ctrl+C when finished.
+
+## Choose the right port
+
+Mock and test CLI interactions differ in this release:
+
+| Choice | Observed result |
+|---|---|
+| Mock config port 9101, CLI port 9102 | Mock listens on 9102 |
+| Test config port 9100, CLI port 9102 | Test still calls 9100 |
+| Matching spec ID with a per-spec port 9102 | Mock/test uses 9102 |
+
+With `mock.yaml` unchanged, the CLI can move the mock:
+
+<CodeBlock language="shell">{require('./includes/grpc/mock-cli.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/mock-cli.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Stop that mock. With the demo running on 9100, this competing test CLI port does not move the configured target:
+
+<CodeBlock language="shell">{require('./includes/grpc/test-cli.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/test-cli.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+<details>
+<summary>Complete per-spec mock and test variants</summary>
+
+<CodeBlock language="yaml" title="mock-override.yaml">{require('./includes/grpc/mock-override.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/grpc/mock-override.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/mock-override.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Stop the mock. For the test variant, run your matching implementation on 9102. For the demo, stop the previous process and start it on the new port:
+
+<CodeBlock language="shell">{require('./includes/grpc/start-target-override.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/start-target-override.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+<CodeBlock language="yaml" title="test-override.yaml">{require('./includes/grpc/test-override.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/grpc/test-override.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/test-override.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The declaration and override both use ID `greeting`. A nonempty matching override replaces the service protobuf option map rather than inheriting its missing fields. Repeat the needed target/compiler values in the override. This is different from field-by-field test-setting inheritance.
+
+</details>
+
+## Select other example directories
+
+<details>
+<summary>Complete custom-example variants</summary>
+
+Save `custom-examples/hello.json`; it changes the request to `team` and response to `Hello team!`:
+
+<CodeBlock language="json" title="custom-examples/hello.json">{require('./includes/grpc/custom-examples/hello.json?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="yaml" title="mock-custom.yaml">{require('./includes/grpc/mock-custom.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/grpc/mock-custom.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/mock-custom.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Call it in another terminal:
+
+<CodeBlock language="shell">{require('./includes/grpc/request-custom.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/request-custom.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Stop the mock afterward. For testing, run the demo on 9100 again:
+
+<CodeBlock language="yaml" title="test-custom.yaml">{require('./includes/grpc/test-custom.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/grpc/test-custom.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/test-custom.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Both roles use the configured custom example in these checks. A selected nonempty example-directory list replaces the implicit `greeter_examples` fallback; it does not automatically combine both. Other protocols can load data differently.
+
+</details>
+
+## Resolve imported message types
+
+For configuration-driven runs, the compiler and Specmatic's message parser have separate import lookups. In the checked release, compiling a same-folder import successfully is not enough: configure the parser's search directory too.
+
+Keep `greeter_examples/hello.json` from above and save these additional files beside it:
+
+<details>
+<summary>Complete imported-contract inputs</summary>
+<CodeBlock language="protobuf" title="imported-greeter.proto">{require('./includes/grpc/imported-greeter.proto?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="protobuf" title="messages.proto">{require('./includes/grpc/messages.proto?raw').trimEnd()}</CodeBlock>
+</details>
+
+This complete mock deliberately supplies an empty search list. The compiler finds `messages.proto`, but the message parser does not:
+
+<details>
+<summary>missing-import.yaml — complete failing setup</summary>
+<CodeBlock language="yaml" title="missing-import.yaml">{require('./includes/grpc/missing-import.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/grpc/missing-import.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/missing-import.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The command exits with code 1. Recover with `importPaths: ['.']`, which searches the proto's directory. The explicit data path continues to select `greeter_examples`, even though the main proto now has a different filename:
+
+<details>
+<summary>Complete mock and test recoveries</summary>
+<CodeBlock language="yaml" title="mock-import.yaml">{require('./includes/grpc/mock-import.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/grpc/mock-import.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/mock-import.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The mock serves the same `Hello docs!` response. Stop it afterward. With the original demo running on 9100, this imported-contract test also passes:
+
+<CodeBlock language="yaml" title="test-import.yaml">{require('./includes/grpc/test-import.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/grpc/test-import.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/test-import.terminaloutput?raw').trimEnd()}</CodeBlock>
+</details>
+
+Relative import search directories use the main proto's directory in the reviewed consumer. Nested imports, other source layouts and well-known remote imports need separate checks; do not infer them from this same-folder example.
+
+## Set a request deadline and recover
+
+`requestTimeout` is in **milliseconds**; the gRPC default is **5000**. It controls a call deadline, not compiler time or the whole suite. Stop the previous demo and start the same implementation with a 1200 ms response delay:
+
+<CodeBlock language="shell">{require('./includes/grpc/start-slow-target.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/start-slow-target.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+<details>
+<summary>Complete short-deadline test — intentional failure</summary>
+<CodeBlock language="yaml" title="test-timeout.yaml">{require('./includes/grpc/test-timeout.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/grpc/test-timeout.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/test-timeout.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The 500 ms deadline expires with gRPC error code 4 (`DEADLINE_EXCEEDED`), and the test exits with code 1. Increase the deadline to 3000 ms for this same delayed response:
+
+<details>
+<summary>Complete longer-deadline recovery</summary>
+<CodeBlock language="yaml" title="test-timeout-recovery.yaml">{require('./includes/grpc/test-timeout-recovery.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/grpc/test-timeout-recovery.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/test-timeout-recovery.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Stop the delayed demo when finished. Choose a deadline suitable for your implementation; these values demonstrate a failure and recovery, not recommended limits for every API.
+
+## Validate and recover
+
+To validate the proto and its example contents without running a service, use the [gRPC specification/example validation recipe](./grpc-validation). The checks below validate configuration structure instead.
+
+The following command validates the six base, per-spec override and custom-example configurations:
+
+<CodeBlock language="shell">{require('./includes/grpc/validate.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/validate.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+A test service cannot use mock run options. This deliberately invalid file exits with code 1:
+
+<details>
+<summary>wrong-type.yaml — complete invalid example</summary>
+<CodeBlock language="yaml" title="wrong-type.yaml">{require('./includes/grpc/wrong-type.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/grpc/wrong-type.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/wrong-type.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Recover with `type: test` and the host/port in `test.yaml`. A valid config does not prove compiler/import availability or a running target. For an unsupported compiler platform, use the checked explicit version; for a connection failure, check the configured target and start your application. For imported types, use the [same-folder import recovery](#resolve-imported-message-types); compiler lookup alone does not establish that the message parser found the type. These checks establish local unary calls and one same-folder import layout, not nested/remote imports or every compiler version.

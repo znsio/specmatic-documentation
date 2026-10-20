@@ -1,0 +1,42 @@
+version: 3
+systemUnderTest:
+  service:
+    definitions:
+      - definition:
+          source:
+            filesystem:
+              directory: .
+          specs:
+            - spec:
+                id: auth-demo
+                path: auth.yaml
+    runOptions:
+      openapi:
+        type: test
+        baseUrl: http://127.0.0.1:19130
+        specs:
+          - spec:
+              id: auth-demo
+              securitySchemes:
+                BearerAuth:
+                  type: bearer
+                  token: ''
+                OAuthAuth:
+                  type: oauth2
+                  token: demo-oauth
+                OidcAuth:
+                  type: openIdConnect
+                  token: demo-oidc
+                BasicAuth:
+                  type: basicAuth
+                  token: ZG9jczpkZW1v
+                HeaderKey:
+                  type: apiKey
+                  token: demo-header
+                QueryKey:
+                  type: apiKey
+                  token: demo-query
+specmatic:
+  settings:
+    test:
+      junitReportDir: reports

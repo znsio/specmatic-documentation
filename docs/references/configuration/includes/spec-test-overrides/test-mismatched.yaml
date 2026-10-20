@@ -1,0 +1,28 @@
+version: 3
+systemUnderTest:
+  service:
+    definitions:
+      - definition:
+          source:
+            filesystem:
+              directory: .
+          specs:
+            - spec:
+                id: books
+                path: books.yaml
+            - spec:
+                id: authors
+                path: authors.yaml
+    settings:
+      junitReportDir: reports
+    runOptions:
+      openapi:
+        type: test
+        baseUrl: http://127.0.0.1:9100
+        specs:
+          - spec:
+              id: books
+              baseUrl: http://127.0.0.1:9100
+          - spec:
+              id: Authors
+              baseUrl: http://127.0.0.1:9102

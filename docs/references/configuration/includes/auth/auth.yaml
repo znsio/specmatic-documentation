@@ -1,0 +1,176 @@
+openapi: 3.0.3
+info:
+  title: Auth configuration demo
+  version: '1.0'
+security:
+  - BearerAuth: []
+paths:
+  /bearer:
+    get:
+      operationId: bearer
+      responses:
+        '200':
+          description: Greeting
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+              examples:
+                hello:
+                  value:
+                    message: hello auth
+  /oauth:
+    get:
+      operationId: oauth
+      security:
+        - OAuthAuth: []
+      responses:
+        '200':
+          description: Greeting
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+              examples:
+                hello:
+                  value:
+                    message: hello auth
+  /oidc:
+    get:
+      operationId: oidc
+      security:
+        - OidcAuth: []
+      responses:
+        '200':
+          description: Greeting
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+              examples:
+                hello:
+                  value:
+                    message: hello auth
+  /basic:
+    get:
+      operationId: basic
+      security:
+        - BasicAuth: []
+      responses:
+        '200':
+          description: Greeting
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+              examples:
+                hello:
+                  value:
+                    message: hello auth
+  /header:
+    get:
+      operationId: header
+      security:
+        - HeaderKey: []
+      responses:
+        '200':
+          description: Greeting
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+              examples:
+                hello:
+                  value:
+                    message: hello auth
+  /query:
+    get:
+      operationId: query
+      security:
+        - QueryKey: []
+      responses:
+        '200':
+          description: Greeting
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+              examples:
+                hello:
+                  value:
+                    message: hello auth
+  /public:
+    get:
+      operationId: public
+      security: []
+      responses:
+        '200':
+          description: Greeting
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+              examples:
+                hello:
+                  value:
+                    message: hello auth
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+    OAuthAuth:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://example.com/token
+          scopes: {}
+    OidcAuth:
+      type: openIdConnect
+      openIdConnectUrl: https://example.com/openid
+    BasicAuth:
+      type: http
+      scheme: basic
+    HeaderKey:
+      type: apiKey
+      in: header
+      name: X-API-Key
+    QueryKey:
+      type: apiKey
+      in: query
+      name: api_key

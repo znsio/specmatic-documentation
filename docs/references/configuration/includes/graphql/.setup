@@ -1,0 +1,31 @@
+if [[ "$DOC_EXAMPLE_NAME" == test* ]]; then
+  node target.cjs > target.log 2>&1 &
+  graphql_target_pid=$!
+  cleanup() {
+    result=$?
+    kill "$graphql_target_pid" 2>/dev/null || true
+    wait "$graphql_target_pid" 2>/dev/null || true
+    node check-routing.cjs "$DOC_EXAMPLE_NAME" || exit 2
+    exit "$result"
+  }
+  trap cleanup EXIT
+  ready=false
+  for attempt in {1..100}; do
+    if [[ $(grep -c 'GraphQL target ready' target.log) == 2 ]]; then ready=true; break; fi
+    kill -0 "$graphql_target_pid" 2>/dev/null || { cat target.log; exit 1; }
+    sleep 0.1
+  done
+  [[ "$ready" == true ]] || { cat target.log; exit 1; }
+fi
+if [[ "$DOC_EXAMPLE_NAME" == request.sh ]]; then
+  docker run --rm --network host -v ./:/usr/src/app -v "$HOME/.specmatic:/root/.specmatic" --env CONFIG_FILE_PATH=mock.yaml specmatic/enterprise mock > mock.log 2>&1 &
+  graphql_mock_pid=$!
+  trap 'kill "$graphql_mock_pid" 2>/dev/null || true; wait "$graphql_mock_pid" 2>/dev/null || true' EXIT
+  ready=false
+  for attempt in {1..300}; do
+    if grep -q 'Stub server is running on http://127.0.0.1:9101' mock.log; then ready=true; break; fi
+    kill -0 "$graphql_mock_pid" 2>/dev/null || { cat mock.log; exit 1; }
+    sleep 0.1
+  done
+  [[ "$ready" == true ]] || { cat mock.log; exit 1; }
+fi

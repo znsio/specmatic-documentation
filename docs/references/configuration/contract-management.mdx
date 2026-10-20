@@ -3,60 +3,187 @@ title: Contract Management
 sidebar_position: 2
 ---
 
-import {V2V3SpecmaticConfigTabs} from "../../../src/components/V2V3SpecmaticConfigTabs";
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import {JsonDisplay, YamlDisplay} from '@site/src/components/JsonYamlDisplay';
+import CodeBlock from '@theme/CodeBlock';
 
-# Contract Management
+# Choose where your specifications come from
 
-## Versions 3 - systemUnderTest and dependencies
-In v3, we define services under `components.services` and the specifications implemented
-by the service  are defined within the service definition.
-We define a '**systemUnderTest**' which references the service being tested and its run options.
-We can also define the dependencies of the service under '**dependencies.services**' along with their run options.
+<span id="versions-3---systemundertest-and-dependencies" />
 
-## Versions 2 - Provides and Consumes
+Each selected service has `definitions`. A definition chooses **one source** and the `specs` to load from it. Inline sources and references to `components.sources` use the same provider shapes.
 
-In v2, a service needs to list the API Specifications it implements under the `provides` attribute and the
-API Specifications of its dependencies under the `consumes` attribute.
+| Specs live… | Select | Spec paths refer to… |
+|---|---|---|
+| In a local folder | `filesystem` | Files inside its `directory` |
+| At an HTTP(S) base URL | `web` | Paths appended to that base URL |
+| In a separate Git repository | `git` with `url` | Files inside the selected checkout |
+| In your current Git checkout | `git: {}` | Files relative to the config location in the checked monorepo loader |
 
-## Contracts from Git Repository
+These examples ran against OSS 2.55.3 and Enterprise 1.28.3 using core OpenAPI mocks. Source-model rules below are separate from protocol-specific consumers; the recipes do not establish every protocol or integration's loading behavior.
 
-Configure Specmatic to pull contracts from a Git repository:
+## Contracts from local filesystem
 
-<V2V3SpecmaticConfigTabs
-  v2ObjectWithoutConfig={require('./includes/contract-management/v2/without-config/contracts-configuration/specmatic.json')}
-  v2Object={require('./includes/contract-management/v2/contracts-configuration/specmatic.json')}
-  v3Object={require('./includes/contract-management/v3/contracts-configuration/specmatic.json')}
-/>
+Save `contracts/books.yaml` and `filesystem.yaml` together with this layout:
 
+```text
+project/
+  filesystem.yaml
+  contracts/
+    books.yaml
+```
 
+<CodeBlock language="yaml" title="filesystem.yaml">{require('./includes/source-recipes/filesystem.yaml?raw').trimEnd()}</CodeBlock>
 
-## Contracts from Local Filesystem
+<details>
+<summary>contracts/books.yaml — complete contract</summary>
+<CodeBlock language="yaml">{require('./includes/source-recipes/contracts/books.yaml?raw').trimEnd()}</CodeBlock>
+</details>
 
-If you just need to use specifications from your local file system, specify `filesystem` field within contracts (if not
-specified, `directory` will default to current directory):
+Run beside the config with the [Docker setup](/references/configuration/local-openapi#docker-setup), and free port 9101:
 
-<V2V3SpecmaticConfigTabs
-  v3Object={require('./includes/contract-management/v3/local_configuration_v3/specmatic.json')}
-  v2Object={require('./includes/contract-management/v2/local-filesystem/specmatic.json')}
-  v2ObjectWithoutConfig={require('./includes/contract-management/v2/without-config/local-filesystem/specmatic.json')}
-/>
+<CodeBlock language="shell">{require('./includes/source-recipes/filesystem.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/source-recipes/filesystem.terminaloutput?raw').trimEnd()}</CodeBlock>
 
-Note that the specification paths are relative paths. This means that they must be in the same
-directory as the current directory.
+`GET http://127.0.0.1:9101/books/1` returns HTTP 200 with `{"id":1,"title":"Specmatic Handbook"}`. Stop the mock before starting another recipe.
 
-You can also provide absolute paths in case they are somewhere else on the filesystem.
+Omitted `directory` uses `.` in the CLI loader. You can instead select `contracts` and shorten the spec path to `books.yaml`:
 
-## Contracts from Web Source
+<details>
+<summary>local-directory.yaml — complete directory selection</summary>
+<CodeBlock language="yaml">{require('./includes/source-recipes/local-directory.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/source-recipes/local-directory.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/source-recipes/local-directory.terminaloutput?raw').trimEnd()}</CodeBlock>
 
-If your specifications are hosted over HTTP(S), specify `web` field within contracts and set the source `url`:
+The CLI loader and typed V3 path lookup can use different directory bases. Run beside the config, or use an absolute source directory; see [config discovery and paths](/references/configuration/files-and-paths). Selecting a file in another directory does not rebase every consumer automatically.
 
-<V2V3SpecmaticConfigTabs
-  v3Object={require('./includes/contract-management/v3/web-configuration/specmatic.json')}
-  v2Object={require('./includes/contract-management/v2/web-configuration/specmatic.json')}
-  v2ObjectWithoutConfig={require('./includes/contract-management/v2/without-config/web-configuration/specmatic.json')}
-/>
+## Contracts from web source
 
-Specmatic resolves each specification path in `specs` relative to the configured web `url`.
+`web.url` is the **specification download base**, not the API test target or mock listener URL. This complete file downloads `/contracts/books.yaml` from port 9200 and serves the resulting mock on 9101:
+
+<CodeBlock language="yaml" title="web.yaml">{require('./includes/source-recipes/web.yaml?raw').trimEnd()}</CodeBlock>
+
+For a self-contained demonstration, save the source server beside the same `contracts/books.yaml`. You need Node 20+ and free ports 9200 and 9101.
+
+<details>
+<summary>source-server.cjs — demonstration specification host</summary>
+<CodeBlock language="javascript">{require('./includes/source-recipes/source-server.cjs?raw').trimEnd()}</CodeBlock>
+</details>
+
+Start it in one terminal:
+
+<CodeBlock language="shell">{require('./includes/source-recipes/start-source.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/source-recipes/start-source.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+In another terminal beside the config:
+
+<CodeBlock language="shell">{require('./includes/source-recipes/web.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/source-recipes/web.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The source server prints `GET /contracts/books.yaml`; the mock returns the same deterministic book. Replace the demonstration host with your specification host when adapting the file.
+
+The checked resolver appends the spec path after the base path. A leading slash on the spec does **not** discard `/contracts`; a trailing slash on the base also works:
+
+<details>
+<summary>web-leading-path.yaml and web-trailing-source.yaml — complete variants</summary>
+<CodeBlock language="yaml" title="web-leading-path.yaml">{require('./includes/source-recipes/web-leading-path.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/source-recipes/web-leading-path.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/source-recipes/web-leading-path.terminaloutput?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="yaml" title="web-trailing-source.yaml">{require('./includes/source-recipes/web-trailing-source.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/source-recipes/web-trailing-source.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/source-recipes/web-trailing-source.terminaloutput?raw').trimEnd()}</CodeBlock>
+</details>
+
+Both request the same source path and return the same mock response. Downloaded bytes are written under `.specmatic/web` beside the selected config; this recipe creates `.specmatic/web/127.0.0.1/contracts/books.yaml`. The loader downloads during loading, so this folder is not an offline or immutable-cache promise. Its source-traced local filename uses host/base path/spec path, omitting the port and query; distinct URLs can therefore map to the same local path. Do not assume the cache path uniquely identifies the remote origin.
+
+Use relative `specs` entries. This absolute URL is rejected:
+
+<details>
+<summary>absolute-spec.yaml — complete rejected form</summary>
+<CodeBlock language="yaml">{require('./includes/source-recipes/absolute-spec.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/source-recipes/absolute-spec.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/source-recipes/absolute-spec.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Recover by putting the base in `web.url` and `books.yaml` in `specs`, as in `web.yaml`. Keep the source server running for these recipes, then stop it when finished. This V3 web model exposes `url`; do not invent `web.headers` or `web.auth` fields. Redirects, authenticated web hosting and URLs with query/fragment inputs need their own release checks.
+
+## Contracts from Git repository
+
+Provide `git.url`; spec paths belong inside that repository. The following demonstration uses a local repository URL so you can reproduce checkout behavior without a remote account. Save the same `contracts/books.yaml`, this configuration and the preparation script beside each other. You need Git, Node 20+, Java and free mock port 9101.
+
+<CodeBlock language="yaml" title="git-repository.yaml">{require('./includes/source-recipes/git-repository.yaml?raw').trimEnd()}</CodeBlock>
+<details>
+<summary>prepare-git.sh — create the demonstration repository and two branches</summary>
+<CodeBlock language="shell">{require('./includes/source-recipes/prepare-git.sh?raw').trimEnd()}</CodeBlock>
+</details>
+
+Run the preparation script once with Bash in a fresh demonstration directory. It creates `source-repository`; it does not need global Git author settings. The published script itself is the preparation command sequence.
+
+<CodeBlock language="terminaloutput">{require('./includes/source-recipes/prepare-git.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Then select its main branch:
+
+<CodeBlock language="shell">{require('./includes/source-recipes/git-repository.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/source-recipes/git-repository.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The mock returns `Specmatic Handbook`. Stop it and select the alternate branch:
+
+<CodeBlock language="shell">{require('./includes/source-recipes/git-alternate.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/source-recipes/git-alternate.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The same request now returns `Alternate Handbook`, proving that the selected branch changed the loaded contract. The template's `main` default is authored in this demonstration; it is not Specmatic's universal branch default.
+
+For a remote repository, supply your clone URL through `CONTRACTS_REPOSITORY` and select its real branch and spec paths. The checked Git loader can use a bundled checkout, a same-named checkout under the home `.specmatic/repos`, or a local checkout under the run's `.specmatic/repos`; those branches of loading can behave differently. Review loading logs and the actual contract before assuming a branch change refetched a pre-existing checkout. These recipes establish local-URL cloning and explicit branch selection, not private-host authentication or every cache-refresh case.
+
+With no explicit branch and no branch matching, cloning uses the repository default. `matchBranch: true` or the applicable CLI match-branch input asks for the current branch; GitHub Actions lookup considers `GITHUB_HEAD_REF`, then `GITHUB_REF_NAME`, then the local Git branch. Failure to determine it falls back to the configured branch. Checkout exceptions can be caught and logged only at debug level; confirm the branch/content instead of treating startup as proof of selection. Those additional cases are source traced, not established by the two branch recipes.
+
+`git.auth` selects one of `bearerFile`, `bearerEnvironmentVariable` or `personalAccessToken`. The latter is a token value, not a filename. Authentication applies to Git access, separately from API authentication. Do not commit credential values in example defaults; private-host transport verification remains outside this recipe.
+
+### Your current Git checkout
+
+Omit the URL intentionally with `git: {}`. Save this file and the contract inside an existing Git checkout, and run beside the config:
+
+<CodeBlock language="yaml" title="git-current.yaml">{require('./includes/source-recipes/git-current.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/source-recipes/git-current.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/source-recipes/git-current.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The checked monorepo loader reads `contracts/books.yaml` relative to the config location and uses the existing checkout. Omitting the URL differs from supplying an empty URL string. It does not clone an unspecified remote repository.
+
+## Choose exactly one provider
+
+An empty source, two providers, or an empty web URL is invalid. These complete failure cases each exit with code 1:
+
+<details>
+<summary>Empty source — schema acceptance is not model binding</summary>
+<CodeBlock language="yaml" title="empty-source.yaml">{require('./includes/source-recipes/empty-source.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/source-recipes/empty-source.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/source-recipes/empty-source.terminaloutput?raw').trimEnd()}</CodeBlock>
+</details>
+<details>
+<summary>Two providers — put them in separate definitions</summary>
+<CodeBlock language="yaml" title="multiple-providers.yaml">{require('./includes/source-recipes/multiple-providers.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/source-recipes/multiple-providers.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/source-recipes/multiple-providers.terminaloutput?raw').trimEnd()}</CodeBlock>
+</details>
+<details>
+<summary>Empty web URL — supply the specification base URL</summary>
+<CodeBlock language="yaml" title="empty-web-url.yaml">{require('./includes/source-recipes/empty-web-url.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/source-recipes/empty-web-url.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/source-recipes/empty-web-url.terminaloutput?raw').trimEnd()}</CodeBlock>
+</details>
+
+Recover with the working provider shape and its spec paths above. An empty source illustrates why browser schema success alone is insufficient; the [inspector](/references/configuration/inspect) also checks provider exclusivity.
+
+## Reuse sources and validate
+
+Declare a source under `components.sources.<yourName>` and select it from a definition with `$ref: '#/components/sources/<yourName>'`. Declaration alone does not choose specs or start a service. See the [complete component-reference recipe](/references/configuration/component-references), and [spec IDs](/references/configuration/spec-overrides) when selecting multiple specs.
+
+With the source server available and the files inside a Git checkout, validate the six non-templated working forms:
+
+<CodeBlock language="shell">{require('./includes/source-recipes/validate.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/source-recipes/validate.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Validation and runs can read/download specifications and write caches. Validate the templated Git file with its URL input supplied; an unresolved or empty default URL is not a working repository selection. The browser does not fetch specs or verify credentials and reachability.
+
+<span id="versions-2---provides-and-consumes" />
+
+Using V2? The [legacy comparison](/references/configuration/legacy-contract-management) preserves the earlier formats. New files and this reference use V3.

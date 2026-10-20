@@ -3,6 +3,7 @@ sidebar_position: 1
 title: Authentication
 ---
 
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {CommercialBadge} from "../../src/components/CommercialBadge";
@@ -72,35 +73,13 @@ Examples:
 <span id="recommended-configure-auth-in-specmaticyaml"></span>
 ### Using Specmatic Configuration
 
-You can configure auth values under the OpenAPI test configuration in `specmatic.yaml`.
+Use the [complete V3 authentication recipe](/references/configuration/authentication) for the contract, independent local service, commands and failure recovery. This is its complete config, rather than a root-level `specs` fragment:
 
-```yaml
-specs:
-  - spec:
-      id: orderApiSpec
-      securitySchemes:
-        oAuth2AuthCode:
-          type: oauth2
-          token: ${OAUTH_TOKEN:OAUTH1234}
-        oidcAuth:
-          type: openIdConnect
-          token: ${OIDC_TOKEN:OIDC1234}
-        basicAuth:
-          type: basicAuth
-          token: ${BASIC_AUTH_TOKEN:dXNlcjpwYXNzd29yZA==}
-        apiKeyAuth:
-          type: apiKey
-          token: ${API_KEY:APIKEY1234}
-```
+<CodeBlock language="yaml" title="specmatic.yaml">{require('../references/configuration/includes/auth/specmatic.yaml?raw').trimEnd()}</CodeBlock>
 
-This lets you:
+The definition's `id: auth-demo` selects the matching run-option entry. Scheme names match the contract exactly. Bearer/OAuth/OIDC values are raw tokens; Basic uses Base64 of `username:password`; the contract chooses the API-key header or query parameter name. Use [config templates](/references/configuration/template-values) to supply real credentials from the environment, without embedding secret defaults.
 
-- Map each OpenAPI security scheme to a token/key.
-- Read values from environment variables.
-- Provide defaults for local testing.
-
-For an OpenID Connect scheme, use `type: openIdConnect` and provide the raw token. Specmatic sends it as an
-`Authorization: Bearer <token>` header.
+A nonblank configured token wins over a scheme-named variable in the checked core consumers; blank tokens fall back. The recipe demonstrates those cases and mismatched IDs/names/types. Config schema acceptance does not validate credentials against the service. Core mocks in the checked mode accept absent/arbitrary bearer credentials; their per-spec map is not an authentication policy.
 
 <span id="providing-auth-credentials-in-examples"></span>
 ## Authentication within an Example

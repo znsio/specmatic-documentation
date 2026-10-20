@@ -1,0 +1,19 @@
+version: 3
+dependencies:
+  services:
+    - service:
+        definitions:
+          - definition:
+              source:
+                filesystem: {}
+              specs:
+                - spec:
+                    id: ping
+                    path: asyncapi.yaml
+        runOptions:
+          asyncapi:
+            type: mock
+            servers:
+              - server:
+                  host: localhost:19092
+                  protocol: kafka

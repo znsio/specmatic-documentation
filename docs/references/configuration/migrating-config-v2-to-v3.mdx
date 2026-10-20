@@ -2,157 +2,110 @@
 title: Migrating Config v2 to v3
 sidebar_position: 11
 ---
+import CodeBlock from '@theme/CodeBlock';
 
-# Migrating from Specmatic Config v2 to v3
+# Migrate an existing configuration to V3
 
-This guide explains why you should migrate from config `version: 2` to `version: 3`, how `v3` makes System Under Test and dependency configuration clearer, and what additional benefits you get from the v3 model.
+Keep the original file, convert into a new file, then check the behavior you depend on. V3 separates the tested service (`systemUnderTest`) from mocked dependencies (`dependencies`). Reusable `components` are optional; the upgrader can produce inline definitions.
 
-## Why move to v3
+This journey ran against OSS 2.55.3 and Enterprise 1.28.3 using local OpenAPI specifications and explicit test/mock endpoints. It is a bounded migration check, not a promise that every legacy setting or protocol has identical behavior after conversion.
 
-`v3` is now the recommended format and provides a more explicit, service-centric model.
+## 1. Keep the original and its specifications
 
-Main advantages:
+Save these files together in a fresh demonstration directory. You need the [Docker setup](/references/configuration/local-openapi#docker-setup), Node 20+ for the demonstration target, and free ports 9100/9101. Run commands beside the config so the local source paths agree.
 
-1. Clear separation of intent:
-`systemUnderTest` defines what you are validating, and `dependencies.services` defines what you virtualize.
-2. Less duplication:
-`components` lets you define reusable sources, services, and run options once, then reference them via `$ref`.
-3. Better readability at scale:
-Instead of large `provides` and `consumes` lists, each service has a named definition and run profile.
-4. More structured runtime behavior:
-Global controls are grouped under `specmatic.settings` and governance/reporting under `specmatic.governance`.
-5. Better extensibility:
-`components.adapters` and service-level run profiles make it easier to evolve usage across protocols and environments.
+<CodeBlock language="text">{`project/
+  before.yaml
+  books.yaml
+  target.cjs`}</CodeBlock>
 
-## The key mindset shift
+`before.yaml` selects the same contract for testing on 9100 and mocking on 9101. These roles do not mean that the CLI starts your real application automatically.
 
-In `v2`, the model is contract-list-centric (`provides`/`consumes`).
-In `v3`, the model is service-wiring-centric:
+<CodeBlock language="yaml" title="before.yaml">{require('./includes/migration/before.yaml?raw').trimEnd()}</CodeBlock>
 
-- Define reusable contract sources in `components.sources`
-- Define named services in `components.services`
-- Define how each service runs in `components.runOptions`
-- Wire them into `systemUnderTest` and `dependencies`
+<details>
+<summary>books.yaml — complete deterministic contract</summary>
+<CodeBlock language="yaml">{require('./includes/migration/books.yaml?raw').trimEnd()}</CodeBlock>
+</details>
 
-This makes configuration closer to your actual architecture.
+<details>
+<summary>target.cjs — demonstration API implementation</summary>
+<CodeBlock language="javascript">{require('./includes/migration/target.cjs?raw').trimEnd()}</CodeBlock>
+</details>
 
-## SUT and dependency configuration is much clearer in v3
+## 2. Convert into a separate file
 
-### v2 (implicit role through `provides`/`consumes`)
+Choose an output name that does not exist. The command can overwrite an existing output file; the first line below prevents that in this example.
 
-```yaml
-version: 2
-contracts:
-  - git:
-      url: https://github.com/specmatic/specmatic-order-contracts.git
-    provides:
-      - com/petstore/store.yaml
-    consumes:
-      - com/petstore/payment.yaml
-```
+<CodeBlock language="shell">{require('./includes/migration/upgrade.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/migration/upgrade.terminaloutput?raw').trimEnd()}</CodeBlock>
 
-### v3 (explicit service wiring)
+Here is the complete generated file. The original `before.yaml` remains unchanged.
 
-```yaml
-version: 3
+<CodeBlock language="yaml" title="after.yaml — generated output">{require('./includes/migration/expected-v3.yaml?raw').trimEnd()}</CodeBlock>
 
-systemUnderTest:
-  service:
-    $ref: "#/components/services/petStoreService"
-    runOptions:
-      $ref: "#/components/runOptions/petStoreTest"
+## 3. Review the changes
 
-dependencies:
-  services:
-    - service:
-        $ref: "#/components/services/paymentService"
-        runOptions:
-          $ref: "#/components/runOptions/paymentMock"
+- **Tested specs:** `contracts[].provides` becomes definitions inside `systemUnderTest.service`. Check that the same specifications are tested.
+- **Mocked specs:** `contracts[].consumes` becomes definitions inside each dependency service. Check that the same specifications are mocked.
+- **Sources:** the local directory moves into each definition's `source.filesystem`. Check that its spec paths still find the supplied contract.
+- **Endpoints:** entry-specific test URL and mock host/port become overrides under `runOptions.openapi.specs`. Check that each override targets the generated `books` ID.
+- **Reports:** `test.junitReportDir` becomes `junitReportDir` inside `specmatic.settings.test`. Check that JUnit output still lands in `reports`.
+- **Watcher setting:** `stub.hotReload: disabled` becomes `hotReload: false` inside `specmatic.settings.mock`. Check that the intended setting is retained.
 
-components:
-  sources:
-    centralContracts:
-      git:
-        url: https://github.com/specmatic/specmatic-order-contracts.git
-  services:
-    petStoreService:
-      definitions:
-        - definition:
-            source:
-              $ref: "#/components/sources/centralContracts"
-            specs:
-              - com/petstore/store.yaml
-    paymentService:
-      definitions:
-        - definition:
-            source:
-              $ref: "#/components/sources/centralContracts"
-            specs:
-              - com/petstore/payment.yaml
-  runOptions:
-    petStoreTest:
-      openapi:
-        type: test
-        baseUrl: http://localhost:8080
-    paymentMock:
-      openapi:
-        type: mock
-        baseUrl: http://localhost:8090
-```
+The `books` ID joins the definition to its run-option override. If you rename an ID, update both places; see [spec identity and overrides](/references/configuration/spec-overrides). Generated IDs can change when you add colliding spec filenames, so review the actual output rather than assuming an ID convention.
 
-What is clearer now:
+The output need not contain `components` or explicit `type` fields for this selected test/mock context. You can [reuse components](/references/configuration/component-references) later; adding them is not a migration prerequisite.
 
-1. SUT is explicit (`systemUnderTest`) rather than inferred.
-2. Dependencies are explicit (`dependencies.services`) and can each carry their own run behavior.
-3. Test vs mock mode is explicit per service in `runOptions` (`type: test` or `type: mock`).
-4. The same contract source can be reused across many services without repeating source details.
+For your own file, also review example/dictionary selection, credentials and certificates, hooks/adapters, filters, resiliency, reports and CLI/environment overrides. Conversion binds and serializes the configuration model: it is not a formatting-preserving editor and does not promise to retain comments or every extension field. Keep the original for comparison. See [paths](/references/configuration/files-and-paths), [data selection](/references/configuration/data-selection) and [test target precedence](/references/configuration/test-targets).
 
-## Field mapping cheat sheet (v2 -> v3)
+## 4. Validate and compare observable results
 
-1. `contracts[*].git` -> `components.sources.<name>.git`
-2. `contracts[*].provides` -> `components.services.<sut>.definitions` + `systemUnderTest.service`
-3. `contracts[*].consumes` -> `components.services.<dependency>.definitions` + `dependencies.services[*].service`
-4. `provides[*].config` / `consumes[*].config` -> `components.runOptions.<name>`
-5. `report` -> `specmatic.governance.report` and `specmatic.governance.successCriteria`
-6. `test`/`mock` settings -> `specmatic.settings` and/or service-specific `runOptions`
-7. `hooks` -> `components.adapters` (where applicable)
+Validate the generated file:
 
-Reference a named run option from `systemUnderTest.service.runOptions` or
-`dependencies.services[*].service.runOptions`. Likewise, keep service-specific
-`data` and `settings` inside `service`; only dependency-wide `data` or
-`settings` belongs directly under `dependencies`.
+<CodeBlock language="shell">{require('./includes/migration/validate.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/migration/validate.terminaloutput?raw').trimEnd()}</CodeBlock>
 
-## Additional inferred benefits from the docs
+Validation establishes configuration checks, not test/mock equivalence. For this recipe, run the old mock and then the new mock, stopping each before starting the next:
 
-1. Better multi-protocol support:
-`runOptions` can be protocol-specific (OpenAPI, GraphQL, gRPC, AsyncAPI), while preserving one consistent top-level model.
-2. Easier environment variation:
-Named run profiles can be switched without rewriting contract definitions.
-3. Cleaner governance and CI:
-Coverage thresholds and report formats are centralized under `specmatic.governance`.
-4. Stronger long-term maintainability:
-`components` + `$ref` encourage modular configuration as service count grows.
+<CodeBlock language="shell">{require('./includes/migration/before-mock.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/migration/after-mock.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/migration/after-mock.terminaloutput?raw').trimEnd()}</CodeBlock>
 
-## Migration approach
+Both return HTTP 200 and `{"id":1,"title":"Specmatic Handbook"}` for `GET http://127.0.0.1:9101/books/1`.
 
-1. Run automatic upgrade:
-`specmatic config upgrade --input specmatic_old.yaml --output specmatic.yaml`
-2. Verify service intent:
-Ensure exactly one primary `systemUnderTest` is wired correctly.
-3. Verify dependency wiring:
-Each consumed contract should appear under `dependencies.services` with appropriate mock run options.
-4. Consolidate repeated source/run settings:
-Move duplicates into `components` and reference them via `$ref`.
-5. Run your normal test and mock flows:
-Confirm base URLs, protocol-specific options, and governance behavior are unchanged.
+To compare tests, start the supplied implementation in one terminal:
 
-For command variants (Docker/Java/npm), see [Upgrade Configuration](/references/configuration/upgrade-specmatic-config).
+<CodeBlock language="shell">{require('./includes/migration/start-target.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/migration/start-target.terminaloutput?raw').trimEnd()}</CodeBlock>
 
-## Further reference
+Run the old test and then the new test in another terminal:
 
-For deeper details on each section, see:
+<CodeBlock language="shell">{require('./includes/migration/before-test.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/migration/after-test.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/migration/after-test.terminaloutput?raw').trimEnd()}</CodeBlock>
 
-- [Configuration Reference](/references/configuration)
-- [Getting Started (v3 structure)](/references/configuration/getting-started)
-- [Contract Management (v2 vs v3)](/references/configuration/contract-management)
-- [Complete Examples](/references/configuration/complete-examples)
+Each sends `GET /books/1` to port 9100, passes one test and writes `reports/TEST-junit-jupiter.xml`. Review or retain the first report before the next run replaces it. Stop the demonstration target when finished. Once your own comparisons pass, update your normal config selection to the reviewed V3 file.
+
+## Already V3?
+
+<CodeBlock language="shell">{require('./includes/migration/already-v3.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/migration/already-v3.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+In this case the command exits successfully without creating `another.yaml`. Use your existing file; do not interpret success as a new output being written.
+
+## Other legacy configurations
+
+The upgrade command also accepts V1 input, but this before/after journey covers V2 OpenAPI with a local source. Remote/private sources, other protocols and additional legacy settings need their own comparison checks. Do not move source files or change targets at the same time unless you intentionally want those behavior changes.
+
+For discovery and command options, see [Upgrade Configuration](/references/configuration/upgrade-specmatic-config). For new files, start with the [V3 task guide](/references/configuration).
+
+<span id="why-move-to-v3" />
+<span id="the-key-mindset-shift" />
+<span id="sut-and-dependency-configuration-is-much-clearer-in-v3" />
+<span id="v2-implicit-role-through-providesconsumes" />
+<span id="v3-explicit-service-wiring" />
+<span id="field-mapping-cheat-sheet-v2---v3" />
+<span id="additional-inferred-benefits-from-the-docs" />
+<span id="migration-approach" />
+<span id="further-reference" />

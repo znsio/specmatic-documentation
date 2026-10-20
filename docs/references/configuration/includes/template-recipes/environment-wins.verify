@@ -1,0 +1,1 @@
+node verify-template.cjs strict 9101

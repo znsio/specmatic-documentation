@@ -1,0 +1,84 @@
+---
+title: Select Examples and Dictionaries
+sidebar_position: 4.5
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Select examples and dictionaries
+
+**Examples describe concrete requests and responses. Dictionaries supply values when generating data.** Configure both under a selected service's `data`. Dependency-wide `data` supplies shared mock data.
+
+This guide covers core OpenAPI data loading in OSS 2.55.3 and Enterprise 1.28.3. Other protocol runners can have separate data settings.
+
+Want to see values change in a running mock? Use the [complete examples and dictionary recipes](/references/configuration/data-recipes).
+
+## Start with the shape
+
+These fragments belong inside `systemUnderTest.service` or a `dependencies.services[].service` object. The same `data` shape can be used under `dependencies` for shared mock data.
+
+```yaml
+data:
+  examples:
+    - directories: [./examples/orders]
+  dictionary:
+    path: ./data/orders.yaml
+```
+
+Use a list of directory groups for `examples`, and an object containing one file path for `dictionary`. Relative paths in these core loaders start at the process working directory. See [Config Discovery and Relative Paths](/references/configuration/files-and-paths) before running with a config in another directory.
+
+## Reuse data through components
+
+This configuration illustrates placement and references. Supply your `specs/orders.yaml`, example directories, dictionary files and API at port 9100 before using it. For already supplied inputs and run instructions, start with the [local OpenAPI recipes](/references/configuration/local-openapi).
+
+<CodeBlock language="yaml" title="specmatic.yaml — data placement illustration">{require('./includes/data-selection/specmatic.yaml?raw').trimEnd()}</CodeBlock>
+
+`components.examples` has three defined members: `commonExamples`, `testExamples` and `mockExamples`. It is **not** a map where you can invent names such as `components.examples.orders`.
+
+- `commonExamples` is one object containing `directories`. Reference it as an item inside an examples list.
+- `testExamples` and `mockExamples` are lists of directory groups. Reference either as the whole `data.examples` value.
+- `components.dictionaries` is a named map. Here, `shared` and `orders` are names chosen by the author.
+
+Declaring a component does not activate it. A selected service or dependency-wide `data` must reference it. The test/mock list names express intent; the consuming `data` location determines where the selected examples are used.
+
+## What combines, and what wins?
+
+| Consumer | Example-directory contributions, in order | Selected dictionary path |
+|---|---|---|
+| V3 test data lookup for a matching spec | Service directories, then `EXAMPLE_DIRECTORIES` | Service dictionary, otherwise `SPECMATIC_STUB_DICTIONARY` |
+| V3 mock data lookup for a matching spec | Service directories, dependency-wide directories, then `EXAMPLE_DIRECTORIES` | Service dictionary, otherwise dependency-wide dictionary, otherwise `SPECMATIC_STUB_DICTIONARY` |
+
+This table describes the per-spec data lookup methods. **CLI mock loading can bypass additional environment/CLI directories when configured examples are already found.** See the [verified difference and reliable configuration](/references/configuration/data-recipes#additional-directories-check-the-actual-result).
+
+Both variables read the environment before the JVM property of the same name. `EXAMPLE_DIRECTORIES` is a comma-separated list with surrounding whitespace trimmed. Despite its name, `SPECMATIC_STUB_DICTIONARY` also supplies the core test dictionary fallback.
+
+In the illustration, tests select `./examples/common` and `./examples/test`. Mocks select `./examples/mock` **and** dependency-wide `./examples/common`. Both select `./data/orders.yaml`; the mock service's dictionary overrides `./data/shared.yaml`. Config selection chooses one dictionary file; it does not merge the two files.
+
+Example-list order does not establish which competing mock example will win. See [external example matching](/features/external_examples) for example contents and matching behavior.
+
+## Omitted and empty values
+
+| Choice | Core behavior |
+|---|---|
+| Omit `data.examples` | No directories contributed at that location; fallback variables and conventional example discovery can still apply |
+| Set service `examples: []` | Adds no service directories; dependency-wide and variable directories remain |
+| Point at a missing example directory | Can load zero examples; do not assume a successful run proves that the directory was used |
+| Omit `data.dictionary` | Uses the applicable dependency/variable fallback; without a selected path, OpenAPI parsing checks for a sibling dictionary |
+| Set `dictionary.path: ''` | Retains an empty path at config selection, suppressing its later fallback; the OpenAPI loader then treats it as no explicit path and checks beside the spec |
+| Select a nonempty missing dictionary path | Dictionary loading fails; it does not silently switch to a sibling file |
+
+Conventional example discovery uses `orders_examples` beside `orders.yaml`. With no nonempty selected dictionary path, core OpenAPI parsing checks `orders_dictionary.yml`, then `orders_dictionary.yaml`, then `orders_dictionary.json` beside that spec. Without a matching file it uses an empty dictionary. An explicitly selected dictionary must be a file containing a valid JSON/YAML object.
+
+**Use omission for normal dictionary fallback. An empty path is not a reliable “disable dictionary” switch.**
+
+## Fix common mistakes
+
+| Symptom | Correction |
+|---|---|
+| A whole-list ref targets `commonExamples` | Wrap that ref in a list; `commonExamples` is an object |
+| An examples item targets `testExamples` | Reference that list as the whole `data.examples` value |
+| A service still loads shared mock examples after `examples: []` | Remove the shared selection from dependency-wide `data` if it should not apply |
+| A configured dictionary cannot be found | Check the process working directory, selected service and fallback inputs; use an absolute path to remove ambiguity |
+| A dictionary path loads, but its values are not suitable | Follow the [dictionary format and schema matching guide](/features/dictionary); strictness and explicit examples also affect generation |
+
+Find each key's placements in [All V3 Configuration Keys](/references/configuration/all-keys), or inspect your authored file in the [local configuration inspector](/references/configuration/inspect). Browser structure checks do not prove that example or dictionary files exist or affect a run.

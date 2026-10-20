@@ -1,0 +1,28 @@
+version: 3
+dependencies:
+  settings:
+    hotReload: false
+  services:
+    - service:
+        $ref: '#/components/services/books'
+components:
+  sources:
+    local:
+      filesystem:
+        directory: .
+  services:
+    books:
+      definitions:
+        - definition:
+            source:
+              $ref: 'parts/local-source.json'
+            specs:
+              - books.yaml
+      settings:
+        strictMode: true
+        generative: false
+      runOptions:
+        openapi:
+          type: mock
+          host: 127.0.0.1
+          port: 9101

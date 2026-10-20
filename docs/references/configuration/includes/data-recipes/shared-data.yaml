@@ -1,0 +1,31 @@
+version: 3
+components:
+  examples:
+    commonExamples:
+      directories: [./examples/common]
+    mockExamples:
+      - directories: [./examples/service]
+  dictionaries:
+    shared:
+      path: ./data/shared.yaml
+    service:
+      path: ./data/service.yaml
+dependencies:
+  data:
+    examples:
+      - $ref: '#/components/examples/commonExamples'
+    dictionary:
+      $ref: '#/components/dictionaries/shared'
+  services:
+    - service:
+        definitions:
+          - definition:
+              source:
+                filesystem:
+                  directory: .
+              specs: [orders.yaml]
+        runOptions:
+          openapi:
+            type: mock
+            host: 127.0.0.1
+            port: 9101

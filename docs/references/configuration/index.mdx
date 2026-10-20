@@ -2,30 +2,67 @@
 title: Configuration
 sidebar_position: 1
 ---
-<span>Update Date: 05/09/2026</span>
 
-# Configuration
+import ConfigurationTasks from '@site/src/components/ConfigurationTasks';
 
-Specmatic uses a configuration file to manage API specifications, test settings, mock configurations, and more. This section provides comprehensive guidance on configuring Specmatic for your needs.
+# Configure Specmatic for your task
 
-Note: Version 3 is the latest as of 05/09/2026. If you are using an older version, see the [Upgrade Configuration](/references/configuration/upgrade-specmatic-config) guide to migrate.
+Your `specmatic.yaml` connects specifications to the services you want to test or mock. Start with a working example, then add only the settings you need.
 
-## Configuration Topics
+## What would you like to do?
 
-- [Getting Started](/references/configuration/getting-started) - Basic setup and configuration upgrade
-- [Contract Management](/references/configuration/contract-management) - Managing contracts from Git, web, or filesystem
-- [Test Configuration](/references/configuration/test-configuration) - Contract testing settings
-- [Mock Configuration](/references/configuration/mock-configuration) - Mock settings
-- [Reports](/references/configuration/reports) - Report generation and formatters
-- [Adapters](/references/configuration/adapters) - Customizing specifications, requests and responses
-- [Template Values](/references/configuration/template-values) - Environment-driven configuration values
-- [Complete Examples](/references/configuration/complete-examples) - Full configuration examples
-- [Upgrade Configuration](/references/configuration/upgrade-specmatic-config) - Upgrading older configuration files
+<ConfigurationTasks />
 
-## Quick Start
+Want to adapt a starter to your paths and targets? [Build an OpenAPI configuration](/references/configuration/build), then edit, copy or download it.
 
-We often have to pass more than one API Specification file to Specmatic to mock or test. While it is possible to send all the files as command line options, there is a better way.
+## Find or understand a key
 
-Also, if your contracts are stored in a source control system like Git, we need to provide details about the repository so that Specmatic can pull your specifications directly from your version control.
+Use the [Configuration Explorer](/references/configuration/explorer) to find a key, see its exact placement and explore section behavior. Aliases are searchable, and optional keys remain discoverable even when they are absent from your file.
 
-See the [Getting Started](/references/configuration/getting-started) guide for detailed setup instructions.
+Prefer a written reference? [All V3 Configuration Keys](/references/configuration/all-keys) lists the complete schema inventory, its object variants and constraints.
+
+## Understand the structure
+
+| Section | What it does |
+|---|---|
+| `systemUnderTest` | Selects the service tested against a real implementation |
+| `dependencies` | Selects the services to mock |
+| `components` | Holds reusable sources, services, run options, data and settings |
+| `specmatic` | Sets global behavior, governance and license configuration |
+| `proxies` | Configures proxy targets and recording |
+| `mcp` | Configures MCP server testing |
+
+You can define services inline or reference components. A mock-only config needs no `systemUnderTest`; declaring a component alone does not select it for a run.
+
+[Learn the configuration basics](/references/configuration/getting-started) · [Try the complete local examples](/references/configuration/local-openapi)
+
+[Follow your configuration through a run](/references/configuration/how-config-is-used): understand file loading, templates, references, source fetching and execution, and find the right check when a stage fails.
+
+## Go deeper
+
+- [Kafka application testing](/references/configuration/async-kafka-test): independent local service, reply validation, endpoint checks and released timeout limitations.
+
+- [Kafka mocking](/references/configuration/async-kafka): a complete AsyncAPI contract, embedded broker, independent message client and server references.
+
+- [Config discovery and relative paths](/references/configuration/files-and-paths): select the right file and understand path bases.
+- [GraphQL configuration](/references/configuration/graphql): Enterprise mock/test files, endpoint selection and example directories.
+- [gRPC configuration](/references/configuration/grpc): complete proto/mock/test files, compiler selection and per-spec ports.
+- [gRPC validation](/references/configuration/grpc-validation): check specs and examples without running a service; correct config and example failures.
+- [OpenAPI backward compatibility](/references/configuration/compatibility): choose a Git baseline and scope, recognize skipped checks, and recover from a breaking change.
+- [SOAP/WSDL configuration](/references/configuration/wsdl): complete mock/test files, endpoint overrides and SOAPAction.
+- [Contract sources](/references/configuration/contract-management): filesystem, Git and web.
+- [Examples and dictionaries](/references/configuration/data-selection): select shared data and understand combination versus fallback.
+- [Mock settings and scope](/references/configuration/mock-settings-guide): defaults, per-service behavior and CLI interactions.
+- [Test target selection](/references/configuration/test-targets): configured URLs, environment templates and CLI fallback.
+- [Test settings](/references/configuration/test-configuration) and [mock settings](/references/configuration/mock-configuration).
+- [OpenAPI authentication](/references/configuration/authentication), [HTTPS and client certificates](/references/configuration/https) and [adapters](/references/configuration/adapters).
+- [Templates](/references/configuration/template-values), [reports](/references/configuration/reports) and [telemetry](/references/configuration/telemetry).
+- [AsyncAPI configuration](/supported_protocols/asyncapi/configuration) and [standalone linter configuration](/features/linter/specification-formats/openapi/configuration).
+
+## Format version and product releases
+
+These guides use configuration format **V3** (`version: 3`). That number is separate from the version of Specmatic you install. Protocols and commands have edition-specific availability; follow the linked protocol guidance before choosing a setup.
+
+Using an older config? See [Upgrade Configuration](/references/configuration/upgrade-specmatic-config) and the [V2-to-V3 migration guide](/references/configuration/migrating-config-v2-to-v3). Legacy formats remain in those guides; use V3 for new configurations.
+
+To browse a file you already have, use the [local configuration inspector](/references/configuration/inspect). It preserves your text and explains the limits of its browser checks.

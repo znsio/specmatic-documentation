@@ -1,0 +1,26 @@
+version: 3
+dependencies:
+  services:
+    - service:
+        definitions:
+          - definition:
+              source:
+                filesystem:
+                  directory: .
+              specs:
+                - greeting.yaml
+        runOptions:
+          openapi:
+            type: mock
+            host: 127.0.0.1
+            port: 19120
+            cert:
+              $ref: '#/components/certificates/demoTls'
+components:
+  certificates:
+    demoTls:
+      keyStore:
+        file: certificates/server.pfx
+        alias: demo-server
+        password: '{TLS_PASSWORD:docs-demo-pass}'
+      keyStorePassword: '{TLS_PASSWORD:docs-demo-pass}'

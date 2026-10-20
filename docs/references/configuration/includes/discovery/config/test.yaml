@@ -1,0 +1,16 @@
+version: 3
+systemUnderTest:
+  service:
+    definitions:
+      - definition:
+          source:
+            filesystem:
+              directory: '{CONTRACT_DIRECTORY:../specs}'
+          specs:
+            - books.yaml
+    runOptions:
+      openapi:
+        type: test
+        baseUrl: http://127.0.0.1:9100
+    settings:
+      junitReportDir: ./reports

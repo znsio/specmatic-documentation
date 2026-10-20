@@ -1,0 +1,30 @@
+if [[ "$DOC_EXAMPLE_NAME" != start-target.sh && "$DOC_EXAMPLE_NAME" != validate.sh ]]; then
+  node target.cjs > target.log 2>&1 &
+  target_pid=$!
+  cleanup() {
+    result=$?
+    if [[ "$result" == 0 && "$DOC_EXAMPLE_NAME" == dump.sh ]]; then node verify-proxy.cjs dump || result=2; fi
+    if [[ -n "${proxy_pid:-}" ]]; then kill "$proxy_pid" 2>/dev/null || true; wait "$proxy_pid" 2>/dev/null || true; fi
+    kill "$target_pid" 2>/dev/null || true
+    wait "$target_pid" 2>/dev/null || true
+    exit "$result"
+  }
+  trap cleanup EXIT
+  for attempt in {1..100}; do
+    grep -q 'Target ready' target.log && break
+    kill -0 "$target_pid" 2>/dev/null || { cat target.log; exit 1; }
+    sleep 0.1
+  done
+  grep -q 'Target ready' target.log || { cat target.log; exit 1; }
+  if [[ "$DOC_EXAMPLE_NAME" == request.sh || "$DOC_EXAMPLE_NAME" == dump.sh ]]; then
+    docker run --rm --network host -v ./:/usr/src/app -v "$HOME/.specmatic:/root/.specmatic" specmatic/enterprise proxy > proxy.log 2>&1 &
+    proxy_pid=$!
+    for attempt in {1..600}; do
+      grep -q 'Proxy server is running' proxy.log && break
+      kill -0 "$proxy_pid" 2>/dev/null || { cat proxy.log; exit 1; }
+      sleep 0.1
+    done
+    grep -q 'Proxy server is running' proxy.log || { cat proxy.log; exit 1; }
+    if [[ "$DOC_EXAMPLE_NAME" == dump.sh ]]; then curl --fail --silent http://127.0.0.1:19111/greeting > response.json; fi
+  fi
+fi

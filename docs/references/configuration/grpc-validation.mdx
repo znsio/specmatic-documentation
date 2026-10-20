@@ -1,0 +1,77 @@
+---
+title: Validate gRPC Specs and Examples
+sidebar_position: 1.36
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Validate gRPC specs and examples
+
+Use `specmatic validate` to check a proto and its JSON examples **without running a service**. These examples were checked with **Enterprise 1.28.3**. This is different from `specmatic config validate`, which checks the structure of the configuration file.
+
+## Save a complete setup
+
+Install the [Enterprise CLI](/getting_started/cli_quick_start) and configure your [license](/enterprise_onboarding/license_key). Save these files in one directory and run the commands there. No application, mock or free listening port is needed for validation. Compilation may download the selected compiler on first use.
+
+<details>
+<summary>Complete proto and valid example</summary>
+<CodeBlock language="protobuf" title="greeter.proto">{require('./includes/grpc/greeter.proto?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="json" title="greeter_examples/hello.json">{require('./includes/grpc/greeter_examples/hello.json?raw').trimEnd()}</CodeBlock>
+</details>
+
+Save this complete file as `test.yaml`. Validation uses the protobuf compiler/import options; the test target fields make the selected test options loadable, but this command does not call that target. The test-only `resiliencyTests` setting is included so the same file can also be used in the [running-service recipe](./grpc#test-a-running-service); it is not needed for validation.
+
+<CodeBlock language="yaml" title="test.yaml">{require('./includes/grpc/test.yaml?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="shell">{require('./includes/grpc/validate-spec.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/validate-spec.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+`--spec-file` chooses the local proto. `CONFIG_FILE_PATH` selects the configuration providing its options and any additional example directories. The colocated `greeter_examples` directory supplies one example. A passing result checks the contract and example shapes; it does not establish that an application implements them.
+
+## Recover from a mock-only config failure
+
+In the checked release, the [basic mock config](./grpc#mock-the-service) works for mocking but fails in this validation command:
+
+<details>
+<summary>Complete mock.yaml — intentional validation failure</summary>
+<CodeBlock language="yaml" title="mock.yaml">{require('./includes/grpc/mock.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+
+<CodeBlock language="shell">{require('./includes/grpc/validate-mock-config.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/validate-mock-config.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The command exits with code 1. This is a product limitation: the selected mock options are loaded through a test-target converter, which requires `host`. The schema permits extra properties here, but `host` is not a declared top-level protobuf mock setting and does not select the mock listener interface. Use the complete `test.yaml` above and rerun its validation command. Keep the mock config for mocking; a separate validation config avoids changing that setup.
+
+## Check an additional example directory
+
+Save `extra-examples/bad.json`. Its request deliberately uses a number where the proto requires a string:
+
+<CodeBlock language="json" title="extra-examples/bad.json">{require('./includes/grpc/extra-examples/bad.json?raw').trimEnd()}</CodeBlock>
+
+Save `validation.yaml`. Its configured directory adds to the colocated examples; it does not replace them in this command.
+
+<details>
+<summary>Complete config selecting extra examples</summary>
+<CodeBlock language="yaml" title="validation.yaml">{require('./includes/grpc/validation.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/grpc/validate-extra-examples.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/validate-extra-examples.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The command exits with code 1: the original example passes and the extra example fails. Correct the numeric request to a string. Save this replacement as `corrected-example.json`:
+
+<CodeBlock language="json" title="corrected-example.json">{require('./includes/grpc/corrected-example.json?raw').trimEnd()}</CodeBlock>
+
+Replace the deliberately invalid example and rerun validation:
+
+<CodeBlock language="shell">{require('./includes/grpc/validate-example-recovery.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/validate-example-recovery.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Both examples now pass. The copy command replaces only `extra-examples/bad.json` in this demo.
+
+## Validate an imported contract
+
+Save the complete inputs and `test-import.yaml` from the [same-folder import recipe](./grpc#resolve-imported-message-types). Its explicit `importPaths: ['.']` supplies the parser lookup and its data path selects the original `greeter_examples` directory despite the different proto filename.
+
+<CodeBlock language="shell">{require('./includes/grpc/validate-imports.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/grpc/validate-imports.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+This checks one local unary contract and a same-folder import. Nested/remote imports, config-wide discovery, shared examples and other consumer combinations need separate checks. The release's global gRPC example-validation hook performs no cross-example check: the “No Issues found when considering all examples” message is not proof of duplicate or competing-example detection. Individual example validation is the check demonstrated here.

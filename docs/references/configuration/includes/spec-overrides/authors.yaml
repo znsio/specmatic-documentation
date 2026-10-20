@@ -1,0 +1,35 @@
+openapi: 3.0.3
+info:
+  title: Authors API
+  version: '1.0'
+paths:
+  /authors/{id}:
+    get:
+      operationId: getAuthor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          examples:
+            handbook:
+              value: 1
+      responses:
+        '200':
+          description: A book
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [id, title]
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+              examples:
+                handbook:
+                  value:
+                    id: 1
+                    title: Authors Handbook

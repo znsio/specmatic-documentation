@@ -1,0 +1,19 @@
+if [[ "$DOC_EXAMPLE_NAME" != "start-targets.sh" && "$DOC_EXAMPLE_NAME" != "validate.sh" && "$DOC_EXAMPLE_NAME" != "named-environment.sh" ]]; then
+node targets.cjs > targets.log 2>&1 &
+target_pid=$!
+cleanup() {
+  result=$?
+  kill "$target_pid" 2>/dev/null || true
+  wait "$target_pid" 2>/dev/null || true
+  node check-routing.cjs "$DOC_EXAMPLE_NAME" || exit 2
+  exit "$result"
+}
+trap cleanup EXIT
+ready=false
+for attempt in {1..100}; do
+  if [[ $(grep -c 'ready on' targets.log) == 3 ]]; then ready=true; break; fi
+  kill -0 "$target_pid" 2>/dev/null || { cat targets.log; exit 1; }
+  sleep 0.1
+done
+[[ "$ready" == true ]] || { cat targets.log; exit 1; }
+fi

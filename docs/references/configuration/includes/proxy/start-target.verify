@@ -1,0 +1,1 @@
+node -e "fetch('http://127.0.0.1:19110/greeting').then(async r=>{require('node:assert/strict').deepEqual(await r.json(),{message:'hello proxy'});}).catch(e=>{console.error(e);process.exitCode=1;})"

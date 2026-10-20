@@ -1,0 +1,23 @@
+openapi: 3.0.3
+info:
+  title: TLS greeting API
+  version: '1.0'
+paths:
+  /greeting:
+    get:
+      operationId: greeting
+      responses:
+        '200':
+          description: Greeting
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [message]
+                properties:
+                  message:
+                    type: string
+              examples:
+                greeting:
+                  value:
+                    message: hello TLS

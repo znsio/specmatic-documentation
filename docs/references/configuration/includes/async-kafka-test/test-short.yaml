@@ -1,0 +1,20 @@
+version: 3
+systemUnderTest:
+  service:
+    definitions:
+      - definition:
+          source:
+            filesystem: {}
+          specs:
+            - spec:
+                id: ping
+                path: asyncapi.yaml
+    runOptions:
+      asyncapi:
+        type: test
+        replyTimeout: 500
+        servers:
+          - server:
+              host: localhost:19096
+              protocol: kafka
+              type: external

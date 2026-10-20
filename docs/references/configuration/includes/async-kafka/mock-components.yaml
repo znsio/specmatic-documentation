@@ -1,0 +1,30 @@
+version: 3
+components:
+  sources:
+    localContracts:
+      filesystem: {}
+  runOptions:
+    kafkaMock:
+      asyncapi:
+        type: mock
+        servers:
+          - server:
+              host: localhost:19092
+              protocol: kafka
+              type: in-memory
+  services:
+    pingService:
+      definitions:
+        - definition:
+            source:
+              $ref: "#/components/sources/localContracts"
+            specs:
+              - spec:
+                  id: ping
+                  path: asyncapi.yaml
+      runOptions:
+        $ref: "#/components/runOptions/kafkaMock"
+dependencies:
+  services:
+    - service:
+        $ref: "#/components/services/pingService"

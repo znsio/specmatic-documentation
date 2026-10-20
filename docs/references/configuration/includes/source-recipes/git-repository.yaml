@@ -1,0 +1,19 @@
+version: 3
+dependencies:
+  settings:
+    hotReload: false
+  services:
+    - service:
+        definitions:
+          - definition:
+              source:
+                git:
+                  url: '{CONTRACTS_REPOSITORY:}'
+                  branch: '{CONTRACTS_BRANCH:main}'
+              specs:
+                - books.yaml
+        runOptions:
+          openapi:
+            type: mock
+            host: 127.0.0.1
+            port: 9101

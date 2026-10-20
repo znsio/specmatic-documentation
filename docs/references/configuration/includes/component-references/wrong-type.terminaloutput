@@ -1,0 +1,3 @@
+Configuration is invalid: wrong-type.yaml
+could not be resolved as the expected typed value
+Failed to convert resolved value to CommonServiceConfig<MockRunOptions, MockSettings>

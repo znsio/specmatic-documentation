@@ -1,0 +1,18 @@
+version: 3
+systemUnderTest:
+  service:
+    definitions:
+      - definition:
+          source:
+            filesystem:
+              directory: .
+          specs:
+            - greeting.yaml
+    runOptions:
+      openapi:
+        type: test
+        baseUrl: https://127.0.0.1:19121
+specmatic:
+  settings:
+    test:
+      junitReportDir: reports

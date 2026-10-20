@@ -1,0 +1,22 @@
+version: 3
+dependencies:
+  services:
+    - service:
+        definitions:
+          - definition:
+              source:
+                filesystem: {}
+              specs:
+                - spec:
+                    id: greeting
+                    path: greeter.proto
+        runOptions:
+          protobuf:
+            type: mock
+            protocVersion: 3.23.4
+            port: 9101
+            specs:
+              - spec:
+                  id: greeting
+                  port: 9102
+                  protocVersion: 3.23.4

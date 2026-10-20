@@ -1,0 +1,3 @@
+Checking if kafka server(s) is running at: localhost:19096
+Result: PASSED
+Tests run: 1, Successes: 1, Failures: 0

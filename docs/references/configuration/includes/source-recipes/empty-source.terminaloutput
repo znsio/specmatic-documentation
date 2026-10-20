@@ -1,0 +1,2 @@
+Configuration is invalid: empty-source.yaml
+The resolved configuration satisfies its schema but cannot be bound to the Specmatic configuration model.

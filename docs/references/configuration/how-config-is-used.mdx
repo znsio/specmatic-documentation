@@ -1,0 +1,48 @@
+---
+title: How Your Configuration Is Used
+sidebar_position: 1.1
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# How your configuration is used
+
+A valid file is the start. Specmatic also needs to find your contracts and use the right settings for the operation you run. This overview follows **configuration-driven OpenAPI CLI runs in OSS 2.55.3 and Enterprise 1.28.3**. Other protocols and integrations have their own consumers; use their guides for differences.
+
+**Find file** → **Resolve values** → **Select definitions** → **Load contracts** → **Run and check**
+
+This is a troubleshooting map, not a promise that every setting is read once in this order. References and settings can be read when a consumer needs them; the test runner can reload the file to obtain contract targets.
+
+## Follow one file through a run
+
+1. **Find your file.** Default filename discovery or an explicit selection identifies the input. An unexpected working directory or another discovered file can change what gets loaded. Start with [file selection and path bases](/references/configuration/files-and-paths).
+2. **Parse and substitute values.** YAML/JSON is parsed, templates in values are resolved using that process's environment and Java properties, and the result is bound to its configuration format. Keep `version: 3` literal. A malformed file or a replacement of the wrong type can fail here. See [templates and their limitations](/references/configuration/template-values).
+3. **Resolve definitions and choices.** Service use sites can refer to `components`; their definitions select sources and specs. Run options and settings are read for their particular role. A component declaration alone does not schedule a service. See [references and replacement behavior](/references/configuration/component-references) and [spec IDs and overrides](/references/configuration/spec-overrides).
+4. **Load selected contracts.** Filesystem, Git or web sources locate the specs used by the operation. Fetching remote sources can involve credentials and write caches. Paths inside a source differ from local project paths. See [contract sources](/references/configuration/contract-management).
+5. **Run and check the result.** A mock opens listeners and serves responses; a test sends requests to an already running implementation and checks responses. Examples, dictionaries and scoped settings influence these consumers. Check a real response or test result rather than relying on successful parsing or a startup message.
+
+## A shared source does not imply a shared target
+
+<details>
+<summary>Complete V3 file — a gateway to test and a backend to mock</summary>
+
+<CodeBlock language="yaml" title="specmatic-components.yaml">{require('./includes/local-openapi/specmatic-components.yaml?raw').trimEnd()}</CodeBlock>
+
+</details>
+
+In this file, both services obtain `books.yaml` from `localContracts`. The gateway's test target is port **9100**; the backend's mock listener is port **9101**. Their run options belong at separate use sites. Defining both roles does not make a test command start the mock or your application: the [complete combined recipe](/references/configuration/local-openapi#test-with-a-mocked-dependency) supplies the files, startup sequence, commands and expected outcome.
+
+Settings do not follow one universal “CLI always wins” rule. For example, [core test timeout](/references/configuration/test-settings-guide) and [configured test target selection](/references/configuration/test-targets) have different observed interactions with CLI inputs. Follow the guidance for the particular key and consumer.
+
+## Where to look when it fails
+
+| What you see | First useful check |
+|---|---|
+| Wrong config or missing file | [Selection, default filenames and working directory](/references/configuration/files-and-paths#which-file-gets-loaded) |
+| Parsing error or invalid resolved type | [Template value and enclosing field type](/references/configuration/template-values#validate-and-recover) |
+| Missing or incompatible component | [Reference target and override shape](/references/configuration/component-references) |
+| Spec missing or remote source unavailable | [Source paths, fetching and credentials](/references/configuration/contract-management) |
+| Unexpected port, URL or ignored setting | [Spec identity](/references/configuration/spec-overrides), [test target](/references/configuration/test-targets) and the selected key's [context](/references/configuration/explorer) |
+| Browser checks pass but execution fails | The browser cannot read your environment, fetch your specs or contact your service. Use the [saved-file validation and actual run](/references/configuration/local-openapi#validate-the-configuration-files) |
+
+Configuration validation, example validation and a test/mock run answer different questions. Config validation checks the saved setup and can load sources; it does not prove your implementation conforms or your mock returns the expected response. Browser inspection is a narrower structural check. Keep the [inspector's limits](/references/configuration/inspect) in mind when diagnosing a runtime failure.

@@ -1,0 +1,57 @@
+version: 3
+components:
+  sources:
+    local:
+      filesystem:
+        directory: ./specs
+  examples:
+    commonExamples:
+      directories: [./examples/common]
+    testExamples:
+      - $ref: '#/components/examples/commonExamples'
+      - directories: [./examples/test]
+    mockExamples:
+      - directories: [./examples/mock]
+  dictionaries:
+    shared:
+      path: ./data/shared.yaml
+    orders:
+      path: ./data/orders.yaml
+systemUnderTest:
+  service:
+    definitions:
+      - definition:
+          source:
+            $ref: '#/components/sources/local'
+          specs: [orders.yaml]
+    data:
+      examples:
+        $ref: '#/components/examples/testExamples'
+      dictionary:
+        $ref: '#/components/dictionaries/orders'
+    runOptions:
+      openapi:
+        type: test
+        baseUrl: http://localhost:9100
+dependencies:
+  data:
+    examples:
+      - $ref: '#/components/examples/commonExamples'
+    dictionary:
+      $ref: '#/components/dictionaries/shared'
+  services:
+    - service:
+        definitions:
+          - definition:
+              source:
+                $ref: '#/components/sources/local'
+              specs: [orders.yaml]
+        data:
+          examples:
+            $ref: '#/components/examples/mockExamples'
+          dictionary:
+            $ref: '#/components/dictionaries/orders'
+        runOptions:
+          openapi:
+            type: mock
+            baseUrl: http://localhost:9101

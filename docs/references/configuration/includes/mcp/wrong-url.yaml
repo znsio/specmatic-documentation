@@ -1,0 +1,8 @@
+version: 3
+mcp:
+  test:
+    baseUrl: http://127.0.0.1:19101/mcp
+    transportKind: STREAMABLE_HTTP
+    bearerToken: docs-demo
+    filterTools: [echo]
+    dictionaryFile: dictionary.json

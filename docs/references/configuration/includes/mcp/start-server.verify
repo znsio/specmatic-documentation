@@ -1,0 +1,8 @@
+node - <<'JS'
+const assert = require('node:assert/strict');
+(async () => {
+  const response = await fetch('http://127.0.0.1:19100/mcp', {method:'POST',headers:{'content-type':'application/json',authorization:'Bearer docs-demo'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'tools/list'})});
+  assert.equal(response.status,200);
+  assert.deepEqual((await response.json()).result.tools.map(tool=>tool.name),['echo','broken']);
+})().catch(error=>{console.error(error);process.exitCode=1;});
+JS

@@ -1,0 +1,24 @@
+version: 3
+systemUnderTest:
+  service:
+    definitions:
+      - definition:
+          source:
+            filesystem:
+              directory: .
+          specs:
+            - greeting.yaml
+    runOptions:
+      openapi:
+        type: test
+        baseUrl: https://127.0.0.1:19121
+        cert:
+          keyStore:
+            file: certificates/client.p12
+            alias: demo-client
+            password: '{TLS_PASSWORD:docs-demo-pass}'
+          keyStorePassword: '{TLS_PASSWORD:docs-demo-pass}'
+specmatic:
+  settings:
+    test:
+      junitReportDir: reports

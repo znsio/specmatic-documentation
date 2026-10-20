@@ -1,0 +1,116 @@
+---
+title: Reuse Components and Understand Reference Overrides
+sidebar_position: 3
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Reuse components and understand reference overrides
+
+Use `components` to declare reusable sources, services, run options, settings or data. A declaration alone does not start a mock or select a test service: select it from the operation's use site. The target must fit the type expected there.
+
+These examples ran against OSS 2.55.3 and Enterprise 1.28.3. They check local source/service references, service sibling overrides and relative external-source failure and recovery; they do not establish every protocol or external-reference combination.
+
+## A complete shared service
+
+Save these files together and run beside them with the [Docker setup](/references/configuration/local-openapi#docker-setup). Port 9101 must be free.
+
+<CodeBlock language="yaml" title="shared.yaml">{require('./includes/component-references/shared.yaml?raw').trimEnd()}</CodeBlock>
+
+<details>
+<summary>books.yaml — contract with one deterministic example</summary>
+<CodeBlock language="yaml">{require('./includes/component-references/books.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+
+The dependency selects the `books` service; the service's definition selects the `local` source:
+
+<CodeBlock language="shell">{require('./includes/component-references/shared.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/component-references/shared.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+`GET /books/1` returns HTTP 200 with `{"id":1,"title":"Specmatic Handbook"}`. `GET /books/2` returns HTTP 400 with `STRICT MODE ON`, because the referenced service enables strict mode and there is no matching authored example. Stop the mock before trying the next configuration.
+
+## Siblings replace matching properties
+
+A sibling property beside `$ref` replaces the same property on the target. This is a **shallow** combination: a sibling `settings` object replaces the referenced service's whole `settings` object. It does not preserve omitted nested values.
+
+<details>
+<summary>replace-settings.yaml — complete replacement example</summary>
+<CodeBlock language="yaml">{require('./includes/component-references/replace-settings.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/component-references/replace-settings.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/component-references/replace-settings.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The use-site settings contain only `delayInMilliseconds: 0`. The referenced `strictMode: true` and `generative: false` are not retained in that service settings object. `/books/1` still returns the authored book; `/books/2` now returns a generated HTTP 200 response. Normal settings fallback can apply after reference conversion; it is separate from this replacement step.
+
+To keep strictness, repeat it in the replacement object:
+
+<details>
+<summary>keep-strict.yaml — complete correction</summary>
+<CodeBlock language="yaml">{require('./includes/component-references/keep-strict.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/component-references/keep-strict.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/component-references/keep-strict.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+`/books/2` again returns HTTP 400 with `STRICT MODE ON`. Reference replacement does not change the shared component declaration. These recipes check a service's nested settings replacement; other collections must fit their own expected types.
+
+## A found destination can have the wrong type
+
+This dependency points at a source instead of a service:
+
+<details>
+<summary>wrong-type.yaml — complete type-error example</summary>
+<CodeBlock language="yaml">{require('./includes/component-references/wrong-type.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/component-references/wrong-type.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/component-references/wrong-type.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Validation exits with code 1. The destination exists, but a filesystem source does not supply the definitions required by a mock service. Recover by referencing `#/components/services/books` at the dependency, and referencing the source inside that service's definition, as in `shared.yaml`.
+
+The [browser inspector](/references/configuration/inspect) now detects this local use-site shape error while retaining the authored file. A passing shape check is not proof of typed conversion or runtime validity.
+
+## Local references use literal map segments
+
+For local `#/components/...` refs, the checked resolver traverses map keys literally. It does not decode `~1` or `~0`, and it does not traverse array indexes. Use simple component names; do not copy an inspector location pointer into a configuration reference without checking it.
+
+<details>
+<summary>array-target.yaml — unsupported array traversal</summary>
+<CodeBlock language="yaml">{require('./includes/component-references/array-target.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/component-references/array-target.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/component-references/array-target.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+This exits with code 1: `definitions/0` cannot be reached through this local map resolver. Recover by referencing the whole service component. A missing target, including a null destination, is unresolved. External references are handled by a different resolver; do not apply these local map rules to every external URI fragment.
+
+## A relative external source can fail despite schema acceptance
+
+The schema accepts an external reference string, but the following existing-file setup fails in the checked releases. Save this document as `parts/local-source.json`:
+
+<CodeBlock language="json" title="parts/local-source.json">{require('./includes/component-references/parts/local-source.json?raw').trimEnd()}</CodeBlock>
+
+<details>
+<summary>external-source.yaml — complete failure example</summary>
+<CodeBlock language="yaml">{require('./includes/component-references/external-source.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/component-references/external-source.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/component-references/external-source.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Validation exits with code 1 even though the JSON file exists. The equivalent reference to a YAML source document also fails:
+
+<CodeBlock language="yaml" title="parts/local-source.yaml">{require('./includes/component-references/parts/local-source.yaml?raw').trimEnd()}</CodeBlock>
+<details>
+<summary>external-yaml.yaml — complete YAML-document failure</summary>
+<CodeBlock language="yaml">{require('./includes/component-references/external-yaml.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/component-references/external-yaml.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/component-references/external-yaml.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Recover with the inline source or local `#/components/sources/local` form in `shared.yaml`. These results do not establish that every external URI/fragment behaves identically, but they prevent treating an accepted external string as a working source-file reference. The browser never fetches external documents; check your exact form with the supported release. Reference chains and cycles remain outside its local shape check.
+
+## Validate the working forms
+
+Save the three working configs shown above beside the contract:
+
+<CodeBlock language="shell">{require('./includes/component-references/validate.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/component-references/validate.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Configuration validation can read external documents and load specification sources, including fetching/caching remote sources. It checks a different boundary from the browser and from serving an actual response. If a reference fails, check the use-site type, exact destination, supported traversal and sibling replacements, then rerun validation and the intended operation.

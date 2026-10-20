@@ -12,6 +12,8 @@ import yaml from "js-yaml";
 
 # Mock Configuration
 
+For core HTTP defaults, service versus lifecycle scope and verified CLI interactions, see [Choose Mock Settings and Understand Their Scope](/references/configuration/mock-settings-guide).
+
 ## Configuring Mocks
 
 The same configuration file can be leveraged to define mocks also.
@@ -28,8 +30,7 @@ Please note that now we are now listing the `api_order_v3.yaml` is listed as a d
 
 ## Mock Start Timeout
 
-The `startTimeoutInMilliseconds` setting in Specmatic ensures that a mock service, whether started via the
-`mock` command or programmatically using `createStub` method exits if it doesn't start within the defined time.
+For core HTTP mocks, `startTimeoutInMilliseconds` bounds specific startup/readiness waits. Configure it at dependency-wide or global scope; individual service values are not used by the core lifecycle accessor. The default is 20,000 ms. This is not a guaranteed wall-clock limit for every phase of the command.
 
 <V2V3SpecmaticConfigTabs
   v3Object={require('./includes/mock-configuration/v3/simple-with-mock-start-timeout/specmatic.json')}
@@ -128,7 +129,7 @@ You can configure Specmatic to run mock server in strict mode using the followin
 
 ## Run Mock Server on Different Ports for Different Specifications
 
-If you want to run mock server on different ports for different specifications, you can specify the port number in the `port` field under `consumes` key and assign the list of `specs` to it.
+If you want to run mock server on different ports for different specifications, define each mocked service under `dependencies.services` and set its listener in `service.runOptions.openapi.port`. Each service’s definitions select the specs it serves.
 
 <V2V3SpecmaticConfigTabs
   v3Object={require('./includes/mock-configuration/v3/complex-with-multiple-ports/specmatic.json')}
@@ -137,7 +138,7 @@ If you want to run mock server on different ports for different specifications, 
 
 As per the above configuration, the specs `api_order_v1.yaml` and `api_uuid_v1.yaml` will run on port 9000 and the spec `online_store_v1.yaml` will run on port 9001.
 
-You can also specify `host`, `basePath`, and even the complete `baseUrl` in the `consumes` field. For more details, refer to the [Service Virtualization](/spec_driven_api_development/service_virtualization#specmatic-configuration-with-base-url-host-port-and-path)
+In V3, set `host` and `port`, or a complete `baseUrl`, in the service’s OpenAPI run options. A `baseUrl` takes precedence over `host`/`port`. A specification’s `urlPathPrefix` can supply its path prefix. For more details, refer to the [Service Virtualization](/spec_driven_api_development/service_virtualization#specmatic-configuration-with-base-url-host-port-and-path)
 
 ## Externalized Examples Directories
 

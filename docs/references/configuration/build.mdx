@@ -1,0 +1,20 @@
+---
+title: Build a Starter Configuration
+sidebar_position: 1.3
+hide_table_of_contents: true
+---
+
+import Link from '@docusaurus/Link';
+import ConfigurationBuilder from '@site/src/components/ConfigurationBuilder';
+
+# Build a starter configuration
+
+Choose a task and generate an editable **OpenAPI V3** starter. Start inline or use named components. Add contract paths and targets, then copy or download the file you want to run. No contracts are fetched by this page.
+
+The initial values match the <Link to="/references/configuration/local-openapi" target="_blank" rel="noopener noreferrer">complete local Books demo</Link>; replace them with your own paths and service URLs. Git/web selections produce structural starters, not verified connectivity to your repository or server. Private Git, certificates and other advanced choices have dedicated guides and can be added through the editable file.
+
+<ConfigurationBuilder />
+
+Save and run the starter from the same directory as its config. If you keep the config in another directory, use <Link to="/references/configuration/files-and-paths" target="_blank" rel="noopener noreferrer">config discovery and path guidance</Link>: relative local source paths can use different bases in the released loader and typed resolver. An absolute source directory avoids that mismatch.
+
+For AsyncAPI, GraphQL, gRPC, WSDL or MCP, use the <Link to="/references/configuration/test-configuration" target="_blank" rel="noopener noreferrer">configuration reference</Link> and <Link to="/supported_protocols" target="_blank" rel="noopener noreferrer">protocol guides</Link>. The builder supports the OpenAPI tasks shown above; the <Link to="/references/configuration/explorer" target="_blank" rel="noopener noreferrer">explorer</Link> retains all supported V3 keys and variants.

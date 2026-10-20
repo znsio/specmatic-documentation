@@ -1,0 +1,18 @@
+{
+  "http-request": {
+    "method": "POST",
+    "path": "/soap",
+    "headers": {
+      "SOAPAction": "http://specmatic.io/SOAPService/SimpleOperation",
+      "Content-Type": "text/xml"
+    },
+    "body": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soapenv:Header/><soapenv:Body><SimpleRequest>Hello</SimpleRequest></soapenv:Body></soapenv:Envelope>"
+  },
+  "http-response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "text/xml"
+    },
+    "body": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soapenv:Header/><soapenv:Body><SimpleResponse>Specmatic SOAP</SimpleResponse></soapenv:Body></soapenv:Envelope>"
+  }
+}

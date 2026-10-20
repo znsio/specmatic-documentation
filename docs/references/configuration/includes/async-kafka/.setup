@@ -1,0 +1,26 @@
+export SPECMATIC_ENTERPRISE_JAR="$DOC_EXAMPLE_JAR"
+if [[ "$DOC_EXAMPLE_NAME" == client.sh || "$DOC_EXAMPLE_NAME" == stop.sh ]]; then
+  docker run --rm --network host -v ./:/usr/src/app -v "$HOME/.specmatic:/root/.specmatic" --env CONFIG_FILE_PATH=mock.yaml --env API_SERVER_PORT=19999 specmatic/enterprise mock > mock.log 2>&1 &
+  kafka_mock_pid=$!
+  cleanup() {
+    result=$?
+    if [[ "$DOC_EXAMPLE_NAME" == stop.sh && "$result" == 0 ]]; then
+      for attempt in {1..100}; do
+        kill -0 "$kafka_mock_pid" 2>/dev/null || break
+        sleep 0.1
+      done
+      if kill -0 "$kafka_mock_pid" 2>/dev/null; then result=2; fi
+    fi
+    kill "$kafka_mock_pid" 2>/dev/null || true
+    wait "$kafka_mock_pid" 2>/dev/null || true
+    exit "$result"
+  }
+  trap cleanup EXIT
+  ready=false
+  for attempt in {1..600}; do
+    if grep -q 'AsyncMock has started' mock.log; then ready=true; break; fi
+    kill -0 "$kafka_mock_pid" 2>/dev/null || { cat mock.log; exit 1; }
+    sleep 0.1
+  done
+  [[ "$ready" == true ]] || { cat mock.log; exit 1; }
+fi

@@ -1,0 +1,86 @@
+---
+title: Test Specs Against Separate Targets
+sidebar_position: 4
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Test specs against separate targets
+
+Use spec IDs when one tested service's definitions need different API targets. The ID in each declaration joins to the matching entry under `runOptions.openapi.specs`. See [spec IDs and mock overrides](/references/configuration/spec-overrides) for the two-list structure and matching rules.
+
+These examples ran against OSS 2.55.3 and Enterprise 1.28.3. They demonstrate core OpenAPI CLI testing; other protocol runners have their own target options.
+
+## A complete two-target setup
+
+Save the following three files in one directory. The books API must serve `GET /books/1` on port 9100; the authors API must serve `GET /authors/1` on 9102. Run beside the configuration.
+
+<CodeBlock language="yaml" title="test-matched.yaml">{require('./includes/spec-test-overrides/test-matched.yaml?raw').trimEnd()}</CodeBlock>
+
+<details>
+<summary>books.yaml — books contract</summary>
+<CodeBlock language="yaml">{require('./includes/spec-test-overrides/books.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+
+<details>
+<summary>authors.yaml — authors contract</summary>
+<CodeBlock language="yaml">{require('./includes/spec-test-overrides/authors.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+
+For a self-contained demonstration, the small Node server below supplies both targets. You need Node 20+, Java, the [Docker setup](/references/configuration/local-openapi#docker-setup), and free ports 9100 and 9102.
+
+<details>
+<summary>targets.cjs — demonstration APIs</summary>
+<CodeBlock language="javascript" title="targets.cjs">{require('./includes/spec-test-overrides/targets.cjs?raw').trimEnd()}</CodeBlock>
+</details>
+
+Start the targets in one terminal:
+
+<CodeBlock language="shell">{require('./includes/spec-test-overrides/start-targets.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/spec-test-overrides/start-targets.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+In another terminal in the same directory, run the test:
+
+<CodeBlock language="shell">{require('./includes/spec-test-overrides/test-matched.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/spec-test-overrides/test-matched.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The books example reaches 9100 and the authors example reaches 9102. Each response is checked against its contract. The demonstration server prints the target port and request path, so you can see which API receives each request. JUnit XML is written under `reports`; its directory is relative to this process's working directory. Replace the demonstration targets with your API implementations when adapting the configuration.
+
+## A mismatched ID falls back
+
+Here only the override spelling changes to `Authors`; the declaration remains `authors`:
+
+<details>
+<summary>test-mismatched.yaml — complete failure example</summary>
+<CodeBlock language="yaml">{require('./includes/spec-test-overrides/test-mismatched.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/spec-test-overrides/test-mismatched.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/spec-test-overrides/test-mismatched.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+This intentionally exits with code 1. The authors request goes to the service-level fallback on **9100**, where the books API returns HTTP 404. Recover by matching `authors` exactly in both lists, then rerun `test-matched.yaml`. An ID mismatch need not be a configuration-validation error; check the actual request destination.
+
+## CLI base URL and configured per-spec targets
+
+Keep the targets running and use the matched configuration:
+
+<CodeBlock language="shell">{require('./includes/spec-test-overrides/test-cli.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/spec-test-overrides/test-cli.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+Both tests still reach their configured per-spec targets on 9100 and 9102, although the CLI argument supplies 9103. The CLI stages a service-level base URL, but the configuration-driven runner loads specification targets from the file separately; each selected spec already has its own endpoint. Do not assume this flag reroutes every spec. To reroute one of these specs, edit its matching override. A spec without its own endpoint can use the service-level endpoint from the file. See [test target selection](/references/configuration/test-targets) for the separate configured-target and CLI-fallback cases.
+
+This is scoped to the checked configuration-driven CLI run. Passing contract paths directly or using another integration can select targets differently.
+
+## Add a path prefix for one spec
+
+Keep the two demonstration APIs running. The authors target also serves `/v2/authors/1`:
+
+<details>
+<summary>test-prefix.yaml — complete prefixed setup</summary>
+<CodeBlock language="yaml">{require('./includes/spec-test-overrides/test-prefix.yaml?raw').trimEnd()}</CodeBlock>
+</details>
+<CodeBlock language="shell">{require('./includes/spec-test-overrides/test-prefix.sh?raw').trimEnd()}</CodeBlock>
+<CodeBlock language="terminaloutput">{require('./includes/spec-test-overrides/test-prefix.terminaloutput?raw').trimEnd()}</CodeBlock>
+
+The declaration's `urlPathPrefix: /v2/` appends `v2` to the selected authors base URL. The contract path remains `/authors/1`, producing a request to **9102/v2/authors/1**. Books stays on **9100/books/1**. Leading/trailing slashes on the prefix are trimmed; a missing, empty or slash-only prefix adds no path. The checked recipe demonstrates HTTP test request routing; it does not prove that a mock rewrites contract paths the same way.
+
+Stop the demonstration targets when finished. If a test goes to the wrong place, check the exact spec ID, the selected protocol options, per-spec endpoint versus service fallback, and any authored prefix before changing timeouts or response examples.

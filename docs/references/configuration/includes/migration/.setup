@@ -1,0 +1,25 @@
+cp before.yaml original.yaml
+cleanup() {
+  result=$?
+  if [[ -n "${migration_target_pid:-}" ]]; then
+    kill "$migration_target_pid" 2>/dev/null || true
+    wait "$migration_target_pid" 2>/dev/null || true
+  fi
+  node check-migration.cjs "$DOC_EXAMPLE_NAME" || exit 2
+  exit "$result"
+}
+trap cleanup EXIT
+if [[ "$DOC_EXAMPLE_NAME" == after-* || "$DOC_EXAMPLE_NAME" == validate.sh || "$DOC_EXAMPLE_NAME" == already-v3.sh ]]; then
+  docker run --rm --network host -v ./:/usr/src/app -v "$HOME/.specmatic:/root/.specmatic" specmatic/enterprise config upgrade --input before.yaml --output after.yaml > upgrade.log 2>&1
+fi
+if [[ "$DOC_EXAMPLE_NAME" == *-test.sh ]]; then
+  node target.cjs > target.log 2>&1 &
+  migration_target_pid=$!
+  ready=false
+  for attempt in {1..100}; do
+    if grep -q 'Migration target ready' target.log; then ready=true; break; fi
+    kill -0 "$migration_target_pid" 2>/dev/null || { cat target.log; exit 1; }
+    sleep 0.1
+  done
+  [[ "$ready" == true ]] || { cat target.log; exit 1; }
+fi

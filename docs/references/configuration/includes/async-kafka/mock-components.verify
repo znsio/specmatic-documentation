@@ -1,0 +1,3 @@
+java -cp "$DOC_EXAMPLE_JAR" KafkaRoundTrip.java localhost:19092 > client.log
+cat client.log
+grep -Fq 'Kafka reply verified: {"event":"pong"}' client.log
