@@ -76,7 +76,8 @@ npm run check:examples
 ```
 
 Requires Node.js 20+, Bash, and Java 21. The wrapper resolves the latest release
-of each edition independently from Maven Central on every run. It reuses
+of each edition independently from its release source on every run: GitHub Releases for OSS
+and the Specmatic releases repository for Enterprise. It reuses
 `~/.specmatic/specmatic.jar` for OSS and `~/.specmatic/specmatic-enterprise.jar`
 for Enterprise if their reported edition/version matches. Otherwise it downloads
 and validates the latest JAR before replacing that edition's file.

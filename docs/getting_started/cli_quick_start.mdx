@@ -11,7 +11,7 @@ import { VERSIONS } from '@site/src/constants/versions';
 
 # CLI Quick Start
 
-> **Download Specmatic:** You can download the latest Specmatic executable, Docker image, or Maven dependency from the [Download page](/download).
+> **Download Specmatic:** You can download the latest Specmatic executable or Docker image from the [Download page](/download).
 
 ## Set up
 
@@ -30,9 +30,9 @@ The Specmatic standalone executable is accessible through various prominent dist
 
   </TabItem>
   <TabItem value="java" label="Java">
-    Download the standalone jar from our <a href={`https://github.com/specmatic/specmatic/releases/download/${VERSIONS['specmatic-core-version']}/specmatic.jar`}>GitHub releases</a> or <a href={`https://repo1.maven.org/maven2/io/specmatic/specmatic-executable-all/${VERSIONS['specmatic-core-version']}/specmatic-executable-all-${VERSIONS['specmatic-core-version']}.jar`}>Maven Central</a>.
+    Download the standalone jar from <a href={`https://github.com/specmatic/specmatic/releases/download/${VERSIONS['specmatic-core-version']}/specmatic-executable-all-${VERSIONS['specmatic-core-version']}.jar`}>GitHub releases</a> or the <a href={`https://repo.specmatic.io/releases/io/specmatic/specmatic-executable-all/${VERSIONS['specmatic-core-version']}/specmatic-executable-all-${VERSIONS['specmatic-core-version']}.jar`}>Specmatic repository</a>.
 
-    If you have downloaded the standalone jar from Maven Central, you may want to rename it as shown below for convenience.
+    The downloaded jar has a versioned filename. You may want to rename it as shown below for convenience.
 
     <CodeBlock language="bash">
     {`mv specmatic-executable-all-${VERSIONS['specmatic-core-version']}.jar specmatic.jar`}

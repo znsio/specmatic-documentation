@@ -8,12 +8,16 @@ const { promisify } = require('node:util');
 const execute = promisify(execFile);
 const editions = {
   oss: {
-    artifact: 'io/specmatic/specmatic-executable-all', name: 'specmatic-executable-all',
+    latestVersionUrl: 'https://api.github.com/repos/specmatic/specmatic/releases/latest',
+    latestVersionFrom: (body) => JSON.parse(body).tag_name,
+    downloadUrl: (version) => `https://github.com/specmatic/specmatic/releases/download/${version}/specmatic-executable-all-${version}.jar`,
     jarName: 'specmatic.jar', versionPattern: /Specmatic Version: v?([^\s(]+)/,
     jarVariable: 'SPECMATIC_JAR', versionVariable: 'SPECMATIC_VERSION',
   },
   enterprise: {
-    artifact: 'io/specmatic/enterprise/executable-all', name: 'executable-all',
+    latestVersionUrl: 'https://repo.specmatic.io/releases/io/specmatic/enterprise/executable-all/maven-metadata.xml',
+    latestVersionFrom: (body) => body.match(/<release>([^<]+)<\/release>/)?.[1],
+    downloadUrl: (version) => `https://repo.specmatic.io/releases/io/specmatic/enterprise/executable-all/${version}/executable-all-${version}.jar`,
     jarName: 'specmatic-enterprise.jar', versionPattern: /Specmatic Enterprise v?([^\s(]+)/,
     jarVariable: 'SPECMATIC_ENTERPRISE_JAR', versionVariable: 'SPECMATIC_ENTERPRISE_VERSION',
   },
@@ -32,7 +36,7 @@ async function cachedJar(version, edition, config) {
     return target;
   }
   await fs.mkdir(directory, { recursive: true });
-  const url = `https://repo.maven.apache.org/maven2/${config.artifact}/${version}/${config.name}-${version}.jar`;
+  const url = config.downloadUrl(version);
   console.log(`Downloading Specmatic ${edition} ${version} to ${target}`);
   const response = await fetch(url, { signal: AbortSignal.timeout(120_000) });
   assert.ok(response.ok, `Download failed: ${response.status} ${url}`);
@@ -51,10 +55,10 @@ async function runEdition(edition, folders) {
   const localJar = process.env[config.jarVariable];
   let version = process.env[config.versionVariable];
   if (!localJar) {
-    const response = await fetch(`https://repo.maven.apache.org/maven2/${config.artifact}/maven-metadata.xml`, { signal: AbortSignal.timeout(30_000) });
+    const response = await fetch(config.latestVersionUrl, { signal: AbortSignal.timeout(30_000) });
     assert.ok(response.ok, `Version lookup failed: ${response.status}`);
-    version = (await response.text()).match(/<release>([^<]+)<\/release>/)?.[1];
-    assert.ok(version, 'Maven metadata has no release version');
+    version = config.latestVersionFrom(await response.text());
+    assert.ok(version, `Latest version not found at ${config.latestVersionUrl}`);
   } else {
     assert.ok(version, `Set ${config.versionVariable} when supplying a local JAR`);
     const { stdout } = await execute('java', ['-jar', path.resolve(localJar), '--version'], { timeout: 15_000 });
